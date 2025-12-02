@@ -1,4 +1,4 @@
-# IsoStack V2.0 Architecture
+# ARCHIVED IsoStack V2.0 Architecture
 
 ## Overview
 

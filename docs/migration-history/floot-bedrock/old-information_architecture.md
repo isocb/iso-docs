@@ -1,14 +1,20 @@
 # Bedrock Information Architecture
 **Version:** 2.0  
 **Date:** 2025-11-18  
-**Status:** Proposed Design  
+**Status:** Archived
 **Author:** Chris (BA/Product Owner)
 
 ---
 
 ## Overview
 
-This document defines the conceptual model and information architecture for how Bedrock handles data from input through to display. It establishes a clear, linear flow that eliminates confusion and redundancy.  Here Google sheets is used as a metaphor for the data source.  Bedrock is the reporting engine of Isostack and is the first application of IsoStack.  Bedrock is to become the IsoStack Template.  Bedrock functions will be a switchable function in the owner dashboard ie it will be possible for the owner to switch all of the bedrock functionality off in the owner dashboard and enable or disable it per tenant.
+This document defines the conceptual model and information architecture for how Bedrock handles data from input through to display. It establishes a clear, linear flow that eliminates confusion and redundancy.  Here Google sheets is used as a metaphor for the data source.  Bedrock is the reporting engine of Isostack and is the first application of IsoStack.  Bedrock is to become the IsoStack Module.  Bedrock functions will be a switchable function in the owner dashboard ie it will be possible for the owner to switch all of the bedrock functionality off in the owner dashboard and enable or disable it per tenant.
+
+- Bedrock 3.0 reuses concepts from Bedrock 2.0 but has a new schema, new flow, and new UI.
+- Note: Bedrock 3.0 is inspired by Bedrock 1.0 and Bedrock 2.0, but its data structures, UI, and workflow are redesigned to align with IsoStack’s module architecture. Bedrock 2.0’s database is reference-only.
+
+- Bedrock stores its configuration in its own database schema (e.g. bedrock.*) within IsoStack, enabling clean separation and modularity.
+
 
 ---
 
@@ -20,6 +26,13 @@ This document defines the conceptual model and information architecture for how 
 4. **Progressive Disclosure** - Simple first, complexity when needed
 5. **Explicit State** - Users should always know what data has been detected and validated
 
+## Project Visibility:
+
+- Public Display → viewable by link, no login
+- Private Display → requires IsoStack user permission
+- Email filtering - only display data belonging to the email address of looged in user
+
+
 ---
 
 ## Information Architecture
@@ -27,7 +40,9 @@ This document defines the conceptual model and information architecture for how 
 
 
 
-### The Data Journey
+### The Data Journey: The 'Project'
+
+A client may have many projects.  A project defines the three layers: Ingest source, Virtual Columns and Display Configuration
 
 ```
 ┌─────────────────────────┐
@@ -36,20 +51,20 @@ This document defines the conceptual model and information architecture for how 
          │
          ↓
 ┌─────────────────┐
-│  1. SHEETS TAB  │ (Read-only validation)
+│  1. SHEETS TAB  │ (Read-only validation): "Layer 1 – Sheet Ingestion (Raw Data)"
 │  "Data Input"   │
 └────────┬────────┘
          │
          ↓
 ┌─────────────────┐
-│  2. VIRTUAL     │ (Optional transformations)
+│  2. VIRTUAL     │ (Optional transformations) "Layer 2 – Virtual Columns (Data Transformation)"
 │     COLUMNS     │
 │  "Manipulation" │
 └────────┬────────┘
          │
          ↓
 ┌─────────────────┐
-│  3. DISPLAY &   │ (Configuration for output)
+│  3. DISPLAY &   │ (Configuration for output) "Layer 3 – Display & Analysis (Visual Definition & Analysis)"
 │     ANALYSIS    │
 │  "Output Setup" │
 └────────┬────────┘
@@ -63,7 +78,9 @@ This document defines the conceptual model and information architecture for how 
 
 ---
 
-## Tab 1: Sheets (Data Input)
+## Tab 1: Layer 1 – Sheet Ingestion (Raw Data)
+
+
 
 ### Purpose
 Show users what data Bedrock has successfully read from their Google Sheets/ Internal Source. This is a **confirmation and validation** screen, not a configuration screen.
@@ -72,6 +89,8 @@ Show users what data Bedrock has successfully read from their Google Sheets/ Int
 *"These are the sheets/Tables I've connected. This is what Bedrock found in them. Everything looks correct."*
 
 ### Layout Structure
+
+
 
 #### Accordion Format
 - **Accordion Header (Collapsed State):**
@@ -122,15 +141,35 @@ Show users what data Bedrock has successfully read from their Google Sheets/ Int
 
 ---
 
-## Tab 2: Virtual Columns (Data Manipulation)
+## Tab 2: Layer 2 – Relationships & Virtual Columns (Data Transformation)
 
 ### Purpose
-Create calculated, transformed, or combined columns based on the incoming data from Sheets. These are **new columns** that don't exist in Google Sheets.
+- Create relationships between sheets if needed
+- Create calculated, transformed, or combined columns based on the incoming data from Sheets. These are **new columns** that don't exist in Google Sheets.
 
 ### User Mental Model
+*" I have a sheet of products and a sheet of orders and I want to analyse product sales"
 *"I need to create a 'Full Name' column by combining First Name and Last Name"* or *"I want to calculate a discount percentage based on two price columns."*
 
-### Functionality (Existing - No Major Changes)
+### Section 1: Master-Detail Relationships 
+
+**What It Does:**
+**Table & Sheet** in Google spreadsheets there is a filename, and a sheet selector  
+
+- Define which sheet is "master" (e.g., Teams) 
+- Define which sheet is "detail" (e.g., Players)
+- Specify join column (e.g., Team ID)
+
+**Configuration:**
+- Master sheet selection
+- Detail sheet selection
+- Join column (foreign key)
+- Relationship name/label
+- Single Sheet Projects have a single Display Row in the Accordion
+
+---
+
+### Section 2: Virtual Columns (Data Transformation)
 
 **Virtual Column Types:**
 1. **Formula** - Mathematical operations (+, -, *, /, %)
@@ -157,12 +196,13 @@ Create calculated, transformed, or combined columns based on the incoming data f
 - Changes to source data automatically update virtual columns
 - Virtual columns can reference other virtual columns (if dependencies are clear)
 
+
+
 ---
 
-## Tab 3: Display & Analysis (Output Configuration)
+## “Tab 3: Display & Analysis (View Definitions)"
 
-### New Name
-**"Display & Analysis"** (renamed from "Relationships")
+### **"Display & Analysis"** (renamed from "Relationships")
 
 ### Purpose
 This is the **single source of truth** for how data appears to end users. It controls:
@@ -178,65 +218,34 @@ This is the **single source of truth** for how data appears to end users. It con
 
 ---
 
-### Section 1: Master-Detail Relationships (Existing Functionality)
 
-**What It Does:**
-- Define which sheet is "master" (e.g., Teams)
-- Define which sheet is "detail" (e.g., Players)
-- Specify join column (e.g., Team ID)
 
-**Configuration:**
-- Master sheet selection
-- Detail sheet selection
-- Join column (foreign key)
-- Relationship name/label
 
----
 
-### Section 2: Column Configuration (NEW - Consolidated Here)
+### Section 3: Display - Grouping, Analysis & Sorting Configuration
 
-**This replaces the old "Columns" tab functionality and is THE place to configure display.**
+#### **Left and Right Panel Column Selector**
 
-#### UI Layout: Enhanced Field Management
-
-**Available Columns List (Left Panel):**
-- Shows ALL columns (real + virtual)
+**All Available Columns List (Left Panel):**
+- Grouped by Sheet Accordion for multiple sheets
+- Shows ALL sheet columns per accordion (real grouped by sourse sheet + virtual)
 - Source indicator (which sheet or "Virtual")
 - Data type badge
-- Drag-and-drop to "Selected Columns"
 
 **Selected Columns List (Right Panel - This is what users will see):**
-- Prettier checkboxes to include/exclude quickly
-- Drag-and-drop handles for ordering
-- Inline editing of display labels
-- Visual preview of how table will look
+ 
+- List of selected columns
+- Drag and Drop order (Crucial driver of Grouping Order, Sort Oder as well as display order)
 
-**Per-Column Configuration:**
+####**Column Editor Modal**
+
+**Edit Chosen Column Display modal Configuration:**
 - **Include/Exclude** - Checkbox (visual on/off toggle)
-- **Display Label** - Editable text field (rename for users)
 - **Display Order** - Drag-and-drop position
+- **Display Label** - Editable text field (rename for users)
 - **Text Alignment** - Left/Center/Right (for tables)
 - **Show Field Name** - Toggle (show label or not in master-detail)
 - **Grouping** - Set as grouping column (radio button)
-- **Sticky/Frozen** - Keep column visible when scrolling (optional)
-
----
-
-### Section 3: Grouping & Sorting Configuration
-
-**Grouping:**
-- Select which column to group by (dropdown)
-- Group order (ascending/descending)
-- Show group analysis (sum/count/avg)
-
-**Sorting:**
-- Default sort column
-- Default sort direction
-- Multi-level sorting (advanced)
-
----
-
-### Section 4: Analysis Operations
 
 **Per-Group Analysis:**
 - Select columns to sum
@@ -248,22 +257,45 @@ This is the **single source of truth** for how data appears to end users. It con
 - Same options as per-group
 - Displayed at top level when multiple records exist
 
+**Column Rows have icons idicating:**
+- Display Name override
+- Sorting
+- Grouping
+- Analysis 
+
+- Row edited by modal 
+
+**Overview**
+- Sheet Columns as Rows in an accordion
+- Sheets sections in an accordion
+- All ingested columns are available for selection (Left Panel)
+
+- Settings ar all in the column row
+
+**Selection**
+- Display Check Box
+- Unchecked 'Display' greys the row out
+- Drag and drop rows of all rows (selected or not)
+
+**Display Name**
+- Default 'display name' is the ingested Column name
+- Display name can be overridden
+
+**Grouping:**
+- Each column displayed as a row in an accordion with controls
+- Select which columns to group by (checkbox)
+- Group order (ascending/descending)
+- Show group analysis (sum/count/avg)
+- Drag and drop order defines group priority
+
+**Sorting:**
+- Sort column column (check box)
+- Drag and Drop Column order defines sort order
+- sort direction
+- Multi-level sorting defined by column position
+
 ---
 
-### Section 5: Search & Filter Settings
-
-**Search Configuration:**
-- Enable/disable search
-- Searchable columns selection
-- Fuzzy search threshold
-- Search behavior (case-sensitive, etc.)
-
-**Email Filtering:**
-- Enable/disable per-user filtering
-- Select which column contains user emails
-- Filter behavior
-
----
 
 ### Section 6: Currency & Formatting (Project-Level)
 
@@ -278,39 +310,6 @@ This is the **single source of truth** for how data appears to end users. It con
 
 ---
 
-## Data Precedence & Hierarchy
-
-### Column Display Name Resolution
-
-When the app needs to display a column name, it checks in this order:
-
-1. **Display & Analysis Tab** - `fieldDisplayConfig.label`  
-   - **THIS IS THE SOURCE OF TRUTH**  
-   - Set per relationship  
-   - Stored in `sheet_relationships.fieldDisplayConfig`
-
-2. **Virtual Columns Tab** - `label` field  
-   - Only applies to virtual columns  
-   - Used if no override in Display & Analysis
-
-3. **Original Sheet Column Name**  
-   - Direct from Google Sheets  
-   - Used if nothing else is set
-
-### What Gets Deleted
-
-**Old "Columns" Tab:**
-- ❌ Remove the `displayName` editing functionality
-- ❌ Remove show/hide toggles
-- ❌ Remove ordering controls
-- ✅ Keep this data in backend for potential future use, but don't expose in UI
-
-**Database Changes:**
-- `project_columns.displayName` - Deprecate (keep column for backwards compatibility but don't use)
-- `project_columns.visible` - Deprecate
-- `sheet_relationships.fieldDisplayConfig` - THIS BECOMES THE ONLY PLACE display config is stored
-
----
 
 ## User Experience Flow
 
@@ -319,16 +318,16 @@ When the app needs to display a column name, it checks in this order:
 1. **Step 1: Connect a Sheet**
    - User adds Google Sheet URL
    - Bedrock fetches data
-   - User sees "Sheets" tab populate with accordion item
+   - User sees "Sheets" tab populate with accordion column items
    - User expands accordion to confirm columns detected correctly
 
 2. **Step 2: (Optional) Create Virtual Columns**
    - User switches to "Virtual Columns" tab
    - Creates calculated fields as needed
-   - Virtual columns now available for use
+   - Virtual columns now available for selection
 
 3. **Step 3: Configure Display**
-   - User switches to "Display & Analysis" tab
+   - User switches to "Display & Analysis" tab 3
    - Defines master-detail relationships (if needed)
    - Selects which columns to show
    - Reorders columns with drag-and-drop
@@ -338,6 +337,8 @@ When the app needs to display a column name, it checks in this order:
 4. **Step 4: Preview & Publish**
    - User can preview how data will look
    - End users access the configured view
+   - End users can Resort the view 
+   - End users can filter the view
 
 ---
 
@@ -372,8 +373,8 @@ When the app needs to display a column name, it checks in this order:
 ## Implementation Notes
 
 ### Phase 1: Planning & Design (Current Stage)
-- ✅ Document information architecture (this document)
-- ✅ Get stakeholder approval
+- Document information architecture (this document)
+- Get stakeholder approval
 - Define detailed UI mockups
 - Map out database migration strategy
 
@@ -400,27 +401,6 @@ When the app needs to display a column name, it checks in this order:
 - Remove old "Columns" tab editing features
 - Update documentation
 - Archive deprecated code
-
----
-
-## Open Questions for Discussion
-
-1. **Should we keep old `project_columns.displayName` data?**
-   - Option A: Migrate it to `fieldDisplayConfig` during upgrade
-   - Option B: Let users re-configure (simpler, but requires user action)
-
-2. **Sheets tab sync frequency?**
-   - Manual only?
-   - Auto-sync on interval?
-   - Real-time webhook (future enhancement)?
-
-3. **Virtual columns in accordion?**
-   - Should virtual columns appear as a separate "Virtual Sheet" in Sheets tab?
-   - Or only appear in Display & Analysis?
-
-4. **Column grouping in Display & Analysis:**
-   - Should we visually group "Real Columns" vs "Virtual Columns"?
-   - Or treat them identically?
 
 ---
 

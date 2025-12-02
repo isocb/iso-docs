@@ -1,0 +1,224 @@
+# Bedrock 3.0 – Development Plan
+
+**Status:** Draft – For Planning and Task Breakdown  
+**Module:** Bedrock (IsoStack Module 001)  
+
+This document outlines the phased development of the Bedrock 3.0 module on IsoStack.
+
+---
+
+## Phase 0 – Foundations & Alignment (You Are Here)
+
+**Goals**
+
+- Align on Bedrock’s role as an IsoStack module
+- Fix the target tech stack (Next.js 15, React 18, Mantine 6, Prisma, Neon)
+- Define three-layer architecture and terminology
+- Capture conceptual data model and IA
+
+**Artefacts**
+
+- `overview.md`
+- `architecture.md`
+- `information-architecture.md`
+- `data-model.md`
+- This `development-plan.md`
+
+**Exit Criteria**
+
+- Everyone agrees:  
+  - what Bedrock does,  
+  - how it is layered,  
+  - which entities exist.
+
+---
+
+## Phase 1 – Schema & Read-Only Access
+
+**Goal**
+
+Create a **read-only Bedrock schema** that:
+
+- Lives in its own Postgres schema (e.g. `bedrock`)
+- Implements the conceptual data model (projects, sheets, virtual columns, relationships, views)
+- Is mapped via Prisma
+- Can be queried safely without migrations touching the IsoStack core schema
+
+**Key Tasks**
+
+1. Create `bedrock.schema.prisma` (or equivalent namespacing) with:
+   - `BedrockProject`
+   - `BedrockSheet`
+   - `BedrockSheetColumn`
+   - `BedrockSheetData`
+   - `BedrockRelationship`
+   - `BedrockVirtualColumn`
+   - `BedrockViewDefinition`
+   - `BedrockViewFieldConfig`
+   - `BedrockViewAnalysisConfig`
+2. Generate Prisma client and validate against Neon.
+3. Implement minimal seed script with a dummy project and sheet.
+
+**Exit Criteria**
+
+- `npx prisma generate` succeeds for Bedrock.
+- Simple REPL or test script can:
+  - list projects,
+  - list sheets for a project,
+  - list columns and data.
+
+---
+
+## Phase 2 – Ingestion & Sheets Tab
+
+**Goal**
+
+Implement **Layer 1 – Sheet Ingestion** end to end.
+
+**Key Tasks**
+
+1. Implement a backend ingestion service that:
+   - Accepts a Google Sheet URL + tab name
+   - Fetches header row and sample data (via public/service-account access)
+   - Creates/updates `BedrockSheet`, `BedrockSheetColumn`, `BedrockSheetData`
+   - Computes and stores `schemaHash`
+2. Create tRPC router(s) for:
+   - `bedrock.project` – create/list/delete projects
+   - `bedrock.sheet` – create/list sheets, trigger refresh, fetch metadata
+3. Build UI for **Tab 1: Sheets**:
+   - Accordion per sheet
+   - Column list table
+   - Sample values
+   - Manual refresh button
+
+**Exit Criteria**
+
+- A user can:
+  - create a project,
+  - connect a Google Sheet,
+  - see it in the Sheets tab,
+  - verify column names and data types.
+
+---
+
+## Phase 3 – Relationships & Virtual Columns
+
+**Goal**
+
+Implement **Layer 2 – Relationships & Virtual Columns**.
+
+**Key Tasks**
+
+1. Backend:
+   - CRUD for relationships (master/detail pairs)
+   - CRUD for virtual columns
+   - Resolver that, given:
+     - a relationship, and
+     - underlying sheets,
+     - can compute an in-memory joined result set
+   - Resolver that applies virtual column definitions to rows
+2. Frontend:
+   - Tab 2 UI:
+     - Relationship builder (pick master sheet, detail sheet, join columns, name)
+     - Virtual column builder/editor:
+       - minimal support: concatenation & formula
+3. Unit / integration tests for:
+   - Virtual column evaluation
+   - Relationship join logic
+
+**Exit Criteria**
+
+- A user can:
+  - define a relationship between two sheets,
+  - create at least one virtual column,
+  - test the relationship output (maybe via a debug preview).
+
+---
+
+## Phase 4 – Display & Analysis (View Definitions)
+
+**Goal**
+
+Implement **Layer 3 – Display & Analysis** (full view definition engine).
+
+**Key Tasks**
+
+1. Backend:
+   - CRUD for `ViewDefinition`
+   - CRUD for `ViewFieldConfig` and `ViewAnalysisConfig`
+   - Resolver that:
+     - takes a view id,
+     - applies:
+       - relationship (if any),
+       - virtual columns,
+       - field selection,
+       - grouping,
+       - sorting,
+       - aggregations,
+     - returns a structured result to the frontend
+2. Frontend:
+   - Tab 3:
+     - Views accordion (add/edit/remove views)
+     - Left/right panel column selector
+     - Column editor modal (label, visibility, grouping, sorting, analysis flags)
+3. Implement basic analysis capabilities:
+   - Per-group count, sum, average, min, max
+   - Overall totals row
+
+**Exit Criteria**
+
+- A user can configure a view with:
+  - a relationship or sheet as its base,
+  - chosen columns (including virtual),
+  - grouping and basic analysis,
+  - and see it rendered in the admin UI.
+
+---
+
+## Phase 5 – View Publishing & End-User Access
+
+**Goal**
+
+Expose configured views to end-users with correct visibility rules.
+
+**Key Tasks**
+
+1. Backend:
+   - Public view resolver (no auth, by URL token / slug)
+   - Private view resolver (requires auth & organisation membership)
+   - Email-filtered resolver (uses signed-in user email)
+2. Frontend:
+   - Public view page (minimal chrome)
+   - Private view page (within tenant app wrapper)
+3. Export:
+   - CSV export if user has “can export” permission (later tied into IsoStack permissions or feature flags)
+
+**Exit Criteria**
+
+- Public views work with no login.
+- Private views work for logged-in tenant users only.
+- Email-filtered mode shows only relevant rows for the user and can be toggled per view.
+
+---
+
+## Phase 6 – Stabilisation & LMSPro Readiness
+
+**Goal**
+
+Harden Bedrock 3.0 and make it ready as a shared module for other apps, starting with LMSPro.
+
+**Key Tasks**
+
+- Performance tuning on joins and aggregations
+- Error handling and user-friendly messages
+- Integration with tooltip system for key configuration screens
+- Logging key actions into IsoStack audit log
+- Optional: migration plan from Bedrock 2.0
+
+**Exit Criteria**
+
+- At least one real client happily using Bedrock 3.0
+- LMSPro can rely on Bedrock for reporting patterns
+- No known critical defects in ingestion, transformation, or view rendering
+
+---

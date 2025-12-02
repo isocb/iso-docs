@@ -1,8 +1,4 @@
-Below is a clean, canonical **IsoStack Architecture Overview**, ready for `/docs/core/architecture.md`.
 
-It is written in the correct voice for internal developer documentation AND AI-assistant context loading.
-
----
 
 # 📘 **IsoStack Architecture Overview**
 
@@ -112,6 +108,24 @@ Apps (EmberBox, TailorAid, Bedrock, LMSPro…) sit **on top**, enabling/extendin
 IsoStack is built around **strict tenant isolation**, enforced at every layer.
 
 ## Tenant Isolation Rules
+
+// IsoStack Postgres layout (IMPORTANT FOR COPILOT):
+// - Single Neon database per environment (dev/stage/prod)
+// - Multiple Postgres schemas inside that DB:
+//     core         → organisations, users, memberships, platform settings
+//     bedrock      → analytics module (projects, sheets, virtual_columns, display_config, sheet_data)
+//     emberbox     → Emberbox module (accounts, sparks, etc.)
+//     api_keychain → API KeyChain module (vaults, keys, connectors)
+// - Prisma MUST use `schemas = ["core", "bedrock", "emberbox", "api_keychain"]` in `datasource db`.
+// - Each model MUST specify the correct schema via `@@schema("<schema>")` and keep table names
+//   mapped via `@@map("<table_name>")`. Do NOT hard-code schema prefixes into table names.
+// - All tenant scoping is done via `organisation_id` (FK → core.organisations) and NEVER via
+//   module-local “tenant” tables.
+// - When generating or editing models, routes, or queries, always:
+//     1) Put identity + tenancy in `core`,
+//     2) Put module domain data in its own schema (e.g. bedrock.*),
+//     3) Reference `core.organisations` / `core.users` from modules, not the other way round.
+
 
 1. **Every DB table with tenant-owned data includes `organizationId`**
 2. Every request includes:
