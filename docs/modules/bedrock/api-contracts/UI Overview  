@@ -1,0 +1,186 @@
+
+
+# **AI Refined and Update Brief: Multi-Layer Bedrock (Data Ingest → Define Output → Display)**
+
+## **1. Core Concept Overview**
+
+Bedrock is a multi-layer analytical module within IsoStack designed to transform messy, multi-source data into clear, branded dashboards and reports.
+
+Every **Client** owns **one or more Projects**.
+Each **Project** progresses through three clearly separated phases:
+
+1. **Data Ingest**
+2. **Define Output**
+3. **Display**
+
+These phases must be **explicitly represented in the Bedrock UI** as horizontal navigation tabs inside an open project.
+
+ 
+---
+
+# **2. Layer 1 — Data Ingest (Data Sources & Cards)**
+
+### **Purpose**
+
+To connect one or more data sources (Sheets) to the project, manage their configuration, and validate the incoming data before it is used by the analytics engine.
+
+### **Key UI Elements**
+
+#### **2.1 Data Source Cards**
+
+Each connected Sheet appears as a **card** on the Data Ingest screen.
+
+Each card includes:
+
+* **Name of the data source** (human readable)
+* **Last sync timestamp**
+* **Row count**
+* **Column count**
+* **Status badge** (OK / warning / error)
+
+Click to open Modal:
+* **Edit button** — opens a modal or detail page to manage the connector configuration
+* **Preview button** — displays raw JSON/table data directly from the source connector
+* **Actions menu** — resync, rename, delete
+
+Cards may be many per project, arranged in a grid.
+
+#### **2.2 Adding New Data Sources**
+
+A prominent “Add Data Source” button enables the creation of a new connection.
+
+Data sources may be:
+
+* Google Sheets (primary v1)
+future:
+* CSV upload (future)
+* Knack (via APIKeySafe)
+* Other structured tables (future connectors)
+
+### **System Contract**
+
+Each data source must define:
+
+* Unique ID within the project
+* Connector type
+* Credentials/profile (via APIKeySafe if external)
+* Sheet/tab name
+* Expected update cadence
+* Parsing options
+
+Bedrock stores a snapshot of structure (columns) but not the full dataset (fetched triggered on demand by ui).
+
+---
+
+# **3. Layer 2 — Define Output (Mappings, Filters, Metrics)**
+
+### **Purpose**
+
+To allow the user to specify how the incoming data is interpreted and prepared for consumption by the reporting layer.
+
+This is where *semantic meaning* is applied.
+
+### **Key Functions**
+
+* Column mapping (assign Bedrock canonical fields → sheet columns)
+* Row filtering rules
+* Display Yes/No
+* Derived fields / calculated metrics = Virtual Fields
+* Groupings / categories
+* Titles and labels that will later be used by the display layer
+* Optional column ignore list
+* Drag and Drop ordering
+
+### **UI Concepts**
+
+* A per-source “Mapping Editor”
+* A “Project Output Specification” that aggregates mappings across sources
+* A visual checklist of completeness (e.g., all required fields mapped?)
+
+This layer produces the **Project Output Model**, a structured and validated representation of the data that the Display layer consumes.
+
+---
+
+# **4. Layer 3 — Display (Dashboards, Exports, PDFs)**
+
+### **Purpose**
+
+To turn the defined output model into presentable dashboards, charts, summaries, exports and branded PDF reports.
+
+### **Features**
+
+* Live dashboard with charts/tables
+* Branded layout (tenant branding for Tenant users)
+* Filters & slicers
+* Print-ready PDF generation
+* Multi-page dashboard components
+* Tooltip integration for contextual help
+
+
+### **Requirements**
+
+* Must consume only the structured output model from Layer 2
+* Must never directly query the raw data sources
+* Must be refreshable on demand or on schedule
+
+UI elements include:
+
+* User Dashboard preview
+* Report templates
+* Export buttons 
+* Sort fields added in order to a sort section (Add, Delete, drag to reorder)
+* “Rebuild from source” status indicators
+
+---
+
+# **5. Navigation and UX Structure**
+
+### **Project page layout**
+
+When a user opens a project, they should see:
+
+```
+[ Data Ingest ]   [ Define Output ]   [ Display ]
+```
+
+These three tabs form the core Bedrock workflow.
+
+### **Why this matters**
+
+* It gives the user clarity about what stage they are in.
+* It reflects the logical pipeline of data transformation.
+* It enables cleaner, modular code internally (each layer = isolated concerns).
+* It supports future expansion (new connectors, new mappings, new visualisations) without UI clutter.
+
+---
+
+# **6. Why Bedrock is Being Refactored**
+
+The previous generation of Bedrock had:
+
+* Too much happening on one screen
+* Unclear separation of data configuration vs output design
+* Redundant configuration spread across multiple places
+* Mixing “input” and “output” concepts
+* No unified conceptual model for Sheets → Output Model → Dashboard
+* Harder maintenance and onboarding for new clients
+
+The new multi-layer architecture:
+
+* Makes the module *easier to understand*
+* Makes data flow *predictable and inspectable*
+* Enables *strict separation of concerns*
+* Unlocks new connectors (Knack via APIKeySafe, Airtable, CSV, etc.)
+* Sets Bedrock up as a long-term, reusable IsoStack module
+
+---
+
+# **7. Short Summary (for an AI co-pilot prompt)**
+
+> “Bedrock consists of three layers:
+> **Data Ingest** (connect one or more data sources, shown as cards with sync/row/column metadata, editable configuration, preview of raw data),
+> **Define Output** (map columns, apply filters, create metrics, produce a structured project output model),
+> **Display** (dashboards, exports, branded reports based only on the output model).
+> A project contains multiple sources; each source is represented as a card.
+> When a project is opened, the UI must show these three phases clearly as tabs.”
+
