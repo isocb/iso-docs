@@ -53,7 +53,7 @@ Key backend responsibilities:
 ### 2.2 Frontend
 
 - **Framework:** Next.js App Router  
-- **UI Library:** React + Mantine 6  
+- **UI Library:** React + Mantine 7.13.2 (pinned)  
 - **State & Data:** tRPC/react-query style hooks
 
 Key frontend surfaces:

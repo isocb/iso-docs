@@ -1,243 +1,427 @@
 
-# ✅ UPDATEDarchitecture.md (December 2025 Edition)
-# IsoStack Architecture Overview
-**Internal development documentation — High-level technical summary**
+---
+title: IsoStack Core Architecture
+version: 1.4.0
+status: stable
+description: Source-of-truth architecture and design principles for the IsoStack multi-tenant SaaS framework
+---
 
-## 1. Purpose & Audience
-IsoStack is a **curated full-stack TypeScript framework** designed for:
-* solo developers
-* small technical teams
-* organisations needing bespoke SaaS
-* internal business tools
-* multi-tenant products with custom modules
+# IsoStack — Core Architecture
 
-⠀IsoStack provides:
-* a stable architecture
-* strong conventions
-* low cognitive load
-* fast development cycles
-* safe extensibility
-* multi-schema modularity
-* typed end-to-end development
+IsoStack is a multi-tenant, modular SaaS foundation built on:
 
-⠀This document describes the **structural architecture** of the IsoStack platform.Module-specific documentation exists in:
-### /docs/core/
-### /docs/modules/
-### /docs/connectors/
-### /docs/apps/
+- **Next.js 15 (App Router)**
+- **Mantine 7.13.2 (pinned UI framework)**
+- **TypeScript 5.x**
+- **tRPC 11** for API transport
+- **Zod** for validation
+- **Prisma 5.x** ORM
+- **Neon PostgreSQL (multi-schema)**
+- **NextAuth v5** (magic link)
+- **Cloudflare R2** (optional)
+- **Resend** (email delivery)
 
-## 2. Architectural Philosophy
-IsoStack is built on six strategic principles:
-### 1. Type safety end-to-end
-The entire stack shares a single type system (TypeScript → tRPC → Prisma → React).
-### 2. Convention over configuration
-Developers work faster with predictable file structures, naming, and patterns.
-### 3. Serverless-native scaling
-Neon PostgreSQL provides serverless, branchable, multi-schema databases.
-### 4. Low-boilerplate APIs
-tRPC replaces REST. Types flow directly between backend and frontend.
-### 5. Security by default
-NextAuth.js v5, Zod validation, SSR-first UI patterns, and schema isolation.
-### 6. Developer ergonomics
-Mantine 6 UI, React hooks, clean component primitives, and structured docs.
+This document is the single source of truth for IsoStack Core.
 
-## 3. High-Level System Diagram
-### ┌────────────────────────────────┐
-###                      │            FRONTEND             │
-###                      │  Next.js 15 (App Router)        │
-###                      │  React 18 + Mantine 6           │
-###                      │  TypeScript 5.x                 │
-###                      └────────────────────────────────┘
-###                                    │
-###                                    ▼
-###                      ┌────────────────────────────────┐
-###                      │            API LAYER            │
-###                      │  tRPC 11                        │
-###                      │  Zod Schemas                    │
-###                      │  NextAuth.js v5 (Magic Link)    │
-###                      └────────────────────────────────┘
-###                                    │
-###                                    ▼
-###       ┌────────────────────────────────────────────────────────────────────┐
-###       │                          DATABASE LAYER                             │
-###       │              Prisma 5.x → Neon Serverless Postgres                 │
-###       │                                                                    │
-###       │  Multi-Schema Architecture:                                        │
-###       │   • public   → core IsoStack platform (orgs, users, auth, files)   │
-###       │   • bedrock  → Bedrock 3.0 analytics engine                        │
-###       │   (future)   → emberbox, api_keychain, billing, support            │
-###       └────────────────────────────────────────────────────────────────────┘
-###                                    │
-###                                    ▼
-###                    ┌──────────────────────────────────┐
-###                    │        INFRASTRUCTURE Layer      │
-###                    │  Render → App hosting            │
-###                    │  Cloudflare R2 → File storage    │
-###                    │  Resend → email delivery         │
-###                    │  GitHub → versioning & CI/CD     │
-###                    └──────────────────────────────────┘
+IsoStack is not a product — it is the **platform Isoblue uses to build products**, including:
+Bedrock, TailorAid, Emberbox, APIKeyChain, LMSPro, and bespoke client modules.
 
-# 4. Technology Stack (Current & Stable)
-# 4.1 Frontend
-| **Component** | **Version** | **Role** |
-|:-:|:-:|:-:|
-| **Next.js** | 15 | App Router, SSR, server components |
-| **React** | 18.3 | UI rendering & hooks |
-| **Mantine** | **6.x** | UI component library (pinned by design) |
-| **TypeScript** | 5.x | Type safety throughout |
-### 👉 Why Mantine 6 (and not 7)?
-Mantine 7 introduces:
-* breaking API changes
-* removal of base styles
-* unstable SSR characteristics
-* unnecessary cognitive overhead
+---
 
-⠀**IsoStack deliberately standardises on Mantine 6** because it provides:
-* stable components
-* predictable API
-* excellent SSR
-* minimal boilerplate
-* fast developer experience
+# 1. Architectural Principles
 
-⠀**Mantine 6 is the correct choice for IsoStack's architecture.**
+1. **Modularity**  
+   - Modules are independent functional apps.  
+   - Core contains no app-specific logic — only orchestration.
 
-# 4.2 API Layer
-| **Component** | **Role** |
-|:-:|:-:|
-| **tRPC 11** | Typed API, zero duplication |
-| **Zod** | Input/output validation |
-| **NextAuth.js v5** | Magic-link auth, secure sessions |
-| **SuperJSON** | Serializable complex types across wire |
-API routes live under:
-### /server/routers/<module>/
-Each module has its own router subtree.
+2. **Multi-Schema PostgreSQL**  
+   - `public` schema = tenancy, users, auth, modules, features, search settings.  
+   - Each module may create its own schema (e.g. `bedrock`).  
+   - Core never writes to module schemas; modules never write to each other’s schemas.
 
-# 4.3 Database Layer
-IsoStack uses **Neon serverless PostgreSQL** with a **multi-schema architecture**, managed entirely through Prisma.
-### Current Schemas:
-| **Schema** | **Purpose** |
-|:-:|:-:|
-| **public** | Core platform (orgs, users, tooltips, auth) |
-| **bedrock** | Bedrock 3.0 (projects, sheets, views) |
-### Why multi-schema?
-* Clean separation of concerns
-* Module isolation
-* Safer migrations
-* Future modules (emberbox, api_keychain) can be added without collisions
-* More maintainable over long time horizons
-* Enables IsoStack’s “plug-in module” philosophy
+3. **Predictable UX Through Common Structures**  
+   Every module inherits:
+   - Core AppShell  
+   - Core navigation  
+   - Platform/Tenant/User dashboards  
+   - Module Switcher  
+   - Tooltip system  
+   - Standard table/search controls  
 
-⠀Prisma configuration:
-### datasource db {
-###   provider = "postgresql"
-###   url      = env("DATABASE_URL")
-###   schemas  = ["public", "bedrock"]
-### }
-Each model includes @@schema() to define its namespace.
+4. **Strict Version Pinning**  
+   Mantine **7.13.2** is chosen and fixed.  
+   - We avoid breaking changes introduced in later v7 releases.  
+   - We keep UI behaviour stable for AI-generated components.
 
-# 4.4 Infrastructure Layer
-| **Service** | **Purpose** |
-|:-:|:-:|
-| **Render** | Hosting + cron jobs |
-| **Neon** | Serverless Postgres DB |
-| **Cloudflare R2** | File, image & media storage |
-| **Resend** | Transactional email |
-| **GitHub** | Source control & CI/CD |
+5. **Cascading Configuration**  
+   - Platform → Organisation → Module override hierarchy.  
+   - Search/fuzzy settings and other behaviours follow this cascade.  
+   - Platform Owner remains in control; overrides are explicit.
 
-# 5. IsoStack Application Patterns
-IsoStack enforces strict patterns to maximise developer speed and minimise errors.
+---
 
-# 5.1 File-Based Routing
-Next.js App Router used for all routes, SSR where possible.
-# 5.2 Module-Oriented Architecture
-Modules each contain:
-### /server/routers/<module>/
-### /prisma/<module>/
-### /docs/modules/<module>/
-Bedrock is the first fully isolated module using its own schema (bedrock).
-# 5.3 tRPC Router Organisation
-### /server
-###   /routers
-###     core/
-###     bedrock/
-###     (future modules)
-Modules do not interfere with each other.
-# 5.4 Prisma Organisation
-All models live in one file but are grouped and schema-scoped:
-### model User             @@schema("public")
-### model BedrockProject   @@schema("bedrock")
-# 5.5 Tenancy Model
-IsoStack uses **organisation-scoped tenancy**:
-* All module data includes organisationId
-* tRPC middleware ensures tenant isolation
-* Platform owner organisations supported (isAppOwner = true)
+# 2. Core Domain Model Overview
 
-⠀
-# 6. Tooltip System (3-tier Inheritance)
-IsoStack provides a unique multi-layer tooltip system:
-| **Layer** | **Purpose** |
-|:-:|:-:|
-| **Global** | Default platform tooltips |
-| **App Owner** | Overrides for a specific industry/vertical |
-| **Tenant** | End-organisation customisation |
-### Features:
-* Visual element picker (CSS selector identification)
-* Tooltip categories
-* Tooltip “function” field
-* R2-hosted media (PDF/video embeds inside tooltips)
-* Complete SSOT repository accessible programmatically
-* Toggle visibility via user preference (“Help Mode”)
-* Keyboard activation (Ctrl+Shift+?)
+## 2.1 Multi-Tenant Objects (public schema)
 
-⠀
-# 7. Security Architecture
-IsoStack ensures:
-* SSR-first rendering
-* NextAuth secure session model
-* Prisma protects against SQL injection
-* Zod validates all input
-* Organisation-first tenancy model
-* Audit logs for admin actions
-* Token-based magic-link authentication
-* Secrets stored in environment variables
-* Optional migration to **Postgres RLS** if needed
+Core entities:
 
-⠀
-# 8. Deployment Lifecycle
-Standard flow:
-### dev → staging → production
-Neon branching makes DB state safe:
-* Dev branches for experiments
-* Staging mirrors production
-* Production stable
+- `User`  
+- `Organisation` (Tenant / Client)  
+- `OrganisationUser` (roles, permissions)  
+- `ModuleCatalogue` (list of available modules)  
+- `OrganisationModule` (module enablement per tenant)  
+- `PlatformFeatureFlag`  
+- `OrganisationFeatureFlag` (optional, future)  
+- `AuditLog`  
+- `Tooltip` (global → owner → tenant inheritance)  
+- `Branding` (per tenant)
 
-⠀Render handles CI/CD from GitHub.
+### 2.1.1 Search & Fuzzy Logic Settings (public schema)
 
-# 9. Why IsoStack Works for Solo Developers
-* Soft opinions, strong defaults
-* End-to-end type safety reduces bug surface
-* Clear conventions minimise mental overhead
-* Multi-schema separation stops domain sprawl
-* tRPC makes API design nearly frictionless
-* Mantine 6 gives productive UI patterns
-* Future modules plug in cleanly
+New entities to support universal fuzzy search:
 
-⠀IsoStack is **the smallest possible system that scales to complex SaaS**.
+- `PlatformSearchSettings`
+  - Singleton record for global defaults
+  - Fields (conceptual):
+    - `enabled`
+    - `mode` (`fuzzy` | `exact` | `hybrid`)
+    - `sensitivity`
+    - `maxResults`
 
-# 10. Related Documentation
-* /docs/00-overview/conventions.md
-* /docs/core/security-policies.md
-* /docs/core/tenancy-model.md
-* /docs/modules/bedrock/architecture.md
-* /docs/modules/tooltips/manifesto.md
-* /docs/modules/api-keychain/architecture.md
+- `OrganisationSearchSettings`
+  - Scoped by `organisationId`
+  - Fields:
+    - `useCustomSettings` (boolean)
+    - `mode`, `sensitivity`, `maxResults`
 
-⠀
-# 11. Update Policy
-This document must be updated when:
-* Dependencies change (Next.js, Prisma, Neon, Mantine)
-* Schema architecture expands (new modules)
-* Tooltip or settings engines evolve
-* Security model changes
+- `OrganisationModuleSearchSettings`
+  - Scoped by `organisationId` and `moduleId`
+  - Fields:
+    - `useCustomSettings` (boolean)
+    - `mode`, `sensitivity`, `maxResults`
 
-⠀**Maintainer:** Isoblue / IsoStack Platform Team**Status:** Active (Dec 2025)
+- `ModuleSearchPolicy`
+  - Scoped by `moduleId`
+  - Fields:
+    - `allowTenantOverrides` (boolean)
+
+**Precedence:**
+
+For any table or list, effective settings are:
+
+> `OrganisationModuleSearchSettings` → `OrganisationSearchSettings` → `PlatformSearchSettings`
+
+This is resolved centrally in Core; modules do not invent their own precedence.
+
+## 2.2 Module Schemas (per module)
+
+Each module may have its own schema, e.g.:
+
+- `bedrock.projects`  
+- `bedrock.sheets`  
+- `bedrock.columns`  
+
+Every module owns its own schema.  
+No module writes to another module’s schema.
+
+---
+
+# 3. Platform / Tenant / User Scopes
+
+IsoStack introduces three explicit scopes.
+
+| Scope     | Colour (sidebar tint) | Purpose                                                |
+|-----------|------------------------|--------------------------------------------------------|
+| Platform  | Green                  | Manage tenants, modules, features, impersonation      |
+| Tenant    | Purple                 | Tenant admin tasks, module setup, user management     |
+| User      | Orange                 | End-user experience inside modules                    |
+
+These scopes:
+
+- Define permission boundaries  
+- Drive sidebar tint and badges in the UX  
+- Control which routes and modules a user may access  
+
+---
+
+# 4. Core AppShell (Shared Layout)
+
+All IsoStack pages and all modules use the same AppShell layout:
+
+- **Mantine Header (neutral)**  
+  - Breadcrumbs / titles  
+  - User menu  
+  - Environment badges (DEV / STAGE / PROD)
+
+- **Sidebar / Navbar (context-aware)**  
+  - Context badge (Platform / Tenant / User)  
+  - Impersonation badge (if active)  
+  - Module switcher  
+  - Optional tenant logo  
+
+- **Main Content Area**  
+  - Tabs  
+  - Dashboards  
+  - Lists/tables (with universal search + sort controls)  
+  - Child pages  
+  - Modals  
+
+> Earlier drafts used a “top context bar”.  
+> The final architecture uses **sidebar tint + badges** to signal context, because Mantine AppShell does not support components above the Header without layout hacks.
+
+Mantine AppShell gives:
+
+- Responsive left navigation  
+- Collapsible sidebar on mobile  
+- Standardised layout across modules  
+
+---
+
+# 5. Standard Dashboards (Core)
+
+Every IsoStack deployment includes three core dashboards.
+
+## 5.1 Platform Home (`/platform`)
+
+- List of all tenants (searchable with fuzzy search)  
+- Module catalogue overview  
+- Feature status and health indicators  
+- Tenant context switch  
+- Access to Platform Settings (Section 8)
+
+## 5.2 Tenant Home (`/tenant/[tenantId]`)
+
+- Tenant KPIs  
+- Modules enabled for this tenant  
+- Quick actions (invite user, configure domain, branding)  
+- Recently active users  
+
+## 5.3 User Home (`/me` or `/app`)
+
+- Modules the user can access  
+- Personal tasks/alerts (future)  
+- Profile summary  
+
+Modules may inject dashboard cards into all three dashboards.
+
+---
+
+# 6. Module Switcher (Core)
+
+Left navigation (sidebar) is populated dynamically:
+
+- Based on `OrganisationModule`  
+- Filtered by the current user’s roles and permissions  
+- Different base routes per scope:
+  - Platform → `/platform/<module>`  
+  - Tenant → `/tenant/[id]/<module>`  
+  - User → `/app/<module>`  
+
+Modules register:
+
+ 
+id
+label
+icon
+platformRoute?
+tenantRoute?
+userRoute?
+
+
+This eliminates bespoke navigation and ensures fast, predictable module creation.
+
+---
+
+# 7. Modules vs Features
+
+## 7.1 Modules
+
+Modules are functional apps:
+
+* Bedrock (analytics from Sheets)
+* TailorAid (AI-assisted reporting)
+* Emberbox (life and estate planning)
+* APIKeyChain (API key proxy)
+* LMSPro (league management)
+* etc.
+
+Stored primarily in:
+
+* `ModuleCatalogue`
+* `OrganisationModule`
+
+## 7.2 Features
+
+Features are platform-level capabilities:
+
+* Tooltip engine
+* AI helpers
+* R2 storage
+* Branding engine
+* Fuzzy search engine (itself a feature of Core)
+
+Stored in:
+
+* `PlatformFeatureFlag`
+* `OrganisationFeatureFlag` (optional future)
+
+Modules ≠ Features:
+
+* Modules are apps
+* Features are behaviours of Core that modules may rely on
+
+---
+
+# 8. Platform Settings Architecture
+
+Platform Settings is the configuration hub for IsoStack. UX is defined in the UX standard, but the architecture is:
+
+* Route: `/platform?tab=settings`
+* Visibility: Platform Owner only
+* Layout: Mantine `Accordion` with logical groups:
+
+  * Branding & Identity
+  * Email & Notifications
+  * Security & Access
+  * Search & Fuzzy Logic
+  * Banding, Currency & Billing
+  * APIs & Integrations
+
+### 8.1 Search & Fuzzy Logic Settings (Architecture)
+
+This group is backed by:
+
+* `PlatformSearchSettings`
+* `OrganisationSearchSettings`
+* `ModuleSearchPolicy`
+
+Platform Owner can:
+
+* Set global defaults (platform level)
+* Set organisation overrides
+* Decide if each module may have module-level overrides at tenant level
+
+Organisation-level override values for search live under the **Client Settings** (per-tenant management) page, backed by `OrganisationSearchSettings`.
+
+Module-level overrides live under each module’s **Settings** tab, backed by `OrganisationModuleSearchSettings`, but only when `ModuleSearchPolicy.allowTenantOverrides` is `true`.
+
+---
+
+# 9. Search & List Behaviour (Core)
+
+Search and list behaviour is a **first-class architectural concern**.
+
+* All tables/lists must:
+
+  * Use the shared list control bar:
+
+    * Fuzzy search input
+    * Sort dropdown
+    * Sort direction toggle
+  * Resolve effective settings via:
+
+    * `OrganisationModuleSearchSettings` → `OrganisationSearchSettings` → `PlatformSearchSettings`
+
+* Client-side lists (≈ up to 1,000 rows):
+
+  * Use a shared fuzzy search implementation (for example, Fuse.js)
+  * Honour sensitivity and max results from effective settings
+
+* Server-side lists (large datasets):
+
+  * Use appropriate PostgreSQL primitives, e.g. `pg_trgm`, `ILIKE`, or hybrid search depending on `mode`
+  * Accept `searchTerm`, `mode`, `sensitivity`, `maxResults`, `sortField`, `sortDirection` as parameters
+
+The architecture does **not** hard-code a specific library in this document, but requires that:
+
+* Fuzzy search is the default
+* Behaviour is consistent across modules
+* Overrides are respected and audit-able
+
+---
+
+# 10. Tenant Context Switching & Impersonation
+
+### 10.1 Tenant Switch
+
+Platform Owner may:
+
+* Select a tenant
+* “Enter” its Tenant View (`/tenant/[id]`)
+
+Sidebar tint becomes purple, context badge shows the tenant.
+
+### 10.2 User Impersonation
+
+From Tenant View, Platform Owner may:
+
+* Select a tenant user
+* Click “View as this user”
+
+Sidebar remains purple (tenant context) but an orange **impersonation badge** is shown, plus:
+
+> “Impersonating Alex Smith (Tenant: Derby Junior League)”
+
+Audit logging always records:
+
+* Real user
+* Impersonated user
+* Tenant ID
+* Time and action
+
+Impersonation is a support tool and must be designed safely in both architecture and UX.
+
+---
+
+# 11. Security Architecture
+
+* Row-Level Security enforced per schema and per tenant
+* Impersonation events fully logged in `AuditLog`
+* Modules sandboxed in their own schemas
+* Magic link via NextAuth v5; no passwords stored in Core
+* Feature flags not exposed directly to client; only via tRPC-mediated responses
+* Search configuration and overrides are treated as configuration data and are also subject to RLS where relevant
+
+---
+
+# 12. Developer Experience & AI Collaboration
+
+Core is designed to be AI-friendly and developer-friendly:
+
+* Predictable folder structure (`/app`, `/server`, `/docs`)
+* Strict version pinning for key libraries
+* Shared components for AppShell, tables, list controls, modals, tabs
+* Dashboards and shells are reusable across modules
+* **Clear contracts** for:
+
+  * Module registration
+  * Search and list behaviour
+  * Settings hierarchy
+
+AI assistants are expected to:
+
+* Respect this architecture
+* Use the shared patterns instead of inventing new ones
+* Keep code changes incremental and testable
+
+---
+
+# 13. Summary
+
+IsoStack Core provides:
+
+* A multi-tenant, multi-schema foundation
+* Clear Platform / Tenant / User scopes
+* A shared AppShell with sidebar-based context signalling
+* Standard dashboards and module switcher
+* Cascading configuration via Platform → Organisation → Module
+* A universal search & list control model with fuzzy search
+* Strong security through RLS and audited impersonation
+* A stable base for AI-assisted, pattern-driven development
+
+All modules and future enhancements must align with this architecture.
+
+  `
+
+---

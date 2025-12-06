@@ -1,346 +1,464 @@
 
-
-# ✅ **IsoStack Module Architecture Template**
-
-*(Use this as the baseline architecture for any new module — Bedrock, Tooltips, Support Desk, Billing, Connectors, etc.)*
-
-```md
 ---
-title: <Module Name> – Module Architecture
-description: Technical and functional architecture for the <Module Name> IsoStack module
+title: New IsoStack Module — Architecture Template
+version: 1.0.0
 status: draft
-version: 0.1.0
+description: Requirements and design contract for any new module added to the IsoStack platform
 ---
 
-# <Module Name> — Module Architecture
+# New IsoStack Module — Architecture Definition
 
-This document defines the architecture, domain boundaries, data structures, user flows, and integration layers for the **<Module Name> module** within IsoStack.
+This document is the **template and checklist** for designing and implementing any new IsoStack module.
 
-Modules are self-contained, multi-schema features that plug into the platform through a unified mechanism:
-- Platform services (auth, organisation system, R2 storage, tenant branding)
-- tRPC server under `/server`
-- Prisma multi-schema migration model
-- Feature flags
-- Contextual help & tooltip engine
-- Settings engine
-- Tenant-level module activation
+A “module” is a self-contained application that runs **inside** IsoStack Core:
 
----
-
-# 1. Position in the IsoStack Ecosystem
-
-<Module Name> is a switchable module integrated into IsoStack’s multi-tenant architecture. It inherits the platform's:
-
-- **Authentication** (NextAuth v5 Magic Link)
-- **Authorisation** (tenant_user roles + internal policies)
-- **Branding system** (tenant logos, colour themes, display name)
-- **Tooltip engine** (hierarchical: Global → App Owner → Tenant)
-- **Settings engine** (schema-based configuration)
-- **Feature flag system**
-- **Audit logging**
-
-Each module operates within its own Postgres schema:
-
-```
-
-public            → Platform tables
-tenant_<id>       → Tenant isolation layer (future)
-<module_schema>   → Domain tables for this module
-
-```
+- Uses the shared **AppShell** and navigation
+- Respects **multi-tenant** rules
+- Integrates with **search & fuzzy logic**, **settings**, **feature flags**, and **security**
+- Conforms to the **IsoStack UX Standard** and **Core Architecture** documents.
 
 ---
 
-# 2. Domain Model
+## 1. Purpose of the Module
 
-## 2.1 Core Domain Objects
-*(Replace with module-specific entities)*
+**Describe the module in 2–3 sentences:**
+
+- What problem does this module solve?
+- Who uses it (platform owner, tenant admin, end users)?
+- What is the primary output (dashboards, reports, workflows, APIs, etc.)?
+
+> Example (Bedrock-style):
+> “This module provides configurable analytics and dashboards powered by Google Sheets data. Tenant admins configure projects and mappings; end users consume dashboards and exports.”
+
+---
+
+## 2. Module Responsibilities and Boundaries
+
+### 2.1 In-scope
+
+List what the module **does own**:
+
+- Domain entities (e.g. projects, sheets, questions, tasks)
+- Business logic specific to this domain
+- Module-specific dashboards
+- Module settings and configuration
+- Integrations that are unique to this module
+
+### 2.2 Out-of-scope
+
+List what the module **must not** own:
+
+- Authentication and user accounts (owned by Core)
+- Tenancy and organisation management (Core)
+- Global branding and email settings (Core)
+- Search and fuzzy logic “engine” itself (Core feature)
+- Generic file storage (Core/R2)
+- Feature flag infrastructure (Core)
+
+The module **consumes** these platform capabilities; it does not recreate them.
+
+---
+
+## 3. Integration with IsoStack Core
+
+Every module must register itself with Core using the following information:
+
+- `id` (string, unique)
+- `label` (human-readable name)
+- `icon` (Tabler or similar icon name)
+- `platformRoute?` (optional, if module has platform-level views)
+- `tenantRoute` (main entrypoint for tenant admins)
+- `userRoute?` (entrypoint for end users)
+- `getDashboardCards()` (cards to show on core dashboards)
+- `getFeatureFlags()` (feature toggle definitions, if any)
+
+The module must:
+
+- Appear in the **module switcher** in the sidebar  
+- Use routes that respect the current **scope**:
+  - Platform: `/platform/<moduleId>`
+  - Tenant: `/tenant/[organisationId]/<moduleId>`
+  - User: `/app/<moduleId>`
+
+No module may bypass or replace the core AppShell.
+
+---
+
+## 4. Data Model & Schema
+
+### 4.1 Schema Location
+
+- All module-specific tables live in a dedicated **PostgreSQL schema**, e.g. `bedrock`, `tailoraid`, `emberbox`.
+- IsoStack Core never writes directly into module schemas.
+- Modules never write directly into **each other’s** schemas.
+
+### 4.2 Primary Entities
+
+List your main tables and their responsibilities.
+
+For each entity:
+
+- **Name** (Prisma model + table)
+- **Purpose**
+- **Key fields** (IDs, names, foreign keys)
+- **Relationships** (one-to-many, many-to-many, via linking tables)
 
 Example:
+
 - `Project`
-- `Item`
-- `Result`
-- `Attachment`
+  - Owns the high-level definition (name, description, owner)
+  - Foreign key to `Organisation`
+- `Sheet`
+  - Belongs to a Project
+  - Stores metadata about an external data source
+- `Column`
+  - Belongs to a Sheet
+  - Stores mapping / configuration data
 
-Each object is:
-- Represented as a **Prisma model** under the module schema  
-- Isolated from other modules  
-- Mapped via Zod into tRPC routers  
-- Referenced via IDs only (no cross-module leakage)
+### 4.3 Tenancy Link
 
-## 2.2 Supporting Entities
-Examples:
-- Audit events  
-- Module settings  
-- Module-specific permissions  
-- R2 assets (images, JSON, PDFs)  
-- Cached external data (optional)
+Every module entity that is tenant-specific must be linked either:
 
----
+- Directly to `organisationId`, or  
+- Indirectly through a parent that is linked to `organisationId`.
 
-# 3. Database Schema (Neon + Prisma)
-
-## 3.1 Multi-schema layout
-```
-
-schema.prisma
-├ public                 → platform models (users, orgs, branding)
-├ <module_schema>        → <Module Name> models
-
-```
-
-Usage:
-- `@@schema("<module_schema>")` applied to every model  
-- Strict foreign-key discipline  
-- No circular references  
-- Multi-schema preview flag ON in Prisma client
-
-## 3.2 Migrations
-- Each module change produces modular migration files
-- Naming: `YYYYMMDDHHMM_<module>_<change>.sql`
-- Safe for Dev → Staging → Prod pipelines
+Row Level Security (RLS) must always be enforceable from `organisationId`.
 
 ---
 
-# 4. API Layer (tRPC)
+## 5. Security & Row-Level Security
 
-Each module exposes its functionality exclusively through:
+Each module must define a **clear security model**:
 
-```
+- Which roles can:
+  - View
+  - Create
+  - Edit
+  - Delete
+- How RLS ensures users only see data belonging to:
+  - Their organisation
+  - Their roles/permissions
+- How impersonation (Platform Owner “view as user”) interacts with this module
 
-/server/api/routers/<module>/
+**RLS Policies:**  
+For each table, specify:
 
-```
+- RLS enabled: yes/no (almost always **yes**)
+- Policy for read
+- Policy for write
+- Policy for delete
 
-Structure:
-- `index.ts` — root export
-- `{entity}.router.ts` — CRUD + actions
-- `{entity}.schema.ts` — Zod input/output
-- `{entity}.service.ts` — domain logic
+Impersonation is enforced via Core, but the module must assume:
+
+- `current_user` may be acting on behalf of someone else
+- Audit logs must always record the **real actor** if written from module code
+
+---
+
+## 6. UI Contract
+
+The module must **never** define its own global layout. It must:
+
+- Use the **IsoStack AppShell** (neutral header, context-aware sidebar)
+- Use standard **tabs**, **lists**, **modals**, and **child pages** as defined in the UX standard
+- Conform to the **management hierarchy** pattern for admin-style containers where appropriate
+
+### 6.1 Entry Screens
+
+Specify the first screens when the user enters the module:
+
+- Platform scope (if applicable):
+  - e.g. “Module configuration overview across tenants”
+- Tenant scope:
+  - e.g. “Tenant overview dashboard for this module”
+- User scope:
+  - e.g. “End user landing page, showing tasks/reports relevant to them”
+
+### 6.2 Tabs
+
+Define the main **tab structure** for the tenant view.
+
+Example:
+
+```text
+[ Overview ] [ Data ] [ Configuration ] [ Settings ]
+````
+
+For each tab:
+
+* Purpose
+* Main components (lists, panels, charts)
+* Whether it uses lists that require search & sort
+
+Child pages that belong to a tab must **inherit** that tab row where the entity is a domain entity (see UX Standard).
+
+For admin/management containers (e.g. Clients, Module Users), use the **Management Hierarchy Pattern**:
+
+* List in a top-level tab
+* Click row → full management page with its own tabs
+* Tabs **replace** the parent tab set for that domain
+
+---
+
+## 7. Lists, Tables & Search Behaviour
+
+Every list or table inside the module must:
+
+* Use the **shared list control bar**:
+
+  * Search field
+  * Sort dropdown (visible columns only)
+  * Sort direction toggle
+* Implement **fuzzy search by default** (unless explicitly configured otherwise)
+
+### 7.1 Search & Fuzzy Logic Settings
+
+The module **must not** invent its own search settings model.
+
+Instead, it uses the effective settings resolved via Core:
+
+> `OrganisationModuleSearchSettings` → `OrganisationSearchSettings` → `PlatformSearchSettings`
+
+For any table in this module:
+
+* Search behaviour must respect:
+
+  * `mode` (fuzzy, exact, hybrid)
+  * `sensitivity`
+  * `maxResults`
+* Lists with small datasets (≤ ~1000 rows):
+
+  * Prefer client-side fuzzy filtering
+* Lists with large datasets (> ~1000 rows, or performance critical):
+
+  * Must support server-side search via tRPC/Prisma with:
+
+    * `searchTerm`
+    * `mode`
+    * `sensitivity`
+    * `maxResults`
+    * `sortField`
+    * `sortDirection`
+
+### 7.2 Sort Behaviour
+
+Per table:
+
+* Declare which fields can be sorted
+* Ensure sort is applied **after** filtering for client-side lists
+* Reflect sort options only for **visible columns**
+
+### 7.3 No Ad-hoc Search UIs
+
+The module must **not**:
+
+* Add bespoke search bars with different behaviour
+* Use different key-bindings or semantics
+* Hide the standard search/sort controls
+
+Any module-specific tweaks (e.g. advanced filters) must sit **alongside** the standard control bar, not instead of it.
+
+---
+
+## 8. Module Settings
+
+Each module must expose a **Settings** tab in the tenant scope:
+
+* This lives under the module’s main tab set:
+
+  * e.g. `[ Overview ] [ Data ] [ Settings ]`
+* It must integrate with the **Platform Settings** hierarchy:
+
+### 8.1 Search & Fuzzy Logic (Module Level)
+
+If Core allows module overrides for this module:
+
+* Show:
+
+  * Toggle: `Use custom search settings for this module`
+  * Fields:
+
+    * `mode`
+    * `sensitivity`
+    * `maxResults`
+* Show a clear indication of where the effective settings are coming from:
+
+  * “Using: Module override / Organisation override / Platform default”
+
+If Core **does not** allow module overrides:
+
+* Show read-only effective values
+* Show explanation: “Module-level search overrides are disabled by your platform provider.”
+
+### 8.2 Other Settings
+
+Specify other module settings:
+
+* API keys (module-specific)
+* Integration toggles
+* Behaviour flags
+* Limits, quotas, thresholds
+
+Settings must:
+
+* Use standard IsoStack form and save patterns
+* Avoid inline “micro-settings” scattered around the UI
+
+---
+
+## 9. tRPC & API Surface
+
+Define the tRPC routers the module will expose:
+
+* `moduleName.routerName` (e.g. `bedrock.projects`, `tailoraid.questions`)
+* For each procedure:
+
+  * Input schema (Zod)
+  * Output schema
+  * Authentication/authorisation requirements
+  * Whether it supports:
+
+    * Server-side search
+    * Pagination
+    * Sorting
 
 Rules:
-- No DB code in routers  
-- All DB queries inside `service` files  
-- All validations in Zod schemas  
+
+* All tRPC procedures must respect:
+
+  * `organisationId`
+  * Current user permissions
+* No unauthenticated or cross-tenant queries
+
+Where server-side search is used, tRPC must accept the standard search parameters (see Section 7.1).
 
 ---
 
-# 5. UI Architecture (Next.js 15 + Mantine)
+## 10. Observability & Logging
 
-## 5.1 Directory Layout
-```
+Every module must:
 
-src/app/(app)/<module>/
-│  page.tsx
-│  layout.tsx
-│
-└── entity/
-├── page.tsx
-├── [id]/
-│   └── page.tsx
-└── components/
+* Write meaningful entries to **AuditLog** for:
 
-```
+  * Creation / update / deletion of key entities
+  * Import/export operations
+  * Security-sensitive changes (permissions, roles, sharing)
+* Use structured logs where appropriate (for debugging).
 
-## 5.2 UI Principles
-- Minimalist Mantine UI
-- Server Actions for mutations
-- RSC for all reading where possible
-- Feature flags wrapping UI sections
-- Tooltip engine integrated via `<HelpTip />`
-- All lists sortable, filterable, paginated
+For impersonation:
+
+* Logs must indicate:
+
+  * Real acting user
+  * Impersonated user
+  * Organisation and module
 
 ---
 
-# 6. Permissions & Roles
+## 11. Feature Flags
 
-Roles inherited from `tenant_user`:
+If the module has features that may be toggled:
 
-- **Owner**  
-- **Admin**  
-- **Manager**  
-- **Contributor**  
-- **Viewer**
+* Define them as **feature flags**, not ad-hoc conditionals
+* Register flags via `getFeatureFlags()`
+* Provide:
 
-Each module additionally defines module-specific rules in:
+  * Key
+  * Label
+  * Description
+  * Scope (platform, organisation, module)
+* Module code reads feature flags from a Core-provided hook or context
 
-```
+Avoid:
 
-/server/api/permissions/<module>.ts
-
-```
-
-Logic:
-- Declarative permission maps
-- Checked in tRPC middleware
-- Optional resource-level rules (`isOwnerOfEntity`)
+* Hard-coded `if (process.env.SOME_FLAG)` sprinkled through UI and logic
+* Multiple uncoordinated settings that are essentially feature toggles
 
 ---
 
-# 7. External Integrations
+## 12. Documentation Requirements
 
-If the module integrates with external services:
+Each new module must ship with:
 
-- R2 → asset storage
-- Resend → email notifications
-- Google Sheets / Drive → Bedrock pattern
-- Webhooks → inbound/outbound
+1. **Module Overview**
 
-Every external connector:
-- Lives under `/server/services/<service>/`
-- Must be stateless
-- Must support tenant-level credentials (via encrypted store)
+   * Positioning, purpose, who it is for
 
----
+2. **Architecture** (this document, module-specific)
 
-# 8. Settings Engine for the Module
+   * Entities, relationships, key flows
 
-`<module_schema>.module_settings` defines configuration:
+3. **UX & Screens**
 
-- Toggles  
-- Thresholds  
-- Labels & naming  
-- Default values  
-- JSON config blocks  
+   * Screenshots or wireframes for:
 
-Served via:
+     * Entry screens (platform/tenant/user)
+     * Tab structure
+     * Lists and search
+     * Settings pages
 
-```
+4. **API Reference**
 
-/server/api/routers/settings/<module>.router.ts
+   * tRPC procedures and inputs/outputs
+   * Any public-facing HTTP endpoints (if applicable)
 
-```
+5. **Onboarding Guide**
 
-Displayed in UI as a dedicated settings panel:
+   * How a tenant admin sets up the module
+   * Typical configuration steps
 
-```
+These documents should live under:
 
-/(app)/settings/<module>
-
+```text
+/docs/modules/<moduleId>/
 ```
 
 ---
 
-# 9. Feature Flags
+## 13. AI & Co-pilot Guidance
 
-Module must define:
+When using AI to generate or modify module code:
 
-```
+* Always remind the AI of:
 
-/config/feature-flags/<module>.ts
+  * Core AppShell & navigation patterns
+  * Search & fuzzy logic hierarchy
+  * No elements above Mantine Header
+  * Use of shared list controls and modals
 
-```
+AI prompts should:
 
-Example:
-- `enableCharts`  
-- `enableAdvancedTables`  
-- `enableExport`  
-
-Flags can be:
-- Global default  
-- Overridden per-tenant  
-- Overridden per-user  
+* Reference this module architecture document
+* Reference the core `architecture.md` and `isostack-ux-ui-standard.md`
+* Ask for phased, testable changes
+* Avoid speculative or “magic” solutions not grounded in these standards
 
 ---
 
-# 10. Lifecycle Events
+## 14. Acceptance Checklist (New Module Ready)
 
-Every module supports hook points:
+Before a new module is considered ready:
 
-### 10.1 Activation
-- Create default settings
-- Seed tooltips
-- Emit audit log
+* [ ] Schema defined with clear tenancy link and RLS
+* [ ] Module registered with Core (ModuleCatalogue + routes)
+* [ ] AppShell integration complete (no custom shells)
+* [ ] Tabs defined and consistent with UX standard
+* [ ] All tables use shared list controls (search + sort)
+* [ ] Fuzzy search implemented per effective settings (Platform → Organisation → Module)
+* [ ] Module Settings tab present and wired to overrides
+* [ ] tRPC endpoints documented and permission-aware
+* [ ] Audit logging implemented for key actions
+* [ ] Feature flags (if any) registered and documented
+* [ ] Core documentation updated under `/docs/modules/<moduleId>/`
 
-### 10.2 Deactivation
-- Disable routes
-- Hide menu items
-- Optionally archive data
-
-### 10.3 Deletion (rare)
-- Hard delete or archive schema  
-- Requires platform owner permission  
-
----
-
-# 11. Audit Logging
-
-All important actions log events in:
-
-`public.audit_log`
-
-Events include:
-- Record created/updated/deleted
-- Export/download events
-- Configuration changes
-- Access attempts
-
----
-
-# 12. Testing
-
-Three layers:
-
-### 12.1 Unit Tests  
-Zod + service functions.
-
-### 12.2 Integration Tests  
-tRPC procedure-level tests.
-
-### 12.3 E2E Tests  
-Playwright tests for flows.
-
----
-
-# 13. Deployment Pipeline
-
-Standard IsoStack deployment:
-
-1. Developer branch → Dev environment
-2. Staging → data-separated Neon DB
-3. Production → stable modules only
-4. Automated migrations
-5. Optional seed scripts per module
-
----
-
-# 14. Seed Scripts
-
-Each module may include:
-
-```
-
-prisma/seed/<module>.seed.ts
-
-```
-
-Seeds include:
-- Default settings
-- Default tooltips
-- Sample demo data (optional)
-- Platform-owned templates
-
-Run via:
-
-```
-
-npm run seed:module <module>
+Once all boxes are ticked, the module fits cleanly into IsoStack and is safe to roll out to tenants.
 
 ```
 
 ---
 
-# 15. Roadmap Template
+If you’d like, next I can walk through this doc with you and:
 
-- v0.1.0 — Base scaffolding  
-- v0.2.0 — Settings engine integration  
-- v0.3.0 — Tenant activation flow  
-- v0.4.0 — Feature flags  
-- v0.5.0 — Export/Import tools  
-- v1.0.0 — Production-ready release  
-
----
-
-# End of Document
+- sanity-check whether it’s too restrictive or just right, and  
+- suggest how Bedrock / TailorAid / Emberbox would each “fill in the blanks” differently using this template.
 ```
-
