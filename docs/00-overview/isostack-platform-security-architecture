@@ -1,0 +1,444 @@
+
+
+# ✅ **IsoStack Platform Security Architecture**
+
+**File:** `docs/00-overview/security-architecture.md`
+**Status:** Draft v1.0
+**Author:** Isoblue / IsoStack
+**Scope:** Platform-wide security model for a multi-tenant SaaS ecosystem (IsoStack Core + Modules)
+**Sources:** Integrates the APIKeyChain security architecture 
+
+---
+
+# 1. **Purpose of This Document**
+
+IsoStack is a **multi-tenant SaaS platform** that allows rapid development of secure modules such as:
+
+* Bedrock (analytics)
+* TailorAid (AI-assisted assessments & reports)
+* EmberBox (life planning / executor vault)
+* LMSPro (league system)
+* APIKeyChain (secure API proxying & secrets) - security critical
+
+This document defines the **platform-wide, non-negotiable security architecture** that all modules must inherit.
+
+It serves as the **Single Source of Truth** (SSOT) for:
+
+* Trust boundaries
+* Tenant isolation
+* Encryption models
+* Identity & access controls
+* Logging & audit guarantees
+* Secure development practices
+* Future readiness (post-quantum, zero-knowledge modes)
+
+Modules *may add extra layers* (e.g., APIKeyChain’s domain allow-lists), but **must never weaken platform standards**.
+
+---
+
+# 2. **Security Principles (Platform-Wide)**
+
+These are the principles that every part of IsoStack must obey.
+
+## **2.1 Zero-Trust-by-Default**
+
+No user, device, module, or domain is trusted automatically.
+Every action must be authenticated, authorised, and validated.
+
+Inherited from APIKeyChain’s model, now platform-wide.
+
+
+---
+
+## **2.2 Least Privilege**
+
+Every entity receives only the permissions required to function:
+
+* Users
+* Tenant admins
+* Modules
+* Background jobs
+* Proxy services
+* Connectors
+
+Modules MUST NOT assume super-admin or global rights.
+
+---
+
+## **2.3 Defence in Depth**
+
+Security exists at multiple layers:
+
+* Frontend → Backend → Database → Storage → Network → Cryptography
+* RLS and schema-based tenant isolation
+* Strong encryption-in-transit and at-rest
+* Audit trails
+* Linting and static analysis
+* Operational processes
+
+A failure in one layer must not compromise the platform.
+
+---
+
+## **2.4 Tenant Isolation**
+
+Tenants are cryptographically, logically, and functionally separated:
+
+* **Database isolation:** per-module schemas + RLS (Row-Level Security)
+* **Storage isolation:** per-tenant bucket prefixes
+* **Runtime isolation:** tenant context resolved in every request
+* **Authorisation segregation:** modules cannot read each other’s data without explicit linking
+
+Borrowed directly from the APIKeyChain specification.
+
+
+---
+
+## **2.5 Secure-by-Design Defaults**
+
+IsoStack defaults to safe behaviour:
+
+* No wildcard CORS
+* Secrets never exposed to the browser
+* No public modules unless explicitly enabled
+* No module routes enabled unless configured
+* Strong input validation by default (Zod everywhere)
+* Cookies: `Secure`, `HttpOnly`, `SameSite=Lax|Strict`
+
+---
+
+## **2.6 Auditable Everything**
+
+Every sensitive action is logged:
+
+* Auth events
+* Tenant configuration changes
+* Module activation
+* Secrets rotation
+* AI-based usage where applicable
+* Proxy calls (APIKeyChain)
+* Document generation (TailorAid, EmberBox)
+
+Audit logs must be:
+
+* Tamper-evident (hash chained)
+* Immutable (Write-once / append-only semantics)
+* Time-stamped and attributed to specific principals
+
+APIKeyChain’s technique for log chaining becomes the platform standard.
+
+
+---
+
+# 3. **Trust Boundaries & Security Zones**
+
+IsoStack defines four security zones:
+
+```
+[ Zone 1 ]   Public Internet
+    ↓ TLS 1.3
+
+[ Zone 2 ]   IsoStack App Layer
+    - Next.js API routes
+    - tRPC procedures
+    - Authentication flow
+    - Module routers
+
+[ Zone 3 ]   Secure Compute & Encryption Layer
+    - Platform encryption service (AES, Argon2id, KMS)
+    - Key rotation engine
+    - Secrets vault
+    - Module-specific processors (e.g. APIKeyChain proxy)
+
+[ Zone 4 ]   Data Layer
+    - Neon Postgres (multi-schema, RLS)
+    - Cloudflare R2 (tenant-isolated)
+    - Analytics/Event logs (write-only)
+```
+
+Every request must be validated as it crosses between zones.
+
+---
+
+# 4. **Identity, Authentication & Authorisation**
+
+## **4.1 Identity Model**
+
+IsoStack recognises:
+
+* **Platform Owner** — full access to manage modules and tenants.
+* **Tenant (Organisation)** — owns data within the tenant boundary.
+* **Tenant Users** — invited to the tenant with restricted roles.
+* **Module-Level Roles** — defined per module (e.g., Bedrock Analyst, EmberBox Helper).
+
+---
+
+## **4.2 Authentication**
+
+IsoStack uses:
+
+* **NextAuth v5**
+* **Magic link primary auth**
+* Optional: MFA, device confirmation, password fallback
+
+TLS 1.3 + HSTS enforce transport-layer confidentiality.
+
+---
+
+## **4.3 Authorisation**
+
+Every tRPC procedure and server route must:
+
+1. Read tenant identity from auth/session context.
+2. Validate role and permissions.
+3. Enforce RLS on database operations.
+4. Reject unauthorised cross-tenant queries.
+
+APIKeyChain’s strict rules apply platform-wide.
+
+---
+
+# 5. **Encryption Architecture**
+
+Highly aligned with the model defined in APIKeyChain’s security document.
+
+
+---
+
+## **5.1 Encryption-at-Rest**
+
+### Database
+
+Sensitive columns are encrypted via IsoStack’s encryption service:
+
+* **AES-256-GCM**
+* Per-record nonce
+* Per-tenant salts
+* Authentication tag stored alongside ciphertext
+
+Used for:
+
+* Secrets (APIKeyChain)
+* Sensitive long-term documents (EmberBox)
+* AI prompts/instructions requiring confidentiality (TailorAid)
+* Optional: user PII
+
+---
+
+## **5.2 Key Derivation**
+
+Using:
+
+* **Argon2id** (preferred)
+* PBKDF2-SHA512 fallback
+
+Per-tenant and per-project strengthening.
+
+---
+
+## **5.3 Envelope Encryption & KMS**
+
+IsoStack Core maintains a **Key Management Service** that:
+
+* Encrypts per-tenant master keys
+* Stores versioning and rotation metadata
+* Ensures no single component can access plaintext without authorisation
+
+APIKeyChain's envelope model becomes the canonical implementation.
+
+---
+
+## **5.4 Secrets-in-Transit**
+
+No secret may ever appear in:
+
+* Browser props
+* Local storage
+* Session storage
+* Client logs
+
+All interactions with secret-bearing modules occur server-side only.
+
+---
+
+# 6. **CORS, Domains & Public Access Control**
+
+Platform defaults:
+
+* No wildcard `*`
+* CORS only allowed for known tenants
+* Modules may impose stricter rules
+
+APIKeyChain retains its own domain allow-list because of its proxying nature.
+
+
+---
+
+# 7. **Input Validation & Sanitisation**
+
+Mandatory:
+
+* Zod schemas for all user input
+* Zod schemas for inter-module messaging
+* Provider-specific sanitisation (APIKeyChain only)
+* HTML/Markdown sanitisation in user-provided text
+* File-type validation for uploads
+
+If data flows across trust boundaries, validation must occur at both ends.
+
+---
+
+# 8. **Rate Limiting, Abuse Detection & Anomaly Prevention**
+
+Platform rate limiting:
+
+* Per-user
+* Per-tenant
+* Per-module
+
+APIKeyChain’s enhanced behavioural analysis becomes optional for other modules:
+
+* Geo-anomalies
+* Parameter anomalies
+* Repeated failed requests
+* Suspicious traffic bursts
+
+Anomalies may trigger:
+
+* Temporary tenant lockdown
+* Key rotation
+* Alerts to platform owner
+
+---
+
+# 9. **Audit Logging (Platform-Wide Standard)**
+
+Audit logs must capture:
+
+### **9.1 Security-Sensitive Actions**
+
+* Login, logout
+* Password and MFA changes
+* Invite/remove user
+* Changing tenant settings
+* Activating/deactivating modules
+
+### **9.2 Module-Level Events**
+
+Each module defines its own events, but must use the platform logging service.
+
+Examples:
+
+* TailorAid: assessment created, report generated
+* EmberBox: document uploaded, executor activated
+* Bedrock: dataset sync, chart configuration updated
+* APIKeyChain: proxy invocation, domain changes (inherits APIKeyChain model)
+
+
+### **9.3 Tamper-Evident Log Chaining**
+
+Every log entry cryptographically references the previous:
+
+```
+entry_hash = SHA256(previous_hash + log_payload)
+```
+
+---
+
+# 10. **Tenant Isolation Strategy**
+
+IsoStack enforces isolation across three layers:
+
+## **10.1 Database Level**
+
+* Multi-schema per module
+* RLS for strict per-tenant filtering
+* UUID primary keys
+* No accidental full-table scans permitted
+
+---
+
+## **10.2 Storage Level**
+
+R2 bucket layout:
+
+```
+r2://isostack/<module>/<tenantId>/<resource>
+```
+
+---
+
+## **10.3 Runtime Level**
+
+tRPC context ensures:
+
+* Tenant ID is resolved at request start
+* Module routers cannot access global or other tenant scopes
+* No implicit “current tenant” state in React or client
+
+---
+
+# 11. **Future Security Enhancements**
+
+Platform roadmap includes:
+
+* **Post-quantum hybrid encryption** (AES-256 + Kyber/Dilithium)
+* **Device-bound admin accounts**
+* **QR-code approval for sensitive actions**
+* **Client-side encryption for zero-knowledge mode** (EmberBox focus)
+* **Anomaly-based automated key rotation**
+* **Module isolation via WASM sandboxes**
+* **Attestation of builds before deployment**
+
+These expand on APIKeyChain’s planned enhancements.
+
+
+---
+
+# 12. **Compliance Positioning**
+
+IsoStack architecture supports alignment with:
+
+### **GDPR**
+
+* At-rest encryption
+* Pseudonymisation
+* Right-to-erasure with tenant segregation
+* Full audit tracing
+
+### **ISO 27001**
+
+* Cryptographic controls
+* Access management
+* Operational security
+* Logging & monitoring
+
+### **NIST SP 800-63**
+
+* Strong authentication
+* Identity proofing (optional)
+* Secure session handling
+
+### **ICO & NHS DSP Toolkit (Future Modules)**
+
+* For EmberBox/TailorAid healthcare-adjacent scenarios
+
+---
+
+# 13. **Appendix: Platform Security Defaults**
+
+| Feature           | Default                      | Notes               |
+| ----------------- | ---------------------------- | ------------------- |
+| RLS               | Enabled for all tables       | No bypass allowed   |
+| Encryption        | AES-256-GCM                  | Platform service    |
+| Key derivation    | Argon2id                     | PBKDF2 fallback     |
+| Secret transport  | HTTPS only                   | TLS 1.3             |
+| CORS              | Disabled by default          | Modules may opt-in  |
+| Rate limiting     | Per-tenant                   | Customisable        |
+| Audit logging     | On for all sensitive actions | Hash-chained        |
+| Module activation | Platform owner controlled    | Isolated per tenant |
+| User sessions     | Short TTL + refresh          | Magic link primary  |
+
+---
+
+# 14. **End of Document**
