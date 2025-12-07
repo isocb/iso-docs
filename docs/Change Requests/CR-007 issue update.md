@@ -1,0 +1,48 @@
+# IsoStack Issues
+
+Generated: 2025-12-07T07:58:07.102Z
+
+Total Issues: 2
+
+---
+
+## Pending (2)
+
+### Tenant Isolation
+
+**Issue #15** | **ID:** `cmivegl9h001a10vmmmtdftnd`
+**Perspective:** CLIENT_ADMIN
+**Category:** Bug | **Priority:** Critical
+**Tags:** Tenant Testing, Help System
+**Modules:** CORE
+**Created:** 2025-12-07T07:27:12.294Z
+**Created By:** Chris - Platform Admin
+
+**Description:**
+
+Creating a toolttip. The 'Scope' inheritence' modal form field input should be deduced from the user role when the user is not platform owner... only platform owner can add global. Module should be deduced from where the tooltip is geing generated - because the trigger point is one the element hard coded as a possible trigger point and so the sytem can deduce this. There fields are therfor redundant for users other than platform owner. The data is relevant and the system should deduce the meta data and complete these fields with the tooltip. This is important in the UI so the system can generate the help screens at a later date which will be driven by tooltip content.
+
+---
+
+### Collapse and expand sidebar/navbar
+
+**Issue #14** | **ID:** `cmive0vf4001110vmwuizrnhg`
+**CR #7** | **CR ID:** `cmive12ll001610vm9dfnx7l9`
+**Perspective:** PLATFORM_OWNER
+**Category:** Refinement | **Priority:** Critical
+**Tags:** SideBar
+**Modules:** CORE
+**Created:** 2025-12-07T07:14:58.959Z
+**Created By:** Chris - Platform Admin
+
+**Description:**
+
+The side navigation bar displays both icons and words for every link. The size of the icons is static. In certain circumstances, I would like the side navigation/navbar to reduce is size. The most effective way of doing this is to have the bar display icons only. There should be a toggle switch in the Sidebar/side nave to 'open' the sidebar - ie display the words and icons, or 'close' - display icons only. The transition is a quick animation of the draw opening and closing which provides illustates what is happening. The driver for this feature is A: When screen collateral is limited, eg when the navbar is 25% or more of the visible screen, the purpose of the app is the app area, not the sidebar! B: The user is very familiar with the menu choices and only require icons. Other apsects of the sidebar - eg colour are unaffected by this, There is a context flag at the top of the side bar and this will move to the header next to the user dropdown - which is actually the best place for the user cotent flag - next to the user menu top right.
+
+**Discussion:**
+
+- **Chris - Platform Admin** (12/7/2025, 7:50:48 AM):
+  ## ✅ Implementation Complete **Status:** Complete **Date:** 2025-12-07 ### Implementation Summary Successfully implemented collapsible sidebar with all requirements: 1. **Collapse/Expand Toggle** - Toggle button at top of sidebar with icon indicators - Collapsed: 80px width (icons only) - Expanded: 250px width (icons + labels) - 200ms ease-in-out transitions throughout 2. **State Persistence** - Collapsed state saved to localStorage (`sidebar-collapsed`) - Persists across page reloads and sessions 3. **Responsive Auto-Collapse** - Automatically collapses at 1024px breakpoint - Mobile drawer behavior unchanged (standard practice) 4. **Keyboard Shortcut** - `Cmd+B` (Mac) or `Ctrl+B` (Windows/Linux) to toggle - Tooltip shows shortcut hint 5. **Context Badge Relocated** - Moved from sidebar to header (next to user dropdown) - Shows role icon (building for platform/admin, person for users) - Displays name + role for platform/admin users - Displays name only for regular users (role excluded per spec) 6. **Tooltip Behavior** - All navigation items show tooltips on hover when collapsed - Positioned to the right of icons - Help and Edit Mode switches hidden when collapsed (icons remain visible) 7. **Smooth Animations** - All NavLinks animate with 200ms ease-in-out - Icon sizes adjust (32px → 24px when collapsed) - Badges and labels hide/show smoothly - Main content area reflows with transition ### Files Modified - `src/core/components/layout/AppShell.tsx` - Added collapse state, localStorage, media query, keyboard shortcut - `src/core/components/layout/Navbar.tsx` - Refactored with toggle button, conditional rendering, tooltips - `src/core/components/layout/Header.tsx` - Integrated ContextBadge component - `src/core/components/layout/ContextBadge.tsx` - New component showing user context in header ### Testing Checklist - ✅ Click toggle button - sidebar collapses/expands - ✅ Press `Cmd+B` - keyboard shortcut works - ✅ Hover over icons when collapsed - tooltips appear - ✅ Resize window below 1024px - auto-collapses - ✅ Refresh page - state persists from localStorage - ✅ Context badge in header shows correct role/name - ✅ Settings submenu hides children when collapsed - ✅ Smooth 200ms animations on all transitions
+
+---
+

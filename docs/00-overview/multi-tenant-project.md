@@ -101,8 +101,8 @@ Target: **End of day, 5 December 2025**
   - Row 2: Module cards
   - Row 3: Lists/tables.
 - Icons: **Tabler** only; dual sizing:
-  - 32px / stroke 1 for tiles
-  - 24px / stroke 1 for smaller controls.
+  - 20px / stroke 1 for tiles
+  - 14px / stroke 1 for smaller controls.
 
 ### Backend
 
@@ -696,6 +696,39 @@ Safety rules:
 * Clear old routes and dead code.
 * Final documentation updates.
 
+
+### 10. White Label Feature Flag
+
+The `whitelabel` feature flag unlocks:
+
+✅ **Enabled for tenant:**
+1. Branding accordion in Settings (upload logos, set colors)
+2. Custom authentication slug (`/login` instead of `/auth/signin`)
+3. Custom domain support (`portal.clientdomain.com`)
+4. Module branding overrides (if single-module tenant)
+5. Removes "Powered by IsoStack" footer
+
+❌ **Disabled (default):**
+1. No branding controls visible
+2. Standard IsoStack branding applied
+3. Only `*.isostack.app` subdomains allowed
+4. "Powered by IsoStack" footer present
+
+**Implementation:**
+```typescript
+// In middleware
+const organisation = await getOrganisationByHostname(hostname);
+const features = await getFeatureFlags(organisation.id);
+
+if (!hostname.endsWith('.isostack.app') && !features.whitelabel) {
+  return rewrite('/feature-required'); // Custom domain requires White Label
+}
+
+// In tRPC context
+ctx.features = {
+  whitelabel: features.includes('whitelabel'),
+  // ...other features
+};
 ---
 
 ## ✅ Success Criteria
