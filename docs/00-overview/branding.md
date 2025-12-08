@@ -1,96 +1,99 @@
 
 
-# **Branding Specification (Tenant & Module)**
+# **Branding Architecture & Implementation**
 
-*IsoStack — AI-Ready Briefing Document*
-**Status:** Draft
-**Version:** 0.1.0
+*IsoStack — Technical Specification*  
+**Status:** Implemented  
+**Version:** 2.0.0  
+**Last Updated:** December 2025
 
 ---
 
 ## **1. Overview**
 
-IsoStack supports two parallel branding systems:
+IsoStack implements a **three-tier branding system** with feature-flag controls:
 
-* **Tenant Branding** – Applied to client-facing experiences for a specific tenant.
-* **Module Branding** – Defines how each module presents itself by default.
+1. **Platform Core Branding** – Platform Owner's IsoStack instance branding
+2. **Module Branding** – Default branding for each module
+3. **Organization Branding** – Client-specific branding (Custom Branding & White Label)
 
-Branding systems are **feature-flag controlled**, and only apply when the relevant feature flag is enabled.
-
-Both branding systems use uploaded assets (preferably SVG) and colour/typography parameters that apply across UI surfaces, authentication flows, and system emails.
-
----
-
-## **2. Asset Rules**
-
-### **2.1 Logo Requirements**
-
-* Logos should be **SVG** whenever possible (preferred).
-* Other formats (**PNG, JPG, WebP**) are acceptable within size and dimension constraints.
-* Logos must be **uploaded**, not linked to external URLs.
-
-### **2.2 Branding Elements (Shared Rules)**
-
-Both Tenant and Module Branding support:
-
-1. **Light Screen Logo**
-2. **Dark Screen Logo**
-3. **Default Handling:**
-
-   * If only **one** logo is uploaded (typically the light version), it is treated as the **default**.
-4. **Favicon**
-5. **Primary Accent Colour**
-6. **Secondary Colour**
-7. **Typography Colour** (greyscale, used for headings/body text balance)
+**Priority Order:** White Label Organization > Module Branding > Platform Core Default
 
 ---
 
-## **3. Tenant Branding**
+## **2. Current Implementation (Simplified)**
+
+### **2.1 Asset Types**
+
+**Single Logo Approach (Current):**
+* **Logo** – Primary logo (stored as `lightLogoUrl` in database)
+* **Favicon** – Browser tab icon (32x32 or 64x64, max 100KB)
+
+**Database Fields (Reserved for Future):**
+* `lightLogoUrl` – Currently used as primary logo
+* `darkLogoUrl` – Reserved for future dark mode support
+* `logo` – Deprecated field (backwards compatibility only)
+
+### **2.2 Color Scheme**
+
+All branding contexts support:
+* **Primary Color** – Main brand color (#RRGGBB hex format)
+* **Secondary Color** – Accent color (#RRGGBB hex format)  
+* **Typography Color** – Text color (greyscale, #RRGGBB hex format)
+
+### **2.3 Upload Constraints**
+
+* **Logos:** Max 2MB, formats: PNG, JPG, WebP, SVG (preferred)
+* **Favicon:** Max 100KB, recommended 32x32 or 64x64 pixels
+* **Storage:** Cloudflare R2 with presigned URLs (1-hour expiry)
+* **Path Structure:** `branding/{organizationId}/{assetType}-{timestamp}.{ext}`
+
+---
+
+## **3. Platform Core Branding**
 
 ### **3.1 Purpose**
 
-Tenant Branding personalises the experience for **Client Users**, reflecting their organisation identity across:
+Platform Core Branding defines the IsoStack Platform owner's brand identity.
 
-* Module Home Pages
-* Authentication screens (login, set/reset password, magic link pages)
-* System-generated emails
-* Tenant User dashboards
+### **3.2 Scope**
 
-### **3.2 Branding Application Rules**
+* **Visible To:** Platform Admins only (when in `/platform` scope)
+* **Applies To:** 
+  - Platform Manager header
+  - Platform administration interfaces
+  - Platform Owner context
 
-* **Tenant Branding supplements (not replaces) Module Branding** within the **Client Admin** world.
-* **Tenant Branding replaces Module Branding** entirely in **Client User-facing screens** to create a white-label environment.
-* Layout, UX patterns, and typography scale must respect IsoStack design standards.
+### **3.3 Configuration**
 
-### **3.3 Tenant Branding Configuration**
-
-Accessible via:
-
+**Access Path:**
 ```
-Tenant > Settings > Branding
+/platform → Settings Tab → Branding Accordion → "All Modules" Selected
 ```
 
-Tenant configuration includes:
+**Upload Interface:**
+* Logo uploader (labeled "Logo")
+* Favicon uploader
+* Primary Color picker
+* Secondary Color picker
 
-* Uploading light/dark logos
-* Uploading favicon
-* Selecting colours
-* Selecting typography shade
-* Viewing their **dedicated Authentication URL**
+**Technical Implementation:**
+* Updates `Organization` table where `isAppOwner = true`
+* tRPC Procedure: `branding.updatePlatformCoreBranding`
+* Authorization: Requires entry in `PlatformAdmin` table + belongs to app owner organization
 
-### **3.4 Tenant Authentication URL**
+### **3.4 Database Storage**
 
-Each Tenant receives a branded authentication endpoint:
-
+```prisma
+model Organization {
+  isAppOwner: Boolean  // true for IsoStack Platform org
+  lightLogoUrl: String?
+  faviconUrl: String?
+  primaryColor: String
+  secondaryColor: String
+  typographyColor: String
+}
 ```
-/login?client={tenant_id}
-```
-
-This URL:
-
-* Loads Tenant Branding
-* Affects login, set-password, reset-password screens
-* Passes branding into all Auth-related UI flows
 
 ---
 
@@ -98,53 +101,397 @@ This URL:
 
 ### **4.1 Purpose**
 
-Module Branding defines:
+Module Branding defines the default appearance for each module:
+* Bedrock, API KeyChain, etc.
+* Provides visual identity when Platform Owner manages modules
+* Default branding inherited by organizations without White Label
 
-* Default appearance for the module
-* Marketing identity when the module is used standalone
-* A consistent look for Platform Owners and multi-module tenants
+### **4.2 Scope**
 
-### **4.2 Configuration**
+* **Visible To:** 
+  - Platform Admins (module icon next to title in Platform Manager)
+  - Standard organization users (in application header when module is active)
+* **NOT Visible To:**
+  - Platform Admins in header (always see Platform Core branding)
+  - White Label organizations (their branding overrides module branding)
 
-Accessible through:
+### **4.3 Configuration**
 
+**Access Path:**
 ```
-UI > Platform Management > Modules > [Module] > Settings Tab > Branding (Accordion)
+/platform → Module Selector → Select Module (e.g., "Bedrock") → Settings Tab → Branding Accordion
 ```
 
-Module Branding uses the **same asset and colour rules** as Tenant Branding.
+**Upload Interface:**
+* Logo uploader (labeled "Logo")
+* Favicon uploader
+* Primary Color picker
+* Secondary Color picker
+* Typography Color picker
 
-### **4.3 Interaction with Tenant Branding**
+**Visual Cue:**
+* Module logo displays next to "{Module} Management" title
+* Provides contextual indication of which module's settings are being edited
 
-* Module Branding is the **fallback** if Tenant Branding is disabled.
-* Module Branding is shown to:
+**Technical Implementation:**
+* Updates `module_catalogue` table (specific module row)
+* tRPC Procedure: `modules.updateBranding`
+* Authorization: Requires Platform Admin status
+* Upload component prop: `moduleId={selectedModuleId}`
 
-  * Platform Owners
-  * Client Admins (alongside Tenant Branding)
-* Module Branding is **not shown to Client Users** when Tenant Branding is active.
+### **4.4 Database Storage**
+
+```prisma
+model ModuleCatalogue {
+  id: String @id
+  slug: String @unique  // "bedrock", "apikeychain"
+  name: String
+  lightLogoUrl: String?
+  faviconUrl: String?
+  primaryColor: String
+  secondaryColor: String
+  typographyColor: String
+}
+```
 
 ---
 
-## **5. Brand Precedence Rules**
+## **5. Organization Branding (Custom Branding & White Label)**
 
-| Context                    | Branding Applied                                            |
-| -------------------------- | ----------------------------------------------------------- |
-| **Platform Owner UI**      | Module Branding                                             |
-| **Client Admin UI**        | Module Branding + Tenant Branding (sympathetic combination) |
-| **Client User UI**         | Tenant Branding replaces Module Branding                    |
-| **Authentication Screens** | Tenant Branding (via tenant-branded login URL)              |
-| **System Emails**          | Tenant Branding                                             |
+### **5.1 Feature Tiers**
+
+**Custom Branding (PRO Tier):**
+* Upload organization logo and favicon
+* Customize colors
+* Logo displays in organization's application header
+* **Does NOT** affect authentication pages
+* **Does NOT** support custom domains
+* Module branding still influences UI when no org branding exists
+
+**White Label (ENTERPRISE Tier):**
+* Everything in Custom Branding, PLUS:
+* Custom authentication pages with organization branding
+* Custom domain support (e.g., `app.yourcompany.com`)
+* DNS verification and SSL validation
+* Custom authentication slug
+* Complete brand override (no IsoStack branding visible)
+* Branded system emails
+
+### **5.2 Configuration**
+
+**Access Path (Future Implementation):**
+```
+/settings/branding  (Organization Settings)
+```
+
+**Feature Flag Checks:**
+* `customBranding` – PRO & ENTERPRISE tier
+* `whiteLabel` – ENTERPRISE tier only
+
+### **5.3 Technical Implementation**
+
+* Updates `Organization` table (current user's organization)
+* tRPC Procedure: `branding.updateBranding`
+* Authorization: Requires ADMIN or OWNER role
+* Feature flag validation in mutation
+
+### **5.4 Database Storage**
+
+```prisma
+model Organization {
+  lightLogoUrl: String?
+  faviconUrl: String?
+  primaryColor: String
+  secondaryColor: String
+  typographyColor: String
+  customAuthSlug: String?  // White Label only
+}
+
+model FeatureFlag {
+  organizationId: String
+  featureSlug: String  // "customBranding" or "whiteLabel"
+  enabled: Boolean
+}
+```
 
 ---
 
-## **6. Design Principles for AI**
+## **6. Branding Resolution Logic**
 
-When generating UI, documentation, or code:
+### **6.1 Priority Hierarchy**
 
-* Always ensure logos are **uploaded** assets, not external URLs.
-* Use **Tenant Branding** for any external-facing or white-label environment.
-* Use **Module Branding** for internal or admin-level views.
-* If only one logo exists, treat it as the **Light Screen Logo**.
-* Typography colour should be applied as a **neutral grey scale**, not a feature or accent colour.
-* Prioritise **simplicity, legibility, and contrast** across light/dark contexts.
+Implemented in `src/lib/branding.ts` → `getActiveBranding()`:
+
+```typescript
+// 1. Platform Owner in /platform scope
+if (isPlatformOwner && scope === 'platform') {
+  return organizationBranding; // IsoStack Platform org
+}
+
+// 2. White Label Organization (ENTERPRISE)
+if (organizationBranding?.hasWhiteLabel) {
+  return organizationBranding; // Overrides everything
+}
+
+// 3. Active Module Branding (Standard Clients)
+if (activeModule) {
+  return activeModule.branding; // From module_catalogue
+}
+
+// 4. Fallback to IsoStack Default
+return defaultBranding;
+```
+
+### **6.2 Context-Specific Behavior**
+
+| User Context | Scope | Header Logo Displayed |
+|--------------|-------|----------------------|
+| Platform Admin | `/platform` (All Modules) | Platform Core Logo |
+| Platform Admin | `/platform` (Module Selected) | Platform Core Logo (NOT module logo) |
+| Standard Org User | `/app` (Single Module) | Module Logo |
+| Standard Org User | `/app` (Multi-Module) | Active Module Logo |
+| White Label Org User | `/app` | Organization Logo (overrides module) |
+
+### **6.3 Module Logo Visual Cue**
+
+In Platform Manager (`/platform/page.tsx`):
+```typescript
+const moduleLogo = currentModule?.lightLogoUrl || currentModule?.logo;
+// Displays next to "{Module} Management" title
+// Visual indicator of which module's settings are being configured
+```
+
+---
+
+## **7. Upload Architecture**
+
+### **7.1 Upload Flow**
+
+1. **Client requests presigned URL** from `branding.getUploadUrl`
+2. **Server generates presigned URL** (AWS S3 SDK for R2, 1-hour expiry)
+3. **Client uploads directly to R2** (no server proxy)
+4. **Client calls appropriate mutation** with public URL:
+   - Platform Core: `updatePlatformCoreBranding`
+   - Module: `updateModuleBranding` (with `moduleId`)
+   - Organization: `updateBranding`
+
+### **7.2 Component Architecture**
+
+**BrandingAssetUploader Component:**
+```typescript
+<BrandingAssetUploader
+  assetType="light-logo" | "favicon"
+  currentUrl={existingUrl}
+  onUploadComplete={setStateFunction}
+  isPlatformCore={true}      // For Platform Core branding
+  moduleId={moduleId}        // For Module branding
+  // Neither flag = Organization branding
+/>
+```
+
+**Mutation Selection Logic:**
+```typescript
+if (moduleId) {
+  updateModuleBranding.mutateAsync({ id: moduleId, [field]: url });
+} else if (isPlatformCore) {
+  updatePlatformCoreBranding.mutateAsync({ [field]: url });
+} else {
+  updateBranding.mutateAsync({ [field]: url }); // Organization
+}
+```
+
+### **7.3 Query Invalidation**
+
+After successful upload:
+* Platform Core → Invalidates `organizations.getCurrent`, `branding.getPlatformCoreBranding`
+* Module → Invalidates `modules.getById`, `modules.listAll`
+* Organization → Invalidates `organizations.getCurrent`, `branding.getBranding`
+
+### **7.4 Preview Persistence**
+
+`BrandingAssetUploader` uses `useEffect` to sync preview with `currentUrl` prop:
+```typescript
+useEffect(() => {
+  setPreview(currentUrl || null);
+}, [currentUrl]);
+```
+
+Ensures uploaded logos remain visible after page refresh.
+
+---
+
+## **8. Feature Implementation Status**
+
+### **8.1 Completed (Phase 7)**
+
+✅ Platform Core Branding
+- Upload UI in Platform Manager
+- Database updates to Organization table (isAppOwner=true)
+- Header display integration
+- Query caching and invalidation
+- Upload persistence across page refreshes
+
+✅ Module Branding
+- Upload UI in Platform Manager (per-module)
+- Database updates to module_catalogue table
+- Module logo visual cue next to title
+- Proper isolation (doesn't overwrite Platform Core)
+- Upload persistence
+
+✅ Upload Infrastructure
+- R2 presigned URL generation
+- Direct client-to-R2 uploads
+- BrandingAssetUploader component
+- File validation and error handling
+- CORS configuration (GET, HEAD, PUT)
+
+✅ Branding Resolution
+- getActiveBranding() hierarchy logic
+- useAppBranding() hook
+- useBranding() hook (simplified to lightLogoUrl)
+- Header integration
+
+### **8.2 In Progress**
+
+🚧 Organization Branding UI (Custom Branding / White Label)
+- Upload interface at `/settings/branding`
+- Feature flag checks in UI
+- Admin/Owner role restrictions
+
+### **8.3 Planned (Phase 8+)**
+
+📋 Custom Domain Verification (White Label)
+- DNS TXT record validation
+- SSL certificate detection
+- Admin approval workflow
+- Domain management UI
+
+📋 Branded Authentication (White Label)
+- Custom /login routes with organization branding
+- Auth callback handling
+- Session preservation across custom domains
+
+📋 Dynamic Favicon
+- Inject favicon URL into document head
+- Switch based on branding context
+
+📋 Email Template Branding
+- Resend template customization with organization logos/colors
+
+---
+
+## **9. Authorization Model**
+
+### **9.1 Platform Admin Check**
+
+**Current Implementation:**
+```typescript
+// useAppBranding.ts (temporary)
+const isPlatformOwner = profile?.email === 'chris@isoblue.com';
+
+// TODO: Replace with proper check
+const isPlatformAdmin = await prisma.platformAdmin.findUnique({
+  where: { userId: session.user.id }
+});
+const userOrg = await prisma.organization.findUnique({
+  where: { id: session.user.organizationId }
+});
+if (!userOrg?.isAppOwner) throw FORBIDDEN;
+```
+
+**PlatformAdmin Table:**
+```prisma
+model PlatformAdmin {
+  id: String @id
+  userId: String @unique
+  createdAt: DateTime
+}
+```
+
+Platform Admin = Entry in `PlatformAdmin` table + belongs to organization where `isAppOwner=true`
+
+### **9.2 Feature Flag Validation**
+
+```typescript
+// Check White Label feature
+const features = await prisma.featureFlag.findMany({
+  where: { 
+    organizationId: user.organizationId,
+    featureSlug: 'whiteLabel',
+    enabled: true 
+  }
+});
+
+const hasWhiteLabel = features.length > 0;
+```
+
+---
+
+## **10. Design Principles**
+
+### **10.1 Simplicity**
+* Single logo field (lightLogoUrl) instead of complex light/dark switching
+* Clear separation of contexts (Platform Core, Module, Organization)
+* No nested branding hierarchies
+
+### **10.2 Isolation**
+* Platform Core branding stored separately from module branding
+* Module branding stored per-row in module_catalogue
+* Organization branding stored per-organization
+* Upload mutations target correct table based on context
+
+### **10.3 Performance**
+* Direct R2 uploads (no server proxy)
+* Query caching with strategic invalidation
+* Presigned URLs expire after 1 hour (security)
+
+### **10.4 User Experience**
+* Upload preview updates immediately
+* Logos persist after page refresh
+* Clear visual indicators (module logo next to title)
+* Platform Owner always sees Platform Core branding in header
+
+---
+
+## **11. AI Agent Development Notes**
+
+### **11.1 Critical Rules**
+
+1. **Never update organization branding when configuring modules**
+   - Use `moduleId` prop to target module_catalogue table
+   - Check `isModuleSpecific` before passing `moduleId`
+
+2. **Platform Owner header always shows Platform Core branding**
+   - Even when viewing/editing module settings
+   - Module logos are for client users, not Platform Owner
+
+3. **Upload persistence requires useEffect**
+   - Sync preview state with currentUrl prop
+   - Parent component must load query data into state
+
+4. **Query invalidation is mandatory**
+   - After every mutation that changes branding
+   - Ensures Header sees updated logos
+
+### **11.2 Testing Checklist**
+
+**Platform Core Branding:**
+- [ ] Upload logo as Platform Admin
+- [ ] Verify database: Organization table (isAppOwner=true) has light_logo_url
+- [ ] Refresh page → Logo still visible in upload area
+- [ ] Check header → Platform Core logo displays
+- [ ] Switch to module → Header STILL shows Platform Core logo
+
+**Module Branding:**
+- [ ] Select module in Platform Manager
+- [ ] Upload module logo
+- [ ] Verify database: module_catalogue table (specific module) has light_logo_url
+- [ ] Refresh page → Logo still visible in upload area
+- [ ] Check module visual cue → Logo displays next to "{Module} Management" title
+- [ ] Switch to "All Modules" → Platform Core logo intact (not overwritten)
+
+**Separation Verification:**
+- [ ] Platform Core logo and Module logo are different images
+- [ ] Uploading module logo does NOT change Platform Core logo
+- [ ] Both logos persist independently across page refreshes
 

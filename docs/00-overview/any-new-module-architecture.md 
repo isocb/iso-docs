@@ -1,8 +1,9 @@
 
 ---
 title: New IsoStack Module — Architecture Template
-version: 1.0.0
-status: draft
+version: 1.1.0
+status: active
+last_updated: 2025-12-08
 description: Requirements and design contract for any new module added to the IsoStack platform
 ---
 
@@ -50,8 +51,10 @@ List what the module **must not** own:
 
 - Authentication and user accounts (owned by Core)
 - Tenancy and organisation management (Core)
-- Global branding and email settings (Core)
-- Search and fuzzy logic “engine” itself (Core feature)
+- Module branding for header/UI (owned by Core via `module_catalogue`)
+- Organization White Label branding (Core/ENTERPRISE feature)
+- Global platform settings and email configuration (Core)
+- Search and fuzzy logic "engine" itself (Core feature)
 - Generic file storage (Core/R2)
 - Feature flag infrastructure (Core)
 
@@ -64,23 +67,40 @@ The module **consumes** these platform capabilities; it does not recreate them.
 Every module must register itself with Core using the following information:
 
 - `id` (string, unique)
-- `label` (human-readable name)
-- `icon` (Tabler or similar icon name)
-- `platformRoute?` (optional, if module has platform-level views)
-- `tenantRoute` (main entrypoint for tenant admins)
-- `userRoute?` (entrypoint for end users)
-- `getDashboardCards()` (cards to show on core dashboards)
-- `getFeatureFlags()` (feature toggle definitions, if any)
+- `slug` (URL-safe identifier, e.g., "bedrock", "tailoraid")
+- `name` (human-readable name)
+- `description` (optional, module purpose)
+- `icon` (Tabler icon name, e.g., "IconDatabase")
+- **Branding** (configured by Platform Owner at `/platform`):
+  - `lightLogoUrl` (light mode logo, uploaded to R2)
+  - `darkLogoUrl` (dark mode logo, uploaded to R2)
+  - `faviconUrl` (module favicon, uploaded to R2)
+  - `primaryColor` (hex color, e.g., "#228BE6")
+  - `secondaryColor` (hex color, e.g., "#15AABF")
+  - `typographyColor` (hex color, e.g., "#495057")
+- **Routes**:
+  - `platformRoute?` (optional, e.g., "/platform/bedrock")
+  - `tenantRoute?` (optional, e.g., "/tenant/[id]/bedrock")
+  - `userRoute` (main entry, e.g., "/app/bedrock")
+- `category` (optional, e.g., "Data", "Integration")
+- `enabled` (boolean, can module be activated)
+- `isPremium` (boolean, requires premium tier)
+- `isTrial` (boolean, available in trial mode)
 
 The module must:
 
-- Appear in the **module switcher** in the sidebar  
+- Appear in the **module switcher** in the Header (if user has >1 module)
 - Use routes that respect the current **scope**:
-  - Platform: `/platform/<moduleId>`
-  - Tenant: `/tenant/[organisationId]/<moduleId>`
-  - User: `/app/<moduleId>`
+  - **Platform**: `/platform/<moduleSlug>` (Platform Owner only)
+  - **Tenant**: `/tenant/[orgId]/<moduleSlug>` (NOT CURRENTLY USED)
+  - **User/App**: `/app/<moduleSlug>` (standard user access)
+- Display correct branding based on context:
+  - **Platform Owner in `/platform`** → IsoStack Platform branding
+  - **White Label org (ENTERPRISE)** → Organization branding (uploaded at `/settings/branding`)
+  - **Standard org** → Active module branding (from `module_catalogue`)
+  - **Fallback** → IsoStack default branding
 
-No module may bypass or replace the core AppShell.
+**Critical**: No module may bypass or replace the core AppShell. The Header automatically shows the correct logo/colors based on branding priority.
 
 ---
 
@@ -89,8 +109,10 @@ No module may bypass or replace the core AppShell.
 ### 4.1 Schema Location
 
 - All module-specific tables live in a dedicated **PostgreSQL schema**, e.g. `bedrock`, `tailoraid`, `emberbox`.
+- Module metadata (name, branding, routes) lives in **`public.module_catalogue`** (managed by Core).
 - IsoStack Core never writes directly into module schemas.
-- Modules never write directly into **each other’s** schemas.
+- Modules never write directly into **each other's** schemas.
+- Module activation per organization is tracked in **`public.organisation_modules`**.
 
 ### 4.2 Primary Entities
 
@@ -115,7 +137,27 @@ Example:
   - Belongs to a Sheet
   - Stores mapping / configuration data
 
-### 4.3 Tenancy Link
+### 4.3 Module Branding Registration
+
+**Platform Owner configures module branding** at `/platform` Settings → Select Module:
+
+- Upload light/dark logos and favicon (stored in R2 at `branding/{orgId}/{assetType}-{timestamp}.{ext}`)
+- Set primary/secondary/typography colors
+- Updates `module_catalogue` table
+- **Standard organizations automatically inherit module branding**
+- **ENTERPRISE organizations with White Label feature** can override with custom org branding
+
+**Module developers must NOT**:
+- Hard-code logos or colors in module code
+- Create separate branding configuration UIs
+- Use placeholder logic like `if (module === 'bedrock')` for branding
+
+**Instead**: Trust that `useAppBranding()` hook provides correct branding based on:
+1. White Label org branding (if ENTERPRISE)
+2. Module branding (from `module_catalogue`)
+3. IsoStack default
+
+### 4.4 Tenancy Link
 
 Every module entity that is tenant-specific must be linked either:
 
@@ -159,30 +201,66 @@ Impersonation is enforced via Core, but the module must assume:
 
 The module must **never** define its own global layout. It must:
 
-- Use the **IsoStack AppShell** (neutral header, context-aware sidebar)
+- Use the **IsoStack AppShell** (managed by Core layout wrappers)
+  - Header shows: logo (auto-selected light/dark), module name, context badge, module switcher (if applicable), user menu
+  - Navbar shows: module navigation links, role-based menu items, collapse toggle (⌘B)
+  - Layout automatically wraps module pages via `(app)/layout.tsx`
 - Use standard **tabs**, **lists**, **modals**, and **child pages** as defined in the UX standard
 - Conform to the **management hierarchy** pattern for admin-style containers where appropriate
+- **Never render elements above the Mantine AppShell.Header** (60px height)
+- Module pages render inside `AppShell.Main` with automatic padding and scroll
 
-### 6.1 Entry Screens
+### 6.1 Branding Integration
+
+**Modules should NOT manually implement branding logic.** The Core AppShell handles this automatically:
+
+```typescript
+// ❌ WRONG - Module tries to handle branding
+import { useBranding } from './my-module-branding';
+const logo = getModuleLogo();
+
+// ✅ CORRECT - Core provides branding via AppShell
+// Module pages are wrapped by (app)/layout.tsx
+// Header automatically shows correct logo/colors
+// No module code needed!
+```
+
+**If module needs branding context** (rare cases like emails, exports):
+
+```typescript
+import { useAppBranding } from '@/core/features/branding/useAppBranding';
+
+function MyModuleComponent() {
+  const { branding } = useAppBranding();
+  // branding.logo - auto-selected light/dark
+  // branding.primaryColor
+  // branding.secondaryColor
+  // branding.name
+}
+```
+
+### 6.2 Entry Screens
 
 Specify the first screens when the user enters the module:
 
-- Platform scope (if applicable):
-  - e.g. “Module configuration overview across tenants”
-- Tenant scope:
-  - e.g. “Tenant overview dashboard for this module”
-- User scope:
-  - e.g. “End user landing page, showing tasks/reports relevant to them”
+- **Platform scope** (if applicable):
+  - e.g., "Module configuration overview across all tenants"
+  - Only accessible to Platform Owner
+- **User/App scope** (primary):
+  - e.g., "Module dashboard showing user's tasks/data"
+  - Standard entry point for all users
 
-### 6.2 Tabs
+**Note**: Tenant scope (`/tenant/[id]/<module>`) is reserved for future multi-tenant admin features but not currently active.
 
-Define the main **tab structure** for the tenant view.
+### 6.3 Tabs
+
+Define the main **tab structure** for the user/app view.
 
 Example:
 
 ```text
-[ Overview ] [ Data ] [ Configuration ] [ Settings ]
-````
+[ Overview ] [ Projects ] [ Data ] [ Settings ]
+```
 
 For each tab:
 
@@ -439,17 +517,38 @@ AI prompts should:
 
 Before a new module is considered ready:
 
+**Core Integration:**
+* [ ] Module registered in `module_catalogue` (slug, name, description, icon, routes)
+* [ ] Initial branding uploaded by Platform Owner (light/dark logos, colors)
+* [ ] Module appears in module switcher for multi-module orgs
+* [ ] Module respects White Label org branding (if ENTERPRISE)
+* [ ] No hard-coded branding in module code (uses `useAppBranding()` if needed)
+
+**Data & Security:**
 * [ ] Schema defined with clear tenancy link and RLS
-* [ ] Module registered with Core (ModuleCatalogue + routes)
-* [ ] AppShell integration complete (no custom shells)
+* [ ] All entities properly scoped by `organisationId`
+* [ ] tRPC endpoints enforce organization isolation
+* [ ] Audit logging implemented for key actions
+
+**UI & UX:**
+* [ ] AppShell integration complete (no custom shells, no elements above Header)
 * [ ] Tabs defined and consistent with UX standard
 * [ ] All tables use shared list controls (search + sort)
 * [ ] Fuzzy search implemented per effective settings (Platform → Organisation → Module)
-* [ ] Module Settings tab present and wired to overrides
+* [ ] Module Settings tab present and wired to overrides (if applicable)
+* [ ] Responsive layout tested (mobile, tablet, desktop)
+
+**API & Features:**
 * [ ] tRPC endpoints documented and permission-aware
-* [ ] Audit logging implemented for key actions
 * [ ] Feature flags (if any) registered and documented
+* [ ] Error handling with user-friendly messages
+* [ ] Loading states for async operations
+
+**Documentation:**
 * [ ] Core documentation updated under `/docs/modules/<moduleId>/`
+* [ ] Architecture document completed (entities, relationships, flows)
+* [ ] API reference with input/output schemas
+* [ ] Onboarding guide for tenant admins
 
 Once all boxes are ticked, the module fits cleanly into IsoStack and is safe to roll out to tenants.
 
