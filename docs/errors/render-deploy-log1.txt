@@ -1,0 +1,388 @@
+2025-12-08T18:11:49.704288808Z Prisma schema loaded from prisma/schema.prisma
+2025-12-08T18:11:49.71007745Z Datasource "db": PostgreSQL database "neondb", schemas "bedrock, public" at "ep-proud-block-abkx13c2-pooler.eu-west-2.aws.neon.tech"
+2025-12-08T18:11:50.482979399Z 
+2025-12-08T18:11:50.48300797Z The database is already in sync with the Prisma schema.
+2025-12-08T18:11:50.483068212Z 
+2025-12-08T18:11:50.48375269Z Running generate... (Use --skip-generate to skip the generators)
+2025-12-08T18:11:50.836243645Z Running generate... - Prisma Client
+2025-12-08T18:11:51.236760852Z ✔ Generated Prisma Client (v5.22.0) to ./node_modules/@prisma/client in 399ms
+2025-12-08T18:11:51.236797234Z 
+2025-12-08T18:11:51.571092881Z 
+2025-12-08T18:11:51.571121202Z > isostack-v2@2.0.0 build
+2025-12-08T18:11:51.571127693Z > NODE_OPTIONS='--max-old-space-size=4096' next build
+2025-12-08T18:11:51.571132993Z 
+2025-12-08T18:11:52.154126562Z    ▲ Next.js 15.5.7
+2025-12-08T18:11:52.154311719Z    - Experiments (use with caution):
+2025-12-08T18:11:52.154317279Z      · optimizePackageImports
+2025-12-08T18:11:52.154399823Z 
+2025-12-08T18:11:52.187079551Z    Creating an optimized production build ...
+2025-12-08T18:11:59.613162506Z  ✓ Compiled successfully in 7.0s
+2025-12-08T18:11:59.614892525Z    Skipping linting
+2025-12-08T18:11:59.615052352Z    Checking validity of types ...
+2025-12-08T18:12:21.328014302Z    Collecting page data ...
+2025-12-08T18:12:36.364085748Z    Generating static pages (0/40) ...
+2025-12-08T18:12:44.144980137Z    Generating static pages (10/40) 
+2025-12-08T18:12:44.145019049Z    Generating static pages (20/40) 
+2025-12-08T18:12:44.145238577Z (node:797) Warning: `--localstorage-file` was provided without a valid path
+2025-12-08T18:12:44.145246258Z (Use `node --trace-warnings ...` to show where the warning was created)
+2025-12-08T18:12:44.145627283Z    Generating static pages (30/40) 
+2025-12-08T18:12:44.145704866Z  ✓ Generating static pages (40/40)
+2025-12-08T18:12:44.146087391Z (node:796) Warning: `--localstorage-file` was provided without a valid path
+2025-12-08T18:12:44.146095741Z (Use `node --trace-warnings ...` to show where the warning was created)
+2025-12-08T18:12:44.146136623Z [useAppBranding] Determining active module: {
+2025-12-08T18:12:44.146144454Z   pathname: '/platform',
+2025-12-08T18:12:44.146149114Z   profilePreferences: undefined,
+2025-12-08T18:12:44.146152764Z   sessionStorage: null,
+2025-12-08T18:12:44.146156384Z   profileLoaded: false
+2025-12-08T18:12:44.146160604Z }
+2025-12-08T18:12:44.146165014Z [useAppBranding] ⏳ Waiting for profile to load...
+2025-12-08T18:12:44.731769328Z    Finalizing page optimization ...
+2025-12-08T18:12:44.731792469Z    Collecting build traces ...
+2025-12-08T18:12:52.310468356Z 
+2025-12-08T18:12:52.326865123Z Route (app)                                                       Size  First Load JS
+2025-12-08T18:12:52.326885243Z ┌ ○ /                                                          3.71 kB         122 kB
+2025-12-08T18:12:52.326889493Z ├ ○ /_not-found                                                   1 kB         103 kB
+2025-12-08T18:12:52.326893204Z ├ ○ /about                                                     3.76 kB         122 kB
+2025-12-08T18:12:52.326896834Z ├ ƒ /admin/tenants                                             2.47 kB         121 kB
+2025-12-08T18:12:52.326900404Z ├ ƒ /admin/tenants/[slug]                                      6.37 kB         170 kB
+2025-12-08T18:12:52.326904114Z ├ ƒ /api/auth/[...nextauth]                                      144 B         102 kB
+2025-12-08T18:12:52.326907744Z ├ ƒ /api/invitations/accept                                      144 B         102 kB
+2025-12-08T18:12:52.326911364Z ├ ƒ /api/issues/create-cr                                        144 B         102 kB
+2025-12-08T18:12:52.326914914Z ├ ƒ /api/issues/export                                           144 B         102 kB
+2025-12-08T18:12:52.326918485Z ├ ƒ /api/trpc/[trpc]                                             144 B         102 kB
+2025-12-08T18:12:52.326922395Z ├ ƒ /api/upload                                                  144 B         102 kB
+2025-12-08T18:12:52.326925975Z ├ ƒ /app/bedrock                                               5.42 kB         120 kB
+2025-12-08T18:12:52.326929505Z ├ ƒ /app/bedrock/analytics                                     3.81 kB         115 kB
+2025-12-08T18:12:52.326933165Z ├ ƒ /app/bedrock/project/[projectId]                           9.59 kB         198 kB
+2025-12-08T18:12:52.326936705Z ├ ƒ /app/bedrock/project/[projectId]/connectors                   4 kB         133 kB
+2025-12-08T18:12:52.326955706Z ├ ƒ /app/bedrock/project/[projectId]/connectors/[connectorId]  5.03 kB         145 kB
+2025-12-08T18:12:52.326958156Z ├ ƒ /app/bedrock/project/[projectId]/connectors/new            3.71 kB         179 kB
+2025-12-08T18:12:52.326960306Z ├ ƒ /app/bedrock/project/[projectId]/define                     6.4 kB         146 kB
+2025-12-08T18:12:52.326962436Z ├ ƒ /app/bedrock/project/[projectId]/display                    8.2 kB         148 kB
+2025-12-08T18:12:52.326964576Z ├ ƒ /app/bedrock/project/[projectId]/sheets                    5.16 kB         134 kB
+2025-12-08T18:12:52.326966687Z ├ ƒ /app/bedrock/project/[projectId]/sheets/[sheetId]          3.59 kB         131 kB
+2025-12-08T18:12:52.326969017Z ├ ƒ /app/bedrock/project/[projectId]/views                     3.17 kB         132 kB
+2025-12-08T18:12:52.326971157Z ├ ƒ /app/bedrock/project/[projectId]/views/[viewId]            2.46 kB         119 kB
+2025-12-08T18:12:52.326973297Z ├ ƒ /app/bedrock/project/new                                   3.83 kB         150 kB
+2025-12-08T18:12:52.326975467Z ├ ƒ /app/bedrock/projects                                      5.02 kB         134 kB
+2025-12-08T18:12:52.326977587Z ├ ○ /auth/accept-invite                                        2.82 kB         121 kB
+2025-12-08T18:12:52.326980157Z ├ ○ /auth/error                                                1.82 kB         120 kB
+2025-12-08T18:12:52.326982337Z ├ ○ /auth/forgot-password                                      3.06 kB         130 kB
+2025-12-08T18:12:52.326984487Z ├ ○ /auth/reset-password                                       3.57 kB         135 kB
+2025-12-08T18:12:52.326986677Z ├ ○ /auth/signin                                                1.9 kB         137 kB
+2025-12-08T18:12:52.326989537Z ├ ○ /auth/signup                                               1.39 kB         158 kB
+2025-12-08T18:12:52.326991668Z ├ ○ /auth/verify-email                                         3.46 kB         122 kB
+2025-12-08T18:12:52.326993788Z ├ ○ /auth/verify-request                                       1.55 kB         113 kB
+2025-12-08T18:12:52.326996248Z ├ ƒ /billing                                                   5.05 kB         364 kB
+2025-12-08T18:12:52.326998358Z ├ ○ /contact                                                   7.16 kB         125 kB
+2025-12-08T18:12:52.327000488Z ├ ƒ /dashboard                                                  4.8 kB         360 kB
+2025-12-08T18:12:52.327002598Z ├ ○ /features                                                  8.05 kB         126 kB
+2025-12-08T18:12:52.327004768Z ├ ƒ /media                                                     7.78 kB         363 kB
+2025-12-08T18:12:52.327006898Z ├ ○ /platform                                                  38.1 kB         447 kB
+2025-12-08T18:12:52.327009028Z ├ ƒ /platform/clients/[id]                                     7.96 kB         260 kB
+2025-12-08T18:12:52.327011178Z ├ ƒ /platform/issues                                           7.38 kB         341 kB
+2025-12-08T18:12:52.327013318Z ├ ○ /pricing                                                   5.12 kB         123 kB
+2025-12-08T18:12:52.327015449Z ├ ƒ /settings/audit-logs                                       3.48 kB         381 kB
+2025-12-08T18:12:52.327017569Z ├ ƒ /settings/branding                                         7.96 kB         187 kB
+2025-12-08T18:12:52.327032309Z ├ ƒ /settings/features                                         3.36 kB         359 kB
+2025-12-08T18:12:52.327034669Z ├ ƒ /settings/organization                                     2.68 kB         149 kB
+2025-12-08T18:12:52.32704213Z ├ ƒ /settings/profile                                          4.44 kB         360 kB
+2025-12-08T18:12:52.3270445Z ├ ƒ /settings/team                                              6.7 kB         362 kB
+2025-12-08T18:12:52.3270467Z ├ ƒ /settings/tenants                                          2.91 kB         125 kB
+2025-12-08T18:12:52.32704881Z ├ ƒ /settings/tooltips                                         6.52 kB         365 kB
+2025-12-08T18:12:52.32705363Z ├ ƒ /support                                                   5.93 kB         369 kB
+2025-12-08T18:12:52.32705589Z ├ ○ /tenant-not-found                                          3.01 kB         121 kB
+2025-12-08T18:12:52.32705814Z └ ƒ /tenant/[id]                                               6.03 kB         139 kB
+2025-12-08T18:12:52.32706086Z + First Load JS shared by all                                   102 kB
+2025-12-08T18:12:52.327063051Z   ├ chunks/1255-642c76f13c20a3ec.js                            45.5 kB
+2025-12-08T18:12:52.327065211Z   ├ chunks/4bd1b696-100b9d70ed4e49c1.js                        54.2 kB
+2025-12-08T18:12:52.32706734Z   └ other shared chunks (total)                                1.97 kB
+2025-12-08T18:12:52.327069391Z 
+2025-12-08T18:12:52.327071441Z 
+2025-12-08T18:12:52.327073651Z ƒ Middleware                                                    130 kB
+2025-12-08T18:12:52.327085881Z 
+2025-12-08T18:12:52.327089121Z ○  (Static)   prerendered as static content
+2025-12-08T18:12:52.327091401Z ƒ  (Dynamic)  server-rendered on demand
+2025-12-08T18:12:52.327093472Z 
+2025-12-08T18:12:53.184148289Z ==> Uploading build...
+2025-12-08T18:13:12.921775046Z ==> Uploaded in 11.5s. Compression took 8.2s
+2025-12-08T18:13:13.015550728Z ==> Build successful 🎉
+2025-12-08T18:13:17.286793907Z ==> Deploying...
+2025-12-08T18:14:03.141100739Z ==> Running 'npm run start'
+2025-12-08T18:14:03.77714163Z 
+2025-12-08T18:14:03.777164771Z > isostack-v2@2.0.0 start
+2025-12-08T18:14:03.777208702Z > next start
+2025-12-08T18:14:03.777211542Z 
+2025-12-08T18:14:04.419690417Z    ▲ Next.js 15.5.7
+2025-12-08T18:14:04.419877672Z    - Local:        http://localhost:10000
+2025-12-08T18:14:04.419883022Z    - Network:      http://10.19.78.238:10000
+2025-12-08T18:14:04.419993755Z 
+2025-12-08T18:14:04.420072567Z  ✓ Starting...
+2025-12-08T18:14:05.113797755Z  ✓ Ready in 1082ms
+2025-12-08T18:14:09.939247958Z TypeError: process.on is not a function
+2025-12-08T18:14:09.939276248Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:14:09.939279648Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:14:09.939282118Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:14:09.939284568Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:14:09.939286808Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:14:09.939288908Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:14:10.44530857Z ==> Your service is live 🎉
+2025-12-08T18:14:10.608133128Z ==> 
+2025-12-08T18:14:10.776093937Z ==> ///////////////////////////////////////////////////////////
+2025-12-08T18:14:10.947579285Z ==> 
+2025-12-08T18:14:11.114697394Z ==> Available at your primary URL https://sating-isostack.onrender.com
+2025-12-08T18:14:11.290877132Z ==> 
+2025-12-08T18:14:11.952731727Z ==> ///////////////////////////////////////////////////////////
+2025-12-08T18:14:14.230813696Z (node:80) Warning: `--localstorage-file` was provided without a valid path
+2025-12-08T18:14:14.230830817Z (Use `node --trace-warnings ...` to show where the warning was created)
+2025-12-08T18:14:19.50264736Z TypeError: process.on is not a function
+2025-12-08T18:14:19.5026669Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:14:19.50267044Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:14:19.50267327Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:14:19.502675781Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:14:19.502678621Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:14:19.502681301Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:14:20.846317771Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
+2025-12-08T18:14:24.949163609Z TypeError: process.on is not a function
+2025-12-08T18:14:24.94920059Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:14:24.94920457Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:14:24.94920813Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:14:24.94921166Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:14:24.94921493Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:14:24.949218301Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:14:30.042059752Z TypeError: process.on is not a function
+2025-12-08T18:14:30.042091853Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:14:30.042096643Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:14:30.042100823Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:14:30.042104753Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:14:30.042109613Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:14:30.042113753Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:14:35.208535811Z TypeError: process.on is not a function
+2025-12-08T18:14:35.208555012Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:14:35.208559732Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:14:35.208563582Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:14:35.208567322Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:14:35.208571022Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:14:35.208574532Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:14:39.921431735Z TypeError: process.on is not a function
+2025-12-08T18:14:39.921455266Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:14:39.921459316Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:14:39.921462536Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:14:39.921465676Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:14:39.921468756Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:14:39.921471736Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:14:44.618653746Z TypeError: process.on is not a function
+2025-12-08T18:14:44.618676047Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:14:44.618679487Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:14:44.618682027Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:14:44.618684267Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:14:44.618686727Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:14:44.618688858Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:14:49.437478031Z TypeError: process.on is not a function
+2025-12-08T18:14:49.437500671Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:14:49.437504301Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:14:49.437507061Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:14:49.437509502Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:14:49.437512212Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:14:49.437514652Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:14:54.044337943Z TypeError: process.on is not a function
+2025-12-08T18:14:54.044363984Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:14:54.044366344Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:14:54.044368424Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:14:54.044370204Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:14:54.044371864Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:14:54.044373754Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:14:58.349471718Z TypeError: process.on is not a function
+2025-12-08T18:14:58.349490089Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:14:58.349493189Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:14:58.349495869Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:14:58.349498789Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:14:58.349501689Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:14:58.349504769Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:15:03.20671487Z TypeError: process.on is not a function
+2025-12-08T18:15:03.206746231Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:15:03.206749541Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:15:03.206752251Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:15:03.206754621Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:15:03.206757171Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:15:03.206759731Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:15:07.546115542Z TypeError: process.on is not a function
+2025-12-08T18:15:07.546145363Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:15:07.546165073Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:15:07.546205364Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:15:07.546207894Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:15:07.546210354Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:15:07.546212635Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:15:12.747564397Z TypeError: process.on is not a function
+2025-12-08T18:15:12.747591597Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:15:12.747594617Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:15:12.747597287Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:15:12.747599658Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:15:12.747602187Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:15:12.747604588Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:15:17.616068793Z TypeError: process.on is not a function
+2025-12-08T18:15:17.616096734Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:15:17.616100644Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:15:17.616103824Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:15:17.616106854Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:15:17.616109924Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:15:17.616112854Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:15:22.847133497Z TypeError: process.on is not a function
+2025-12-08T18:15:22.847204179Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:15:22.847210869Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:15:22.8472147Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:15:22.847218489Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:15:22.84722237Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:15:22.84722645Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:15:24.306928269Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
+2025-12-08T18:15:28.441041418Z TypeError: process.on is not a function
+2025-12-08T18:15:28.441077329Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:15:28.441082769Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:15:28.441087559Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:15:28.441092009Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:15:28.441096619Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:15:28.441101109Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:15:33.540400107Z TypeError: process.on is not a function
+2025-12-08T18:15:33.540427277Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:15:33.540430748Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:15:33.540433708Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:15:33.540437078Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:15:33.540439908Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:15:33.540442698Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:15:38.20391878Z TypeError: process.on is not a function
+2025-12-08T18:15:38.203940431Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:15:38.203945051Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:15:38.203949271Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:15:38.203965541Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:15:38.203968361Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:15:38.203970691Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:15:43.240282129Z TypeError: process.on is not a function
+2025-12-08T18:15:43.240306379Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:15:43.240310059Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:15:43.240312729Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:15:43.24031532Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:15:43.24032094Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:15:43.2403235Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:15:48.140013099Z TypeError: process.on is not a function
+2025-12-08T18:15:48.140030769Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:15:48.140033739Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:15:48.140036459Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:15:48.140038729Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:15:48.140040989Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:15:48.14004302Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:15:53.237842377Z TypeError: process.on is not a function
+2025-12-08T18:15:53.237866268Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:15:53.237870608Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:15:53.237874228Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:15:53.237877748Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:15:53.237881278Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:15:53.237884858Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:15:58.351362959Z TypeError: process.on is not a function
+2025-12-08T18:15:58.35138147Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:15:58.3513862Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:15:58.35139037Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:15:58.35139436Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:15:58.35139846Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:15:58.35140253Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:16:04.033061141Z TypeError: process.on is not a function
+2025-12-08T18:16:04.033093162Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:16:04.033100072Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:16:04.033105632Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:16:04.033111202Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:16:04.033116933Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:16:04.033123083Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:16:09.130735336Z TypeError: process.on is not a function
+2025-12-08T18:16:09.130771257Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:16:09.131222349Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:16:09.131227539Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:16:09.131231649Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:16:09.131235389Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:16:09.1312545Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:16:13.930071006Z TypeError: process.on is not a function
+2025-12-08T18:16:13.930098646Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:16:13.930106336Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:16:13.930109976Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:16:13.930113197Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:16:13.930116507Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:16:13.930120407Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:16:18.718711507Z TypeError: process.on is not a function
+2025-12-08T18:16:18.718732028Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:16:18.718735208Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:16:18.718737928Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:16:18.718740498Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:16:18.718742918Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:16:18.718745468Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:16:23.319773845Z TypeError: process.on is not a function
+2025-12-08T18:16:23.319796905Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:16:23.319800466Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:16:23.319806256Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:16:23.319809196Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:16:23.319812346Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:16:23.319815226Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:16:23.326452135Z  ⨯ Error: Cannot append headers after they are sent to the client
+2025-12-08T18:16:23.326489336Z     at p (.next/server/app/_not-found/page.js:2:4781)
+2025-12-08T18:16:23.326494946Z     at async L (.next/server/app/_not-found/page.js:2:6944) {
+2025-12-08T18:16:23.326500486Z   code: 'ERR_HTTP_HEADERS_SENT'
+2025-12-08T18:16:23.326505367Z }
+2025-12-08T18:16:23.327398511Z  ⨯ Error: Cannot append headers after they are sent to the client
+2025-12-08T18:16:23.327414891Z     at p (.next/server/app/_not-found/page.js:2:4781)
+2025-12-08T18:16:23.327419451Z     at async L (.next/server/app/_not-found/page.js:2:6944) {
+2025-12-08T18:16:23.327423721Z   code: 'ERR_HTTP_HEADERS_SENT'
+2025-12-08T18:16:23.327427541Z }
+2025-12-08T18:16:26.826481198Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
+2025-12-08T18:16:28.244337836Z TypeError: process.on is not a function
+2025-12-08T18:16:28.244369727Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:16:28.244375317Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:16:28.244379687Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:16:28.244382578Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:16:28.244388398Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:16:28.244391418Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:16:32.925815235Z TypeError: process.on is not a function
+2025-12-08T18:16:32.925840716Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:16:32.925845676Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:16:32.925850036Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:16:32.925854067Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:16:32.925858176Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:16:32.925876727Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:16:37.523857322Z TypeError: process.on is not a function
+2025-12-08T18:16:37.523881243Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:16:37.523884813Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:16:37.523888133Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:16:37.523890983Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:16:37.523894783Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:16:37.523897683Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:16:41.921506838Z TypeError: process.on is not a function
+2025-12-08T18:16:41.921530339Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:16:41.921535239Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:16:41.921539969Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:16:41.921544199Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:16:41.921548859Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:16:41.92155321Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:16:46.53824261Z TypeError: process.on is not a function
+2025-12-08T18:16:46.538264271Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:16:46.538269111Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:16:46.538273641Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:16:46.538277671Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:16:46.538281781Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:16:46.538286011Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:16:51.12419289Z TypeError: process.on is not a function
+2025-12-08T18:16:51.124210761Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:16:51.124214991Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:16:51.124219171Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:16:51.124223131Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:16:51.124227611Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:16:51.124231491Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:16:55.52084437Z TypeError: process.on is not a function
+2025-12-08T18:16:55.520902111Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:16:55.520907562Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:16:55.520911712Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:16:55.520915402Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:16:55.520919482Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:16:55.520923462Z     at <unknown> (.next/server/src/middleware.js:1:51)
+2025-12-08T18:17:00.018773294Z TypeError: process.on is not a function
+2025-12-08T18:17:00.018801235Z     at <unknown> (.next/server/src/middleware.js:432)
+2025-12-08T18:17:00.018806635Z     at 853 (.next/server/src/middleware.js:432:69683)
+2025-12-08T18:17:00.018811295Z     at c (.next/server/edge-runtime-webpack.js:1:143)
+2025-12-08T18:17:00.018815515Z     at <unknown> (.next/server/src/middleware.js:465:4424)
+2025-12-08T18:17:00.018819916Z     at b (.next/server/edge-runtime-webpack.js:1:1776)
+2025-12-08T18:17:00.018824305Z     at <unknown> (.next/server/src/middleware.js:1:51)
