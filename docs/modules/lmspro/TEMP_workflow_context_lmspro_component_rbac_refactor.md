@@ -3,7 +3,21 @@
 **Status:** IN PROGRESS - Architecture Pivot During Phase 1.5  
 **Date Started:** 2025-12-19  
 **Branch:** dev  
-**Last Commit:** e6323ad (Task 5 complete - component catalog seeded)  
+**Last Commit:** ad79646 (Task 6 complete - Dynamic League Dashboard)  
+
+---
+
+## Current Status Summary
+
+**✅ COMPLETED:**
+- Tasks 1-5: Phase 1.5 foundation (schema, helpers, routers, UI, seeding)
+- Tasks 5.5-5.9: Component-Based RBAC refactor (schema migration, seed migration, resolution logic, role CRUD, role helpers)
+- Task 6: Dynamic League Dashboard with component registry
+
+**⏳ REMAINING:**
+- Task 7: Club Home Page
+- Task 8: Update Existing Routers (replace requireRole with hasComponentAccess)
+- Task 9: Seed Test Users
 
 ---
 
@@ -470,12 +484,21 @@ export async function hasComponentAccess(
 
 ## ORIGINAL TASKS: Complete After Refactor
 
-### Task 6: Dynamic League Dashboard ⏳ NOT STARTED
+### Task 6: Dynamic League Dashboard ✅ COMPLETE (commit ad79646)
 
 **NOW BUILDS ON:** Component resolution system
 
-**File to Create:**
-- `src/app/(app)/app/lmspro/dashboard/page.tsx`
+**Files Created:**
+- `src/app/(app)/app/lmspro/dashboard/page.tsx` - Dynamic dashboard using component resolution
+- `src/modules/lmspro/components/ComponentRenderer.tsx` - Renders components based on definitions
+- `src/modules/lmspro/components/registry.tsx` - Maps componentKeys to React components
+- `src/modules/lmspro/components/dashboard/PendingClubsTable.tsx`
+- `src/modules/lmspro/components/dashboard/PendingTeamsTable.tsx`
+- `src/modules/lmspro/components/dashboard/AllClubsList.tsx`
+- `src/modules/lmspro/components/dashboard/AllTeamsList.tsx`
+- `src/modules/lmspro/components/dashboard/QuickStats.tsx`
+- `src/modules/lmspro/components/dashboard/SeasonOverview.tsx`
+- `src/modules/lmspro/components/dashboard/FinancialSummary.tsx`
 
 **Implementation:**
 ```typescript
@@ -501,9 +524,12 @@ export default function LeagueDashboard() {
 ```
 
 **Component Registry:**
-- `src/modules/lmspro/components/registry.ts`
 - Maps componentKey → React component
 - Example: `'clubs.pending.view': PendingClubsTable`
+- 7 dashboard components implemented
+- Shows "Coming Soon" placeholder for unimplemented components
+
+**Status:** Dashboard navigation added to LMSPro main page. Fully functional role-based rendering.
 
 ---
 
@@ -718,3 +744,85 @@ if (!isWithinWindow && !isLeagueAdmin) return null;
 - `custom_function`: "call registered validation function"
 
 This is noted for future implementation. **Phase 1 refactor continues as planned.** 
+
+Notes following F**k up.
+
+What I Now Understand (Critical Correction)
+TIER 1: Core IsoStack Security RBAC (Platform Level)
+Purpose: Authentication, organization boundaries, data isolation
+Enforcement: requireRole([Role.ADMIN, Role.OWNER]) checks User.role (C1/C2/C3)
+Scope: Platform-wide, applies to ALL modules
+
+Core's responsibilities:
+
+✅ User authentication (magic link, WebAuthn, OAuth)
+✅ Multi-tenancy isolation (organizationId scoping)
+✅ Platform admin access (P1 impersonation)
+✅ Organization management (create/delete orgs, billing)
+✅ User CRUD (C1/C2 manage organization users)
+✅ Feature flags (enable/disable modules per org)
+Core NEVER:
+
+❌ Knows about LMSPro clubs, teams, seasons
+❌ Defines module-specific permissions
+❌ Controls which dashboard components users see
+❌ Manages module business logic
+TIER 2: Module UX Composition RBAC (Feature Level)
+Purpose: Feature visibility, workflow access, granular module permissions
+Enforcement: hasComponentAccess(userId, 'lmspro', componentKey) checks User.lmsproRoleIds → ModuleRole.componentKeys
+Scope: Per-module, tenant-customizable
+
+Module's responsibilities:
+
+✅ Define components (clubs.approve.view, teams.manage, etc.)
+✅ Create role templates ("League Secretary", "Treasurer", "Age Group Manager U9")
+✅ Check component access for feature gates
+✅ Render dynamic dashboards based on user's components
+✅ Allow tenant admins to create custom roles
+Modules NEVER:
+
+❌ Bypass organizationId scoping (always enforced by Tier 1)
+❌ Grant cross-organization access
+❌ Control Core platform features (user management, billing)
+The Problem With Current LMSPro Routers
+What's happening:
+
+Why this is wrong:
+
+Module operations should NOT care about Core roles (C1/C2/C3)
+A C3 user with "League Secretary" LMSPro role SHOULD be able to approve clubs
+A C2 user with NO LMSPro roles should NOT see LMSPro features
+Using Core roles for module features breaks the Two-Tier architecture
+What should happen:
+
+The Correct Architecture Flow
+P1 (Platform Admin):
+
+Impersonates C1 user via Core authentication
+Inherits C1's organizationId (Tier 1 boundary enforced)
+Inherits C1's lmsproRoleIds (Tier 2 permissions)
+Sees same LMSPro components as C1
+C1 (Organization Owner - role: OWNER):
+
+Tier 1: Can manage users, org settings, billing (Core functions)
+Tier 2: Needs lmsproRoleIds assigned (e.g., "League Administrator" role)
+Without LMSPro roles: Can't access LMSPro features (correct!)
+With "League Administrator" role: Has full LMSPro access via componentKeys
+C2 (Organization Admin - role: ADMIN):
+
+Tier 1: Can manage users, org settings (but not billing)
+Tier 2: May or may not have LMSPro access (depends on assigned roles)
+Could have "Treasurer" role (financial view only)
+Could have NO LMSPro roles (can't see module at all)
+C3 (Organization Member - role: MEMBER):
+
+Tier 1: Standard user access (can't manage users/org)
+Tier 2: Can have powerful LMSPro roles! ("League Secretary", "Age Group Manager")
+Core role (C3) doesn't limit module capabilities
+Component-based permissions determine feature access
+What Task 8 Actually Needs to Do
+Add MANAGE component definitions for CRUD operations
+Create "League Administrator" platform role template with all componentKeys
+Refactor 23 mutation endpoints to use hasComponentAccess() instead of requireRole()
+Update seed data to assign C1 users the "League Administrator" role
+Keep ALL Tier 1 scoping (organizationId checks remain unchanged)
