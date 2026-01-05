@@ -620,12 +620,64 @@ export const myModule: ModuleConfig = {
 };
 ```
 
-### 4. Add Tooltips
+### 4. Add Tooltips and Issue Reporting
+
+**⚠️ MANDATORY: All interactive elements must have `data-tooltip-target` attribute**
 
 ```tsx
-// Always add tooltips for module features
-<Title>
-  Module Feature <TooltipAnchor componentId="your-module.feature" />
+// ✅ GOOD: Tabs with tooltip targets
+<Tabs.Tab 
+  value="overview" 
+  data-tooltip-target="your-module.tabs.overview"
+>
+  Overview
+</Tabs.Tab>
+
+// ✅ GOOD: Modal fields with tooltip targets
+<TextInput
+  label="Name"
+  data-tooltip-target="your-module.modal.field.name"
+  {...form.getInputProps('name')}
+/>
+
+<Select
+  label="Status"
+  data={statusOptions}
+  data-tooltip-target="your-module.modal.field.status"
+  {...form.getInputProps('status')}
+/>
+
+// ✅ GOOD: Buttons with tooltip targets
+<Button 
+  onClick={handleSave}
+  data-tooltip-target="your-module.button.save"
+>
+  Save Changes
+</Button>
+
+// ❌ BAD: Missing data-tooltip-target
+<Tabs.Tab value="overview">Overview</Tabs.Tab>
+<TextInput label="Name" {...form.getInputProps('name')} />
+```
+
+**Why This Matters:**
+- The `data-tooltip-target` attribute enables BOTH tooltips AND issue reporting
+- Without it, users cannot report issues on that element
+- Platform admins use "Edit Issues" mode (Ctrl+Shift+I) to place issue flags
+- All users can see issue indicators in "Show Issues" mode
+
+**Naming Convention:**
+- Format: `<module>.<page>.<section>.<element>`
+- Examples:
+  - `bedrock.projects.tabs.sheets`
+  - `bedrock.project-modal.field.name`
+  - `tailoraid.assessments.button.create`
+  - `your-module.dashboard.card.stats`
+
+**Always add tooltips for module features:**
+```tsx
+<Title data-tooltip-target="your-module.feature">
+  Module Feature
 </Title>
 ```
 
