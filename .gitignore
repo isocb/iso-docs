@@ -36,6 +36,8 @@ yarn-error.log*
 # OS
 .DS_Store
 Thumbs.db
+Icon
+Icon?
 
 # Prisma
 # Note: migrations are included in version control for this project
