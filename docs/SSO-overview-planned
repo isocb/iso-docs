@@ -1,0 +1,196 @@
+SSO (Single Sign-On) is when a user signs in **once** with an identity provider (IdP) and then can access **multiple apps** (or multiple parts of a platform) without creating separate passwords/accounts for each one.
+
+In practice, SSO usually means: “Use our company login (Google Workspace / Microsoft Entra ID / Okta) to access your app.”
+
+## What SSO is (and isn’t)
+
+### What it *is*
+
+* **One identity**, managed by an external provider (the IdP).
+* Your app trusts the IdP to prove who the user is.
+* Users log in via a familiar flow (Google/Microsoft/etc).
+* Admins control access centrally (joiners/movers/leavers).
+
+### What it *isn’t*
+
+* Not the same as “magic links” (that’s passwordless email auth, but still *your* identity store).
+* Not the same as “one login across your own modules” (that’s *shared auth* inside IsoStack; useful, but different from enterprise SSO).
+* Not automatically “one click into everything” unless you also implement session sharing, app routing, and consistent tenant resolution.
+
+## The common standards (quick map)
+
+* **OIDC (OpenID Connect)**: modern, easiest for “sign in with…”; built on OAuth2. Most SaaS uses this.
+* **SAML 2.0**: older enterprise standard; still common in bigger orgs.
+* **SCIM**: not login; it’s **user provisioning** (create/disable users automatically from the IdP).
+
+If you implement one first: **OIDC** is usually the best default, then add SAML if customers demand it.
+
+---
+
+# How SSO would look in IsoStack
+
+Given your IsoStack is **multi-tenant (organisation-based tenancy)** with **NextAuth v5 (magic link primary)**, the clean pattern is:
+
+## 1) Treat SSO as an *Organisation auth policy*
+
+Each Organisation (tenant) can be configured to use:
+
+* Magic link (default)
+* Google/Microsoft social login (optional)
+* **Enterprise SSO (OIDC/SAML)** (optional, premium)
+
+So you’d add something like:
+
+**OrganisationAuthPolicy**
+
+* `orgId`
+* `authMode`: `MAGIC_LINK | PASSWORDLESS_PLUS | OIDC | SAML`
+* `domainAllowlist`: e.g. `["client.com"]` (optional but useful)
+* `providerConfigId` (points to an IdP configuration record)
+* enforcement flags: `requireMfa` (careful: you can’t truly enforce MFA unless IdP guarantees it), `disableLocalLogin`, etc.
+
+## 2) Store IdP configuration per Organisation
+
+**SSOProviderConfig**
+
+* `type`: `OIDC | SAML`
+* `issuerUrl` (OIDC) / `idpEntityId` (SAML)
+* `clientId`
+* `clientSecret` (encrypted)
+* `redirectUri` (generated; usually stable)
+* `certificate` (SAML)
+* `attributeMapping`:
+
+  * email claim
+  * name claim
+  * optional groups/roles claim
+
+In IsoStack terms, this would live in a **Core module** (because it affects every module).
+
+## 3) Login flow needs tenant resolution first
+
+SSO depends on knowing **which Organisation** the user is trying to access, because each org may have a different IdP.
+
+Common ways:
+
+* **Tenant subdomain**: `tenant.isostack.app` → perfect. You already have strong tenancy.
+* **Custom domain**: `app.client.com` → also perfect.
+* Email-first login: user enters email → you look up org by domain → redirect to correct SSO.
+
+IsoStack likely already leans toward subdomain/custom domain, which makes SSO much simpler.
+
+## 4) Map IdP identity → IsoStack user and membership
+
+On successful SSO:
+
+* You get a stable IdP subject identifier (`sub` in OIDC, NameID in SAML).
+* You match or create a user in your DB.
+* You ensure they have an **OrganisationMembership** row for that org.
+* You assign a role (OWNER/ADMIN/MEMBER) via:
+
+  * default role on first join, or
+  * mapping rules from IdP claims/groups, or
+  * an admin approval workflow.
+
+Important: you must decide whether you allow “just-in-time provisioning” (JIT) or require pre-invites.
+
+**Recommended default** (safe):
+
+* If `email domain` matches org allowlist **and** `JIT enabled`, create membership as `MEMBER`.
+* Otherwise: require an invite.
+
+## 5) Sessions: one login across IsoStack modules
+
+Within your platform, you can make the user log in once and access all modules because:
+
+* You’re sharing the same auth layer and session (NextAuth) across the platform domain.
+* Modules are essentially routes/apps within the same platform (or separate apps under the same parent domain).
+
+If modules are separate deployments/domains, you’ll need to coordinate cookies and callback URLs carefully. If they’re all under one umbrella (ideal), SSO feels seamless.
+
+---
+
+# How this fits with your current NextAuth v5 setup
+
+You already have:
+
+* Next.js 15 App Router
+* NextAuth v5
+* Magic link primary
+
+SSO would be an *additional provider* strategy.
+
+**Implementation approach:**
+
+* Keep magic link as default.
+* Add an “Enterprise SSO” button on the org login page.
+* When selected, start an OIDC or SAML flow for that org.
+
+Key IsoStack design choice:
+
+* **Do you support multiple OIDC providers dynamically (per org)?**
+
+  * NextAuth is happiest with “known providers at build time”, but you *can* implement dynamic OIDC by using a generic OIDC provider configuration plus runtime parameters, or you use a dedicated SSO layer/service.
+  * Many SaaS teams end up with: NextAuth handles sessions + callbacks; a separate “SSO config service” resolves provider config per org.
+
+If you want a clean first version:
+
+* Support **one OIDC provider type** first (e.g., Microsoft Entra ID) with per-org config.
+* Then expand to Google Workspace / Okta (all OIDC) before SAML.
+
+---
+
+# Security and governance decisions you’ll want to bake in
+
+### Account takeover prevention
+
+* If a user previously existed with magic link, and later the org enables SSO:
+
+  * Decide whether to **link accounts by verified email** (common) or require admin linking.
+* Consider storing `UserIdentity` rows:
+
+  * provider (`oidc:entra`, `saml:okta`)
+  * providerUserId (`sub`/NameID)
+  * `userId`
+  * `orgId` (optional, but useful)
+
+### Offboarding (leavers)
+
+* SSO helps because disabling the user in Entra/Okta prevents future logins.
+* But if the user has an active session token, you still need:
+
+  * session expiry policy
+  * “force logout” capability (invalidate sessions) for security events
+
+### Role mapping from IdP groups
+
+* Nice for enterprises, but can get messy.
+* Start with: default role + manual upgrades.
+* Add group mapping as a premium feature later.
+
+### SCIM (later)
+
+* Once customers ask “Can you auto-create and disable users?”, that’s SCIM.
+* It pairs very nicely with multi-tenant membership tables.
+
+---
+
+# A practical IsoStack “SSO v1” blueprint
+
+If I were scoping it for IsoStack, I’d do:
+
+1. **Org-auth policy UI** (Platform Owner + Org Owner)
+2. **OIDC SSO for one provider family** (Entra ID first is common)
+3. **Email domain allowlist** + optional JIT provisioning
+4. **Identity linking table** (provider subject → user)
+5. **Audit logging** for sign-in events + config changes
+6. Keep magic link as fallback unless org disables it (premium control)
+
+Then:
+7. Add Okta/Google Workspace OIDC
+8. Add SAML only when required
+9. Add SCIM when required
+
+---
+
+IsoStack modules are all under one domain/app (best case) or sometimes separate deployments/domains, 

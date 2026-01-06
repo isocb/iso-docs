@@ -279,9 +279,33 @@ But: **keep it simple in Version 1.**
 
 ---
 
-# **11. Future Enhancements (Supported Later)**
+# **11. Integration with ProductPackage System**
 
-IsoStack’s architecture supports future extensions:
+**As of January 2026:** Platform Default Feature Flags work **in combination** with ProductPackage tier assignments.
+
+**How they work together:**
+
+1. **New tenant created** → FeatureFlags cloned from platform defaults
+   ```json
+   { "tooltips": true, "billing": false, "support": true }
+   ```
+
+2. **Product assigned** → ProductPackage includes FeatureSet tier (BASIC/PRO/ENTERPRISE)
+   - BASIC tier: Uses platform defaults as-is
+   - PRO tier: Enhances with { "customBranding": true, "prioritySupport": true }
+   - ENTERPRISE tier: Adds { "whiteLabel": true, "sso": true, "auditLogs": true }
+
+3. **Final features** = Platform defaults + Tier enhancements
+
+**Key principle:** Feature flags provide the **baseline**, product tiers provide **premium enhancements**.
+
+**No conflicts:** Platform defaults remain the foundation, products add capabilities on top.
+
+See: [Product Access Control System](/docs/PRODUCT_ACCESS_CONTROL.md) for full details.
+
+# **12. Future Enhancements (Supported Later)**
+
+IsoStack's architecture supports future extensions:
 
 ### ✔ Versioning of defaults
 
