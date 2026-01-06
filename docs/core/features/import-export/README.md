@@ -18,6 +18,31 @@ The Import/Export system enables organizations to migrate legacy data from exist
 - **Validation-first** - Detects errors before database writes
 - **Rollback capability** - Can undo failed imports completely
 - **Audit trail** - Every import logged for compliance
+- **Filterable exports** - Export by season, club, age group
+- **Module registry** - Extensible architecture for adding new entity types
+
+---
+
+## When to Use Import/Export
+
+### ✅ Use Import When:
+- Onboarding new organization with existing data in spreadsheets
+- Migrating from legacy system (integer PKs → UUIDs)
+- Bulk data entry (100+ records)
+- Converting data from incompatible format
+
+### ✅ Use Export When:
+- Backing up organization data
+- Sharing subset of data with external party (e.g., specific season)
+- Data verification and auditing
+- Migrating to another system
+- Creating reports for compliance
+
+### ❌ Don't Use Import/Export When:
+- Adding single records (use normal UI instead)
+- Data is already in IsoStack UUID format (use direct DB migration)
+- Real-time sync needed (use webhooks/API instead)
+- Making small updates to existing records (use edit UI)
 
 ---
 
@@ -51,6 +76,8 @@ docs/core/features/import-export/testing.md
 ```
 
 ### For Platform Admins (P1)
+
+**Import Data:**
 ```
 1. Navigate to /app/admin/import
 2. Create import job (select entity type: Clubs, Teams, etc.)
@@ -60,16 +87,39 @@ docs/core/features/import-export/testing.md
 6. Verify in Prisma Studio
 ```
 
----
-
-## Architecture Summary
-
-### Three-Table Pattern
-
+**Export Data:**
 ```
-ImportJob          → Tracks each import batch
-  ↓
-LegacyKeyMapping   → Maps old IDs to new UUIDs
+1. Navigate to /app/admin/export
+2. Select entity type (Clubs, Teams, etc.)
+3. Apply filters:
+   - Season (optional)
+   - Club (optional, for teams)
+   - Age Group (optional, for teams)
+4. Choose format (CSV or JSON)
+5. Click Export → File downloads
+6. Use in Excel, Google Sheets, or other tools
+```
+### Import Flow
+```
+1. Upload CSV/JSON
+2. Validate data
+3. Create ImportJob (status: VALIDATING)
+4. For each row:
+   - Create entity with new UUID
+   - Store legacy_id → new_uuid in LegacyKeyMapping
+   - Log to AuditLog
+5. Update ImportJob (status: COMPLETED)
+```
+
+### Export Flow
+```
+1. Select entity type and filters
+2. Query database with filters applied
+3. Fetch entities + related data (optional)
+4. Include legacy IDs if they exist
+5. Transform to CSV/JSON format
+6. Download file
+```acyKeyMapping   → Maps old IDs to new UUIDs
   ↓
 Entity Tables      → Actual data (Club, Team, etc.)
 ```
@@ -99,20 +149,24 @@ Entity Tables      → Actual data (Club, Team, etc.)
 
 ---
 
-## Related Core Features
-
-- **Audit Logging** - Every import is logged (`/docs/core/audit-logging/`)
-- **Permissions** - P1 & C1 roles only (`/docs/core/roles-and-permissions.md`)
-- **Multi-Tenancy** - All imports scoped by `organizationId`
-
----
-
-## Status
-
 ### Completed
 - [x] Requirements gathering
-- [x] Architecture design
+- [x] Architecture design (import + export)
 - [x] Documentation structure
+- [x] Module registry pattern defined
+- [x] Export filtering specification
+
+### In Progress
+- [ ] Database schema design
+- [ ] tRPC router implementation
+- [ ] CSV parser integration (Papa Parse)
+
+### Planned
+- [ ] Frontend wizard UI (import)
+- [ ] Frontend export UI with filters
+- [ ] Import handlers for Clubs, Teams
+- [ ] Export functionality (filterable)
+- [ ] Scheduled imports (future)ucture
 
 ### In Progress
 - [ ] Database schema design

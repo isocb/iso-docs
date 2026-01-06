@@ -2,9 +2,9 @@
 
 **Status:** 📋 PLANNING  
 **Priority:** HIGH  
-**Est. Duration:** 5-7 days  
+**Est. Duration:** 5-7 days (working days spread over 2 weeks)
 **Owner:** Platform (P1 & C1 only)  
-**Last Updated:** 2026-01-05
+**Last Updated:** 2026-01-06
 
 ---
 
@@ -13,6 +13,13 @@
 The Import/Export system enables migration of legacy data (with integer PKs) into IsoStack (UUID-based), preserving foreign key relationships through a mapping table. This feature is critical for onboarding new organizations (e.g., sports leagues) with existing data.
 
 **Core Pattern:** Legacy ID → UUID Mapping → Hierarchical Import (Clubs → Teams → Players)
+
+**Key Features:**
+- ✅ Import with legacy ID mapping
+- ✅ Filterable export (by season, club, age group)
+- ✅ Module registry pattern for extensibility
+- ✅ Rollback capability
+- ✅ Full audit trail
 
 ---
 
@@ -24,6 +31,7 @@ The Import/Export system enables migration of legacy data (with integer PKs) int
 - [ ] **Goal 4**: Validation prevents bad data from entering database
 - [ ] **Goal 5**: Failed imports can be rolled back completely
 - [ ] **Goal 6**: All imports are audit-logged for compliance
+- [ ] **Goal 7**: Users can export data with filters (season, club, age group)
 
 ---
 
@@ -154,12 +162,20 @@ enum ImportStatus {
 }
 
 enum ImportEntityType {
-  CLUB
-  TEAM
-  VENUE
-  REFEREE
+  // LMSPro entities
+  LMSPRO_CLUB
+  LMSPRO_TEAM
+  LMSPRO_VENUE
+  LMSPRO_REFEREE
+  LMSPRO_AGE_GROUP
+  
+  // Bedrock entities (future)
+  BEDROCK_SHEET
+  BEDROCK_RELATIONSHIP
+  
+  // Core entities
   USER
-  AGE_GROUP
+  ORGANIZATION
   
   @@schema("public")
 }
@@ -173,11 +189,208 @@ model Organization {
   // ... existing fields
   importJobs         ImportJob[]
   legacyKeyMappings  LegacyKeyMapping[]
+---
+
+## Implementation Phases
+
+### Phase 0: Prerequisites & Setup (1 hour)
+
+**Goal:** Install dependencies and create project structure
+
+**Prerequisites:**
+- [x] Database backup taken
+- [x] Neon dev database accessible
+- [ ] Development branch created
+
+**Tasks:**
+1. Install CSV parser library
+2. Create directory structure for import system
+3. Create import registry infrastructure
+
+**Implementation:**
+
+```bash
+# 1. Install dependencies
+npm install papaparse
+npm install --save-dev @types/papaparse
+
+# 2. Create directory structure
+mkdir -p src/lib/import
+mkdir -p src/modules/lmspro/import/handlers
+
+# 3. Create base files (empty for now, will implement in later phases)
+touch src/lib/import/registry.ts
+touch src/lib/import/parser.ts
+touch src/lib/import/types.ts
+```
+
+**Create Import Types:**
+```typescript
+// src/lib/import/types.ts
+import { Prisma } from '@prisma/client';
+
+export interface ImportContext {
+  organizationId: string;
+  seasonId?: string;
+  userId: string;
+  importJobId: string;
+  tx: Prisma.TransactionClient;
 }
 
-model User {
-  // ... existing fields
-  createdImportJobs  ImportJob[] @relation("ImportJobCreator")
+export interface ValidationResult {
+  valid: boolean;
+  errors: ValidationError[];
+  warnings: ValidationWarning[];
+}
+
+export interface ValidationError {
+  row: number;
+  field?: string;
+  message: string;
+  value?: any;
+}
+
+export interface ValidationWarning {
+  row: number;
+  field?: string;
+  message: string;
+}
+
+export interface ImportResult {
+  successCount: number;
+  failureCount: number;
+  results: ImportRowResult[];
+}
+
+export interface ImportRowResult {
+  success: boolean;
+  legacyId: string;
+  newId?: string;
+  error?: string;
+}
+
+export interface ExportFilters {
+  entityType: string;
+  seasonId?: string;
+  clubId?: string;
+  ageGroupId?: string;
+  includeRelated?: boolean;
+  format?: 'CSV' | 'JSON';
+}
+
+export interface ImportHandler<T = any> {
+  validate: (data: any[], context: ImportContext) => Promise<ValidationResult>;
+  import: (data: any[], context: ImportContext) => Promise<ImportResult>;
+  rollback: (mappings: any[], context: ImportContext) => Promise<void>;
+  export?: (filters: ExportFilters, context: ImportContext) => Promise<any[]>;
+}
+```
+
+**Create CSV Parser:**
+```typescript
+// src/lib/import/parser.ts
+import Papa from 'papaparse';
+
+export interface ParseResult<T = any> {
+  data: T[];
+  errors: ParseError[];
+  meta: ParseMeta;
+}
+
+export interface ParseError {
+  row: number;
+  message: string;
+}
+
+export interface ParseMeta {
+  fields: string[];
+  rowCount: number;
+}
+
+export function parseCSV<T = any>(csvText: string): ParseResult<T> {
+  const result = Papa.parse<T>(csvText, {
+    header: true,
+    skipEmptyLines: true,
+    transformHeader: (header) => header.trim(),
+    transform: (value) => value.trim(),
+    dynamicTyping: false, // Keep everything as strings for validation
+  });
+
+  return {
+    data: result.data,
+    errors: result.errors.map((err, idx) => ({
+      row: err.row !== undefined ? err.row + 1 : idx + 1,
+      message: err.message,
+    })),
+    meta: {
+      fields: result.meta.fields || [],
+      rowCount: result.data.length,
+    },
+  };
+}
+
+export function generateCSV<T = any>(data: T[], filename: string): void {
+  const csv = Papa.unparse(data);
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = filename;
+  link.click();
+}
+```
+
+**Create Import Registry:**
+```typescript
+// src/lib/import/registry.ts
+import { ImportHandler } from './types';
+
+const importRegistry = new Map<string, ImportHandler>();
+
+export function registerImportHandler(entityType: string, handler: ImportHandler) {
+  if (importRegistry.has(entityType)) {
+    console.warn(`Import handler for ${entityType} is being overwritten`);
+  }
+  importRegistry.set(entityType, handler);
+}
+
+export function getImportHandler(entityType: string): ImportHandler {
+  const handler = importRegistry.get(entityType);
+  if (!handler) {
+    throw new Error(`No import handler registered for entity type: ${entityType}`);
+  }
+  return handler;
+}
+
+export function getRegisteredEntityTypes(): string[] {
+  return Array.from(importRegistry.keys());
+}
+```
+
+**Deliverables:**
+- ✅ Papa Parse installed
+- ✅ Directory structure created
+- ✅ Base types defined
+- ✅ CSV parser utility created
+- ✅ Import registry infrastructure ready
+
+**Testing:**
+```bash
+# Verify Papa Parse installation
+npm list papaparse
+
+# Test imports compile
+npm run type-check
+```
+
+**Files Changed:**
+- `package.json` (dependencies added)
+- `src/lib/import/types.ts` (new)
+- `src/lib/import/parser.ts` (new)
+- `src/lib/import/registry.ts` (new)
+
+---
+
+### Phase 1: Database Schema (2 hours)tion("ImportJobCreator")
 }
 ```
 
@@ -787,6 +1000,451 @@ export default function ImportPage() {
 
 **Testing Scenarios:**
 See `testing.md` for full test plan
+
+---
+
+### Phase 7: Export Functionality (4 hours)
+
+**Goal:** Enable filtered data export with CSV/JSON output
+
+**Prerequisites:**
+- [x] Phase 1-6 completed
+- [x] Papa Parse installed
+- [x] Import handlers include export method
+
+**Tasks:**
+1. Add export endpoints to import router
+2. Implement filter UI component
+3. Add export method to import handlers
+4. Add CSV/JSON generation
+5. Test export with various filters
+
+**Implementation:**
+
+**Backend - Export Endpoint:**
+```typescript
+// Add to src/server/core/routers/import.router.ts
+
+export const importRouter = router({
+  // ... existing endpoints
+  
+  // Export data with filters
+  exportData: requireRole([Role.OWNER])
+    .input(z.object({
+      entityType: z.string(),
+      seasonId: z.string().optional(),
+      clubId: z.string().optional(),
+      ageGroupId: z.string().optional(),
+      includeRelated: z.boolean().optional().default(false),
+      format: z.enum(['CSV', 'JSON']).default('CSV'),
+    }))
+    .query(async ({ ctx, input }) => {
+      if (!ctx.session) {
+        throw new TRPCError({ code: 'UNAUTHORIZED' });
+      }
+
+      const organizationId = ctx.session.user.organizationId;
+
+      // Get import handler for entity type
+      const handler = getImportHandler(input.entityType);
+      
+      if (!handler.export) {
+        throw new TRPCError({ 
+          code: 'NOT_IMPLEMENTED',
+          message: `Export not implemented for ${input.entityType}` 
+        });
+      }
+
+      // Execute export with filters
+      const context: ImportContext = {
+        organizationId,
+        seasonId: input.seasonId,
+        userId: ctx.session.user.id,
+        importJobId: '', // Not needed for export
+        tx: ctx.prisma as any,
+      };
+
+      const data = await handler.export(input, context);
+
+      // Audit log
+      await ctx.prisma.auditLog.create({
+        data: {
+          action: 'DATA_EXPORTED',
+          entityType: input.entityType,
+          entityId: organizationId,
+          metadata: { 
+            filters: input,
+            recordCount: data.length 
+          },
+          userId: ctx.session.user.id,
+## Phase Progress Tracker
+
+| Phase | Status | Est. Hours | Actual Hours | Completion Date |
+|-------|--------|-----------|--------------|-----------------|
+| 0. Prerequisites & Setup | ⏳ PENDING | 1h | - | - |
+| 1. Database Schema | ⏳ PENDING | 2h | - | - |
+| 2. tRPC Router | ⏳ PENDING | 3h | - | - |
+| 3. Import Engine | ⏳ PENDING | 4h | - | - |
+| 4. Rollback | ⏳ PENDING | 2h | - | - |
+| 5. Frontend UI | ⏳ PENDING | 6h | - | - |
+| 6. Testing & Docs | ⏳ PENDING | 3h | - | - |
+| 7. Export Functionality | ⏳ PENDING | 4h | - | - |
+| **Total** | | **25h** | | |
+
+**Notes:**
+- Total time: ~25 working hours
+- Suggested schedule: 3-4 hours/day over 2 weeks
+- Can be done in parallel with other development
+- Export (Phase 7) can be deprioritized if needed
+
+---
+
+## Implementation Checklist
+
+**Before Starting:**
+- [ ] Logo upload feature completed and tested
+- [ ] Development branch created (`feature/import-export`)
+- [ ] Database backup taken
+- [ ] Papa Parse installed
+- [ ] Team briefed on implementation plan
+
+**Phase Gates (Must Complete Before Moving to Next Phase):**
+- [ ] Phase 0: All dependencies installed, directories created
+- [ ] Phase 1: Schema pushed, visible in Prisma Studio
+- [ ] Phase 2: Router registered, endpoints accessible via tRPC
+- [ ] Phase 3: Import engine validates and imports test data
+- [ ] Phase 4: Rollback tested with actual import job
+- [ ] Phase 5: Import wizard functional in browser
+- [ ] Phase 6: All tests passing, docs updated
+- [ ] Phase 7: Export tested with filters, CSV downloads correctly
+
+**Deployment Checklist:**
+- [ ] All phases completed
+- [ ] Unit tests passing (80%+ coverage)
+- [ ] Integration tests passing
+- [ ] Manual E2E scenarios tested
+- [ ] Performance tests passed (1000+ rows)
+- [ ] Security review completed
+- [ ] Documentation published
+- [ ] Staging deployment successful
+- [ ] Production deployment scheduled
+```
+
+**LMSPro Handler - Add Export Method:**
+```typescript
+// Add to src/modules/lmspro/import/handlers/club.ts
+
+export const clubImportHandler: ImportHandler = {
+  // ... existing validate, import, rollback methods
+  
+  async export(filters, context) {
+    const { seasonId, clubId, includeRelated } = filters;
+    
+    const clubs = await context.tx.lMSProClub.findMany({
+      where: {
+        organizationId: context.organizationId,
+        ...(seasonId && { seasonId }),
+        ...(clubId && { id: clubId }),
+      },
+      include: {
+        ...(includeRelated && {
+          _count: { 
+            select: { teams: true } 
+          },
+          season: {
+            select: { name: true }
+          },
+        }),
+      },
+      orderBy: { name: 'asc' },
+    });
+
+    // Also include legacy IDs if they exist
+    const clubIds = clubs.map(c => c.id);
+    const mappings = await context.tx.legacyKeyMapping.findMany({
+      where: {
+        organizationId: context.organizationId,
+        entityType: 'LMSPRO_CLUB',
+        newId: { in: clubIds },
+      },
+    });
+
+    const mappingMap = new Map(mappings.map(m => [m.newId, m.legacyId]));
+
+    return clubs.map(club => ({
+      club_id: club.id,
+      legacy_club_id: mappingMap.get(club.id) || '',
+      club_name: club.name,
+      short_name: club.shortName || '',
+      fa_number: club.faNumber || '',
+      ...(includeRelated && {
+        season_name: club.season?.name || '',
+        team_count: club._count?.teams || 0,
+      }),
+    }));
+  },
+};
+```
+
+**Team Handler Export:**
+```typescript
+// Add to src/modules/lmspro/import/handlers/team.ts
+
+export const teamImportHandler: ImportHandler = {
+  // ... existing methods
+  
+  async export(filters, context) {
+    const { seasonId, clubId, ageGroupId } = filters;
+    
+    const teams = await context.tx.lMSProTeam.findMany({
+      where: {
+        organizationId: context.organizationId,
+        ...(seasonId && { seasonId }),
+        ...(clubId && { clubId }),
+        ...(ageGroupId && { ageGroupId }),
+      },
+      include: {
+        club: { select: { name: true } },
+        ageGroup: { select: { name: true } },
+      },
+      orderBy: [
+        { club: { name: 'asc' } },
+        { ageGroup: { sortOrder: 'asc' } },
+      ],
+    });
+
+    // Get legacy IDs
+    const teamIds = teams.map(t => t.id);
+    const mappings = await context.tx.legacyKeyMapping.findMany({
+      where: {
+        organizationId: context.organizationId,
+        entityType: 'LMSPRO_TEAM',
+        newId: { in: teamIds },
+      },
+    });
+
+    const mappingMap = new Map(mappings.map(m => [m.newId, m.legacyId]));
+
+    return teams.map(team => ({
+      team_id: team.id,
+      legacy_team_id: mappingMap.get(team.id) || '',
+      team_name: team.name,
+      club_id: team.clubId,
+      club_name: team.club.name,
+      age_group_id: team.ageGroupId,
+      age_group_name: team.ageGroup?.name || '',
+    }));
+  },
+};
+```
+
+**Frontend - Export UI:**
+```typescript
+// src/app/(app)/app/admin/import/export-page.tsx
+'use client';
+
+import { useState } from 'react';
+import { 
+  Container, Title, Select, Button, Group, Stack, 
+  Checkbox, Alert, LoadingOverlay 
+} from '@mantine/core';
+import { IconDownload, IconInfoCircle } from '@tabler/icons-react';
+import { trpc } from '@/lib/trpc/client';
+import { notifications } from '@mantine/notifications';
+import { generateCSV } from '@/lib/import/parser';
+
+export default function ExportPage() {
+  const [entityType, setEntityType] = useState<string>('');
+  const [seasonId, setSeasonId] = useState<string>('');
+  const [clubId, setClubId] = useState<string>('');
+  const [ageGroupId, setAgeGroupId] = useState<string>('');
+  const [includeRelated, setIncludeRelated] = useState(false);
+  const [format, setFormat] = useState<'CSV' | 'JSON'>('CSV');
+  const [exporting, setExporting] = useState(false);
+
+  const seasons = trpc.lmspro.seasons.list.useQuery();
+  const clubs = trpc.lmspro.clubs.list.useQuery(
+    { seasonId: seasonId || undefined },
+    { enabled: !!seasonId }
+  );
+  const ageGroups = trpc.lmspro.ageGroups.list.useQuery();
+
+  const handleExport = async () => {
+    if (!entityType) {
+      notifications.show({
+        title: 'Error',
+        message: 'Please select an entity type to export',
+        color: 'red',
+      });
+      return;
+    }
+
+    setExporting(true);
+
+    try {
+      const result = await trpc.import.exportData.query({
+        entityType,
+        seasonId: seasonId || undefined,
+        clubId: clubId || undefined,
+        ageGroupId: ageGroupId || undefined,
+        includeRelated,
+        format,
+      });
+
+      // Generate and download file
+      if (format === 'CSV') {
+        generateCSV(result.data, result.filename);
+      } else {
+        const json = JSON.stringify(result.data, null, 2);
+        const blob = new Blob([json], { type: 'application/json' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = result.filename;
+        link.click();
+      }
+
+      notifications.show({
+        title: 'Export Complete',
+        message: `Exported ${result.data.length} records`,
+        color: 'green',
+      });
+    } catch (error) {
+      notifications.show({
+        title: 'Export Failed',
+        message: error instanceof Error ? error.message : 'Unknown error',
+        color: 'red',
+      });
+    } finally {
+      setExporting(false);
+    }
+  };
+
+  return (
+    <Container size="md" py="xl">
+      <Title order={1} mb="xl">Export Data</Title>
+
+      <Alert icon={<IconInfoCircle />} title="Data Export" mb="lg">
+        Export your data to CSV or JSON format. Use filters to export specific subsets.
+      </Alert>
+
+      <Stack gap="md">
+        <Select
+          label="Entity Type"
+          placeholder="Select what to export"
+          data={[
+            { value: 'LMSPRO_CLUB', label: 'Clubs' },
+            { value: 'LMSPRO_TEAM', label: 'Teams' },
+            { value: 'LMSPRO_VENUE', label: 'Venues' },
+          ]}
+          value={entityType}
+          onChange={(value) => setEntityType(value || '')}
+          required
+        />
+
+        <Select
+          label="Season"
+          placeholder="Filter by season (optional)"
+          data={seasons.data?.map(s => ({ 
+            value: s.id, 
+            label: s.name 
+          })) || []}
+          value={seasonId}
+          onChange={(value) => setSeasonId(value || '')}
+          disabled={!seasons.data?.length}
+        />
+
+        {entityType === 'LMSPRO_TEAM' && (
+          <>
+            <Select
+              label="Club"
+              placeholder="Filter by club (optional)"
+              data={clubs.data?.map(c => ({ 
+                value: c.id, 
+                label: c.name 
+              })) || []}
+              value={clubId}
+              onChange={(value) => setClubId(value || '')}
+              disabled={!seasonId || !clubs.data?.length}
+            />
+
+            <Select
+              label="Age Group"
+              placeholder="Filter by age group (optional)"
+              data={ageGroups.data?.map(ag => ({ 
+                value: ag.id, 
+                label: ag.name 
+              })) || []}
+              value={ageGroupId}
+              onChange={(value) => setAgeGroupId(value || '')}
+              disabled={!ageGroups.data?.length}
+            />
+          </>
+        )}
+
+        <Checkbox
+          label="Include related data (e.g., team counts for clubs)"
+          checked={includeRelated}
+          onChange={(e) => setIncludeRelated(e.currentTarget.checked)}
+        />
+
+        <Select
+          label="Export Format"
+          data={[
+            { value: 'CSV', label: 'CSV (Excel-compatible)' },
+            { value: 'JSON', label: 'JSON (for developers)' },
+          ]}
+          value={format}
+          onChange={(value) => setFormat(value as 'CSV' | 'JSON')}
+        />
+
+        <Group justify="flex-end">
+          <Button
+            leftSection={<IconDownload size={16} />}
+            onClick={handleExport}
+            loading={exporting}
+            disabled={!entityType}
+          >
+            Export Data
+          </Button>
+        </Group>
+      </Stack>
+
+      <LoadingOverlay visible={exporting} />
+    </Container>
+  );
+}
+```
+
+**Add Navigation:**
+```typescript
+// Update src/app/(app)/app/admin/layout.tsx or navigation
+// Add "Export Data" link next to "Import Data"
+```
+
+**Deliverables:**
+- ✅ Export endpoint in import router
+- ✅ Export methods in import handlers (club, team)
+- ✅ Export UI with filters
+- ✅ CSV/JSON generation
+- ✅ Audit logging for exports
+
+**Testing:**
+```bash
+# Manual tests:
+1. Navigate to /app/admin/export
+2. Select "Clubs" → Export all clubs for a season
+3. Verify CSV downloads with correct data
+4. Select "Teams" → Filter by club → Export
+5. Verify only teams for that club are exported
+6. Check audit logs show export actions
+```
+
+**Files Changed:**
+- `src/server/core/routers/import.router.ts` (add exportData endpoint)
+- `src/modules/lmspro/import/handlers/club.ts` (add export method)
+- `src/modules/lmspro/import/handlers/team.ts` (add export method)
+- `src/app/(app)/app/admin/export/page.tsx` (new)
+- `src/app/(app)/app/admin/layout.tsx` (add nav link)
 
 ---
 

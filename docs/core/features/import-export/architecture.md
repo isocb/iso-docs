@@ -331,6 +331,98 @@ Step 2: Import Teams (Using Mappings)
 
 ---
 
+### 3.4 Export Flow (Filterable)
+
+```
+┌──────────────────┐
+│ User selects:    │
+│ • Entity type    │
+│ • Season         │
+│ • Club (opt)     │
+│ • Age Group (opt)│
+└────────┬─────────┘
+         │
+         ↓
+┌──────────────────┐
+│ 1. Build query   │
+│    with filters  │
+└────────┬─────────┘
+         │
+         ↓
+┌──────────────────┐
+│ 2. Fetch entities│
+│    from DB       │
+└────────┬─────────┘
+         │
+         ↓
+┌──────────────────┐
+│ 3. Transform to  │
+│    export format │
+│    (CSV/JSON)    │
+└────────┬─────────┘
+         │
+         ↓
+┌──────────────────┐
+│ 4. Include:      │
+│  • Current UUIDs │
+│  • Legacy IDs    │
+│    (if exist)    │
+│  • All data      │
+└────────┬─────────┘
+         │
+         ↓
+┌──────────────────┐
+│ 5. Generate file │
+│    Download      │
+└──────────────────┘
+```
+
+**Export Filters:**
+```typescript
+interface ExportFilters {
+  entityType: ImportEntityType;        // Required: What to export
+  seasonId?: string;                   // Optional: Filter by season
+  clubId?: string;                     // Optional: Filter by club
+  ageGroupId?: string;                 // Optional: Filter by age group
+  includeRelated?: boolean;            // Export related entities (e.g., teams with clubs)
+  format?: 'CSV' | 'JSON';            // Output format
+}
+```
+
+**Example: Export Teams for Specific Club**
+```typescript
+const filters: ExportFilters = {
+  entityType: 'LMSPRO_TEAM',
+  seasonId: 'season-123',
+  clubId: 'club-456',        // Only teams for this club
+  format: 'CSV',
+};
+
+const result = await exportData(filters);
+// Returns CSV:
+// team_id,team_name,club_id,club_name,age_group
+// uuid-1,U9 Rangers,club-456,Derby Rangers,U9
+// uuid-2,U10 Rangers,club-456,Derby Rangers,U10
+```
+
+**Example: Export All Clubs for Season**
+```typescript
+const filters: ExportFilters = {
+  entityType: 'LMSPRO_CLUB',
+  seasonId: 'season-123',
+  includeRelated: true,      // Include team counts
+  format: 'CSV',
+};
+
+const result = await exportData(filters);
+// Returns CSV:
+// club_id,club_name,short_name,team_count
+// uuid-1,Derby Rangers,Rangers,12
+// uuid-2,Nottingham United,United,8
+```
+
+---
+
 ## 4. Import Order & Dependencies
 
 ### Entity Hierarchy
@@ -613,7 +705,202 @@ await auditLog.create({
 
 ---
 
-## 10. Integration Points
+## 10. Module Integration Pattern
+
+### Entity Registry
+
+Modules register their importable entities via a registry pattern, keeping the core import engine clean and extensible.
+
+**Core Import Registry:**
+```typescript
+// src/lib/import/registry.ts
+export interface ImportHandler<T = any> {
+  validate: (data: any[], context: ImportContext) => Promise<ValidationResult>;
+  import: (data: any[], context: ImportContext) => Promise<ImportResult>;
+  rollback: (mappings: LegacyKeyMapping[], context: ImportContext) => Promise<void>;
+  export?: (filters: ExportFilters, context: ImportContext) => Promise<any[]>;
+}
+
+type ImportContext = {
+  organizationId: string;
+  seasonId?: string;
+  userId: string;
+  tx: PrismaTransaction;
+};
+
+const importRegistry = new Map<ImportEntityType, ImportHandler>();
+
+export function registerImportHandler(entityType: ImportEntityType, handler: ImportHandler) {
+  importRegistry.set(entityType, handler);
+}
+
+export function getImportHandler(entityType: ImportEntityType): ImportHandler {
+  const handler = importRegistry.get(entityType);
+  if (!handler) {
+    throw new Error(`No import handler registered for ${entityType}`);
+  }
+  return handler;
+}
+```
+
+**LMSPro Module Registration:**
+```typescript
+// src/modules/lmspro/import/index.ts
+import { registerImportHandler, ImportEntityType } from '@/lib/import/registry';
+import { clubImportHandler } from './handlers/club';
+import { teamImportHandler } from './handlers/team';
+
+// Register handlers on module initialization
+registerImportHandler(ImportEntityType.LMSPRO_CLUB, clubImportHandler);
+registerImportHandler(ImportEntityType.LMSPRO_TEAM, teamImportHandler);
+```
+
+**Example Handler Implementation:**
+```typescript
+// src/modules/lmspro/import/handlers/club.ts
+import { ImportHandler } from '@/lib/import/registry';
+import { z } from 'zod';
+
+const clubSchema = z.object({
+  club_id: z.string(),
+  club_name: z.string().min(1),
+  short_name: z.string().optional(),
+  fa_number: z.string().optional(),
+});
+
+export const clubImportHandler: ImportHandler = {
+  async validate(data, context) {
+    const errors: any[] = [];
+    const warnings: any[] = [];
+
+    for (let i = 0; i < data.length; i++) {
+      const row = data[i];
+      
+      // Zod validation
+      const result = clubSchema.safeParse(row);
+      if (!result.success) {
+        errors.push({ row: i + 1, errors: result.error.errors });
+        continue;
+      }
+
+      // Check for duplicates in existing data
+      const existing = await context.tx.legacyKeyMapping.findUnique({
+        where: {
+          organizationId_entityType_legacyId: {
+            organizationId: context.organizationId,
+            entityType: 'LMSPRO_CLUB',
+            legacyId: row.club_id,
+          },
+        },
+      });
+
+      if (existing) {
+        warnings.push({
+          row: i + 1,
+          message: `Club with legacy ID ${row.club_id} already imported`,
+        });
+      }
+    }
+
+    return { valid: errors.length === 0, errors, warnings };
+  },
+
+  async import(data, context) {
+    const results = [];
+
+    for (const row of data) {
+      try {
+        // Create club
+        const club = await context.tx.lMSProClub.create({
+          data: {
+            name: row.club_name,
+            shortName: row.short_name,
+            faNumber: row.fa_number,
+            organizationId: context.organizationId,
+            seasonId: context.seasonId!,
+          },
+        });
+
+        // Create mapping
+        await context.tx.legacyKeyMapping.create({
+          data: {
+            importJobId: context.importJobId,
+            organizationId: context.organizationId,
+            entityType: 'LMSPRO_CLUB',
+            legacyId: row.club_id,
+            newId: club.id,
+            legacyData: row,
+          },
+        });
+
+        results.push({ success: true, legacyId: row.club_id, newId: club.id });
+      } catch (error) {
+        results.push({ 
+          success: false, 
+          legacyId: row.club_id, 
+          error: error instanceof Error ? error.message : 'Unknown error' 
+        });
+      }
+    }
+
+    return results;
+  },
+
+  async rollback(mappings, context) {
+    const clubIds = mappings.map(m => m.newId);
+    await context.tx.lMSProClub.deleteMany({
+      where: { id: { in: clubIds } },
+    });
+  },
+
+  async export(filters, context) {
+    const clubs = await context.tx.lMSProClub.findMany({
+      where: {
+        organizationId: context.organizationId,
+        seasonId: filters.seasonId || context.seasonId,
+        ...(filters.clubId && { id: filters.clubId }),
+      },
+      include: {
+        _count: { select: { teams: true } },
+      },
+    });
+
+    return clubs.map(club => ({
+      club_id: club.id,
+      club_name: club.name,
+      short_name: club.shortName,
+      fa_number: club.faNumber,
+      team_count: club._count.teams,
+    }));
+  },
+};
+```
+
+### Why This Pattern?
+
+**✅ Separation of Concerns**
+- Core import engine handles job management, transactions, audit logs
+- Modules handle entity-specific validation and data transformation
+- No module-specific code in core
+
+**✅ Type Safety**
+- Each handler is strongly typed
+- Zod schemas provide runtime validation
+- TypeScript ensures handler interface compliance
+
+**✅ Testability**
+- Handlers can be unit tested independently
+- Mock context for isolated testing
+- Integration tests use real handlers
+
+**✅ Extensibility**
+- New modules register handlers on initialization
+- No changes to core import engine
+- Modules can add custom validation logic
+
+---
+
+## 11. Integration Points
 
 ### With Core Platform
 
