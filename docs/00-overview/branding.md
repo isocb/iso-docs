@@ -4,20 +4,22 @@
 
 *IsoStack — Technical Specification*  
 **Status:** Implemented  
-**Version:** 2.0.0  
-**Last Updated:** December 2025
+**Version:** 2.1.0  
+**Last Updated:** February 2026
 
 ---
 
 ## **1. Overview**
 
-IsoStack implements a **three-tier branding system** with feature-flag controls:
+IsoStack implements a **three-tier branding system** with Product-based feature controls:
 
 1. **Platform Core Branding** – Platform Owner's IsoStack instance branding
 2. **Module Branding** – Default branding for each module
-3. **Organization Branding** – Client-specific branding (Custom Branding & White Label)
+3. **Organization Branding** – Client-specific branding (Custom Branding feature)
 
-**Priority Order:** White Label Organization > Module Branding > Platform Core Default
+**Priority Order:** Custom Branding Organization > Module Branding > Platform Core Default
+
+**Feature Access:** Custom Branding is granted via Products containing FeatureSets with `hasCustomBranding: true` (Professional and Enterprise tiers).
 
 ---
 
@@ -156,48 +158,76 @@ model ModuleCatalogue {
 
 ---
 
-## **5. Organization Branding (Custom Branding & White Label)**
+## **5. Organization Branding (Custom Branding)**
 
-### **5.1 Feature Tiers**
+### **5.1 Feature Access**
 
-**Custom Branding (PRO Tier):**
-* Upload organization logo and favicon
-* Customize colors
-* Logo displays in organization's application header
-* **Does NOT** affect authentication pages
-* **Does NOT** support custom domains
-* Module branding still influences UI when no org branding exists
+**Custom Branding** is controlled via the Product system:
 
-**White Label (ENTERPRISE Tier):**
-* Everything in Custom Branding, PLUS:
-* Custom authentication pages with organization branding
-* Custom domain support (e.g., `app.yourcompany.com`)
-* DNS verification and SSL validation
-* Custom authentication slug
-* Complete brand override (no IsoStack branding visible)
-* Branded system emails
+```
+FeatureSet.hasCustomBranding: true
+    ↓
+ProductPackage (references FeatureSet)
+    ↓
+OrganizationProduct (ACTIVE or TRIAL)
+    ↓
+features.branding = true
+    ↓
+hasCustomBrandingFeature() returns true
+```
+
+**Feature Tiers:**
+- **Starter:** `hasCustomBranding: false` - No custom branding
+- **Professional:** `hasCustomBranding: true` - Full custom branding
+- **Enterprise:** `hasCustomBranding: true` - Full custom branding
+
+**Note:** White Label (custom domains) is deprecated and not currently offered. Custom Branding provides:
+* Upload organization logo (light/dark mode) and favicon
+* Customize primary, secondary, and typography colors
+* Branded authentication URLs (`/auth/signin?org=<slug>`)
+* Embeddable forms with tenant branding (`/embed/register/club?org=<slug>`)
 
 ### **5.2 Configuration**
 
-**Access Path (Future Implementation):**
+**Access Path:**
 ```
 /settings/branding  (Organization Settings)
 ```
 
-**Feature Flag Checks:**
-* `customBranding` – PRO & ENTERPRISE tier
-* `whiteLabel` – ENTERPRISE tier only
+**Feature Check:**
+```typescript
+import { hasCustomBrandingFeature } from '@/server/core/context';
+
+// Check if organization has Custom Branding access
+const hasBranding = await hasCustomBrandingFeature(organizationId);
+```
 
 ### **5.3 Technical Implementation**
 
 * Updates `Organization` table (current user's organization)
 * tRPC Procedure: `branding.updateBranding`
-* Authorization: Requires ADMIN or OWNER role
-* Feature flag validation in mutation
+* Authorization: Requires ADMIN or OWNER role + Custom Branding feature
+* Feature validation via `hasCustomBrandingFeature()`
 
 ### **5.4 Database Storage**
 
 ```prisma
+model Organization {
+  lightLogoUrl: String?
+  darkLogoUrl: String?
+  faviconUrl: String?
+  primaryColor: String?
+  secondaryColor: String?
+  accentColor: String?
+  typographyColor: String?
+  customAuthSlug: String?  // For branded auth URLs
+}
+
+model FeatureSet {
+  hasCustomBranding: Boolean @default(false)  // Grants Custom Branding access
+  // ... other feature flags
+}
+```
 model Organization {
   lightLogoUrl: String?
   faviconUrl: String?
@@ -228,9 +258,9 @@ if (isPlatformOwner && scope === 'platform') {
   return organizationBranding; // IsoStack Platform org
 }
 
-// 2. White Label Organization (ENTERPRISE)
-if (organizationBranding?.hasWhiteLabel) {
-  return organizationBranding; // Overrides everything
+// 2. Custom Branding Organization (Professional/Enterprise)
+if (await hasCustomBrandingFeature(organizationId)) {
+  return organizationBranding; // Overrides module branding
 }
 
 // 3. Active Module Branding (Standard Clients)
@@ -250,7 +280,7 @@ return defaultBranding;
 | Platform Admin | `/platform` (Module Selected) | Platform Core Logo (NOT module logo) |
 | Standard Org User | `/app` (Single Module) | Module Logo |
 | Standard Org User | `/app` (Multi-Module) | Active Module Logo |
-| White Label Org User | `/app` | Organization Logo (overrides module) |
+| Custom Branding Org User | `/app` | Organization Logo (overrides module) |
 
 ### **6.3 Module Logo Visual Cue**
 
