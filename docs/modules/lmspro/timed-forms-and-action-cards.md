@@ -1,12 +1,26 @@
 # Timed Forms and Action Cards Architecture
 
-> **Status:** Phase 1 Implementing | **Last Updated:** 18 Feb 2026
+> **⚠️ SUPERSEDED:** This document has been consolidated into [`unified-timing-architecture.md`](./unified-timing-architecture.md)
+>
+> **Status:** Phase 1 Complete | **Last Updated:** 18 Feb 2026
+
+---
 
 ## Overview
 
-LMSPro uses **Key Dates** to control when forms and action cards are visible to users. This creates a seamless experience where registration windows, submission deadlines, and other time-sensitive features automatically appear and disappear based on league-configured dates.
+This document described the original two-pattern approach. It has been superseded by the **Unified Timing Architecture** which consolidates Patterns A and B into a single system based on Key Dates → Visibility Rules → Components.
 
-## Two Patterns
+**See:** [`unified-timing-architecture.md`](./unified-timing-architecture.md) for the current architecture.
+
+---
+
+## Historical Context (Preserved Below)
+
+The content below is preserved for historical reference.
+
+---
+
+## Two Patterns (Original Design)
 
 ### Pattern A: Public Forms (e.g., Club Registration)
 
