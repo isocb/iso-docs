@@ -141,8 +141,6 @@ export default defineConfig({
 ```
 website-modulename/
 ├── public/
-│   ├── admin/              # Decap CMS
-│   │   └── config.yml
 │   ├── favicon.ico
 │   └── images/
 ├── src/
@@ -170,6 +168,7 @@ website-modulename/
 │   │   └── BaseLayout.astro
 │   ├── pages/
 │   │   ├── index.astro
+│   │   ├── admin.astro     # Decap CMS (inline config)
 │   │   ├── features.astro
 │   │   ├── pricing.astro
 │   │   └── contact.astro
@@ -372,145 +371,218 @@ export const collections = {
 
 ## Phase 3: Decap CMS Setup
 
-### 3.1 Create Admin Page
+### 3.1 Create Admin Page (Astro)
 
-**public/admin/index.html:**
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex" />
-    <title>Content Manager</title>
-  </head>
-  <body>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  </body>
+**IMPORTANT:** Use an Astro page with inline JavaScript config instead of a static HTML + YAML file. This avoids MIME type issues with YAML files on some hosting providers.
+
+**src/pages/admin.astro:**
+```astro
+---
+// Decap CMS Admin Page
+// Config is inlined to avoid YAML content-type issues
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Content Manager | ModuleName</title>
+</head>
+<body>
+  <script is:inline>
+    // Enable manual init to use JavaScript config
+    window.CMS_MANUAL_INIT = true;
+  </script>
+  <script is:inline src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script is:inline>
+    CMS.init({
+      config: {
+        backend: {
+          name: 'github',
+          repo: 'isocb/Website-ModuleName',  // UPDATE THIS
+          branch: 'main',
+          base_url: 'https://decap-cms-oauth.YOUR-ACCOUNT.workers.dev',  // UPDATE THIS
+          auth_endpoint: '/auth'
+        },
+        local_backend: false,
+        media_folder: 'public/images',
+        public_folder: '/images',
+        site_url: 'https://www.your-domain.co.uk',  // UPDATE THIS
+        display_url: 'https://www.your-domain.co.uk',
+        logo_url: '/favicon.svg',
+        collections: [
+          {
+            name: 'settings',
+            label: 'Site Settings',
+            files: [
+              {
+                name: 'site',
+                label: 'General Settings',
+                file: 'src/content/settings/site.json',
+                fields: [
+                  { name: 'siteName', label: 'Site Name', widget: 'string' },
+                  { name: 'tagline', label: 'Tagline', widget: 'string' },
+                  { name: 'description', label: 'Site Description', widget: 'text' },
+                  { name: 'contactEmail', label: 'Contact Email', widget: 'string' },
+                  { name: 'salesEmail', label: 'Sales Email', widget: 'string' },
+                  { name: 'supportEmail', label: 'Support Email', widget: 'string' },
+                  { name: 'registrationUrl', label: 'Registration URL', widget: 'string' },
+                  { name: 'loginUrl', label: 'Login URL', widget: 'string' },
+                  {
+                    name: 'stats',
+                    label: 'Homepage Stats',
+                    widget: 'list',
+                    fields: [
+                      { name: 'value', label: 'Value', widget: 'string' },
+                      { name: 'label', label: 'Label', widget: 'string' }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            name: 'testimonials',
+            label: 'Testimonials',
+            label_singular: 'Testimonial',
+            folder: 'src/content/testimonials',
+            format: 'json',
+            create: false,
+            slug: '{{slug}}',
+            fields: [
+              {
+                name: 'items',
+                label: 'Testimonials',
+                widget: 'list',
+                fields: [
+                  { name: 'quote', label: 'Quote', widget: 'text' },
+                  { name: 'author', label: 'Author Name', widget: 'string' },
+                  { name: 'role', label: 'Role/Title', widget: 'string' },
+                  { name: 'organization', label: 'Organization', widget: 'string' },
+                  { name: 'rating', label: 'Rating (1-5)', widget: 'number', min: 1, max: 5, default: 5 },
+                  { name: 'featured', label: 'Featured?', widget: 'boolean', default: false }
+                ]
+              }
+            ]
+          },
+          {
+            name: 'faqs',
+            label: 'FAQs',
+            label_singular: 'FAQ',
+            folder: 'src/content/faqs',
+            format: 'json',
+            create: false,
+            fields: [
+              {
+                name: 'items',
+                label: 'FAQs',
+                widget: 'list',
+                fields: [
+                  { name: 'question', label: 'Question', widget: 'string' },
+                  { name: 'answer', label: 'Answer', widget: 'text' },
+                  {
+                    name: 'category',
+                    label: 'Category',
+                    widget: 'select',
+                    options: [
+                      { label: 'General', value: 'general' },
+                      { label: 'Pricing', value: 'pricing' },
+                      { label: 'Features', value: 'features' },
+                      { label: 'Support', value: 'support' }
+                    ]
+                  },
+                  { name: 'order', label: 'Display Order', widget: 'number', default: 0 }
+                ]
+              }
+            ]
+          },
+          {
+            name: 'pricing',
+            label: 'Pricing Plans',
+            folder: 'src/content/pricing',
+            format: 'json',
+            create: false,
+            fields: [
+              {
+                name: 'items',
+                label: 'Plans',
+                widget: 'list',
+                fields: [
+                  { name: 'name', label: 'Plan Name', widget: 'string' },
+                  { name: 'price', label: 'Price', widget: 'string', hint: 'e.g., FREE, £49, Custom' },
+                  { name: 'period', label: 'Period', widget: 'string', required: false, hint: 'e.g., /month' },
+                  { name: 'description', label: 'Short Description', widget: 'string' },
+                  {
+                    name: 'features',
+                    label: 'Included Features',
+                    widget: 'list',
+                    field: { name: 'feature', label: 'Feature', widget: 'string' }
+                  },
+                  {
+                    name: 'notIncluded',
+                    label: 'Not Included Features',
+                    widget: 'list',
+                    required: false,
+                    field: { name: 'feature', label: 'Feature', widget: 'string' }
+                  },
+                  { name: 'ctaText', label: 'Button Text', widget: 'string' },
+                  { name: 'ctaUrl', label: 'Button URL', widget: 'string' },
+                  { name: 'popular', label: 'Mark as Popular?', widget: 'boolean', default: false },
+                  { name: 'order', label: 'Display Order', widget: 'number', default: 0 }
+                ]
+              }
+            ]
+          },
+          {
+            name: 'features',
+            label: 'Features',
+            files: [
+              {
+                name: 'all',
+                label: 'All Features',
+                file: 'src/content/features/all.json',
+                fields: [
+                  {
+                    name: 'items',
+                    label: 'Features',
+                    widget: 'list',
+                    fields: [
+                      { name: 'title', label: 'Title', widget: 'string' },
+                      { name: 'description', label: 'Description', widget: 'text' },
+                      { name: 'icon', label: 'Icon Name', widget: 'string' },
+                      { name: 'category', label: 'Category', widget: 'string' },
+                      { name: 'order', label: 'Sort Order', widget: 'number', default: 0 }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    });
+  </script>
+</body>
 </html>
 ```
 
-### 3.2 CMS Configuration
+### 3.2 Key Points
 
-**public/admin/config.yml:**
-```yaml
-backend:
-  name: github
-  repo: isocb/Website-ModuleName  # UPDATE THIS
-  branch: main
-  # OAuth via Cloudflare Worker - UPDATE after deploying worker
-  base_url: https://decap-cms-oauth.YOUR-ACCOUNT.workers.dev
-  auth_endpoint: /auth
+1. **Use `is:inline`** on all script tags to prevent Astro from bundling them
+2. **Use `CMS_MANUAL_INIT = true`** to enable JavaScript-based config
+3. **Config is a JavaScript object** not a YAML file - avoids MIME type issues
+4. **No need for `public/admin/config.yml`** - the config is inlined
 
-# LOCAL DEV ONLY: Set to true and run: npx decap-server
-local_backend: false
+### 3.3 Why Not YAML?
 
-media_folder: public/images
-public_folder: /images
+Some hosting providers (including Render with Cloudflare proxy) serve `.yml` files with `Content-Type: binary/octet-stream` instead of `text/yaml`. Combined with `X-Content-Type-Options: nosniff`, this causes Decap CMS to fail loading the config.
 
-site_url: https://your-domain.co.uk  # UPDATE THIS
-display_url: https://your-domain.co.uk
-logo_url: /favicon.svg
-
-collections:
-  # Site Settings
-  - name: settings
-    label: "Site Settings"
-    files:
-      - name: site
-        label: "General Settings"
-        file: "src/content/settings/site.json"
-        fields:
-          - { name: siteName, label: "Site Name", widget: string }
-          - { name: tagline, label: "Tagline", widget: string }
-          - { name: description, label: "Site Description", widget: text }
-          - { name: contactEmail, label: "Contact Email", widget: string }
-          - { name: salesEmail, label: "Sales Email", widget: string }
-          - { name: supportEmail, label: "Support Email", widget: string }
-          - { name: registrationUrl, label: "Registration URL", widget: string }
-          - { name: loginUrl, label: "Login URL", widget: string }
-          - name: stats
-            label: "Homepage Stats"
-            widget: list
-            fields:
-              - { name: value, label: "Value", widget: string }
-              - { name: label, label: "Label", widget: string }
-
-  # Features
-  - name: features
-    label: "Features"
-    files:
-      - name: all
-        label: "All Features"
-        file: "src/content/features/all.json"
-        fields:
-          - name: items
-            label: "Features"
-            widget: list
-            fields:
-              - { name: title, label: "Title", widget: string }
-              - { name: description, label: "Description", widget: text }
-              - { name: icon, label: "Icon Name", widget: string }
-              - { name: category, label: "Category", widget: string }
-              - { name: order, label: "Sort Order", widget: number, default: 0 }
-
-  # Pricing
-  - name: pricing
-    label: "Pricing"
-    files:
-      - name: plans
-        label: "Pricing Plans"
-        file: "src/content/pricing/plans.json"
-        fields:
-          - name: items
-            label: "Plans"
-            widget: list
-            fields:
-              - { name: name, label: "Plan Name", widget: string }
-              - { name: price, label: "Price", widget: string }
-              - { name: period, label: "Period (e.g. /month)", widget: string, required: false }
-              - { name: description, label: "Description", widget: string }
-              - { name: features, label: "Features", widget: list, field: { name: feature, widget: string } }
-              - { name: highlighted, label: "Highlighted?", widget: boolean, default: false }
-              - { name: ctaText, label: "Button Text", widget: string, default: "Get Started" }
-              - { name: ctaUrl, label: "Button URL (optional)", widget: string, required: false }
-
-  # Testimonials
-  - name: testimonials
-    label: "Testimonials"
-    files:
-      - name: all
-        label: "All Testimonials"
-        file: "src/content/testimonials/all.json"
-        fields:
-          - name: items
-            label: "Testimonials"
-            widget: list
-            fields:
-              - { name: quote, label: "Quote", widget: text }
-              - { name: author, label: "Author Name", widget: string }
-              - { name: role, label: "Role/Title", widget: string }
-              - { name: organization, label: "Organization", widget: string }
-              - { name: rating, label: "Rating (1-5)", widget: number, min: 1, max: 5, default: 5 }
-              - { name: featured, label: "Featured?", widget: boolean, default: false }
-
-  # FAQs
-  - name: faqs
-    label: "FAQs"
-    files:
-      - name: all
-        label: "All FAQs"
-        file: "src/content/faqs/all.json"
-        fields:
-          - name: items
-            label: "FAQs"
-            widget: list
-            fields:
-              - { name: question, label: "Question", widget: string }
-              - { name: answer, label: "Answer", widget: text }
-              - { name: category, label: "Category", widget: select, options: ["general", "pricing", "features", "support"], default: "general" }
-              - { name: order, label: "Sort Order", widget: number, default: 0 }
-```
+The JavaScript inline approach:
+- ✅ Always works regardless of server MIME type settings
+- ✅ Faster (no additional HTTP request for config)
+- ✅ Easier to template with Astro variables if needed
+- ❌ Slightly more verbose than YAML
 
 ---
 
@@ -675,10 +747,15 @@ In **Cloudflare Dashboard** → **Workers** → `decap-cms-oauth` → **Settings
 
 ### 4.5 Update CMS Config
 
-Update `public/admin/config.yml`:
-```yaml
-backend:
-  base_url: https://decap-cms-oauth.YOUR-ACCOUNT.workers.dev  # Actual URL
+Update the `base_url` in `src/pages/admin.astro`:
+```javascript
+backend: {
+  name: 'github',
+  repo: 'isocb/Website-ModuleName',
+  branch: 'main',
+  base_url: 'https://decap-cms-oauth.YOUR-ACCOUNT.workers.dev',  // Your actual worker URL
+  auth_endpoint: '/auth'
+},
 ```
 
 ---
@@ -811,10 +888,12 @@ npm audit fix
 
 | Issue | Solution |
 |-------|----------|
-| CMS login fails | Check OAuth callback URL matches |
+| CMS login fails | Check OAuth callback URL matches worker URL |
+| CMS "Failed to load config.yml" | Use inline JS config (see Phase 3) - don't use YAML file |
 | Content not updating | Check Render build logs |
-| Local CMS not working | Run `npx decap-server` |
-| 404 on admin | Ensure `public/admin/index.html` exists |
+| Local CMS not working | Run `npx decap-server` (only works with YAML config) |
+| 404 on admin | Ensure `src/pages/admin.astro` exists |
+| www redirect issues | Use `www.` prefix in all URLs consistently |
 
 ---
 
@@ -825,12 +904,13 @@ npm audit fix
 - [ ] Update `astro.config.mjs` with site URL
 - [ ] Update brand colors in `global.css`
 - [ ] Update content in `src/content/`
-- [ ] Deploy OAuth worker to Cloudflare
-- [ ] Create GitHub OAuth App
-- [ ] Set worker environment variables
-- [ ] Update `config.yml` with OAuth URL
+- [ ] Create `src/pages/admin.astro` with inline CMS config
+- [ ] Deploy OAuth worker to Cloudflare (can reuse existing)
+- [ ] Create GitHub OAuth App (or add domain to existing)
+- [ ] Set worker environment variables (add new domain to ALLOWED_ORIGINS)
+- [ ] Update admin.astro with OAuth URL and repo name
 - [ ] Create Render static site
-- [ ] Configure custom domain
+- [ ] Configure custom domain (use www. prefix)
 - [ ] Test CMS login
 - [ ] Test content editing flow
 
@@ -841,10 +921,28 @@ npm audit fix
 | Component | Value |
 |-----------|-------|
 | Repo | `isocb/Website-LMSPro` |
-| Domain | `seasonpro.co.uk` |
+| Domain | `www.seasonpro.co.uk` |
 | Render | `website-lmspro.onrender.com` |
 | OAuth Worker | `decap-cms-oauth.chris-43e.workers.dev` |
-| CMS | `https://seasonpro.co.uk/admin/` |
+| CMS | `https://www.seasonpro.co.uk/admin/` |
+| Config Method | Inline JavaScript (not YAML) |
+
+---
+
+## Reusing the OAuth Worker
+
+The same Cloudflare Worker can authenticate multiple sites. Just:
+
+1. **Add the new domain to `ALLOWED_ORIGINS`:**
+   ```
+   https://www.seasonpro.co.uk,https://www.newsite.co.uk
+   ```
+
+2. **Use the same `base_url`** in each site's admin.astro config
+
+3. **Add the new callback URL** to the GitHub OAuth App:
+   - GitHub now supports multiple callback URLs
+   - Or create a separate OAuth App per site
 
 ---
 
