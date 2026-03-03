@@ -218,8 +218,10 @@ A **Key Date** opens the "Team Continuation" window on **1 May**. Clubs are noti
 The Club Secretary logs in and sees a simple checklist of their teams (as carried forward from the previous season). For each team, they tick: **"Continuing this season"** or leave unchecked.
 
 - Teams confirmed as continuing → status remains `CURRENT`
-- Teams not confirmed → status moves to `WITHDRAWN` (or `CANCELLED` — see note)
-- Deadline: **15 May** (Key Date close)
+- Teams not confirmed by the deadline → status automatically moves to **`WITHDRAWN`**
+- Deadline: **15 May 23:59** (Key Date `team-continuation-closes`)
+
+> **`WITHDRAWN` vs `CANCELLED`:** `WITHDRAWN` is set by the system on the deadline when a club has not confirmed — it represents the club's own omission, not a league action. The League Admin can manually override a team back to `CURRENT` after the deadline in cases where a club forgot to respond. `CANCELLED` is reserved for league-initiated cancellations.
 
 > **Design Note:** The checkbox UI is intentionally simple — no explanation is required at this stage. The league may follow up with clubs that have large numbers of withdrawals.
 
@@ -693,12 +695,12 @@ WITHDRAWN       — Permanently withdrawn from season
 | 5 | What happens to a team's `WAITING_LIST` position if the club withdraws mid-season? | Open | TBD |
 | 6 | Should the Season Clone include age group capacity values or reset them? | Open | TBD — likely reset to 0 (unconstrained) pending new season planning |
 | 7 | How should Division Roll Forward handle cross-age-group AGGs? | Open | TBD — may require manual intervention |
-| 8 | What is the exact status for a team whose club does NOT confirm continuation in Stage 3? `WITHDRAWN` or `CANCELLED`? | Open | TBD — `WITHDRAWN` implies club choice; `CANCELLED` implies league action. Likely `WITHDRAWN`. |
+| 8 | What is the exact status for a team whose club does NOT confirm continuation in Stage 3? `WITHDRAWN` or `CANCELLED`? | **Resolved** | **`WITHDRAWN`** — implies the club's own choice, not a league action. Editable by League Admin after the deadline in case of withdrawal by omission (club forgot to respond). |
 | 9 | Should LMSPro surface FA FullTime deadline reminders (e.g., 10 Aug player registration) in the dashboard banner, even though they are not LMSPro actions? | **Resolved** | **Yes** — all dates stored as Key Dates. FA FullTime dates stored as type `Reminder` — appear in banner, no form/card gating. Fully configurable by League Admin. |
-| 10 | The DJFL CSV lists a "Club continuation notice" on 31 March (paper/informal) and the system window opens 1 May. Should the system send a reminder email on/around 31 March prompting clubs to prepare? | Open | TBD |
-| 11 | Stage 5 (new club window) opens on 1 June — same day as FA Season Start. Does the league want the public form live from midnight or from a specific time on 1 June? | Open | TBD — Key Date supports time-of-day |
-| 12 | Should new clubs who apply before 1 August but are not yet actioned by 1 August remain visible in the admin approval queue after the window closes? | Open | TBD — application form closes but queue persists |
-| 13 | The team edit window (`team-edit-closes`, 15 August) — should this apply to the `teams.register` Action Card too (preventing any team additions after 15 August), or are add and edit controlled by separate Key Dates? | Open | TBD — DJFL CSV uses one date for both "add or withdraw"; suggest single `team-edit-closes` controls both |
+| 10 | The DJFL CSV lists a "Club continuation notice" on 31 March (paper/informal) and the system window opens 1 May. Should the system send a reminder email on/around 31 March prompting clubs to prepare? | **Resolved** | **Yes** — store `continuation-notice` as a Reminder Key Date (31 March). Attach a `KeyDateEmailTrigger` (ON_OPEN) to send a heads-up email to all Club Secretaries. See [Key Dates Reference](./key-dates-reference.md). |
+| 11 | Stage 5 (new club window) opens on 1 June — same day as FA Season Start. Does the league want the public form live from midnight or from a specific time on 1 June? | **Resolved** | **Specific time** — `activeFromTime` (HH:MM) is always stored and combined with `activeFrom` at runtime. Time of day is critical for race-condition windows. Suggested default: `09:00`. League Admin sets this on the Key Date page. |
+| 12 | Should new clubs who apply before 1 August but are not yet actioned by 1 August remain visible in the admin approval queue after the window closes? | **Resolved** | **Yes** — `club-registration-closes` closes the public form only. The admin approval queue is not date-gated. All `EMAIL_VERIFIED` applications remain in the queue until actioned by the League Admin. |
+| 13 | The team edit window (`team-edit-closes`, 15 August) — should this apply to the `teams.register` Action Card too (preventing any team additions after 15 August), or are add and edit controlled by separate Key Dates? | **Resolved** | **Single date controls both** — `team-edit-closes` (15 August) closes both `teams.edit` and `teams.register` cards. DJFL uses one date for "add or withdraw". Both cards are linked to the same closing Key Date via VisibilityRules. |
 
 ---
 
