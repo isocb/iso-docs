@@ -406,41 +406,73 @@ The existing `EmailSequence` cron job is extended to handle Key Date–anchored 
 
 ---
 
-### Admin UI for Email Sequences (Key Date detail page)
+### Admin UI — Key Date Accordion (Existing + Extended)
 
-On the Key Date admin page, an **"Email Schedule"** section appears below the date pickers. It shows both OPEN-anchored and CLOSE-anchored sequences on a unified timeline view:
+The Key Dates admin tab (`KeyDatesTab.tsx`) already implements the accordion pattern. Each Key Date is an `Accordion.Item`. When expanded, the panel currently shows:
+
+1. **Key Date details** (description if set)
+2. **Action buttons** — "Edit Key Date" + "Add Linked Item"
+3. **Linked Components table** — each row is a `VisibilityRule`. Row click opens `LinkedItemCrudModal` (edit/delete). This is the existing, fully-built section.
+
+The planned extension adds a second section to each accordion panel — the **Email Schedule** — sitting below the Linked Components table, separated by a `<Divider />`:
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ EMAIL SCHEDULE                              [+ Add Email]                   │
+┌─ Accordion.Item ────────────────────────────────────────────────────────────┐
+│ ▼ Team Registration Window      16 May 09:00 → 31 May 23:59   [Active] [2] │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  Opens new club registration to teams.                                      │
 │                                                                             │
-│  Relative to OPEN (16 May 09:00)                                            │
-│  ────────────────────────────────────────────────────────────────────────   │
-│  -3d  ✉ "Registration opens in 3 days"   → All clubs        [Edit][Delete] │
-│   0   ✉ "Team registration is now open"  → All clubs        [Edit][Delete] │
-│  +7d  ✉ "Have you registered your teams?"→ Not responded    [Edit][Delete] │
+│  [✏ Edit Key Date]  [+ Add Linked Item]  [+ Add Email]                      │
 │                                                                             │
-│  Relative to CLOSE (31 May 23:59)                                           │
-│  ────────────────────────────────────────────────────────────────────────   │
-│  -2d  ✉ "Registration closes in 2 days"  → Not responded    [Edit][Delete] │
-│   0   ✉ "Registration has now closed"    → All clubs        [Edit][Delete] │
+│  ── LINKED COMPONENTS ──────────────────────────────────────────────────── │
+│  Component           Type        Scope   Exempt Roles   Offset             │
+│  ⚡ Register Team    Action Card  CLUB    League Admin   none    ← row click │
+│  ⚡ Edit/Withdraw    Action Card  CLUB    League Admin   none    ← row click │
 │                                                                             │
+│  ── EMAIL SCHEDULE ─────────────────────────────────────────────────────── │
+│  Offset   Anchor   Subject / Template            Recipients                │
+│  -3d      OPEN     "Registration opens in 3 days" All clubs    ← row click │
+│   0       OPEN     "Team registration is now open" All clubs   ← row click │
+│  +7d      OPEN     "Have you registered?"          Not responded← row click│
+│  -2d      CLOSE    "Closes in 2 days"              Not responded← row click│
+│   0       CLOSE    "Registration has now closed"   All clubs   ← row click │
+│                                                        [+ Add Email]        │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-**"Add Email" modal fields:**
+**Row click behaviour (same pattern as Linked Components):**
+- Clicking any email row opens `EmailStepCrudModal` in edit mode
+- "Add Email" button opens `EmailStepCrudModal` in add mode
+- Delete button is in modal footer (bottom-left, red, outline) — IsoStack pattern
+
+---
+
+### `EmailStepCrudModal` — Fields
+
+This modal handles create/edit/delete for a single `EmailSequenceStep` on a Key Date–anchored sequence.
 
 | Field | Input Type | Notes |
 |-------|-----------|-------|
-| Anchor | Radio | Relative to window OPEN / Relative to window CLOSE |
-| Offset (days) | Signed integer | Negative = before anchor, positive = after, 0 = on the day |
-| Time | Inherited | Fires at `activeFromTime` or `activeToTime` from the Key Date |
-| Recipients | Dropdown | All clubs / League admins / Clubs not responded / Custom filter |
+| Anchor | Radio | Relative to window **OPEN** / Relative to window **CLOSE** |
+| Offset (days) | Signed `NumberInput` (`allowNegative`) | `-3` = 3 days before anchor, `0` = on the day, `+7` = 7 days after |
+| Fires at | Read-only hint | Computed from Key Date: `16 May at 09:00` (OPEN) or `31 May at 23:59` (CLOSE) |
+| Recipients | `Select` | All clubs / League admins / Clubs not yet responded / Custom filter |
 | Content | Toggle | Use saved template / Write custom email |
-| Template | Dropdown | Lists all active `EmailTemplate` records |
-| Subject / Body | Rich text | Shown if custom content selected |
+| Template | `Select` | Lists all active `EmailTemplate` records (shown if template mode) |
+| Subject | `TextInput` | Shown if custom mode |
+| Body | `RichTextEditor` | Shown if custom mode |
 
-> For TRIGGER and REMINDER Key Dates (no close date), only OPEN-anchor is offered. `activeTo` is set equal to `activeFrom` for TRIGGER types.
+> For TRIGGER and REMINDER Key Dates (single date, no meaningful close), only OPEN-anchor is offered. The CLOSE radio option is hidden.
+
+---
+
+### Existing CRUD Modal Reference
+
+The `LinkedItemCrudModal.tsx` (already built) is the direct template for `EmailStepCrudModal`. Both follow the same pattern:
+- `isEditing = !!editingItem` controls add vs edit mode
+- `useEffect` on `[editingItem, opened]` populates form fields
+- Footer: delete button left (red outline), cancel + save right
+- On success: `invalidate()` the relevant query, close modal
 
 ---
 
