@@ -5,6 +5,10 @@
 **Status:** Draft — In Development  
 **Created:** March 2026  
 **Authors:** IsoStack / DJFL  
+**Related Docs:**
+- [Unified Timing Architecture](./unified-timing-architecture.md) — Key Dates, Visibility Rules, Action Card gating
+- [CR-18 Email Notifications](./planning/CR-18-Email-Notifications-System-Development-Plan.md) — email trigger points
+- [DJFL Dates 2026](./DJFL%20Dates%202026.csv) — source dates for Key Date configuration
 
 ---
 
@@ -26,6 +30,7 @@ This document serves as:
 | **League Admin** | League administrator — manages the season, approves clubs and teams | LMSPro `OWNER` or `ADMIN` |
 | **Club Secretary** | Primary contact for an existing club | `lmsproClubRole: CLUB_SECRETARY` |
 | **New Club Applicant** | Person applying to register a new club | Unauthenticated (public form) |
+| **FA FullTime** | FA's own player registration system — runs in parallel to LMSPro | External |
 | **System** | Automated actions triggered by dates, status transitions, or user actions | N/A |
 
 ---
@@ -34,47 +39,81 @@ This document serves as:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│  STAGE 1: Season Clone                                                       │
+│  PRE-SEASON: End of Current Season                          [April–May]      │
+│  • End of playing season (last Sunday April)                                │
+│  • Player transfer / registration deadline (1 March)                        │
+│  • Trophies returned (1 March)                                              │
+│  • Player re-registration opens (1 April)                                   │
+│  • Club continuation notice due (31 March)                                  │
+│  • Officer nominations deadline (30 April)                                  │
+│  • Proposed rule changes submission deadline (1 May)                        │
+│  • End of financial year (31 May)                                           │
+└──────────────────────────────┬──────────────────────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  STAGE 1: Season Clone & Preparation                    [Admin trigger ~May] │
 │  League Admin creates next season by cloning the current one                │
 └──────────────────────────────┬──────────────────────────────────────────────┘
                                │
                                ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│  STAGE 2: Division Roll Forward                                              │
+│  STAGE 2: Division Roll Forward                         [Admin trigger ~May] │
 │  Age groups advance (U7→U8, U8→U9 ... U12→U13 archived)                    │
 │  All team age groups are updated to match                                   │
 └──────────────────────────────┬──────────────────────────────────────────────┘
                                │
                                ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│  STAGE 3: Existing Club Team Confirmation                        [KEY DATE] │
+│  STAGE 3: Existing Club Team Continuation           [1 May – 15 May]        │
 │  Clubs confirm which existing teams are continuing into the new season      │
+│  Key Date slug: team-continuation-opens / team-continuation-closes          │
 └──────────────────────────────┬──────────────────────────────────────────────┘
                                │
                                ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│  STAGE 4: Existing Club New Teams & Under 7s               [KEY DATE RANGE] │
-│  Existing clubs apply to add new teams and their first U7 cohort            │
+│  STAGE 4: Existing Club New Teams & Under 7s        [16 May – 31 May]       │
+│  Existing clubs exclusively apply to add new teams + new U7 intake          │
+│  Key Date slug: team-registration-opens / team-registration-closes          │
+│  (Action Card: teams.register — only visible to existing clubs)             │
 └──────────────────────────────┬──────────────────────────────────────────────┘
                                │
                                ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│  STAGE 5: New Club Applications Open                         [KEY DATE]     │
-│  New clubs can now apply — considered in order of application               │
-│  (after the window for existing club new teams has closed)                  │
+│  STAGE 5: New Club Applications Open                [1 June – 1 August]     │
+│  New clubs apply via public form — in order of application date             │
+│  Key Date slug: club-registration-opens / club-registration-closes          │
+│  (Public form gated via TimedFormWrapper — Pattern A)                       │
+│  NOTE: runs concurrently with Season Start (1 June) and online player       │
+│  registration. AGM held no later than end of July during this period.       │
 └──────────────────────────────┬──────────────────────────────────────────────┘
                                │
                                ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│  STAGE 6: League Team Approval                                               │
+│  STAGE 6: Team Edit Window & Final Withdrawals      [1 June – 15 August]    │
+│  All clubs can edit team details, add or withdraw teams                     │
+│  Key Date slug: team-edit-opens / team-edit-closes (15 August)             │
+│  Minimum player registration deadline: 10 August                           │
+└──────────────────────────────┬──────────────────────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  STAGE 7: League Team Approval                      [August]                │
 │  League Admin reviews all pending teams and makes decisions                 │
 │  (Approve / Waiting List / Cancel) — bulk or individual                     │
 └──────────────────────────────┬──────────────────────────────────────────────┘
                                │
                                ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│  STAGE 7: Division Formation                                                 │
+│  STAGE 8: Division Formation                        [August]                │
 │  New U7 Divisions created and teams allocated across divisions               │
+└──────────────────────────────┬──────────────────────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  SEASON START                                       [1st Sunday September]  │
+│  Playing season begins                                                      │
+│  Online player registration continues from 1 June (FA FullTime)            │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -144,17 +183,23 @@ After roll forward, divisions are re-assigned. U7 divisions from the previous se
 
 ## Stage 3: Existing Club — Team Continuation Confirmation
 
+**DJFL Dates:** 1 May – 15 May  
+**Key Date Slugs:** `team-continuation-opens` / `team-continuation-closes`  
+**Action Card:** `teams.continuation` (visible to Club Secretaries only during window)
+
 ### Trigger
-A **Key Date** opens the "Team Continuation" window. Clubs are notified by email (system-triggered meta-email). The corresponding Action Card becomes visible on the Club Dashboard.
+A **Key Date** opens the "Team Continuation" window on **1 May**. Clubs are notified by email (system-triggered meta-email). The corresponding Action Card becomes visible on the Club Dashboard.
 
 ### Club Secretary Action
 The Club Secretary logs in and sees a simple checklist of their teams (as carried forward from the previous season). For each team, they tick: **"Continuing this season"** or leave unchecked.
 
 - Teams confirmed as continuing → status remains `CURRENT`
 - Teams not confirmed → status moves to `WITHDRAWN` (or `CANCELLED` — see note)
-- Deadline: set by the Key Date end time
+- Deadline: **15 May** (Key Date close)
 
 > **Design Note:** The checkbox UI is intentionally simple — no explanation is required at this stage. The league may follow up with clubs that have large numbers of withdrawals.
+
+> **DJFL Context:** The DJFL CSV also lists a **"Club continuation notice" deadline of 31 March**, which appears to be an informal/paper notice prior to the formal system-based confirmation window. The 1–15 May window is the authoritative system window.
 
 ### Email Notifications (planned)
 - **Opening:** Email to all Club Secretaries when the window opens
@@ -166,8 +211,12 @@ The Club Secretary logs in and sees a simple checklist of their teams (as carrie
 
 ## Stage 4: Existing Clubs — New Teams & New Under 7s
 
+**DJFL Dates:** 16 May – 31 May *(exclusive window — new clubs cannot apply during this period)*  
+**Key Date Slugs:** `team-registration-opens` / `team-registration-closes`  
+**Action Card:** `teams.register` — visible to Club Secretaries only; exempt role: League Admin
+
 ### Trigger
-A second **Key Date** opens the "New Team Application" window for existing clubs. The Action Card "Register New Teams" becomes visible on the Club Dashboard for clubs with the `teams.register` component access.
+A **Key Date** opens the "New Team Application" window for existing clubs on **16 May**. The Action Card "Register New Teams" becomes visible on the Club Dashboard for clubs with the `teams.register` component access. New clubs **cannot** submit applications during this window.
 
 ### Club Secretary Action
 The Club Secretary uses the "Add Team" form to apply for:
@@ -185,8 +234,14 @@ All new teams added at this stage are assigned status `PENDING` (standard new te
 
 ## Stage 5: New Club Applications
 
+**DJFL Dates:** 1 June – 1 August  
+**Key Date Slugs:** `club-registration-opens` / `club-registration-closes`  
+**Timing System:** Pattern A (Public Form) — the public registration form is gated by `TimedFormWrapper`, which checks the Key Dates via `getFormTiming`. Before 1 June, a countdown is shown. After 1 August, a "Registration closed" message is shown. See [Unified Timing Architecture](./unified-timing-architecture.md).
+
+> **Important:** The new club window (1 June – 1 August) opens on the same date as the formal FA season start (1 June). It does **not** overlap with the existing clubs' exclusive window (16–31 May). Sequencing is preserved.
+
 ### Trigger
-The **New Club Registration** window opens **after** the deadline for existing club new team applications (Stage 4). This sequencing ensures existing clubs have first refusal on available capacity before new clubs are considered.
+The **New Club Registration** window opens on **1 June**, after the exclusive existing-club window (16–31 May) has closed. This sequencing ensures existing clubs have first refusal on available capacity before new clubs are considered.
 
 New clubs apply via the **public registration form** (no login required). The order of consideration is the order of application submission — there is no early-bird advantage beyond position in the queue.
 
@@ -239,6 +294,29 @@ The applicant receives an email containing a unique link. Clicking the link:
 3. **Immediately presents the Team Naming form** (see below)
 
 > If the applicant does not complete team naming in the same session, the team naming form is accessible via a link in the verification email, which remains valid until the application is actioned.
+
+---
+
+## Stage 6: Team Edit Window & Final Withdrawals
+
+**DJFL Dates:**
+- Edit window: **1 June – 15 August** ("General Teams: Latest date to withdraw / add team")
+- Minimum player registration: **By 10 August** ("Team CRUD Ends")
+
+**Key Date Slugs:** `team-edit-opens` / `team-edit-closes`  
+**Action Card:** `teams.edit` — visible to all clubs (existing and newly approved) with the `teams.edit` component access; exempt: League Admin
+
+### Purpose
+This window allows all clubs to make final adjustments to their team registrations:
+
+1. **Add teams** — last opportunity to register additional teams (any age group)
+2. **Withdraw teams** — clubs can remove teams they no longer intend to field
+3. **Edit team details** — name changes, manager updates, etc.
+
+### Deadline
+The window closes on **15 August**. After this date, no further team add/withdraw operations are possible for the season. The `teams.edit` Action Card is greyed out with "Closed" badge.
+
+> **Note:** The 10 August "minimum players" deadline is an FA FullTime obligation (player registration on the FA system), not an LMSPro action. LMSPro should surface this as a reminder via the dashboard banner countdown.
 
 ---
 
@@ -321,7 +399,9 @@ This sequencing reflects the policy that existing clubs have priority over new e
 
 ---
 
-## Stage 6: League Team Approval
+## Stage 7: League Team Approval
+
+**DJFL Timing:** Runs concurrently with and immediately after the edit window (August), before Season Start (1st Sunday September).
 
 ### Overview
 The League Admin reviews all pending teams using the **Team Approval panel**, which mirrors the bulk-action framework used for the Special Free Days approval workflow:
@@ -366,10 +446,10 @@ Once a club has been approved (or waiting-listed), the League Admin makes indivi
 
 ---
 
-## Stage 7: Division Formation
+## Stage 8: Division Formation
 
 ### Trigger
-After the approval window closes, the League Admin initiates division formation for new age groups (primarily U7).
+After the approval window closes (August), the League Admin initiates division formation for new age groups (primarily U7), before the season start (1st Sunday in September).
 
 ### Process
 1. **Count confirmed U7 teams** — all teams with status `CURRENT` in the U7 age group
@@ -383,19 +463,62 @@ After the approval window closes, the League Admin initiates division formation 
 
 ## Key Dates Reference
 
-The following Key Dates should be configured in the Season settings at the start of each season lifecycle:
+The following Key Dates should be configured in the Season settings. Key Date **slugs** are the standard names used by the Unified Timing System to auto-link forms and Action Cards. See [Unified Timing Architecture](./unified-timing-architecture.md) for slug registry.
 
-| Key Date | Triggered Stage | Who Notified |
-|----------|----------------|--------------|
-| Season Clone Date | Admin trigger (no key date) | — |
-| Division Roll Forward Date | Admin trigger (no key date) | — |
-| Team Continuation Window — Open | Stage 3 starts | All Club Secretaries |
-| Team Continuation Window — Close | Stage 3 ends | Club Secretaries who haven't responded |
-| Existing Club New Team Window — Open | Stage 4 starts | All Club Secretaries |
-| Existing Club New Team Window — Close | Stage 4 ends | — |
-| New Club Application Window — Open | Stage 5 starts | (public, no notification) |
-| New Club Application Window — Close | Stage 5 ends | — |
-| Team Approval Completion Target | Internal admin target | League Admin |
+### DJFL 2026 Dates — Mapped to LMSPro Key Dates
+
+| DJFL Date | Event | Key Date Slug | Pattern | Stage | Who Notified |
+|-----------|-------|--------------|---------|-------|--------------|
+| 1 March | Player transfer deadline (FA FullTime) | — | N/A | Pre-season | — |
+| 1 March | Return of all trophies | — | N/A | Pre-season | Club |
+| 31 March | Club continuation notice (informal) | — | N/A | Pre-season | Club |
+| 1 April | Player re-registration opens (FA FullTime) | — | N/A | Pre-season | — |
+| 30 April | Officer nominations deadline | — | N/A | Pre-season | League |
+| 1 May | Proposed rule changes deadline | — | N/A | Pre-season | Club |
+| **1 May** | **Team Continuation Window Opens** | `team-continuation-opens` | B (Action Card) | Stage 3 | All Club Secretaries |
+| **15 May** | **Team Continuation Window Closes** | `team-continuation-closes` | B (Action Card) | Stage 3 | Clubs not yet responded |
+| **16 May** | **Existing Club New Team Window Opens** | `team-registration-opens` | B (Action Card) | Stage 4 | All Club Secretaries |
+| **31 May** | **Existing Club New Team Window Closes** | `team-registration-closes` | B (Action Card) | Stage 4 | — |
+| 31 May | End of financial year | — | N/A | — | League |
+| **1 June** | **New Club Registration Opens** | `club-registration-opens` | A (Public Form) | Stage 5 | (public — countdown) |
+| 1 June | Season Start (FA) | — | N/A | — | — |
+| 1 June | Online player registration opens (FA FullTime) | — | N/A | — | — |
+| **1 June** | **Team Edit Window Opens** | `team-edit-opens` | B (Action Card) | Stage 6 | All Club Secretaries |
+| End of July | AGM (no later than) | — | N/A | — | League |
+| **1 August** | **New Club Registration Closes** | `club-registration-closes` | A (Public Form) | Stage 5 | — |
+| 10 August | Minimum player registration deadline (FA FullTime) | — | N/A | — | Reminder only |
+| **15 August** | **Team Edit Window Closes** | `team-edit-closes` | B (Action Card) | Stage 6 | All Club Secretaries |
+| 1st Sunday September | Playing season starts | — | N/A | Season Start | — |
+| Last Sunday April | End of playing season | — | N/A | Season End | — |
+| 31 May | Season end (FA) | — | N/A | Season End | — |
+
+### Non-LMSPro Dates (FA FullTime / League Admin Only)
+
+The following dates in the DJFL calendar are managed outside LMSPro (FA FullTime or paper-based). LMSPro may surface these as informational reminders in the dashboard banner only:
+
+- Player transfer / registration deadline (1 March) — FA FullTime
+- Return of trophies (1 March) — manual
+- Player re-registration opens (1 April) — FA FullTime
+- Officer nominations (30 April) — manual
+- Rule changes submission (1 May) — manual
+- Online player registration from 1 June — FA FullTime
+- AGM (end of July) — manual
+- Minimum player registration (10 August) — FA FullTime
+
+### Key Date Slug Standard Registry
+
+These are the standard slugs recognised by the Unified Timing System:
+
+| Slug | Controls | Pattern |
+|------|----------|---------|
+| `team-continuation-opens` | `teams.continuation` Action Card visible | B |
+| `team-continuation-closes` | `teams.continuation` Action Card closes | B |
+| `team-registration-opens` | `teams.register` Action Card visible | B |
+| `team-registration-closes` | `teams.register` Action Card closes | B |
+| `team-edit-opens` | `teams.edit` Action Card visible | B |
+| `team-edit-closes` | `teams.edit` Action Card closes | B |
+| `club-registration-opens` | Public club registration form opens | A |
+| `club-registration-closes` | Public club registration form closes | A |
 
 ---
 
@@ -478,18 +601,28 @@ WITHDRAWN       — Permanently withdrawn from season
 - Individual: row click → modal with single-team decision
 - Prioritisation: existing club `PENDING` shown first
 
-### Phase 5 — Email Notifications *(planned, per CR-18)*
+### Phase 5 — Key Dates & Timing System Integration
+- Seed standard Key Date slugs: `team-continuation-opens/closes`, `team-registration-opens/closes`, `team-edit-opens/closes`
+- Update `LMSPRO_FORMS` registry with `team-registration` and `team-edit` entries (Pattern B support)
+- Link Action Cards to Key Dates via Visibility Rules for: `teams.continuation`, `teams.register`, `teams.edit`
+- Add exempt roles (League Admin bypasses all time gates)
+- Season Clone: extend `duplicateToSeason` to copy Visibility Rules (per unified-timing-architecture Phase 3)
+- Dashboard banner: show upcoming Team Registration, Team Edit, New Club Registration countdowns
+
+### Phase 6 — Email Notifications *(planned, per CR-18)*
 - Club application received confirmation
 - Email verification link
 - Team naming confirmation
 - Club approval / rejection / waiting list
 - Team approval / waiting list / promotion
+- Season lifecycle notifications: Team Continuation window open, New Team window open, reminders
 
-### Phase 6 — Season Lifecycle UI *(future)*
-- Season Clone button
+### Phase 7 — Season Lifecycle UI *(future)*
+- Season Clone button with Visibility Rules copy
 - Division Roll Forward trigger
-- Team Continuation confirmation UI for Club Secretaries
+- Team Continuation confirmation UI for Club Secretaries (`teams.continuation` Action Card)
 - Waiting List promotion queue
+- Dashboard banner: DJFL dates including non-LMSPro reminders (FA FullTime deadlines)
 
 ---
 
@@ -504,6 +637,12 @@ WITHDRAWN       — Permanently withdrawn from season
 | 5 | What happens to a team's `WAITING_LIST` position if the club withdraws mid-season? | Open | TBD |
 | 6 | Should the Season Clone include age group capacity values or reset them? | Open | TBD — likely reset to 0 (unconstrained) pending new season planning |
 | 7 | How should Division Roll Forward handle cross-age-group AGGs? | Open | TBD — may require manual intervention |
+| 8 | What is the exact status for a team whose club does NOT confirm continuation in Stage 3? `WITHDRAWN` or `CANCELLED`? | Open | TBD — `WITHDRAWN` implies club choice; `CANCELLED` implies league action. Likely `WITHDRAWN`. |
+| 9 | Should LMSPro surface FA FullTime deadline reminders (e.g., 10 Aug player registration) in the dashboard banner, even though they are not LMSPro actions? | Open | TBD — would require a new "Reminder" Key Date type that shows in banner but has no Action Card |
+| 10 | The DJFL CSV lists a "Club continuation notice" on 31 March (paper/informal) and the system window opens 1 May. Should the system send a reminder email on/around 31 March prompting clubs to prepare? | Open | TBD |
+| 11 | Stage 5 (new club window) opens on 1 June — same day as FA Season Start. Does the league want the public form live from midnight or from a specific time on 1 June? | Open | TBD — Key Date supports time-of-day |
+| 12 | Should new clubs who apply before 1 August but are not yet actioned by 1 August remain visible in the admin approval queue after the window closes? | Open | TBD — application form closes but queue persists |
+| 13 | The team edit window (`team-edit-closes`, 15 August) — should this apply to the `teams.register` Action Card too (preventing any team additions after 15 August), or are add and edit controlled by separate Key Dates? | Open | TBD — DJFL CSV uses one date for both "add or withdraw"; suggest single `team-edit-closes` controls both |
 
 ---
 
