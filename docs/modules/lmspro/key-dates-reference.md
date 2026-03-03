@@ -78,7 +78,7 @@ model LMSProKeyDate {
 |-------|------|---------|
 | `slug` | `String?` | Machine-readable identifier (`team-registration-opens`). Enables auto-linking to forms and cards without UI configuration. |
 | `keyDateType` | `KeyDateType` enum | `WINDOW` / `TRIGGER` / `REMINDER` — changes system behaviour. |
-| `emailTriggers` | relation | Links to `KeyDateEmailTrigger` records (see Email Automation section). |
+| `keyDateSequences` | relation | Links to `EmailSequence` records anchored to this Key Date (see Email Automation section). |
 
 ---
 
@@ -266,153 +266,181 @@ teams.approve.action     — Approve/waiting-list/cancel team (League Admin)
 
 ---
 
-## Email Automation — Attaching Emails to Key Dates (Q10)
+## Email Automation — Key Date Email Sequences (Q10)
 
 ### The Design
 
-Key Dates become the email automation engine by connecting to the existing `Email` / `EmailSequence` infrastructure via a new `KeyDateEmailTrigger` join table. This requires **minimal new code** — it uses existing models virtually unchanged.
+Key Dates become an email automation scheduler by connecting to the existing `EmailSequence` / `EmailSequenceStep` infrastructure. **No new sequence model is needed** — we use the already-built system with a new `ON_EVENT` trigger convention.
 
 The principle is:
 
-> *"When Key Date X fires (or opens, or is N days away), send email Y to recipient group Z."*
+> *"A Key Date can own an `EmailSequence`. Each step in that sequence is one email, with a **signed day offset** relative to the Key Date's open or close anchor. Negative offset = before. Positive offset = after. Zero = on the day."*
 
-League Admins configure this on the Key Date admin page by attaching one or more email triggers. Each trigger specifies:
-1. **When** it fires relative to the Key Date
-2. **What** to send (ad-hoc body, or use an existing `EmailTemplate`)
-3. **Who** receives it (a recipient picker using existing cohort/role groups)
+#### Example: Team Re-Registration Window (1 May – 15 May)
+
+| Step | Offset | Anchor | Purpose |
+|------|--------|--------|---------|
+| Email 1 | `-3` days | OPEN (1 May) | Advance warning: "Registration opens in 3 days" |
+| Email 2 | `0` days | OPEN (1 May) | Announcement: "Team re-registration is now open" |
+| Email 3 | `+7` days | OPEN (1 May) | Mid-window nudge: "One week in — have you confirmed your teams?" |
+| Email 4 | `-2` days | CLOSE (15 May) | Final warning: "Registration closes in 2 days" |
+| Email 5 | `0` days | CLOSE (15 May) | Close notification: "Re-registration is now closed" |
+
+The system computes the **fire datetime** for each step as:
+
+```
+anchorDate + anchorTime + (offsetDays × 24h)
+```
+
+Where `anchorDate` + `anchorTime` is either `activeFrom`+`activeFromTime` or `activeTo`+`activeToTime` on the Key Date record.
 
 ---
 
-### New: `KeyDateEmailTrigger` — Proposed Schema
+### Integration With Existing `EmailSequence` Infrastructure
+
+The existing schema already supports this with **zero structural changes** to `EmailSequence` or `EmailSequenceStep`. The only additions required are:
+
+1. A foreign key `keyDateId` and `keyDateAnchor` on `EmailSequence` (to know which Key Date and which anchor — OPEN or CLOSE — to compute step fire times from)
+2. Allow **negative** `delayDays` values on `EmailSequenceStep` (the DB column is already `Int`, so this is a validation-layer change only)
+3. A `keyDateSequences` relation on `LMSProKeyDate`
 
 ```prisma
-model KeyDateEmailTrigger {
-  id           String  @id @default(uuid())
-  keyDateId    String  @map("key_date_id")
-  organizationId String @map("organization_id")
+// Addition to EmailSequence model (existing model, new fields only):
+keyDateId     String?  @map("key_date_id")  // FK → LMSProKeyDate (null = non-KD sequence)
+keyDateAnchor KeyDateSequenceAnchor?  @map("key_date_anchor")  // OPEN | CLOSE
 
-  // WHEN to fire (relative to the Key Date)
-  timing     KeyDateEmailTiming  // ON_OPEN | ON_CLOSE | BEFORE_OPEN | BEFORE_CLOSE | AFTER_OPEN | AFTER_CLOSE
-  offsetDays  Int    @default(0)   // Days before/after the timing anchor
-  offsetHours Int    @default(0)   // Hours before/after (combined with days)
-
-  // WHAT to send
-  mode        KeyDateEmailMode   // USE_TEMPLATE | CUSTOM_BODY
-  templateId  String?            // FK → EmailTemplate (if mode = USE_TEMPLATE)
-  subject     String?            // Used if mode = CUSTOM_BODY
-  bodyHtml    String?  @db.Text  // Used if mode = CUSTOM_BODY
-
-  // WHO receives it
-  recipientGroup  KeyDateRecipientGroup  // ALL_CLUBS | ALL_SECRETARIES | LEAGUE_ADMINS | CLUBS_NOT_RESPONDED | CUSTOM
-  customCohortFilter Json?               // For CUSTOM — same structure as Email.cohortFilter
-
-  // State tracking
-  status      KeyDateEmailTriggerStatus @default(PENDING)  // PENDING | SENT | SKIPPED | FAILED
-  firedAt     DateTime?  @map("fired_at")
-  emailId     String?    // FK → Email (the Email record created when fired)
-
-  // Audit
-  createdAt   DateTime @default(now())
-  createdBy   String?
-
-  // Relations
-  keyDate      LMSProKeyDate  @relation(fields: [keyDateId], references: [id], onDelete: Cascade)
-  template     EmailTemplate? @relation(fields: [templateId], references: [id], onDelete: SetNull)
-  email        Email?         @relation(fields: [emailId], references: [id], onDelete: SetNull)
-  organization Organization   @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-
-  @@index([keyDateId])
-  @@index([status])
-  @@map("key_date_email_triggers")
-  @@schema("lmspro")
+// New enum (public schema):
+enum KeyDateSequenceAnchor {
+  OPEN   // delayDays is relative to activeFrom + activeFromTime
+  CLOSE  // delayDays is relative to activeTo + activeToTime
+  @@schema("public")
 }
 ```
 
-### Enums for email triggers
+> **Important:** A single Key Date can own **multiple** `EmailSequence` records — one anchored to `OPEN` and one anchored to `CLOSE`. This keeps step logic clean (no mixing of OPEN-relative and CLOSE-relative steps in one sequence).
+
+---
+
+### How `EmailSequenceStep.delayDays` works with Key Dates
+
+For Key Date–anchored sequences, the meaning of `delayDays` changes from its normal use (delay from previous step) to **signed offset from the anchor**:
+
+| `delayDays` | `keyDateAnchor` | Fires when |
+|-------------|----------------|------------|
+| `-7` | `OPEN` | 7 days **before** window opens |
+| `-3` | `OPEN` | 3 days **before** window opens |
+| `0` | `OPEN` | **On** the day the window opens (at `activeFromTime`) |
+| `+3` | `OPEN` | 3 days **after** window opens |
+| `-2` | `CLOSE` | 2 days **before** window closes |
+| `0` | `CLOSE` | **On** the day the window closes (at `activeToTime`) |
+| `+1` | `CLOSE` | 1 day **after** window closes |
+
+> This is a semantic reuse of the existing `delayDays` field. The sequence processor detects that the owning sequence has a `keyDateId` and uses absolute date calculation rather than the normal "delay from previous step" logic.
+
+---
+
+### Recipient Rules Per Step
+
+Each `EmailSequenceStep` targets a recipient group. Rather than a single cohort for the whole sequence, each step can have its own targeting — this is especially useful for mid-window chase-up emails:
 
 ```prisma
-enum KeyDateEmailTiming {
-  ON_OPEN         // Fires at activeFrom + activeFromTime (the window opens)
-  ON_CLOSE        // Fires at activeTo + activeToTime (the window closes)
-  BEFORE_OPEN     // Fires N days/hours before window opens
-  BEFORE_CLOSE    // Fires N days/hours before window closes
-  AFTER_OPEN      // Fires N days/hours after window opens (e.g., reminder to those who haven't acted)
-  AFTER_CLOSE     // Fires N days/hours after window closes
+// Additions to EmailSequenceStep model (new fields only):
+recipientGroup     KeyDateRecipientGroup?  // ALL_CLUBS | LEAGUE_ADMINS | CLUBS_NOT_RESPONDED | CUSTOM
+customCohortFilter Json?                   @map("custom_cohort_filter")
+templateId         String?                 @map("template_id")  // FK → EmailTemplate (optional; if set, overrides bodyHtml)
+```
 
-  @@schema("lmspro")
+| Step | Recipients |
+|------|-----------|
+| `-3` from OPEN | `ALL_CLUBS` — advance notice to everyone |
+| `0` from OPEN | `ALL_CLUBS` — announcement to everyone |
+| `+7` from OPEN | `CLUBS_NOT_RESPONDED` — chase only those who haven't acted |
+| `-2` from CLOSE | `CLUBS_NOT_RESPONDED` — final warning only to non-responders |
+| `0` from CLOSE | `ALL_CLUBS` — close notification to everyone |
+
+---
+
+### New Enums Required
+
+```prisma
+// Already described above:
+enum KeyDateSequenceAnchor {
+  OPEN    // Relative to activeFrom + activeFromTime
+  CLOSE   // Relative to activeTo + activeToTime
+  @@schema("public")
 }
 
-enum KeyDateEmailMode {
-  USE_TEMPLATE    // Pick from EmailTemplate library
-  CUSTOM_BODY     // Enter subject + body directly on the Key Date
-
-  @@schema("lmspro")
-}
-
+// Used on EmailSequenceStep (replaces the need for KeyDateRecipientGroup on the old KeyDateEmailTrigger design):
 enum KeyDateRecipientGroup {
-  ALL_CLUBS           // All Club Secretaries for this season
-  LEAGUE_ADMINS       // All League Admin/Owner users
-  ALL_SECRETARIES     // All Club Secretaries (alias of ALL_CLUBS for clarity)
-  CLUBS_NOT_RESPONDED // Clubs that have not yet acted on this Key Date's process
-  CUSTOM              // Ad-hoc filter via cohortFilter JSON
-
-  @@schema("lmspro")
-}
-
-enum KeyDateEmailTriggerStatus {
-  PENDING   // Not yet fired
-  SENT      // Email created and dispatched
-  SKIPPED   // Condition not met (e.g., all clubs responded, nothing to send)
-  FAILED    // Error during dispatch
-
-  @@schema("lmspro")
+  ALL_CLUBS            // All Club Secretaries enrolled in this season
+  LEAGUE_ADMINS        // All League Admin/Owner users
+  CLUBS_NOT_RESPONDED  // Clubs that have not yet acted on the Key Date's process
+  CUSTOM               // Ad-hoc filter via customCohortFilter JSON
+  @@schema("public")
 }
 ```
 
-### How it works at runtime
+---
 
-1. A background job (cron every 5 minutes) queries `KeyDateEmailTrigger` records where:
-   - `status = PENDING`
-   - The computed fire datetime (Key Date anchor ± offsetDays/offsetHours) ≤ `now()`
-2. For each due trigger, it:
-   - Resolves the recipient list using `recipientGroup` + `cohortFilter`
-   - Creates an `Email` record (using template body or custom body)
-   - Creates `EmailRecipient` records for each resolved recipient
-   - Sets `Email.status = SCHEDULED` (immediate) or `SENDING`
-   - Updates `KeyDateEmailTrigger.status = SENT`, stores `firedAt` and `emailId`
-3. The existing email dispatch pipeline handles actual sending via Resend
+### How the Sequence Processor Works (Runtime)
 
-### Admin UI for email triggers (Key Date detail page)
+The existing `EmailSequence` cron job is extended to handle Key Date–anchored sequences:
 
-On the Key Date admin page, a new **"Email Triggers"** section appears below the date pickers:
+1. **At startup / when a Key Date is saved:** For any sequence with a `keyDateId`, pre-compute the fire datetime for each step:
+   ```
+   if anchor = OPEN:  fireAt = keyDate.activeFrom (date) + keyDate.activeFromTime (HH:MM) + (step.delayDays × 24h)
+   if anchor = CLOSE: fireAt = keyDate.activeTo   (date) + keyDate.activeToTime   (HH:MM) + (step.delayDays × 24h)
+   ```
+   Store as `nextSendAt` on a `SequenceEnrollment` per-step (or as a scheduled job entry).
+
+2. **Cron job (every 5 minutes):** Finds steps where computed `fireAt ≤ now()` and `status = PENDING`.
+
+3. **For each due step:**
+   - Resolve recipients using `recipientGroup` (and `customCohortFilter` if `CUSTOM`)
+   - For `CLUBS_NOT_RESPONDED`: query the Key Date's linked process (e.g., teams that haven't confirmed continuation) and resolve to those Club Secretaries
+   - Use the step's `templateId` (if set) or `bodyHtml`/`subject` directly
+   - Create `Email` records and dispatch via existing Resend pipeline
+   - Mark step as `SENT` with `firedAt`
+
+4. **Season clone:** When a season is cloned, linked `EmailSequence` records are duplicated (with new `keyDateId` pointing to the cloned season's Key Dates), all steps reset to `PENDING`.
+
+---
+
+### Admin UI for Email Sequences (Key Date detail page)
+
+On the Key Date admin page, an **"Email Schedule"** section appears below the date pickers. It shows both OPEN-anchored and CLOSE-anchored sequences on a unified timeline view:
 
 ```
-┌─────────────────────────────────────────────────────────────────────────┐
-│ EMAIL TRIGGERS                                                          │
-│                                                                         │
-│ ┌─────────────────────────────────────────────────────────────────────┐ │
-│ │ ✉ When window opens → All Club Secretaries                         │ │
-│ │   Template: "Team Registration Now Open"        [Edit] [Remove]    │ │
-│ ├─────────────────────────────────────────────────────────────────────┤ │
-│ │ ✉ 2 days before window closes → Clubs not yet responded            │ │
-│ │   Subject: "Reminder: Team registration closes in 2 days"          │ │
-│ │   [Custom body]                                 [Edit] [Remove]    │ │
-│ └─────────────────────────────────────────────────────────────────────┘ │
-│                                                   [+ Add Email Trigger] │
-└─────────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ EMAIL SCHEDULE                              [+ Add Email]                   │
+│                                                                             │
+│  Relative to OPEN (16 May 09:00)                                            │
+│  ────────────────────────────────────────────────────────────────────────   │
+│  -3d  ✉ "Registration opens in 3 days"   → All clubs        [Edit][Delete] │
+│   0   ✉ "Team registration is now open"  → All clubs        [Edit][Delete] │
+│  +7d  ✉ "Have you registered your teams?"→ Not responded    [Edit][Delete] │
+│                                                                             │
+│  Relative to CLOSE (31 May 23:59)                                           │
+│  ────────────────────────────────────────────────────────────────────────   │
+│  -2d  ✉ "Registration closes in 2 days"  → Not responded    [Edit][Delete] │
+│   0   ✉ "Registration has now closed"    → All clubs        [Edit][Delete] │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-**"+ Add Email Trigger" modal fields:**
+**"Add Email" modal fields:**
 
-| Field | Input Type | Options |
-|-------|-----------|---------|
-| When | Dropdown | On window open / On window close / N days before open / N days before close / N days after open / N days after close |
-| N days/hours | Number inputs | Only shown if timing is relative |
-| Content | Toggle | Use email template / Write custom email |
+| Field | Input Type | Notes |
+|-------|-----------|-------|
+| Anchor | Radio | Relative to window OPEN / Relative to window CLOSE |
+| Offset (days) | Signed integer | Negative = before anchor, positive = after, 0 = on the day |
+| Time | Inherited | Fires at `activeFromTime` or `activeToTime` from the Key Date |
+| Recipients | Dropdown | All clubs / League admins / Clubs not responded / Custom filter |
+| Content | Toggle | Use saved template / Write custom email |
 | Template | Dropdown | Lists all active `EmailTemplate` records |
-| Recipients | Dropdown | All clubs / All league admins / Clubs not yet responded / Custom filter |
+| Subject / Body | Rich text | Shown if custom content selected |
 
-> **Custom filter** uses the same `cohortFilter` JSON structure already implemented in `Email.cohortFilter`, so the recipient picker is existing code reused.
+> For TRIGGER and REMINDER Key Dates (no close date), only OPEN-anchor is offered. `activeTo` is set equal to `activeFrom` for TRIGGER types.
 
 ---
 
@@ -474,13 +502,20 @@ I need a new Action Card that:
   - Offset: <none> | <+/- N days from open/close>
 ```
 
-### For email trigger configuration on an existing Key Date
+### For an email schedule on a Key Date
 
 ```
-I need an email trigger on Key Date <slug>:
-  - Timing: ON_OPEN | ON_CLOSE | BEFORE_OPEN <N days> | BEFORE_CLOSE <N days>
-  - Content: USE_TEMPLATE <template name> | CUSTOM: subject="<>" body="<>"
-  - Recipients: ALL_CLUBS | LEAGUE_ADMINS | CLUBS_NOT_RESPONDED | CUSTOM <filter>
+I need an email schedule on Key Date <slug>.
+The Key Date window is <open date> to <close date>.
+
+Emails relative to OPEN (<open date> at <HH:MM>):
+  - Offset -3d → All clubs    → Template: "<name>" | Custom: subject="<>" body="<>"
+  - Offset  0  → All clubs    → Template: "<name>" | Custom: subject="<>" body="<>"
+  - Offset +7d → Not responded→ Template: "<name>" | Custom: subject="<>" body="<>"
+
+Emails relative to CLOSE (<close date> at <HH:MM>):
+  - Offset -2d → Not responded→ Template: "<name>" | Custom: subject="<>" body="<>"
+  - Offset  0  → All clubs    → Template: "<name>" | Custom: subject="<>" body="<>"
 ```
 
 ---
@@ -550,13 +585,51 @@ enum KeyDateType {
 }
 ```
 
-### 2. Add `KeyDateEmailTrigger` model
+### 2. Add `keyDateSequences` relation to `LMSProKeyDate`
 
-See full schema definition in the Email Automation section above.
+```prisma
+// Add to LMSProKeyDate model
+keyDateSequences EmailSequence[]
+```
 
-### 3. Season clone update
+### 3. Extend `EmailSequence` with Key Date anchor fields
 
-`keyDates.duplicateToSeason` must also copy `KeyDateEmailTrigger` records (resetting `status` to `PENDING`, clearing `firedAt` and `emailId`).
+```prisma
+// Add to existing EmailSequence model (public schema)
+keyDateId     String?               @map("key_date_id")   // FK → LMSProKeyDate
+keyDateAnchor KeyDateSequenceAnchor? @map("key_date_anchor")
+
+// New enum (public schema)
+enum KeyDateSequenceAnchor {
+  OPEN   // Steps relative to activeFrom + activeFromTime
+  CLOSE  // Steps relative to activeTo + activeToTime
+  @@schema("public")
+}
+```
+
+### 4. Extend `EmailSequenceStep` with recipient and template fields
+
+```prisma
+// Add to existing EmailSequenceStep model (public schema)
+recipientGroup     KeyDateRecipientGroup? @map("recipient_group")
+customCohortFilter Json?                  @map("custom_cohort_filter")
+templateId         String?                @map("template_id")  // FK → EmailTemplate
+
+// New enum (public schema)
+enum KeyDateRecipientGroup {
+  ALL_CLUBS            // All Club Secretaries enrolled in this season
+  LEAGUE_ADMINS        // All League Admin/Owner users
+  CLUBS_NOT_RESPONDED  // Clubs that have not yet acted on the Key Date's process
+  CUSTOM               // Ad-hoc filter via customCohortFilter JSON
+  @@schema("public")
+}
+```
+
+> **Note:** `EmailSequenceStep.delayDays` is already an `Int` column and already supports negative values at the database level. The only change needed is to allow negative input in the admin UI and sequence processor.
+
+### 5. Season clone update
+
+`keyDates.duplicateToSeason` must also duplicate any `EmailSequence` records linked via `keyDateId` (copying their steps and resetting all enrollment/fire state).
 
 ---
 
@@ -564,7 +637,7 @@ See full schema definition in the Email Automation section above.
 
 | # | Question | Answer |
 |---|----------|--------|
-| Q10 | Does the Key Date have an email trigger function? | **Yes** — via `KeyDateEmailTrigger`. Attach template or custom body + recipient group directly to the Key Date. The Key Date becomes the email automation tool. |
+| Q10 | Does the Key Date have an email trigger function? | **Yes** — via `EmailSequence` (existing model). A Key Date owns one or more `EmailSequence` records, each anchored to OPEN or CLOSE. Each sequence has N `EmailSequenceStep` records with **signed `delayDays`** (negative = before anchor, zero = on the day, positive = after anchor). This reuses the existing email sequence processor — no new model required. |
 | Q11 | Does the form open at midnight or a specific time on 1 June? | **Specific time** — `activeFromTime` is `HH:MM` and is combined with `activeFrom` at runtime. League Admin sets the time. Suggested: `09:00` for competitive windows. |
 | Q12 | Do clubs who apply before 1 August but aren't actioned remain in the approval queue? | **Yes** — the application form closes (`club-registration-closes`) but the admin approval queue is not date-gated. All `EMAIL_VERIFIED` applications remain visible until actioned. |
 | Q13 | Does `team-edit-closes` (15 Aug) also close the `teams.register` card? | **Yes** — single `team-edit-closes` date controls both. DJFL uses one date for "add or withdraw". The `teams.register` and `teams.edit` cards both use the same closing Key Date. |
