@@ -21,6 +21,25 @@ This document serves as:
 - The basis for email notification workflow design (see [CR-18 Email Notifications](./planning/CR-18-Email-Notifications-System-Development-Plan.md))
 - The refinement foundation for future automation and self-service enhancements
 
+### Core Principle: Everything Is Driven by Key Dates
+
+**All** dates that govern this workflow — including form windows, Action Card visibility, email triggers, and dashboard reminders — are stored as `LMSProKeyDate` records **scoped to the season** (`seasonId`). Nothing is hardcoded to a calendar date.
+
+This means:
+- The League Admin configures all dates in the Season → Key Dates page
+- Changing a date there immediately changes when forms open, when cards appear, when emails fire
+- Key Dates are copied when a season is cloned (with a 12-month offset as a starting point)
+- League Admins can override any date each year without any code changes
+- All operations, Action Cards, public forms, and email notifications query Key Dates at runtime
+
+Key Dates have three functional types:
+
+| Type | Purpose | System Behaviour |
+|------|---------|------------------|
+| **Window** | Open/close dates for a form or Action Card | Pattern A (public form) or Pattern B (Action Card) gating |
+| **Trigger** | A point-in-time event (e.g., season start) | Email notification sent; banner reminder shown |
+| **Reminder** | Informational date with no system action | Dashboard banner countdown only; no form or card gating |
+
 ---
 
 ## Actors
@@ -40,14 +59,16 @@ This document serves as:
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │  PRE-SEASON: End of Current Season                          [April–May]      │
-│  • End of playing season (last Sunday April)                                │
-│  • Player transfer / registration deadline (1 March)                        │
-│  • Trophies returned (1 March)                                              │
-│  • Player re-registration opens (1 April)                                   │
-│  • Club continuation notice due (31 March)                                  │
-│  • Officer nominations deadline (30 April)                                  │
-│  • Proposed rule changes submission deadline (1 May)                        │
-│  • End of financial year (31 May)                                           │
+│  All dates stored as Key Dates (type: Reminder or Trigger), scoped to       │
+│  the current season. Manageable by League Admin in Key Dates page.          │
+│  • season-end          — End of playing season (last Sunday April)          │
+│  • player-transfer-deadline  — Player transfer/reg deadline (1 March)       │
+│  • trophies-return     — Return of all trophies (1 March)                   │
+│  • player-rereg-opens  — Player re-registration opens (1 April)             │
+│  • continuation-notice — Club continuation notice (31 March)                │
+│  • officer-nominations — Officer nominations deadline (30 April)            │
+│  • rules-submission    — Proposed rule changes deadline (1 May)             │
+│  • financial-year-end  — End of financial year (31 May)                     │
 └──────────────────────────────┬──────────────────────────────────────────────┘
                                │
                                ▼
@@ -101,6 +122,7 @@ This document serves as:
 │  STAGE 7: League Team Approval                      [August]                │
 │  League Admin reviews all pending teams and makes decisions                 │
 │  (Approve / Waiting List / Cancel) — bulk or individual                     │
+│  Key Date slug: team-approval-opens / team-approval-closes                  │
 └──────────────────────────────┬──────────────────────────────────────────────┘
                                │
                                ▼
@@ -112,8 +134,10 @@ This document serves as:
                                ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │  SEASON START                                       [1st Sunday September]  │
-│  Playing season begins                                                      │
-│  Online player registration continues from 1 June (FA FullTime)            │
+│  Key Date slug: season-start (type: Trigger)                                │
+│  Playing season begins. Email notifications sent to all clubs.              │
+│  player-registration-opens — FA FullTime reminder (from 1 June)            │
+│  player-registration-deadline — Min players registered (10 August)         │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -401,7 +425,12 @@ This sequencing reflects the policy that existing clubs have priority over new e
 
 ## Stage 7: League Team Approval
 
-**DJFL Timing:** Runs concurrently with and immediately after the edit window (August), before Season Start (1st Sunday September).
+**DJFL Timing:** Runs concurrently with and immediately after the edit window (August), before Season Start (1st Sunday September).  
+**Key Date Slugs:** `team-approval-opens` / `team-approval-closes`  
+**Type:** Window (Pattern B — League Admin dashboard only)  
+**Exempt Roles:** N/A — this panel is always visible to League Admins regardless of Key Date
+
+> The `team-approval-opens` and `team-approval-closes` Key Dates do not gate the League Admin's access to the panel (admins are always exempt). They are used to: (a) drive email reminders to the League Admin that the approval window has opened, and (b) inform the dashboard banner countdown for League Admins.
 
 ### Overview
 The League Admin reviews all pending teams using the **Team Approval panel**, which mirrors the bulk-action framework used for the Special Free Days approval workflow:
@@ -463,7 +492,11 @@ After the approval window closes (August), the League Admin initiates division f
 
 ## Key Dates Reference
 
-The following Key Dates should be configured in the Season settings. Key Date **slugs** are the standard names used by the Unified Timing System to auto-link forms and Action Cards. See [Unified Timing Architecture](./unified-timing-architecture.md) for slug registry.
+**All dates are stored as `LMSProKeyDate` records scoped to `seasonId`.** The League Admin configures every date in the Season → Key Dates page. There are no hardcoded calendar dates in the system — everything queries Key Dates at runtime.
+
+Key Date **slugs** are the standard names recognised by the Unified Timing System to auto-link forms, Action Cards, email triggers, and banner reminders. See [Unified Timing Architecture](./unified-timing-architecture.md) for the full slug registry.
+
+> **Season Scoping:** Every Key Date record has a `seasonId` field. When a season is cloned, all Key Dates are copied to the new season with dates shifted forward by 12 months as a starting point. The League Admin then adjusts them as needed for the new season. This ensures the system is fully configurable year-on-year without any code changes.
 
 ### DJFL 2026 Dates — Mapped to LMSPro Key Dates
 
@@ -492,33 +525,56 @@ The following Key Dates should be configured in the Season settings. Key Date **
 | Last Sunday April | End of playing season | — | N/A | Season End | — |
 | 31 May | Season end (FA) | — | N/A | Season End | — |
 
-### Non-LMSPro Dates (FA FullTime / League Admin Only)
+### Reminder Key Dates (Banner Only — No Form or Card Gating)
 
-The following dates in the DJFL calendar are managed outside LMSPro (FA FullTime or paper-based). LMSPro may surface these as informational reminders in the dashboard banner only:
+Dates marked as type `Reminder` in the table above are stored as Key Dates in LMSPro like any other, but they do **not** gate a form or Action Card. Instead they:
+- Appear as countdown items in the **dashboard header banner** for the relevant audience (Club Secretary, League Admin, or both)
+- Can trigger **email notifications** if configured in CR-18 email rules
+- Are **fully configurable** by the League Admin — they can adjust the date each season or remove the reminder entirely
 
-- Player transfer / registration deadline (1 March) — FA FullTime
-- Return of trophies (1 March) — manual
-- Player re-registration opens (1 April) — FA FullTime
-- Officer nominations (30 April) — manual
-- Rule changes submission (1 May) — manual
-- Online player registration from 1 June — FA FullTime
-- AGM (end of July) — manual
-- Minimum player registration (10 August) — FA FullTime
+Even though some of these dates (e.g., player registration) are governed by FA FullTime externally, LMSPro stores them as Key Dates so the League Admin can surface timely reminders to club users through the familiar dashboard interface without relying on clubs to check external systems.
 
 ### Key Date Slug Standard Registry
 
-These are the standard slugs recognised by the Unified Timing System:
+All slugs below are recognised by the Unified Timing System. They are seeded per-season when a season is created or cloned. The League Admin configures the actual dates. Standard slugs enable the system to auto-link Action Cards, forms, banners, and email triggers without any code changes.
 
-| Slug | Controls | Pattern |
-|------|----------|---------|
-| `team-continuation-opens` | `teams.continuation` Action Card visible | B |
-| `team-continuation-closes` | `teams.continuation` Action Card closes | B |
-| `team-registration-opens` | `teams.register` Action Card visible | B |
-| `team-registration-closes` | `teams.register` Action Card closes | B |
-| `team-edit-opens` | `teams.edit` Action Card visible | B |
-| `team-edit-closes` | `teams.edit` Action Card closes | B |
-| `club-registration-opens` | Public club registration form opens | A |
-| `club-registration-closes` | Public club registration form closes | A |
+**Window slugs** (gate a form or Action Card):
+
+| Slug | Type | Controls | Audience |
+|------|------|----------|----------|
+| `team-continuation-opens` | Window | `teams.continuation` Action Card | Club Secretary |
+| `team-continuation-closes` | Window | `teams.continuation` Action Card | Club Secretary |
+| `team-registration-opens` | Window | `teams.register` Action Card | Club Secretary |
+| `team-registration-closes` | Window | `teams.register` Action Card | Club Secretary |
+| `club-registration-opens` | Window | Public club registration form (Pattern A) | Public |
+| `club-registration-closes` | Window | Public club registration form (Pattern A) | Public |
+| `team-edit-opens` | Window | `teams.edit` Action Card | Club Secretary |
+| `team-edit-closes` | Window | `teams.edit` Action Card | Club Secretary |
+| `team-approval-opens` | Window | Team approval admin panel banner/email | League Admin |
+| `team-approval-closes` | Window | Team approval admin panel banner/email | League Admin |
+
+**Trigger slugs** (point-in-time, email + banner):
+
+| Slug | Type | Controls | Audience |
+|------|------|----------|----------|
+| `season-start` | Trigger | Season start email + banner | All clubs |
+| `playing-season-start` | Trigger | Playing season start email + banner | All clubs |
+| `season-end` | Trigger | Season end email + banner | All clubs |
+
+**Reminder slugs** (banner countdown only, no gating):
+
+| Slug | Type | Banner Label | Audience |
+|------|------|-------------|----------|
+| `player-transfer-deadline` | Reminder | Player transfer deadline | Club |
+| `trophies-return` | Reminder | Trophies return deadline | Club |
+| `continuation-notice` | Reminder | Club continuation notice due | Club |
+| `player-rereg-opens` | Reminder | Player re-registration opens | Club |
+| `officer-nominations` | Reminder | Officer nominations deadline | League |
+| `rules-submission` | Reminder | Rule changes submission deadline | Club |
+| `financial-year-end` | Reminder | End of financial year | League |
+| `player-registration-opens` | Reminder | Online player registration opens | Club |
+| `agm-deadline` | Reminder | AGM deadline | League |
+| `player-registration-deadline` | Reminder | Min. players registered by | Club |
 
 ---
 
@@ -638,7 +694,7 @@ WITHDRAWN       — Permanently withdrawn from season
 | 6 | Should the Season Clone include age group capacity values or reset them? | Open | TBD — likely reset to 0 (unconstrained) pending new season planning |
 | 7 | How should Division Roll Forward handle cross-age-group AGGs? | Open | TBD — may require manual intervention |
 | 8 | What is the exact status for a team whose club does NOT confirm continuation in Stage 3? `WITHDRAWN` or `CANCELLED`? | Open | TBD — `WITHDRAWN` implies club choice; `CANCELLED` implies league action. Likely `WITHDRAWN`. |
-| 9 | Should LMSPro surface FA FullTime deadline reminders (e.g., 10 Aug player registration) in the dashboard banner, even though they are not LMSPro actions? | Open | TBD — would require a new "Reminder" Key Date type that shows in banner but has no Action Card |
+| 9 | Should LMSPro surface FA FullTime deadline reminders (e.g., 10 Aug player registration) in the dashboard banner, even though they are not LMSPro actions? | **Resolved** | **Yes** — all dates stored as Key Dates. FA FullTime dates stored as type `Reminder` — appear in banner, no form/card gating. Fully configurable by League Admin. |
 | 10 | The DJFL CSV lists a "Club continuation notice" on 31 March (paper/informal) and the system window opens 1 May. Should the system send a reminder email on/around 31 March prompting clubs to prepare? | Open | TBD |
 | 11 | Stage 5 (new club window) opens on 1 June — same day as FA Season Start. Does the league want the public form live from midnight or from a specific time on 1 June? | Open | TBD — Key Date supports time-of-day |
 | 12 | Should new clubs who apply before 1 August but are not yet actioned by 1 August remain visible in the admin approval queue after the window closes? | Open | TBD — application form closes but queue persists |
