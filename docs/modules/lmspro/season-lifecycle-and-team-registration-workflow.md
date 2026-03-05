@@ -209,15 +209,35 @@ After roll forward, divisions are re-assigned. U7 divisions from the previous se
 
 **DJFL Dates:** 1 May – 15 May  
 **Key Date Slugs:** `team-continuation-opens` / `team-continuation-closes`  
-**Action Card:** `teams.continuation` (visible to Club Secretaries only during window)
+**Action Card:** `teams.continuation` (visible to Club Secretaries only during window)  
+**Component Key:** `teams.continuation`  
+**See Also:** [CR-20 Team Variation Request & Seasonal Capabilities](./planning/CR-20-Team-Variation-Request-And-Seasonal-Club-Capabilities.md) §5
 
 ### Trigger
-A **Key Date** opens the "Team Continuation" window on **1 May**. Clubs are notified by email (system-triggered meta-email). The corresponding Action Card becomes visible on the Club Dashboard.
+A **Key Date** opens the "Team Continuation" window on **1 May**. Clubs are notified by email (system-triggered meta-email). The corresponding Action Card becomes visible and actionable on the Club Dashboard with an amber "Action Required" state.
 
 ### Club Secretary Action
-The Club Secretary logs in and sees a simple checklist of their teams (as carried forward from the previous season). For each team, they tick: **"Continuing this season"** or leave unchecked.
+The Club Secretary clicks the Action Card on their dashboard and sees a checklist of their teams (as carried forward into the new season from Stage 1 clone). For each team, they tick: **"Continuing this season"** or leave unchecked.
 
-- Teams confirmed as continuing → status remains `CURRENT`
+**Continuation UI (modal or dedicated page):**
+- List of all club's `CURRENT` teams from the new season (cloned in Stage 1)
+- Per-team row: Team Name, Age Group (read-only), checkbox "Continuing next season ✓"
+- Optional notes field per team (unchecked teams only): reason for withdrawal
+- Bulk controls: "Tick All" / "Untick All"
+- Final **"Confirm & Submit"** button — saves the response atomically
+- Form saves state incrementally (per-team autosave) so partial progress is retained if the session is interrupted
+- After submission: form becomes read-only (confirmation view); a "Change Submission" option is available while the window is still open
+
+**Action Card states:**
+| Phase | State |
+|-------|-------|
+| Before opens | Grey, countdown "Opens in X days" |
+| Open, no response | Amber border, "Action Required" |
+| Open, partial response | Amber, "X of Y teams confirmed" |
+| Open, all confirmed | Green, "All teams confirmed ✓" |
+| Deadline passed | Grey, locked |
+
+- Teams confirmed as continuing → status remains `CURRENT` in new season
 - Teams not confirmed by the deadline → status automatically moves to **`WITHDRAWN`**
 - Deadline: **15 May 23:59** (Key Date `team-continuation-closes`)
 
@@ -227,11 +247,26 @@ The Club Secretary logs in and sees a simple checklist of their teams (as carrie
 
 > **DJFL Context:** The DJFL CSV also lists a **"Club continuation notice" deadline of 31 March**, which appears to be an informal/paper notice prior to the formal system-based confirmation window. The 1–15 May window is the authoritative system window.
 
-### Email Notifications (planned)
+### Deadline Automation
+On `team-continuation-closes`, the system:
+1. Finds all teams where the club has not submitted a continuation response (or submitted but left the team unchecked)
+2. Sets those team records to `WITHDRAWN` status in the new season
+3. Writes an audit log entry per team
+4. Triggers CR-18 email: "Teams not confirmed — marked as withdrawn" to Club Secretary
+
+### League Admin Visibility
+The League Admin can see team continuation status per club in a read-only summary panel (Admin → Teams → Continuation tab). It shows:
+- Clubs that have fully confirmed (green)
+- Clubs with partial responses (amber)
+- Clubs with no response (red — outstanding)
+- Post-deadline: list of all auto-withdrawn teams, with override option per team
+
+### Email Notifications (planned — CR-18)
 - **Opening:** Email to all Club Secretaries when the window opens
 - **Reminder:** Email 48 hours before closing date
 - **Confirmation:** Email to Club Secretary confirming their selections
 - **Admin Alert:** Email to League Admin listing clubs that haven't responded by closing date
+- **Auto-withdrawn notification:** Email to Club Secretary when system applies `WITHDRAWN`
 
 ---
 
@@ -239,20 +274,42 @@ The Club Secretary logs in and sees a simple checklist of their teams (as carrie
 
 **DJFL Dates:** 16 May – 31 May *(exclusive window — new clubs cannot apply during this period)*  
 **Key Date Slugs:** `team-registration-opens` / `team-registration-closes`  
-**Action Card:** `teams.register` — visible to Club Secretaries only; exempt role: League Admin
+**Action Card:** `teams.register` — visible to Club Secretaries only; exempt role: League Admin  
+**Component Key:** `teams.register`  
+**See Also:** [CR-20 §4 Add New Teams Action Card](./planning/CR-20-Team-Variation-Request-And-Seasonal-Club-Capabilities.md)
 
 ### Trigger
-A **Key Date** opens the "New Team Application" window for existing clubs on **16 May**. The Action Card "Register New Teams" becomes visible on the Club Dashboard for clubs with the `teams.register` component access. New clubs **cannot** submit applications during this window.
+A **Key Date** opens the "New Team Application" window for existing clubs on **16 May**. The Action Card "Register New Teams" becomes visible and actionable on the Club Dashboard for clubs with the `teams.register` component access. New clubs **cannot** submit applications during this window.
 
 ### Club Secretary Action
-The Club Secretary uses the "Add Team" form to apply for:
-1. **New teams in any age group** — e.g., a second U9 team, a new U11 team
-2. **New U7 teams** — the club's entry-level intake for next season
+The Club Secretary clicks the **"Register New Teams"** Action Card on their dashboard. This opens a direct "Add New Team" modal (not the My Teams navigation page):
 
-All new teams added at this stage are assigned status `PENDING` (standard new team pending approval by the league).
+**Add New Team modal fields:**
+| Field | Required | Notes |
+|-------|----------|-------|
+| Age Group | ✅ | Dropdown — restricted to groups where club has fewer than 3 teams |
+| Team Name | ✅ | Club's naming choice |
+| Manager Name | Optional | Clearly provisional |
+| Manager Email | Optional | Clearly provisional |
+| Manager Phone | Optional | Clearly provisional |
+
+On submit: team created with `status: PENDING`, `teamNumber` assigned immediately.  
+Success toast: "Team submitted for league approval."
+
+The Action Card displays a badge after first submission: "2 teams pending approval" — giving the club visibility of their own queue.
+
+### Action Card States
+
+| Phase | Card State |
+|-------|-----------|
+| Before `team-registration-opens` | Grey, countdown "Opens in X days" |
+| Window open | Green, "Available now" |
+| Window open, pending teams exist | Green, badge "X pending" |
+| After `team-registration-closes` | Grey, locked — "Closed" |
+| League Admin (exempt) | Always actionable |
 
 ### Constraints
-- Maximum 3 teams per age group per club
+- Maximum 3 teams per age group per club (existing `CURRENT` + pending `PENDING` combined)
 - Applications are processed in the order they are received
 - Capacity limits per age group are checked **at approval time**, not at submission time (existing teams from other clubs may still be cancelling)
 
@@ -422,6 +479,32 @@ When the League Admin reviews pending teams, the following prioritisation applie
 2. **`PENDING`** (existing clubs) — considered **first**, in order of submission
 
 This sequencing reflects the policy that existing clubs have priority over new entrants. The system surfaces this clearly in the approval UI.
+
+---
+
+## Club-Initiated Team Changes: Team Variation Request
+
+> **Full specification:** [CR-20 Team Variation Request & Seasonal Capabilities](./planning/CR-20-Team-Variation-Request-And-Seasonal-Club-Capabilities.md)
+
+Once a team has been approved (`CURRENT` status), clubs **cannot directly edit** the team record for fields that affect league integrity (team name, age group, division). However, clubs retain the right to:
+
+1. **Edit team manager details directly** (self-service, no approval): `managerName`, `managerEmail`, `managerPhone` — updated immediately via the My Teams modal.
+
+2. **Submit a Team Variation Request** for everything else:
+   - Team name change
+   - Withdrawal from the season
+   - Reinstatement after withdrawal
+   - Other / general request
+
+**Process:**
+- Club Secretary opens a team from My Teams → scrolls to "Request a Change" section
+- Selects request type, fills current/requested values, adds notes
+- System checks: only one active (`PENDING`) request per team at a time
+- League Admin reviews all variation requests in the **Approvals → Team Variations** tab (same panel as Free Days and Club Applications)
+- On approval: change is applied automatically to the team record (for name changes and withdrawals)
+- On rejection: request closes, club is notified
+
+**This is the canonical path for all club-initiated changes to approved teams.** It ensures all changes have an audit trail and the league retains control of the team register.
 
 ---
 
@@ -639,6 +722,9 @@ WITHDRAWN       — Permanently withdrawn from season
 - Add `AWAITING_CLUB_APPROVAL` and `NEW_CLUB_PENDING_TEAM` to `TeamStatus` enum
 - Add `WAITING_LIST` to `ClubStatus` enum
 - Add `applicationId` to `LMSProTeam` (links team back to its originating application)
+- Add `managerPhone` to `LMSProTeam` (missing from current schema — required for team manager self-service)
+- Add `LMSProTeamVariationRequest` model (see [CR-20](./planning/CR-20-Team-Variation-Request-And-Seasonal-Club-Capabilities.md) §8)
+- Add `TeamVariationRequestType` and `TeamVariationRequestStatus` enums
 - Migration file
 
 ### Phase 2 — Public Form: Max 3 Per Age Group + Team Naming
@@ -667,18 +753,32 @@ WITHDRAWN       — Permanently withdrawn from season
 - Season Clone: extend `duplicateToSeason` to copy Visibility Rules (per unified-timing-architecture Phase 3)
 - Dashboard banner: show upcoming Team Registration, Team Edit, New Club Registration countdowns
 
-### Phase 6 — Email Notifications *(planned, per CR-18)*
+### Phase 6 — Team Variation Request (per CR-20)
+- tRPC router: `teamVariationRequests` — create, cancel, list, approve, reject, bulk
+- Club My Teams modal: editable manager fields (direct save) + "Request a Change" section
+- Admin Approvals panel: new "Team Variations" tab (accordion by club, bulk actions)
+- Auto-apply logic on approval: name change + withdrawal status transition
+- CR-18 email sequences: request received, approved, rejected notifications
+
+### Phase 7 — Action Cards: Add New Teams + Team Continuation (per CR-20)
+- `teams.register` Action Card → "Add New Team" modal, key-date gated
+- `teams.continuation` Action Card → continuation checklist modal, key-date gated
+- Deadline automation: auto-`WITHDRAWN` for unchecked teams at `team-continuation-closes`
+- Club Dashboard `ClubActionCards` refactor: two-section layout (seasonal + always-on)
+- Component card states: open / closing soon / upcoming / closed / always-on
+
+### Phase 8 — Email Notifications *(planned, per CR-18)*
 - Club application received confirmation
 - Email verification link
 - Team naming confirmation
 - Club approval / rejection / waiting list
 - Team approval / waiting list / promotion
 - Season lifecycle notifications: Team Continuation window open, New Team window open, reminders
+- Team Variation Request: received, approved, rejected, auto-withdrawn
 
-### Phase 7 — Season Lifecycle UI *(future)*
+### Phase 9 — Season Lifecycle UI *(future)*
 - Season Clone button with Visibility Rules copy
 - Division Roll Forward trigger
-- Team Continuation confirmation UI for Club Secretaries (`teams.continuation` Action Card)
 - Waiting List promotion queue
 - Dashboard banner: DJFL dates including non-LMSPro reminders (FA FullTime deadlines)
 

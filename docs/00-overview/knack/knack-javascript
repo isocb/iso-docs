@@ -1,0 +1,1099 @@
+
+
+
+//Knack is broken and features that should work (eg add the cities together!!) cant work because apparently there are too many.. and the calculation breaks.
+//This javascript does the mathematics, and applies the submit guardrail at 100.  The final section applies a visibility enhancement for fields that have values.
+
+
+(function () {
+
+
+
+  // ====== CONFIG (edit these only) ======
+  const EDIT_VIEW_IDS = ["view_69"]; // add all your EDIT views here (not the ADD views)
+
+  const ANCHOR_FIELD_CLASS = "field_447"; // Region field wrapper
+  const CITY_TOTAL_FIELD_NAME = "field_380"; // stored number input (City Work Area Total)
+  const TOTAL_SUBMISSION_TESTID = "form-view-equation-input-field_382"; // equation span
+
+  const REQUIRED = 100;
+  const EPSILON = 0.001;
+
+  // Non-city numeric fields to exclude (add if needed)
+  const EXCLUDE_FIELD_NAMES = new Set([
+    CITY_TOTAL_FIELD_NAME,
+    "field_371", "field_372", "field_373", "field_374" // your non-city work areas (update if different)
+  ]);
+
+  // Fields that mean "stop scanning - cities end here"
+  const STOP_AT_FIELD_CLASSES = new Set([
+    "field_380", // City Work Area Total
+    "field_381", // Non City Work Area Total
+    "field_382"  // Total Submission Value (equation)
+  ]);
+  // =====================================
+
+  // Inject compact layout CSS once
+  if (!document.getElementById("tci-city-css")) {
+    const s = document.createElement("style");
+    s.id = "tci-city-css";
+    s.textContent = `
+      .tci-city-row { display:flex; align-items:center; gap:12px; padding-top:6px !important; padding-bottom:6px !important; }
+      .tci-city-row > label { flex:0 0 220px; margin:0 !important; }
+      .tci-city-row input { flex:1 1 auto; }
+      .tci-submit-note { font-size:0.9rem; opacity:0.75; margin-bottom:6px; line-height:1.3; max-width:40ch; }
+    `;
+    document.head.appendChild(s);
+  }
+
+  function isVisible(el) {
+    return !!(el && (el.offsetWidth || el.offsetHeight || el.getClientRects().length));
+  }
+
+  function num(val) {
+    const n = parseFloat(String(val || "").trim().replace(",", "."));
+    return Number.isFinite(n) ? n : 0;
+  }
+
+  let scheduled = false;
+  function schedule() {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(() => {
+      scheduled = false;
+      tick();
+    });
+  }
+
+  function ensureNote(btn, viewId) {
+    let note = btn.parentElement.querySelector(`[data-tci-submit-note="${viewId}"]`);
+    if (!note) {
+      note = document.createElement("div");
+      note.className = "tci-submit-note";
+      note.setAttribute("data-tci-submit-note", viewId);
+      btn.parentElement.insertBefore(note, btn);
+    }
+    return note;
+  }
+
+  function getBlocks(form) {
+    return Array.from(form.querySelectorAll(".kn-input"));
+  }
+
+  function isStopBlock(block) {
+    for (const cls of STOP_AT_FIELD_CLASSES) {
+      if (block.classList.contains(cls)) return true;
+    }
+    return false;
+  }
+
+  function collectCityInputsAfterAnchor(form) {
+    const blocks = getBlocks(form);
+    const anchorIndex = blocks.findIndex(b => b.classList.contains(ANCHOR_FIELD_CLASS));
+    if (anchorIndex < 0) return []; // anchor not found
+
+    const cityInputs = [];
+
+    for (let i = anchorIndex + 1; i < blocks.length; i++) {
+      const block = blocks[i];
+
+      // stop when we hit totals section or submit area
+      if (isStopBlock(block)) break;
+      if (block.querySelector('button[type="submit"]')) break;
+
+      const inp = block.querySelector('input[placeholder="Enter a number"][name^="field_"]');
+      if (!inp) continue;
+
+      if (EXCLUDE_FIELD_NAMES.has(inp.name)) continue;
+
+      // treat as city input
+      block.classList.add("tci-city-row");
+      if (isVisible(inp)) cityInputs.push(inp);
+    }
+
+    return cityInputs;
+  }
+
+  function updateCityTotal(viewId) {
+    const view = document.getElementById(viewId);
+    if (!view) return;
+
+    const form = view.querySelector("form");
+    if (!form) return;
+
+    const cityInputs = collectCityInputsAfterAnchor(form);
+
+    const total = cityInputs.reduce((sum, inp) => sum + num(inp.value), 0);
+    const rounded = Math.round(total * 1000) / 1000;
+
+    const totalInput = form.querySelector(`input[name="${CITY_TOTAL_FIELD_NAME}"]`);
+    if (!totalInput) return;
+
+    const current = num(totalInput.value);
+    if (Math.abs(current - rounded) > EPSILON) {
+      totalInput.value = String(rounded);
+      totalInput.dispatchEvent(new Event("input", { bubbles: true }));
+      totalInput.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+  }
+
+  function guardSubmit(viewId) {
+    const view = document.getElementById(viewId);
+    if (!view) return;
+
+    const btn = view.querySelector('button[type="submit"]');
+    if (!btn) return;
+
+    const totalEl = view.querySelector(`[data-testid="${TOTAL_SUBMISSION_TESTID}"]`);
+    if (!totalEl) return;
+
+    const total = num(totalEl.textContent);
+    const ok = Math.abs(total - REQUIRED) < EPSILON;
+
+    const note = ensureNote(btn, viewId);
+    btn.disabled = !ok;
+    btn.style.opacity = ok ? "1" : "0.5";
+    btn.style.cursor = ok ? "pointer" : "not-allowed";
+    note.textContent = ok
+      ? "Total equals 100%. You can submit this form."
+      : "You can submit once the Total Submission Value equals 100%.";
+  }
+
+  function tick() {
+    for (const id of EDIT_VIEW_IDS) {
+      updateCityTotal(id);
+      guardSubmit(id);
+    }
+  }
+
+  // Recalc on typing
+  document.addEventListener("input", (e) => {
+    if (EDIT_VIEW_IDS.some(id => e.target.closest(`#${id}`))) schedule();
+  }, true);
+
+  // Recalc on re-render / show-hide
+  const container =
+    document.querySelector('[data-testid="page-container"]') ||
+    document.getElementById("root") ||
+    document.body;
+
+  const obs = new MutationObserver(schedule);
+  obs.observe(container, { childList: true, subtree: true });
+
+  schedule();
+  setTimeout(schedule, 500);
+  setTimeout(schedule, 1500);
+})();
+
+//ajust the input for City total so it's like the others
+(function () {
+  const EDIT_VIEW_IDS = ["view_69"]; // add your edit views here
+  const CITY_TOTAL_NAME = "field_380"; // City Work Area Total input field name
+
+  function toNumber(v) {
+    const n = parseFloat(String(v ?? "").trim().replace(",", "."));
+    return Number.isFinite(n) ? n : 0;
+  }
+
+  function ensureCityTotalDisplay(viewId) {
+    const view = document.getElementById(viewId);
+    if (!view) return;
+
+    const form = view.querySelector("form");
+    if (!form) return;
+
+    const wrap = form.querySelector(`.kn-input.${CITY_TOTAL_NAME}`);
+    const input = form.querySelector(`input[name="${CITY_TOTAL_NAME}"]`);
+    if (!wrap || !input) return;
+
+    // 1) Hide the input so it doesn't look editable (keep it in DOM for saving)
+    if (input.style.display !== "none") input.style.display = "none";
+
+    // 2) Create the "equation style" display ONCE
+    let display = wrap.querySelector(`[data-tci-citytotal-display="${viewId}"]`);
+    if (!display) {
+      display = document.createElement("div");
+      display.setAttribute("data-tci-citytotal-display", viewId);
+      display.className = "flex items-center gap-2";
+      display.style.marginTop = "0.25rem";
+
+      display.innerHTML = `
+        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 20 20"
+             aria-hidden="true" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm1 2a1 1 0 000 2h6a1 1 0 100-2H7zm6 7a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-3 3a1 1 0 100 2h.01a1 1 0 100-2H10zm-4 1a1 1 0 011-1h.01a1 1 0 110 2H7a1 1 0 01-1-1zm1-4a1 1 0 100 2h.01a1 1 0 100-2H7zm2 1a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zm4-4a1 1 0 100 2h.01a1 1 0 100-2H13zM9 9a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zM7 8a1 1 0 000 2h.01a1 1 0 000-2H7z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <span data-tci-citytotal-value="${viewId}">0</span>
+      `;
+
+      // Insert right after the label (matches Knack equation layout)
+      const label = wrap.querySelector("label");
+      if (label && label.parentNode) {
+        label.parentNode.insertBefore(display, label.nextSibling);
+      } else {
+        wrap.appendChild(display);
+      }
+    }
+
+    // 3) Update value text (lightweight)
+    const span = wrap.querySelector(`[data-tci-citytotal-value="${viewId}"]`);
+    if (span) span.textContent = String(toNumber(input.value));
+  }
+
+  // Throttle with rAF so we don't spam DOM updates while typing
+  let scheduled = false;
+  function schedule() {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(() => {
+      scheduled = false;
+      EDIT_VIEW_IDS.forEach(ensureCityTotalDisplay);
+    });
+  }
+
+  // Update whenever the user types anywhere in the form
+  document.addEventListener("input", (e) => {
+    if (EDIT_VIEW_IDS.some(id => e.target.closest(`#${id}`))) schedule();
+  }, true);
+
+  document.addEventListener("change", (e) => {
+    if (EDIT_VIEW_IDS.some(id => e.target.closest(`#${id}`))) schedule();
+  }, true);
+
+  // Backstop: run occasionally in case Knack re-renders / conditional visibility changes
+  if (window.__tciCityTotalDisplayInterval) clearInterval(window.__tciCityTotalDisplayInterval);
+  window.__tciCityTotalDisplayInterval = setInterval(schedule, 800);
+
+  // Initial
+  schedule();
+})();
+
+
+
+//colour the background of cities with values to make them more visible.
+
+(function () {
+  const EDIT_VIEW_IDS = ["view_69"]; // same list you already use
+
+  function num(val) {
+    const n = parseFloat(String(val || "").trim().replace(",", "."));
+    return Number.isFinite(n) ? n : 0;
+  }
+
+  function updateCityRowHighlights(viewId) {
+    const view = document.getElementById(viewId);
+    if (!view) return;
+
+    const rows = view.querySelectorAll(".tci-city-row");
+    rows.forEach(row => {
+      const input = row.querySelector('input[name^="field_"]');
+      if (!input) return;
+
+      const hasValue = num(input.value) > 0;
+      row.classList.toggle("has-value", hasValue);
+    });
+  }
+
+  function tick() {
+    EDIT_VIEW_IDS.forEach(updateCityRowHighlights);
+  }
+
+  // React to typing
+  document.addEventListener("input", (e) => {
+    if (EDIT_VIEW_IDS.some(id => e.target.closest(`#${id}`))) tick();
+  }, true);
+
+  // React to show/hide re-renders
+  const container =
+    document.querySelector('[data-testid="page-container"]') ||
+    document.getElementById("root") ||
+    document.body;
+
+  const obs = new MutationObserver(tick);
+  obs.observe(container, { childList: true, subtree: true });
+
+  // Initial
+  setTimeout(tick, 300);
+})();
+
+//Colour the total value to give a red and green visual clue about the status of the data.
+
+(function () {
+  const EDIT_VIEW_IDS = ["view_69"]; // add other edit views here
+  const TOTAL_TESTID = "form-view-equation-input-field_382";
+  const REQUIRED = 100;
+  const EPSILON = 0.001;
+
+  const OK_BG = "rgba(146, 224, 128, 0.25)";     // #92E080 light
+  const BAD_BG = "rgba(220, 38, 24, 0.18)";      // soft red
+  const OK_BORDER = "rgba(146, 224, 128, 0.65)";
+  const BAD_BORDER = "rgba(220, 38, 24, 0.45)";
+
+  function num(text) {
+    const n = parseFloat(String(text || "").trim().replace(",", "."));
+    return Number.isFinite(n) ? n : NaN;
+  }
+
+  function updateTotalStyle(viewId) {
+    const view = document.getElementById(viewId);
+    if (!view) return;
+
+    const totalEl = view.querySelector(`[data-testid="${TOTAL_TESTID}"]`);
+    if (!totalEl) return;
+
+    const block = totalEl.closest(".kn-input") || totalEl.parentElement;
+    if (!block) return;
+
+    const total = num(totalEl.textContent);
+    const ok = Number.isFinite(total) && Math.abs(total - REQUIRED) < EPSILON;
+
+    block.style.backgroundColor = ok ? OK_BG : BAD_BG;
+    block.style.borderRadius = "8px";
+    block.style.paddingLeft = "10px";
+    block.style.paddingRight = "10px";
+    block.style.border = `1px solid ${ok ? OK_BORDER : BAD_BORDER}`;
+  }
+
+  let scheduled = false;
+  function schedule() {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(() => {
+      scheduled = false;
+      EDIT_VIEW_IDS.forEach(updateTotalStyle);
+    });
+  }
+
+  document.addEventListener("input", (e) => {
+    if (EDIT_VIEW_IDS.some(id => e.target.closest(`#${id}`))) schedule();
+  }, true);
+
+  if (window.__tciTotalStyleInterval) clearInterval(window.__tciTotalStyleInterval);
+  window.__tciTotalStyleInterval = setInterval(schedule, 400);
+
+  schedule();
+})();
+
+// Solve the protential problem of the submit button being out of sight because of the number of cities in Utta Pradesh!!
+(function () {
+  // ====== CONFIG ======
+  const EDIT_VIEW_IDS = ["view_69"]; // add more edit-form view ids here
+  const TOTAL_LABEL_TEXT = "Total Submission Value"; // <-- what the user sees
+  const REQUIRED = 100;
+  const EPSILON = 0.001;
+
+  // tints
+  const OK_BG = "rgba(146, 224, 128, 0.22)";   // light #92E080
+  const BAD_BG = "rgba(220, 38, 24, 0.16)";
+  const OK_BORDER = "rgba(146, 224, 128, 0.6)";
+  const BAD_BORDER = "rgba(220, 38, 24, 0.45)";
+
+  // ====== HELPERS ======
+  const norm = (s) => String(s || "").replace(/\s+/g, " ").trim().toLowerCase();
+
+  function toNum(text) {
+    const n = parseFloat(String(text || "").trim().replace(",", "."));
+    return Number.isFinite(n) ? n : NaN;
+  }
+  function isOk(total) {
+    return Number.isFinite(total) && Math.abs(total - REQUIRED) < EPSILON;
+  }
+
+  function findTotalBlockByLabel(view) {
+    const want = norm(TOTAL_LABEL_TEXT);
+
+    // Find a .kn-input whose label text matches "Total Submission Value"
+    const blocks = view.querySelectorAll(".kn-input");
+    for (const b of blocks) {
+      const label = b.querySelector("label .kn-rich-text-renderer, label");
+      const labelText = norm(label ? label.textContent : "");
+      if (labelText === want) return b;
+    }
+    return null;
+  }
+
+  function findEquationSpanWithin(block) {
+    if (!block) return null;
+
+    // Typical equation span: <span data-testid="form-view-equation-input-field_XXX">
+    const span = block.querySelector('span[data-testid^="form-view-equation-input-field_"]');
+    return span || null;
+  }
+
+  function processView(viewId) {
+    const view = document.getElementById(viewId);
+    if (!view) return;
+
+    const form = view.querySelector("form");
+    if (!form) return;
+
+    // 1) Locate the total block by label text (no field id needed)
+    const totalBlock = findTotalBlockByLabel(view);
+    if (!totalBlock) return;
+
+    // 2) Find the equation span inside it
+    const totalSpan = findEquationSpanWithin(totalBlock);
+    if (!totalSpan) return;
+
+    // Read + validate
+    const total = toNum(totalSpan.textContent);
+    const ok = isOk(total);
+
+    // Tint the total block itself
+    totalBlock.style.backgroundColor = ok ? OK_BG : BAD_BG;
+    totalBlock.style.border = `1px solid ${ok ? OK_BORDER : BAD_BORDER}`;
+    totalBlock.style.borderRadius = "8px";
+    totalBlock.style.paddingLeft = "10px";
+    totalBlock.style.paddingRight = "10px";
+
+    // Find submit row (contains Knack submit button)
+    const btn = form.querySelector('button[type="submit"]');
+    if (!btn) return;
+
+    const submitRow = btn.closest(".flex.gap-4") || btn.parentElement;
+    if (!submitRow) return;
+
+    // Panel that will hold note + button, positioned under Total Submission Value block
+    let panel = form.querySelector(`[data-tci-submit-panel="${viewId}"]`);
+    if (!panel) {
+      panel = document.createElement("div");
+      panel.setAttribute("data-tci-submit-panel", viewId);
+      panel.style.borderRadius = "12px";
+      panel.style.padding = "12px";
+      panel.style.marginTop = "10px";
+      panel.style.marginBottom = "12px";
+      panel.style.transition = "background-color 120ms ease, border-color 120ms ease";
+
+      // Insert panel AFTER total block
+      totalBlock.insertAdjacentElement("afterend", panel);
+    }
+
+    // Move the submit row into the panel (so it stays under the total field)
+    if (!panel.contains(submitRow)) panel.appendChild(submitRow);
+
+    // Panel tint
+    panel.style.backgroundColor = ok ? OK_BG : BAD_BG;
+    panel.style.border = `1px solid ${ok ? OK_BORDER : BAD_BORDER}`;
+
+    // Button state (optional: keep your existing guard behaviour)
+    btn.disabled = !ok;
+    btn.style.opacity = ok ? "1" : "0.5";
+    btn.style.cursor = ok ? "pointer" : "not-allowed";
+
+    // Note text (create once if missing)
+    let note = submitRow.querySelector(`[data-tci-submit-note="${viewId}"]`);
+    if (!note) {
+      note = document.createElement("div");
+      note.setAttribute("data-tci-submit-note", viewId);
+      note.style.maxWidth = "44ch";
+      note.style.fontSize = "0.9rem";
+      note.style.opacity = "0.85";
+      note.style.lineHeight = "1.3";
+      note.style.marginRight = "10px";
+      submitRow.insertBefore(note, btn);
+    }
+
+    note.textContent = ok
+      ? "Total equals 100%. You can submit this form."
+      : "You can submit once the Total Submission Value equals 100%.";
+
+    // Make submit row tidy
+    submitRow.style.justifyContent = "flex-end";
+    submitRow.style.alignItems = "center";
+  }
+
+  // ====== SCHEDULER (safe) ======
+  let scheduled = false;
+  function schedule() {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(() => {
+      scheduled = false;
+      EDIT_VIEW_IDS.forEach(processView);
+    });
+  }
+
+  // React to user input and Knack re-rendering
+  document.addEventListener(
+    "input",
+    (e) => {
+      if (EDIT_VIEW_IDS.some((id) => e.target.closest(`#${id}`))) schedule();
+    },
+    true
+  );
+
+  if (window.__tciSubmitPanelInterval_autoTotal) {
+    clearInterval(window.__tciSubmitPanelInterval_autoTotal);
+  }
+  window.__tciSubmitPanelInterval_autoTotal = setInterval(schedule, 600);
+
+  schedule();
+})();
+
+// ===================== DATA ATOMISER ======================================
+// Built by Isoblue.com:  This atomiser turns a wide streadsheet input into a tall dataset for aggregation, pivot tables and reagregation according to clients requirements .  
+// This javascript augments Knack and uses the object API via tokenisation - so is as secure as native knack security alone allows.
+/* ==========================
+   TCI DATA ATOMISER — NEXT-GEN SAFE (NO TOKEN)
+   - Triggers from XHR saves (view_68 create, view_69 edit)
+   - Uses SAME-ORIGIN VIEW API (session cookie auth)
+   - Idempotent: list atoms via view_102, delete, recreate via view_98
+   ========================== */
+
+(function () {
+  const DEBUG = true;
+
+  // Submission views (your app)
+  const CREATE_VIEW = "view_68"; // phase 1 create submission
+  const EDIT_VIEW = "view_69"; // phase 2 edit submission (has all fields we need)
+
+  // Atom views (your app)
+  const ATOM_CREATE_VIEW = "view_98";  // add atom
+  const ATOM_GRID_VIEW = "view_102"; // display atom (table/grid)
+
+  // ✅ Scenes (from your Builder URLs)
+  const SUBMISSION_SCENE = "scene_53"; // view_69 lives here
+  const ATOM_CREATE_SCENE = "scene_74"; // view_98 lives here
+  const ATOM_GRID_SCENE = "scene_78"; // view_102 lives here
+
+  // Details view that contains ALL submission fields (used to read record data).
+  // NOTE: Edit/Add form views return {} via View API GET - only details/grid views work.
+  const SUBMISSION_DETAILS_VIEW = "view_103";
+  const SUBMISSION_DETAILS_SCENE = "scene_79";
+
+  const PENDING_ID_KEY = "atomiser:pendingSubmissionId";
+
+  const SUBMISSION_FTE_FIELD = "field_451";
+
+  const ATOM_FIELDS = {
+    submissionConn: "field_478",
+    valueNum: "field_475",
+    typeText: "field_175",
+    itemText: "field_474",
+    dedupeKey: "field_476",
+    fteValueNum: "field_479",
+  };
+
+  const ATOM_DIMS = {
+    hub: "field_172",
+    period: "field_471",
+    country: "field_472",
+    region: "field_473",
+    city: "field_176",
+    reporter: "field_477",
+  };
+
+  // ====== FIELD MAP ======
+  // Keep your FULL list here exactly as you already have it.
+  const FIELD_MAP = {
+    field_371: { type: "non_city", item: "Platform/Global Support" },
+    field_372: { type: "non_city", item: "Hub Operations" },
+    field_373: { type: "non_city", item: "Sub-national / Regional Support" },
+    field_374: { type: "non_city", item: "National-Level Support" },
+
+    // Cities ( keep your full list exactly for accurate atomisation)
+    field_384: { type: "city", item: "Agra" },
+    field_385: { type: "city", item: "Aligarh" },
+    field_386: { type: "city", item: "Allahabad" },
+    field_387: { type: "city", item: "Amroha" },
+    field_388: { type: "city", item: "Bareilly" },
+    field_389: { type: "city", item: "Begusarai" },
+    field_390: { type: "city", item: "Berhampur" },
+    field_391: { type: "city", item: "Bhagalpur" },
+    field_392: { type: "city", item: "Bhopal" },
+    field_393: { type: "city", item: "Bhubaneswar" },
+    field_394: { type: "city", item: "Bijnor" },
+    field_395: { type: "city", item: "Bokaro" },
+    field_396: { type: "city", item: "Budaun" },
+    field_397: { type: "city", item: "Bulandshahr" },
+    field_398: { type: "city", item: "Cuttack" },
+    field_399: { type: "city", item: "Deoghar" },
+    field_400: { type: "city", item: "Deoria" },
+    field_401: { type: "city", item: "Dewas" },
+    field_402: { type: "city", item: "Dhanbad" },
+    field_403: { type: "city", item: "East Singhbum" },
+    field_404: { type: "city", item: "Etawah" },
+    field_405: { type: "city", item: "Faizabad" },
+    field_406: { type: "city", item: "Farrukhabad" },
+    field_407: { type: "city", item: "Firozabad" },
+    field_408: { type: "city", item: "Gaya" },
+    field_409: { type: "city", item: "Ghaziabad" },
+    field_410: { type: "city", item: "Gorakhpur" },
+    field_411: { type: "city", item: "Gwalior" },
+    field_412: { type: "city", item: "Hapur" },
+    field_413: { type: "city", item: "Hardoi" },
+    field_414: { type: "city", item: "Indore" },
+    field_415: { type: "city", item: "Jabalpur" },
+    field_416: { type: "city", item: "Jalaun" },
+    field_417: { type: "city", item: "Jhansi" },
+    field_418: { type: "city", item: "Kanpur" },
+    field_419: { type: "city", item: "Lucknow" },
+    field_420: { type: "city", item: "Mainpuri" },
+    field_421: { type: "city", item: "Mathura" },
+    field_422: { type: "city", item: "Mau" },
+    field_423: { type: "city", item: "Meerut" },
+    field_424: { type: "city", item: "Moradabad" },
+    field_425: { type: "city", item: "Morena" },
+    field_426: { type: "city", item: "Munger" },
+    field_427: { type: "city", item: "Muzaffarnagar" },
+    field_428: { type: "city", item: "Noida" },
+    field_429: { type: "city", item: "Pashchim Champaran" },
+    field_430: { type: "city", item: "Patna" },
+    field_431: { type: "city", item: "Puri" },
+    field_432: { type: "city", item: "Rampur" },
+    field_433: { type: "city", item: "Ranchi" },
+    field_434: { type: "city", item: "Ratlam" },
+    field_435: { type: "city", item: "Rewa" },
+    field_436: { type: "city", item: "Rohtas" },
+    field_437: { type: "city", item: "Rourkela" },
+    field_438: { type: "city", item: "Sagar" },
+    field_439: { type: "city", item: "Saharanpur" },
+    field_440: { type: "city", item: "Sambhal" },
+    field_441: { type: "city", item: "Satna" },
+    field_442: { type: "city", item: "Shahjahanpur" },
+    field_443: { type: "city", item: "Ujjain" },
+    field_444: { type: "city", item: "Unnao" },
+    field_445: { type: "city", item: "Varanasi" },
+
+    // Cities (second block)
+    field_452: { type: "city", item: "Islamabad" },
+    field_453: { type: "city", item: "Faisalabad" },
+    field_454: { type: "city", item: "Gujranwanla" },
+    field_455: { type: "city", item: "Khanewal" },
+    field_456: { type: "city", item: "Lahore" },
+    field_457: { type: "city", item: "Multan" },
+    field_458: { type: "city", item: "Rawalpindi" },
+    field_459: { type: "city", item: "Hyderabad" },
+    field_460: { type: "city", item: "Karachi Central" },
+    field_461: { type: "city", item: "Karachi East" },
+    field_462: { type: "city", item: "Karachi South" },
+    field_463: { type: "city", item: "Karachi West" },
+    field_464: { type: "city", item: "Keamari" },
+    field_465: { type: "city", item: "Korangi" },
+    field_466: { type: "city", item: "Malir" },
+  };
+
+  const EPSILON = 1e-9;
+  const DELETE_CONCURRENCY = 6;
+  const CREATE_CONCURRENCY = 6;
+
+  function dlog(...args) { if (DEBUG) console.log("[Atomiser]", new Date().toISOString(), ...args); }
+  function derr(...args) { console.error("[Atomiser]", new Date().toISOString(), ...args); }
+
+  function safeSetPending(id) { try { sessionStorage.setItem(PENDING_ID_KEY, id); } catch (_) { } }
+  function safeGetPending() { try { return sessionStorage.getItem(PENDING_ID_KEY); } catch (_) { return null; } }
+  function safeClearPending() { try { sessionStorage.removeItem(PENDING_ID_KEY); } catch (_) { } }
+
+  function toNumber(val) {
+  // Next-Gen sometimes returns objects like { value: "5" } or { raw: "5" }
+  if (val && typeof val === "object") {
+    val = val.value ?? val.raw ?? val.number ?? val.amount ?? val.text ?? "";
+  }
+  const n = typeof val === "number" ? val : parseFloat(String(val).replace(",", "."));
+  return Number.isFinite(n) ? n : 0;
+}
+
+function isPositiveNumber(val) {
+  return toNumber(val) > EPSILON;
+}
+
+  function normaliseConnValue(v) {
+    if (!v) return "";
+    if (typeof v === "string") return v;
+    if (Array.isArray(v)) {
+      const ids = v.map(x => (typeof x === "string" ? x : x?.id)).filter(Boolean);
+      if (!ids.length) return "";
+      return ids.length === 1 ? ids[0] : ids;
+    }
+    if (typeof v === "object" && v.id) return v.id;
+    return "";
+  }
+
+  // -----------------------------
+  // VIEW API (same-origin, no token)
+  // -----------------------------
+  function getScene() {
+    // Most reliable in Live App
+    return (window.Knack && Knack.scene_hash) || "";
+  }
+  async function viewFetch(sceneId, viewId, { method = "GET", recordId = null, body = null } = {}) {
+  if (!sceneId) throw new Error("No sceneId provided to viewFetch");
+  if (!viewId) throw new Error("No viewId provided to viewFetch");
+
+  const pathsToTry = [
+    `/api/v1/pages/${sceneId}/views/${viewId}/records`, // Builder Next (common)
+    `/v1/pages/${sceneId}/views/${viewId}/records`,     // Live app / some builds
+  ];
+
+  const makeUrl = (base) => (recordId ? `${base}/${recordId}` : base);
+
+  const opts = {
+    method,
+    credentials: "same-origin",
+    headers: { "Content-Type": "application/json" },
+  };
+  if (body) opts.body = JSON.stringify(body);
+
+  let lastErr = null;
+
+  for (const base of pathsToTry) {
+    const url = makeUrl(base);
+    if (DEBUG) console.log("[Atomiser]", new Date().toISOString(), "VIEW FETCH", method, url);
+
+    try {
+      const res = await fetch(url, opts);
+      const text = await res.text();
+
+      // If we accidentally hit an HTML page (login/redirect), fail clearly
+      const looksLikeHtml = text && text.trim().startsWith("<");
+      let data = null;
+      if (!looksLikeHtml) {
+        try { data = text ? JSON.parse(text) : null; } catch (_) {}
+      }
+
+      if (!res.ok) {
+        const msg = looksLikeHtml ? text.slice(0, 200) : (data ? JSON.stringify(data) : text);
+        throw new Error(`View API ${res.status} via ${base}: ${msg}`);
+      }
+
+      // Success
+      return data ?? {};
+    } catch (e) {
+      lastErr = e;
+      // try next base
+    }
+  }
+
+  throw lastErr || new Error("ViewFetch failed for all base paths");
+}
+
+function normaliseRecordToFieldMap(res) {
+  // Strategy 0: If res has a records[] array (View API sometimes wraps single-record GETs)
+  if (Array.isArray(res?.records) && res.records.length > 0) {
+    dlog("normalise: using res.records[0]");
+    return normaliseRecordToFieldMap(res.records[0]);
+  }
+
+  const r = res?.record || res || {};
+
+  // Strategy 1: Direct field_### keys (no suffix like _raw)
+  const directFieldKeys = Object.keys(r).filter(k => /^field_\d+$/.test(k));
+  if (directFieldKeys.length > 0) {
+    dlog("normalise: direct field_ keys found:", directFieldKeys.length);
+    return r;
+  }
+
+  // Strategy 2: Knack Next-Gen returns field_###_raw alongside HTML display values
+  //   e.g. field_371: "<span>5</span>", field_371_raw: 5
+  //   The _raw values are what we need for numeric extraction
+  const rawKeys = Object.keys(r).filter(k => /^field_\d+_raw$/.test(k));
+  if (rawKeys.length > 0) {
+    dlog("normalise: _raw keys found, extracting:", rawKeys.length);
+    const out = { id: r.id };
+    for (const rawKey of rawKeys) {
+      const cleanKey = rawKey.replace(/_raw$/, ""); // field_371_raw -> field_371
+      out[cleanKey] = r[rawKey];
+    }
+    return out;
+  }
+
+  // Strategy 3: fields as an array of objects
+  if (Array.isArray(r.fields)) {
+    dlog("normalise: fields array found, length:", r.fields.length);
+    const out = { id: r.id };
+    for (const f of r.fields) {
+      const key = f?.key || f?.field || f?.field_key || f?.name;
+      if (key && /^field_\d+$/.test(key)) out[key] = f.value ?? f.val ?? f.raw ?? f.display ?? "";
+    }
+    return out;
+  }
+
+  // Strategy 4: field_values nested object
+  if (r.field_values && typeof r.field_values === "object") {
+    dlog("normalise: field_values object found");
+    return { id: r.id, ...r.field_values };
+  }
+
+  // Strategy 5: Any keys matching field_### with suffixes (_raw, _formatted, etc.)
+  const anyFieldKeys = Object.keys(r).filter(k => /^field_\d+/.test(k));
+  if (anyFieldKeys.length > 0) {
+    dlog("normalise: mixed field keys found, building map from", anyFieldKeys.length, "keys");
+    const out = { id: r.id };
+    for (const k of anyFieldKeys) {
+      const baseKey = k.replace(/_(raw|formatted|display|html)$/, "");
+      if (/^field_\d+$/.test(baseKey) && !(baseKey in out)) {
+        out[baseKey] = r[baseKey + "_raw"] ?? r[baseKey] ?? "";
+      }
+    }
+    return out;
+  }
+
+  // Fallback: return as-is
+  dlog("normalise: FALLBACK — no field keys found at all. Keys:", Object.keys(r).slice(0, 20));
+  return r;
+}
+
+ async function getSubmissionRecord(submissionId) {
+  // Use the details view (not the edit form view) — form views return {} via GET
+  const res = await viewFetch(SUBMISSION_DETAILS_SCENE, SUBMISSION_DETAILS_VIEW, { method: "GET", recordId: submissionId });
+
+  // ─── CRITICAL DEBUG: log the raw response shape ───
+  dlog("RAW VIEW RESPONSE type:", typeof res);
+  dlog("RAW VIEW RESPONSE top-level keys:", Object.keys(res || {}).slice(0, 30));
+  // Show a sample of actual values to understand the structure
+  const sampleKeys = Object.keys(res || {}).filter(k => k.startsWith("field_")).slice(0, 5);
+  if (sampleKeys.length) {
+    dlog("RAW: top-level field_ keys found!", sampleKeys.map(k => `${k}=${JSON.stringify(res[k])}`));
+  }
+  if (res?.record) {
+    dlog("RAW: res.record keys:", Object.keys(res.record).slice(0, 30));
+  }
+  if (Array.isArray(res?.records)) {
+    dlog("RAW: res.records is array, length:", res.records.length);
+    if (res.records[0]) dlog("RAW: res.records[0] keys:", Object.keys(res.records[0]).slice(0, 20));
+  }
+  if (Array.isArray(res?.fields)) {
+    dlog("RAW: res.fields array, length:", res.fields.length, "sample:", JSON.stringify(res.fields[0]));
+  }
+  // ─── END DEBUG ───
+
+  const flat = normaliseRecordToFieldMap(res);
+
+  // Helpful diagnostics (leave in until it's working)
+  dlog("Submission field keys detected", Object.keys(flat).filter(k => /^field_\d+$/.test(k)).slice(0, 20));
+  dlog("Submission sample values", {
+    field_371: flat.field_371,
+    field_372: flat.field_372,
+    field_384: flat.field_384,
+    field_451: flat.field_451,
+    field_172: flat.field_172
+  });
+
+  return flat;
+}
+
+  async function listAtomsForSubmission(submissionId, page = 1, rowsPerPage = 1000) {
+    const body = {
+      page,
+      rows_per_page: rowsPerPage,
+      filters: [{ field: ATOM_FIELDS.submissionConn, operator: "is", value: submissionId }],
+    };
+    return viewFetch(ATOM_GRID_SCENE, ATOM_GRID_VIEW, { method: "POST", body });
+  }
+
+  async function deleteAtom(atomId) {
+    return viewFetch(ATOM_GRID_SCENE, ATOM_GRID_VIEW, { method: "DELETE", recordId: atomId });
+  }
+
+  async function createAtom(payload) {
+    return viewFetch(ATOM_CREATE_SCENE, ATOM_CREATE_VIEW, { method: "POST", body: payload });
+  }
+
+  async function runWithConcurrency(items, workerFn, concurrency) {
+    const queue = items.slice();
+    const workers = Array.from({ length: Math.max(1, concurrency) }, async () => {
+      while (queue.length) {
+        const item = queue.shift();
+        await workerFn(item);
+      }
+    });
+    await Promise.all(workers);
+  }
+
+  function buildAtomPayloads(submissionId, submissionRecord) {
+    const fteValue = toNumber(submissionRecord[SUBMISSION_FTE_FIELD]);
+
+    const dims = {
+      hub: normaliseConnValue(submissionRecord[ATOM_DIMS.hub]),
+      period: normaliseConnValue(submissionRecord[ATOM_DIMS.period]),
+      country: normaliseConnValue(submissionRecord[ATOM_DIMS.country]),
+      region: normaliseConnValue(submissionRecord[ATOM_DIMS.region]),
+      city: normaliseConnValue(submissionRecord[ATOM_DIMS.city]),
+      reporter: normaliseConnValue(submissionRecord[ATOM_DIMS.reporter]),
+    };
+
+    dlog("Dims parsed", dims);
+
+    const atoms = [];
+    const seen = new Set();
+
+    for (const submissionFieldKey of Object.keys(FIELD_MAP)) {
+      const meta = FIELD_MAP[submissionFieldKey];
+      const rawVal = submissionRecord[submissionFieldKey];
+      if (!isPositiveNumber(rawVal)) continue;
+
+      const value = toNumber(rawVal);
+      const dedupe = `${submissionId}|${meta.type}|${meta.item}`;
+      if (seen.has(dedupe)) continue;
+      seen.add(dedupe);
+
+      atoms.push({
+        [ATOM_FIELDS.submissionConn]: submissionId,
+        [ATOM_FIELDS.typeText]: meta.type,
+        [ATOM_FIELDS.itemText]: meta.item,
+        [ATOM_FIELDS.valueNum]: value,
+        [ATOM_FIELDS.dedupeKey]: dedupe,
+        [ATOM_FIELDS.fteValueNum]: fteValue,
+
+        [ATOM_DIMS.hub]: dims.hub,
+        [ATOM_DIMS.period]: dims.period,
+        [ATOM_DIMS.country]: dims.country,
+        [ATOM_DIMS.region]: dims.region,
+        [ATOM_DIMS.city]: dims.city,
+        [ATOM_DIMS.reporter]: dims.reporter,
+      });
+    }
+
+    return atoms;
+  }
+
+async function getAllAtomsForSubmission(submissionId) {
+  let page = 1;
+  let all = [];
+
+  while (true) {
+    const res = await listAtomsForSubmission(submissionId, page, 1000);
+    const records = res?.records || [];
+    all = all.concat(records);
+
+    // stop when fewer than requested are returned
+    if (!records.length || records.length < 1000) break;
+    page += 1;
+  }
+
+  return all;
+}
+
+  async function atomiseSubmission(submissionId, prefetchedRecord) {
+    dlog("Atomise start", submissionId, prefetchedRecord ? "(has prefetched record from XHR)" : "(will fetch via details view)");
+
+    let submission;
+    if (prefetchedRecord && Object.keys(prefetchedRecord).length > 0) {
+      // Try using the record data captured from the XHR save response
+      const flat = normaliseRecordToFieldMap(prefetchedRecord);
+      const fieldCount = Object.keys(flat).filter(k => /^field_\d+$/.test(k)).length;
+      dlog("Prefetched record normalised, field count:", fieldCount);
+      if (fieldCount > 0) {
+        submission = flat;
+      } else {
+        dlog("⚠️ Prefetched record had 0 fields after normalisation, falling back to details view");
+        submission = await getSubmissionRecord(submissionId);
+      }
+    } else {
+      submission = await getSubmissionRecord(submissionId);
+    }
+    dlog("Submission record ready");
+
+    const atoms = buildAtomPayloads(submissionId, submission);
+    dlog("Atoms built", atoms.length);
+
+    const existing = await getAllAtomsForSubmission(submissionId);
+    dlog("Existing atoms found", existing.length);
+
+    await runWithConcurrency(existing.map(r => r.id), deleteAtom, DELETE_CONCURRENCY);
+    dlog("Delete complete");
+
+    let created = 0;
+    await runWithConcurrency(atoms, async (payload) => { await createAtom(payload); created += 1; }, CREATE_CONCURRENCY);
+    dlog("Create complete", created);
+
+    dlog("✅ Atomisation complete", { created, deleted: existing.length });
+    return { created, deleted: existing.length };
+  }
+
+  // ===============================
+  // XHR SAVE DETECTOR (same logic)
+  // ===============================
+  function extractIdFromUrl(url) {
+    const m = String(url || "").match(/\/views\/view_\d+\/records\/([^/]+)\/?$/);
+    return m ? m[1] : null;
+  }
+  function isAddUrl(url) { return String(url || "").includes(`/views/${CREATE_VIEW}/records`); }
+  function isEditUrl(url) { return String(url || "").includes(`/views/${EDIT_VIEW}/records`); }
+
+  if (!window.__ATOMISER_XHR_WRAPPED__) {
+    window.__ATOMISER_XHR_WRAPPED__ = true;
+
+    const origOpen = XMLHttpRequest.prototype.open;
+    const origSend = XMLHttpRequest.prototype.send;
+
+    XMLHttpRequest.prototype.open = function (method, url) {
+      this.__atom_method = String(method || "").toUpperCase();
+      this.__atom_url = url;
+      return origOpen.apply(this, arguments);
+    };
+
+    XMLHttpRequest.prototype.send = function () {
+      this.addEventListener("loadend", async () => {
+        try {
+          const method = this.__atom_method;
+          const url = this.__atom_url;
+
+          if (!(this.status >= 200 && this.status < 300)) return;
+          if (!["POST", "PUT", "PATCH"].includes(method)) return;
+
+          // Phase 1: create submission -> capture id
+          if (method === "POST" && isAddUrl(url)) {
+            let id = null;
+            try {
+              const data = JSON.parse(this.responseText || "{}");
+              id = data?.record?.id || data?.id || null;
+            } catch (_) { }
+
+            if (id) {
+              dlog("✅ Phase 1 create saved, captured id", id);
+              safeSetPending(id);
+            }
+            return;
+          }
+
+          // Phase 2: edit submission -> atomise
+          // The XHR PUT/PATCH response contains the full saved record — capture it
+          // as a primary data source, with the details view as fallback.
+          if ((method === "PUT" || method === "PATCH") && isEditUrl(url)) {
+            const idFromUrl = extractIdFromUrl(url);
+            const pending = safeGetPending();
+            const submissionId = pending || idFromUrl;
+
+            // Extract saved record from XHR response body
+            let savedRecord = null;
+            try {
+              const responseData = JSON.parse(this.responseText || "{}");
+              savedRecord = responseData?.record || responseData || null;
+              const fieldKeys = Object.keys(savedRecord || {}).filter(k => k.startsWith("field_"));
+              dlog("✅ Phase 2 edit saved, will atomise", {
+                pending, idFromUrl, submissionId,
+                xhrFieldKeys: fieldKeys.length,
+                sampleKeys: fieldKeys.slice(0, 8)
+              });
+            } catch (_) {
+              dlog("⚠️ Could not parse XHR response, will use details view instead");
+            }
+
+            if (!submissionId) return;
+            safeClearPending();
+
+            try {
+              await atomiseSubmission(submissionId, savedRecord);
+            } catch (e) {
+              derr("💥 ATOMISATION FAILED", e);
+            }
+          }
+        } catch (e) {
+          derr("💥 Save detector error", e);
+        }
+      });
+
+      return origSend.apply(this, arguments);
+    };
+
+    dlog("✅ XHR save detector installed", {
+      submission: { CREATE_VIEW, EDIT_VIEW },
+      atoms: { ATOM_CREATE_VIEW, ATOM_GRID_VIEW }
+    });
+  }
+})();
+
+
+

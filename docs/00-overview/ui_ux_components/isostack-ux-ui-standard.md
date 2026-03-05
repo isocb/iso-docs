@@ -399,6 +399,85 @@ must implement the same search + sort control bar.
 
 This unifies:
 
+---
+
+## 7.5 Action Cards (Component-Keyed Capability Cards)
+
+Action Cards are a distinct pattern from table rows and CRUD modals. They surface **time-gated or capability-gated** operations as visual cards on a dashboard.
+
+### 7.5.1 When to Use Action Cards
+
+Use an Action Card (not a navigation link, not a table row) when:
+
+- A capability is only available during a defined time window (Key Date gated)
+- The user needs a clear visual signal about whether an action is currently available
+- The operation is significant enough to warrant its own call-to-action on the dashboard
+
+Action Cards are the correct pattern for:
+
+- Seasonal club registrations ("Register New Teams" — open 16–31 May)
+- Deadline-driven confirmations ("Team Continuation" — open 1–15 May)
+- Time-limited requests ("Request Special Free Day" — open when available)
+
+Action Cards are **not** the correct pattern for:
+
+- Always-on CRUD operations on permanent entities (use table + modal instead)
+- Small utility links (use a standard navigation list)
+- Bulk admin operations (use a dedicated page)
+
+### 7.5.2 Action Card Visual States
+
+Every Action Card must display one of five states, derived from the Unified Timing Architecture (`evaluateComponentVisibility`):
+
+| State | Border / Colour | Badge | User Action |
+|-------|----------------|-------|-------------|
+| **Upcoming** | Grey, no fill | "Opens in X days" | No click (greyed out) |
+| **Open** | Green left border | "Available now" | Click → capability |
+| **Closing Soon** | Amber left border | "Closes in X hours/days" | Urgency — click to act |
+| **Closed** | Grey, no fill | "Closed" | No action; fade/collapse after 7 days |
+| **Always On** | Neutral, no date indicator | None | Always clickable |
+
+Cards may also display contextual progress badges (e.g., "2 of 4 teams confirmed") derived from the current state of the underlying data.
+
+### 7.5.3 Action Card Layout
+
+```
+┌─────────────────────────────────────────────────┐
+│ [colour bar] ┃  [Title]              [State badge] │
+│              ┃  [Short description]               │
+│              ┃  [Context badge if any]   [→ Open] │
+└─────────────────────────────────────────────────┘
+```
+
+Required elements:
+- **Left colour bar** — green (open), amber (closing), grey (not yet / closed)
+- **Title** — the name of the capability (e.g., "Register New Teams")
+- **Description** — one-line description of what the card does
+- **State badge** — always present (top-right)
+- **CTA button** — right-aligned (hidden or disabled when Upcoming/Closed)
+- **Progress badge** (optional) — inline contextual state (e.g., "2 of 4 done")
+
+### 7.5.4 Dashboard Layout: Seasonal vs Always-On Cards
+
+When a dashboard contains both Key-Date-gated Action Cards and always-on capability links:
+
+- **Section 1: Seasonal Actions** — only cards that are in a non-expired time window (upcoming, open, or recently closed)
+- **Section 2: Always Available** — persistent capabilities that are not time-limited
+
+This two-section layout prevents the dashboard from being cluttered with closed/expired cards while ensuring always-available actions are never hidden.
+
+Seasonal cards should be hidden entirely (not shown as "Closed") once they are more than **7 days past the closing date**.
+
+### 7.5.5 Component Key Binding
+
+Each Action Card is bound to a `componentKey` defined in `ComponentDefinition`. The visibility engine evaluates the component key against the current user's roles and the current Key Dates to determine the card state.
+
+League Admins are typically granted exempt-role access to all component keys — they can always see and act on any component regardless of the window.
+
+See [Unified Timing Architecture](../../modules/lmspro/unified-timing-architecture.md) for the full component evaluation model.
+
+---
+
 * Platform Owner screens
 * Tenant Admin screens
 * Module Owner screens
@@ -436,6 +515,62 @@ All CRUD modals share identical layout and behaviour.
 * Click outside closes modal
 * Buttons show loading state when submitting
 * Modal respects module/tenant branding
+
+## 8.3 Request-Flow CRUD Variant
+
+Some entities are **not directly editable** by the user — instead, the user submits a *request*, and an administrator approves or rejects it. This is a common pattern for records where data integrity or governance requires admin oversight.
+
+The canonical example is the **Team Variation Request** in LMSPro: a club secretary cannot directly edit an approved team's name, but can submit a name-change request that flows through an approval workflow.
+
+### When to Use the Request-Flow Variant
+
+Use this variant when:
+- The underlying record is managed by an admin (club cannot directly mutate it)
+- An audit trail of all requested changes is required
+- Changes may be rejected or require capacity checks before approval
+- The entity status is controlled by a higher authority (e.g., league)
+
+### Modal Layout (Request-Flow)
+
+```
+┌ "Team Details: AFC Rovers U9 Blues"        Close ┐
+├──────────────────────────────────────────────────┤
+│  [Read-only fields showing current values]       │
+│                                                  │
+│  ── Self-Service ──────────────────────────────  │
+│  Manager Name    [editable input]                │
+│  Manager Email   [editable input]                │
+│                                                  │
+│  ── Request a Change ─────────────────────────── │
+│  What to change? [Select ▼]                      │
+│  Current value:  AFC Rovers U9 Blues (read-only) │
+│  Requested:      [input]                         │
+│  Reason:         [textarea]                      │
+│                                                  │
+│  [Pending request badge if one exists]           │
+├──────────────────────────────────────────────────┤
+│ [Cancel Request] (if pending)        [Save] [Submit Request] │
+└──────────────────────────────────────────────────┘
+```
+
+### Rules for Request-Flow Modals
+
+* Self-service fields (directly editable) and request fields must be visually separated with a labelled divider
+* If a pending request already exists for this entity, **hide the request form** and show the pending request status with a "Cancel Request" option
+* "Submit Request" and "Save" are separate buttons — "Save" persists self-service changes; "Submit Request" creates the variation record
+* Approved requests should be shown in the modal as a read-only history section (collapsed by default)
+* Read-only users (CR-19) see the modal in full read-only mode — the request section is hidden
+
+### Admin-Side Approval Pattern
+
+All request-flow entities have a corresponding **Approvals panel** on the admin side:
+- Grouped by parent entity (e.g., by club)
+- Accordion layout with bulk action bar
+- Row click → standard CRUD modal with approve / reject controls
+- Approve action auto-applies the requested change to the underlying record (where applicable)
+- Reject action closes the request without changing the record
+
+This mirrors the pattern used for Club Applications, Free Day Requests, and Special Free Day Applications throughout LMSPro.
 
 ---
 
