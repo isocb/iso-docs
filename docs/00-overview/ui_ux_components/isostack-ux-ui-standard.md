@@ -574,6 +574,121 @@ This mirrors the pattern used for Club Applications, Free Day Requests, and Spec
 
 ---
 
+## 8.4 Bulk Approval / Confirmation Pattern (Accordion + Checkbox)
+
+When a user needs to review, approve, reject, or confirm **multiple items** at once — grouped by a parent entity — use the **accordion + per-row checkbox + bulk action bar** pattern. This is the IsoStack canonical standard for all multi-item approval and confirmation UIs.
+
+**Reference implementation:** `src/modules/lmspro/components/dashboard/SpecialFreeDaysManage.tsx`
+
+### When to Use
+
+Use this pattern when:
+- There are multiple items (5+) that each require the same decision (approve / reject / confirm)
+- Items belong to parent groupings (e.g., club → teams; league → clubs; competition → entries)
+- Users expect to process many items quickly (bulk actions reduce friction)
+- An inline rejection/note workflow is needed before bulk-rejecting
+
+### Structure
+
+#### Outer Container: Accordion
+```
+<Accordion variant="separated">
+  <Accordion.Item value="clubId_1">
+    <Accordion.Control>
+      Club Name — 3 pending items   <Badge color="orange">3</Badge>
+    </Accordion.Control>
+    <Accordion.Panel>
+      [Bulk Action Bar]
+      [Item Rows]
+    </Accordion.Panel>
+  </Accordion.Item>
+  ...
+</Accordion>
+```
+- One `Accordion.Item` per grouping entity (club, competition, etc.)
+- The control label includes the entity name and a count badge for pending items
+- Collapsed by default; expand on user click
+
+#### Bulk Action Bar
+```
+<Paper withBorder p="xs" mb="sm">
+  <Group justify="space-between">
+    <Checkbox
+      checked={allPendingSelected}
+      indeterminate={someSelected && !allPendingSelected}
+      onChange={toggleAllPending}
+      label={`${selPendingCount} selected`}
+    />
+    <Group gap="xs">
+      <Button size="xs" color="green"  onClick={handleBulkApprove}>
+        Approve {selPendingCount > 0 ? selPendingCount : ''}
+      </Button>
+      <Button size="xs" color="red" variant="outline" onClick={() => setRejectOpen(true)}>
+        Reject {selPendingCount > 0 ? selPendingCount : ''}
+      </Button>
+    </Group>
+  </Group>
+  <Collapse in={rejectOpen}>
+    <Textarea placeholder="Rejection reason" mt="xs" />
+    <Group mt="xs">
+      <Button size="xs" color="red" onClick={handleBulkReject}>Confirm Reject</Button>
+      <Button size="xs" variant="subtle" onClick={() => setRejectOpen(false)}>Cancel</Button>
+    </Group>
+  </Collapse>
+</Paper>
+```
+- **Master checkbox** uses the MUI-style `indeterminate` state when a partial selection exists
+- `selPendingCount` dynamically updates the button labels ("Approve 3", "Reject 2")
+- **Reject flow** expands inline (via `Collapse`) to capture rejection notes before confirming — never routes to a separate modal
+- Buttons are disabled while any mutation is pending (`isBulkMutating`)
+
+#### Per-Row Checkbox
+```
+<Paper
+  p="xs" mb="xs" withBorder
+  bg={isSelected ? 'blue.0' : undefined}
+>
+  <Group>
+    <Checkbox
+      checked={isSelected}
+      onChange={() => toggleSelection(groupId, itemId)}
+    />
+    <div>...</div>   {/* item details */}
+  </Group>
+</Paper>
+```
+- `bg="blue.0"` highlight when the row is selected — provides immediate visual feedback
+- Each row checkbox operates independently of the master checkbox
+
+### State Shape (per group)
+```typescript
+const [selections, setSelections] = useState<Map<string, Set<string>>>(new Map());
+// Key = groupId (e.g., clubId), Value = Set of selected itemIds
+
+const toggleSelection = (groupId: string, itemId: string) => { ... };
+const toggleAllPending = (groupId: string, pendingItems: Item[]) => { ... };
+const allPendingSelected = pendingItems.every(i => selections.get(groupId)?.has(i.id));
+const indeterminate = !allPendingSelected && pendingItems.some(i => selections.get(groupId)?.has(i.id));
+```
+
+### Autosave Variant (Confirmation UIs)
+For confirmation-only UIs (no approve/reject, just "confirm" or "withdraw"), such as **Team Continuation**:
+- Each row checkbox tick is **autosaved immediately** via a mutation — no submit button needed
+- The bulk action bar retains "Confirm All" and "Withdraw All" buttons (with inline confirm prompt for "Withdraw All")
+- Progress label updates live: "3 of 5 teams confirmed"
+- Formal completion is acknowledged separately via the Key Date `requiresConfirmation` mechanism (see §7.5 and CR-20 §5), not by a submit button in this panel
+
+### Rules
+1. **Always group by a parent entity** — do not show a flat list of items without grouping
+2. **Indeterminate master checkbox** — must reflect partial selection state correctly
+3. **Reject/withdraw inline** — capture notes via `Collapse` within the bulk action bar, never a separate modal
+4. **Button labels are contextual** — show item count when > 0 items are selected
+5. **Highlight selected rows** with `bg="blue.0"`
+6. **Disable action buttons** while any mutation is pending (`disabled={isBulkMutating}`)
+7. **Do not combine approve/reject buttons in the same row** — row-level decisions go in a single-item detail modal; the bulk bar is for bulk only
+
+---
+
 # 9. Child Page Rules
 
 Used for advanced or hierarchical entities.

@@ -315,42 +315,77 @@ This is the first action in the seasonal cycle from the club's perspective, and 
 | Before `team-continuation-opens` | "Team Continuation" — grey, countdown |
 | Window open | "Team Continuation" — amber/green, "Action required" |
 | Partial completion | "Team Continuation" — amber, "X of Y confirmed" |
-| Fully confirmed | "Team Continuation" — green, "All teams confirmed ✓" |
+| Fully confirmed + Key Date marked complete | "Team Continuation" — green, "All teams confirmed ✓" |
 | After `team-continuation-closes` | "Team Continuation" — grey, locked |
 
-### Club Secretary Action Flow
+### Club Secretary Action Flow: Per-Team Autosave + Bulk Controls
 
-1. Action Card visible on Club Dashboard during window
-2. Click → opens dedicated "Team Continuation" page or modal (modal preferred for smaller clubs)
-3. Displays a list of all the club's `CURRENT` teams from the **current** season
-4. Each row has:
-   - Team name, age group (read-only)
-   - A checkbox: **"Continuing next season"** (default: unchecked)
-   - A note field (optional): "If not continuing, you may add a reason (optional)"
-5. A **"Confirm All & Submit"** button at the bottom
-6. Bulk action: "Tick All / Untick All"
+This UI follows the same **individual/bulk checkbox pattern** implemented in the League Admin's Special Free Days approval panel (`SpecialFreeDaysManage`). That pattern is the IsoStack standard for multi-row bulk action UIs and is documented in the UX/UI Standard (Section 8.4).
 
-### Status Transitions on Submission
+**The flow:**
+
+1. Action Card visible and actionable on Club Dashboard during window
+2. Click → opens Team Continuation modal (or page for clubs with many teams)
+3. Modal shows all the club's `CURRENT` teams for the new season
+4. **Each team row has a checkbox** — checked = "Continuing". Each tick is **persisted immediately** (autosave) — no need to save all at once. The club can return and adjust until the deadline.
+5. A **Bulk Action Bar** appears above the team list:
+   ```
+   ┌──────────────────────────────────────────────────────────────────┐
+   │ ☑ Select All   3 of 5 confirmed                                  │
+   │                           [✓ Confirm All] [✗ Withdraw All]      │
+   └──────────────────────────────────────────────────────────────────┘
+   ```
+   - **"Confirm All"** — ticks all unchecked teams and autosaves
+   - **"Withdraw All"** — unticks all teams (with a confirm prompt: "Are you sure? Unticked teams will be marked as withdrawn at the deadline.")
+   - Individual checkbox ticks work as per-row toggles
+6. Progress is visible on the Action Card in real time: "3 of 5 teams confirmed"
+
+### Formal Completion Acknowledgement: Key Date Confirmation
+
+Once the club is happy with their selections, they formally acknowledge completion using the **Key Date Completion** mechanism — the `requiresConfirmation` + `KeyDateConfirmation` system already built in the Key Dates infrastructure.
+
+The `team-continuation-closes` Key Date is configured by the League Admin with:
+- `requiresConfirmation: true`
+- `confirmationPrompt`: e.g. *"Confirm all team continuation selections are final"*
+
+This causes the **Club Key Dates panel** on the dashboard to show:
+- The "Mark as complete" button (orange, compact) next to the key date
+- On click: creates a `KeyDateConfirmation` record for the club
+- The Action Card updates to the fully-confirmed green state
+- The key date row shows: "Confirmed [date] by [name]"
+
+This is **not** a prerequisite for the per-team autosaves to take effect — all checkbox ticks are already persisted. The completion checkbox is the club's formal declaration that they have finished reviewing, which:
+- Signals to the league that this club is done (compliance visibility)
+- Satisfies the audit requirement
+- Prevents accidental last-minute changes
+
+> **No new infrastructure needed.** The `KeyDateConfirmation` model, `keyDateConfirmations.confirm` tRPC mutation, and the `ClubKeyDatesPanel` "Mark as complete" UI all already exist. The League Admin simply configures the `team-continuation-closes` Key Date with `requiresConfirmation: true` and an appropriate `confirmationPrompt`.
+
+### Status Transitions
 
 | Club Action | Team Status (new season record) |
 |------------|--------------------------------|
-| ✅ Checked "Continuing" | Remains / becomes `CURRENT` in new season |
-| ❌ Unchecked (deadline passed) | Automatically → `WITHDRAWN` |
+| ✅ Checkbox ticked "Continuing" | Remains / becomes `CURRENT` in new season |
+| ❌ Unticked at deadline | Automatically → `WITHDRAWN` |
 
 ### Deadline Automation (System)
 
-On the `team-continuation-closes` Key Date, a scheduled job (or a triggered check on next admin access):
-1. Finds all teams for clubs that have **not submitted continuation** (or submitted but left unchecked)
-2. Sets those teams to `WITHDRAWN` status
-3. Logs an audit entry per team
-4. Triggers email to the club secretary (CR-18 sequence)
+On `team-continuation-closes`, a scheduled job (or triggered check on next admin access):
+1. Finds all teams for clubs that have unchecked or unresponded teams
+2. Sets those team records to `WITHDRAWN` status in the new season
+3. Writes an audit log entry per team
+4. Triggers CR-18 email: "Teams not confirmed — marked as withdrawn" to Club Secretary
+
+> Clubs that have used the Key Date completion checkbox are still subject to the deadline rule — any unchecked teams are withdrawn regardless. Completion acknowledgement means "I have reviewed all teams", not "all my teams are continuing".
 
 ### League Admin Visibility
 
-The team continuation status per club is visible in a read-only panel in the League Admin > Teams view:
-- Shows how many clubs have responded
-- Which clubs are outstanding (highlighted)
-- League Admin can manually override `WITHDRAWN` → `CURRENT` after deadline
+- **Continuation compliance panel** (League Admin → Teams → Continuation tab):
+  - Clubs fully confirmed (green ✓)
+  - Clubs with partial responses (amber — X of Y ticked)
+  - Clubs with no response (red — outstanding)
+  - Clubs that have ticked the Key Date completion checkbox (ticked icon)
+- Post-deadline: list of all auto-withdrawn teams, with individual override capability per team
 
 ---
 
@@ -531,12 +566,12 @@ ALTER TABLE "lmspro"."lmspro_teams"
 
 | # | Question | Status |
 |---|----------|--------|
-| 1 | Should a club be able to have more than one pending variation request per team (e.g., a name change AND a withdrawal)? | **Decision needed** — suggest: one active request per type per team |
+| 1 | Should a club be able to have more than one pending variation request per team (e.g., a name change AND a withdrawal)? | **RESOLVED:** One active request per *type* per team. A club may have a `NAME_CHANGE` and a `WITHDRAWAL` pending simultaneously (different types), but not two `NAME_CHANGE` requests. The `create` mutation checks for an existing `PENDING` request of the same type before allowing submission. **Note:** team continuation/roll-forward is NOT a variation request — it is a separate key-date-linked process and does not require league approval. |
 | 2 | Should `AGE_GROUP_CHANGE` require a specific capacity check at submission time or only at approval? | Suggest: approval time only (matches the existing team registration policy) |
-| 3 | Should `WITHDRAWAL` requests set the team status to `PENDING_WITHDRAWAL` before approval, or only change on league approval? | **Decision needed** — suggest: flag on the team record (`pendingWithdrawal: Boolean`) for visibility without premature status change |
+| 3 | Should `WITHDRAWAL` requests set the team status to `PENDING_WITHDRAWAL` before approval, or only change on league approval? | **RESOLVED:** No extra status or flag needed. The team status remains unchanged (e.g. `CURRENT`) while the request is pending. The `PENDING` variation request record itself is the source of truth and the visibility mechanism — it surfaces in the Approvals panel and as a badge on the club's team row. No `pendingWithdrawal` flag required, which keeps the data model and team status machine clean. |
 | 4 | For the Team Continuation flow: should this operate against the **current season** (the club ticking off their teams) or against a **new season record**? | **Resolved in season lifecycle doc** — against the new season record (teams are cloned into new season on Stage 1; continuation confirms they should be `CURRENT` in that new season record) |
 | 5 | Should the League Admin see a club's pending variation requests inline in the Teams tab, or only in the dedicated Approvals panel? | Suggest: both — a badge on the club's team row in the admin teams table, plus the dedicated panel |
-| 6 | Should team continuation submission be atomic (all teams submitted at once) or can it be done team-by-team? | Suggest: save state per-team as the club ticks, with a final "Submit" button that locks the form |
+| 6 | Should team continuation submission be atomic (all teams submitted at once) or can it be done team-by-team? | **RESOLVED:** Per-team autosave. Each checkbox tick is persisted immediately (no submit button required for individual saves). Formal completion is acknowledged via the Key Date `requiresConfirmation` checkbox on the `team-continuation-closes` Key Date — clicking "Mark as complete" in `ClubKeyDatesPanel` creates a `KeyDateConfirmation` record. No new infrastructure needed — the League Admin configures the Key Date with `requiresConfirmation: true` and an appropriate `confirmationPrompt`. |
 
 ---
 
