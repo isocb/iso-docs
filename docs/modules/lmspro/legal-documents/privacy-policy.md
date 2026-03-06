@@ -330,6 +330,3 @@ Product Terms
 
 This allows you to launch future products **without rewriting legal documents**.
 
----
-
-If you'd like, I can also create a **very clean Cookie Policy and Terms of Use page** that will match the tone of the privacy policy and pilot agreement you now have.
