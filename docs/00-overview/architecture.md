@@ -18,8 +18,10 @@ IsoStack is a multi-tenant, modular SaaS foundation built on:
 - **Prisma 5.x** ORM
 - **Neon PostgreSQL (multi-schema)**
 - **NextAuth v5** (magic link)
-- **Cloudflare R2** (optional)
+- **Cloudflare R2** (optional file storage)
 - **Resend** (email delivery)
+- **Upstash Redis** (rate limiting, account lock tracking)
+- **Cloudflare Turnstile** (bot/spam protection on public forms)
 
 This document is the single source of truth for IsoStack Core.
 
@@ -418,9 +420,112 @@ IsoStack Core provides:
 * Cascading configuration via Platform → Organisation → Module
 * A universal search & list control model with fuzzy search
 * Strong security through RLS and audited impersonation
+* Rate limiting and bot protection via Upstash Redis and Cloudflare Turnstile
 * A stable base for AI-assisted, pattern-driven development
 
 All modules and future enhancements must align with this architecture.
+
+---
+
+# 14. Infrastructure Services
+
+IsoStack uses two external services for security hardening. Both are optional in local development but **required in all deployed environments**.
+
+---
+
+## 14.1 Upstash Redis — Rate Limiting
+
+**Purpose:** Protect every endpoint from brute-force attacks, accidental loops, API abuse, and multi-tenant noisy-neighbour problems.
+
+**Why Redis:** Rate limiting requires atomic counters with millisecond precision and short-lived expiry windows. Postgres is too slow and expensive for this. In-memory counters don't work across serverless regions. Upstash Redis is the industry-standard choice for serverless rate limiting.
+
+**Implementation files:**
+
+| File | Purpose |
+|------|---------|
+| `src/lib/rate-limit.ts` | Upstash limiters (auth, signup, API, sensitive ops, global DDoS) |
+| `src/lib/rate-limit-middleware.ts` | `withRateLimit()` middleware, `checkAccountLock()`, `trackFailedLogin()`, `resetFailedLogins()` |
+
+**Limiters defined:**
+
+| Limiter | Limit | Window | Applies to |
+|---------|-------|--------|-----------|
+| `authRateLimiter` | 5 | 1 min | Sign-in, credentials callback |
+| `signupRateLimiter` | 3 | 1 hour | New account creation |
+| `apiRateLimiter` | 100 | 1 min | All tRPC requests (per IP) |
+| `sensitiveRateLimiter` | 20 | 1 hour | Password reset, forgot password |
+| `globalDDoSLimiter` | 500 | 1 min | Global catch-all per IP |
+
+**Environment variables:**
+
+| Variable | Visibility | Purpose |
+|----------|-----------|---------|
+| `UPSTASH_REDIS_REST_URL` | Server-only | Upstash REST endpoint URL |
+| `UPSTASH_REDIS_REST_TOKEN` | Server-only | Upstash REST API token |
+
+**Per-environment guidance:**
+- Each environment (Dev, TechTest, Staging, Production) should have its own Upstash database to prevent rate limit state bleeding between environments
+- Free tier at [console.upstash.com](https://console.upstash.com) supports multiple databases
+- Local dev: use real Upstash credentials (free tier), or set `UPSTASH_REDIS_REST_URL` to a localhost address to auto-disable rate limiting via the guard in `rate-limit.ts`
+
+**Current status (as of March 2026):**
+- ✅ Infrastructure fully built
+- ✅ Env vars present in all Render environments
+- ❌ `withRateLimit()` not yet wired into request paths
+- See `docs/BETA-TODOs/rate-limiting.md` in isostack-bedrock for wiring instructions
+
+---
+
+## 14.2 Cloudflare Turnstile — Bot / Spam Protection
+
+**Purpose:** Protect public-facing forms (no auth required) from bots, spam submissions, and automated abuse.
+
+**Why Turnstile:** Unlike reCAPTCHA (which requires user interaction and sells data) or hCaptcha, Cloudflare Turnstile is free, privacy-respecting, and typically invisible to legitimate users. It validates browser behaviour and signals without annoying CAPTCHAs.
+
+**Where it's used:**
+
+| Form | Route | Notes |
+|------|-------|-------|
+| Club registration (public) | `/register/club` | Step 4, before submit |
+| Club registration (embed) | `/embed/register/club` | Step 5, before submit |
+
+All future public forms (no authentication required) must include a Turnstile widget.
+
+**Implementation files:**
+
+| File | Purpose |
+|------|---------|
+| `src/lib/turnstile.ts` | Server-side token verification via Cloudflare siteverify API |
+| `@marsidev/react-turnstile` | Client-side widget (npm package) |
+
+**Server-side verification logic (`src/lib/turnstile.ts`):**
+- Calls `https://challenges.cloudflare.com/turnstile/v0/siteverify`
+- If `TURNSTILE_SECRET_KEY` is unset and `NODE_ENV !== 'production'`: returns `true` (graceful dev skip)
+- If `TURNSTILE_SECRET_KEY` is unset in production: returns `false` and logs an error
+- Any tRPC mutation receiving a `captchaToken` must call `verifyTurnstileToken()` before processing
+
+**Environment variables:**
+
+| Variable | Visibility | Purpose |
+|----------|-----------|---------|
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Public (browser) | Site key from Cloudflare dashboard — safe to expose |
+| `TURNSTILE_SECRET_KEY` | Server-only | Secret key — never expose to client |
+
+**Per-environment key setup:**
+Cloudflare validates the site key against the domain it's served from. You must create a separate Turnstile site per environment tier:
+
+| Environment | Cloudflare site | Hostnames to register |
+|------------|----------------|----------------------|
+| TechTest + Staging | Site 1 | `techtest.yourdomain.com`, `staging.yourdomain.com` |
+| Production | Site 2 | `app.yourdomain.com` (and any aliases) |
+
+Using the same key across all environments will cause Turnstile to reject challenges on domains not registered for that site key.
+
+**Local development:** Use Cloudflare's official always-pass test keys:
+- Site key: `1x00000000000000000000AA`
+- Secret key: `1x0000000000000000000000000000000AA`
+
+These keys always return a valid result and are documented by Cloudflare for local testing.
 
   `
 
