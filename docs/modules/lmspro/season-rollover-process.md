@@ -145,20 +145,20 @@ continuing = false  → continuingNextSeason = false,  status = WITHDRAWN
 continuing = null   → continuingNextSeason = null,   status = CURRENT  (reversal)
 ```
 
-**Known UI bug — "Confirm All" disabled when all teams are withdrawn:**  
-`allResponded = (confirmed + withdrawn) === total` — this is `true` even when all teams are withdrawn.  
-The "Confirm All" button is `disabled={stats.allResponded}`, meaning if a club has accidentally withdrawn all teams (or data was imported with all `WITHDRAWN`), the "Confirm All" button is greyed out and the club cannot reverse it in bulk.
+**~~Known UI bug~~ Fixed (April 2026) — "Confirm All" disabled when all teams are withdrawn:**  
+`allResponded = (confirmed + withdrawn) === total` — this was `true` even when all teams were withdrawn.  
+The "Confirm All" button was `disabled={stats.allResponded}`, meaning if a club had accidentally withdrawn all teams (or data was imported with all `WITHDRAWN`), the "Confirm All" button was greyed out and the club could not reverse it in bulk.
 
-**Fix needed:**
+**Fix applied in `TeamContinuationModal.tsx` (commit `735c506`):**
 ```typescript
-// Current (wrong — disables even when all teams are withdrawn)
+// Was (wrong — disabled even when all teams are withdrawn)
 disabled={stats.allResponded || bulkSaving}
 
-// Correct — only disable when all teams are confirmed as CONTINUING
+// Fixed — only disables when all teams are already confirmed as CONTINUING
 disabled={stats.confirmed === stats.total || bulkSaving}
 ```
 
-Individual checkboxes still work (club can tick each team one by one), but bulk reversal is blocked.
+Individual checkboxes were always functional; the fix restores bulk reversal when all teams are in the withdrawn state.
 
 ---
 
@@ -323,8 +323,8 @@ League approves teams → season goes ACTIVE
 
 When returning to this work area, the priority order is:
 
-1. **Fix `TeamContinuationModal` "Confirm All" bug** (small, immediate)  
-   Change `disabled={stats.allResponded}` → `disabled={stats.confirmed === stats.total}`
+1. **~~Fix `TeamContinuationModal` "Confirm All" bug~~** ✅ Fixed April 2026 (commit `735c506`)  
+   Changed `disabled={stats.allResponded}` → `disabled={stats.confirmed === stats.total}`
 
 2. **Decide on Option A/B/C for continuation → roll-forward integration**  
    Recommend Option A. Update `rollForwardAgeGroups` to only promote `continuingNextSeason = true` teams and add a pre-flight warning about unresponded/withdrawn teams.
