@@ -7,6 +7,7 @@
 **Authors:** IsoStack / DJFL  
 **Related Docs:**
 - [Unified Timing Architecture](./unified-timing-architecture.md) — Key Dates, Visibility Rules, Action Card gating
+- [Season Rollover Process](./season-rollover-process.md) — developer reference: implementation status, gaps, and work threads for the rollover sequence
 - [CR-18 Email Notifications](./planning/CR-18-Email-Notifications-System-Development-Plan.md) — email trigger points
 - [DJFL Dates 2026](./DJFL%20Dates%202026.csv) — source dates for Key Date configuration
 
@@ -73,28 +74,36 @@ Key Dates have three functional types:
                                │
                                ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│  STAGE 1: Season Clone & Preparation                    [Admin trigger ~May] │
-│  League Admin creates next season by cloning the current one                │
+│  STAGE 1: Season Preparation                            [Admin trigger ~May] │
+│  SCENARIO A (Steady State): League Admin clones the current season           │
+│  SCENARIO B (Bootstrap / First Use): Admin creates a blank season and        │
+│    imports existing club/team data via CSV                                   │
+│  Both paths produce an IN_PREPARATION season ready for continuation          │
+│  See: Season Rollover Process doc for full bootstrap detail                 │
 └──────────────────────────────┬──────────────────────────────────────────────┘
                                │
                                ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│  STAGE 2: Division Roll Forward                         [Admin trigger ~May] │
-│  Age groups advance (U7→U8, U8→U9 ... U12→U13 archived)                    │
-│  All team age groups are updated to match                                   │
-└──────────────────────────────┬──────────────────────────────────────────────┘
-                               │
-                               ▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│  STAGE 3: Existing Club Team Continuation           [1 May – 15 May]        │
+│  STAGE 2: Existing Club Team Continuation           [1 May – 15 May]        │
 │  Clubs confirm which existing teams are continuing into the new season      │
 │  Key Date slug: team-continuation-opens / team-continuation-closes          │
+│  ⚠️  Must complete BEFORE Roll Forward (Stage 3) runs                       │
+└──────────────────────────────┬──────────────────────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  STAGE 3: Division Roll Forward                         [Admin trigger ~May] │
+│  Age groups advance (U7→U8, U8→U9 ... U12→U13 archived)                    │
+│  Only CONFIRMED (continuingNextSeason = true) teams are promoted            │
+│  WITHDRAWN teams are excluded from roll forward                             │
+│  ⚠️  Partial implementation — see Season Rollover Process doc               │
 └──────────────────────────────┬──────────────────────────────────────────────┘
                                │
                                ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │  STAGE 4: Existing Club New Teams & Under 7s        [16 May – 31 May]       │
 │  Existing clubs exclusively apply to add new teams + new U7 intake          │
+│  New teams added to ROLLED FORWARD age groups (not pre-roll groups)         │
 │  Key Date slug: team-registration-opens / team-registration-closes          │
 │  (Action Card: teams.register — only visible to existing clubs)             │
 └──────────────────────────────┬──────────────────────────────────────────────┘
@@ -143,12 +152,19 @@ Key Dates have three functional types:
 
 ---
 
-## Stage 1: Season Clone
+## Stage 1: Season Preparation
 
-### Trigger
-League Admin manually initiates from the Seasons management page.
+> **Developer reference:** See [Season Rollover Process](./season-rollover-process.md) for implementation status, the bootstrap path detail, and outstanding work items.
 
-### What Happens
+### Two Paths to the Same Outcome
+
+**Scenario A — Steady-State (Clone):** Used when the league already has a previous season in LMSPro. League Admin clones the current season from the Seasons management page.
+
+**Scenario B — Bootstrap (Blank + Import):** Used when a league is new to LMSPro and has no previous LMSPro season. Admin creates a blank season, then imports existing club and team data via CSV. The result is an `IN_PREPARATION` season in the same state as a clone. *(Blank season creation UI not yet built — see rollover doc.)*
+
+Both paths produce an `IN_PREPARATION` season. The continuation and roll-forward steps (Stages 2–3) operate identically regardless of which path was used.
+
+### What Clone Does
 The system creates an **exact copy** of the current season as the working data for the next season. The clone includes:
 
 | Data Copied | Notes |
@@ -175,10 +191,18 @@ A new `LMSProSeason` record with `isCurrent: false`. The original season remains
 
 ---
 
-## Stage 2: Division Roll Forward
+## Stage 2: Existing Club — Team Continuation
+
+> **Sequence note:** Continuation (Stage 2) must complete **before** Roll Forward (Stage 3) runs. The roll-forward only promotes teams with `continuingNextSeason = true`. Running roll-forward before clubs have responded means all teams get promoted regardless of their continuation intent.
+
+See the [full Stage 2 detail](#stage-3-existing-club--team-continuation-confirmation) below. *(Heading retained as Stage 3 in the detailed section for historical continuity — will be reconciled in a future doc revision.)*
+
+---
+
+## Stage 3: Division Roll Forward
 
 ### Trigger
-League Admin triggers "Division Roll Forward" from the Season management page, **on the cloned season**.
+League Admin triggers "Roll Forward Age Groups" from the Season Detail page, **on the `IN_PREPARATION` season**, after the continuation window (Stage 2) has closed.
 
 ### Age Group Progression
 
@@ -198,14 +222,21 @@ All age groups advance by one year. The boundary conditions:
 > **Note:** The exact upper age boundary is configurable per league. DJFL's upper limit is U13.
 
 ### Team Age Group Update
-Every team whose age group was, e.g., U9 is automatically reassigned to U10. This is applied across all clubs simultaneously. The team record is updated; the sequential `teamNumber` does not change.
+Teams with `continuingNextSeason = true` are automatically reassigned to the next age group (e.g., U9 → U10), across all clubs simultaneously. The team record is updated; the sequential `teamNumber` does not change.
+
+> **⚠️ Known implementation gap:** The current `rollForwardAgeGroups` procedure promotes **all** teams regardless of `continuingNextSeason`. This needs to be updated to respect the continuation flag. See [Season Rollover Process](./season-rollover-process.md) — Work Item 2.
+
+### WITHDRAWN Teams
+Teams with `continuingNextSeason = false` (status `WITHDRAWN`) should **not** be promoted. They remain in the system but are excluded from the rolled-forward season's active roster. The League Admin can review and manually override any team's status after roll-forward if needed.
 
 ### Division (AGG) Re-allocation
-After roll forward, divisions are re-assigned. U7 divisions from the previous season become U8 divisions. New U7 divisions will be created in Stage 7 once the full picture of new U7 teams is known.
+After roll forward, divisions are re-assigned. U7 divisions from the previous season become U8 divisions. New U7 divisions will be created in Stage 8 once the full picture of new U7 teams is known.
 
 ---
 
 ## Stage 3: Existing Club — Team Continuation Confirmation
+
+> **Sequence note:** In the revised canonical order this is **Stage 2** (before Roll Forward). The heading numbering will be reconciled in a future doc revision.
 
 **DJFL Dates:** 1 May – 15 May  
 **Key Date Slugs:** `team-continuation-opens` / `team-continuation-closes`  
@@ -271,6 +302,8 @@ The League Admin can see team continuation status per club in a read-only summar
 ---
 
 ## Stage 4: Existing Clubs — New Teams & New Under 7s
+
+> **Sequence note:** This stage opens after Roll Forward (Stage 3) has run. New teams are added to the **already-rolled-forward** age groups. For example, if roll forward has moved U7 → U8, new teams should be added to U8 — not a pre-roll U7. Opening this window before roll-forward would cause new teams to be incorrectly promoted.
 
 **DJFL Dates:** 16 May – 31 May *(exclusive window — new clubs cannot apply during this period)*  
 **Key Date Slugs:** `team-registration-opens` / `team-registration-closes`  
@@ -778,9 +811,15 @@ WITHDRAWN       — Permanently withdrawn from season
 
 ### Phase 9 — Season Lifecycle UI *(future)*
 - Season Clone button with Visibility Rules copy
-- Division Roll Forward trigger
+- Blank season creation UI (for bootstrap / first-time leagues)
+- Import workflow wired into season preparation banner
+- Division Roll Forward updated to respect `continuingNextSeason` flag
+- Enforce UI ordering: continuation window must close before roll-forward is enabled
+- Post-roll-forward AGG management UI (review, reassign, create new youngest-group divisions)
 - Waiting List promotion queue
 - Dashboard banner: DJFL dates including non-LMSPro reminders (FA FullTime deadlines)
+
+> See [Season Rollover Process](./season-rollover-process.md) for the full work item list and implementation detail.
 
 ---
 
