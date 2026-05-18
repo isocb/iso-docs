@@ -205,6 +205,16 @@ See [`season-rollover-reference.md`](./season-rollover-reference.md) for full ro
 
 ---
 
+## Team Numbers
+
+Team numbers are **unique per `organisationId + seasonId`** (not globally per organisation). This means the same number can exist in different seasons without conflict.
+
+When a season is cloned, each team **retains its original team number** from the source season — it is not reassigned. New registrations during the new season are allocated numbers using `Max(globalMax + 1, season.nextTeamNumber)` to avoid collisions.
+
+This design means a team that continues to the next season will appear with the same number in both seasons, which is the expected behaviour for league admins and club managers.
+
+---
+
 ## Key Dates Integration
 
 The **Team Continuation Window** is controlled by Key Dates (like all action cards). The card appears on the club dashboard when the window is open and hides automatically when it closes.

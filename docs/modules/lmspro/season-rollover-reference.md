@@ -179,7 +179,7 @@ This creates the new season from the current one and immediately applies all con
 - Unresolved club applications in state `PENDING` or `EMAIL_VERIFIED`
 - Teams in state `AWAITING_CLUB_APPROVAL`, `NEW_CLUB_PENDING_TEAM`, or `PENDING`
 
-**Team numbers:** All cloned teams receive new sequential team numbers, globally unique per organisation. The source season's team numbers are not reused.
+**Team numbers:** Cloned teams **retain their original team number** from the source season. This is vital for alignment with external systems (FA Full-Time, kit suppliers, club records). Team numbers are unique per `organisationId + seasonId` — the same number can exist in two different seasons for the same org. New teams added after cloning (manual add, club registration, new club teams) receive a fresh number: `Max(globalMax across all seasons + 1, season.nextTeamNumber)`.
 
 **User access at clone time:** Users linked to clubs cloned as `WITHDRAWN` are automatically set to `DEACTIVATED` — see [User Access Control](#user-access-control) below.
 
