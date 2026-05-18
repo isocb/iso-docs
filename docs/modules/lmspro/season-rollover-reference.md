@@ -353,6 +353,8 @@ NextAuth checks `user.status` at every sign-in and session callback. Any user wh
 | Club continuation confirmation | `key-date-confirmations.router.ts` |
 | Club status at clone (APPROVED / WITHDRAWN) | `seasons.router.ts` → `cloneSeason` |
 | Team status at clone (CURRENT / WITHDRAWN / NO_RESPONSE) | `seasons.router.ts` → `cloneSeason` |
+| Team number retention on clone (numbers preserved from source season) | `seasons.router.ts` → `cloneSeason` |
+| Team number uniqueness per org+season (not org-wide) | `prisma/schema.prisma` — `@@unique([organizationId, seasonId, teamNumber])` |
 | Roll Forward (promotion + inactivation) | `seasons.router.ts` → `rollForwardAgeGroups` |
 | Roll Forward preview | `seasons.router.ts` → `getRollForwardPreview` |
 | Roll Forward respects continuation — only CURRENT teams promoted | `seasons.router.ts` → `rollForwardAgeGroups` line 1342 |
@@ -448,4 +450,4 @@ See [Unified Workflow Gating Architecture](./unified-workflow-gating-architectur
 
 ---
 
-*Last Updated: April 2026*
+*Last Updated: May 2026*
