@@ -156,7 +156,7 @@ This creates the new season from the current one and immediately applies all con
 | Copied | Detail |
 |---|---|
 | Age group structure | All age group definitions |
-| Divisions (AGGs) | All division structures |
+| Divisions | All divisions copied with their full structure, name, and age group association. Teams remain in the same division they were in on the source season. Divisions do not have a status field — they exist as long as the season does. Roll Forward then re-points each division to the next age group (e.g. "U7 Division 1" becomes "U8 Division 1"). |
 | Venues | All venues and club associations |
 | Referees | All referee records |
 | Key Dates | Copied and date-shifted to match the new season's start date |
@@ -219,7 +219,7 @@ Roll Forward is the automatic age-group progression. Every `CURRENT` team advanc
 
 | Position | Behaviour |
 |---|---|
-| **Oldest** (e.g. U13) | All `CURRENT` teams → `INACTIVE`. Age group renamed to `(Retired)` in Division Manager. Teams' `ageGroupId` and `aggId` cleared. |
+| **Oldest** (e.g. U13) | All `CURRENT` teams → `INACTIVE`. Age group renamed to `(Retired)`. The division(s) for this age group are emptied and effectively retired — their teams' `ageGroupId` and division link (`aggId`) are cleared. |
 | **Middle** (e.g. U8–U12) | Each `CURRENT` team's `ageGroupId` and `ageGroup` string advanced by one year (U9 → U10, etc.). `aggId` retained — team stays in its division. |
 | **Youngest** (e.g. U7) | No existing teams — new youngest-age entrants come through Steps 8 and 9. |
 
@@ -228,7 +228,7 @@ Roll Forward is the automatic age-group progression. Every `CURRENT` team advanc
 - `NO_RESPONSE` — left exactly in place
 - `INACTIVE` — already archived
 
-**Division (AGG) progression:** Each division's `ageGroupId` is re-pointed to the next age group in the same transaction. A "U7 Division 1" becomes a "U8 Division 1". New U7 divisions are created in Step 9 once the full picture of new entries is known.
+**Division progression:** Each division's `ageGroupId` is re-pointed to the next age group in the same transaction — "U7 Division 1" becomes "U8 Division 1", and so on. Divisions associated with the oldest age group are left in place but effectively emptied (all their teams are `INACTIVE`). New youngest-age divisions (e.g. new U7 divisions) are created later in Step 11 once the full picture of new entries is known.
 
 **Guard conditions (roll-forward is blocked if):**
 - Season status is not `IN_PREPARATION` or `ACTIVE`
@@ -291,7 +291,7 @@ The League Admin reviews all pending teams submitted in Steps 8 and 9 and makes 
 ### Step 11 — Division Formation (New U7 Cohort)
 
 **Who:** League Admin  
-**Where:** Division Manager (AGGs page)  
+**Where:** Season → Division Manager  
 **When:** August, after Step 10
 
 New U7 divisions are created and teams allocated across them once the full picture of new U7 entrants is known.
@@ -359,7 +359,7 @@ NextAuth checks `user.status` at every sign-in and session callback. Any user wh
 | Roll Forward preview | `seasons.router.ts` → `getRollForwardPreview` |
 | Roll Forward respects continuation — only CURRENT teams promoted | `seasons.router.ts` → `rollForwardAgeGroups` line 1342 |
 | Oldest age group renamed `(Retired)` on roll-forward | `seasons.router.ts` → `rollForwardAgeGroups` |
-| Division (AGG) re-pointing during roll-forward | `seasons.router.ts` → `rollForwardAgeGroups` |
+| Division re-pointing during roll-forward (U7 Div 1 → U8 Div 1, etc.) | `seasons.router.ts` → `rollForwardAgeGroups` |
 | Team Continuation modal (individual + bulk) | `TeamContinuationModal.tsx` |
 | "Confirm All" fix (disabled only when all teams confirmed, not just all responded) | `TeamContinuationModal.tsx` commit `735c506` |
 | NO_RESPONSE badge and status filter on Teams page | `teams/page.tsx`, `TeamsTab.tsx` |
