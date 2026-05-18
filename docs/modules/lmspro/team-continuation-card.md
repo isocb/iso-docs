@@ -186,13 +186,21 @@ New team registration. Always sets `continuingNextSeason: null` (No Response). C
 
 ## Season Rollover Integration
 
-Because the continuation window runs **after** the Clone, the data collected during the continuation window directly populates the new season:
+The `continuingNextSeason` field feeds directly into the Clone step. At clone time, each team's status in the new season is set from this field:
 
-1. **Continuing** (`true`) — team is included in the new season's active roster
-2. **Withdrawn** (`false`) — team is marked inactive / excluded from new season
-3. **No Response** (`null`) — team is flagged for league follow-up before season goes ACTIVE
+| `continuingNextSeason` | Status in cloned season |
+|---|---|
+| `true` (Continuing) | `CURRENT` — will be promoted by Roll Forward |
+| `false` (Withdrawn) | `WITHDRAWN` — skipped by Roll Forward |
+| `null` (No Response) | `NO_RESPONSE` — skipped by Roll Forward |
 
-The `continuingNextSeason` field is reset to `null` at D-1 before the window opens (see Auto-Reset above), so it always reflects the club's response to the *current* continuation window — not a carried-over value from a previous season.
+**All teams are always copied on clone** — no team is dropped. The continuation field determines their starting status only.
+
+### Flexible ordering
+
+The ideal sequence is: continuation window closes → clone → Roll Forward. But **clone first is equally valid**. If the league clones before running a continuation window, all teams arrive as `NO_RESPONSE` (since all fields are `null`). The League Admin then uses the TeamsTab bulk update to set the correct statuses before running Roll Forward.
+
+Roll Forward acts only on `CURRENT` teams — it does not care whether that status was set automatically by the continuation window at clone time, or manually corrected by the League Admin afterwards.
 
 See [`season-rollover-reference.md`](./season-rollover-reference.md) for full rollover sequence.
 

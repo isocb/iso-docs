@@ -56,7 +56,11 @@ CURRENT SEASON (status: ACTIVE)
                                                 Playing season begins
 ```
 
-> **Critical sequence constraint:** Club and Team Continuation windows must run and close on the **current ACTIVE season** *before* cloning. The continuation data is read at clone time to determine club and team statuses in the new season.
+> **Ideal sequence:** Club and Team Continuation windows run and close on the current ACTIVE season *before* cloning. The continuation data is then read at clone time to automatically set club and team statuses in the new season.
+>
+> **Clone first is also valid.** If the league clones before the continuation window has run (or at all), all teams arrive in the new season as `NO_RESPONSE` (since `continuingNextSeason = null`). The League Admin then corrects statuses manually via the TeamsTab bulk update before running Roll Forward. This is functionally identical — Roll Forward only ever acts on `CURRENT` teams, regardless of how they got there.
+>
+> **What clone carries forward:** All teams are copied. Their status in the new season is determined entirely by `continuingNextSeason` at clone time — it is not a separate step. If no continuation window ran, all teams arrive as `NO_RESPONSE` and must be manually triaged before Roll Forward.
 
 ---
 
@@ -205,7 +209,7 @@ The League Admin reviews what the continuation responses produced.
 - If the parent club is being deleted, deleting the club removes all their teams automatically
 - If a team is being reinstated, set its status to `CURRENT` before running Roll Forward
 
-> **Rule:** Run Roll Forward only after this triage is complete. Only `CURRENT` teams at that point will be promoted.
+> **Rule:** Run Roll Forward only after this triage is complete. Only `CURRENT` teams at that point will be promoted — regardless of whether their `CURRENT` status came from the continuation window at clone time, or was set manually by the League Admin after cloning. The mechanism is the same either way.
 
 ---
 
