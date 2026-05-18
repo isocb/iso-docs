@@ -36,9 +36,12 @@ CURRENT SEASON (status: ACTIVE)
 │
 └──────── League Admin: CLONE SEASON ────────► NEW SEASON (status: IN_PREPARATION)
                                                 │  All teams copied as CURRENT
+                                                │  All divisions copied (linked to same age groups)
                                                 │
                                                 ├── League Admin: ROLL FORWARD AGE GROUPS
                                                 │     All CURRENT teams advance one age group
+                                                │     Each division re-pointed to the next age group
+                                                │     (e.g. "U7 Division 1" → "U8 Division 1")
                                                 │     Teams now in correct age groups for new season
                                                 │
                                                 ├── Continuation Confirmation Processes
@@ -53,8 +56,8 @@ CURRENT SEASON (status: ACTIVE)
                                                 ├── New Team Registration (existing clubs)
                                                 ├── New Club Application (public form)
                                                 ├── League Admin: approve new club teams
-                                                └── Age Group / Division Allocation
-                                                │
+                                                ├── New youngest-age Divisions created
+                                                │     (e.g. new U7 divisions once full U7 intake known)
                                                 └── League Admin: SET AS CURRENT
                                                         │
                                                         ▼
