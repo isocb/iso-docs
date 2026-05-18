@@ -41,25 +41,57 @@ This field represents a **club's declared intention** for a team in the followin
 
 ## Workflow
 
-### Normal Season Flow
+### Normal Season Sequence
+
+The correct order of operations for a new season is:
 
 ```
-Season Opens
-  └─ All teams: continuingNextSeason = null (No Response)
+1. CLONE
+   └─ League admin clones the current active season
+   └─ A new season is created (status: IN_PREPARATION)
+   └─ All teams carry over with their existing continuingNextSeason values
 
-Continuation Window Opens
-  └─ Club Continuation Card becomes visible on dashboard
-  └─ Clubs review each team and set: Continuing | Withdrawn
+2. ROLL FORWARD
+   └─ League admin advances age groups (U7 → U8, etc.)
+   └─ Season configuration reviewed and updated
 
-Continuation Window Closes
-  └─ League reviews responses
-  └─ Teams still on null = No Response → league follows up or treats as withdrawn
-  └─ Season Rollover begins using continuation data to pre-populate next season
+3. CONTINUATION CONFIRMATION PROCESSES
+   ├─ Club Continuation window opens → clubs confirm the club is continuing
+   └─ Team Continuation window opens → clubs declare each team: Continuing | Withdrawn | No Response
+        │
+        ├─ AUTO-RESET (D-1 trigger — see below)
+        │    All teams in the season are reset to continuingNextSeason = null
+        │    before the window opens, giving clubs a clean slate to respond
+        │
+        └─ Window closes → league reviews; teams still null = No Response
+
+4. NEW TEAM APPROVAL PROCESS
+   └─ Existing clubs submit new team registrations; league approves/rejects
+
+5. NEW CLUB PROCESS
+   └─ New clubs apply via public registration form; league reviews applications
+
+6. NEW CLUB TEAM APPROVAL PROCESS
+   └─ Newly approved clubs submit their teams for approval
+
+7. AGE GROUP / DIVISION ALLOCATION PROCESSES
+   └─ League assigns teams to age groups and divisions
+   └─ Season set to ACTIVE — playing season begins
 ```
 
-### Exceptional Bulk Reset (Admin Tool)
+### Auto-Reset at D-1 (System Behaviour)
 
-In cases where teams have been incorrectly pre-set (e.g., a data migration or an exceptional year), league admins can use the **Bulk Update** tool in the TeamsTab (season detail page):
+When the **Team Continuation Key Date** is configured, the system automatically resets all `continuingNextSeason` values to `null` for every team in the season **the day before the window opens** (`activeFrom - 1 day`).
+
+**Why D-1?**  
+Teams carry over from the clone with whatever value `continuingNextSeason` held in the previous season. This ensures that when the window opens and clubs log in, every team correctly shows **No Response** — regardless of history — and clubs must actively declare intent.
+
+**How it works:**  
+The reset is triggered lazily on the first call to `getContinuationStatus` after D-1. It is idempotent — tracked via an `AuditLog` entry (`LMSPRO_TEAM_CONTINUATION_RESET`) keyed to the key date ID. It fires once per continuation window, never twice.
+
+### Bulk Reset (Admin Fallback)
+
+If an auto-reset fails or league admins need to manually re-open the slate, the **Bulk Update** tool in the TeamsTab (season detail page) can be used:
 
 1. Navigate to **Seasons → [Season] → Teams**
 2. Select affected teams using row checkboxes
@@ -154,11 +186,13 @@ New team registration. Always sets `continuingNextSeason: null` (No Response). C
 
 ## Season Rollover Integration
 
-During season rollover, `continuingNextSeason` data is used to:
+Because the continuation window runs **after** the Clone, the data collected during the continuation window directly populates the new season:
 
-1. **Pre-populate** the next season's team list with confirmed `true` teams
-2. **Flag** `null` (No Response) teams for league follow-up
-3. **Exclude** `false` (Withdrawn) teams from the new season automatically
+1. **Continuing** (`true`) — team is included in the new season's active roster
+2. **Withdrawn** (`false`) — team is marked inactive / excluded from new season
+3. **No Response** (`null`) — team is flagged for league follow-up before season goes ACTIVE
+
+The `continuingNextSeason` field is reset to `null` at D-1 before the window opens (see Auto-Reset above), so it always reflects the club's response to the *current* continuation window — not a carried-over value from a previous season.
 
 See [`season-rollover-reference.md`](./season-rollover-reference.md) for full rollover sequence.
 
