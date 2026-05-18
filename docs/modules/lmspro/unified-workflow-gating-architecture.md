@@ -443,6 +443,24 @@ These gates work at the **layout intercept** level — they don't gate an indivi
 |------|--------------|-------|-----------|
 | `system-closed` | Full Club Portal Access | Club users (C2 scope) | `/app/lmspro/club/layout.tsx` intercept — replaces entire club UI with `SystemClosedScreen` |
 
+---
+
+## Division Allocation Email — Coverage Matrix
+
+The `lmspro.team_registration.allocated` notification email can be triggered from three places. All three now support an optional **"Notify club"** toggle so the admin controls whether an email fires.
+
+| Location | UI Toggle | Default | Mutation Used |
+|----------|-----------|---------|--------------|
+| **Team Approval → Unallocated tab** (`/team-approval`) | ✅ Checkbox — "Notify club of division allocation" | ON | `teams.allocateToAGG` |
+| **Division Manager → Unallocated Teams modal** (`/aggs`) | ✅ Checkbox — "Notify club of division allocation" | ON | `teams.allocateToAGG` |
+| **Division Manager → AGG Teams modal → Move** (`/aggs`) | ✅ Checkbox — "Notify club when division changes" | ON | `teams.update` |
+| **Edit Team Modal** (`/teams`) | ✅ Checkbox — "Notify club of division allocation" (shown only when Division field changes to a new value) | OFF | `teams.update` |
+
+### Notes
+- The Edit Team Modal checkbox only appears when editing an existing team **and** the Division field has been changed to a different (non-empty) value — it stays hidden for new teams and when the division is unchanged, to avoid noise.
+- `teams.update` fires the allocation email when: `notifyClub === true` AND `aggId` is provided AND `aggId !== existing aggId`.
+- The email is not re-sent if a team is moved back to the same division it was in previously.
+
 ### How `system-closed` Works
 
 1. League admin creates a Key Date with `keyDateType: WINDOW` and sets the slug to `system-closed` (the Key Dates UI offers this as a first-class **"🔒 System Closure"** purpose option).
