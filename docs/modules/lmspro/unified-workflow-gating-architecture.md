@@ -431,6 +431,59 @@ Only code changes needed:
 
 ---
 
+## Reserved Slugs — System-Level Gates
+
+Some key date slugs are **reserved** by the platform and trigger system-level behaviour that operates **outside** the normal visibility rule / ComponentDefinition pipeline.
+
+These gates work at the **layout intercept** level — they don't gate an individual dashboard card, they replace or block entire sections of the UI. Because no `ComponentDefinition` row is involved, they do **not** appear in the linked items picker on the Key Date admin UI. Instead, the Key Dates UI detects reserved slugs and shows an explanatory notice in place of the linked items section.
+
+### Reserved Slug Registry
+
+| Slug | Gate Function | Scope | Mechanism |
+|------|--------------|-------|-----------|
+| `system-closed` | Full Club Portal Access | Club users (C2 scope) | `/app/lmspro/club/layout.tsx` intercept — replaces entire club UI with `SystemClosedScreen` |
+
+### How `system-closed` Works
+
+1. League admin creates a Key Date with `keyDateType: WINDOW` and sets the slug to `system-closed` (the Key Dates UI offers this as a first-class **"🔒 System Closure"** purpose option).
+2. While `activeFrom ≤ now ≤ activeTo`, the tRPC endpoint `keyDates.getSystemClosure` returns `{ isClosed: true, reopensAt, name, message }`.
+3. `/app/lmspro/club/layout.tsx` calls this endpoint on every render (refetches every 5 minutes).
+4. Users whose `getUserContext` scope is `CLUB` are shown the `SystemClosedScreen` — a full-page splash displaying the league logo, the key date `name` as headline, `description` as message, and the reopen date.
+5. Users with scope `LEAGUE` or `BOTH` (admins, league staff) are **completely unaffected** — they pass through to normal UI.
+
+### Admin UI Behaviour for Reserved Slugs
+
+When a key date's slug matches a reserved entry, the Key Dates accordion panel:
+
+- **Replaces** the linked items table with a violet `Alert` reading:  
+  *"Special Key Date — gates: [Function Being Gated]"*  
+  with a plain-English explanation of what the slug controls.
+- **Hides** the "Add Linked Item" button — no component linking is needed or possible.
+
+This prevents admins from searching for a component in the picker that doesn't exist, and documents the gate's purpose directly in context.
+
+### Extending Reserved Slugs
+
+To add a new reserved slug:
+
+1. Add the intercept logic (e.g. a new layout file or middleware condition).
+2. Add the slug → label mapping to `SPECIAL_GATE_SLUGS` in `KeyDatesTab.tsx`:
+
+```typescript
+// src/app/(app)/app/lmspro/seasons/_components/KeyDatesTab.tsx
+const SPECIAL_GATE_SLUGS: Record<string, string> = {
+  'system-closed': 'Full Club Portal Access',
+  'your-new-slug': 'Human-Readable Function Label',
+};
+```
+
+3. Optionally add it as a first-class purpose option in `KEY_DATE_PURPOSES` so admins can select it from the purpose picker rather than entering a raw slug.
+4. Document it in the table above.
+
+> **Note:** Reserved slugs intentionally bypass the ComponentDefinition / VisibilityRule pipeline. They are not appropriate for gating individual dashboard cards — use normal Key Date → Visibility Rule → ComponentDefinition linking for that purpose.
+
+---
+
 ## Related Documentation
 
 - `/docs/00-READ_THIS/feb_26_work/03-KEY_DATES_SYSTEM.md` - Key Dates implementation details
@@ -439,4 +492,4 @@ Only code changes needed:
 
 ---
 
-*Last Updated: 11 June 2025*
+*Last Updated: 18 May 2026*
