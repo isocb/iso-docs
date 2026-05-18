@@ -34,33 +34,38 @@ Both paths produce an `IN_PREPARATION` season. Everything from the continuation 
 ```
 CURRENT SEASON (status: ACTIVE)
 │
-├── Key Dates configured for the rollover cycle
-├── Club Continuation window opens   ← clubs confirm they are continuing
-└── Team Continuation window opens   ← clubs mark each team: continuing / withdrawing
-                                        (runs concurrently with, or after, club continuation)
-│
 └──────── League Admin: CLONE SEASON ────────► NEW SEASON (status: IN_PREPARATION)
+                                                │  All teams copied as CURRENT
                                                 │
-                                                ├── Review: withdrawn clubs & teams
                                                 ├── League Admin: ROLL FORWARD AGE GROUPS
-                                                ├── Team Edit window (clubs update details)
-                                                ├── New Team Registration window (existing clubs)
-                                                ├── New Club Application form (public)
-                                                ├── League Admin: approve pending teams
-                                                └── Division formation for new U7 cohort
+                                                │     All CURRENT teams advance one age group
+                                                │     Teams now in correct age groups for new season
+                                                │
+                                                ├── Continuation Confirmation Processes
+                                                │     ├── Club Continuation window
+                                                │     │     clubs confirm the club is participating
+                                                │     └── Team Continuation window
+                                                │           clubs mark each team:
+                                                │           Continuing | Withdrawn | No Response
+                                                │
+                                                ├── League Admin: clean up Withdrawn + No Response
+                                                │
+                                                ├── New Team Registration (existing clubs)
+                                                ├── New Club Application (public form)
+                                                ├── League Admin: approve new club teams
+                                                └── Age Group / Division Allocation
                                                 │
                                                 └── League Admin: SET AS CURRENT
                                                         │
                                                         ▼
                                                 NEW SEASON (status: ACTIVE)
-                                                Playing season begins
 ```
 
-> **Ideal sequence:** Club and Team Continuation windows run and close on the current ACTIVE season *before* cloning. The continuation data is then read at clone time to automatically set club and team statuses in the new season.
+> **Clone carries all teams as `CURRENT`.** No pre-clone continuation window is required. Roll Forward runs first so teams are in their correct new age groups before clubs are asked to confirm intentions.
 >
-> **Clone first is also valid.** If the league clones before the continuation window has run (or at all), all teams arrive in the new season as `NO_RESPONSE` (since `continuingNextSeason = null`). The League Admin then corrects statuses manually via the TeamsTab bulk update before running Roll Forward. This is functionally identical — Roll Forward only ever acts on `CURRENT` teams, regardless of how they got there.
+> **The continuation window runs on the new `IN_PREPARATION` season** — after Roll Forward. Clubs confirm participation against teams already in their new age groups. The `continuingNextSeason` field name reflects the original design perspective; in practice the window is about the season that is about to start.
 >
-> **What clone carries forward:** All teams are copied. Their status in the new season is determined entirely by `continuingNextSeason` at clone time — it is not a separate step. If no continuation window ran, all teams arrive as `NO_RESPONSE` and must be manually triaged before Roll Forward.
+> **Flexible ordering is supported.** If a league prefers to run the continuation window on the current active season before cloning (to capture early withdrawals), those teams arrive in the new season as `WITHDRAWN`/`NO_RESPONSE` and are skipped by Roll Forward. Both paths lead to the same outcome — a clean `CURRENT` roster before the season goes ACTIVE.
 
 ---
 
@@ -98,10 +103,10 @@ Before anything else, the League Admin reviews and sets the opening/closing date
 ### Step 2 — Club Continuation Window
 
 **Who:** Club Secretaries  
-**Where:** Club Dashboard → "Club Continuation" Action Card (gated by `clubs.continuation` Key Date)  
-**When:** Typically 1 March – 31 March
+**Where:** Club Dashboard → "Club Continuation" Action Card (gated by `clubs.continuation` Key Date on the **new IN_PREPARATION season**)  
+**When:** After Roll Forward — clubs see their teams already in their new age groups
 
-Each club confirms their intention to continue into the next season. The Action Card is only available while the Key Date window is open.
+Clubs confirm their intention to participate in the coming season. The system is closed to clubs between seasons; when they next log in they are looking at the new season's data and confirming participation in what is, from their perspective, the upcoming season.
 
 **Before a club can confirm, their Club Profile must be complete:**
 - Secretary name and email
@@ -112,39 +117,29 @@ Missing any of these blocks confirmation. The club must update their Club Profil
 
 **What the league sees:** The Key Date Compliance page shows which clubs have confirmed and which have not. Reminder emails can be sent to non-responding clubs.
 
-**At clone time:**
-| Club's confirmation | Club status in new season |
-|---|---|
-| ✅ Confirmed | `APPROVED` — visible in all default views |
-| ⬜ Did not confirm | `WITHDRAWN` — hidden from default views; League Admin reviews in Step 5 |
-
-> If no `clubs.continuation` Key Date exists for the season (league did not run a continuation window), **all clubs are cloned as APPROVED**.
-
 ---
 
 ### Step 3 — Team Continuation Window
 
 **Who:** Club Secretaries  
-**Where:** Club Dashboard → "Team Continuation" Action Card (gated by `teams.continuation` Key Date)  
-**When:** Typically 1 May – 15 May. Can run concurrently with club continuation.
+**Where:** Club Dashboard → "Team Continuation" Action Card (gated by `teams.continuation` Key Date on the **new IN_PREPARATION season**)  
+**When:** Concurrent with or after club continuation. Teams are already in their rolled-forward age groups.
 
-Once a club has confirmed they are continuing, their Club Secretary marks the intention for each individual team.
+Club Secretaries mark each team's intention. Because Roll Forward has already run, clubs see teams in their *new* age groups — they are confirming against the age group the team will actually play in.
 
 **Three states per team:**
 
-| Team state | Meaning | Status in new season |
-|---|---|---|
-| ✅ Continuing (`continuingNextSeason = true`) | Team is playing next season | `CURRENT` — included in roll-forward |
-| ❌ Withdrawing (`continuingNextSeason = false`) | Team will not play | `WITHDRAWN` — excluded from roll-forward |
-| ⬜ No response (`continuingNextSeason = null`) | Club did not respond | `NO_RESPONSE` — excluded from roll-forward |
+| State | `continuingNextSeason` | Meaning | Admin action before ACTIVE |
+|---|---|---|---|
+| Continuing | `true` | Team is playing | None — stays `CURRENT` |
+| Withdrawn | `false` | Team will not play | Bulk-set `WITHDRAWN`/`CANCELLED`, remove |
+| No Response | `null` | Club did not respond | Chase up; remove if no reply |
 
 **UI behaviour:**
 - Individual team toggles auto-save immediately — no submit button
-- "Confirm All" marks every team as continuing in one click (only disabled if all teams are already confirmed as continuing)
-- "Withdraw All" available with an in-line confirmation step to prevent accidents
+- "Confirm All" marks every team as continuing in one click
+- "Withdraw All" available with an in-line confirmation step
 - Clubs can reverse any decision within the open window
-
-**If a whole club is withdrawing:** All their teams will arrive in the cloned season as WITHDRAWN or NO_RESPONSE and will be excluded from roll-forward. The League Admin can delete the club and all teams in Step 5.
 
 ---
 
@@ -152,7 +147,7 @@ Once a club has confirmed they are continuing, their Club Secretary marks the in
 
 **Who:** League Admin  
 **Where:** Seasons page → "Clone Season" button  
-**When:** After the Club and Team Continuation windows have closed
+**When:** Any time during the current active season — typically several months before the new season starts
 
 This creates the new season from the current one and immediately applies all continuation decisions.
 
@@ -165,9 +160,9 @@ This creates the new season from the current one and immediately applies all con
 | Venues | All venues and club associations |
 | Referees | All referee records |
 | Key Dates | Copied and date-shifted to match the new season's start date |
-| Clubs | All clubs — status set from continuation confirmation |
+| Clubs | All clubs copied as `APPROVED` — withdrawal decisions made after clone via continuation process |
 | Club officials | All linked user accounts (with `LMSProClubOfficial` records) |
-| Teams | All teams — status set from team continuation responses |
+| Teams | All teams copied as `CURRENT` — continuation window then identifies withdrawals, cleaned up before season goes ACTIVE |
 
 **What is NOT copied:**
 
@@ -192,24 +187,23 @@ This creates the new season from the current one and immediately applies all con
 
 ---
 
-### Step 5 — Review Withdrawn Clubs and Teams
+### Step 5 — Clean Up Withdrawn and Non-Responding Teams
 
 **Who:** League Admin  
-**Where:** Clubs page (filter "Withdrawn") and Teams page (filter "Withdrawn" / "No Response")  
-**When:** Immediately after cloning, before running Roll Forward
+**Where:** Season → Teams tab (filter by Withdrawn / No Response). TeamsTab bulk update.  
+**When:** After the continuation windows close, before the season goes ACTIVE
 
-The League Admin reviews what the continuation responses produced.
+All teams were promoted by Roll Forward because they were all `CURRENT` at that point. The continuation window has now identified which teams are not actually playing. This step removes them from the playing roster.
 
-**For clubs marked WITHDRAWN:**
-- Default action: delete the club and all their teams from the new season
-- Exception: if a club has extraordinary circumstances (e.g. new leadership), change status back to `APPROVED`, correct team statuses manually, and allow them back in
+**For clubs that did not confirm continuation:**
+- Set club status to `WITHDRAWN`, bulk-set their teams to `CANCELLED`/`INACTIVE`
+- Exception: extraordinary circumstances — override manually and allow back in
 
-**For teams marked WITHDRAWN or NO_RESPONSE:**
-- Already excluded from roll-forward — no action required unless reinstating
-- If the parent club is being deleted, deleting the club removes all their teams automatically
-- If a team is being reinstated, set its status to `CURRENT` before running Roll Forward
+**For teams marked Withdrawn or No Response:**
+- Bulk-set to `CANCELLED` or `INACTIVE` via TeamsTab
+- Or delete entirely if a clean removal is preferred
 
-> **Rule:** Run Roll Forward only after this triage is complete. Only `CURRENT` teams at that point will be promoted — regardless of whether their `CURRENT` status came from the continuation window at clone time, or was set manually by the League Admin after cloning. The mechanism is the same either way.
+> **Why this works:** Roll Forward promoted every `CURRENT` team. The continuation window is what surfaces which of those teams should not be playing. Cleaning up here before the season goes ACTIVE produces an identical end-state to the alternative path (running continuation before Roll Forward and having those teams never promoted). The route doesn't matter — the destination is the same clean `CURRENT` roster.
 
 ---
 

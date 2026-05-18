@@ -186,21 +186,20 @@ New team registration. Always sets `continuingNextSeason: null` (No Response). C
 
 ## Season Rollover Integration
 
-The `continuingNextSeason` field feeds directly into the Clone step. At clone time, each team's status in the new season is set from this field:
+The continuation window runs **after** Clone and Roll Forward — on the new `IN_PREPARATION` season. At that point all teams are already `CURRENT` and in their new age groups. The `continuingNextSeason` field collects each club's intent, and the league admin then cleans up non-participating teams before the season goes ACTIVE.
 
-| `continuingNextSeason` | Status in cloned season |
-|---|---|
-| `true` (Continuing) | `CURRENT` — will be promoted by Roll Forward |
-| `false` (Withdrawn) | `WITHDRAWN` — skipped by Roll Forward |
-| `null` (No Response) | `NO_RESPONSE` — skipped by Roll Forward |
-
-**All teams are always copied on clone** — no team is dropped. The continuation field determines their starting status only.
+**`continuingNextSeason` does not affect which teams are promoted by Roll Forward** — Roll Forward acts on `status = CURRENT` only. The field purely records club intent; it is the league admin's cleanup step (bulk status update) that actually removes non-participating teams from the roster.
 
 ### Flexible ordering
 
-The ideal sequence is: continuation window closes → clone → Roll Forward. But **clone first is equally valid**. If the league clones before running a continuation window, all teams arrive as `NO_RESPONSE` (since all fields are `null`). The League Admin then uses the TeamsTab bulk update to set the correct statuses before running Roll Forward.
+The system supports both paths:
 
-Roll Forward acts only on `CURRENT` teams — it does not care whether that status was set automatically by the continuation window at clone time, or manually corrected by the League Admin afterwards.
+| Path | When used | Effect |
+|---|---|---|
+| Clone → Roll Forward → Continuation | Standard (recommended) | All teams promoted, then withdrawals cleaned up after |
+| Continuation → Clone → Roll Forward | Early-withdrawal approach | Withdrawn/No Response teams arrive in new season with those statuses; Roll Forward skips them |
+
+Both paths produce the same outcome: a clean `CURRENT` roster before the season goes ACTIVE.
 
 See [`season-rollover-reference.md`](./season-rollover-reference.md) for full rollover sequence.
 
