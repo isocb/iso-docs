@@ -41,6 +41,8 @@ The LMSPro module has a complete `RecipientProvider` implementation registered a
 | `clubRoles` | Users with selected club roles |
 | `referees` | Individual referees by contactDetails email |
 | `venues` | Venue contact person |
+| `teamStatus` | Primary contact of each club that has at least one team matching the selected status(es); `relatedEntities` populated with the matching teams (see §2.7) |
+| `clubStatus` | Primary contact of each club whose own status matches the selected status(es) |
 
 **Shortcodes defined:**
 | Prefix | Fields |
@@ -51,6 +53,67 @@ The LMSPro module has a complete `RecipientProvider` implementation registered a
 | `user.*` | `firstName`, `lastName`, `name`, `email` |
 | `organization.*` | `name` |
 | `season.*` | `name` |
+| `team_list` | Comma-separated list of team names (populated from `relatedEntities` — only available when sending via `teamStatus` cohort) |
+| `team_list_detailed` | One team per line in the format `Under 12 Blues (U12) — PENDING` (populated from `relatedEntities`) |
+
+### 2.7 Status-Based Cohort Filters + `relatedEntities` + Team List Shortcodes
+
+**Commit:** `afc2c1e` (dev, 26 May 2026)  
+**Files:** `cohort-resolver.ts`, `provider.ts`, `shortcodes.ts`, `types.ts`, `send-email.ts`, `shortcode-resolver.ts`, `CohortPicker.tsx`
+
+#### What was added
+
+Two new cohort types are now available in the CohortPicker and `resolveCohort()`:
+
+| Cohort Type | Description | Recipient |
+|---|---|---|
+| `teamStatus` | Finds all teams matching selected status(es), groups them by club, and contacts the club's primary contact — **one email per club** even if multiple teams match | Club primary contact |
+| `clubStatus` | Finds clubs whose own status matches the selected status(es) | Club primary contact |
+
+**Team statuses selectable:** `CURRENT`, `PENDING`, `WAITING_LIST`, `NEW_CLUB_PENDING_TEAM`, `AWAITING_CLUB_APPROVAL`, `SUSPENDED`, `WITHDRAWN`, `CANCELLED`, `INACTIVE`, `NO_RESPONSE`
+
+**Club statuses selectable:** `APPROVED`, `PENDING`, `WAITING_LIST`, `SUSPENDED`, `WITHDRAWN`
+
+#### `relatedEntities` on `Recipient`
+
+The `Recipient` type now carries an optional `relatedEntities` array:
+
+```typescript
+interface Recipient {
+  email: string;
+  name?: string;
+  entityType: string;   // e.g. 'Club'
+  entityId: string;
+  relatedEntities?: Array<{
+    id: string;
+    name: string;
+    ageGroup?: string;
+    status?: string;
+  }>;
+}
+```
+
+When `resolveTeamStatusCohort()` runs, it accumulates all matching teams per club into `relatedEntities` on each `Recipient`. This allows a club secretary with three pending teams to receive **one email** listing all three teams rather than three separate emails.
+
+`BatchSendParams` recipient shape and `processEmailContent()` have both been updated to carry and consume `relatedEntities`.
+
+#### `{{team_list}}` and `{{team_list_detailed}}` shortcodes
+
+These shortcodes are **injected at the core shortcode-resolver layer** (`processEmailContent`) from `relatedEntities` — they are not resolved via the normal entity-lookup path. This means they only have values when sending via the `teamStatus` cohort.
+
+| Shortcode | Output | Example |
+|---|---|---|
+| `{{team_list}}` | Comma-separated team names | `Under 12 Blues, Under 14 Reds` |
+| `{{team_list_detailed}}` | One team per line: name + age group + status | `Under 12 Blues (U12) — PENDING`<br>`Under 14 Reds (U14) — WAITING_LIST` |
+
+Both shortcodes are registered in `clubShortcodes` and appear in the shortcode picker when composing an email to a `Club` entity.
+
+#### Design rationale
+
+- **Deduplication at resolution time** — `resolveTeamStatusCohort()` uses a `Map<clubId, ...>` to merge all teams for the same club into one recipient entry. The primary contact email is only added once.
+- **Injection at core layer** — `team_list` / `team_list_detailed` are built directly from `relatedEntities` in `processEmailContent()`, keeping the module shortcode resolver (`resolveShortcodes`) free of runtime-state logic.
+- **`clubStatus` is simpler** — clubs don't need team-list shortcodes, so `resolveClubStatusCohort()` returns plain `Recipient[]` with no `relatedEntities`.
+
 
 ### 2.3 Email Template Management
 
