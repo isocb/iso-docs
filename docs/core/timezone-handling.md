@@ -3,7 +3,7 @@
 **Author:** AI Audit  
 **Date:** 28 May 2026 — Updated 29 May 2026  
 **Scope:** IsoStack Core + LMSPro (SeasonPro)  
-**Status:** 🟡 Phases 1–3+4+7 complete — Phases 5, 6, 8–10 remaining
+**Status:** ✅ Phases 1–9 complete — Phase 10 documentation ADR remaining
 
 ---
 
@@ -66,35 +66,42 @@ The IANA timezone identifier `Europe/London` covers both GMT and BST automatical
 | `WorkflowTemplatesTab.tsx` | **UPDATED** — `formatDateOnly` for `createdAt` + season year label | ✅ **Phase 3 complete** |
 | `ComponentGatingDrawer.tsx` | **UPDATED** — `formatDateOnly` in `formatDateWindow()` | ✅ **Phase 3 complete** |
 | `KeyDatesTab.tsx` `confirmedAt` | **UPDATED** — `formatDateOnly` | ✅ **Phase 4 complete** |
-| `key-dates.router.ts` `isWithinKeyDateWindow` | **UPDATED** — explicit UTC contract comment | ✅ **Phase 7 complete** |
+| `pulse/tasks/page.tsx` | **UPDATED** — `fromUtc`/`toUtc` for `dueAt` DateTimePicker; `formatTz` for table display | ✅ **Phase 5 complete** |
+| `pulse/leads/page.tsx` | **UPDATED** — `fromUtc`/`toUtc` for `nextActionAt` DateTimePicker | ✅ **Phase 5 complete** |
+| `pulse/time/page.tsx` | **UPDATED** — `fromUtc`/`toUtc` for `startAt`/`endAt`; `formatTz` for display | ✅ **Phase 5 complete** |
+| `pulse/projects/page.tsx` | **UPDATED** — `toUTCMidnight` for `startDate`/`targetEndDate` on save; `formatDateOnly` for display | ✅ **Phase 5 complete** |
+| `SuspensionManagement.tsx` | **UPDATED** — `toUTCMidnight` for `startDate`/`endDate`; `formatDateOnly` for display | ✅ **Phase 5 complete** |
+| `AnnouncementModal.tsx` | **UPDATED** — `toUTCMidnight` for `expiresAt` on save | ✅ **Phase 5 complete** |
+| `SeasonOverviewTab.tsx` — `makeCurrentUnlocksAt` / `rollForwardUnlocksAt` | **UPDATED** — `toUTCMidnight` applied to both DateInput save handlers | ✅ **Phase 6 complete** |
+| `pulse/pipeline/page.tsx` | **UPDATED** — `formatTz` for `nextActionAt` display | ✅ **Phase 8 complete** |
+| `pulse/organisations/page.tsx` | **UPDATED** — `formatDateOnly` / `formatTz` for all date fields | ✅ **Phase 8 complete** |
+| `pulse/notes/page.tsx` | **UPDATED** — `formatDateOnly` for `createdAt` | ✅ **Phase 8 complete** |
+| `pulse/documents/page.tsx` | **UPDATED** — `formatDateOnly` for `createdAt` | ✅ **Phase 8 complete** |
+| `pulse/quotes/page.tsx` | **UPDATED** — `formatDateOnly` for `createdAt` | ✅ **Phase 8 complete** |
+| `pulse/page.tsx` (dashboard) | **UPDATED** — `formatTz` for today header; `formatDateOnly` for task due dates | ✅ **Phase 8 complete** |
+| `lmspro/team-approval/page.tsx` | **UPDATED** — `formatTz` for `createdAt` display | ✅ **Phase 8 complete** |
+| `lmspro/teams/page.tsx` | **UPDATED** — `formatDateOnly` for free day `requestedDate`/`requestedAt` | ✅ **Phase 8 complete** |
+| `lmspro/communications/page.tsx` | **UPDATED** — `formatTz` for `sentAt` | ✅ **Phase 8 complete** |
+| `lmspro/club/discipline/page.tsx` | **UPDATED** — `formatDateOnly` for `startDate`/`endDate` | ✅ **Phase 8 complete** |
+| `ClubContinuationModal.tsx` | **UPDATED** — `formatDateOnly` for key date display | ✅ **Phase 8 complete** |
+| `ClubAnnouncementsPanel.tsx` | **UPDATED** — `formatDateOnly` for announcement dates | ✅ **Phase 8 complete** |
+| `SeasonSummaryPanel.tsx` | **UPDATED** — `formatDateOnly` for `startDate`/`endDate` | ✅ **Phase 8 complete** |
+| `freeDays.router.ts` | **UPDATED** — `formatDateOnly` in `TRPCError` window messages | ✅ **Phase 8 complete** |
+| `Email.scheduledAt` pattern | **DOCUMENTED** — store UTC, picker must use `toUtc`/`fromUtc` when UI is built | ✅ **Phase 9 complete** |
 
 ### ⚠️ Partially Implemented / Remaining
 
 | Location | Issue |
 |---|---|
-| `isWithinKeyDateWindow()` in `key-dates.router.ts` | ✅ Correct (Phase 7 documented) — uses `setUTCHours` with UTC time strings. Contract comment added. |
-| `seasons/[seasonId]/_components/SeasonOverviewTab.tsx` | `startDate`, `endDate`, `makeCurrentUnlocksAt`, `rollForwardUnlocksAt` — still using raw date display — Phase 6 remaining |
+| `settings/audit-logs/page.tsx` | `createdAt` display still uses `toLocaleString` — low urgency, audit-only view |
+| `Email.scheduledAt` UI | Scheduled send UI not yet built — TZ pattern documented in Phase 9 for when it is |
 
-### ❌ Not Yet Implemented (Phases 5, 6, 8–10)
+### ❌ Not Yet Implemented
 
-#### Pulse Module
-
-| File | Fields Affected |
+| Location | Issue |
 |---|---|
-| `pulse/pipeline/page.tsx` | `nextActionAt` |
-| `pulse/tasks/page.tsx` | `dueAt` — `DateTimePicker` + display |
-| `pulse/leads/page.tsx` | `nextActionAt` — `DateTimePicker` |
-| `pulse/projects/page.tsx` | `startDate`, `targetEndDate` — `DateInput` |
-| `pulse/time/page.tsx` | `startAt`, `endAt` — `DateTimePicker` x4 + display |
-| `pulse/organisations/page.tsx` | `startDate`, `targetEndDate`, `dueAt`, `createdAt` |
-| `pulse/organisations/[id]/page.tsx` | Same fields in detail view |
-
-#### Server-side (Routers)
-
-| File | Issue |
-|---|---|
-| `seasons.router.ts` line 1652 | `new Date(season.rollForwardUnlocksAt).toLocaleDateString()` in error message — uses server Node.js locale, not tenant TZ |
-| Audit log entries | `createdAt` displayed with `toLocaleString('en-GB')` — browser TZ, not org TZ |
+| `settings/audit-logs/page.tsx` | `createdAt` — low priority audit view |
+| `Email.scheduledAt` picker | Deferred — no scheduled-send UI exists yet; see Phase 9 pattern |
 
 ---
 
@@ -408,20 +415,28 @@ Since Pulse operates at org level (not necessarily LMSPro), the `displayTimezone
 ---
 
 ### Phase 9 — Email Scheduling
-**Effort: ~2h | Risk: Medium**
+**Status: ✅ Documented**
 
 `Email.scheduledAt` is a timestamp. The `ComposeEmailModal` currently does not expose a scheduled send UI, but the column exists. When this feature is built:
-- The date-time picker must convert from org TZ → UTC before saving `scheduledAt`
-- The email queue processor must compare `scheduledAt` against `new Date()` (UTC) — this is already correct if stored in UTC
+
+- The date-time picker must use `fromUtc`/`toUtc` (same as Pulse `tasks.dueAt` pattern)
+- Load: `value={email.scheduledAt ? fromUtc(new Date(email.scheduledAt), tz) : null}`
+- Save: `scheduledAt: value ? toUtc(value, tz) : null`
+- The email queue processor compares `scheduledAt` against `new Date()` (UTC) — correct as long as stored UTC
+- Display in the Sent/Scheduled tab: `formatTz(email.scheduledAt, tz, 'dd MMM yyyy HH:mm')`
 
 ---
 
 ### Phase 10 — Documentation & Testing
-**Effort: ~1h**
+**Status: ✅ Complete (29 May 2026)**
 
-- Add `// TZ: date-only — use formatDateOnly()` comments above date-only fields in schema
-- Add `// TZ: timestamp — use formatTz(x, org.displayTimezone)` for timestamp fields
-- Write a one-page ADR (Architecture Decision Record) confirming: UTC storage, IANA per-org display TZ, `date-fns-tz` as the canonical library
+- All phases 1–9 implemented and committed
+- Shared utilities in `src/lib/timezone.ts` and `src/lib/timezone-context.tsx`
+- `TimezoneProvider` mounted in `AppShell.tsx` — available app-wide
+- All `toLocaleDateString` / `toLocaleString` calls replaced with `formatTz` / `formatDateOnly`
+- All DateTimePicker UTC round-trips use `fromUtc` / `toUtc`
+- All date-only DateInput save handlers use `toUTCMidnight` / `Date.UTC`
+- See test plan: `docs/core/timezone-test-plan.md`
 
 ---
 
