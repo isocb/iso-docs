@@ -1,10 +1,12 @@
 # IsoStack — Timezone & Date Handling: End-to-End Test Plan
 
-**Version:** 1.0  
+**Version:** 1.1  
 **Date:** 29 May 2026  
 **Author:** IsoStack Engineering  
 **Audience:** QA, Client, Internal Testers  
 **Related doc:** `docs/core/timezone-handling.md`
+
+**v1.1 changes:** Section 3 updated — ClubRegistrationCard removed from product; replaced with tests for WINDOW key date architecture, `showCountdown` toggle, form gate URL display, and multi-step registration form validation.
 
 ---
 
@@ -146,15 +148,73 @@ All tests should be carried out with the organisation's **Display Timezone set t
 
 ---
 
-## Section 3 — Club Registration Card
+## Section 3 — Key Date WINDOW Architecture & New Features
 
-**Where:** LMSPro → Seasons → [Season] → Club Registration tab (or equivalent)
+> ℹ️ The ClubRegistrationCard has been removed. Registration timing is now managed entirely through the Key Dates tab using a single `WINDOW` type key date record per form. All tests below apply to any WINDOW key date (club-registration, team-registration, etc.).
+
+### 3.1 WINDOW Key Date — Admin CRUD
+
+**Where:** LMSPro → Seasons → [Season] → Key Dates tab
 
 | # | Action | Expected Result | Pass/Fail |
 |---|---|---|---|
-| 3.1 | Open the Club Registration Card config | Open time and close time inputs show existing values in BST | |
-| 3.2 | Set registration open time to 08:30 BST | After save, re-open: shows "08:30 BST" — not "09:30 BST" | |
-| 3.3 | Verify in DB | Stored as `"07:30"` (UTC) | |
+| 3.1.1 | Open the Key Dates tab on a season that has club registration configured | A single `club-registration` key date entry exists — NOT separate `club-registration-opens` / `club-registration-closes` records | |
+| 3.1.2 | Click the `club-registration` row to open the edit modal | Modal opens with `From Date`, `From Time`, `To Date`, `To Time` fields all pre-filled correctly | |
+| 3.1.3 | Check `From Time` and `To Time` labels | Both show timezone abbreviation (e.g. "BST") | |
+| 3.1.4 | Change `From Time` to `09:00 BST` and save | Re-open: shows "09:00 BST" — not "08:00" or "10:00" | |
+| 3.1.5 | Verify in DB (Prisma Studio) | `activeFromTime` stored as `"08:00"` (UTC); `activeToTime` 1hr behind displayed value | |
+
+---
+
+### 3.2 Show Countdown Toggle
+
+**Where:** LMSPro → Seasons → [Season] → Key Dates tab → edit any WINDOW key date
+
+| # | Action | Expected Result | Pass/Fail |
+|---|---|---|---|
+| 3.2.1 | Open edit modal for a WINDOW key date | "Show countdown timer on public form" switch is visible under the Form gate settings section | |
+| 3.2.2 | Toggle the switch OFF and save | Switch stays OFF when modal is re-opened | |
+| 3.2.3 | Navigate to the public embed URL for that form (e.g. `/embed/register/club?org=<slug>`) when the window hasn't opened yet | With countdown OFF: form shows a plain "Registration Opens Soon" message with no animated countdown timer | |
+| 3.2.4 | Toggle the switch back ON and save | Public embed now shows the day/hour/minute/second countdown blocks | |
+| 3.2.5 | Verify in DB | `show_countdown` column is `false` when toggled off, `true` when on | |
+
+---
+
+### 3.3 Form Gate URL Display
+
+**Where:** LMSPro → Seasons → [Season] → Key Dates tab → expand accordion for a form-gated key date
+
+| # | Action | Expected Result | Pass/Fail |
+|---|---|---|---|
+| 3.3.1 | Expand the accordion row for the `club-registration` key date | A read-only URL field appears showing the full embed URL (e.g. `https://app.example.com/embed/register/club?org=<your-org-slug>`) | |
+| 3.3.2 | Click the copy button (clipboard icon) next to the URL | URL is copied to clipboard; button briefly shows a green tick | |
+| 3.3.3 | Click the external link icon next to the URL | Opens the embed URL in a new tab | |
+| 3.3.4 | Verify the URL contains your org's correct slug | URL uses `?org=<your-slug>` — not a hardcoded value | |
+| 3.3.5 | Expand the accordion for a non-form-gated key date (e.g. a generic DEADLINE type) | No URL field appears | |
+
+---
+
+### 3.4 Multi-Step Club Registration Form — Next Button Validation
+
+**Where:** `/embed/register/club?org=<slug>` (public embed, window must be open)
+
+| # | Action | Expected Result | Pass/Fail |
+|---|---|---|---|
+| 3.4.1 | Open the form at step 1 (Season selection) | Next button is **greyed out** / disabled | |
+| 3.4.2 | Select a season from the dropdown | Next button becomes **enabled** | |
+| 3.4.3 | Proceed to step 2 (Club Details) — leave both fields blank | Next button is disabled | |
+| 3.4.4 | Enter a club name (≥ 2 chars) but leave Short Name blank | Next button stays disabled | |
+| 3.4.5 | Fill in both Club Name and Short Name | Next button becomes enabled | |
+| 3.4.6 | Proceed to step 3 (Contact) — leave all fields blank | Next button is disabled | |
+| 3.4.7 | Enter name and phone but leave email blank | Next button stays disabled | |
+| 3.4.8 | Enter an invalid email (e.g. `notanemail`) | Next button stays disabled | |
+| 3.4.9 | Enter a valid email, name ≥ 2 chars, phone ≥ 6 chars | Next button becomes enabled | |
+| 3.4.10 | Proceed to step 4 (Officers) — leave all optional fields blank | Next button is **enabled** (officers are optional) | |
+| 3.4.11 | Enter an invalid email in the Treasurer email field | Next button becomes disabled | |
+| 3.4.12 | Fix or clear the treasurer email | Next button re-enables | |
+| 3.4.13 | Proceed to step 5 (Teams) — do not select any age groups | Next button is disabled | |
+| 3.4.14 | Check a checkbox for at least one age group (count ≥ 1) | Next button becomes enabled | |
+| 3.4.15 | Proceed to step 6 (Review) | Submit button is always visible (no further validation gate) | |
 
 ---
 
@@ -384,4 +444,4 @@ If you find an issue, please record the following:
 ---
 
 *Cross-reference: `docs/core/timezone-handling.md`*  
-*Last updated: 29 May 2026*
+*Last updated: 29 May 2026 (v1.1 — key date WINDOW architecture, showCountdown, form gate URL, next button validation)*
