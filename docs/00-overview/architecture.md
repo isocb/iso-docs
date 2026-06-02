@@ -468,11 +468,22 @@ IsoStack uses two external services for security hardening. Both are optional in
 - Free tier at [console.upstash.com](https://console.upstash.com) supports multiple databases
 - Local dev: use real Upstash credentials (free tier), or set `UPSTASH_REDIS_REST_URL` to a localhost address to auto-disable rate limiting via the guard in `rate-limit.ts`
 
-**Current status (as of March 2026):**
+**Current status (as of June 2026):**
 - ✅ Infrastructure fully built
 - ✅ Env vars present in all Render environments
-- ❌ `withRateLimit()` not yet wired into request paths
-- See `docs/BETA-TODOs/rate-limiting.md` in isostack-bedrock for wiring instructions
+- ✅ `withRateLimit()` wired into all `/api/*` routes in `middleware.ts`
+- ✅ `checkAuthRateLimit()` wired into all `/auth/*` page routes in `middleware.ts`
+  - Uses `sensitiveRateLimiter` tier (20 req / 5 min per IP) keyed on `auth-page:<ip>`
+  - Returns 429 inline if exceeded; full middleware chain (security headers, session, branding) still runs on pass
+  - Prevents magic-link hammering and credential spray against auth page routes
+
+**Rate limiting coverage summary:**
+
+| Route pattern | Limiter | Wired |
+|---|---|---|
+| `/api/*` | Per-route (auth/signup/api/domain/sensitive) + global DDoS | ✅ |
+| `/auth/*` | sensitiveRateLimiter + global DDoS | ✅ June 2026 |
+| Magic link send (`sendVerificationRequest`) | `safeMagicLinkRateLimiter` — 3 per 15 min per email | ✅ |
 
 ---
 
