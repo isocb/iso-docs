@@ -1,7 +1,7 @@
 # Stripe Payment Gateway — Implementation Plan
 
-**Status:** 📋 Ready to Execute  
-**Created:** 9 March 2026  
+**Status:** ✅ Phases 1–6 complete (June 2026) | Phase 7 (Client Billing Page) pending  
+**Created:** 9 March 2026 | **Last updated:** 3 June 2026  
 **Currency:** GBP only  
 **Billing Model:** Both platform-assigned (comped/trial) AND self-service (client-initiated checkout)  
 **Subscription Scope:** Per `OrganizationProduct` — one Stripe subscription per product assigned to an org  
@@ -21,430 +21,315 @@ Client Browser
 
      tRPC billing.router
      │
-     ├── createCheckoutSession     → Stripe Checkout (new subscription)
+     ├── createCheckoutSession       → Stripe Checkout (new subscription)
      ├── createCustomerPortalSession → Stripe Portal (manage/cancel/download)
-     └── listInvoices              → Stripe API invoice history
+     └── getStatus                   → current subscription status for tenant
 
-     Stripe Webhooks → /api/stripe/webhook
+     tRPC products.router (P1 only)
      │
-     ├── checkout.session.completed       → assignProductToOrganization (ACTIVE)
-     ├── customer.subscription.updated    → update OrganizationProduct status
-     ├── customer.subscription.deleted    → CANCELLED + disable modules
-     ├── invoice.payment_failed           → flag as past_due
-     └── invoice.payment_succeeded        → ensure ACTIVE, extend expiresAt
+     ├── activateForOrganization     → comp a product (cancels Stripe sub if one exists)
+     ├── updateOrgProduct            → set back to TRIAL (cancels Stripe sub if one exists)
+     ├── extendTrial                 → add N days to trial
+     └── cancelForOrganization       → cancel product + disable modules
+
+     Stripe Webhooks → /api/webhooks/stripe
+     │
+     ├── checkout.session.completed       → ✅ sets ACTIVE, stores stripeSubscriptionId
+     ├── customer.subscription.deleted    → ✅ sets EXPIRED, logs audit
+     ├── invoice.payment_failed           → ✅ sets SUSPENDED, sends payment failed email
+     ├── customer.subscription.updated    → ⏳ TODO
+     └── invoice.payment_succeeded        → ⏳ TODO
 
      Platform Admin (P1)
-     └── /platform/clients/[id]/products → assign COMPED/TRIAL manually
-                                           (no Stripe, existing flow unchanged)
+     └── /platform/clients/[id] → Products tab → row-click modal
+         ├── Assign (trial or comped)
+         ├── Activate / Comp  (cancels Stripe sub automatically if one exists)
+         ├── Extend trial (+N days)
+         ├── Set back to trial (cancels Stripe sub automatically if one exists)
+         ├── Unsuspend
+         ├── Cancel
+         └── History tab (full AuditLog timeline per product)
 ```
 
-### Key Principle
-- Platform-assigned products (comped/trial by P1) → **no Stripe involvement**, existing `assignProductToOrganization()` flow unchanged
-- Self-service purchases → Stripe Checkout → webhook → calls `assignProductToOrganization()`
-- Stripe is the source of truth for **billing state only**; IsoStack `OrganizationProduct` remains source of truth for **access control**
+### Key Principle — Comped vs Paying
+- **Comped** = `OrganizationProduct.status = ACTIVE` + `stripeSubscriptionId IS NULL`
+- **Paying** = `OrganizationProduct.status = ACTIVE` + `stripeSubscriptionId = sub_xxx`
+- Shown in P1 UI as **Manual / Comped** vs **Managed** badge in the Products table
+- Stripe is source of truth for **billing state only**; IsoStack `OrganizationProduct` is source of truth for **access control**
+
+### P1 Product Lifecycle — all transitions
+
+| From | Action | Stripe effect |
+|---|---|---|
+| (none) | Assign → Trial | None |
+| (none) | Assign → Active (Comped) | None |
+| TRIAL | Activate / Comp | None |
+| TRIAL | Extend trial | None |
+| TRIAL | Set dates | None |
+| ACTIVE (comped) | Set back to trial | None (no sub to cancel) |
+| ACTIVE (paying) | Activate / Comp | **Cancels Stripe subscription** |
+| ACTIVE (paying) | Set back to trial | **Cancels Stripe subscription** |
+| SUSPENDED | Unsuspend | None |
+| CANCELLED | Reactivate | None |
+| Any | Cancel | None (Stripe sub already cancelled by webhook) |
+| Trial org (self-service) | Stripe Checkout | Webhook → sets ACTIVE, stores sub ID |
 
 ---
 
-## Pre-Implementation Checklist
+## What Is Built (June 2026)
 
-- [ ] Stripe account created and in test mode
-- [ ] Stripe CLI installed locally for webhook testing (`brew install stripe/stripe-cli/stripe`)
-- [ ] `.env.local` has placeholder vars (see Phase 2)
-- [ ] All `ProductPackage` records seeded in dev database (`npm run seed:products`)
+### ✅ Phase 1 — Schema
+Fields added to DB via migration `20260602142038_add_stripe_fields`:
+- `Organization.stripeCustomerId`
+- `OrganizationProduct.stripeSubscriptionId`
+- `OrganizationProduct.stripeCheckoutSessionId`
+- `ProductPackage.stripePriceIdMonthly`
+- `ProductPackage.stripePriceIdYearly`
+- `ProductPackage.priceMonthly` / `priceYearly` / `currency` (used for MRR/ARR calculations)
+
+### ✅ Phase 2 — Environment vars
+See **Environment Variables** section below.
+
+### ✅ Phase 3 — Stripe singleton
+`src/lib/stripe.ts` — lazy singleton, fails at call-time (not build-time) if key missing.
+
+### ✅ Phase 4 — Stripe Dashboard setup
+Partially complete — see **Stripe Dashboard Setup** section below for what still needs doing per environment.
+
+### ✅ Phase 5 — tRPC billing router
+`src/server/core/routers/billing.router.ts`:
+- `createCheckoutSession` — finds/creates Stripe Customer, creates Checkout session
+- `createPortalSession` — creates Billing Portal session
+- `getStatus` — returns current subscription status + trial days remaining
+
+### ✅ Phase 6 — Webhook handler
+`src/app/api/webhooks/stripe/route.ts`:
+- `checkout.session.completed` → activates `OrganizationProduct`, stores `stripeSubscriptionId`
+- `customer.subscription.deleted` → sets status to `EXPIRED`, audit log
+- `invoice.payment_failed` → sets status to `SUSPENDED`, sends `sendPaymentFailedEmail`
+
+### ✅ P1 Platform — Products tab (June 2026)
+`src/app/(platform)/platform/clients/[id]/_components/ClientProductsTab.tsx`:
+- Row-click CRUD modal with Details + History tabs
+- All lifecycle transitions (see table above)
+- Stripe subscription auto-cancelled on comp and on set-back-to-trial
+- Revenue summary cards per client (MRR, ARR, Stripe-managed, comped, trial pipeline)
+- Audit history timeline per `OrganizationProduct`
+
+### ✅ Revenue dashboard
+`/platform` page — two rows of stats:
+- Row 1: Client Orgs, Platform Users, Active Modules, Suspended (red when >0)
+- Row 2: MRR, ARR, Paying / Comped count, Trial Pipeline value
+
+### ⏳ Phase 7 — Client Billing Page
+`src/app/(app)/billing/page.tsx` — placeholder exists, real UI not yet built.
+
+### ⏳ Pending webhook events
+- `customer.subscription.updated` — status sync on renewal/upgrade
+- `invoice.payment_succeeded` — clear suspended flag on recovery payment
 
 ---
 
-## Phase 1 — Schema Migration
-**Estimated time: 30 min**  
-**File:** `prisma/schema.prisma` + migration
+## Environment Variables
 
-### Changes Required
-
-**1a. Add to `Organization` model:**
-```prisma
-stripeCustomerId String? @unique @map("stripe_customer_id")
-```
-
-**1b. Add to `OrganizationProduct` model:**
-```prisma
-stripeSubscriptionId  String?  @unique @map("stripe_subscription_id")
-stripePriceId         String?  @map("stripe_price_id")
-billingInterval       String?  @map("billing_interval")  // "month" | "year"
-```
-
-**1c. Add to `ProductPackage` model:**
-```prisma
-stripePriceMonthly  String?  @map("stripe_price_monthly")  // e.g. price_xxx
-stripePriceYearly   String?  @map("stripe_price_yearly")   // e.g. price_xxx
-```
-
-### Migration Command
-```bash
-npm run db:migrate:dev -- --name add_stripe_billing_fields
-```
-
-### Test
-- Open Prisma Studio: `npm run db:studio`
-- Verify new columns exist on `organizations`, `organization_products`, `product_packages`
-
----
-
-## Phase 2 — Package Install & Environment
-**Estimated time: 15 min**
-
-### Install
-```bash
-npm install stripe
-```
-
-### Environment Variables
-Add to `.env.local` (dev) and Render environment (deployed):
+Three Stripe vars are required per environment. They are different per environment because test mode and live mode are completely separate Stripe accounts/modes.
 
 ```env
-# Stripe
-STRIPE_SECRET_KEY=sk_test_...
-STRIPE_WEBHOOK_SECRET=whsec_...
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
+STRIPE_SECRET_KEY=sk_...           # Server-side only — NEVER expose to browser
+STRIPE_WEBHOOK_SECRET=whsec_...    # Per-endpoint — different for every registered webhook
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_...  # Safe to expose — used by Stripe.js if needed
 ```
 
-**Note:** Use `sk_test_` / `pk_test_` keys during development. Switch to live keys for production deployment only.
+### Where to find them in Stripe Dashboard
 
-### Render Config
-Add the three vars to:
-- TechTest environment
-- Staging environment  
-- Production environment (live keys only)
+| Variable | Location in Stripe |
+|---|---|
+| `STRIPE_SECRET_KEY` | Dashboard → Developers → API keys → **Secret key** (click Reveal) |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Dashboard → Developers → API keys → **Publishable key** (visible by default) |
+| `STRIPE_WEBHOOK_SECRET` | Dashboard → Developers → Webhooks → click your endpoint → **Signing secret** (click Reveal) |
 
----
+**Test mode vs Live mode:** Toggle the "Test mode" switch at the top-right of the Stripe Dashboard. Each mode has entirely separate API keys and webhook secrets. The keys are visually distinct:
+- Test: `sk_test_...` / `pk_test_...` / `whsec_...` (same prefix in both modes)
+- Live: `sk_live_...` / `pk_live_...` / `whsec_...`
 
-## Phase 3 — Stripe Singleton Client
-**Estimated time: 15 min**  
-**New file:** `src/lib/stripe.ts`
+### Per-environment mapping
 
-```typescript
-import Stripe from 'stripe';
-
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error('STRIPE_SECRET_KEY is not set');
-}
-
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2024-06-20',
-  typescript: true,
-});
-```
-
-Import this wherever Stripe is needed — never instantiate `new Stripe(...)` directly elsewhere.
-
----
-
-## Phase 4 — Stripe Dashboard Setup
-**Estimated time: 1 hr**
-
-This must be done before Phase 5/6 so Price IDs exist to store.
-
-### 4a. Create Products in Stripe Dashboard
-
-For each `ProductPackage` in the database, create a matching Stripe Product:
-
-| IsoStack Product | Stripe Product Name | Monthly Price (GBP) | Yearly Price (GBP) |
+| Environment | Stripe mode | Key prefix | Webhook points to |
 |---|---|---|---|
-| LMSPro Starter | LMSPro Starter | £49/mo | £490/yr |
-| LMSPro Pro | LMSPro Pro | £149/mo | £1,490/yr |
-| LMSPro Enterprise | LMSPro Enterprise | £499/mo | £4,990/yr |
-| Bedrock Starter | Bedrock Starter | £99/mo | £990/yr |
-| Bedrock Enterprise | Bedrock Enterprise | £299/mo | £2,990/yr |
-| Pulse Starter | Pulse Starter | £79/mo | £790/yr |
-| Pulse Pro | Pulse Pro | £199/mo | £1,990/yr |
-| Pulse Enterprise | Pulse Enterprise | £399/mo | £3,990/yr |
-| Platform Enterprise Bundle | Platform Enterprise Bundle | £999/mo | £9,990/yr |
-
-**Steps in Stripe Dashboard:**
-1. Products → Add Product → enter name + description
-2. Add two prices per product: one `Recurring/Monthly` (GBP), one `Recurring/Yearly` (GBP)
-3. Copy each Price ID (`price_xxx`) — you'll need them in step 4b
-
-### 4b. Seed Price IDs into Database
-
-After creating prices in Stripe, update each `ProductPackage` record via a script or Prisma Studio:
-
-```typescript
-// scripts/seed-stripe-price-ids.ts
-// Run once after Stripe products are created: npx tsx scripts/seed-stripe-price-ids.ts
-
-const PRICE_MAP = [
-  { slug: 'lmspro-starter',       monthly: 'price_xxx', yearly: 'price_xxx' },
-  { slug: 'lmspro-pro',           monthly: 'price_xxx', yearly: 'price_xxx' },
-  { slug: 'lmspro-enterprise',    monthly: 'price_xxx', yearly: 'price_xxx' },
-  { slug: 'bedrock-starter',      monthly: 'price_xxx', yearly: 'price_xxx' },
-  { slug: 'bedrock-enterprise',   monthly: 'price_xxx', yearly: 'price_xxx' },
-  { slug: 'pulse-starter',        monthly: 'price_xxx', yearly: 'price_xxx' },
-  { slug: 'pulse-pro',            monthly: 'price_xxx', yearly: 'price_xxx' },
-  { slug: 'pulse-enterprise',     monthly: 'price_xxx', yearly: 'price_xxx' },
-  { slug: 'platform-enterprise',  monthly: 'price_xxx', yearly: 'price_xxx' },
-];
-```
-
-This script will be created and populated with real Price IDs once Stripe products are set up.
-
-### 4c. Configure Webhook Endpoint
-
-In Stripe Dashboard → Developers → Webhooks:
-- **Endpoint URL:** `https://techtest.isostack.app/api/stripe/webhook`
-- **Events to listen for:**
-  - `checkout.session.completed`
-  - `customer.subscription.updated`
-  - `customer.subscription.deleted`
-  - `invoice.payment_succeeded`
-  - `invoice.payment_failed`
-- Copy the **Webhook Signing Secret** (`whsec_...`) → goes in `STRIPE_WEBHOOK_SECRET`
-
-For local dev, use Stripe CLI:
-```bash
-stripe listen --forward-to localhost:3000/api/stripe/webhook
-```
+| Local dev (`localhost`) | Test | `sk_test_` | Stripe CLI forward (not a registered endpoint) |
+| Staging (`staging.isostack.app`) | Test | `sk_test_` | Stripe test-mode webhook endpoint |
+| Production / main (`isostack.app`) | **Live** | `sk_live_` | Stripe live-mode webhook endpoint |
 
 ---
 
-## Phase 5 — tRPC Billing Router
-**Estimated time: 2 hrs**  
-**New file:** `src/server/core/routers/billing.router.ts`  
-**Edit:** `src/server/core/routers/index.ts` (register router)
+## Stripe Dashboard Setup — Per Environment
 
-### Procedures to Implement
+### What you need to create in Stripe
 
-**5a. `createCheckoutSession`** (protected, any authenticated user)
-- Input: `{ packageId, billingInterval: 'month' | 'year' }`
-- Finds or creates a Stripe Customer linked to `organization.stripeCustomerId`
-- Looks up the correct `stripePriceMonthly` or `stripePriceYearly` from `ProductPackage`
-- Creates `stripe.checkout.sessions.create()` with:
-  - `mode: 'subscription'`
-  - `customer: stripeCustomerId`
-  - `line_items: [{ price: priceId, quantity: 1 }]`
-  - `metadata: { organizationId, packageId }` ← **critical for webhook**
-  - `success_url`, `cancel_url`
-- Returns `{ url: session.url }` → frontend redirects to Stripe Checkout
+You need to create **Products and Prices** in Stripe Dashboard. These correspond 1:1 to your `ProductPackage` records in the database. You need to do this **twice** — once in Test mode (for staging), once in Live mode (for production).
 
-**5b. `createCustomerPortalSession`** (protected)
-- Input: none (uses session org)
-- Requires `organization.stripeCustomerId` to exist (throws if not)
-- Creates `stripe.billingPortal.sessions.create()`
-- Returns `{ url: session.url }` → frontend redirects to Stripe Portal
-- Portal handles: invoice downloads, card updates, cancellations
+#### Step 1 — Create Products in Stripe
 
-**5c. `getSubscriptions`** (protected)
-- Returns all `OrganizationProduct` records for current org
-- Includes `package.name`, `status`, `stripeSubscriptionId`, `billingInterval`
-- Used by the billing page to show current subscriptions
+In Stripe Dashboard (make sure you're in the correct mode — Test or Live):
 
-**5d. `listInvoices`** (protected)
-- Requires `stripeCustomerId`; returns `[]` gracefully if not set
-- Calls `stripe.invoices.list({ customer: stripeCustomerId, limit: 24 })`
-- Returns: `id`, `created`, `amount_due`, `currency`, `status`, `invoice_pdf`, `description`
-- Frontend renders table with PDF download link per row
+1. Go to **Products → Add product**
+2. For each IsoStack product package, create a Stripe Product:
 
-### Registration in `index.ts`
-```typescript
-import { billingRouter } from './billing.router';
-// Add to appRouter:
-billing: billingRouter,
-```
+| IsoStack Package slug | Stripe Product Name |
+|---|---|
+| `lmspro-starter` | LMSPro Starter |
+| `lmspro-pro` | LMSPro Pro |
+| `lmspro-enterprise` | LMSPro Enterprise |
+| *(add any others that exist in your DB)* | |
 
----
+#### Step 2 — Add Prices to each Product
 
-## Phase 6 — Webhook Handler
-**Estimated time: 3 hrs**  
-**New file:** `src/app/api/stripe/webhook/route.ts`
+For each Stripe Product, add two Prices:
+- **Monthly**: Recurring · Monthly · GBP · your price (e.g. £149.00)
+- **Yearly**: Recurring · Yearly · GBP · your price (e.g. £1,490.00)
 
-### Implementation Notes
+**Where the Price ID is:** After saving a Price, it appears in the price list as `price_xxxxxxxxxxxxxxxxxx`. Click the price row to see the full ID, or it's shown directly in the product's price list.
 
-- Must use `req.text()` (raw body) for signature verification — **never parse JSON first**
-- Use `stripe.webhooks.constructEvent(body, sig, process.env.STRIPE_WEBHOOK_SECRET!)`
-- All handlers should be idempotent (safe to receive same event twice)
-- Wrap each handler in try/catch; log errors but return `200` to Stripe to prevent retries on permanent failures
+#### Step 3 — Store Price IDs in the database
 
-### Event Handlers
-
-**`checkout.session.completed`**
-```
-1. Extract metadata.organizationId + metadata.packageId
-2. Get subscription ID from session.subscription
-3. Get price ID from session (line_items)
-4. Determine billingInterval from price.recurring.interval
-5. Call assignProductToOrganization({ organizationId, packageId, status: ACTIVE, startTrial: false })
-6. UPDATE OrganizationProduct SET stripeSubscriptionId, stripePriceId, billingInterval
-7. UPDATE Organization SET stripeCustomerId (if not already set)
-8. Audit log: STRIPE_SUBSCRIPTION_CREATED
-```
-
-**`customer.subscription.updated`**
-```
-1. Find OrganizationProduct by stripeSubscriptionId
-2. Map Stripe status → IsoStack ProductStatus:
-   - 'active'    → ACTIVE
-   - 'past_due'  → leave as ACTIVE (grace period), add metadata flag
-   - 'cancelled' → CANCELLED (also fires subscription.deleted)
-   - 'trialing'  → TRIAL
-3. UPDATE OrganizationProduct.status
-4. If cancelled/expired: disable modules via prisma.organisationModule.updateMany
-5. Audit log: STRIPE_SUBSCRIPTION_UPDATED
-```
-
-**`customer.subscription.deleted`**
-```
-1. Find OrganizationProduct by stripeSubscriptionId
-2. Call cancelProductForOrganization (existing function in access-control.ts)
-3. Audit log: STRIPE_SUBSCRIPTION_CANCELLED
-```
-
-**`invoice.payment_succeeded`**
-```
-1. Find OrganizationProduct by stripeSubscriptionId (from invoice.subscription)
-2. Ensure status is ACTIVE
-3. Clear any past_due flags in metadata
-4. Set expiresAt = null (continuous subscription, no fixed expiry)
-5. Audit log: STRIPE_PAYMENT_SUCCEEDED
-```
-
-**`invoice.payment_failed`**
-```
-1. Find OrganizationProduct by stripeSubscriptionId
-2. Store failure count in metadata
-3. After 3 failures (or Stripe's own cancellation): set EXPIRED, disable modules
-4. Audit log: STRIPE_PAYMENT_FAILED
-```
-
-### Webhook Route Structure
-```typescript
-export async function POST(req: Request) {
-  const body = await req.text();
-  const sig = req.headers.get('stripe-signature')!;
-  
-  let event: Stripe.Event;
-  try {
-    event = stripe.webhooks.constructEvent(body, sig, process.env.STRIPE_WEBHOOK_SECRET!);
-  } catch (err) {
-    return new Response(`Webhook Error: ${err}`, { status: 400 });
-  }
-
-  try {
-    switch (event.type) {
-      case 'checkout.session.completed': ...
-      case 'customer.subscription.updated': ...
-      case 'customer.subscription.deleted': ...
-      case 'invoice.payment_succeeded': ...
-      case 'invoice.payment_failed': ...
-      default:
-        console.log(`Unhandled event type: ${event.type}`);
-    }
-  } catch (err) {
-    console.error(`Error handling ${event.type}:`, err);
-    // Still return 200 — Stripe will retry on non-200
-  }
-
-  return new Response('OK', { status: 200 });
-}
-```
-
----
-
-## Phase 7 — Client Billing Page
-**Estimated time: 3 hrs**  
-**Edit:** `src/app/(app)/billing/page.tsx` (full replacement of placeholder)
-
-### Page Sections
-
-**7a. Active Subscriptions**
-- `trpc.billing.getSubscriptions.useQuery()` 
-- Card per product: name, status badge, billing interval, next payment date
-- "Manage / Cancel" button → `createCustomerPortalSession` → redirect
-
-**7b. Add a Product (Self-Service Checkout)**
-- Lists available `ProductPackage` records not yet subscribed
-- Monthly / Yearly toggle
-- "Subscribe" button → `createCheckoutSession` → redirect to Stripe Checkout
-- After success, Stripe redirects back to `/billing?success=true` → show confirmation banner
-
-**7c. Invoice History**
-- `trpc.billing.listInvoices.useQuery()`
-- Table: Date | Description | Amount | Status | Actions
-- Each row has a "Download PDF" link (opens `invoice_pdf` URL from Stripe — Stripe-hosted PDF, no generation needed)
-- If `stripeCustomerId` is null (platform-comped org): show "Contact your account manager for invoices"
-
-**7d. Payment Method**
-- "Update Payment Method" button → `createCustomerPortalSession` → redirect
-- Note: Card details are never stored in IsoStack — Stripe Portal handles this entirely
-
-### Empty State
-If org has no `stripeCustomerId` and no self-service subscriptions:
-- Show available products with "Get Started" CTAs
-- Explain any platform-assigned products (trials) with upgrade path
-
----
-
-## Phase 8 — Testing
-**Estimated time: 2 hrs**
-
-### Local Testing with Stripe CLI
+Each `ProductPackage` record has `stripePriceIdMonthly` and `stripePriceIdYearly` columns. You need to populate these with the `price_xxx` IDs from Stripe. Do this via Prisma Studio (`npm run db:studio`) or the seed script:
 
 ```bash
-# Terminal 1: Run app
-npm run dev
+# Edit scripts/seed-stripe-price-ids.ts with your actual price_xxx IDs
+# Then run:
+npx tsx scripts/seed-stripe-price-ids.ts
+```
 
-# Terminal 2: Forward webhooks
-stripe listen --forward-to localhost:3000/api/stripe/webhook
+> ⚠️ You need **separate price IDs for staging (test) and production (live)** — they are different Stripe modes. The staging DB needs test price IDs; the production DB needs live price IDs.
 
-# Terminal 3: Trigger test events
+#### Step 4 — Also update priceMonthly / priceYearly
+
+The `ProductPackage.priceMonthly` and `priceYearly` fields (plain `Decimal`) are used for **MRR/ARR display in the P1 dashboard**. These are independent of Stripe — set them to your GBP prices in Prisma Studio or via migration seed. Without these set, all revenue figures show £0.
+
+---
+
+## Webhook Setup — Per Environment
+
+### Local development
+
+Use the Stripe CLI to forward events to your local server. The webhook secret is generated fresh each `stripe listen` session.
+
+```bash
+# Install CLI (once)
+brew install stripe/stripe-cli/stripe
+
+# Authenticate (once)
+stripe login
+
+# Start forwarding (run every dev session alongside npm run dev)
+stripe listen --forward-to localhost:3000/api/webhooks/stripe
+```
+
+The CLI prints a `whsec_...` secret on startup — copy it into your `.env.local` as `STRIPE_WEBHOOK_SECRET` for that session. (Or set it once if you use `stripe listen --print-secret`.)
+
+Events to test:
+```bash
 stripe trigger checkout.session.completed
 stripe trigger customer.subscription.deleted
 stripe trigger invoice.payment_failed
 ```
 
+### Staging (Test mode webhook)
+
+1. In Stripe Dashboard → ensure you are in **Test mode**
+2. Go to **Developers → Webhooks → Add endpoint**
+3. **Endpoint URL:** `https://staging.isostack.app/api/webhooks/stripe`
+4. **Events to listen for:**
+   - `checkout.session.completed`
+   - `customer.subscription.updated`
+   - `customer.subscription.deleted`
+   - `invoice.payment_succeeded`
+   - `invoice.payment_failed`
+5. Save → click the endpoint → **Signing secret → Reveal** → copy `whsec_...`
+6. Add to Render staging environment:
+   - `STRIPE_SECRET_KEY` = `sk_test_...`
+   - `STRIPE_WEBHOOK_SECRET` = `whsec_...` (from this endpoint)
+   - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` = `pk_test_...`
+
+### Production (Live mode webhook)
+
+1. In Stripe Dashboard → switch to **Live mode**
+2. Go to **Developers → Webhooks → Add endpoint**
+3. **Endpoint URL:** `https://isostack.app/api/webhooks/stripe` *(or your live domain)*
+4. **Same events as above**
+5. Save → copy the live `whsec_...` signing secret
+6. Add to Render production environment:
+   - `STRIPE_SECRET_KEY` = `sk_live_...`
+   - `STRIPE_WEBHOOK_SECRET` = `whsec_...` (from the LIVE endpoint — **different from staging**)
+   - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` = `pk_live_...`
+
+> ⚠️ **The `STRIPE_WEBHOOK_SECRET` is unique per registered endpoint.** Staging and production will have different `whsec_` values even if they look similar. Using the wrong one causes all webhooks to fail signature verification with a 400 error.
+
+---
+
+## Phase 7 — Client Billing Page (Pending)
+**Estimated time: 3 hrs**  
+**Edit:** `src/app/(app)/billing/page.tsx` (placeholder exists)
+
+### Page Sections
+
+**7a. Active Subscriptions**
+- `trpc.billing.getStatus.useQuery()`
+- Card per product: name, status badge, billing interval, next payment date
+- "Manage / Cancel" button → `createPortalSession` → redirect
+
+**7b. Add a Product (Self-Service Checkout)**
+- Lists available `ProductPackage` records not yet subscribed
+- Monthly / Yearly toggle
+- "Subscribe" button → `createCheckoutSession` → redirect to Stripe Checkout
+- After success: Stripe redirects to `/app?checkout=success` → banner
+
+**7c. Invoice History**
+- `trpc.billing.listInvoices.useQuery()` *(not yet built — needs adding to billing.router)*
+- Table: Date | Description | Amount | Status | Download PDF
+- If `stripeCustomerId` is null (comped org): "Contact your account manager for invoices"
+
+**7d. Payment Method**
+- "Update Payment Method" → `createPortalSession` → redirect
+- Card details never stored in IsoStack — Stripe Portal handles entirely
+
+---
+
+## Phase 8 — Testing
+
+### Test Card Numbers (Stripe test mode)
+- `4242 4242 4242 4242` — successful payment (any future expiry, any CVC)
+- `4000 0000 0000 9995` — card declined
+- `4000 0025 0000 3155` — requires 3DS authentication
+
 ### Test Scenarios
 
 | Scenario | Steps | Expected Result |
 |---|---|---|
-| New self-service subscription | Click Subscribe → Stripe test card `4242 4242 4242 4242` → complete | `OrganizationProduct` created with `ACTIVE` status |
-| Webhook: subscription cancelled | `stripe trigger customer.subscription.deleted` | Status → `CANCELLED`, modules disabled |
-| Webhook: payment failed | `stripe trigger invoice.payment_failed` | Metadata flagged, audit log created |
+| New self-service subscription | Click Subscribe → test card `4242...` → complete | `OrganizationProduct` → ACTIVE, `stripeSubscriptionId` set |
+| Webhook: subscription cancelled | `stripe trigger customer.subscription.deleted` | Status → EXPIRED |
+| Webhook: payment failed | `stripe trigger invoice.payment_failed` | Status → SUSPENDED, billing gate shown |
+| P1: comp a paying org | Products tab → row → Activate/Comp | Stripe sub cancelled, badge → Manual/Comped |
+| P1: set paying org back to trial | Products tab → row → Set back to trial | Stripe sub cancelled, status → TRIAL |
+| P1: unsuspend | Products tab → row → Unsuspend | Status → ACTIVE, billing gate gone |
 | Customer portal | Click "Manage Billing" | Redirect to Stripe Portal |
-| Invoice PDF download | Click download on invoice row | Opens Stripe-hosted PDF |
-| Platform-comped org | No stripeCustomerId | Invoice section shows "Contact account manager" |
-
-### Test Card Numbers (Stripe)
-- `4242 4242 4242 4242` — successful payment
-- `4000 0000 0000 9995` — card declined
-- `4000 0025 0000 3155` — requires authentication (3DS)
+| Comped org billing page | No stripeCustomerId | Invoice section shows "Contact account manager" |
 
 ---
 
-## File Change Summary
+## File Reference
 
-| File | Action | Phase |
-|---|---|---|
-| `prisma/schema.prisma` | Edit — add 5 new nullable fields | 1 |
-| `prisma/migrations/...add_stripe_billing_fields` | New — auto-generated | 1 |
-| `src/lib/stripe.ts` | **New** — Stripe singleton | 3 |
-| `scripts/seed-stripe-price-ids.ts` | **New** — populate Price IDs after Stripe setup | 4 |
-| `src/server/core/routers/billing.router.ts` | **New** — 4 tRPC procedures | 5 |
-| `src/server/core/routers/index.ts` | Edit — register billing router | 5 |
-| `src/app/api/stripe/webhook/route.ts` | **New** — webhook handler | 6 |
-| `src/app/(app)/billing/page.tsx` | Edit — replace placeholder with real UI | 7 |
-
-**Total new files: 4 | Edited files: 4**
-
----
-
-## Deployment Sequence (TechTest → Staging → Production)
-
-1. Merge `dev` → `techtest` 
-2. Apply migration: `npm run db:migrate` (Render Shell on TechTest)
-3. Add env vars to Render TechTest
-4. Create Stripe **test mode** products + configure webhook pointing to `techtest.isostack.app`
-5. Run `scripts/seed-stripe-price-ids.ts` against TechTest DB
-6. Smoke test all scenarios in the test table above
-7. Merge to `staging` → repeat steps 2-6
-8. For production: create Stripe **live mode** products, swap to live keys, merge to `main`
+| File | Purpose |
+|---|---|
+| `src/lib/stripe.ts` | Stripe singleton client |
+| `src/server/core/routers/billing.router.ts` | `createCheckoutSession`, `createPortalSession`, `getStatus` |
+| `src/server/core/routers/products.router.ts` | P1 lifecycle management incl. Stripe cancel on comp/trial |
+| `src/app/api/webhooks/stripe/route.ts` | Webhook handler (checkout, subscription deleted, payment failed) |
+| `src/app/(gate)/account/billing-gate/page.tsx` | C1 Owner/Admin gate — trial expired or payment failed |
+| `src/app/(gate)/account/suspended/page.tsx` | C2 Member gate — neutral suspended message |
+| `src/app/(app)/app/lmspro/layout.tsx` | Billing interceptor — checks status, redirects to gate |
+| `src/app/(platform)/platform/clients/[id]/_components/ClientProductsTab.tsx` | P1 product management UI |
+| `scripts/seed-stripe-price-ids.ts` | One-time script to populate price IDs *(create after Stripe setup)* |
 
 ---
 
@@ -452,21 +337,22 @@ stripe trigger invoice.payment_failed
 
 | Decision | Rationale |
 |---|---|
-| One Stripe Customer per Organization | Simplest model; org pays, not individual users |
-| One Stripe Subscription per OrganizationProduct | Allows per-product billing, cancellation, and upgrade independently |
-| Platform-comped products bypass Stripe entirely | P1 workflow unchanged; no accidental billing |
-| `stripeCustomerId` stored on `Organization` | Single customer across all their subscriptions |
-| Stripe Portal handles card/cancellation | No need to build custom payment forms; PCI compliance handled by Stripe |
-| Invoice PDFs served from Stripe | `invoice_pdf` URL from Stripe API — no S3/R2 storage needed |
-| `billingInterval` stored on `OrganizationProduct` | Needed to display "£149/mo" vs "£1,490/yr" in UI without re-querying Stripe |
+| Comped = ACTIVE + no stripeSubscriptionId | No separate DB field needed; Stripe column in P1 UI shows Manual/Comped vs Managed |
+| Comp from paying auto-cancels Stripe sub | Prevents ghost subscriptions accruing charges after P1 comps an org |
+| Set-back-to-trial auto-cancels Stripe sub | Same reason — ensures billing stops when P1 demotes a paid org |
+| One Stripe Customer per Organization | Org pays, not individual users |
+| One Stripe Subscription per OrganizationProduct | Per-product billing and cancellation |
+| Stripe Portal handles card/cancellation | No custom payment forms; PCI compliance via Stripe |
+| MRR/ARR from priceMonthly field | Avoids Stripe API call for dashboard stats; P1 sets prices once in DB |
+| Invoice PDFs served from Stripe | `invoice_pdf` URL — no R2 storage needed |
 
 ---
 
 ## Out of Scope (Future)
 
-- Upgrade/downgrade between tiers (swap `packageId` on existing subscription)
+- Upgrade/downgrade between tiers
 - Proration handling
-- Multi-currency support (GBP only for now)
+- Multi-currency
 - Usage-based billing
-- Team seat limits enforced at Stripe level
-- Dunning email sequences (Stripe handles basic failed payment emails)
+- Dunning email sequences (Stripe handles basic failed payment emails via Dashboard settings)
+- `invoice.payment_succeeded` / `subscription.updated` webhook handlers (currently TODO)
