@@ -1,10 +1,10 @@
 # Stripe Payment Gateway — Implementation Plan
 
-**Status:** ✅ Phases 1–6 complete (June 2026) | Phase 7 (Client Billing Page) pending  
+**Status:** ✅ Phases 1–6 complete (June 2026) | Phase 7 (Client Billing Page) pending | Phase 8 (Team Bundle Add-ons) pending  
 **Created:** 9 March 2026 | **Last updated:** 3 June 2026  
 **Currency:** GBP only  
-**Billing Model:** Both platform-assigned (comped/trial) AND self-service (client-initiated checkout)  
-**Subscription Scope:** Per `OrganizationProduct` — one Stripe subscription per product assigned to an org  
+**Billing Model:** Both platform-assigned (comped/trial) AND self-service (client-initiated checkout)
+**Subscription Scope:** Per `OrganizationProduct` — one Stripe subscription per product, with multiple line items (tier + optional bundles)
 **Client Billing Page:** Self-service with PDF invoice downloads  
 
 ---
@@ -350,9 +350,181 @@ stripe trigger invoice.payment_failed
 
 ## Out of Scope (Future)
 
-- Upgrade/downgrade between tiers
-- Proration handling
 - Multi-currency
 - Usage-based billing
 - Dunning email sequences (Stripe handles basic failed payment emails via Dashboard settings)
 - `invoice.payment_succeeded` / `subscription.updated` webhook handlers (currently TODO)
+
+---
+
+## Phase 8 — Team Bundle Add-ons (Pending)
+
+**Status:** Design complete (3 June 2026) — schema migration not yet run  
+**Estimated time: 2–3 days across 4 phases**
+
+### Overview
+
+Tenants can top-up their team capacity by purchasing Team Bundle add-ons in addition to their base tier subscription. Designed for LMSPro only (metric = active teams in current season).
+
+**Key rules:**
+- Tier is always quantity 1 on the subscription
+- Bundles can be quantity N (each bundle = X additional teams)
+- Tier 3 has a different (bigger/cheaper) bundle than lower tiers — each tier has its own `ProductAddon` record with its own Stripe Price ID
+- Comped leagues do **not** purchase bundles — P1 sets a `overrideTeamLimit` directly (no Stripe)
+- Stripe handles proration silently on mid-cycle bundle changes — UI notes this without calculating it
+
+### Stripe Subscription Structure
+
+A subscribing tenant creates **one Stripe Checkout Session** with multiple `line_items`:
+
+```typescript
+stripe.checkout.sessions.create({
+  mode: 'subscription',
+  line_items: [
+    { price: 'price_tier3_monthly', quantity: 1 },        // Tier — always qty 1
+    { price: 'price_bundle_tier3_monthly', quantity: 2 }, // Optional at signup
+  ],
+});
+```
+
+After checkout, `subscription.items.data` returns two item IDs:
+- `si_abc` — tier line item → stored in `OrganizationProduct.stripeSubscriptionItemId`
+- `si_xyz` — bundle line item → stored in `OrganizationProductAddon.stripeSubscriptionItemId`
+
+### Self-Serve Bundle Changes (No New Checkout)
+
+Once subscribed, bundles are updated via direct subscription update — no Stripe redirect:
+
+```typescript
+// Increase quantity on existing bundle item
+stripe.subscriptions.update(subscriptionId, {
+  items: [{ id: storedBundleItemId, quantity: 3 }],
+  proration_behavior: 'always_invoice',
+});
+
+// Add first bundle (no bundle item yet)
+stripe.subscriptions.update(subscriptionId, {
+  items: [{ price: 'price_bundle_tier3_monthly', quantity: 1 }],
+  proration_behavior: 'always_invoice',
+});
+
+// Remove all bundles
+stripe.subscriptions.update(subscriptionId, {
+  items: [{ id: storedBundleItemId, quantity: 0 }],
+});
+```
+
+### Tier Upgrade
+
+Swap the tier line item's price, keep the bundle item:
+
+```typescript
+stripe.subscriptions.update(subscriptionId, {
+  items: [
+    { id: storedTierItemId, price: 'price_tier4_monthly' },
+    // bundle item untouched
+  ],
+  proration_behavior: 'always_invoice',
+});
+```
+
+UI shows: *"Your next invoice will include a prorated charge for the upgrade."* — no calculation needed.
+
+### Checkout Flow Summary
+
+| Action | Stripe Operation |
+|---|---|
+| First purchase (tier only) | Checkout Session, 1 line item |
+| First purchase (tier + bundles) | Checkout Session, 2 line items |
+| Add bundle on existing sub | `subscriptions.update` — add item |
+| Increase bundle qty | `subscriptions.update` — change quantity |
+| Remove all bundles | `subscriptions.update` — quantity: 0 |
+| Upgrade tier | `subscriptions.update` — swap price on tier item |
+| Cancel | `subscriptions.cancel` |
+
+### RAG Team Limit Warning System
+
+The billing page and dashboard show a RAG indicator based on active team count vs effective limit:
+
+- 🟢 **Green** — >25% capacity remaining (configurable threshold)
+- 🟡 **Amber** — within 10% of limit (configurable threshold)
+- 🔴 **Red** — at or over 100% of limit
+
+Thresholds are configured per `ProductPackage` by P1 in the Product Manager.
+
+**Effective team limit formula:**
+```
+effectiveLimit = baseTeamLimit + (sum of addon.quantity × addon.teamsPerBundle)
+```
+
+For comped orgs: `effectiveLimit = overrideTeamLimit` (set directly by P1, no addons).
+
+When Red: soft warning only (no hard block) + email sent to P1.
+
+### Schema Changes Required
+
+#### On existing `ProductPackage` model (new fields)
+```prisma
+baseTeamLimit        Int?      // Max teams included in this tier (e.g. 30)
+teamLimitRagAmber    Int?      // Amber threshold as % of limit (e.g. 90)
+teamLimitRagRed      Int?      // Red threshold as % of limit (e.g. 100)
+```
+
+#### On existing `OrganizationProduct` model (new field)
+```prisma
+stripeSubscriptionItemId  String?  // si_xxx for the tier line item
+overrideTeamLimit         Int?     // Comped orgs only — P1 sets directly
+```
+
+#### New `ProductAddon` table
+```prisma
+model ProductAddon {
+  id                   String         @id @default(cuid())
+  name                 String         // "Team Bundle"
+  slug                 String         @unique
+  description          String?
+  teamsPerBundle       Int            // Teams unlocked per bundle unit
+  priceMonthly         Decimal        @db.Decimal(10, 2)
+  priceYearly          Decimal        @db.Decimal(10, 2)
+  stripePriceIdMonthly String?
+  stripePriceIdYearly  String?
+  moduleSlug           String         // "lmspro"
+  isActive             Boolean        @default(true)
+  packageId            String         // Tier this bundle applies to
+  package              ProductPackage @relation(fields: [packageId], references: [id])
+  orgAddons            OrganizationProductAddon[]
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
+}
+```
+
+#### New `OrganizationProductAddon` table
+```prisma
+model OrganizationProductAddon {
+  id                       String       @id @default(cuid())
+  organizationId           String
+  addonId                  String
+  quantity                 Int          @default(1)
+  stripeSubscriptionItemId String?      // si_xxx — needed to update quantity later
+  createdAt                DateTime     @default(now())
+  updatedAt                DateTime     @updatedAt
+  organization             Organization @relation(...)
+  addon                    ProductAddon @relation(...)
+}
+```
+
+### Build Phases
+
+| Phase | Work | Files |
+|---|---|---|
+| 8a | Schema migration | `prisma/schema.prisma` + migration |
+| 8b | tRPC routers | `addons.router.ts` — list, add, updateQuantity; update `billing.router.ts` checkout to include bundles |
+| 8c | Platform Product Manager UI | Configure `ProductAddon` per tier, set `baseTeamLimit` + RAG thresholds |
+| 8d | Tenant billing page | Real billing page replacing placeholder — tier card, bundle picker, RAG indicator, invoice history |
+
+### Naming: IsoStack wins over Stripe
+
+- All names and prices displayed in the app come from IsoStack DB (`ProductPackage.name`, `ProductAddon.name`, `priceMonthly`)
+- Stripe holds only `price_xxx` IDs — never fetched to display names
+- Stripe product names (visible on invoices) should be set to match marketing names in Stripe Dashboard — one-time admin task
+- You can rebrand any tier name in IsoStack at any time without touching Stripe
