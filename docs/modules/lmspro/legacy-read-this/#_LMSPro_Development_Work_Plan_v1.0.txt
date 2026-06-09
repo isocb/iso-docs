@@ -1,0 +1,3154 @@
+# # LMSPro Development Work Plan v1.0
+
+**Project:** League Management System Pro (Multi-Tenant SaaS)  
+**Client:** Derby Junior Football League (Initial Tenant)  
+**Document Version:** 1.0  
+**Date:** 2025-11-18  
+**Status:** Strategic Development Plan  
+**Based On:** 
+- Functional Specification v1.2
+- ADR-002: Multi-Tenancy Strategy
+- ADR-003: Authentication Flow
+- ADR-004: Database Design
+- ADR-005: Deployment Strategy
+
+---
+
+## Document Purpose
+
+This work plan provides a granular, structured breakdown of all development work required to move from current scaffolding to a production-ready Version 1.0 of LMSPro. It is organized by functional area using structured notation ([A], [B], etc. for major sections, with legal numbering 1.1.1.1 for subsections) to enable precise tracking and progress reporting.
+
+---
+
+## Project Status: Current State
+
+### ✅ Completed (Scaffolding Phase)
+- Database schema designed and deployed to Neon
+- Next.js 15 + TypeScript project initialized
+- NextAuth.js authentication configured (magic links)
+- Prisma ORM connected to Neon PostgreSQL
+- Mantine v7 UI framework integrated
+- Basic layouts: auth layout, dashboard layout
+- Deployment to Render configured
+- Local development environment operational
+- Owner user created (requires fixing for multi-tenant access)
+
+### ⚠️ Known Issues Requiring Immediate Fix
+1. Owner user record incorrectly scoped to single league (should be `leagueId: null`)
+2. Tenant filtering middleware blocks owner access to all leagues
+3. No league switching mechanism for owners
+4. Session callback doesn't handle owner privileges correctly
+
+### ❌ Missing (Version 1.0 Requirements)
+- Everything detailed in this work plan below
+
+---
+
+## Development Approach
+
+### Principles
+1. **Incremental delivery**: Each section should be testable independently
+2. **Data first**: Build data models, then CRUD, then UI, then workflows
+3. **Multi-tenant aware**: Every feature must respect tenant isolation
+4. **Role-based access**: Implement RBAC at each layer (database, API, UI)
+5. **Audit everything**: All changes tracked with user/timestamp
+
+### Phases
+- **Phase 1**: Foundation & Owner Dashboard (Sections A-B) - *Weeks 1-2*
+- **Phase 2**: Core League Management (Sections C-E) - *Weeks 3-6*
+- **Phase 3**: Club & Team Lifecycle (Sections F-H) - *Weeks 7-10*
+- **Phase 4**: Operations & Communications (Sections I-K) - *Weeks 11-13*
+- **Phase 5**: Billing & Reporting (Sections L-M) - *Weeks 14-15*
+- **Phase 6**: Testing & Launch (Section N) - *Week 16*
+
+---
+
+## [A] FOUNDATION: Multi-Tenant Infrastructure
+
+**Priority:** CRITICAL - Must be completed first  
+**Estimated Time:** 3-4 days  
+**Dependencies:** None  
+**Status:** Partially complete, needs fixes
+
+---
+
+### A.1 Owner Access & Multi-League Support
+
+#### A.1.1 Fix Owner User Record
+**Task:** Correct database record for owner to enable multi-league access
+
+- **A.1.1.1** Update User table: Set `leagueId = NULL` for owner user
+  - SQL: `UPDATE "User" SET "leagueId" = NULL WHERE "isOwner" = true`
+  - Verify: Owner can no longer be tenant-filtered
+  - Test: Owner login should not trigger tenant filtering log
+
+- **A.1.1.2** Create seed script for owner creation
+  - File: `prisma/seeds/001-create-owner.ts`
+  - Ensure all future deployments create owner correctly
+  - Include environment variable for owner email
+
+#### A.1.2 Update Tenant Filtering Middleware
+**Task:** Modify `getDbForUser()` to handle owner bypass
+
+- **A.1.2.1** Check for owner status in session
+  - File: `src/lib/db-server.ts`
+  - Logic: `if (session.user.isOwner && !session.user.leagueId) return prisma`
+  - Log: `🔓 Owner access - no tenant filtering`
+
+- **A.1.2.2** Apply tenant filter only for league-scoped users
+  - Logic: `if (session.user.leagueId) { /* apply tenant filter */ }`
+  - Ensure all Prisma queries include `where: { leagueId: user.leagueId }`
+
+- **A.1.2.3** Test tenant isolation
+  - Create two test leagues in database
+  - Create league-scoped user for League A
+  - Verify user cannot see League B data
+  - Verify owner can see both leagues
+
+#### A.1.3 Session Management for Owners
+**Task:** Update auth callbacks to handle owner privileges
+
+- **A.1.3.1** Modify session callback
+  - File: `src/lib/auth.ts`
+  - Handle `leagueId: null` case for owners
+  - Add `session.user.availableLeagues` array for owners
+  - Query: `SELECT id, name, slug FROM League ORDER BY name`
+
+- **A.1.3.2** Create session type definitions
+  - File: `src/types/next-auth.d.ts`
+  - Extend `Session.user` interface with:
+    - `isOwner: boolean`
+    - `leagueId: string | null`
+    - `availableLeagues?: { id: string; name: string; slug: string }[]`
+    - `leagueRoles: LeagueRoleType[]`
+    - `clubRoles: ClubRoleType[]`
+
+---
+
+### A.2 League Context Management
+
+#### A.2.1 League Selection Context (for Owners)
+**Task:** Create React context for active league selection
+
+- **A.2.1.1** Create LeagueContext provider
+  - File: `src/contexts/LeagueContext.tsx`
+  - State: `activeLeagueId: string | null`
+  - Methods: `setActiveLeague(leagueId: string)`
+  - Persist selection to localStorage: `owner_active_league`
+
+- **A.2.1.2** Create league switcher component
+  - File: `src/components/features/owner/LeagueSwitcher.tsx`
+  - Display: Dropdown showing all available leagues
+  - Action: On select, update context + redirect to `/owner/dashboard`
+  - Visual: Show active league name in header with icon
+
+- **A.2.1.3** Integrate into dashboard layout
+  - File: `src/app/(dashboard)/layout.tsx`
+  - Show switcher in header if `session.user.isOwner === true`
+  - Hide for league-scoped users
+
+#### A.2.2 Dynamic Tenant Scoping API
+**Task:** Create helper to get current league context
+
+- **A.2.2.1** Create `getCurrentLeague()` helper
+  - File: `src/lib/tenant.ts`
+  - For owners: Read from LeagueContext OR query param `?league=xxx`
+  - For league users: Return `session.user.leagueId`
+  - Throw error if owner hasn't selected league for tenant-scoped operation
+
+- **A.2.2.2** Create server action wrapper
+  - File: `src/lib/server-actions.ts`
+  - Function: `withTenantCheck(action, requiresLeague = true)`
+  - Validates league context before executing action
+  - Returns 403 if no league selected and required
+
+---
+
+### A.3 Role-Based Access Control (RBAC)
+
+#### A.3.1 Permission Matrix Definition
+**Task:** Define granular permissions per role
+
+- **A.3.1.1** Create permissions enum
+  - File: `src/types/permissions.ts`
+  - Define: `VIEW_CLUBS`, `CREATE_CLUBS`, `EDIT_CLUBS`, `DELETE_CLUBS`, etc.
+  - Group by entity: clubs, teams, venues, referees, invoices, communications
+
+- **A.3.1.2** Map roles to permissions
+  - File: `src/lib/permissions.ts`
+  - Owner: All permissions across all leagues
+  - League roles:
+    - `COMMITTEE_CHAIR`: All league permissions
+    - `LEAGUE_SECRETARY`: All league permissions except delete
+    - `AGE_GROUP_MANAGER`: View all, edit only assigned age group
+    - `VENUE_COORDINATOR`: Manage venues only
+    - `REFEREE_COORDINATOR`: Manage referees only
+  - Club roles:
+    - `CLUB_SECRETARY`: Manage own club + teams
+    - `CLUB_TREASURER`: View own club + invoices
+
+- **A.3.1.3** Create permission checker utilities
+  - Function: `hasPermission(user, permission, resourceId?)`
+  - Function: `requirePermission(user, permission)` - throws 403
+  - Use throughout API routes and server actions
+
+#### A.3.2 UI Permission Guards
+**Task:** Hide/disable UI elements based on permissions
+
+- **A.3.2.1** Create `<Can>` component
+  - File: `src/components/auth/Can.tsx`
+  - Props: `permission: string`, `fallback?: ReactNode`
+  - Conditionally render children if user has permission
+
+- **A.3.2.2** Create `usePermissions()` hook
+  - File: `src/hooks/usePermissions.ts`
+  - Returns: `{ can: (permission) => boolean, isOwner: boolean }`
+  - Use in client components to show/hide features
+
+---
+
+## [B] OWNER DASHBOARD
+
+**Priority:** HIGH - Required for multi-league management  
+**Estimated Time:** 4-5 days  
+**Dependencies:** Section A complete  
+**Status:** Not started
+
+---
+
+### B.1 Owner Dashboard Layout
+
+#### B.1.1 Create Owner Route Structure
+**Task:** Set up dedicated owner section
+
+- **B.1.1.1** Create route group
+  - Directory: `src/app/(owner)/`
+  - Layout: `src/app/(owner)/layout.tsx`
+  - Middleware: Redirect non-owners to `/dashboard`
+
+- **B.1.1.2** Create owner navigation
+  - File: `src/components/features/owner/OwnerNav.tsx`
+  - Links:
+    - Overview (B.2)
+    - Leagues (B.3)
+    - Users (B.4)
+    - Analytics (B.5)
+    - Settings (B.6)
+
+- **B.1.1.3** Style owner section distinctly
+  - Color scheme: Different from league dashboard (purple vs blue)
+  - Header badge: "System Owner" indicator
+  - Breadcrumbs: Show current league if selected
+
+---
+
+### B.2 Owner Overview Dashboard
+
+**Page:** `/owner/dashboard`  
+**File:** `src/app/(owner)/dashboard/page.tsx`
+
+#### B.2.1 System-Wide Statistics
+**Task:** Show aggregate metrics across all leagues
+
+- **B.2.1.1** Total leagues card
+  - Query: `SELECT COUNT(*) FROM League WHERE status = 'ACTIVE'`
+  - Display: Number + trend (new this month)
+  - Action: Click to navigate to Leagues list
+
+- **B.2.1.2** Total clubs card
+  - Query: `SELECT COUNT(*) FROM Club WHERE deletedAt IS NULL`
+  - Group by league, show top 3
+  - Display: Total + breakdown by league
+
+- **B.2.1.3** Total teams card
+  - Query: `SELECT COUNT(*) FROM Team WHERE deletedAt IS NULL`
+  - Display: Current season teams across all leagues
+
+- **B.2.1.4** Total users card
+  - Query: `SELECT COUNT(*) FROM User`
+  - Display: Active users + growth rate
+  - Breakdown: Owners, league admins, club secretaries
+
+#### B.2.2 Recent Activity Feed
+**Task:** Show latest changes across system
+
+- **B.2.2.1** Design activity schema
+  - Table: `Activity` (id, userId, leagueId, action, entityType, entityId, timestamp)
+  - Actions: `created`, `updated`, `deleted`, `invited`, `approved`
+  - Store last 90 days of activity
+
+- **B.2.2.2** Activity feed component
+  - File: `src/components/features/owner/ActivityFeed.tsx`
+  - Display: Last 20 activities
+  - Format: "[User] [action] [entity] in [League] - [time ago]"
+  - Example: "Chris Bampton created Club 'Derby Rangers' in DJFL - 2 hours ago"
+
+- **B.2.2.3** Filter controls
+  - Filter by: League, entity type, action type, date range
+  - Search: Free text search across activity
+
+#### B.2.3 League Health Indicators
+**Task:** Show warnings/issues per league
+
+- **B.2.3.1** Define health checks
+  - Check: Season dates (warn if season ends in <30 days)
+  - Check: Pending club approvals (>5 pending)
+  - Check: Teams on waiting list (>10% of capacity)
+  - Check: Unpaid invoices (>30 days overdue)
+  - Check: Inactive venues (no bookings in 60 days)
+
+- **B.2.3.2** Health indicator component
+  - File: `src/components/features/owner/LeagueHealthCard.tsx`
+  - Display: Traffic light system (green/amber/red)
+  - List: Top 3 issues per league
+  - Action: "View details" → navigate to league dashboard
+
+#### B.2.4 Quick Actions Panel
+**Task:** Common owner tasks
+
+- **B.2.4.1** Action buttons
+  - "Create New League" → navigate to B.3.2
+  - "Invite League Admin" → navigate to B.4.2
+  - "View All Activity" → navigate to activity log page
+  - "System Settings" → navigate to B.6
+
+---
+
+### B.3 League Management
+
+**Page:** `/owner/leagues`
+
+#### B.3.1 League List View
+**Task:** Show all leagues with key metrics
+
+- **B.3.1.1** Data table component
+  - File: `src/app/(owner)/leagues/page.tsx`
+  - Columns:
+    - Name (sortable)
+    - Slug
+    - Status (badge: Active/Suspended/Archived)
+    - Clubs count
+    - Teams count
+    - Current season
+    - Created date
+    - Actions (Edit, View Dashboard, Archive)
+
+- **B.3.1.2** Filters and search
+  - Search: League name or slug
+  - Filter: Status (Active/Suspended/Archived)
+  - Sort: Name, Created date, Club count
+
+- **B.3.1.3** Bulk actions
+  - Select multiple leagues
+  - Actions: Bulk archive, bulk export data
+
+#### B.3.2 Create New League
+**Task:** Form to add new league tenant
+
+- **B.3.2.1** League creation form
+  - File: `src/app/(owner)/leagues/new/page.tsx`
+  - Fields:
+    - Name (required, text)
+    - Slug (required, unique, auto-generated from name, editable)
+    - Email (required, email validation)
+    - Phone (optional, phone validation)
+    - Website (optional, URL validation)
+    - Season start date (required, date picker)
+    - Season end date (required, date picker, must be > start)
+  
+- **B.3.2.2** Validation rules
+  - Slug: Lowercase, alphanumeric + hyphens only, unique check
+  - Email: Valid format, doesn't already exist as league contact
+  - Dates: Season end > start, warn if dates overlap with existing seasons
+
+- **B.3.2.3** Server action: Create league
+  - File: `src/app/actions/leagues.ts`
+  - Function: `createLeague(data: LeagueFormData)`
+  - Transaction:
+    1. Create League record
+    2. Create default age groups (U7-U13)
+    3. Create default season
+    4. Log activity
+  - Return: New league ID
+  - Redirect: To league dashboard
+
+- **B.3.2.4** Success flow
+  - Show success message
+  - Offer: "Switch to this league" button
+  - Offer: "Invite league admin" button → B.4.2
+
+#### B.3.3 Edit League
+**Task:** Update league details
+
+- **B.3.3.1** League edit form
+  - File: `src/app/(owner)/leagues/[id]/edit/page.tsx`
+  - Pre-populated with existing data
+  - Same fields as creation except slug (read-only)
+
+- **B.3.3.2** Additional settings
+  - Status: Active/Suspended/Archived (radio buttons)
+  - Settings JSON editor (advanced):
+    - AGG capacities (JSON object: `{ "U7_A": 8, "U7_B": 8, ... }`)
+    - Fee structure (JSON)
+    - Email templates (JSON)
+  
+- **B.3.3.3** Server action: Update league
+  - File: `src/app/actions/leagues.ts`
+  - Function: `updateLeague(id: string, data: LeagueFormData)`
+  - Validation: Same as creation
+  - Audit: Record updatedBy + updatedAt
+  - Log activity
+
+- **B.3.3.4** Danger zone
+  - Archive league (soft delete)
+  - Delete league (hard delete - requires confirmation modal)
+  - Confirmation: Type league name to confirm
+
+#### B.3.4 League Dashboard (Owner View)
+**Task:** Quick overview of single league
+
+- **B.3.4.1** League header
+  - File: `src/app/(owner)/leagues/[id]/page.tsx`
+  - Display: League name, status badge, slug
+  - Actions: Edit, Archive, View as League Admin
+
+- **B.3.4.2** Key metrics cards
+  - Clubs: Total, pending approval, active
+  - Teams: Total, by age group, on waiting list
+  - Users: League admins, club officials
+  - Invoices: Total outstanding, overdue
+
+- **B.3.4.3** Recent activity (league-scoped)
+  - Show last 10 activities for this league
+  - Same format as B.2.2 but filtered
+
+- **B.3.4.4** Quick navigation
+  - Buttons:
+    - "Manage Clubs" → C.1
+    - "Manage Teams" → G.1
+    - "View Age Groups" → E.1
+    - "Communications" → J.1
+    - "Invoices" → L.1
+
+---
+
+### B.4 User Management (System-Wide)
+
+**Page:** `/owner/users`
+
+#### B.4.1 User List View
+**Task:** Show all users across all leagues
+
+- **B.4.1.1** Data table component
+  - File: `src/app/(owner)/users/page.tsx`
+  - Columns:
+    - Email
+    - Name
+    - League (show "All Leagues" for owners)
+    - Roles (badges for each role)
+    - Last login
+    - Created date
+    - Status (Active/Suspended badge)
+    - Actions (Edit, Impersonate, Suspend)
+
+- **B.4.1.2** Filters
+  - Filter by league (dropdown)
+  - Filter by role type (League roles, Club roles, Owners)
+  - Filter by status (Active/Suspended)
+  - Search: Email or name
+
+- **B.4.1.3** Sorting
+  - Sort by: Name, Email, Last login, Created date
+  - Default: Last login (most recent first)
+
+#### B.4.2 Invite User
+**Task:** Send invitation to new user
+
+- **B.4.2.1** Invitation form
+  - File: `src/app/(owner)/users/invite/page.tsx`
+  - Fields:
+    - Email (required, unique check)
+    - Name (optional, will be updated when user completes profile)
+    - League (required dropdown - select which league to invite to)
+    - Role (required multi-select):
+      - League roles: Committee Chair, Secretary, Age Group Manager, etc.
+      - If Age Group Manager: Select age group(s)
+      - Club roles: (Show club dropdown if club role selected)
+    - Custom message (optional textarea, appended to invite email)
+
+- **B.4.2.2** Validation rules
+  - Email must not already be registered
+  - Must select at least one role
+  - If Age Group Manager: Must select at least one age group
+  - If Club role: Must select club
+
+- **B.4.2.3** Server action: Send invitation
+  - File: `src/app/actions/users.ts`
+  - Function: `inviteUser(data: InviteFormData)`
+  - Transaction:
+    1. Create User record (`emailVerified = null`, `leagueId = selected league`)
+    2. Create role assignments (LeagueRole or ClubRole records)
+    3. Generate invitation token (24hr expiry)
+    4. Send invitation email via Resend
+  - Email template:
+    - Subject: "You've been invited to [League Name] on LMSPro"
+    - Body: Personalized message + magic link
+    - Link: `https://app.lmspro.com/invite/accept?token=xxx`
+
+- **B.4.2.4** Invitation email design
+  - File: `src/emails/InvitationEmail.tsx` (React Email)
+  - Include: League name, role description, sender name
+  - CTA: "Accept Invitation" button
+  - Footer: Expiry notice (24 hours)
+
+#### B.4.3 User Profile Management
+**Task:** Edit user details and roles
+
+- **B.4.3.1** User profile page
+  - File: `src/app/(owner)/users/[id]/page.tsx`
+  - Sections:
+    - User info (Email, Name, Last login)
+    - Assigned leagues and roles (list with remove button)
+    - Activity history (last 20 actions)
+    - Audit trail (created, last updated)
+
+- **B.4.3.2** Edit user form
+  - File: `src/app/(owner)/users/[id]/edit/page.tsx`
+  - Editable fields:
+    - Name
+    - Owner status (checkbox - requires confirmation)
+    - Status (Active/Suspended)
+  - Non-editable: Email (show with note: "Email cannot be changed")
+
+- **B.4.3.3** Manage roles
+  - Add role: Same UI as B.4.2.1 (league + role selection)
+  - Remove role: Click X on role badge → confirmation modal
+  - Server action: `addUserRole(userId, leagueId, roleType, ageGroupId?)`
+  - Server action: `removeUserRole(userRoleId)`
+
+- **B.4.3.4** Suspend/reactivate user
+  - Button: "Suspend User" (if active) / "Reactivate User" (if suspended)
+  - Confirmation modal: Explain impact (will be logged out immediately)
+  - Server action: `toggleUserStatus(userId, newStatus)`
+  - Effect: User cannot log in while suspended
+
+#### B.4.4 Impersonate User (Dev/Support Tool)
+**Task:** Log in as another user for support
+
+- **B.4.4.1** Impersonation flow
+  - Button: "Impersonate" (only for owners)
+  - Confirmation modal: "You will be logged in as [User]. Continue?"
+  - Server action: `impersonateUser(targetUserId)`
+  - Creates special session with flag: `isImpersonating: true`
+  - Banner: Show red banner at top "You are viewing as [User] - End Session"
+
+- **B.4.4.2** Security measures
+  - Log all impersonation sessions (start/end timestamps)
+  - Restricted actions while impersonating:
+    - Cannot delete data
+    - Cannot change user passwords
+    - Cannot impersonate other users
+  - Auto-expire after 1 hour
+  
+- **B.4.4.3** End impersonation
+  - Button in banner: "End Impersonation"
+  - Returns to owner session
+  - Log activity: "Impersonation ended"
+
+---
+
+### B.5 System Analytics
+
+**Page:** `/owner/analytics`
+
+#### B.5.1 Growth Metrics
+**Task:** Track system growth over time
+
+- **B.5.1.1** User growth chart
+  - File: `src/app/(owner)/analytics/page.tsx`
+  - Chart: Line chart of new users per month (last 12 months)
+  - Breakdown: By role type (stacked area chart)
+  - Data source: `SELECT DATE_TRUNC('month', createdAt), COUNT(*) FROM User GROUP BY 1`
+
+- **B.5.1.2** League growth chart
+  - Chart: Line chart of new leagues per month
+  - Metric: Active leagues vs total leagues
+
+- **B.5.1.3** Club/Team growth
+  - Chart: Multi-line chart showing clubs and teams over time
+  - Grouped by league (line per league)
+
+#### B.5.2 Usage Analytics
+**Task:** Track system activity
+
+- **B.5.2.1** Login activity
+  - Chart: Heat map of logins by day/hour
+  - Metric: Total logins, unique users, average session duration
+  - Data source: Session table + Activity table
+
+- **B.5.2.2** Feature usage
+  - Chart: Bar chart of most-used features
+  - Metrics: Communication sends, invoice generations, team registrations
+  - Top actions by volume
+
+- **B.5.2.3** User engagement
+  - Metric: Daily Active Users (DAU), Weekly Active Users (WAU)
+  - Chart: DAU/WAU ratio over time (engagement quality)
+  - Cohort analysis: Retention by signup month
+
+#### B.5.3 League Comparison
+**Task:** Compare leagues side-by-side
+
+- **B.5.3.1** League comparison table
+  - Columns: League name, Clubs, Teams, Users, Invoices sent, Last activity
+  - Sortable by any column
+  - Highlight: Top performer (green), needs attention (amber)
+
+- **B.5.3.2** Benchmark metrics
+  - Average clubs per league
+  - Average teams per club
+  - Average communication volume per league
+  - Invoice paid rate per league
+
+---
+
+### B.6 System Settings
+
+**Page:** `/owner/settings`
+
+#### B.6.1 Global Configuration
+**Task:** System-wide settings
+
+- **B.6.1.1** Email settings
+  - From name (default: "LMSPro")
+  - From email (default: `noreply@lmspro.com`)
+  - Reply-to email
+  - Email signature template
+
+- **B.6.1.2** Branding settings
+  - System name (default: "LMSPro")
+  - Logo upload (store in R2)
+  - Primary color (hex picker)
+  - Secondary color
+
+- **B.6.1.3** Session settings
+  - Session timeout (default: 30 days)
+  - Require 2FA for owners (checkbox)
+  - Magic link expiry (default: 24 hours)
+
+#### B.6.2 Feature Flags
+**Task:** Enable/disable features globally
+
+- **B.6.2.1** Feature toggles
+  - Table: Feature name, Status (toggle), Description
+  - Features:
+    - `ENABLE_XERO_SYNC` - Xero invoice integration
+    - `ENABLE_FILE_UPLOADS` - Document upload to R2
+    - `ENABLE_SMS_NOTIFICATIONS` - SMS via Twilio (future)
+    - `ENABLE_PUBLIC_API` - REST API for external integrations (future)
+
+- **B.6.2.2** Server-side checks
+  - File: `src/lib/feature-flags.ts`
+  - Function: `isFeatureEnabled(flagName: string): boolean`
+  - Use throughout app to show/hide features
+
+#### B.6.3 Audit Log
+**Task:** View all system changes
+
+- **B.6.3.1** Audit log viewer
+  - File: `src/app/(owner)/settings/audit-log/page.tsx`
+  - Columns: Timestamp, User, Action, Entity, Details, IP address
+  - Filters: Date range, User, Action type, Entity type
+  - Export: CSV export of filtered logs
+
+- **B.6.3.2** Retention policy
+  - Keep audit logs for 2 years (configurable)
+  - Archive old logs to CSV in R2
+  - Cron job: Weekly cleanup of old logs
+
+---
+
+## [C] LEAGUE DASHBOARD (League Admin View)
+
+**Priority:** HIGH - Core league management  
+**Estimated Time:** 3-4 days  
+**Dependencies:** Section A complete  
+**Status:** Partially complete (basic dashboard exists)
+
+---
+
+### C.1 League Dashboard Overview
+
+**Page:** `/dashboard` (for league-scoped users)  
+**File:** `src/app/(dashboard)/dashboard/page.tsx` (exists, needs enhancement)
+
+#### C.1.1 Enhanced Statistics Cards
+**Task:** Show actionable metrics
+
+- **C.1.1.1** Current stat cards (existing - enhance)
+  - Clubs card: Add "X pending approval" subtitle
+  - Teams card: Add "X on waiting list" subtitle  
+  - Age Groups card: Add "X groups at capacity" warning
+  - Season card: Add "X days remaining" countdown
+
+- **C.1.1.2** New stat cards (add)
+  - Communications: "X sent this month"
+  - Invoices: "£X outstanding" with overdue count
+  - Venues: "X venues, Y pitches"
+  - Referees: "X active referees"
+
+#### C.1.2 Pending Actions Widget
+**Task:** Show items requiring attention
+
+- **C.1.2.1** Design widget
+  - File: `src/components/features/dashboard/PendingActionsWidget.tsx`
+  - Sections:
+    - Clubs awaiting approval (count + "Review" button)
+    - Teams on waiting list (count + "Allocate" button)
+    - Overdue invoices (count + "Review" button)
+    - Draft communications (count + "Review" button)
+
+- **C.1.2.2** Query aggregation
+  - Single query to get all counts
+  - Cache for 5 minutes (reduce DB load)
+  - Real-time update on action completion
+
+#### C.1.3 Recent Activity Feed (League-Scoped)
+**Task:** Show what's happening in the league
+
+- **C.1.3.1** Activity component
+  - File: `src/components/features/dashboard/LeagueActivityFeed.tsx`
+  - Show last 15 activities in this league
+  - Format: "[User] [action] [entity] - [time ago]"
+  - Real-time updates via polling (every 30s)
+
+- **C.1.3.2** Activity types to track
+  - Club registered, approved, suspended
+  - Team registered, allocated to AGG, moved to waiting list
+  - Communication sent
+  - Invoice generated, paid
+  - User invited, role changed
+
+#### C.1.4 Quick Navigation
+**Task:** Fast access to common pages
+
+- **C.1.4.1** Quick links grid
+  - Cards with icons:
+    - Clubs → C.2
+    - Teams → G.1
+    - Age Groups → E.1
+    - Venues → I.1
+    - Referees → I.2
+    - Communications → J.1
+    - Invoices → L.1
+    - Settings → C.2
+
+---
+
+### C.2 League Settings
+
+**Page:** `/dashboard/settings`
+
+#### C.2.1 League Profile
+**Task:** Basic league information
+
+- **C.2.1.1** League info form
+  - File: `src/app/(dashboard)/settings/page.tsx`
+  - Fields (editable by Committee Chair/Secretary only):
+    - League name (text)
+    - Email (email)
+    - Phone (phone)
+    - Website (URL)
+  - Read-only fields:
+    - Slug
+    - Created date
+    - Status
+
+- **C.2.1.2** Logo upload
+  - Upload to Cloudflare R2
+  - Max size: 2MB
+  - Formats: PNG, JPG, SVG
+  - Display: Show current logo thumbnail
+  - Action: Replace or remove
+
+#### C.2.2 Season Management
+**Task:** Configure current and future seasons
+
+- **C.2.2.1** Season list
+  - Show all seasons (past, current, future)
+  - Columns: Name, Start date, End date, Status, Teams registered
+  - Actions: Edit, Archive (past seasons only)
+
+- **C.2.2.2** Current season settings
+  - Editable fields:
+    - Season name (e.g., "2025/26")
+    - Start date
+    - End date
+    - Status (Draft, Registration Open, Active, Completed)
+    - Registration deadline
+  - JSON settings:
+    - Team registration fees (JSON object per age group)
+    - Late entry fee
+    - Team limits per club
+
+- **C.2.2.3** Create new season
+  - Button: "Create Next Season"
+  - Pre-populate from current season
+  - Increment year automatically
+  - Copy AGG structure from current season
+
+#### C.2.3 Age Group Configuration
+**Task:** Manage age groups and AGGs
+
+- **C.2.3.1** Age group list
+  - Show: U7, U8, U9, U10, U11, U12, U13
+  - Columns: Name, Min age, Max age, Total capacity, Teams allocated
+  - Action: Edit capacity, Add/remove AGGs
+
+- **C.2.3.2** AGG management per age group
+  - Show: List of AGGs (e.g., U7_A, U7_B)
+  - Editable: AGG name, capacity (number of teams)
+  - Action: Add AGG, remove AGG (only if empty)
+  - Validation: Total AGG capacity determines waiting list threshold
+
+#### C.2.4 Fee Structure
+**Task:** Configure invoicing rules
+
+- **C.2.4.1** Fee types
+  - Annual club fee (flat rate)
+  - Per-team fee (varies by age group)
+  - New team mid-season fee
+  - Late entry fee
+  - Fine structure (custom invoices)
+
+- **C.2.4.2** Fee editor
+  - Table: Fee type, Amount (£), Description
+  - Editable inline
+  - Save button commits all changes
+  - JSON storage: `League.settings.fees`
+
+#### C.2.5 Communication Templates
+**Task:** Pre-defined email templates
+
+- **C.2.5.1** Template library
+  - Templates:
+    - "Club Application Approved"
+    - "Team Registration Confirmed"
+    - "Team Allocated to AGG"
+    - "Team Moved to Waiting List"
+    - "Invoice Generated"
+    - "Payment Reminder"
+  - Fields: Subject, Body (rich text editor)
+  - Variables: `{{club_name}}`, `{{team_name}}`, `{{season}}`, etc.
+
+- **C.2.5.2** Template editor
+  - WYSIWYG editor (Mantine RichTextEditor)
+  - Insert variables via dropdown
+  - Preview: Show sample with filled variables
+  - Save as league setting: `League.settings.emailTemplates`
+
+---
+
+## [D] USER MANAGEMENT (League-Scoped)
+
+**Priority:** MEDIUM - Required before multi-user testing  
+**Estimated Time:** 2-3 days  
+**Dependencies:** Section A (RBAC), C (League settings)  
+**Status:** Not started
+
+---
+
+### D.1 League User Management
+
+**Page:** `/dashboard/users`
+
+#### D.1.1 User List (League View)
+**Task:** Show all users in current league
+
+- **D.1.1.1** Data table
+  - File: `src/app/(dashboard)/users/page.tsx`
+  - Columns:
+    - Name
+    - Email
+    - Roles (badges)
+    - Last login
+    - Status
+    - Actions (Edit, Remove)
+  - Filters:
+    - Role type (League roles, Club roles)
+    - Status (Active, Suspended, Invited)
+  - Search: Name or email
+
+- **D.1.1.2** Permissions check
+  - Only Committee Chair/Secretary can view this page
+  - Others see 403 Forbidden
+
+#### D.1.2 Invite League User
+**Task:** Invite user to league role
+
+- **D.1.2.1** Invite form
+  - File: `src/app/(dashboard)/users/invite/page.tsx`
+  - Fields:
+    - Email (required, unique within league)
+    - Name (optional)
+    - Role (multi-select):
+      - Committee Chair
+      - League Secretary
+      - Assistant Secretary
+      - Treasurer
+      - Safeguarding Officer
+      - Age Group Manager (select age groups)
+      - Venue Coordinator
+      - Referee Coordinator
+    - Message (optional)
+
+- **D.1.2.2** Server action: Invite league user
+  - File: `src/app/actions/users.ts`
+  - Function: `inviteLeagueUser(leagueId, data)`
+  - Transaction:
+    1. Create User (scoped to league)
+    2. Create LeagueRole records
+    3. Send invite email
+  - Email: Same template as B.4.2.4 but league-branded
+
+#### D.1.3 Manage User Roles (League)
+**Task:** Edit roles for existing league user
+
+- **D.1.3.1** User role editor
+  - File: `src/app/(dashboard)/users/[id]/page.tsx`
+  - Show: Current roles (list with remove button)
+  - Action: Add role (same UI as D.1.2.1)
+  - Server actions:
+    - `addLeagueRole(userId, leagueId, roleType, ageGroupId?)`
+    - `removeLeagueRole(leagueRoleId)`
+
+- **D.1.3.2** Validation
+  - User must retain at least one role
+  - Cannot remove own Committee Chair role (prevents lockout)
+  - Log all role changes to activity
+
+---
+
+## [E] AGE GROUP MANAGEMENT
+
+**Priority:** MEDIUM - Required for team allocation  
+**Estimated Time:** 2 days  
+**Dependencies:** Section C (League settings)  
+**Status:** Database structure exists, UI not built
+
+---
+
+### E.1 Age Group Overview
+
+**Page:** `/dashboard/age-groups`
+
+#### E.1.1 Age Group List View
+**Task:** Show all age groups with allocation status
+
+- **E.1.1.1** Age group cards
+  - File: `src/app/(dashboard)/age-groups/page.tsx`
+  - Display: Grid of cards (one per age group U7-U13)
+  - Each card shows:
+    - Age group name and age range (e.g., "Under 7 (Ages 5-6)")
+    - Total capacity (sum of all AGGs)
+    - Teams allocated / Total capacity
+    - Progress bar (visual capacity indicator)
+    - Status badge: "At Capacity" / "X spaces remaining" / "Waiting list: Y teams"
+
+- **E.1.1.2** Age group card actions
+  - Click card → navigate to E.1.2 (detail page)
+  - Quick actions:
+    - "View Teams" → G.1 filtered by age group
+    - "Allocate Teams" → E.2.1
+    - "Manage AGGs" → E.3
+
+#### E.1.2 Age Group Detail Page
+**Task:** Detailed view of single age group
+
+- **E.1.2.1** Page layout
+  - File: `src/app/(dashboard)/age-groups/[id]/page.tsx`
+  - Header: Age group name, age range, assigned manager badge
+  - Tabs:
+    - Overview (E.1.2.2)
+    - AGGs (E.1.2.3)
+    - Teams (E.1.2.4)
+    - Waiting List (E.1.2.5)
+
+- **E.1.2.2** Overview tab
+  - Summary stats:
+    - Total teams registered
+    - Teams allocated to AGGs
+    - Teams on waiting list
+    - Clubs with teams in this age group
+  - AGG breakdown table:
+    - AGG name, Capacity, Allocated, Remaining
+    - Sort by: Most full first
+
+- **E.1.2.3** AGGs tab
+  - List of AGGs with teams
+  - Each AGG shows:
+    - Name, capacity
+    - List of allocated teams (club name + team name)
+    - Drag-and-drop to reorder teams within AGG
+    - Action: Move team to different AGG
+
+- **E.1.2.4** Teams tab
+  - All teams in this age group (allocated + waiting list)
+  - Columns: Club, Team name, Status, AGG, Actions
+  - Actions: View team, Allocate/Move, Remove from age group
+
+- **E.1.2.5** Waiting List tab
+  - Teams awaiting allocation
+  - Columns: Club, Team name, Registered date, Actions
+  - Sort: Oldest first (FIFO allocation)
+  - Bulk action: "Allocate X teams" → E.2.1
+
+---
+
+### E.2 Team Allocation
+
+#### E.2.1 Allocate Teams to AGGs
+**Task:** Assign waiting list teams to AGG groups
+
+- **E.2.1.1** Allocation wizard
+  - File: `src/app/(dashboard)/age-groups/[id]/allocate/page.tsx`
+  - Step 1: Select teams from waiting list (multi-select)
+  - Step 2: Choose target AGG (dropdown showing available space)
+  - Step 3: Confirm allocation (show summary)
+
+- **E.2.1.2** Allocation rules
+  - Cannot allocate to full AGG
+  - Warn if allocation creates imbalance (one AGG much fuller than others)
+  - Suggest balanced allocation
+
+- **E.2.1.3** Server action: Allocate teams
+  - File: `src/app/actions/teams.ts`
+  - Function: `allocateTeamsToAGG(teamIds[], aggId)`
+  - Transaction:
+    1. Update Team records (set `aggId`, status = APPROVED)
+    2. Send confirmation email to each team's club secretary
+    3. Log activity
+  - Validation: Check AGG capacity not exceeded
+
+#### E.2.2 Move Team Between AGGs
+**Task:** Reallocate team to different AGG
+
+- **E.2.2.1** Move team modal
+  - Triggered from team list or AGG view
+  - UI: Modal with dropdown (target AGG)
+  - Show: Current AGG → Target AGG
+  - Validation: Target AGG must have space
+
+- **E.2.2.2** Server action: Move team
+  - Function: `moveTeamToAGG(teamId, targetAggId)`
+  - Update Team.aggId
+  - Send email notification to club
+  - Log activity: "Team moved from AGG A to AGG B"
+
+#### E.2.3 Remove Team from AGG (to Waiting List)
+**Task:** Unallocate team
+
+- **E.2.3.1** Remove action
+  - Button: "Move to Waiting List"
+  - Confirmation modal: "Team will lose AGG allocation. Continue?"
+  - Server action: `moveTeamToWaitingList(teamId)`
+  - Update: Set `aggId = null`, `status = WAITING_LIST`
+  - Email: Notify club secretary
+  - Use case: Team withdraws, then re-registers later
+
+---
+
+### E.3 AGG Management
+
+#### E.3.1 Add/Edit AGG
+**Task:** Create or modify AGG subdivision
+
+- **E.3.1.1** AGG form
+  - File: `src/app/(dashboard)/age-groups/[id]/aggs/page.tsx`
+  - Fields:
+    - Name (e.g., "U7_A", "Under 7 Group A")
+    - Code (e.g., "U7_A" - unique within age group)
+    - Capacity (number, default 8)
+    - Sort order (number, for display ordering)
+
+- **E.3.1.2** Server action: Create/Update AGG
+  - Function: `createAGG(ageGroupId, data)` / `updateAGG(aggId, data)`
+  - Validation:
+    - Code unique within age group
+    - Capacity must be >= current allocated teams
+  - Log activity
+
+#### E.3.2 Delete AGG
+**Task:** Remove AGG subdivision
+
+- **E.3.2.1** Delete validation
+  - Can only delete if AGG is empty (no teams allocated)
+  - If teams exist: Show error "Cannot delete AGG with allocated teams"
+  - Alternative: "Move all teams to waiting list first"
+
+- **E.3.2.2** Server action: Delete AGG
+  - Function: `deleteAGG(aggId)`
+  - Soft delete: Set `deletedAt` timestamp
+  - Log activity
+
+---
+
+## [F] CLUB MANAGEMENT
+
+**Priority:** HIGH - Core entity  
+**Estimated Time:** 4-5 days  
+**Dependencies:** Section C (League settings), D (User management)  
+**Status:** Database exists, no UI
+
+---
+
+### F.1 Club List & Search
+
+**Page:** `/dashboard/clubs`
+
+#### F.1.1 Club List View
+**Task:** Show all clubs in league
+
+- **F.1.1.1** Data table component
+  - File: `src/app/(dashboard)/clubs/page.tsx`
+  - Columns:
+    - Club name (sortable)
+    - Short name
+    - Status (badge: Pending/Approved/Active/Suspended)
+    - FA Affiliation No.
+    - Teams count
+    - Secretary name (from ClubRole)
+    - Email
+    - Phone
+    - Actions (View, Edit, Approve, Suspend)
+
+- **F.1.1.2** Filters and search
+  - Search: Club name, short name, email
+  - Filter: Status (multi-select)
+  - Filter: Has teams (Yes/No)
+  - Sort: Name (A-Z), Teams count, Status, Created date
+
+- **F.1.1.3** Bulk actions
+  - Select multiple clubs
+  - Actions:
+    - Bulk approve (for pending clubs)
+    - Bulk email (opens communication composer with recipients pre-filled)
+    - Export to CSV
+
+#### F.1.2 Club Status Filtering
+**Task:** Quick filter buttons
+
+- **F.1.2.1** Status tabs
+  - Tabs above table:
+    - All (count)
+    - Pending Approval (count in badge)
+    - Active (count)
+    - Suspended (count)
+    - Archived (count)
+  - Click tab → filter table instantly
+
+---
+
+### F.2 Club Registration
+
+#### F.2.1 Club Application Form (Public)
+**Task:** Allow clubs to apply to join league
+
+- **F.2.1.1** Public form page
+  - File: `src/app/apply/[leagueSlug]/page.tsx`
+  - URL: `https://app.lmspro.com/apply/djfl`
+  - Title: "Apply to Join [League Name]"
+  - No login required
+
+- **F.2.1.2** Form fields
+  - Section 1: Club Information
+    - Club name (required, text)
+    - Short name (optional, text, max 10 chars)
+    - FA Affiliation Number (required, text, validated format)
+    - Website (optional, URL)
+  - Section 2: Contact Details
+    - Email (required, unique within league)
+    - Phone (required, phone format)
+    - Address (optional, textarea)
+    - Postcode (optional, text)
+  - Section 3: Secretary Details
+    - Secretary name (required)
+    - Secretary email (required, will become their login)
+    - Secretary phone (required)
+  - Section 4: Additional Information
+    - How many teams do you plan to register? (number)
+    - Which age groups? (multi-select: U7-U13)
+    - Additional comments (textarea)
+
+- **F.2.1.3** Validation
+  - FA Affiliation No format: `XXXXX-XXX` (5 digits - 3 digits)
+  - Email unique check (no duplicate clubs)
+  - Secretary email unique check (not already a user)
+
+- **F.2.1.4** Server action: Submit application
+  - File: `src/app/actions/clubs.ts`
+  - Function: `submitClubApplication(leagueId, data)`
+  - Transaction:
+    1. Create Club (status = PENDING)
+    2. Create User for secretary (`emailVerified = null`)
+    3. Create ClubRole (CLUB_SECRETARY)
+    4. Send email to secretary: "Application received, pending approval"
+    5. Send email to league secretary: "New club application from [Club Name]"
+    6. Log activity
+
+- **F.2.1.5** Confirmation page
+  - Show: "Application submitted successfully"
+  - Message: "Your application is being reviewed by [League Name]. You will receive an email once approved."
+  - CTA: "Close" (redirects to league website if provided, else homepage)
+
+#### F.2.2 Club Approval Workflow
+**Task:** League secretary reviews and approves applications
+
+- **F.2.2.1** Pending applications dashboard
+  - Show in C.1.2 (Pending Actions Widget)
+  - Button: "Review Club Applications" → F.2.2.2
+
+- **F.2.2.2** Application review page
+  - File: `src/app/(dashboard)/clubs/pending/page.tsx`
+  - List: All clubs with status = PENDING
+  - Each shows:
+    - Club details (expandable card)
+    - Secretary details
+    - Application date
+    - Actions: Approve, Reject, Request More Info
+
+- **F.2.2.3** Approve club
+  - Modal: "Approve [Club Name]?"
+  - Option: Send welcome email (checkbox, default checked)
+  - Server action: `approveClub(clubId)`
+  - Transaction:
+    1. Update Club.status = APPROVED
+    2. Send magic link to secretary (for first login)
+    3. Log activity
+  - Email template: "Welcome to [League]! Complete your profile: [magic link]"
+
+- **F.2.2.4** Reject club
+  - Modal: "Reject [Club Name]?"
+  - Reason: Required textarea
+  - Server action: `rejectClub(clubId, reason)`
+  - Transaction:
+    1. Update Club.status = ARCHIVED (soft delete)
+    2. Send rejection email with reason
+    3. Log activity
+
+- **F.2.2.5** Request more info
+  - Modal: "Request More Information"
+  - Message: Textarea (will be sent to secretary)
+  - Server action: `requestClubInfo(clubId, message)`
+  - Email: "Additional information required for your application"
+  - Does NOT change club status (stays PENDING)
+
+---
+
+### F.3 Club Profile Management
+
+**Page:** `/dashboard/clubs/[id]`
+
+#### F.3.1 Club Profile View
+**Task:** Display all club information
+
+- **F.3.1.1** Page layout
+  - File: `src/app/(dashboard)/clubs/[id]/page.tsx`
+  - Header:
+    - Club name + status badge
+    - Actions: Edit, Suspend, Archive (permission-based)
+  - Tabs:
+    - Overview (F.3.1.2)
+    - Teams (F.3.1.3)
+    - Officials (F.3.1.4)
+    - Invoices (F.3.1.5)
+    - Documents (F.3.1.6)
+    - History (F.3.1.7)
+
+- **F.3.1.2** Overview tab
+  - Section: Club Details
+    - Name, short name, FA No.
+    - Email, phone, address, postcode
+    - Website (clickable link)
+    - Status, created date
+  - Section: Statistics
+    - Total teams: X
+    - Teams by age group (bar chart)
+    - Active invoices: X (£Y outstanding)
+    - Last activity: [timestamp]
+
+- **F.3.1.3** Teams tab
+  - List: All teams from this club
+  - Columns: Team name, Age group, Status, AGG, Season
+  - Action: View team (→ G.2)
+  - Button: "Register New Team" → G.3
+
+- **F.3.1.4** Officials tab
+  - List: All users with ClubRole for this club
+  - Columns: Name, Email, Role, Last login
+  - Actions:
+    - Add official (→ F.4.2)
+    - Remove official (confirmation required)
+    - Change role
+  - Permission: Only club secretary or league admin can edit
+
+- **F.3.1.5** Invoices tab
+  - List: All invoices for this club
+  - Columns: Invoice no., Date, Amount, Status, Due date
+  - Filter: Status (Pending/Paid/Overdue)
+  - Action: View invoice (→ L.2)
+  - Button: "Generate Invoice" → L.3
+
+- **F.3.1.6** Documents tab
+  - List: Documents uploaded by or for this club
+  - Types: Insurance, FA Affiliation, Policies, etc.
+  - Columns: Name, Type, Uploaded by, Date
+  - Actions: Download, Delete
+  - Button: "Upload Document" → upload form
+
+- **F.3.1.7** History tab
+  - Activity log for this club
+  - Shows: All changes, team registrations, invoice payments
+  - Filterable by action type
+
+#### F.3.2 Edit Club Profile
+**Task:** Update club information
+
+- **F.3.2.1** Edit form
+  - File: `src/app/(dashboard)/clubs/[id]/edit/page.tsx`
+  - Same fields as F.2.1.2 (pre-populated)
+  - Additional field: Status (dropdown) - League admin only
+
+- **F.3.2.2** Permission check
+  - Club Secretary can edit: Name, contact details, address
+  - Club Secretary CANNOT edit: FA No., Status
+  - League admin can edit: Everything
+
+- **F.3.2.3** Server action: Update club
+  - Function: `updateClub(clubId, data)`
+  - Audit: Record updatedBy + updatedAt
+  - Log activity
+
+#### F.3.3 Suspend/Archive Club
+**Task:** Deactivate club
+
+- **F.3.3.1** Suspend club
+  - Button: "Suspend Club" (league admin only)
+  - Modal: "Suspend [Club Name]?"
+  - Reason: Required textarea
+  - Effect: Club status = SUSPENDED
+  - Impact:
+    - Cannot register new teams
+    - Existing teams remain active
+    - Officials retain access (read-only)
+  - Server action: `suspendClub(clubId, reason)`
+  - Email: Notify club secretary
+
+- **F.3.3.2** Archive club
+  - Button: "Archive Club" (league admin only)
+  - Modal: "Archive [Club Name]? This will:"
+  - Warning list:
+    - Archive all teams
+    - Remove club from active lists
+    - Retain all historical data
+  - Confirmation: Type club name to confirm
+  - Server action: `archiveClub(clubId)`
+  - Soft delete: Set `Club.deletedAt` + all teams' `deletedAt`
+
+---
+
+### F.4 Club Officials Management
+
+#### F.4.1 View Club Officials
+**Task:** List all users with roles for this club
+
+- **F.4.1.1** Officials list
+  - Shown in F.3.1.4 (Officials tab)
+  - Query: `SELECT User.* FROM User JOIN ClubRole WHERE ClubRole.clubId = X`
+
+#### F.4.2 Invite Club Official
+**Task:** Add new user to club team
+
+- **F.4.2.1** Invite form
+  - File: `src/app/(dashboard)/clubs/[id]/officials/invite/page.tsx`
+  - Fields:
+    - Email (required, unique check)
+    - Name (optional)
+    - Role (required, single-select):
+      - Club Secretary
+      - Club Treasurer
+      - Welfare Officer
+      - Fixture Secretary
+      - COVID Officer
+    - Message (optional)
+
+- **F.4.2.2** Validation
+  - Cannot have multiple primary secretaries (enforce one CLUB_SECRETARY at most)
+  - Email must not already be a club official
+
+- **F.4.2.3** Server action: Invite club official
+  - Function: `inviteClubOfficial(clubId, data)`
+  - Transaction:
+    1. Create or find User (if exists, just add role)
+    2. Create ClubRole
+    3. Send invitation email
+  - Email template: "You've been invited to join [Club Name] as [Role]"
+
+#### F.4.3 Remove Club Official
+**Task:** Revoke club role
+
+- **F.4.3.1** Remove action
+  - Button: "Remove" (next to official in list)
+  - Confirmation modal: "Remove [Name] as [Role]?"
+  - Server action: `removeClubRole(clubRoleId)`
+  - Effect: User loses access to club data (unless has league role)
+  - Email: Notify user of role removal
+
+#### F.4.4 Change Club Official Role
+**Task:** Update role type
+
+- **F.4.4.1** Change role dropdown
+  - In-line editor on officials list
+  - Dropdown: All club role types
+  - Auto-save on selection change
+  - Server action: `updateClubRole(clubRoleId, newRoleType)`
+
+---
+
+## [G] TEAM MANAGEMENT
+
+**Priority:** HIGH - Core workflow  
+**Estimated Time:** 5-6 days  
+**Dependencies:** F (Clubs), E (Age Groups)  
+**Status:** Database exists, no UI
+
+---
+
+### G.1 Team List & Search
+
+**Page:** `/dashboard/teams`
+
+#### G.1.1 Team List View
+**Task:** Show all teams in league
+
+- **G.1.1.1** Data table component
+  - File: `src/app/(dashboard)/teams/page.tsx`
+  - Columns:
+    - Team name
+    - Club name (link to club profile)
+    - Age group
+    - AGG (show "Waiting List" if null)
+    - Status (badge)
+    - Season
+    - Actions (View, Edit, Allocate, Archive)
+
+- **G.1.1.2** Filters
+  - Age group (multi-select)
+  - Status (multi-select)
+  - AGG (dropdown: specific AGG or "Waiting List")
+  - Club (searchable dropdown)
+  - Season (dropdown)
+
+- **G.1.1.3** Sorting
+  - Sort by: Team name, Club name, Age group, Status, Created date
+  - Default: Age group (U7 first), then team name A-Z
+
+- **G.1.1.4** Bulk actions
+  - Select multiple teams
+  - Actions:
+    - Bulk allocate to AGG (→ E.2.1)
+    - Bulk email (team managers)
+    - Export to CSV
+
+#### G.1.2 Team Status Filtering
+**Task:** Quick filter tabs
+
+- **G.1.2.1** Status tabs
+  - All (count)
+  - Waiting List (count)
+  - Approved (count)
+  - Active (count)
+  - Withdrawn (count)
+  - Click tab → filter instantly
+
+---
+
+### G.2 Team Profile
+
+**Page:** `/dashboard/teams/[id]`
+
+#### G.2.1 Team Profile View
+**Task:** Display team details
+
+- **G.2.1.1** Page layout
+  - File: `src/app/(dashboard)/teams/[id]/page.tsx`
+  - Header:
+    - Team name + age group
+    - Status badge + AGG badge
+    - Club name (link to club)
+  - Tabs:
+    - Overview (G.2.1.2)
+    - Team Managers (G.2.1.3)
+    - History (G.2.1.4)
+
+- **G.2.1.2** Overview tab
+  - Section: Team Details
+    - Name
+    - Age group
+    - AGG allocation (or "On waiting list")
+    - Status
+    - Season
+    - Registered date
+  - Section: Club Information
+    - Club name (link)
+    - Club contact
+  - Section: Actions (buttons)
+    - Edit team
+    - Allocate/Move AGG
+    - Withdraw team
+    - Archive team
+
+- **G.2.1.3** Team Managers tab
+  - List: All managers for this team
+  - Note: Team managers are NOT system users (per functional spec 3.3)
+  - Columns: Name, Email, Mobile, Primary contact (badge)
+  - Actions: Edit, Remove, Set as primary
+  - Button: "Add Team Manager"
+
+- **G.2.1.4** History tab
+  - Activity log for this team
+  - Events: Registered, allocated to AGG, moved to waiting list, manager changed
+  - Format: "[Date] [Action] by [User]"
+
+#### G.2.2 Edit Team
+**Task:** Update team details
+
+- **G.2.2.1** Edit form
+  - File: `src/app/(dashboard)/teams/[id]/edit/page.tsx`
+  - Editable fields:
+    - Team name (text)
+    - Age group (dropdown - may change AGG/waiting list)
+  - Read-only fields:
+    - Club, Season, Status (shown but not editable)
+
+- **G.2.2.2** Server action: Update team
+  - Function: `updateTeam(teamId, data)`
+  - Validation:
+    - If age group changed and team was allocated:
+      - Move to waiting list for new age group
+      - Send notification email
+  - Audit trail
+  - Log activity
+
+---
+
+### G.3 Team Registration
+
+#### G.3.1 Register New Team (Club Secretary)
+**Task:** Club secretary registers teams for season
+
+- **G.3.1.1** Registration form
+  - File: `src/app/(dashboard)/clubs/[clubId]/teams/new/page.tsx`
+  - OR: `src/app/(dashboard)/teams/new?clubId=xxx`
+  - Pre-filled: Club (from context)
+  - Fields:
+    - Team name (required, text)
+    - Age group (required, dropdown U7-U13)
+    - Season (required, dropdown, default to current season)
+  - Info box: "Your team will be placed on the waiting list until allocated by the league."
+
+- **G.3.1.2** Validation
+  - Team name unique within club + season + age group
+  - Cannot register for completed/archived season
+  - Cannot register if club is suspended
+
+- **G.3.1.3** Server action: Register team
+  - Function: `registerTeam(clubId, data)`
+  - Transaction:
+    1. Create Team (status = WAITING_LIST, aggId = null)
+    2. Send confirmation email to club secretary
+    3. Send notification to league age group manager
+    4. Log activity
+  - Email to club: "Team registered successfully. You will be notified when allocated to an AGG."
+
+- **G.3.1.4** Auto-allocation check
+  - After creating team, check if AGG has space
+  - If yes and auto-allocation enabled: Allocate immediately
+  - If no: Remain on waiting list
+
+#### G.3.2 Bulk Team Registration
+**Task:** Register multiple teams at once
+
+- **G.3.2.1** Bulk registration form
+  - File: `src/app/(dashboard)/clubs/[clubId]/teams/bulk-register/page.tsx`
+  - Table input:
+    - Row per team
+    - Columns: Team name, Age group
+    - Add row button (up to 20 teams at once)
+  - Season selector (applies to all)
+
+- **G.3.2.2** Server action: Bulk register
+  - Function: `bulkRegisterTeams(clubId, seasonId, teams[])`
+  - Transaction:
+    - Create all Team records
+    - Send single summary email (not one per team)
+  - Return: Summary (X created, Y errors)
+
+### G.4 Team Managers 
+
+#### G.4.1 Add Team Manager
+**Task:** Add contact person for team
+
+- **G.4.1.1** Team manager form
+  - File: `src/app/(dashboard)/teams/[teamId]/managers/new/page.tsx`
+  - Fields:
+    - First name (required, text)
+    - Last name (required, text)
+    - Mobile (required, phone format validation)
+    - Email (required, email format validation)
+    - Primary contact (checkbox, default: false if others exist, true if first)
+  - Note: "Team managers are contact persons only and will not receive system login access."
+
+- **G.4.1.2** Validation
+  - Email format validation
+  - Mobile format validation (UK format preferred)
+  - Cannot set multiple primary contacts (auto-unset others if checked)
+
+- **G.4.1.3** Server action: Add team manager
+  - Function: `addTeamManager(teamId, data)`
+  - Transaction:
+    1. Create TeamManager record
+    2. If isPrimary: Update other managers to isPrimary = false
+    3. Log activity
+  - No email sent (managers are not system users)
+
+#### G.4.2 Edit Team Manager
+**Task:** Update manager details
+
+- **G.4.2.1** Edit form
+  - Same fields as G.4.1.1 (pre-populated)
+  - Server action: `updateTeamManager(managerId, data)`
+  - Audit trail
+
+#### G.4.3 Remove Team Manager
+**Task:** Delete manager record
+
+- **G.4.3.1** Remove action
+  - Button: "Remove" in managers list
+  - Confirmation modal: "Remove [Name] as team manager?"
+  - Warning: If primary contact being removed and others exist: "Another manager will need to be set as primary contact"
+  - Server action: `removeTeamManager(managerId)`
+  - Cascade: If last manager removed, team remains valid (managers optional)
+
+#### G.4.4 Set Primary Contact
+**Task:** Designate main contact person
+
+- **G.4.4.1** Primary toggle
+  - In managers list: "Primary" badge + toggle button
+  - Click toggle → confirmation modal
+  - Server action: `setPrimaryTeamManager(managerId)`
+  - Effect: Sets isPrimary = true, unsets all others for this team
+
+---
+
+### G.5 Team Status Management
+
+#### G.5.1 Withdraw Team
+**Task:** Mark team as withdrawn from season
+
+- **G.5.1.1** Withdraw action
+  - Button: "Withdraw Team" (from team profile G.2.1.2)
+  - Confirmation modal: "Withdraw [Team Name]?"
+  - Warning: "This team will be removed from the AGG and marked as withdrawn."
+  - Reason: Optional textarea
+  - Server action: `withdrawTeam(teamId, reason)`
+
+- **G.5.1.2** Withdrawal logic
+  - Update: status = WITHDRAWN, aggId = null
+  - Free up AGG space (reduce allocated count)
+  - Send email to club secretary
+  - Log activity with reason
+  - Optional: Auto-allocate next waiting list team to freed space
+
+- **G.5.1.3** Withdrawal email
+  - To: Club secretary, team managers
+  - Subject: "Team [Name] withdrawn from [Season]"
+  - Body: Confirmation + reason (if provided)
+  - CTA: "Contact us if this was a mistake"
+
+#### G.5.2 Reactivate Withdrawn Team
+**Task:** Reverse withdrawal
+
+- **G.5.2.1** Reactivate button
+  - Show only for WITHDRAWN teams
+  - Button: "Reactivate Team"
+  - Modal: "Reactivate [Team Name]?"
+  - Warning: "Team will be placed back on waiting list"
+  - Server action: `reactivateTeam(teamId)`
+  - Update: status = WAITING_LIST, aggId = null
+  - Email: Notify club secretary
+
+#### G.5.3 Archive Team
+**Task:** Soft delete team (end of season cleanup)
+
+- **G.5.3.1** Archive action
+  - Button: "Archive Team" (league admin only)
+  - Confirmation: Type team name to confirm
+  - Server action: `archiveTeam(teamId)`
+  - Soft delete: Set deletedAt timestamp
+  - Retain all historical data
+  - Remove from active lists
+
+---
+
+## [H] SEASON MANAGEMENT
+
+**Priority:** MEDIUM - Required for multi-season operation  
+**Estimated Time:** 2-3 days  
+**Dependencies:** C (League settings), G (Teams)  
+**Status:** Database structure exists, basic UI in league settings
+
+---
+
+### H.1 Season Overview
+
+**Page:** `/dashboard/seasons`
+
+#### H.1.1 Season List View
+**Task:** Show all seasons (past, current, future)
+
+- **H.1.1.1** Season cards
+  - File: `src/app/(dashboard)/seasons/page.tsx`
+  - Display: Cards for each season
+  - Current season: Highlighted with border + "Current" badge
+  - Each card shows:
+    - Season name (e.g., "2025/26")
+    - Dates (start - end)
+    - Status badge (Draft/Registration Open/Active/Completed/Archived)
+    - Teams registered: X
+    - Registration deadline
+  - Actions: View, Edit, Duplicate (for creating next season)
+
+- **H.1.1.2** Season status indicators
+  - Draft: Grey badge, "Not yet open"
+  - Registration Open: Blue badge, countdown to deadline
+  - Active: Green badge, days remaining
+  - Completed: Amber badge, read-only
+  - Archived: Grey badge, hidden by default (toggle to show)
+
+#### H.1.2 Current Season Dashboard
+**Task:** Quick view of active season
+
+- **H.1.2.1** Current season widget
+  - Show in league dashboard (C.1)
+  - Display:
+    - Season name + dates
+    - Days remaining
+    - Teams registered / Expected
+    - Registration status (Open/Closed)
+  - Actions:
+    - "View Teams" → G.1 filtered to current season
+    - "Manage Season" → H.2
+
+---
+
+### H.2 Season Details
+
+**Page:** `/dashboard/seasons/[id]`
+
+#### H.2.1 Season Profile View
+**Task:** Detailed season information
+
+- **H.2.1.1** Page layout
+  - File: `src/app/(dashboard)/seasons/[id]/page.tsx`
+  - Header: Season name, status badge, dates
+  - Tabs:
+    - Overview (H.2.1.2)
+    - Teams (H.2.1.3)
+    - Settings (H.2.1.4)
+    - History (H.2.1.5)
+
+- **H.2.1.2** Overview tab
+  - Section: Season Details
+    - Name, start date, end date
+    - Status, registration deadline
+    - Created date, last updated
+  - Section: Statistics
+    - Total teams registered
+    - Teams by age group (bar chart)
+    - Teams by status (pie chart)
+    - Clubs participating
+  - Section: Timeline
+    - Visual timeline showing:
+      - Registration period
+      - Active season period
+      - Key milestones
+
+- **H.2.1.3** Teams tab
+  - List: All teams registered for this season
+  - Columns: Club, Team name, Age group, AGG, Status
+  - Filters: Same as G.1.1.2
+  - Export: "Export Season Teams to CSV"
+
+- **H.2.1.4** Settings tab
+  - Editable settings (league admin only):
+    - Registration deadline
+    - Fee structure (per age group)
+    - Team limits per club
+    - AGG capacities (override defaults)
+  - JSON editor for advanced settings
+  - Save button commits all changes
+
+- **H.2.1.5** History tab
+  - Activity log for this season
+  - Events: Created, settings changed, team registered, status changed
+  - Useful for audit trail
+
+#### H.2.2 Edit Season
+**Task:** Update season details
+
+- **H.2.2.1** Edit form
+  - File: `src/app/(dashboard)/seasons/[id]/edit/page.tsx`
+  - Fields:
+    - Name (text)
+    - Start date (date picker)
+    - End date (date picker, must be > start)
+    - Status (dropdown)
+    - Registration deadline (date picker)
+  - Validation:
+    - End date > start date
+    - Registration deadline between start and end
+    - Cannot change dates if season is Active (requires confirmation)
+
+- **H.2.2.2** Server action: Update season
+  - Function: `updateSeason(seasonId, data)`
+  - Audit trail
+  - Log activity
+  - If dates changed: Email notification to all club secretaries
+
+---
+
+### H.3 Create New Season
+
+#### H.3.1 Create Season Form
+**Task:** Add new season
+
+- **H.3.1.1** Season creation form
+  - File: `src/app/(dashboard)/seasons/new/page.tsx`
+  - Fields:
+    - Name (required, e.g., "2026/27")
+    - Start date (required, date picker)
+    - End date (required, date picker)
+    - Registration deadline (required, date picker)
+    - Copy settings from: (optional dropdown, previous season)
+  - Helper: Auto-suggest name based on current year
+
+- **H.3.1.2** Server action: Create season
+  - Function: `createSeason(leagueId, data)`
+  - Transaction:
+    1. Create Season record (status = DRAFT)
+    2. If "copy settings from" selected: Copy AGG structure + fees
+    3. Log activity
+  - Default status: DRAFT (must be manually opened for registration)
+
+#### H.3.2 Duplicate Season (Quick Create)
+**Task:** Copy existing season to create next
+
+- **H.3.2.1** Duplicate action
+  - Button: "Duplicate" on season card (H.1.1.1)
+  - Pre-fills form with:
+    - Name: Incremented year (2025/26 → 2026/27)
+    - Dates: Same month/day, next year
+    - All settings copied
+  - User reviews and adjusts before saving
+  - Server action: `duplicateSeason(sourceSeasonId)`
+
+---
+
+### H.4 Season Status Workflow
+
+#### H.4.1 Open Registration
+**Task:** Allow clubs to register teams
+
+- **H.4.1.1** Open registration action
+  - Button: "Open Registration" (for DRAFT seasons)
+  - Confirmation modal: "Open registration for [Season]?"
+  - Info: "Clubs will be able to register teams"
+  - Server action: `openSeasonRegistration(seasonId)`
+  - Update: status = REGISTRATION_OPEN
+  - Email: Notify all club secretaries "Registration now open"
+
+#### H.4.2 Close Registration
+**Task:** Stop accepting new teams
+
+- **H.4.2.1** Close registration action
+  - Button: "Close Registration" (for REGISTRATION_OPEN seasons)
+  - Confirmation modal: Warn if waiting list exists
+  - Server action: `closeSeasonRegistration(seasonId)`
+  - Update: status = ACTIVE
+  - Email: Notify clubs "Registration closed, season starting"
+
+#### H.4.3 Complete Season
+**Task:** Mark season as finished
+
+- **H.4.3.1** Complete action
+  - Button: "Complete Season" (for ACTIVE seasons)
+  - Confirmation: "Mark season as completed?"
+  - Warning: "This will lock all team data"
+  - Server action: `completeSeason(seasonId)`
+  - Update: status = COMPLETED
+  - Effect: Read-only mode for season data
+
+#### H.4.4 Archive Season
+**Task:** Hide old seasons
+
+- **H.4.4.1** Archive action
+  - Button: "Archive" (for COMPLETED seasons only)
+  - Confirmation: "Archive season [Name]?"
+  - Server action: `archiveSeason(seasonId)`
+  - Update: status = ARCHIVED
+  - Effect: Hidden from default views (toggle to show)
+
+---
+
+## [I] OPERATIONS: VENUES & REFEREES
+
+**Priority:** MEDIUM - Operational data  
+**Estimated Time:** 3-4 days  
+**Dependencies:** C (League settings)  
+**Status:** Database structure exists, no UI
+
+---
+
+### I.1 Venue Management
+
+**Page:** `/dashboard/venues`
+
+#### I.1.1 Venue List View
+**Task:** Show all venues
+
+- **I.1.1.1** Venue cards/list
+  - File: `src/app/(dashboard)/venues/page.tsx`
+  - Display: Card grid or table (user preference toggle)
+  - Each venue shows:
+    - Name
+    - Address + postcode
+    - Pitch summary (e.g., "3 grass, 2 3G")
+    - Primary contact name
+    - Map link icon (clickable)
+    - Actions: View, Edit, Delete
+  - Search: Name or postcode
+
+- **I.1.1.2** Map view (optional enhancement)
+  - Toggle: "List View" / "Map View"
+  - Show all venues on interactive map
+  - Click pin → venue details popup
+  - Requires: Google Maps API integration
+
+#### I.1.2 Venue Profile
+**Task:** Detailed venue information
+
+- **I.1.2.1** Venue profile page
+  - File: `src/app/(dashboard)/venues/[id]/page.tsx`
+  - Sections:
+    - Basic Info: Name, address, postcode, map link, pitch summary
+    - Primary Contact: Name, phone, email, notes (from JSON)
+    - Financial Contact: Name, phone, email, notes (from JSON, optional)
+    - Emergency Contact: Name, phone, role (from JSON, optional)
+  - Actions: Edit, Delete
+  - Button: "View on Map" (opens map link in new tab)
+
+#### I.1.3 Add/Edit Venue
+**Task:** Venue form
+
+- **I.1.3.1** Venue form
+  - File: `src/app/(dashboard)/venues/new/page.tsx` OR `/[id]/edit/page.tsx`
+  - Section: Venue Details
+    - Name (required, text)
+    - Address (required, textarea)
+    - Postcode (required, text)
+    - Map link (optional, URL - Google Maps link)
+    - Pitch summary (optional, text, e.g., "3 grass pitches, 2 3G pitches")
+  - Section: Primary Contact
+    - Name (required)
+    - Phone (required)
+    - Email (required)
+    - Notes (optional, textarea)
+  - Section: Financial Contact (optional, collapsible)
+    - Name, Phone, Email, Notes
+  - Section: Emergency Contact (optional, collapsible)
+    - Name, Phone, Role
+
+- **I.1.3.2** Contact data storage
+  - Store as JSON: `{ "name": "...", "phone": "...", "email": "...", "notes": "..." }`
+  - Fields: primaryContact (required), financialContact (optional), emergencyContact (optional)
+
+- **I.1.3.3** Server action: Create/Update venue
+  - Function: `createVenue(leagueId, data)` / `updateVenue(venueId, data)`
+  - Validation:
+    - Postcode format (UK format preferred)
+    - Email format for all contacts
+    - URL format for map link
+  - Audit trail
+  - Log activity
+
+#### I.1.4 Delete Venue
+**Task:** Remove venue
+
+- **I.1.4.1** Delete action
+  - Button: "Delete Venue"
+  - Confirmation modal: "Delete [Venue Name]?"
+  - Warning: "This action cannot be undone"
+  - Server action: `deleteVenue(venueId)`
+  - Hard delete (not soft delete - venues not referenced by other entities)
+  - Log activity
+
+---
+
+### I.2 Referee Management
+
+**Page:** `/dashboard/referees`  
+**Note:** Sensitive data - requires encryption (per ADR-004 and functional spec 4.7)
+
+#### I.2.1 Referee List View
+**Task:** Show all referees (with data protection)
+
+- **I.2.1.1** Referee table
+  - File: `src/app/(dashboard)/referees/page.tsx`
+  - Permission: Only Referee Coordinator or Committee can view
+  - Columns:
+    - Name (first + last)
+    - FA Referee ID
+    - Qualification
+    - Status (Active/Inactive/Suspended badge)
+    - Minor flag (if under 18, show badge: "Under 18")
+    - Actions: View, Edit, Suspend, Delete
+  - Search: Name or FA ID
+  - Filter: Status, Minor (Yes/No), Qualification
+
+- **I.2.1.2** Data protection notice
+  - Banner at top of page: "⚠️ Sensitive Data - Referee contact information is encrypted. Do not share this data outside the league."
+  - Audit: Log all views of referee list
+
+#### I.2.2 Referee Profile
+**Task:** View referee details (encrypted data)
+
+- **I.2.2.1** Profile page
+  - File: `src/app/(dashboard)/referees/[id]/page.tsx`
+  - Permission: Referee Coordinator only
+  - Section: Basic Info
+    - First name, Last name
+    - FA Referee ID
+    - Qualification
+    - Status
+    - Minor flag (if true, show warning: "Under 18 - extra safeguarding required")
+  - Section: Contact Information (decrypted)
+    - Phone, Email, Address (from decrypted contactData JSON)
+  - Section: Emergency Contact (decrypted)
+    - Name, Phone, Relationship (from decrypted emergencyData JSON)
+  - Actions: Edit, Suspend/Reactivate, Delete
+  - Audit: Log profile view
+
+#### I.2.3 Add/Edit Referee
+**Task:** Referee form with encryption
+
+- **I.2.3.1** Referee form
+  - File: `src/app/(dashboard)/referees/new/page.tsx` OR `/[id]/edit/page.tsx`
+  - Section: Basic Information
+    - First name (required)
+    - Last name (required)
+    - FA Referee ID (optional, text)
+    - Qualification (optional, dropdown: Level 7, Level 6, Level 5, etc.)
+    - Status (dropdown: Active, Inactive, Suspended)
+    - Date of birth (required for minor check)
+    - Minor flag (auto-calculated: age < 18)
+  - Section: Contact Information (will be encrypted)
+    - Phone (required)
+    - Email (required)
+    - Address (optional, textarea)
+  - Section: Emergency Contact (will be encrypted)
+    - Name (required)
+    - Phone (required)
+    - Relationship (optional, text)
+
+- **I.2.3.2** Data encryption
+  - File: `src/lib/encryption.ts`
+  - Function: `encrypt(data: object): string`
+  - Function: `decrypt(encryptedData: string): object`
+  - Use: Node.js crypto library with AES-256-GCM
+  - Key: Stored in environment variable `ENCRYPTION_KEY` (32-byte hex)
+  - Before save: Encrypt `contactData` and `emergencyData` as JSON strings
+  - On load: Decrypt to display
+
+- **I.2.3.3** Server action: Create/Update referee
+  - Function: `createReferee(leagueId, data)` / `updateReferee(refereeId, data)`
+  - Process:
+    1. Calculate isMinor (age < 18)
+    2. Encrypt contactData: `{ phone, email, address }`
+    3. Encrypt emergencyData: `{ name, phone, relationship }`
+    4. Save encrypted strings to database
+  - Audit: Log creation/update (but not decrypted data)
+
+- **I.2.3.4** Minor referee warning
+  - If age < 18: Show warning in form
+  - Text: "⚠️ This referee is under 18. Extra safeguarding measures apply. Ensure parental consent is obtained."
+
+#### I.2.4 Suspend/Reactivate Referee
+**Task:** Change referee status
+
+- **I.2.4.1** Suspend action
+  - Button: "Suspend Referee"
+  - Confirmation modal: "Suspend [Name]?"
+  - Reason: Required textarea
+  - Server action: `suspendReferee(refereeId, reason)`
+  - Update: status = SUSPENDED
+  - Log activity with reason
+
+- **I.2.4.2** Reactivate action
+  - Button: "Reactivate Referee" (for suspended refs)
+  - Confirmation: "Reactivate [Name]?"
+  - Server action: `reactivateReferee(refereeId)`
+  - Update: status = ACTIVE
+
+#### I.2.5 Delete Referee
+**Task:** Remove referee record
+
+- **I.2.5.1** Delete action
+  - Button: "Delete Referee"
+  - Confirmation: Type referee name to confirm
+  - Warning: "All encrypted data will be permanently deleted"
+  - Server action: `deleteReferee(refereeId)`
+  - Hard delete (removes encrypted data securely)
+  - Log activity
+
+#### I.2.6 Export Referees (Encrypted)
+**Task:** Export for backup/compliance
+
+- **I.2.6.1** Export action
+  - Button: "Export Referees"
+  - Permission: Referee Coordinator only
+  - Format: CSV with encrypted fields
+  - Columns: Name, FA ID, Qualification, Status, Minor flag, contactData (encrypted string), emergencyData (encrypted string)
+  - Download: `referees_[date].csv`
+  - Audit: Log export action with user details
+
+---
+
+## [J] COMMUNICATIONS
+
+**Priority:** HIGH - Critical for league operations  
+**Estimated Time:** 4-5 days  
+**Dependencies:** F (Clubs), G (Teams), D (Users)  
+**Status:** Database structure exists, no UI
+
+---
+
+### J.1 Communications Dashboard
+
+**Page:** `/dashboard/communications`
+
+#### J.1.1 Communications List View
+**Task:** Show all sent communications
+
+- **J.1.1.1** Communication list table
+  - File: `src/app/(dashboard)/communications/page.tsx`
+  - Columns:
+    - Subject
+    - Sent by (user name)
+    - Sent to (recipient count, e.g., "25 clubs")
+    - Sent at (timestamp)
+    - Status (badge: Sent/Delivered/Failed)
+    - Actions: View, Resend (if failed)
+  - Filters:
+    - Date range (preset: Last 7 days, Last 30 days, Custom)
+    - Sent by (user dropdown)
+    - Status
+  - Search: Subject or body text
+
+- **J.1.1.2** Sort options
+  - Sort by: Sent at (default, newest first), Subject, Sent by
+  - Pagination: 50 per page
+
+- **J.1.1.3** Draft communications
+  - Separate tab: "Drafts" (count in badge)
+  - Show communications with status = DRAFT
+  - Actions: Continue editing, Delete draft
+
+#### J.1.2 Communication Detail View
+**Task:** View sent communication
+
+- **J.1.2.1** Detail page
+  - File: `src/app/(dashboard)/communications/[id]/page.tsx`
+  - Sections:
+    - Header: Subject, sent by, sent at
+    - Recipients: List of all recipients (expandable if >10)
+    - Body: Full email body (rendered as HTML)
+    - Attachments: List with download links
+    - Metadata: CC, BCC (if used)
+    - Delivery status: Per-recipient delivery status (if available from Resend)
+  - Actions: Forward, Resend (if failed)
+
+---
+
+### J.2 Compose Communication
+
+**Page:** `/dashboard/communications/new`
+
+#### J.2.1 Communication Composer
+**Task:** Send email to league stakeholders
+
+- **J.2.1.1** Composer form
+  - File: `src/app/(dashboard)/communications/new/page.tsx`
+  - Section: Recipients
+    - Recipient type (required, radio buttons):
+      - All clubs (sends to all club secretaries)
+      - Specific clubs (multi-select club dropdown)
+      - All team managers (sends to all teams' primary contact)
+      - Specific age group (dropdown U7-U13, sends to teams in that age group)
+      - Custom recipients (free-text email list, one per line)
+      - League officials (multi-select: Committee, Age Group Managers, etc.)
+    - Display: Recipient count (e.g., "Will send to 45 recipients")
+    - Preview: "View recipient list" → modal showing all email addresses
+
+- **J.2.1.2** Message details
+  - Subject (required, text, max 200 chars)
+  - Body (required, rich text editor)
+    - WYSIWYG toolbar: Bold, italic, underline, lists, links
+    - Insert variables: Dropdown with options:
+      - `{{club_name}}`, `{{team_name}}`, `{{season}}`, `{{league_name}}`
+      - Variables auto-replaced per recipient
+    - Character count display
+
+- **J.2.1.3** Additional options (collapsible)
+  - CC (optional, comma-separated emails)
+  - BCC (optional, comma-separated emails)
+  - Attachments (optional, file upload)
+    - Max 5 files, 10MB total
+    - Allowed: PDF, DOC, DOCX, XLS, XLSX, JPG, PNG
+    - Upload to R2, store URLs in attachments JSON
+
+- **J.2.1.4** Template selector
+  - Dropdown: "Load template"
+  - Options: Pre-defined templates from C.2.5
+  - Action: Populate subject and body from template
+
+- **J.2.1.5** Actions
+  - Button: "Send Now" (primary action)
+  - Button: "Save as Draft" (saves to DB with status = DRAFT)
+  - Button: "Preview" (opens modal with sample rendered email)
+  - Button: "Cancel" (confirms if unsaved changes)
+
+#### J.2.2 Send Communication Logic
+**Task:** Process and send emails
+
+- **J.2.2.1** Server action: Send communication
+  - Function: `sendCommunication(leagueId, data)`
+  - Process:
+    1. Resolve recipients based on type:
+       - Query clubs/users/teams as needed
+       - Build email list (deduplicate if same email multiple times)
+    2. Replace variables in subject + body for each recipient
+    3. Upload attachments to R2 (if any)
+    4. Create Communication record (status = SENT)
+    5. Send emails via Resend (batch API if >50 recipients)
+    6. Log activity
+  - Return: Communication ID + recipient count
+
+- **J.2.2.2** Resend email integration
+  - File: `src/lib/email.ts`
+  - Function: `sendBulkEmail(recipients[], subject, body, attachments?)`
+  - Use: Resend batch API for efficiency
+  - From: League email (from League.email)
+  - Reply-to: Sender's email
+  - Track: Delivery status via Resend webhooks (future enhancement)
+
+- **J.2.2.3** Error handling
+  - If some emails fail: Save Communication with status = SENT (for successes)
+  - Log failed recipients
+  - Show user: "X of Y emails sent successfully. Z failed."
+  - Offer: "Retry failed recipients" button
+
+#### J.2.3 Save as Draft
+**Task:** Store unfinished communication
+
+- **J.2.3.1** Server action: Save draft
+  - Function: `saveCommunicationDraft(leagueId, data)`
+  - Create Communication record (status = DRAFT)
+  - Store: Subject, body, recipient config (JSON), attachments
+  - No emails sent yet
+  - User can resume later from J.1.1.2
+
+#### J.2.4 Schedule Communication (Future Enhancement)
+**Task:** Send at specific time
+
+- **J.2.4.1** Scheduled send (optional for v1.0)
+  - Field: "Send at" (date + time picker)
+  - If set: Save with status = SCHEDULED
+  - Cron job: Check for scheduled communications every minute
+  - Send when timestamp reached
+
+---
+
+### J.3 Email Templates
+
+**Page:** `/dashboard/communications/templates`
+
+#### J.3.1 Template Library
+**Task:** Manage reusable email templates
+
+- **J.3.1.1** Template list
+  - File: `src/app/(dashboard)/communications/templates/page.tsx`
+  - Display: Cards or table
+  - Columns: Template name, Subject, Last used, Created by, Actions
+  - Actions: View, Edit, Duplicate, Delete
+  - Button: "Create Template"
+
+#### J.3.2 Create/Edit Template
+**Task:** Template form
+
+- **J.3.2.1** Template form
+  - File: `src/app/(dashboard)/communications/templates/new/page.tsx`
+  - Fields:
+    - Template name (required, internal use only)
+    - Subject (required, supports variables)
+    - Body (required, rich text editor, supports variables)
+    - Category (optional, dropdown: Approval, Notification, Reminder, etc.)
+  - Server action: `saveEmailTemplate(leagueId, data)`
+  - Storage: League.settings.emailTemplates JSON array
+
+#### J.3.3 Use Template
+**Task:** Load template into composer
+
+- **J.3.3.1** Template selector (from J.2.1.4)
+  - Dropdown in composer
+  - On select: Populate subject + body
+  - User can edit after loading
+  - Variables remain as `{{...}}` until sending
+
+---
+
+## [K] DOCUMENT MANAGEMENT
+
+**Priority:** LOW - Optional for v1.0  
+**Estimated Time:** 2-3 days  
+**Dependencies:** Cloudflare R2 integration  
+**Status:** Database structure exists, no UI
+
+---
+
+### K.1 Document Library
+
+**Page:** `/dashboard/documents`
+
+#### K.1.1 Document List View
+**Task:** Show all league documents
+
+- **K.1.1.1** Document table
+  - File: `src/app/(dashboard)/documents/page.tsx`
+  - Columns:
+    - Name
+    - Type (badge: Policy, Schedule, Insurance, FA Affiliation, Invoice, Other)
+    - Category (if set)
+    - Owner (Club name if club-specific, "League" if league-wide)
+    - Uploaded by (user)
+    - Uploaded at
+    - File size
+    - Actions: Download, Delete
+  - Filters:
+    - Type (multi-select)
+    - Owner (dropdown: League, or specific club)
+    - Date range
+  - Search: Name or category
+
+#### K.1.2 Upload Document
+**Task:** Add file to library
+
+- **K.1.2.1** Upload form
+  - File: `src/app/(dashboard)/documents/upload/page.tsx`
+  - Fields:
+    - Name (required, text, default to filename)
+    - Type (required, dropdown: Policy, Schedule, Insurance, FA Affiliation, Invoice, Other)
+    - Category (optional, text, e.g., "Safeguarding", "Finance")
+    - Owner (required, dropdown):
+      - League (default)
+      - Specific club (searchable dropdown)
+    - File (required, file picker)
+      - Max size: 10MB
+      - Allowed: PDF, DOC, DOCX, XLS, XLSX, JPG, PNG
+
+- **K.1.2.2** Server action: Upload document
+  - Function: `uploadDocument(leagueId, data, file)`
+  - Process:
+    1. Validate file type and size
+    2. Upload to Cloudflare R2
+    3. Generate public URL (or signed URL if private)
+    4. Create Document record (fileUrl, fileSize, mimeType, etc.)
+    5. Set ownerId + ownerType (polymorphic: League or Club)
+    6. Log activity
+  - Return: Document ID
+
+#### K.1.3 Download Document
+**Task:** Retrieve file from R2
+
+- **K.1.3.1** Download action
+  - Button: "Download" in document list
+  - Server action: `getDocumentDownloadUrl(documentId)`
+  - If public URL: Return directly
+  - If signed URL: Generate short-lived signed URL (1 hour expiry)
+  - Redirect user to URL (browser downloads file)
+
+#### K.1.4 Delete Document
+**Task:** Remove file
+
+- **K.1.4.1** Delete action
+  - Button: "Delete"
+  - Confirmation modal: "Delete [Document Name]?"
+  - Server action: `deleteDocument(documentId)`
+  - Process:
+    1. Delete file from R2
+    2. Delete Document record from database
+  - Log activity
+
+---
+
+## [L] BILLING & INVOICES
+
+**Priority:** MEDIUM - Financial tracking  
+**Estimated Time:** 4-5 days  
+**Dependencies:** F (Clubs), Xero API integration (optional)  
+**Status:** Database structure exists, no UI
+
+---
+
+### L.1 Invoice List
+
+**Page:** `/dashboard/invoices`
+
+#### L.1.1 Invoice List View
+**Task:** Show all invoices
+
+- **L.1.1.1** Invoice table
+  - File: `src/app/(dashboard)/invoices/page.tsx`
+  - Columns:
+    - Invoice number
+    - Club name (link to club profile)
+    - Invoice date
+    - Due date
+    - Amount (£, formatted)
+    - Type (badge: Annual Fee, New Team, Late Entry, Fine, Ad Hoc)
+    - Status (badge: Pending, Sent, Paid, Overdue, Cancelled)
+    - Actions: View, Mark as Paid, Resend, Cancel
+  - Filters:
+    - Status (multi-select)
+    - Club (searchable dropdown)
+    - Date range (invoice date or due date)
+    - Type
+  - Search: Invoice number or club name
+
+- **L.1.1.2** Summary stats (top of page)
+  - Total invoiced: £X
+  - Total paid: £Y
+  - Total outstanding: £Z
+  - Overdue invoices: Count (red badge)
+
+- **L.1.1.3** Sort options
+  - Sort by: Invoice date, Due date, Amount, Status, Club name
+  - Default: Due date (soonest first)
+
+#### L.1.2 Overdue Invoices Alert
+**Task:** Highlight overdue invoices
+
+- **L.1.2.1** Overdue tab
+  - Separate tab: "Overdue" (count in red badge)
+  - Auto-filter: Due date < today AND status != Paid
+  - Visual: Red row background for overdue items
+  - Bulk action: "Send Reminders" → J.2 with pre-filled recipients
+
+---
+
+### L.2 Invoice Detail
+
+**Page:** `/dashboard/invoices/[id]`
+
+#### L.2.1 Invoice Detail View
+**Task:** View single invoice
+
+- **L.2.1.1** Invoice page
+  - File: `src/app/(dashboard)/invoices/[id]/page.tsx`
+  - Header: Invoice number, status badge
+  - Section: Invoice Details
+    - Club name (link)
+    - Invoice date, due date
+    - Type
+    - Amount (£, large display)
+    - Description
+  - Section: Payment Info
+    - Status
+    - Paid date (if paid)
+    - Payment method (if recorded)
+  - Section: Xero Integration (if synced)
+    - Xero invoice ID (link to Xero if available)
+    - Last sync date
+    - Sync status
+  - Actions:
+    - Mark as Paid
+    - Resend Invoice Email
+    - Cancel Invoice
+    - Download PDF
+    - View in Xero (if synced)
+
+#### L.2.2 Invoice PDF Generation
+**Task:** Generate printable invoice
+
+- **L.2.2.1** PDF template
+  - Use: React-PDF or similar library
+  - Template includes:
+    - League logo + name + contact
+    - Invoice number + date
+    - Bill to: Club name + address
+    - Itemized charges table
+    - Total amount
+    - Payment instructions (bank details if applicable)
+    - Footer: Terms and conditions
+
+- **L.2.2.2** Generate PDF action
+  - Button: "Download PDF"
+  - Server action: `generateInvoicePDF(invoiceId)`
+  - Generate PDF in memory
+  - Return as download (filename: `Invoice_[number].pdf`)
+
+---
+
+### L.3 Create Invoice
+
+**Page:** `/dashboard/invoices/new`
+
+#### L.3.1 Invoice Creation Form
+**Task:** Generate invoice for club
+
+- **L.3.1.1** Invoice form
+  - File: `src/app/(dashboard)/invoices/new/page.tsx`
+  - Section: Invoice Details
+    - Club (required, searchable dropdown)
+    - Invoice date (required, date picker, default today)
+    - Due date (required, date picker, default +30 days)
+    - Invoice number (auto-generated, read-only, format: `INV-YYYY-NNNN`)
+  - Section: Charge Details
+    - Type (required, dropdown: Annual Fee, New Team, Late Entry, Fine, Ad Hoc)
+    - Description (optional, textarea)
+    - Amount (required, currency input, £)
+  - Section: Payment Terms (optional)
+    - Custom payment instructions (textarea)
+
+- **L.3.1.2** Invoice number generation
+  - Format: `INV-2025-0001` (increment per year)
+  - Logic: Query max invoice number for current year + 1
+
+- **L.3.1.3** Server action: Create invoice
+  - Function: `createInvoice(leagueId, data)`
+  - Transaction:
+    1. Generate invoice number
+    2. Create Invoice record (status = PENDING)
+    3. Optionally sync to Xero (if enabled)
+    4. Send invoice email to club treasurer
+    5. Log activity
+  - Return: Invoice ID
+
+#### L.3.2 Invoice Email
+**Task:** Send invoice to club
+
+- **L.3.2.1** Invoice email template
+  - To: Club treasurer (if assigned), else club secretary
+  - Subject: "Invoice [Number] from [League Name]"
+  - Body:
+    - Greeting
+    - Invoice details (number, date, amount)
+    - Payment instructions
+    - CTA: "Download Invoice PDF" (link)
+    - Footer: Contact details
+
+- **L.3.2.2** Attachment
+  - Attach PDF invoice to email
+  - Use invoice PDF generation from L.2.2.1
+
+---
+
+### L.4 Invoice Management
+
+#### L.4.1 Mark as Paid
+**Task:** Record payment received
+
+- **L.4.1.1** Mark paid action
+  - Button: "Mark as Paid" (from invoice detail or list)
+  - Modal: "Mark invoice [Number] as paid?"
+  - Fields:
+    - Paid date (required, date picker, default today)
+    - Payment method (optional, text, e.g., "Bank transfer", "Cheque")
+    - Notes (optional, textarea)
+  - Server action: `markInvoicePaid(invoiceId, data)`
+  - Update: status = PAID, paidAt = date
+  - Email: Send receipt to club treasurer
+  - If Xero synced: Update Xero invoice status
+
+#### L.4.2 Resend Invoice
+**Task:** Re-email invoice to club
+
+- **L.4.2.1** Resend action
+  - Button: "Resend Invoice"
+  - Confirmation: "Resend invoice [Number] to [Club]?"
+  - Server action: `resendInvoiceEmail(invoiceId)`
+  - Re-send email from L.3.2.1
+  - Log activity
+
+#### L.4.3 Cancel Invoice
+**Task:** Void invalid invoice
+
+- **L.4.3.1** Cancel action
+  - Button: "Cancel Invoice"
+  - Confirmation modal: "Cancel invoice [Number]?"
+  - Reason: Required textarea
+  - Server action: `cancelInvoice(invoiceId, reason)`
+  - Update: status = CANCELLED
+  - Email: Notify club of cancellation
+  - If Xero synced: Void invoice in Xero
+  - Log activity with reason
+
+---
+
+### L.5 Xero Integration (Optional)
+
+**Page:** `/dashboard/settings/xero`
+
+#### L.5.1 Xero Connection
+**Task:** OAuth connection to Xero
+
+- **L.5.1.1** Connect Xero
+  - File: `src/app/(dashboard)/settings/xero/page.tsx`
+  - Button: "Connect Xero Account"
+  - OAuth flow: Redirect to Xero → user authorizes → callback
+  - Store: Xero tenant ID + access token (refresh token)
+  - Show: Connected status, organization name
+  - Button: "Disconnect" (revoke tokens)
+
+#### L.5.2 Sync Settings
+**Task:** Configure sync behavior
+
+- **L.5.2.1** Sync options
+  - Auto-sync invoices (toggle, default off)
+    - When enabled: Create Xero invoice automatically when LMS invoice created
+  - Sync interval (dropdown: Manual, Hourly, Daily)
+  - Default Xero account code (text, for invoices)
+  - Tax rate (dropdown, from Xero)
+
+#### L.5.3 Manual Sync
+**Task:** Push invoice to Xero
+
+- **L.5.3.1** Sync invoice action
+  - Button: "Sync to Xero" (on invoice detail page, if not synced)
+  - Server action: `syncInvoiceToXero(invoiceId)`
+  - Process:
+    1. Call Xero API: Create invoice
+    2. Save Xero invoice ID to Invoice.xeroInvoiceId
+    3. Update status: xeroStatus = 'AUTHORISED'
+  - Error handling: Show error if Xero API fails
+
+---
+
+## [M] REPORTING & ANALYTICS
+
+**Priority:** LOW - Optional for v1.0  
+**Estimated Time:** 3-4 days  
+**Dependencies:** Sections C-L complete  
+**Status:** Not started
+
+---
+
+### M.1 League Reports
+
+**Page:** `/dashboard/reports`
+
+#### M.1.1 Reports Dashboard
+**Task:** Access to pre-built reports
+
+- **M.1.1.1** Report library
+  - File: `src/app/(dashboard)/reports/page.tsx`
+  - Display: Card grid of available reports
+  - Reports:
+    - Club Directory (M.1.2)
+    - Team Allocation Report (M.1.3)
+    - Financial Summary (M.1.4)
+    - User Activity Report (M.1.5)
+    - Season Summary (M.1.6)
+
+#### M.1.2 Club Directory Report
+**Task:** Exportable list of all clubs
+
+- **M.1.2.1** Report parameters
+  - Filter: Status (Active/All)
+  - Sort: Name (A-Z)
+  - Format: PDF or CSV
+
+- **M.1.2.2** Report output
+  - Columns: Club name, Secretary name, Email, Phone, Teams count
+  - PDF: Formatted table with league branding
+  - CSV: Raw data export
+
+#### M.1.3 Team Allocation Report
+**Task:** AGG allocation summary
+
+- **M.1.3.1** Report parameters
+  - Age group: (All or specific)
+  - Season: (dropdown)
+  - Format: PDF or CSV
+
+- **M.1.3.2** Report output
+  - Grouped by age group
+  - Shows: AGG name, capacity, allocated teams, waiting list
+  - Visual: Progress bars for capacity
+
+#### M.1.4 Financial Summary Report
+**Task:** Invoice totals and outstanding
+
+- **M.1.4.1** Report parameters
+  - Date range: (start - end)
+  - Club: (All or specific)
+  - Format: PDF or CSV
+
+- **M.1.4.2** Report output
+  - Summary: Total invoiced, paid, outstanding, overdue
+  - Breakdown by club: Invoice count, total amount, paid amount, balance
+  - Chart: Bar chart of outstanding by club
+
+#### M.1.5 User Activity Report
+**Task:** User engagement metrics
+
+- **M.1.5.1** Report parameters
+  - Date range: (last 30 days default)
+  - User role: (All, League roles, Club roles)
+  - Format: PDF or CSV
+
+- **M.1.5.2** Report output
+  - Columns: User name, Email, Role(s), Last login, Actions count (in date range)
+  - Sort: Most active first
+  - Highlight: Users with no activity (red)
+
+#### M.1.6 Season Summary Report
+**Task:** Season statistics
+
+- **M.1.6.1** Report parameters
+  - Season: (dropdown)
+  - Format: PDF or Excel
+
+- **M.1.6.2** Report output
+  - Summary stats: Total teams, clubs participating, teams per age group
+  - Tables:
+    - Teams by club
+    - Teams by age group
+    - AGG allocation status
+  - Charts: Bar charts and pie charts
+
+---
+
+### M.2 Custom Query Builder (Future Enhancement)
+
+**Page:** `/dashboard/reports/custom` (optional for v1.0)
+
+#### M.2.1 Query Builder Interface
+**Task:** Allow custom data queries
+
+- **M.2.1.1** Query builder UI
+  - Select: Entity (Club, Team, User, Invoice, etc.)
+  - Filters: Dynamic based on entity (dropdowns, date pickers)
+  - Columns: Multi-select which fields to include
+  - Sort: Field + direction
+  - Format: PDF, CSV, Excel
+
+- **M.2.1.2** Save query
+  - Option: Save query as "Report Template"
+  - Can be re-run with different parameters
+
+---
+
+## [N] TESTING & LAUNCH PREPARATION
+
+**Priority:** CRITICAL - Before production launch  
+**Estimated Time:** 1 week  
+**Dependencies:** All sections complete  
+**Status:** Not started
+
+---
+
+### N.1 Testing Phase
+
+#### N.1.1 Unit Testing
+**Task:** Test critical functions
+
+- **N.1.1.1** Test coverage
+  - Target: 60%+ code coverage
+  - Focus areas:
+    - Server actions (all CRUD operations)
+    - Permission checks
+    - Tenant filtering
+    - Data encryption/decryption
+    - Invoice calculations
+  - Tool: Jest + React Testing Library
+
+- **N.1.1.2** Write tests
+  - File pattern: `__tests__/[function-name].test.ts`
+  - Test cases:
+    - Happy path (success)
+    - Error cases (validation failures)
+    - Permission denied (403)
+    - Edge cases (empty data, max capacity, etc.)
+
+#### N.1.2 Integration Testing
+**Task:** Test user workflows end-to-end
+
+- **N.1.2.1** Key workflows to test
+  - Owner: Create league → invite admin → switch leagues
+  - League admin: Approve club → create season → allocate teams to AGG
+  - Club secretary: Register team → add team manager → view invoice
+  - Communication: Send email to all clubs → verify delivery
+
+- **N.1.2.2** Testing approach
+  - Use: Playwright for E2E tests
+  - Create: Test database with seed data
+  - Automate: Login → perform actions → verify results
+
+#### N.1.3 User Acceptance Testing (UAT)
+**Task:** Test with real users
+
+- **N.1.3.1** UAT participants
+  - Owner (Chris Bampton)
+  - League secretary (DJFL)
+  - 2-3 club secretaries
+  - Age group manager
+
+- **N.1.3.2** UAT scenarios
+  - Provide: Test accounts + instructions
+  - Tasks: Specific user stories (e.g., "Register 3 teams for different age groups")
+  - Collect: Feedback form (bugs, usability issues, feature requests)
+  - Fix: High-priority issues before launch
+
+---
+
+### N.2 Security Audit
+
+#### N.2.1 Security Checklist
+**Task:** Verify security measures
+
+- **N.2.1.1** Authentication & Authorization
+  - ✅ All routes protected by middleware
+  - ✅ Permission checks on all mutations
+  - ✅ Session timeout configured (30 days)
+  - ✅ Magic link expiry (24 hours)
+
+- **N.2.1.2** Data Protection
+  - ✅ Referee data encrypted at rest
+  - ✅ Tenant isolation working (no cross-league data access)
+  - ✅ Sensitive data (emails, phones) not logged
+  - ✅ Audit trail for all changes
+
+- **N.2.1.3** Infrastructure
+  - ✅ Environment variables secured
+  - ✅ Database backups enabled (Neon auto-backup)
+  - ✅ HTTPS enforced (Render auto-HTTPS)
+  - ✅ Rate limiting on auth endpoints
+
+#### N.2.2 Penetration Testing (Optional)
+**Task:** External security review
+
+- **N.2.2.1** Scope
+  - Test: Authentication bypass attempts
+  - Test: SQL injection (Prisma should protect)
+  - Test: Cross-tenant data access
+  - Test: XSS vulnerabilities
+
+- **N.2.2.2** Fixes
+  - Address: Any critical/high vulnerabilities
+  - Document: Medium/low issues for future sprints
+
+---
+
+### N.3 Performance Optimization
+
+#### N.3.1 Database Optimization
+**Task:** Ensure queries are efficient
+
+- **N.3.1.1** Index review
+  - Verify: All foreign keys indexed
+  - Verify: leagueId indexed on all tenant tables
+  - Verify: Frequently queried fields indexed (e.g., email, slug, status)
+
+- **N.3.1.2** Query optimization
+  - Use: Prisma query logging (log slow queries)
+  - Optimize: N+1 query problems (use `include` or `select` wisely)
+  - Add: Database views for complex reports (if needed)
+
+#### N.3.2 Frontend Optimization
+**Task:** Improve page load times
+
+- **N.3.2.1** Next.js optimizations
+  - Use: Server components where possible (reduce client JS)
+  - Use: `<Image>` component for all images (auto-optimization)
+  - Use: Dynamic imports for large components
+
+- **N.3.2.2** Caching strategy
+  - Cache: Static data (age groups, league settings) for 5 minutes
+  - Use: React Query for client-side caching
+  - Use: Next.js route cache for server components
+
+---
+
+### N.4 Documentation
+
+#### N.4.1 User Documentation
+**Task:** Write user guides
+
+- **N.4.1.1** User manual
+  - File: `docs/user-manual.md`
+  - Sections:
+    - Getting started
+    - Owner guide (managing leagues)
+    - League admin guide (day-to-day operations)
+    - Club secretary guide (registering teams)
+  - Format: Markdown with screenshots
+
+- **N.4.1.2** Video tutorials (optional)
+  - Screen recordings: Key workflows (5-10 min each)
+  - Host: YouTube (unlisted links)
+  - Embed: In help section of app
+
+#### N.4.2 Technical Documentation
+**Task:** Document for future developers
+
+- **N.4.2.1** Architecture overview
+  - File: `docs/architecture/overview.md`
+  - Diagram: System architecture (Next.js → Prisma → Neon)
+  - Explain: Multi-tenancy approach, RBAC, encryption
+
+- **N.4.2.2** API documentation
+  - Tool: JSDoc comments on all server actions
+  - Generate: API reference with typedoc
+  - Include: Examples for common operations
+
+- **N.4.2.3** Deployment guide
+  - File: `docs/deployment.md`
+  - Steps: Environment setup, database migration, deploy to Render
+  - Troubleshooting: Common issues + solutions
+
+---
+
+### N.5 Launch Checklist
+
+#### N.5.1 Pre-Launch Tasks
+**Task:** Final checks before go-live
+
+- **N.5.1.1** Configuration
+  - ✅ Production environment variables set in Render
+  - ✅ Resend API key configured (production domain verified)
+  - ✅ Neon database connection string (production)
+  - ✅ Encryption key generated (32-byte, securely stored)
+  - ✅ Custom domain configured (if applicable)
+
+- **N.5.1.2** Data migration
+  - ✅ Seed production database:
+    - Owner user
+    - DJFL league
+    - Age groups (U7-U13)
+    - Current season (2025/26)
+  - ✅ Import existing clubs (if migrating from FileMaker)
+  - ✅ Import existing teams
+  - ✅ Invite league admins
+
+- **N.5.1.3** Communication
+  - ✅ Announcement email to DJFL stakeholders
+  - ✅ Training session scheduled (optional)
+  - ✅ Support email address set up (e.g., support@lmspro.com)
+
+#### N.5.2 Go-Live
+**Task:** Deploy to production
+
+- **N.5.2.1** Deployment
+  - Action: Deploy main branch to Render (auto-deploy on git push)
+  - Verify: Health check endpoint responds (create `/api/health`)
+  - Monitor: Render logs for errors
+
+- **N.5.2.2** Post-launch monitoring
+  - Monitor: Render dashboard (CPU, memory, response times)
+  - Monitor: Sentry for errors (if integrated)
+  - Monitor: Resend dashboard for email delivery
+
+- **N.5.2.3** First user login
+  - Test: Owner logs in with production magic link
+  - Test: Navigate through all main features
+  - Confirm: No console errors, all data loading correctly
+
+#### N.5.3 Support Plan
+**Task:** Prepare for user issues
+
+- **N.5.3.1** Support channels
+  - Email: support@lmspro.com (monitored by Chris)
+  - In-app: "Help" link → opens email client
+  - Documentation: Link to user manual in footer
+
+- **N.5.3.2** Issue tracking
+  - Use: GitHub Issues for bug reports
+  - Label: Priority (Critical, High, Medium, Low)
+  - Response time: Critical (same day), High (2 days), Medium/Low (1 week)
+
+---
+
+## APPENDIX A: ESTIMATED TIMELINE
+
+### Phase 1: Foundation & Owner Dashboard (Weeks 1-2)
+- [A] Multi-Tenant Infrastructure: 3-4 days
+- [B] Owner Dashboard: 4-5 days
+- **Total: 7-9 days (1.5-2 weeks)**
+
+### Phase 2: Core League Management (Weeks 3-6)
+- [C] League Dashboard: 3-4 days
+- [D] User Management: 2-3 days
+- [E] Age Group Management: 2 days
+- **Total: 7-9 days (1.5-2 weeks)**
+
+### Phase 3: Club & Team Lifecycle (Weeks 7-10)
+- [F] Club Management: 4-5 days
+- [G] Team Management: 5-6 days
+- [H] Season Management: 2-3 days
+- **Total: 11-14 days (2.5-3 weeks)**
+
+### Phase 4: Operations & Communications (Weeks 11-13)
+- [I] Venues & Referees: 3-4 days
+- [J] Communications: 4-5 days
+- **Total: 7-9 days (1.5-2 weeks)**
+
+### Phase 5: Billing & Reporting (Weeks 14-15)
+- [L] Billing & Invoices: 4-5 days
+- [M] Reporting (optional): 3-4 days
+- [K] Documents (optional): 2-3 days
+- **Total: 9-12 days (2-2.5 weeks)**
+
+### Phase 6: Testing & Launch (Week 16)
+- [N] Testing & Launch Preparation: 5 days
+- **Total: 5 days (1 week)**
+
+---
+
+### **TOTAL ESTIMATED TIME: 14-16 WEEKS (3.5-4 MONTHS)**
+
+**Assumptions:**
+- Full-time equivalent work (8 hours/day, 5 days/week)
+- No major scope changes during development
+- Working solo with AI assistance
+- Includes time for testing and bug fixes within each section
+
+**Adjustment for Part-Time:**
+- If working 20 hours/week (half-time): **6-8 months**
+- If working 10 hours/week (quarter-time): **12-16 months**
+
+---
+
+## APPENDIX B: DEPENDENCIES & BLOCKERS
+
+### Critical Path Items (Must Complete First)
+1. **[A] Multi-Tenant Infrastructure** - Blocks all other work
+2. **[B] Owner Dashboard** - Required for multi-league management
+3. **[C] League Dashboard + Settings** - Foundation for league-scoped work
+4. **[F] Club Management** - Required before teams
+5. **[E] Age Groups** - Required for team allocation
+6. **[G] Team Management** - Core workflow
+
+### Parallel Workstreams (Can Be Done Independently)
+- **[I] Venues & Referees** - Independent of clubs/teams
+- **[J] Communications** - Can be built alongside other sections
+- **[K] Documents** - Optional, can be added later
+- **[M] Reporting** - Optional, can be added after launch
+
+### External Dependencies
+- **Cloudflare R2** - Required for document storage (K) and invoice PDFs (L)
+- **Resend** - Required for all email functionality (already configured)
+- **Xero API** - Optional for invoice sync (L.5)
+
+---
+
+## APPENDIX C: SUCCESS CRITERIA (Version 1.0)
+
+### Must-Have Features (MVP)
+- ✅ Owner can manage multiple leagues
+- ✅ League admins can approve clubs
+- ✅ Clubs can register teams
+- ✅ Teams can be allocated to AGGs or placed on waiting list
+- ✅ League can send communications to clubs
+- ✅ Invoices can be generated and tracked
+- ✅ Referee data is encrypted
+- ✅ All data is tenant-isolated (no cross-league leaks)
+
+### Nice-to-Have Features (Can Be Added Post-Launch)
+- Document management (K)
+- Advanced reporting (M)
+- Xero integration (L.5)
+- Scheduled communications (J.2.4)
+- User impersonation (B.4.4)
+
+### Quality Gates
+- ✅ 60%+ test coverage on critical paths
+- ✅ All pages load in <2 seconds (with realistic data)
+- ✅ Zero security vulnerabilities (high/critical)
+- ✅ UAT sign-off from DJFL secretary
+- ✅ All "must-have" features deployed and tested
+
+---
+
+## APPENDIX D: RISK REGISTER
+
+| Risk | Impact | Probability | Mitigation |
+|------|--------|-------------|------------|
+| Scope creep during development | High | Medium | Lock scope for v1.0, maintain backlog for v2.0 |
+| Complex RBAC implementation | Medium | Medium | Build incrementally, test each permission level |
+| Referee encryption key lost | High | Low | Store in 1Password, backup in secure location |
+| Xero API changes breaking sync | Medium | Low | Make Xero optional, test regularly if enabled |
+| Performance issues with large data | Medium | Medium | Load testing with 100+ clubs, optimize queries |
+| User adoption resistance | High | Medium | Training sessions, phased rollout, support docs |
+
+---
+
+## DOCUMENT CONTROL
+
+**Version History:**
+- v1.0 (2025-11-18): Initial draft - Complete work plan for LMSPro v1.0
+
+**Prepared By:** GitHub Copilot  
+**Reviewed By:** Chris Bampton (isocb)  
+**Approved By:** [Pending]
+
+**Next Review Date:** After Phase 1 completion (2 weeks)
+
+**Change Control:**  
+Any changes to this plan requiring >2 days additional work must be documented and approved.
+
+---
+
+## HOW TO USE THIS DOCUMENT
+
+### For Development
+1. Start at Section [A] - complete all tasks before moving to [B]
+2. Check off each task as completed (add ✅ in markdown)
+3. Log time spent vs estimated time to track progress
+4. Update status in section headers as work progresses
+
+### For Progress Reporting
+- Use section notation (e.g., "Completed A.1.1, working on A.1.2")
+- Report weekly progress: Sections completed, current section, blockers
+- Use estimated times to forecast completion dates
+
+### For Issue Tracking
+- Create GitHub issues using notation: "Issue [A.1.1.1]: Fix owner user record"
+- Link issues to specific tasks for traceability
+- Tag issues with phase labels (Phase-1, Phase-2, etc.)
+
+---
+
+**END OF WORK PLAN**
+
+#Redirects
