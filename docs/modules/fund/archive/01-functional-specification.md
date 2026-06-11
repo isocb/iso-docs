@@ -1,6 +1,8 @@
 
 
 FUND 
+superceded by the brief:  FUND_MODULE_BRIEF.md
+
 
 A **Functional Specification** that explains:
 
