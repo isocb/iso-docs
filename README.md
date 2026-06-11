@@ -10,6 +10,10 @@
 
 It’s written for internal use — by you, Sue, future staff, contractors, or AI agents.
 
+## Quick Map
+
+For quick onboarding, start with [`DOCUMENTATION_MAP.md`](./DOCUMENTATION_MAP.md).
+
 
 ---
 
@@ -251,5 +255,4 @@ This documentation hub exists to:
 * maintain long-term consistency and architectural integrity
 
 Everything you build in IsoStack or Isoblue should be reflected somewhere in this repository.
-
 

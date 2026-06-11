@@ -1,4 +1,9 @@
 # 1. Switch to main branch
+
+> ⚠️ **Legacy guidance (historical only).**
+> For current deployment workflow, use `dev → staging → main`.
+> This file references retired branch names and should not be used for current operations.
+
 git checkout main
 
 # 2. Pull latest main (in case there are remote changes)

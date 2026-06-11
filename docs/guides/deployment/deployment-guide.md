@@ -13,6 +13,14 @@ purpose: deployment
 ## Overview
 IsoStack V2.0 is deployed to production using **Render**. This guide covers our production deployment process and alternative deployment options.
 
+Current environment pipeline:
+
+```text
+dev → staging → main (live)
+```
+
+TechTest is not part of the active deployment path.
+
 ## Production Deployment (Render)
 
 ### Why Render?
@@ -95,17 +103,11 @@ GOOGLE_CLIENT_SECRET=your-client-secret
 
 ### Step 5: Initialize Database
 
-After first deployment, you need to push the database schema:
+After first deployment, run migrations only:
 
 ```bash
-# Set DATABASE_URL locally (from Render)
-export DATABASE_URL="postgresql://..."
-
-# Push schema to production database
-npm run db:push
-
-# Seed initial data
-npm run db:seed
+# In Render shell (or equivalent)
+npm run db:migrate   # runs prisma migrate deploy
 ```
 
 ### Step 6: Verify Deployment
@@ -302,10 +304,10 @@ Check:
 
 **Error: Schema not in sync**
 
-Solution: Push schema to production database:
+Solution: Run migrations on the deployed environment:
 
 ```bash
-npm run db:push
+npm run db:migrate
 ```
 
 ### Email Not Sending
