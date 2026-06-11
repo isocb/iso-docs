@@ -23,3 +23,5 @@ No FUND schema, routers, migrations, or UI have been built yet. The current work
 ## Rule for Future Updates
 
 Add or update FUND documentation here first. Code-adjacent docs in `isostack-bedrock/src/modules/fund/docs/` should be short pointers or implementation notes, not duplicate canonical planning documents.
+
+`FUND_MODULE_PROJECT.md` is historical and must not be treated as the active plan source.
