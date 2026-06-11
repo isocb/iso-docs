@@ -31,7 +31,7 @@ Archived documents, including `archive/FUND_MODULE_PROJECT.md`, are retained for
 
 ## Implementation Status
 
-No FUND schema, routers, migrations, or UI have been built yet. The current work is: planning complete, Phase 1 backlog ready, awaiting implementation approval.
+No FUND schema, routers, migrations, or UI have been built yet. The current work is: planning complete and moving into **Phase 1 Slice 1 planning**.
 
 ## Rule for Future Updates
 
