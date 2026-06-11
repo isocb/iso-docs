@@ -10,16 +10,15 @@ FUND replaces the earlier AMOW-specific planning scaffold. AMOW remains the foun
 
 ## Start Here
 
-- `01-functional-specification.md` — functional specification and module boundaries
-- `planning/FUND_MODULE_PROJECT.md` — phased build plan and AI resume context
-- `planning/FUND_MODULE_STATUS.md` — current implementation status
-- `FUND-considerations.md` — planning considerations and module positioning
-- `fund-tool-selection-thoughts.md` — Stripe/PDF/file-storage tool decisions
-- `README-AI.md` — concise AI handoff prompt/context
+- `FUND_MODULE_BRIEF.md` — canonical product and architecture brief
+- `planning/FUND_PHASE1_IMPLEMENTATION_BACKLOG.md` — active Phase 1 build plan
+- `planning/future_phase_notes.md` — future phase ideas (parking lot)
+- `FUND_MODULE_STATUS.md` — current implementation status
+- `archive/` — superseded historical implementation notes and materials
 
 ## Implementation Status
 
-No FUND schema, routers, migrations, or UI have been built yet. The current work is Phase 0: project identity and documentation consolidation.
+No FUND schema, routers, migrations, or UI have been built yet. The current work is: planning complete, Phase 1 backlog ready, awaiting implementation approval.
 
 ## Rule for Future Updates
 
