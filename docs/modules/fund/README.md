@@ -31,7 +31,12 @@ Archived documents, including `archive/FUND_MODULE_PROJECT.md`, are retained for
 
 ## Implementation Status
 
-No FUND schema, routers, migrations, or UI have been built yet. The current work is: planning complete and moving into **Phase 1 Slice 1 planning**.
+No FUND schema, routers, migrations, or CRUD UI have been built yet. Slice 1A is complete in `isostack-bedrock` commit `db6ff5f`:
+- `/app/fund` module shell is in place.
+- Module config, registry, and nav registration are aligned.
+- The slice is now a gated, visible module shell only.
+
+Current work is to perform manual local smoke tests and then promote dev → staging.
 
 ## Rule for Future Updates
 
