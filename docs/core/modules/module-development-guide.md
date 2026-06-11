@@ -13,6 +13,10 @@ purpose: module-development
 
 IsoStack V2.0 uses a **pluggable module architecture** that allows you to build multiple sector-specific products from a single codebase. This guide explains how to create, configure, and deploy custom modules.
 
+Use this file with the active architecture planning template:
+
+- `module-architecture-template.md`
+
 ## Core vs. Optional Architecture
 
 ### Core Features (Always Present)
