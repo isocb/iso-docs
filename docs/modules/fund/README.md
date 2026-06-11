@@ -14,7 +14,20 @@ FUND replaces the earlier AMOW-specific planning scaffold. AMOW remains the foun
 - `planning/FUND_PHASE1_IMPLEMENTATION_BACKLOG.md` — active Phase 1 build plan
 - `planning/future_phase_notes.md` — future phase ideas (parking lot)
 - `FUND_MODULE_STATUS.md` — current implementation status
-- `archive/` — superseded historical implementation notes and materials
+- `README-AI.md` — concise AI handoff and operational guardrails
+
+## Active Planning Sources
+
+The active FUND planning sources are:
+1. `FUND_MODULE_BRIEF.md`
+2. `planning/FUND_PHASE1_IMPLEMENTATION_BACKLOG.md`
+3. `planning/future_phase_notes.md`
+4. `FUND_MODULE_STATUS.md`
+5. `README-AI.md`
+
+Archived documents, including `archive/FUND_MODULE_PROJECT.md`, are retained for historical reference only and must not be used as active implementation plans.
+
+`archive/` — superseded historical implementation notes and materials
 
 ## Implementation Status
 
