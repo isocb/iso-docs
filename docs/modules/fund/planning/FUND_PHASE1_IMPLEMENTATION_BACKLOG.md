@@ -14,6 +14,16 @@ Phase 1 should prove that FUND is:
 - auditable for key changes.
 
 ## 2) What must be built
+- Enforce naming and role conventions from `docs/00-READ_THIS/glossary.md`:
+  - Use P1/C1/C2/C3 as **IsoStack access/persona terms** (platform to tenant personas).
+  - Keep FUND business roles (`Producer`, `Production Partner`, `Organiser`, `League`, `Club`, `Customer`, `Parent`, `Supporter`) separate from P1/C1/C2/C3 authorization terms.
+  - Never model `Producer`, `Organiser`, `League` or `Club` as platform role replacements for C1/C2/C3.
+- Apply the established table CRUD pattern from `docs/guides/table-crud-pattern.md`:
+  - row click opens edit modal,
+  - no inline edit/delete action columns,
+  - delete action belongs in modal footer,
+  - normalise Mantine row click payloads with `params?.record ?? params`,
+  - reuse existing Mantine/AppShell/navigation conventions.
 - Register FUND as a first-class module (module config + module registry + feature visibility + navigation).
 - Add core Prisma models (Fund namespace) for:
   - Product
