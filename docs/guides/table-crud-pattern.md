@@ -1,6 +1,6 @@
 # Table CRUD Pattern - Enforcement Guide
 
-**Version:** 1.0  
+**Version:** 1.1  
 **Authority:** isostack-ux-ui-standard.md Section 7.1  
 **Status:** MANDATORY for all table interfaces
 
@@ -16,6 +16,7 @@ All table-to-CRUD interfaces MUST follow the "Click-to-View-and-Edit" pattern de
 2. **Delete button in modal footer** - Bottom-left, red, outline variant
 3. **Large click targets** - No sub-16px interactive elements
 4. **Cursor feedback** - `cursor: 'pointer'` on DataTable
+5. **Sortable columns default as standard** - all sortable headers are click targets, first click sorts asc, second click reverses
 
 ### ❌ NEVER DO THIS
 
@@ -29,22 +30,69 @@ All table-to-CRUD interfaces MUST follow the "Click-to-View-and-Edit" pattern de
 ### DataTable Structure
 
 ```tsx
+import { IconSelector, IconChevronUp, IconChevronDown } from '@tabler/icons-react';
+
+type SortDirection = 'asc' | 'desc';
+
+const [sortStatus, setSortStatus] = useState<{ columnAccessor: string; direction: SortDirection }>({
+  columnAccessor: 'name',
+  direction: 'asc',
+});
+
+const handleSort = (columnAccessor: string) => {
+  setSortStatus((current) => ({
+    columnAccessor,
+    direction:
+      current.columnAccessor === columnAccessor && current.direction === 'asc'
+        ? 'desc'
+        : 'asc',
+  }));
+};
+
+const renderSortHeader = (columnAccessor: string, label: string) => {
+  const active = sortStatus.columnAccessor === columnAccessor;
+  const SortIcon = active
+    ? sortStatus.direction === 'asc'
+      ? IconChevronUp
+      : IconChevronDown
+    : IconSelector;
+  const iconColor = active ? 'var(--mantine-color-gray-6)' : 'var(--mantine-color-gray-3)';
+
+  return (
+    <Table.Th aria-sort={active ? (sortStatus.direction === 'asc' ? 'ascending' : 'descending') : 'none'}>
+      <UnstyledButton onClick={() => handleSort(columnAccessor)} style={{ width: '100%' }}>
+        <Group gap={4} wrap="nowrap">
+          <Text span size="sm" fw={600}>{label}</Text>
+          <SortIcon size={14} stroke={1.8} color={iconColor} />
+        </Group>
+      </UnstyledButton>
+    </Table.Th>
+  );
+};
+
 <DataTable
-  records={items}
+  records={sortedItems}
   fetching={isLoading}
-  onRowClick={(item: any) => handleOpenEdit(item)}
+  onRowClick={(item: any) => handleOpenEdit(item?.record ?? item)}
   style={{ cursor: 'pointer' }}
   columns={[
     {
       accessor: 'name',
-      title: 'Name',
+      title: () => renderSortHeader('name', 'Name'),
       render: (item: any) => <Text>{item.name}</Text>,
+    },
+    {
+      accessor: 'status',
+      title: () => renderSortHeader('status', 'Status'),
+      render: (item: any) => <Text>{item.status}</Text>,
     },
     // Add more data columns (NO actions column)
   ]}
   noRecordsText="No items found"
 />
 ```
+
+<!-- Tip: `sortedItems` should be produced by applying `sortStatus` before passing to DataTable, or by server-side sort keys. -->
 
 ### Modal Footer with Delete
 
@@ -88,6 +136,9 @@ When reviewing table interfaces, verify:
 - [ ] Delete button is in modal footer, not inline
 - [ ] Delete button is red, outline variant, bottom-left
 - [ ] No `<Tooltip>` wrapping edit/delete actions
+- [ ] Sort icon appears on sortable headers
+- [ ] First click sorts ascending and second click reverses
+- [ ] Active sort icon is darker gray; inactive sort icons are light gray
 
 ## Migration Guide
 
@@ -221,6 +272,9 @@ Manual verification:
 2. No tiny icon buttons visible in table ✓
 3. Delete button in modal footer, bottom-left ✓
 4. Cursor changes to pointer on row hover ✓
+5. Sortable headers are visible and clickable ✓
+6. First click on header sorts ascending; second click sorts descending ✓
+7. Active sort icon appears darker than inactive icon state ✓
 
 ## References
 
@@ -238,6 +292,6 @@ Manual verification:
 
 ---
 
-**Last Updated:** December 2025  
+**Last Updated:** 11 June 2026  
 **Maintained by:** Platform Team  
 **Questions:** Refer to isostack-ux-ui-standard.md
