@@ -161,6 +161,9 @@ fund.catalogues.setProductActive({ isActive: false })
 ```
 
 The separate `Deactivate` button remains available as the clearer user-facing remove/deactivate action.
+Note to watch:
+Switch on = immediate reactivation
+Switch off = routes through the same confirmation as Deactivate
 
 ### Reorder
 
