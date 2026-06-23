@@ -1,3 +1,10 @@
+
+> This document records implementation status at 11 June 2026.  
+> It is not the canonical product or architecture brief.  
+> For current direction, see:
+> - 01-fund-module-brief.md
+> - 02-fund-architecture-principles.md
+
 # FUND — Considerations
 
 *Status: Pre-development planning | Date: June 2026*

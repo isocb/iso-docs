@@ -1,5 +1,12 @@
 # FUND Future Phase Notes
 
+> Legacy planning document. Superseded by:
+> - 01-fund-module-brief.md
+> - 02-fund-architecture-principles.md
+>
+> Do not use this as the active Phase 1 implementation plan without revision.
+
+
 **Module:** FUND  
 **Status:** Planning notes for phases after Phase 1  
 **Purpose:** Capture future implementation direction without overloading the active Phase 1 backlog.  

@@ -1,3 +1,11 @@
+> Legacy future-phase notes. Useful as background only.
+> Future phase planning must now be derived from:
+> - 01-fund-module-brief.md
+> - 02-fund-architecture-principles.md
+> - updated functional specification / roadmap documents.
+>
+> Do not use this as the active Phase 1 implementation plan without revision.
+
 # FUND Module — Phase 1 Implementation Backlog
 
 **Scope:** Database Foundation + Core Admin Surface (review-only planning document)
