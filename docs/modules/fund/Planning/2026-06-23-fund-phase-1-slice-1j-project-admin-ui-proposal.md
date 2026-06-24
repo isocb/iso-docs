@@ -48,7 +48,9 @@ Allowed in later Slice 1J implementation:
 - Project status transition controls.
 - Activation readiness panel.
 - Date and organiser fields.
-- Planning for Project Product membership management.
+- Planning only for Project Product membership management.
+
+Project Product membership management must not be implemented in 1J-A. It is documented in this Slice 1J proposal only to define the 1J-B boundary.
 
 Not allowed in Slice 1J:
 
@@ -71,6 +73,19 @@ Not allowed in Slice 1J:
 - lifecycle transition engine.
 - organiser identity/account linking.
 - AI workflows.
+
+## 2A. Future Planning Note - Events, Requests And Organiser Onboarding
+
+Slice 1J-A is authenticated tenant-side Project administration only. It assumes a C1 tenant user is managing Projects inside the FUND admin surface.
+
+Future FUND slices may introduce richer Project initiation paths, but they must not be implemented in 1J-A:
+
+- Event-linked Projects, where an optional tenant-owned Event constrains or guides Project open dates, close dates, production deadlines, communications and campaign rules.
+- Standalone Projects, where no Event exists and Project dates remain free within normal validation rules.
+- Project Initiation / Project Request flows, where a Project may be started by an existing C2 organiser or by an unknown customer through a multi-stage onboarding flow similar to SeasonPro new club onboarding.
+- Future onboarding flows that may create or invite a C2 user, associate that user with the C1 tenant and grant access to an organiser dashboard.
+
+For Slice 1J-A, organiser fields remain optional snapshot/contact fields only. They must not imply organiser identity, portal access, onboarding state, invitations or dashboard access.
 
 ## 3. Route Recommendation
 
@@ -114,6 +129,8 @@ Recommendation: split implementation into two parts.
 
 ### Phase 1 Slice 1J-A - Project List And Child Management Shell
 
+1J-A should prove the Project navigation model, status transition UX and activation-readiness pattern before adding Product membership complexity.
+
 Build:
 
 - `/app/fund/projects` list page.
@@ -125,7 +142,7 @@ Build:
 - Activation readiness panel.
 - Date and organiser fields.
 
-Do not build the Project Product membership manager in 1J-A unless it stays extremely small and is explicitly approved. The safer default is to defer membership management to 1J-B.
+Do not build the Project Product membership manager in 1J-A. It must remain planning-only in this slice. The implementation boundary is Project list, create, child page shell, overview/edit details, status actions and activation readiness.
 
 ### Phase 1 Slice 1J-B - Project Product Membership Manager
 
@@ -199,6 +216,8 @@ Row behaviour:
 
 Create should be intentionally compact.
 
+This create flow is authenticated tenant-side admin Project creation only. It is not the future public or organiser-led Project Request / Project Initiation flow.
+
 Recommended required fields:
 
 - Project Number.
@@ -247,7 +266,8 @@ Recommended page structure:
 For Slice 1J-A:
 
 - Overview is required.
-- Products can be present as a placeholder/read-only summary or omitted until 1J-B.
+- Prefer omitting the Products tab until 1J-B unless a simple read-only readiness summary is trivial from the existing `fund.projects.get` response.
+- If present in 1J-A, the Products tab may show a read-only count or readiness-related summary if this is trivial from `fund.projects.get`, but it must not include add/remove/reactivate/reorder controls.
 
 For Slice 1J-B:
 
@@ -286,6 +306,11 @@ Recommended grouping:
 - Dates: opens at, closes at, production deadline.
 - Organiser contact: name, email, phone.
 - Notes: description and internal notes.
+
+Identifier caution:
+
+- In 1J-A, Project Number and Slug may remain editable while the Project is still early-stage, but the UI should treat them as important identifiers and surface duplicate/conflict errors clearly.
+- A future slice may lock or restrict these fields after activation if required.
 
 ## 10. Project Status Action Design
 
@@ -341,6 +366,10 @@ Data source:
 - Use `fund.projects.get`.
 - The Project detail response includes Project Product membership, nested Product and Workflow Class data.
 
+In 1J-A, the readiness panel may show Product-related blockers even though the Products manager is deferred. This is acceptable because it explains why activation is blocked without trying to solve membership management in the same slice.
+
+The client may calculate simple visible readiness checks for user guidance, but the server remains authoritative. The UI must still handle activation endpoint errors cleanly.
+
 Panel behaviour:
 
 - Show checklist-style status.
@@ -390,6 +419,8 @@ Rules:
 - optional;
 - treated as contact snapshot fields;
 - no organiser identity/account link;
+- no Project Request or onboarding state;
+- no C2 user invitation or organiser dashboard access;
 - no `FundOrganiser`;
 - no Project participant UI.
 
@@ -661,6 +692,7 @@ Products tab in 1J-B:
 - General Save does not mutate status.
 - Date ordering errors are shown clearly.
 - Organiser contact fields save as contact snapshots.
+- Project create does not create organiser users, invite organiser users or expose organiser dashboard access.
 - Status actions only show valid next actions.
 - Activation readiness panel shows missing close date.
 - Activation readiness panel shows missing active Product.
@@ -770,6 +802,8 @@ Implement only:
 - confirmation documentation.
 
 Do not implement the full Project Product membership manager in 1J-A.
+In 1J-A, do not implement Project Product membership mutation controls. A Products tab may be omitted or included only as a read-only placeholder/summary.
+The activation readiness panel may display Product-related blockers from fund.projects.get, but server-side activation validation remains authoritative.
 
 Run:
 - npm run type-check
