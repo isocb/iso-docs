@@ -1,3 +1,45 @@
+# IsoStack Module Management UI Guidance
+
+## Current Relevance Review - 2026-06-24
+
+Status: **partially current, updated for the Product Catalogue gating model.**
+
+This document remains useful as guidance for module management surfaces, dashboards, settings, help, logs and support workflows. It should no longer be read as saying that every module must immediately implement every dashboard tab listed below before the module can be enabled.
+
+Current IsoStack access and module gating is product-led:
+
+```text
+ModuleCatalogue
+  -> ProductModule
+  -> ProductPackage
+  -> OrganizationProduct
+  -> feature flags / module access for C1 users
+```
+
+P1 allocates modules to Product Packages in the Platform Product Catalogue UI. C1 access is then derived from active Organization Products. A module being present in `src/modules/module.registry.ts` or having a `module.config.ts` is not enough by itself; the module must also exist as a `ModuleCatalogue` row before it can be selected in the P1 product module allocation modal.
+
+Recent example:
+
+```text
+fix(platform): add fund to module catalogue defaults
+```
+
+FUND uses module id / slug / feature flag:
+
+```text
+fund
+```
+
+The FUND platform fix ensures:
+
+- existing environments self-heal the missing `fund` `ModuleCatalogue` row when P1 loads the module catalogue list;
+- the idempotent upsert creates the row only when missing and does not overwrite existing P1 customisations;
+- fresh seeded environments include FUND in the module catalogue;
+- seeded development/demo Platform Enterprise Bundle includes FUND intentionally;
+- no Prisma schema change, migration, `db:push`, seed or reset is required for existing environments to make FUND selectable in the P1 Product Package module picker.
+
+---
+
 Below is a **fully-fledged, platform-wide “Dashboard Specification Layer”** for *all* IsoStack modules.
 This becomes a **required section** in every module’s functional specification — just like “Data Ingest / Output / Display” is required for Bedrock.
 
@@ -262,5 +304,4 @@ This becomes the **contract** for every new module:
 > “Every IsoStack module must include two dashboards: a **Platform Owner Dashboard** (module activation, global settings, templates, feature flags, connector availability, telemetry) and a **Tenant Dashboard** (user access, module settings, connectors & API keys, imports/exports, logs, overview). This structure is mandatory across all modules and ensures consistent control, configuration and visibility at both platform and client levels.”
 
 ---
-
 

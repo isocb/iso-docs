@@ -1,4 +1,60 @@
+# IsoStack Module Architecture Template
 
+## Current Relevance Review - 2026-06-24
+
+Status: **current as a conceptual template, with important implementation updates below.**
+
+This document still describes the broad architecture expected of new IsoStack modules: module boundaries, tRPC APIs, Prisma schema discipline, audit logging, UI structure and activation planning. Some paths and assumptions in the original template are now legacy or too generic for the current app.
+
+Current implementation guidance:
+
+- app routes live under `src/app/(app)/app/<module>/`;
+- module code lives under `src/modules/<module>/`;
+- module routers live under `src/modules/<module>/routers/` and are registered into the app router;
+- validation uses Zod, usually under `src/modules/<module>/lib/validation/`;
+- service/domain logic lives under `src/modules/<module>/services/`;
+- Prisma module models use explicit `@@schema("<module_schema>")`;
+- tenant-owned rows use required `organizationId`;
+- meaningful mutations write `AuditLog`;
+- UI follows the current IsoStack UX/UI standard and table CRUD / child-page rules.
+
+Current product-led module access model:
+
+```text
+ModuleCatalogue
+  -> ProductModule
+  -> ProductPackage
+  -> OrganizationProduct
+  -> getFeaturesAsFlags()
+  -> module registry / navigation / route access
+```
+
+For a new routable module, implementation is not complete until these identifiers align:
+
+- `src/modules/<module>/module.config.ts` `id`;
+- `src/modules/<module>/module.config.ts` `featureFlag`;
+- `ModuleCatalogue.slug`;
+- Product Package module allocation through `ProductModule`;
+- navigation registry key;
+- route prefix under `/app/<module>`.
+
+Recent example:
+
+```text
+fix(platform): add fund to module catalogue defaults
+```
+
+FUND already existed in code with:
+
+```text
+id = fund
+featureFlag = fund
+route = /app/fund
+```
+
+However, P1 could not allocate FUND to a Product Package until a matching `ModuleCatalogue` row existed. The platform fix adds an idempotent create-if-missing default for `fund` in the Module Catalogue list path and adds FUND to seed data for fresh development/demo environments. This makes FUND selectable in the P1 Product Package module picker without schema changes, migrations, `db:push`, seed or reset in existing environments.
+
+---
 
 # ✅ **IsoStack Module Architecture Template**
 
@@ -343,4 +399,3 @@ npm run seed:module <module>
 
 # End of Document
 ```
-
