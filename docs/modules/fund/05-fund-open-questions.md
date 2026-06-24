@@ -8,21 +8,14 @@
 
 ---
 
-## 1. Questions That Block Schema Work
+## 1. Schema Decisions And Deferred Questions
 
 ### 1.1 Product Workflow Classes
 
-Should Product Workflow Classes be:
+Phase 1 decision: resolved.
 
-- fixed platform-defined records;
-- tenant-customisable records;
-- enum-backed records with database metadata;
-- fully database-defined records;
-- hybrid defaults with tenant extensions?
-
-Recommendation to review:
-
-- A1, A2, B and C should be protected system defaults.
+- A1, A2, B and C are protected platform defaults.
+- They are database records with metadata and are read-only for normal tenant workflows.
 - Tenant-specific extensions can come later.
 
 ---
@@ -49,17 +42,13 @@ This affects schema, routers, permissions, dashboards and future organiser acces
 
 ### 1.3 Project Number Scope
 
-What is the uniqueness scope for project numbers?
+Phase 1 decision: resolved.
 
-Options:
+- Project numbers are tenant-scoped for Phase 1.
+- Slice 1H implemented tenant-unique Project numbers.
+- Future event-scoped, producer-scoped or year/campaign-prefixed display conventions can be layered later if needed.
 
-- global across FUND;
-- tenant-scoped;
-- event-scoped;
-- producer-scoped;
-- year/campaign-prefixed.
-
-AMOW may need project numbers that are meaningful on printed templates and parent instructions.
+AMOW may still need Project numbers that are meaningful on printed templates and parent instructions, but that is a formatting/operational convention on top of tenant-scoped uniqueness.
 
 ---
 
@@ -97,30 +86,36 @@ This is a major tenant-safety and commercial modelling decision.
 
 ### 1.6 Event Date Semantics
 
-Which Event date is authoritative for Project constraints?
+Phase 1 / 1L-A clarification: resolved enough for FundEvent schema planning.
 
-Candidate fields:
+- `FundEvent.opensAt` is the Event opening boundary.
+- `FundEvent.closesAt` is the latest permissible effective close date for linked Projects.
+- `FundEvent.productionDeadline` is the Event-level production deadline guidance/constraint.
+- `FundEvent.closesAt` is not a forced persisted Project close date.
+- Store-specific close dates remain future Store planning and must not be introduced into the 1L-A Event schema.
 
-- event date;
-- campaign open date;
-- final project creation date;
-- latest store close date;
-- production deadline;
-- dispatch deadline.
-
-Rule proposed for Phase 1:
+Standalone Project rule:
 
 ```text
-Project Closing Date <= Event Latest Store Close
+FundProject.closesAt must be after FundProject.opensAt, when both exist
 ```
 
-If no latest store close exists:
+Planned Phase 1 Event-linked Project rule:
 
 ```text
-Project Closing Date <= Event Production Deadline
+FundProject.opensAt >= FundEvent.opensAt, when both exist
+FundProject.closesAt <= FundEvent.closesAt, when Project closesAt is set
+FundProject.productionDeadline <= FundEvent.productionDeadline, when both exist
 ```
 
-Confirm before schema work.
+If an Event-linked Project has no `FundProject.closesAt`, the UI/API may treat `FundEvent.closesAt` as the inherited/effective close date for display, activation readiness and future Store generation, without necessarily persisting that value into `FundProject.closesAt`.
+
+Deferred:
+
+- Store close dates;
+- dispatch deadlines;
+- Store/Order-specific production deadlines;
+- automatic persisted date copying/cascading.
 
 ---
 
@@ -144,20 +139,11 @@ Recommendation to review:
 
 ### 1.8 Schema Placement
 
-Should FUND use a dedicated Postgres schema?
+Phase 1 decision: resolved.
 
-Current repo uses:
-
-- `public`;
-- `bedrock`;
-- `lmspro`;
-- `pulse`.
-
-Recommendation:
-
-- use dedicated `fund` schema;
-- add explicit `organizationId` on tenant-owned tables;
-- do not treat schema separation as tenant isolation.
+- FUND uses a dedicated Postgres schema named `fund`.
+- Tenant-owned FUND tables include explicit required `organizationId`.
+- Schema separation is not tenant isolation; tenant isolation still relies on `organizationId`, service scoping and future RLS posture.
 
 ---
 
@@ -165,38 +151,36 @@ Recommendation:
 
 ### 2.1 Management Surfaces
 
-Which Phase 1 admin surfaces are required first?
+Phase 1 decision: resolved through Slice 1J-B for the first admin sequence.
 
-Options:
+- Workflow Classes are implemented as protected defaults.
+- Products and Catalogues admin is implemented.
+- Projects admin is implemented through 1J-B.
+- Optional Events are next.
 
-- workflow classes;
-- products;
-- catalogues;
-- events;
-- projects;
+Deferred:
+
+- lifecycle visibility;
 - operations dashboard;
 - organiser dashboard.
 
-Recommended order:
-
-1. workflow class visibility;
-2. products/catalogues;
-3. projects;
-4. optional events;
-5. lifecycle visibility;
-6. dashboards.
-
 ---
 
-### 2.2 CRUD Pattern
+### 2.2 CRUD / Child Page Pattern
 
-Should all early admin lists follow the existing IsoStack table CRUD pattern?
+Phase 1 clarification: resolved enough for current UI work.
 
-Recommended answer:
+- Simple CRUD entities may use modal editing when the record is compact and has no meaningful child domain.
+- Complex parent entities with child domains or operational state should use child pages.
+- Products and Catalogues may use the table CRUD modal pattern.
+- Projects use child pages.
+- Events should use child pages when implemented because they will likely contain date constraints, linked Projects and later campaign defaults.
 
-- yes;
-- row click opens edit modal;
-- delete/archive actions live in modal footer;
+Guidance:
+
+- row click opens modal for simple CRUD;
+- row click opens child page for complex parent entities;
+- delete/archive actions live in modal footer or child page action area;
 - no action icon clutter in table rows.
 
 ---
@@ -239,7 +223,36 @@ Recommendation:
 
 ---
 
-### 3.2 Customer Accounts
+### 3.2 Future Store / Commerce Modes
+
+FUND Store and Order planning must not assume a single conventional e-commerce model.
+
+Future Store modes may include:
+
+1. Individual buyer / Project bulk fulfilment
+
+   - anonymous or public buyers purchase through a Project-linked Store;
+   - orders are associated with the Project;
+   - fulfilment/shipping is to the Project or organiser address rather than individual buyer addresses.
+
+2. C2 organiser / bulk Project purchase
+
+   - the Project admin, club, school or organiser purchases on behalf of the Project;
+   - products may be bulk products, mass-customised products or individually named/personalisable products;
+   - fulfilment/shipping is to the Project address.
+
+3. Conventional individual e-commerce
+
+   - individual purchasers buy and receive goods directly;
+   - shipping is to the individual purchaser address.
+
+This should be captured before Store, Order, Checkout, Shipping, Production Export and Fulfilment design begins.
+
+Do not implement this in Slice 1L-A. Slice 1L-A remains FundEvent schema only.
+
+---
+
+### 3.3 Customer Accounts
 
 Do customers/parents/supporters need IsoStack accounts?
 
@@ -250,7 +263,7 @@ Likely answer:
 
 ---
 
-### 3.3 Payment Provider
+### 3.4 Payment Provider
 
 Stripe direct integration is the current preferred direction.
 
@@ -375,24 +388,30 @@ Questions to defer:
 
 ## 8. Recommended Decision Order
 
-Resolve in this order:
+Resolved for Phase 1:
 
-1. Product Workflow Class modelling.
-2. FUND module role assignment strategy.
-3. Project number scope.
-4. Organiser model.
-5. Product ownership and catalogue sharing.
-6. Event date semantics.
-7. Lifecycle modelling.
-8. Dedicated `fund` schema confirmation.
-9. Phase 1 UI management surface order.
-10. Store association model.
+- Product Workflow Class modelling: A1, A2, B and C protected platform defaults.
+- Project number scope: tenant-scoped.
+- Schema placement: dedicated `fund` schema plus `organizationId` on tenant-owned tables.
+- Initial UI order: workflow classes, products/catalogues and projects complete through 1J-B; optional Events next.
+- Event date semantics for 1L-A: `FundEvent.opensAt`, `FundEvent.closesAt`, `FundEvent.productionDeadline`; `FundEvent.closesAt` is the latest permissible effective close date for linked Projects.
+
+Still deferred:
+
+1. FUND module role assignment strategy.
+2. Organiser model.
+3. Product ownership and catalogue sharing.
+4. Lifecycle modelling beyond current Project `lifecycleState`.
+5. Store and commerce modes.
+6. Store association model.
+7. Commission model.
+8. SeasonPro integration.
+9. Marketplace expansion.
 
 ---
 
 ## 9. Current Safe Next Step
 
-The next safe step is a schema design proposal only.
+The next safe implementation step is Slice 1L-A: FundEvent schema only.
 
-Do not edit Prisma schema until these questions have been reviewed and enough decisions have been made to avoid rework.
-
+Do not introduce Store-specific close dates, Store schema, Order schema, commerce, organiser identity, Project Request flows or dashboards in 1L-A.
