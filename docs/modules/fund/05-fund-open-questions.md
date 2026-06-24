@@ -164,6 +164,15 @@ Deferred:
 - operations dashboard;
 - organiser dashboard.
 
+Dashboard boundary clarification:
+
+- FUND is expected to have both C1 and C2 dashboard surfaces.
+- The C1 dashboard is the tenant/admin/producer control surface. It will eventually support Event management, Products, Catalogues, Project oversight, production, distribution and communications to C2 organisers.
+- The C2 dashboard is the organiser/project operating surface. It will eventually allow Project organisers to manage their own Projects, fundraising lifecycle, project communications, template creation, artwork file upload, submission/approval tasks and progress.
+- Current Phase 1 admin work is building the C1 dashboard/admin foundation only.
+- Current C1 admin work must not be mistaken for the future C2 organiser dashboard.
+- C2 dashboard, organiser invitations, Project ownership/access rules and Project Request/onboarding remain future slices.
+
 ---
 
 ### 2.2 CRUD / Child Page Pattern
@@ -272,6 +281,80 @@ Open questions:
 - Stripe Checkout only or embedded Payment Element later?
 - Is GoCardless required for organisation-level subscription/billing, customer purchases, or both?
 - How should offline payments or school-paid batch orders be represented?
+
+---
+
+### 3.5 IsoStack Commerce Core Boundary
+
+Deferred cross-module architecture note.
+
+Commerce should become a core IsoStack capability rather than a FUND-specific or SeasonPro-specific implementation.
+
+Working principle:
+
+```text
+Commerce should be core IsoStack infrastructure;
+Stores, subscriptions, fines and fundraising are module-specific uses of that infrastructure.
+```
+
+Likely boundary:
+
+| Layer | Owns |
+| --- | --- |
+| IsoStack Commerce Core | generic products/prices, provider records, invoices/orders, payment status, subscriptions, entitlements |
+| SeasonPro | leagues, clubs, subscriptions, fines, one-off charges, who owes what |
+| FUND | Projects, Events, Products/Catalogues, Stores, production workflow |
+| FUND Store layer | how a Project becomes a public/private selling surface |
+| Production/Fulfilment | batch production, shipping, export, artwork/data handling |
+
+Possible future Commerce Core entities:
+
+- `CommerceProduct`;
+- `CommercePrice`;
+- `CommerceCustomer`;
+- `CommerceOrder`;
+- `CommerceOrderLine`;
+- `CommerceInvoice`;
+- `CommercePayment`;
+- `CommerceSubscription`;
+- `CommercePaymentProviderAccount`;
+- `CommerceEntitlement`;
+- `CommerceLedgerEntry`.
+
+Payment provider modelling should be provider-aware but provider-neutral. Stripe, GoCardless, offline/manual payments and future invoice-only flows should not force FUND or SeasonPro into one payment shape.
+
+Naming discipline is important because IsoStack already has multiple product concepts:
+
+| Term | Meaning |
+| --- | --- |
+| Platform Product | IsoStack subscription package/gating product |
+| FUND Product | physical/fundraising item selected into Projects |
+| Commerce Product | generic sellable thing |
+| Commerce Price | price/recurrence/currency/tax/provider mapping |
+| Entitlement | access/capability unlocked by payment or subscription |
+
+Recommended sequencing:
+
+1. Finish the C1 FUND admin foundation: Products, Catalogues, Projects, Project Products, Events and Project/Event linkage.
+2. Create a separate IsoStack Commerce Core planning document outside FUND.
+3. Plan cross-module requirements using SeasonPro billing and FUND Store examples.
+4. Build Commerce Core schema-only on a dedicated branch, for example `feature/isostack-commerce-core` or `feature/core-commerce-billing`.
+5. Add provider abstraction, likely Stripe first with GoCardless and offline/manual support designed in but not necessarily implemented immediately.
+6. Wire either SeasonPro billing or FUND Store as the first consumer.
+
+Do not build Commerce Core as a side-effect of FUND Store work.
+
+Existing related background note:
+
+```text
+docs/00-overview/e-commerce-analysis-options.md
+```
+
+Future full planning should probably live outside FUND, for example:
+
+```text
+docs/core/commerce/isostack-commerce-core-planning.md
+```
 
 ---
 
