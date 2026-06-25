@@ -43,7 +43,8 @@ Release result:
 - Additional correction: C2 is the Project management node, not a passive/read-only recipient of Project information. Future C2 dashboard work must be Client/account scoped, not merely participant scoped.
 - AMOW founding-tenant priority has been re-centred on the C1 organisational dashboard: C1 Client management, Products, Events, Projects and the operational framework for managing fundraising Clients and their Projects.
 - 1P-D remains technically safe but is not the immediate AMOW product priority.
-- 1P-F-A C1 Client Management Foundation is the next priority planning lane.
+- 1P-F-C C1 Client Management schema has been implemented locally on the active FUND branch as schema-only work; it is not promoted to `main`.
+- 1P-F-D C1 Client Management API/services is the next planning lane.
 - Staging `/api/health` returned HTTP 200 after alignment.
 - `main` remains held at `62b727e` until the 1P-B/staging migration and smoke testing are accepted.
 - Docs repo `main` latest before this staging-readiness update was `c4aaff0`.
@@ -156,8 +157,10 @@ isodocs/docs/modules/fund/implementation/
 | 1P-D0 | C2 Organisation Scope Clarification | Active planning clarification |
 | 1P-F | C2 Client/Account Organisation Model Planning | Active architecture planning |
 | 1P-F-CORR | C2 Client/Account As Project Management Node Planning | Active architecture correction |
-| 1P-F-A | C1 Client Management Foundation For AMOW | Active priority planning |
-| 1P-F-B | C1 Client Management Schema Options | Active schema-options planning |
+| 1P-F-A | C1 Client Management Foundation For AMOW | Planning complete |
+| 1P-F-B | C1 Client Management Schema Options | Planning complete |
+| 1P-F-C | C1 Client Management Schema | Implemented locally / schema only |
+| 1P-F-D | C1 Client Management API/Services | Active planning |
 
 ### C1 Admin Surfaces Released
 
@@ -719,7 +722,48 @@ Recommended next implementation slice:
 Slice 1P-F-C - C1 Client Management Schema
 ```
 
-### Next 5 - Event / Catalogue / Product Availability Planning
+Status:
+
+```text
+Implemented locally as schema-only work.
+```
+
+Confirmation document:
+
+```text
+isodocs/docs/modules/fund/04-implementation-confirmations/2026-06-25-phase-1-slice-1p-f-c-c1-client-management-schema-confirmation.md
+```
+
+### Next 5 - C1 Client Management API/Services
+
+Suggested slice:
+
+```text
+Slice 1P-F-D - C1 Client Management API/Services
+```
+
+Scope:
+
+- plan C1 tenant-scoped Client list/get/create/update/archive/restore services;
+- plan Client search/filter/sort behaviour;
+- plan Client detail payload with linked Project summaries;
+- plan same-tenant enforcement and archived Client behaviour;
+- plan audit events and error handling;
+- keep UI, Project Client selector, Client users, invitations, Store, Orders, Commerce, Sales/Reporting, Communications and SeasonPro mapping out of scope.
+
+Status:
+
+```text
+Active planning.
+```
+
+Planning document:
+
+```text
+isodocs/docs/modules/fund/03-slice-planning/2026-06-25-fund-phase-1-slice-1p-f-d-c1-client-management-api-services-planning.md
+```
+
+### Next 6 - Event / Catalogue / Product Availability Planning
 
 Suggested slice:
 
@@ -733,7 +777,7 @@ Scope:
 - produce schema/API plan;
 - explicitly record Store/Commerce impacts.
 
-### Next 6 - C2 Dashboard Foundation Expansion
+### Next 7 - C2 Dashboard Foundation Expansion
 
 Suggested slice:
 
@@ -774,11 +818,12 @@ Context:
 - Do not mix unrelated SeasonPro fixes into FUND unless explicitly requested.
 
 Immediate recommended work:
-Proceed with C1 Client Management Foundation planning for the AMOW founding-tenant priority:
-1. Treat the implemented 1P-D C2 read-only dashboard as technically safe but functionally interim.
-2. Do not expand C2 dashboard behaviour until the C2 Client/account organisation model is accepted.
-3. Plan the C1 Client management foundation so AMOW can explain: Clients, Products, Events and Projects.
-4. Keep Client/account schema implementation behind a dedicated schema-options slice.
+Proceed with C1 Client Management API/services planning/implementation:
+1. Treat 1P-F-C as the schema-only Client foundation.
+2. Add only C1 admin Client list/get/create/update/archive/restore API/services.
+3. Keep Client primary contact fields as snapshots only.
+4. Do not infer Client ownership from Project organiser snapshot fields.
+5. Keep C2 dashboard expansion paused until Client/account scope is accepted.
 
 Do not start:
 - C2 dashboard expansion;
