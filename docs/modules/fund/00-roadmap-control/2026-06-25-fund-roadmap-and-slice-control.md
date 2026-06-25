@@ -337,9 +337,9 @@ Current C2 recommendation:
 
 - Treat the implemented 1P-D read-only dashboard as a safe participant-scoped interim bridge.
 - Complete 1P-D-R1 authenticated review before alignment/promotion decisions.
-- Decide the C2 organisation/account scope before adding C2 mutations, participant management UI, invitations, Project Request/onboarding, sales/order/reporting views, Store or Commerce coupling.
+- Decide the C2 organisation/account scope before adding C2 mutations, participant management UI, C2 client/account management UI, C1 Client view, invitations, Project Request/onboarding, sales/order/reporting views, Store or Commerce coupling.
 - Do not assume direct `FundProjectParticipant` access is the final C2 operating model.
-- Likely long-term direction to evaluate: C2 organisation/account owns Projects, C2 users belong to that account, and `FundProjectParticipant` remains for named contacts, overrides, exceptions and transition access.
+- Likely long-term direction to evaluate: C2 Client/account owns Projects, C2 users belong to that Client/account, and `FundProjectParticipant` remains for named contacts, overrides, exceptions and transition access.
 
 ### C2 Organisation / Account Scope Clarification
 
@@ -351,7 +351,7 @@ User -> FundProjectParticipant -> FundProject
 
 Wider likely model:
 C1 Producer/Admin Tenant
--> C2 Fundraising Organisation / School / Club / PTA / Customer Account
+-> C2 Client / Account / Fundraising Organisation / School / Club / PTA / Customer Account
 -> Projects
 -> C2 users
 -> future Project sales/orders/reporting
@@ -367,6 +367,21 @@ C1 League Tenant
 ```
 
 Integrated SeasonPro + FUND may use the SeasonPro Club as the fundraising Project creator/account.
+
+Terminology note:
+
+```text
+Client may be the user-facing/admin term for the C2 organisation/account.
+In SeasonPro, Client is synonymous with Club.
+In FUND, Client may be a school, club, PTA, charity branch, fundraising organisation or customer account.
+```
+
+C1 Client view note:
+
+```text
+C1 should eventually be able to enter a managed Client/account view for support, preview or administration.
+This must be distinct from hat-swapping and must not rely on unsafe impersonation.
+```
 
 Open decision:
 
@@ -637,6 +652,8 @@ Scope:
 - decide whether to continue direct Project participants, introduce a FUND-specific C2 organisation/account model, create a reusable IsoStack C2 account model, or use a hybrid;
 - decide whether active C2 users in an organisation/account should see all organisation Projects;
 - decide how future sales/orders/reporting scope to C2 organisation/account;
+- decide whether `Client` is the user-facing/admin term for C2 organisation/account;
+- decide how C1 Client view differs from C2 user hat-swapping;
 - decide whether `/app/fund/organiser` remains the correct route name.
 
 ### Next 5 - Event / Catalogue / Product Availability Planning

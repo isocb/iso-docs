@@ -56,6 +56,22 @@ C1 League Tenant
 -> Club users
 ```
 
+In SeasonPro, the C1 League dashboard manages:
+
+- users;
+- roles;
+- Clubs;
+- Teams;
+- processes;
+- communications;
+- automation.
+
+Clubs are effectively C2 client organisations.
+
+Teams belong to Clubs.
+
+SeasonPro key dates also act as an organisational automation layer, where positive/negative offsets can trigger communications, announcements or dashboard-visible messages.
+
 FUND likely needs a parallel structure:
 
 ```text
@@ -78,6 +94,33 @@ C1 League Tenant
 ```
 
 In integrated mode, a SeasonPro Club may be the fundraising Project creator/account. In standalone FUND, the equivalent C2 entity may be a school, PTA, charity branch, sports club or fundraising organiser/customer account.
+
+Important terminology:
+
+```text
+Client may be the user-facing/admin term for the C2 organisation/account.
+```
+
+In SeasonPro, `Client` is synonymous with Club.
+
+In FUND, `Client` may mean:
+
+- school;
+- club;
+- PTA;
+- charity branch;
+- fundraising organisation;
+- customer account.
+
+The likely long-term model is:
+
+```text
+C1 tenant
+-> C2 Client / Account
+-> C2 users
+-> Projects
+-> future Orders / Sales / Communications
+```
 
 ## 4. Options To Decide
 
@@ -181,6 +224,34 @@ Important future question:
 Are sales reports shown per Project, per C2 organisation, or both?
 ```
 
+Future Orders, sales, reporting, communications and announcements should likely scope to the C2 Client/account.
+
+This means C1 needs more than Project participant assignment. C1 must be able to manage:
+
+- C2 client/account organisations;
+- C2 users;
+- roles or access levels;
+- Projects belonging to the C2 client/account;
+- future Orders, sales, reporting and communications in client context.
+
+### C1 Client View
+
+C1 should eventually be able to enter a `Client view` to see a managed C2 Client/account in context.
+
+This view may need to include:
+
+- C2 organisation/account profile;
+- users;
+- roles;
+- Projects;
+- future Orders;
+- future sales/reporting;
+- future communications and dashboard surfaces.
+
+Client view must not rely on unsafe impersonation.
+
+It should be designed as a C1 admin/support/preview surface with explicit access controls and audit expectations.
+
 ### FundProjectParticipant Future Role
 
 `FundProjectParticipant` may remain useful as:
@@ -209,6 +280,13 @@ Users may be:
 - participant on a specific Project.
 
 The UI should continue to use explicit context navigation. The context switch must not bypass server-side access rules.
+
+Hat-swapping and Client view are distinct:
+
+- Hat-swapping means the same authenticated user chooses between their own C1 admin context and their own C2 operating context.
+- Client view means a C1 admin enters a managed C2 client/account context for support, preview or administration.
+
+Client view should not be implemented as silent impersonation.
 
 ### Route Naming
 
@@ -247,6 +325,8 @@ Do not continue into the following until the C2 organisation/account model is de
 
 - C2 mutations;
 - C2 participant management UI;
+- C2 client/account management UI;
+- C1 Client view;
 - organiser invitations;
 - Project Request/onboarding;
 - C2 sales/order/reporting views;
@@ -273,7 +353,7 @@ Further C2 expansion should pause until the C2 organisation/account scope is res
 The likely long-term direction is a hybrid:
 
 ```text
-C2 organisation/account owns Projects.
-C2 users belong to that organisation/account.
+C2 Client/account owns Projects.
+C2 users belong to that Client/account.
 FundProjectParticipant remains for Project contacts, overrides, exceptions and transition access.
 ```
