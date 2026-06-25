@@ -22,12 +22,12 @@ Current released app baseline:
 62b727e chore(release): promote FUND C1 admin foundation
 ```
 
-Current branch alignment after 1P-B and Issue Manager consolidation:
+Current branch alignment after 1P-C review:
 
 ```text
 main    = 62b727e released C1 admin foundation baseline
-dev     = ce65830 1P-B schema + Issue Manager module-field consolidation
-staging = ce65830 1P-B schema + Issue Manager module-field consolidation
+dev     = 69a9632 1P-C C2 read-only organiser Project API/services
+staging = 69a9632 1P-C C2 read-only organiser Project API/services
 ```
 
 Release result:
@@ -36,8 +36,9 @@ Release result:
 - SeasonPro/LMSPro export hotfix is included in the released baseline.
 - Staging browser testing found no blocking C1 admin foundation issues before release alignment.
 - FUND remains expected to need refinement; the baseline is accepted as the foundation, not as final product polish.
-- 1P-R1/1P-R1A remediation and 1P-B schema work have been aligned to `dev` and `staging` at `ce65830`.
-- `main` remains held at `62b727e` until 1P-B/staging migration and smoke testing are accepted.
+- 1P-R1/1P-R1A remediation, 1P-B schema work and 1P-C read-only organiser Project API/services have been aligned to `dev` and `staging` at `69a9632`.
+- Staging `/api/health` returned HTTP 200 after alignment.
+- `main` remains held at `62b727e` until the 1P-B/staging migration and smoke testing are accepted.
 
 ## 2. Current Branch Landscape
 
@@ -53,14 +54,14 @@ Current state:
 
 ```text
 main held at 62b727e
-dev/staging aligned at ce65830
+dev/staging aligned at 69a9632
 ```
 
 Use:
 
 - `main` is the live/release baseline.
 - `dev` is the integration baseline for the current C2 access lane.
-- `staging` carries 1P-B schema and Issue Manager consolidation for migration/smoke validation.
+- `staging` carries 1P-B schema, Issue Manager consolidation and 1P-C read-only organiser Project API/services for migration/smoke validation.
 
 ### Active FUND Branch
 
@@ -139,7 +140,9 @@ isodocs/docs/modules/fund/implementation/
 | 1O | C1 admin foundation staging readiness/release alignment | Complete |
 | 1P-A | C2 Project Access Model Planning | Complete |
 | 1P-B | C2 Project Participant Schema | Complete / aligned to dev+staging |
-| 1P-C | C2 Read-Only Project API/Services Planning | In planning |
+| 1P-C | C2 Read-Only Project API/Services | Complete / reviewed / aligned to dev+staging |
+| 1P-C-R1 | C2 Read-Only Project API/Services Review | Complete / proceed with caveats |
+| 1P-D | C2 Read-Only Organiser Dashboard UI Planning | In planning |
 
 ### C1 Admin Surfaces Released
 
@@ -224,6 +227,31 @@ Recommended remediation principle:
 ```text
 Fix the C1 foundation in place before exposing dependent behaviour to C2 organisers.
 ```
+
+### Current C2 Access Lane Status
+
+Current branch state:
+
+```text
+feature/fund-phase-1-c2-project-access = 69a9632
+dev                              = 69a9632
+staging                          = 69a9632
+main                             = 62b727e
+```
+
+Current C2 lane status:
+
+- 1P-A access model planning is complete.
+- 1P-B participant schema is implemented.
+- 1P-C read-only organiser Project API/services are implemented and reviewed.
+- 1P-D read-only organiser dashboard UI planning is next.
+
+Staging migration note:
+
+- Render build runs `prisma migrate deploy` through `scripts/render-build.sh`.
+- Direct staging `_prisma_migrations` inspection was not available from the local shell.
+- Before authenticated 1P-D staging testing, confirm in Render/Neon that `20260625143000_add_fund_project_participants` has applied.
+- Lightweight staging health check after alignment returned HTTP 200 for `/api/health`.
 
 ### Live Issue Status Register
 
@@ -481,55 +509,51 @@ Branch:
 feature/fund-phase-1-c2-project-access
 ```
 
-### Next 2 - C1 Admin Remediation Review
+### Next 2 - C2 Read-Only Organiser Dashboard UI
 
 Suggested slice:
 
 ```text
-Slice 1P-R2 - C1 Admin Remediation Review And Staging Readiness
+Slice 1P-D - C2 Read-Only Organiser Dashboard UI
 ```
 
 Status:
 
 ```text
-Static/code review and automated checks complete.
-Authenticated browser spot-check remains recommended before staging promotion.
+1P-A planning complete.
+1P-B participant schema implemented and aligned to dev/staging.
+1P-C read-only organiser Project API/services implemented, reviewed and aligned to dev/staging.
+1P-D planning document created 2026-06-25.
 ```
 
 Scope:
 
-- verify Issue #46 and #50 fixes;
-- ensure no regression to Products, Catalogues, Projects or Events;
-- decide whether to promote remediation before continuing C2 implementation.
+- implement C2 read-only organiser landing page;
+- implement C2 read-only assigned Project detail page;
+- consume only `fund.organiser.projects.list/get`;
+- include C1/C2 context navigation for dual-role users;
+- no C2 mutations, invitations, participant management, Store, Orders or Commerce.
 
-### Next 3 - C2 Project Participant Schema Planning / Implementation
+Pre-implementation note:
+
+```text
+Confirm staging has applied 20260625143000_add_fund_project_participants before authenticated staging testing.
+```
+
+### Next 3 - C2 Dashboard Review / API Smoke Testing
 
 Suggested slice:
 
 ```text
-Slice 1P-A - C2 Project Access Model Planning
-Slice 1P-B - C2 Project Participant Schema
+Slice 1P-E - C2 Dashboard API/UI Review And Manual Testing
 ```
 
 Scope:
 
-- finish/accept the access-model planning decision;
-- schema-only implementation of `FundProjectParticipant` or equivalent, if planning is accepted;
-- no dashboard UI yet.
-
-Status:
-
-```text
-1P-A planning document updated 2026-06-25 with current staging/remediation status.
-1P-B schema implemented and check-passed on 2026-06-25.
-1P-B should not be promoted beyond local/dev review until 1P-R1/1P-R1A staging spot-check is accepted.
-```
-
-Implementation confirmation:
-
-```text
-04-implementation-confirmations/2026-06-25-phase-1-slice-1p-b-c2-project-participant-schema-confirmation.md
-```
+- verify ACTIVE participant visibility;
+- verify INVITED/DISABLED/REMOVED/null-user participants do not grant access;
+- verify organiserEmail alone does not grant access;
+- verify C1 admin Project endpoints remain separate.
 
 ### Next 4 - Event / Catalogue / Product Availability Planning
 
