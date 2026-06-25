@@ -40,6 +40,7 @@ Release result:
 - 1P-D read-only organiser dashboard UI has been implemented on `feature/fund-phase-1-c2-project-access` at `f43d63b`, reviewed with caveats and aligned to `dev` and `staging`.
 - 1P-D staging alignment was pushed by operator request; Render deployment and migration confirmation remain post-deploy checks.
 - A post-1P-D C2 organisation/account scope clarification has been raised. The current participant-scoped dashboard remains safe but should be treated as an interim bridge until this is decided.
+- Additional correction: C2 is the Project management node, not a passive/read-only recipient of Project information. Future C2 dashboard work must be Client/account scoped, not merely participant scoped.
 - Staging `/api/health` returned HTTP 200 after alignment.
 - `main` remains held at `62b727e` until the 1P-B/staging migration and smoke testing are accepted.
 - Docs repo `main` latest before this staging-readiness update was `c4aaff0`.
@@ -151,6 +152,7 @@ isodocs/docs/modules/fund/implementation/
 | 1P-D-R1 | C2 Dashboard UI Review And C2 Organisation Scope Note | Complete / proceed with caveats |
 | 1P-D0 | C2 Organisation Scope Clarification | Active planning clarification |
 | 1P-F | C2 Client/Account Organisation Model Planning | Active architecture planning |
+| 1P-F-CORR | C2 Client/Account As Project Management Node Planning | Active architecture correction |
 
 ### C1 Admin Surfaces Released
 
@@ -338,7 +340,7 @@ C2 Project access must not derive from organiserName/organiserEmail/organiserPho
 Current C2 recommendation:
 
 - Treat the implemented 1P-D read-only dashboard as a safe participant-scoped interim bridge.
-- Complete 1P-D-R1 authenticated review before alignment/promotion decisions.
+- Treat 1P-D smoke testing as technical validation only, not decisive product validation.
 - Decide the C2 organisation/account scope before adding C2 mutations, participant management UI, C2 client/account management UI, C1 Client view, invitations, Project Request/onboarding, sales/order/reporting views, Store or Commerce coupling.
 - Do not assume direct `FundProjectParticipant` access is the final C2 operating model.
 - Likely long-term direction to evaluate: C2 Client/account owns Projects, C2 users belong to that Client/account, and `FundProjectParticipant` remains for named contacts, overrides, exceptions and transition access.
@@ -355,9 +357,18 @@ User -> FundProjectParticipant -> FundProject
 Wider likely model:
 C1 Producer/Admin Tenant
 -> C2 Client / Account / Fundraising Organisation / School / Club / PTA / Customer Account
--> Projects
 -> C2 users
+-> Projects
 -> future Project sales/orders/reporting
+```
+
+Important correction:
+
+```text
+C2 is the Project management node.
+C2 Clients/accounts own and manage Projects.
+C2 users operate within the Client/account organisation.
+FundProjectParticipant is not the strategic Project ownership model.
 ```
 
 SeasonPro precedent:
@@ -640,6 +651,7 @@ Current status:
 ```text
 Staging aligned to f43d63b.
 Begin 1P-D-R2 only after Render deployment completes and Render/Neon confirms migration 20260625143000_add_fund_project_participants has applied.
+1P-D-R2 is technical smoke testing only. It is not decisive product validation for the final C2 dashboard because Client/account scope is not implemented yet.
 ```
 
 ### Next 4 - C2 Organisation / Account Scope Planning
@@ -647,7 +659,7 @@ Begin 1P-D-R2 only after Render deployment completes and Render/Neon confirms mi
 Suggested slice:
 
 ```text
-Slice 1P-F - C2 Client/Account Organisation Model Planning
+Slice 1P-F - C2 Client/Account As Project Management Node Planning
 ```
 
 Scope:
@@ -658,11 +670,13 @@ Scope:
 - decide whether `Client` is the user-facing/admin term for C2 organisation/account;
 - decide how C1 Client view differs from C2 user hat-swapping;
 - decide whether `/app/fund/organiser` remains the correct route name.
+- decide how C2 Clients/accounts initiate and manage Projects;
+- decide how C2 Projects link to C1 Events or operate standalone.
 
 Status:
 
 ```text
-Planning document created. Further C2 expansion remains paused until the model is accepted.
+Planning document created. Further C2 expansion remains paused until the C2 Client/account Project management node model is accepted.
 ```
 
 ### Next 5 - Event / Catalogue / Product Availability Planning
