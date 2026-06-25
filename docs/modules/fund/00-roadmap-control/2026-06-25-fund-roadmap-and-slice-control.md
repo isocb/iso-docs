@@ -22,12 +22,12 @@ Current released app baseline:
 62b727e chore(release): promote FUND C1 admin foundation
 ```
 
-Current branch alignment after 1P-C review:
+Current branch alignment after 1P-D staging alignment:
 
 ```text
 main    = 62b727e released C1 admin foundation baseline
 dev     = f43d63b 1P-D C2 read-only organiser dashboard UI
-staging = 69a9632 1P-C C2 read-only organiser Project API/services
+staging = f43d63b 1P-D C2 read-only organiser dashboard UI
 ```
 
 Release result:
@@ -36,9 +36,9 @@ Release result:
 - SeasonPro/LMSPro export hotfix is included in the released baseline.
 - Staging browser testing found no blocking C1 admin foundation issues before release alignment.
 - FUND remains expected to need refinement; the baseline is accepted as the foundation, not as final product polish.
-- 1P-R1/1P-R1A remediation, 1P-B schema work and 1P-C read-only organiser Project API/services have been aligned to `staging` at `69a9632`.
-- 1P-D read-only organiser dashboard UI has been implemented on `feature/fund-phase-1-c2-project-access` at `f43d63b`, reviewed with caveats and aligned to `dev`.
-- 1P-D staging alignment remains held because the participant migration application could not be confirmed from the local shell.
+- 1P-R1/1P-R1A remediation, 1P-B schema work and 1P-C read-only organiser Project API/services were aligned to `staging` at `69a9632`.
+- 1P-D read-only organiser dashboard UI has been implemented on `feature/fund-phase-1-c2-project-access` at `f43d63b`, reviewed with caveats and aligned to `dev` and `staging`.
+- 1P-D staging alignment was pushed by operator request; Render deployment and migration confirmation remain post-deploy checks.
 - A post-1P-D C2 organisation/account scope clarification has been raised. The current participant-scoped dashboard remains safe but should be treated as an interim bridge until this is decided.
 - Staging `/api/health` returned HTTP 200 after alignment.
 - `main` remains held at `62b727e` until the 1P-B/staging migration and smoke testing are accepted.
@@ -59,14 +59,14 @@ Current state:
 ```text
 main held at 62b727e
 dev aligned at f43d63b
-staging held at 69a9632
+staging aligned at f43d63b
 ```
 
 Use:
 
 - `main` is the live/release baseline.
 - `dev` is the integration baseline for the current C2 access lane and now includes 1P-D.
-- `staging` carries 1P-B schema, Issue Manager consolidation and 1P-C read-only organiser Project API/services for migration/smoke validation. It does not yet carry 1P-D.
+- `staging` carries 1P-D for Render deployment and authenticated smoke validation.
 
 ### Active FUND Branch
 
@@ -242,7 +242,7 @@ Current branch state:
 ```text
 feature/fund-phase-1-c2-project-access = f43d63b
 dev                              = f43d63b
-staging                          = 69a9632
+staging                          = f43d63b
 main                             = 62b727e
 ```
 
@@ -257,10 +257,11 @@ Current C2 lane status:
 Staging migration note:
 
 - Render build runs `prisma migrate deploy` through `scripts/render-build.sh`.
+- Neon Prisma migrations are expected to happen automatically during Render deployment because the Render build executes `prisma migrate deploy`.
 - Direct staging `_prisma_migrations` inspection was not available from the local shell.
 - Local shell checks found no Render CLI, no Neon CLI and no exposed staging database environment variable.
-- Migration `20260625143000_add_fund_project_participants` exists locally, but staging application remains unconfirmed.
-- Before authenticated 1P-D staging testing, confirm in Render/Neon that `20260625143000_add_fund_project_participants` has applied.
+- Migration `20260625143000_add_fund_project_participants` exists locally.
+- 1P-D staging alignment has been pushed; confirm in Render/Neon that deployment completed and `20260625143000_add_fund_project_participants` has applied before authenticated smoke testing.
 - Lightweight staging health check after alignment returned HTTP 200 for `/api/health`.
 
 ### Live Issue Status Register
@@ -619,8 +620,8 @@ Confirm 20260625143000_add_fund_project_participants has applied in Render/Neon 
 Current status:
 
 ```text
-Blocked for staging until Render/Neon migration confirmation is available.
-Do not align staging to f43d63b until that confirmation is recorded.
+Staging aligned to f43d63b.
+Begin 1P-D-R2 only after Render deployment completes and Render/Neon confirms migration 20260625143000_add_fund_project_participants has applied.
 ```
 
 ### Next 4 - C2 Organisation / Account Scope Planning
