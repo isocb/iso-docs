@@ -37,7 +37,8 @@ Release result:
 - Staging browser testing found no blocking C1 admin foundation issues before release alignment.
 - FUND remains expected to need refinement; the baseline is accepted as the foundation, not as final product polish.
 - 1P-R1/1P-R1A remediation, 1P-B schema work and 1P-C read-only organiser Project API/services have been aligned to `dev` and `staging` at `69a9632`.
-- 1P-D read-only organiser dashboard UI has been implemented on `feature/fund-phase-1-c2-project-access` and is pending review/alignment.
+- 1P-D read-only organiser dashboard UI has been implemented on `feature/fund-phase-1-c2-project-access` and reviewed with caveats.
+- 1P-D is recommended for `dev` alignment after review acceptance and `staging` alignment after confirming the participant migration has applied in Render/Neon.
 - A post-1P-D C2 organisation/account scope clarification has been raised. The current participant-scoped dashboard remains safe but should be treated as an interim bridge until this is decided.
 - Staging `/api/health` returned HTTP 200 after alignment.
 - `main` remains held at `62b727e` until the 1P-B/staging migration and smoke testing are accepted.
@@ -144,8 +145,8 @@ isodocs/docs/modules/fund/implementation/
 | 1P-B | C2 Project Participant Schema | Complete / aligned to dev+staging |
 | 1P-C | C2 Read-Only Project API/Services | Complete / reviewed / aligned to dev+staging |
 | 1P-C-R1 | C2 Read-Only Project API/Services Review | Complete / proceed with caveats |
-| 1P-D | C2 Read-Only Organiser Dashboard UI | Implemented / pending review |
-| 1P-D-R1 | C2 Dashboard UI Review And C2 Organisation Scope Note | Pending |
+| 1P-D | C2 Read-Only Organiser Dashboard UI | Implemented / reviewed with caveats |
+| 1P-D-R1 | C2 Dashboard UI Review And C2 Organisation Scope Note | Complete / proceed with caveats |
 | 1P-D0 | C2 Organisation Scope Clarification | Active planning clarification |
 
 ### C1 Admin Surfaces Released
@@ -248,7 +249,7 @@ Current C2 lane status:
 - 1P-A access model planning is complete.
 - 1P-B participant schema is implemented.
 - 1P-C read-only organiser Project API/services are implemented and reviewed.
-- 1P-D read-only organiser dashboard UI is implemented on the feature branch and pending review/alignment.
+- 1P-D read-only organiser dashboard UI is implemented and statically reviewed with caveats.
 - 1P-D0 C2 organisation/account scope clarification has been raised and must be decided before C2 expansion.
 
 Staging migration note:
@@ -571,7 +572,7 @@ Status:
 1P-B participant schema implemented and aligned to dev/staging.
 1P-C read-only organiser Project API/services implemented, reviewed and aligned to dev/staging.
 1P-D implemented on feature/fund-phase-1-c2-project-access.
-1P-D-R1 review required.
+1P-D-R1 review complete with caveats.
 ```
 
 Scope:
@@ -588,12 +589,12 @@ Pre-implementation note:
 Confirm staging has applied 20260625143000_add_fund_project_participants before authenticated staging testing.
 ```
 
-### Next 3 - C2 Dashboard Review / API Smoke Testing
+### Next 3 - C2 Dashboard Authenticated Smoke Testing
 
 Suggested slice:
 
 ```text
-Slice 1P-D-R1 - C2 Read-Only Dashboard UI Review And C2 Organisation Scope Note
+Slice 1P-D-R2 - C2 Read-Only Dashboard Authenticated Smoke Testing
 ```
 
 Scope:
@@ -604,6 +605,12 @@ Scope:
 - verify C1 admin Project endpoints remain separate.
 - confirm 1P-D remains read-only and interim.
 - confirm no C2 organisation/account assumptions have been hard-coded into mutation or management surfaces.
+
+Gate:
+
+```text
+Confirm 20260625143000_add_fund_project_participants has applied in Render/Neon before authenticated staging testing.
+```
 
 ### Next 4 - C2 Organisation / Account Scope Planning
 
