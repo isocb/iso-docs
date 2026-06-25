@@ -22,22 +22,22 @@ Current released app baseline:
 62b727e chore(release): promote FUND C1 admin foundation
 ```
 
-Branch alignment after release:
+Current branch alignment after 1P-B and Issue Manager consolidation:
 
 ```text
-main    = 62b727e
-dev     = 62b727e
-staging = 90325c1 after 1P-R1/1P-R1A remediation push
+main    = 62b727e released C1 admin foundation baseline
+dev     = ce65830 1P-B schema + Issue Manager module-field consolidation
+staging = ce65830 1P-B schema + Issue Manager module-field consolidation
 ```
 
 Release result:
 
-- FUND C1 admin foundation is released/aligned.
-- SeasonPro/LMSPro export hotfix is included.
+- FUND C1 admin foundation is released on `main`.
+- SeasonPro/LMSPro export hotfix is included in the released baseline.
 - Staging browser testing found no blocking C1 admin foundation issues before release alignment.
 - FUND remains expected to need refinement; the baseline is accepted as the foundation, not as final product polish.
-- 1P-R1/1P-R1A remediation has now been pushed to staging at `90325c1`.
-- Main/dev remain at the released baseline `62b727e` until the remediation browser spot-check is accepted.
+- 1P-R1/1P-R1A remediation and 1P-B schema work have been aligned to `dev` and `staging` at `ce65830`.
+- `main` remains held at `62b727e` until 1P-B/staging migration and smoke testing are accepted.
 
 ## 2. Current Branch Landscape
 
@@ -52,15 +52,15 @@ staging
 Current state:
 
 ```text
-main/dev aligned at 62b727e
-staging aligned to 90325c1 for C1 remediation validation
+main held at 62b727e
+dev/staging aligned at ce65830
 ```
 
 Use:
 
 - `main` is the live/release baseline.
-- `dev` is the integration baseline.
-- `staging` currently carries the 1P-R1/1P-R1A C1 remediation batch for validation.
+- `dev` is the integration baseline for the current C2 access lane.
+- `staging` carries 1P-B schema and Issue Manager consolidation for migration/smoke validation.
 
 ### Active FUND Branch
 
@@ -137,6 +137,9 @@ isodocs/docs/modules/fund/implementation/
 | 1M-C | Project/Event linkage UI review | Complete |
 | 1N | C1 admin foundation authenticated review | Complete |
 | 1O | C1 admin foundation staging readiness/release alignment | Complete |
+| 1P-A | C2 Project Access Model Planning | Complete |
+| 1P-B | C2 Project Participant Schema | Complete / aligned to dev+staging |
+| 1P-C | C2 Read-Only Project API/Services Planning | In planning |
 
 ### C1 Admin Surfaces Released
 
@@ -229,7 +232,7 @@ This table is the current compact issue-status view for planning. It should be u
 | Issue | Current Status | Category | Next Action | Blocks C2? | Blocks Store/Commerce? | Current / Suggested Slice |
 | --- | --- | --- | --- | --- | --- | --- |
 | #46 Project/Event close-date constraint | Remediated in 1P-R1; 1P-R2 static/check review passed | Immediate remediation | Authenticated browser spot-check before staging promotion | No for planning; spot-check before promotion | No, but must remain clean before Store date generation | Browser spot-check / next promotion gate |
-| #50 Issue Manager module filtering/server render error | Remediated in 1P-R1; 1P-R2 static/check review passed | Immediate platform remediation | Authenticated Issue Manager spot-check before staging promotion | No | No | Browser spot-check / next promotion gate |
+| #50 Issue Manager module filtering/server render error | Remediated in 1P-R1; module-field confusion corrected in `ce65830` | Immediate platform remediation | Smoke-test Issue Manager module filter and modal field behaviour on staging | No | No | Staging smoke test |
 | #47 Product activation gate visibility | Small UX remediation included in 1P-R1; 1P-R2 static/check review passed | UI/UX polish | Browser spot-check Project Overview affordance | No | No | Browser spot-check / next promotion gate |
 | #44 Product breadcrumb navigation | Small UI polish included in 1P-R1/1P-R1A; 1P-R2 static/check review passed | UI polish | Browser spot-check Products, Projects and Events breadcrumbs | No | No | Browser spot-check / next promotion gate |
 | #45 Sidebar icons repeated | Small UI polish included in 1P-R1/1P-R1A; 1P-R2 static/check review passed | UI polish | Browser spot-check FUND navigation icons | No | No | Browser spot-check / next promotion gate |
