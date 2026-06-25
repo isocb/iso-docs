@@ -150,6 +150,7 @@ isodocs/docs/modules/fund/implementation/
 | 1P-D | C2 Read-Only Organiser Dashboard UI | Implemented / reviewed with caveats |
 | 1P-D-R1 | C2 Dashboard UI Review And C2 Organisation Scope Note | Complete / proceed with caveats |
 | 1P-D0 | C2 Organisation Scope Clarification | Active planning clarification |
+| 1P-F | C2 Client/Account Organisation Model Planning | Active architecture planning |
 
 ### C1 Admin Surfaces Released
 
@@ -317,6 +318,7 @@ Current C2 planning documents:
 isodocs/docs/modules/fund/03-slice-planning/2026-06-24-fund-phase-1-slice-1p-c2-organiser-dashboard-proposal.md
 isodocs/docs/modules/fund/03-slice-planning/2026-06-24-fund-phase-1-slice-1p-a-c2-project-access-model-proposal.md
 isodocs/docs/modules/fund/03-slice-planning/2026-06-25-fund-phase-1-slice-1p-d0-c2-organisation-scope-clarification.md
+isodocs/docs/modules/fund/03-slice-planning/2026-06-25-fund-phase-1-slice-1p-f-c2-client-account-organisation-model-planning.md
 ```
 
 Recommended model:
@@ -340,6 +342,7 @@ Current C2 recommendation:
 - Decide the C2 organisation/account scope before adding C2 mutations, participant management UI, C2 client/account management UI, C1 Client view, invitations, Project Request/onboarding, sales/order/reporting views, Store or Commerce coupling.
 - Do not assume direct `FundProjectParticipant` access is the final C2 operating model.
 - Likely long-term direction to evaluate: C2 Client/account owns Projects, C2 users belong to that Client/account, and `FundProjectParticipant` remains for named contacts, overrides, exceptions and transition access.
+- 1P-F is the active architecture planning slice for the C2 Client/account organisation model.
 
 ### C2 Organisation / Account Scope Clarification
 
@@ -644,7 +647,7 @@ Begin 1P-D-R2 only after Render deployment completes and Render/Neon confirms mi
 Suggested slice:
 
 ```text
-Slice 1P-D0 / 1P-F - C2 Organisation/Account Scope Decision
+Slice 1P-F - C2 Client/Account Organisation Model Planning
 ```
 
 Scope:
@@ -655,6 +658,12 @@ Scope:
 - decide whether `Client` is the user-facing/admin term for C2 organisation/account;
 - decide how C1 Client view differs from C2 user hat-swapping;
 - decide whether `/app/fund/organiser` remains the correct route name.
+
+Status:
+
+```text
+Planning document created. Further C2 expansion remains paused until the model is accepted.
+```
 
 ### Next 5 - Event / Catalogue / Product Availability Planning
 
