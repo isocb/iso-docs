@@ -157,7 +157,10 @@ This keeps the shared standard unchanged while preserving the FUND AI guardrail.
 
 ## Defects Found
 
-No product-blocking code defects were found.
+Two review defects were found after the first review pass:
+
+- #44 breadcrumb remediation only covered `/app/fund/products`; Projects and Events list pages also needed breadcrumbs.
+- #45 FUND sidebar navigation still showed house icons because `IconClipboardList`, `IconCalendarEvent` and `IconPackage` were not registered in the sidebar renderer icon map, so the renderer fell back to `IconHome`.
 
 Documentation process defect found and corrected:
 
@@ -165,12 +168,20 @@ Documentation process defect found and corrected:
 
 ## Fixes Made During Review
 
-Documentation-only:
+Application:
+
+- added breadcrumbs to `/app/fund/projects`;
+- added breadcrumbs to `/app/fund/events`;
+- added `IconClipboardList`, `IconCalendarEvent` and `IconPackage` to the sidebar renderer icon map;
+- changed `fundModuleConfig.icon` from `IconHome` to `IconHeart`;
+- confirmed `/app/fund/products` already had the breadcrumb from 1P-R1.
+
+Documentation:
 
 - reverted the unapproved shared UI standard wording by removing the 1P-R1 added note;
 - added FUND-specific icon guidance to `README-AI.md`.
 
-No application feature changes were made during 1P-R2.
+No new product feature work was added during 1P-R2; changes were limited to review corrections for #44/#45 and documentation-owner handling.
 
 ## Schema / Migration / Data Safety
 
@@ -202,6 +213,11 @@ Static/code review found no regressions to:
 - non-P1 organisation-scoped module visibility;
 - Products/Catalogues page structure;
 - FUND navigation configuration.
+
+Post-review correction checks confirmed:
+
+- FUND sidebar icon names are now present in the renderer icon map and should no longer fall back to `IconHome`.
+- FUND list pages now have breadcrumbs for Projects, Events and Products/Catalogues.
 
 Authenticated browser route regression was not completed in this CLI session.
 
