@@ -26,7 +26,7 @@ Current branch alignment after 1P-C review:
 
 ```text
 main    = 62b727e released C1 admin foundation baseline
-dev     = 69a9632 1P-C C2 read-only organiser Project API/services
+dev     = f43d63b 1P-D C2 read-only organiser dashboard UI
 staging = 69a9632 1P-C C2 read-only organiser Project API/services
 ```
 
@@ -36,12 +36,13 @@ Release result:
 - SeasonPro/LMSPro export hotfix is included in the released baseline.
 - Staging browser testing found no blocking C1 admin foundation issues before release alignment.
 - FUND remains expected to need refinement; the baseline is accepted as the foundation, not as final product polish.
-- 1P-R1/1P-R1A remediation, 1P-B schema work and 1P-C read-only organiser Project API/services have been aligned to `dev` and `staging` at `69a9632`.
-- 1P-D read-only organiser dashboard UI has been implemented on `feature/fund-phase-1-c2-project-access` and reviewed with caveats.
-- 1P-D is recommended for `dev` alignment after review acceptance and `staging` alignment after confirming the participant migration has applied in Render/Neon.
+- 1P-R1/1P-R1A remediation, 1P-B schema work and 1P-C read-only organiser Project API/services have been aligned to `staging` at `69a9632`.
+- 1P-D read-only organiser dashboard UI has been implemented on `feature/fund-phase-1-c2-project-access` at `f43d63b`, reviewed with caveats and aligned to `dev`.
+- 1P-D staging alignment remains held until confirming the participant migration has applied in Render/Neon.
 - A post-1P-D C2 organisation/account scope clarification has been raised. The current participant-scoped dashboard remains safe but should be treated as an interim bridge until this is decided.
 - Staging `/api/health` returned HTTP 200 after alignment.
 - `main` remains held at `62b727e` until the 1P-B/staging migration and smoke testing are accepted.
+- Docs repo `main` latest before this alignment update was `de2591e`.
 
 ## 2. Current Branch Landscape
 
@@ -57,14 +58,15 @@ Current state:
 
 ```text
 main held at 62b727e
-dev/staging aligned at 69a9632
+dev aligned at f43d63b
+staging held at 69a9632
 ```
 
 Use:
 
 - `main` is the live/release baseline.
-- `dev` is the integration baseline for the current C2 access lane.
-- `staging` carries 1P-B schema, Issue Manager consolidation and 1P-C read-only organiser Project API/services for migration/smoke validation.
+- `dev` is the integration baseline for the current C2 access lane and now includes 1P-D.
+- `staging` carries 1P-B schema, Issue Manager consolidation and 1P-C read-only organiser Project API/services for migration/smoke validation. It does not yet carry 1P-D.
 
 ### Active FUND Branch
 
@@ -238,8 +240,8 @@ Fix the C1 foundation in place before exposing dependent behaviour to C2 organis
 Current branch state:
 
 ```text
-feature/fund-phase-1-c2-project-access = 69a9632
-dev                              = 69a9632
+feature/fund-phase-1-c2-project-access = f43d63b
+dev                              = f43d63b
 staging                          = 69a9632
 main                             = 62b727e
 ```
