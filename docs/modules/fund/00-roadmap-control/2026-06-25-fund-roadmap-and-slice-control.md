@@ -46,6 +46,8 @@ Release result:
 - 1P-F-C C1 Client Management schema has been implemented locally on the active FUND branch as schema-only work; it is not promoted to `main`.
 - 1P-F-D C1 Client Management API/services has been implemented locally on the active FUND branch.
 - 1P-F-E C1 Client Management UI is the next recommended planning/implementation lane.
+- Project Intake / Project Request forms are a future critical lane. C1-created forms may eventually collect external or Client-originated Project requests and, after C1 moderation, create or link Client/account, C2 user/member, Project and Event records.
+- Notification management remains deferred. Project intake, Client creation, C2 user creation and Project approval must not accidentally send notifications until controlled communications are explicitly planned.
 - Staging `/api/health` returned HTTP 200 after alignment.
 - `main` remains held at `62b727e` until the 1P-B/staging migration and smoke testing are accepted.
 - Docs repo `main` latest before this staging-readiness update was `c4aaff0`.
@@ -446,6 +448,36 @@ Control decision:
 - C2 mutations, invitations, Project Request/onboarding, Store, Orders, Commerce, Sales/Reporting and Communications remain deferred.
 - C1 Client management is the next priority planning lane.
 
+### Project Intake / Client Onboarding Clarification
+
+Future FUND Project creation has two important paths:
+
+```text
+New Client / first Project:
+external or unknown respondent -> C1 Project Intake form -> C1 moderation -> Client/account + C2 user/member + Project
+
+Existing Client / additional Project:
+existing C2 user or SeasonPro Club user -> Client dashboard or Club view -> Project request/create flow -> C1 moderation if policy requires
+```
+
+Project Intake / Project Request forms may later be:
+
+- embedded on websites;
+- linked from emails;
+- linked from campaign pages;
+- linked from SeasonPro Club views;
+- linked from future Client dashboards.
+
+Control rules:
+
+- C1 users may create/manage Project Intake forms in a future slice.
+- Form submissions must be moderated before operational records are created or linked.
+- Approval may create/link Client/account, C2 user/member, Project and Event linkage.
+- Projects may be linked to a C1 Event or may be standalone depending on campaign/form policy.
+- Existing SeasonPro Clubs may later act as the FUND Client/account and Project creator.
+- Notification/invitation sending is deferred and must follow a controlled SeasonPro-style communications pattern.
+- 1P-F-E Client UI remains C1 admin only and does not implement Project Intake forms, Client users, invitations or automatic Project creation.
+
 ## 6. Architecture Planning Required Before Store / Commerce
 
 The first remediation CR surfaced two architecture questions that should be resolved before Store, Order, Commerce or production workflow work.
@@ -549,7 +581,7 @@ Deferred until explicitly planned:
 - C2 organiser dashboard mutations or expansion beyond the implemented read-only interim participant-scoped view.
 - C2 organisation/account model implementation beyond controlled Client-management planning.
 - C2 organiser invitations.
-- Project Request/onboarding.
+- Project Intake / Project Request / onboarding forms.
 - Organiser account provisioning.
 - FundOrganiserProfile.
 - Store schema.
@@ -583,7 +615,7 @@ Until remediation and architecture planning are complete, do not build:
 - C2 dashboard mutation/management expansion.
 - C2 organisation/account schema before the Client/account schema-options slice is accepted.
 - C2 invitation/onboarding flow.
-- Project Request public flow.
+- Project Intake / Project Request public flow.
 - Organiser dashboard actions.
 - Product marketplace/sharing.
 - Any schema migration for the above without a planning slice first.
@@ -820,7 +852,39 @@ Scope:
 - produce schema/API plan;
 - explicitly record Store/Commerce impacts.
 
-### Next 8 - C2 Dashboard Foundation Expansion
+### Next 8 - Project Intake / Client Onboarding Planning
+
+Suggested slice:
+
+```text
+Slice 1P-G - Project Intake, Client Onboarding And Moderation Planning
+```
+
+Scope:
+
+- plan C1-created Project Intake forms;
+- plan embedded public forms and email/campaign links;
+- plan SeasonPro Club-view Project creation entry points;
+- plan future Client-dashboard additional Project initiation;
+- plan unknown respondent and existing C2 user flows;
+- plan C1 moderation before creating/linking operational records;
+- plan approval creating/linking Client/account, C2 user/member, Project and Event linkage;
+- define notification/invitation boundary;
+- defer Store, Orders, Commerce, Sales/Reporting and Communications implementation.
+
+Status:
+
+```text
+Future planning lane documented. Do not implement yet.
+```
+
+Planning document:
+
+```text
+isodocs/docs/modules/fund/03-slice-planning/2026-06-25-fund-phase-1-slice-1p-g-project-intake-client-onboarding-and-moderation-planning.md
+```
+
+### Next 9 - C2 Dashboard Foundation Expansion
 
 Suggested slice:
 

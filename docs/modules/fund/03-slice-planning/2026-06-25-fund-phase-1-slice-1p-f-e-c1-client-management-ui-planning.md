@@ -27,6 +27,16 @@ Projects belong to Clients.
 Future Store, Orders, Sales, Communications and Reporting sit naturally under the Client and Project structure.
 ```
 
+Clarification:
+
+```text
+This slice is C1 Client Management UI only.
+It does not implement Project Intake / Project Request forms.
+It does not create Client users from primary contact fields.
+It does not send invitations or notifications.
+It does not automatically create Projects when a Client is created.
+```
+
 ## 2. Implementation Boundary
 
 Plan UI only.
@@ -48,6 +58,7 @@ Not allowed:
 - Client users;
 - Client roles;
 - invitations;
+- Project Intake / Project Request forms;
 - C2 dashboard expansion;
 - C2 mutations;
 - Project Request/onboarding;
@@ -232,6 +243,8 @@ Defer unless an existing safe JSON/object editing UI pattern is already availabl
 
 Do not create users or invitations.
 
+Do not treat primary contact fields as Client user accounts. They remain C1 operational contact snapshots until Client users, invitations and notification management are explicitly planned.
+
 ## 9. Edit Flow
 
 Edit should happen on the Client detail child page.
@@ -403,6 +416,7 @@ Do not implement:
 - Client users;
 - Client roles;
 - invitations;
+- Project Intake / Project Request forms;
 - C2 dashboard expansion;
 - C2 mutations;
 - Project Request/onboarding;
