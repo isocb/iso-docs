@@ -31,11 +31,23 @@ Clarification:
 
 ```text
 This slice is C1 Client Management UI only.
+Client is an organisation/account record, not a person record.
 It does not implement Project Intake / Project Request forms.
 It does not create Client users from primary contact fields.
 It does not send invitations or notifications.
 It does not automatically create Projects when a Client is created.
 ```
+
+Client examples include:
+
+- school;
+- club;
+- PTA;
+- charity branch;
+- fundraising organisation;
+- customer account.
+
+Future Client users/members should be planned separately. A future Client user/member is a person linked to the Client organisation/account, and may have a role label such as Treasurer, Secretary, Club Secretary, PTA Chair, Headteacher, Project Lead, Finance Contact or General Contact.
 
 ## 2. Implementation Boundary
 
@@ -244,6 +256,16 @@ Defer unless an existing safe JSON/object editing UI pattern is already availabl
 Do not create users or invitations.
 
 Do not treat primary contact fields as Client user accounts. They remain C1 operational contact snapshots until Client users, invitations and notification management are explicitly planned.
+
+Primary contact fields in 1P-F-E are not:
+
+- full user accounts;
+- login identity;
+- invitation state;
+- role membership;
+- notification consent;
+- access control;
+- the final C2 user model.
 
 ## 9. Edit Flow
 

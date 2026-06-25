@@ -20,6 +20,17 @@ Current foundation:
 - Client users, invitations, Project Client selector/linkage and Project Request/onboarding remain out of scope.
 - C2 is the Project management node, but AMOW's immediate priority remains the C1 organisational dashboard.
 
+Important model distinction:
+
+```text
+FundClient = organisation/account.
+Client user/member = person linked to the Client organisation/account.
+User = authenticated platform identity.
+Client role = future role label or access role within the Client/account.
+```
+
+The Client organisation is distinct from the respondent/person completing an intake form.
+
 ## 3. Strategic Clarification
 
 Projects will often be instantiated through a form created by C1 users.
@@ -57,7 +68,7 @@ Characteristics:
 - respondent may be unknown to the tenant;
 - no existing Client/account may exist yet;
 - C1 must decide whether to create or link a Client/account;
-- C1 must decide whether to create or link a C2 user/member;
+- C1 must decide whether to create or link a Client user/member for the respondent;
 - C1 must decide whether the Project belongs to an Event or remains standalone.
 
 ### Existing Client / Additional Project
@@ -162,6 +173,7 @@ Unknown respondent flow should capture enough information for C1 moderation:
 The submission should not automatically:
 
 - create a User;
+- create a Client user/member;
 - create a Client;
 - create a Project;
 - send an invitation;
@@ -187,7 +199,7 @@ C1 moderation should decide whether to:
 - request more information;
 - create a new Client/account;
 - link to an existing Client/account;
-- create or link a C2 user/member;
+- create or link a Client user/member;
 - create a Project;
 - link the Project to a C1 Event;
 - keep the Project standalone;
@@ -200,7 +212,7 @@ Moderation must write audit events.
 Approval may create or link:
 
 - Client/account organisation;
-- C2 user/member;
+- Client user/member;
 - Project;
 - Event linkage;
 - future Project Product or Catalogue availability decisions after separate planning.

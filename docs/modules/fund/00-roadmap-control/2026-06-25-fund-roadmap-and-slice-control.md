@@ -46,6 +46,8 @@ Release result:
 - 1P-F-C C1 Client Management schema has been implemented and aligned to `dev`/`staging` as part of `da6fd0f`.
 - 1P-F-D C1 Client Management API/services has been implemented and aligned to `dev`/`staging` as part of `da6fd0f`.
 - 1P-F-E C1 Client Management UI has been implemented, reviewed with caveats and aligned to `dev`/`staging` as part of `da6fd0f`.
+- Client is the C2 organisation/account concept. Primary contact fields on `FundClient` are C1 operational contact snapshots only, not the final Client user/member model.
+- Client users/members, roles, invitations and notification boundaries require a future planning slice before implementation.
 - 1P-H Project Client selector/linkage planning is the next recommended planning lane.
 - Project Intake / Project Request forms are a future critical lane. C1-created forms may eventually collect external or Client-originated Project requests and, after C1 moderation, create or link Client/account, C2 user/member, Project and Event records.
 - Notification management remains deferred. Project intake, Client creation, C2 user creation and Project approval must not accidentally send notifications until controlled communications are explicitly planned.
@@ -166,6 +168,7 @@ isodocs/docs/modules/fund/implementation/
 | 1P-F-C | C1 Client Management Schema | Implemented / aligned to dev+staging |
 | 1P-F-D | C1 Client Management API/Services | Implemented / aligned to dev+staging |
 | 1P-F-E | C1 Client Management UI | Implemented / reviewed with caveats / aligned to dev+staging |
+| 1P-F-F | Client Organisation Details, Users, Roles And Notification Planning | Future planning note created |
 | 1P-H | Project Client Selector And Linkage Planning | Active next planning slice |
 
 ### C1 Admin Surfaces Released
@@ -385,6 +388,17 @@ C2 users operate within the Client/account organisation.
 FundProjectParticipant is not the strategic Project ownership model.
 ```
 
+Client organisation / user clarification:
+
+```text
+FundClient = organisation/account.
+Client user/member = person linked to Client.
+User = authenticated platform identity.
+Client role = future role label or access role within the Client/account.
+```
+
+Primary contact fields on `FundClient` are C1 operational contact snapshots only. They are not full user accounts, login identity, invitation state, role membership, notification consent, access control or the final C2 user model.
+
 SeasonPro precedent:
 
 ```text
@@ -449,6 +463,8 @@ Control decision:
 - Further C2 dashboard expansion remains paused.
 - C2 mutations, invitations, Project Request/onboarding, Store, Orders, Commerce, Sales/Reporting and Communications remain deferred.
 - C1 Client management is the next priority planning lane.
+- C1 Client management UI can proceed without Client user provisioning because organisation/account management and user/member management are separate concerns.
+- A future planning slice is required for Client organisation details, Client users/members, roles and notification boundaries.
 
 ### Project Intake / Client Onboarding Clarification
 
@@ -582,6 +598,7 @@ Deferred until explicitly planned:
 
 - C2 organiser dashboard mutations or expansion beyond the implemented read-only interim participant-scoped view.
 - C2 organisation/account model implementation beyond controlled Client-management planning.
+- Client users/members, Client roles, invitation state and notification consent.
 - C2 organiser invitations.
 - Project Intake / Project Request / onboarding forms.
 - Organiser account provisioning.
