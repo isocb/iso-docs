@@ -48,8 +48,8 @@ Release result:
 - 1P-F-E C1 Client Management UI has been implemented, reviewed with caveats and aligned to `dev`/`staging` as part of `da6fd0f`.
 - Client is the C2 organisation/account concept. Primary contact fields on `FundClient` are C1 operational contact snapshots only, not the final Client user/member model.
 - Client users/members, roles, invitations and notification boundaries require a future planning slice before implementation.
-- 1P-H Project Client selector/linkage planning is complete. 1P-H-A API/services and 1P-H-B UI are implemented on `feature/fund-phase-1-c2-project-access` pending commit/alignment.
-- 1P-H-C static/code review passed with caveats. Authenticated browser smoke testing remains outstanding before or immediately after dev/staging alignment.
+- 1P-H Project Client selector/linkage planning is complete. 1P-H-A API/services and 1P-H-B UI are committed on `feature/fund-phase-1-c2-project-access` at `536c947` and aligned to `dev`.
+- 1P-H-C static/code review passed with caveats. Authenticated browser smoke testing remains outstanding before staging alignment.
 - 1P-G-A Project Intake Schema And Moderation Model planning is complete. Project Intake remains moderation-first: submissions must not directly create Clients, Client users, Projects, Event links, notifications or invitations.
 - Project Intake / Project Request forms are a future critical lane. C1-created forms may eventually collect external or Client-originated Project requests and, after C1 moderation, create or link Client/account, C2 user/member, Project and Event records.
 - Notification management remains deferred. Project intake, Client creation, C2 user creation and Project approval must not accidentally send notifications until controlled communications are explicitly planned.
@@ -266,8 +266,8 @@ Fix the C1 foundation in place before exposing dependent behaviour to C2 organis
 Current branch state:
 
 ```text
-feature/fund-phase-1-c2-project-access = da6fd0f plus uncommitted 1P-H-A/1P-H-B Project Client linkage changes
-dev                              = da6fd0f
+feature/fund-phase-1-c2-project-access = 536c947
+dev                              = 536c947
 staging                          = da6fd0f
 main                             = 62b727e
 ```
@@ -279,10 +279,10 @@ Current C2 lane status:
 - 1P-C read-only organiser Project API/services are implemented and reviewed.
 - 1P-D read-only organiser dashboard UI is implemented and statically reviewed with caveats.
 - 1P-D0 C2 organisation/account scope clarification has been raised and must be decided before C2 expansion.
-- 1P-H-A Project Client linkage API/services are implemented and static-check passed.
-- 1P-H-B Project Client selector UI is implemented and static-check passed.
+- 1P-H-A Project Client linkage API/services are implemented, static-check passed and committed.
+- 1P-H-B Project Client selector UI is implemented, static-check passed and committed.
 - 1P-H-C review is complete with caveats. Authenticated browser smoke testing remains outstanding.
-- 1P-H alignment recommendation: commit the Project Client linkage batch, align to `dev`, then align to `staging` after quick authenticated smoke testing or with smoke testing explicitly recorded as post-deploy validation.
+- 1P-H alignment status: feature branch and `dev` are aligned at `536c947`; `staging` remains at `da6fd0f` until authenticated smoke testing is completed or explicitly accepted as post-deploy validation.
 - 1P-G-A Project Intake schema/moderation model planning is complete.
 - 1P-G-B Project Intake schema options is the next recommended planning slice.
 
