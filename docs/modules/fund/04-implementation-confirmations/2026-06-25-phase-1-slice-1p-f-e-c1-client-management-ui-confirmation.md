@@ -100,6 +100,26 @@ Archive and restore use the dedicated API procedures. API archive blockers, incl
 
 Metadata editing is not exposed in this slice.
 
+## Primary Contact And Notification Boundary
+
+Primary contact fields remain C1 operational contact snapshots only:
+
+- primary contact name;
+- primary contact email;
+- primary contact phone.
+
+They do not create Client users.
+
+They do not create Client roles.
+
+They do not send invitations.
+
+They do not trigger notification workflows.
+
+They do not create Projects automatically when a Client is created.
+
+The UI uses Mantine in-app toast feedback for success/error messages only. This is local UI feedback, not FUND communications, email/SMS notification sending, invitation sending or workflow automation.
+
 ## Dashboard And Navigation
 
 The C1 FUND home now includes a Client Management card using whole-card navigation and brand-primary action treatment.
@@ -125,6 +145,8 @@ This slice did not implement:
 - Client users;
 - Client roles;
 - invitations;
+- notification sending;
+- Project Intake / Project Request forms;
 - C2 dashboard expansion;
 - C2 mutations;
 - Project Request/onboarding;
