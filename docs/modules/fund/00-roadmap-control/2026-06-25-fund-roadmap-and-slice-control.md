@@ -27,7 +27,7 @@ Current branch alignment after 1P-F-E Client Management alignment:
 ```text
 main    = 62b727e released C1 admin foundation baseline
 dev     = da6fd0f 1P-F-E C1 Client Management
-staging = da6fd0f 1P-F-E C1 Client Management
+staging = 536c947 1P-H Project Client linkage
 ```
 
 Release result:
@@ -48,8 +48,8 @@ Release result:
 - 1P-F-E C1 Client Management UI has been implemented, reviewed with caveats and aligned to `dev`/`staging` as part of `da6fd0f`.
 - Client is the C2 organisation/account concept. Primary contact fields on `FundClient` are C1 operational contact snapshots only, not the final Client user/member model.
 - Client users/members, roles, invitations and notification boundaries require a future planning slice before implementation.
-- 1P-H Project Client selector/linkage planning is complete. 1P-H-A API/services and 1P-H-B UI are committed on `feature/fund-phase-1-c2-project-access` at `536c947` and aligned to `dev`.
-- 1P-H-C static/code review passed with caveats. Authenticated browser smoke testing remains outstanding before staging alignment.
+- 1P-H Project Client selector/linkage planning is complete. 1P-H-A API/services and 1P-H-B UI are committed on `feature/fund-phase-1-c2-project-access` at `536c947` and aligned to `dev`/`staging`.
+- 1P-H-C static/code review passed with caveats. Authenticated browser smoke testing remains outstanding as a staging post-deploy validation item.
 - 1P-G-A Project Intake Schema And Moderation Model planning is complete. Project Intake remains moderation-first: submissions must not directly create Clients, Client users, Projects, Event links, notifications or invitations.
 - Project Intake / Project Request forms are a future critical lane. C1-created forms may eventually collect external or Client-originated Project requests and, after C1 moderation, create or link Client/account, C2 user/member, Project and Event records.
 - Notification management remains deferred. Project intake, Client creation, C2 user creation and Project approval must not accidentally send notifications until controlled communications are explicitly planned.
@@ -268,7 +268,7 @@ Current branch state:
 ```text
 feature/fund-phase-1-c2-project-access = 536c947
 dev                              = 536c947
-staging                          = da6fd0f
+staging                          = 536c947
 main                             = 62b727e
 ```
 
@@ -282,7 +282,7 @@ Current C2 lane status:
 - 1P-H-A Project Client linkage API/services are implemented, static-check passed and committed.
 - 1P-H-B Project Client selector UI is implemented, static-check passed and committed.
 - 1P-H-C review is complete with caveats. Authenticated browser smoke testing remains outstanding.
-- 1P-H alignment status: feature branch and `dev` are aligned at `536c947`; `staging` remains at `da6fd0f` until authenticated smoke testing is completed or explicitly accepted as post-deploy validation.
+- 1P-H alignment status: feature branch, `dev` and `staging` are aligned at `536c947`; authenticated staging smoke testing remains a post-deploy validation item.
 - 1P-G-A Project Intake schema/moderation model planning is complete.
 - 1P-G-B Project Intake schema options is the next recommended planning slice.
 
@@ -924,7 +924,7 @@ isodocs/docs/modules/fund/05-review-and-test/2026-06-25-phase-1-slice-1p-h-c-pro
 Alignment recommendation:
 
 ```text
-Commit 1P-H-A/1P-H-B, align to dev, then align to staging after quick authenticated smoke testing or with the smoke test recorded as post-deploy validation.
+1P-H-A/1P-H-B are committed and aligned to dev/staging at `536c947`. Run authenticated staging smoke testing as post-deploy validation.
 ```
 
 ### Next 8 - Project Intake / Client Onboarding Planning
