@@ -157,6 +157,7 @@ isodocs/docs/modules/fund/implementation/
 | 1P-F | C2 Client/Account Organisation Model Planning | Active architecture planning |
 | 1P-F-CORR | C2 Client/Account As Project Management Node Planning | Active architecture correction |
 | 1P-F-A | C1 Client Management Foundation For AMOW | Active priority planning |
+| 1P-F-B | C1 Client Management Schema Options | Active schema-options planning |
 
 ### C1 Admin Surfaces Released
 
@@ -703,7 +704,19 @@ Scope:
 Status:
 
 ```text
-Not started.
+Planning document created.
+```
+
+Planning document:
+
+```text
+isodocs/docs/modules/fund/03-slice-planning/2026-06-25-fund-phase-1-slice-1p-f-b-c1-client-management-schema-options.md
+```
+
+Recommended next implementation slice:
+
+```text
+Slice 1P-F-C - C1 Client Management Schema
 ```
 
 ### Next 5 - Event / Catalogue / Product Availability Planning
