@@ -38,11 +38,11 @@ Release result:
 - FUND remains expected to need refinement; the baseline is accepted as the foundation, not as final product polish.
 - 1P-R1/1P-R1A remediation, 1P-B schema work and 1P-C read-only organiser Project API/services have been aligned to `staging` at `69a9632`.
 - 1P-D read-only organiser dashboard UI has been implemented on `feature/fund-phase-1-c2-project-access` at `f43d63b`, reviewed with caveats and aligned to `dev`.
-- 1P-D staging alignment remains held until confirming the participant migration has applied in Render/Neon.
+- 1P-D staging alignment remains held because the participant migration application could not be confirmed from the local shell.
 - A post-1P-D C2 organisation/account scope clarification has been raised. The current participant-scoped dashboard remains safe but should be treated as an interim bridge until this is decided.
 - Staging `/api/health` returned HTTP 200 after alignment.
 - `main` remains held at `62b727e` until the 1P-B/staging migration and smoke testing are accepted.
-- Docs repo `main` latest before this alignment update was `de2591e`.
+- Docs repo `main` latest before this staging-readiness update was `c4aaff0`.
 
 ## 2. Current Branch Landscape
 
@@ -258,6 +258,8 @@ Staging migration note:
 
 - Render build runs `prisma migrate deploy` through `scripts/render-build.sh`.
 - Direct staging `_prisma_migrations` inspection was not available from the local shell.
+- Local shell checks found no Render CLI, no Neon CLI and no exposed staging database environment variable.
+- Migration `20260625143000_add_fund_project_participants` exists locally, but staging application remains unconfirmed.
 - Before authenticated 1P-D staging testing, confirm in Render/Neon that `20260625143000_add_fund_project_participants` has applied.
 - Lightweight staging health check after alignment returned HTTP 200 for `/api/health`.
 
@@ -612,6 +614,13 @@ Gate:
 
 ```text
 Confirm 20260625143000_add_fund_project_participants has applied in Render/Neon before authenticated staging testing.
+```
+
+Current status:
+
+```text
+Blocked for staging until Render/Neon migration confirmation is available.
+Do not align staging to f43d63b until that confirmation is recorded.
 ```
 
 ### Next 4 - C2 Organisation / Account Scope Planning
