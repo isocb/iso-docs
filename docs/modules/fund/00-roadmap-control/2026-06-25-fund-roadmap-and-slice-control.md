@@ -44,7 +44,8 @@ Release result:
 - AMOW founding-tenant priority has been re-centred on the C1 organisational dashboard: C1 Client management, Products, Events, Projects and the operational framework for managing fundraising Clients and their Projects.
 - 1P-D remains technically safe but is not the immediate AMOW product priority.
 - 1P-F-C C1 Client Management schema has been implemented locally on the active FUND branch as schema-only work; it is not promoted to `main`.
-- 1P-F-D C1 Client Management API/services is the next planning lane.
+- 1P-F-D C1 Client Management API/services has been implemented locally on the active FUND branch.
+- 1P-F-E C1 Client Management UI is the next recommended planning/implementation lane.
 - Staging `/api/health` returned HTTP 200 after alignment.
 - `main` remains held at `62b727e` until the 1P-B/staging migration and smoke testing are accepted.
 - Docs repo `main` latest before this staging-readiness update was `c4aaff0`.
@@ -160,7 +161,8 @@ isodocs/docs/modules/fund/implementation/
 | 1P-F-A | C1 Client Management Foundation For AMOW | Planning complete |
 | 1P-F-B | C1 Client Management Schema Options | Planning complete |
 | 1P-F-C | C1 Client Management Schema | Implemented locally / schema only |
-| 1P-F-D | C1 Client Management API/Services | Active planning |
+| 1P-F-D | C1 Client Management API/Services | Implemented locally / API-services only |
+| 1P-F-E | C1 Client Management UI | Recommended next |
 
 ### C1 Admin Surfaces Released
 
@@ -754,7 +756,7 @@ Scope:
 Status:
 
 ```text
-Active planning.
+Implemented locally as API-services only.
 ```
 
 Planning document:
@@ -763,7 +765,48 @@ Planning document:
 isodocs/docs/modules/fund/03-slice-planning/2026-06-25-fund-phase-1-slice-1p-f-d-c1-client-management-api-services-planning.md
 ```
 
-### Next 6 - Event / Catalogue / Product Availability Planning
+Confirmation document:
+
+```text
+isodocs/docs/modules/fund/04-implementation-confirmations/2026-06-25-phase-1-slice-1p-f-d-c1-client-management-api-services-confirmation.md
+```
+
+### Next 6 - C1 Client Management UI
+
+Suggested slice:
+
+```text
+Slice 1P-F-E - C1 Client Management UI
+```
+
+Scope:
+
+- build C1 Client list;
+- build C1 Client detail;
+- consume `fund.clients.*` only;
+- show linked Project summaries;
+- support create/update/archive/restore;
+- keep Client users, invitations, Project Request/onboarding, Store, Orders, Commerce, Sales/Reporting, Communications and SeasonPro mapping out of scope.
+
+Status:
+
+```text
+Planning document created.
+```
+
+Planning document:
+
+```text
+isodocs/docs/modules/fund/03-slice-planning/2026-06-25-fund-phase-1-slice-1p-f-e-c1-client-management-ui-planning.md
+```
+
+Recommended next implementation slice:
+
+```text
+Slice 1P-F-E - C1 Client Management UI
+```
+
+### Next 7 - Event / Catalogue / Product Availability Planning
 
 Suggested slice:
 
@@ -777,7 +820,7 @@ Scope:
 - produce schema/API plan;
 - explicitly record Store/Commerce impacts.
 
-### Next 7 - C2 Dashboard Foundation Expansion
+### Next 8 - C2 Dashboard Foundation Expansion
 
 Suggested slice:
 
@@ -818,12 +861,12 @@ Context:
 - Do not mix unrelated SeasonPro fixes into FUND unless explicitly requested.
 
 Immediate recommended work:
-Proceed with C1 Client Management API/services planning/implementation:
+Proceed with C1 Client Management UI planning/implementation:
 1. Treat 1P-F-C as the schema-only Client foundation.
-2. Add only C1 admin Client list/get/create/update/archive/restore API/services.
-3. Keep Client primary contact fields as snapshots only.
-4. Do not infer Client ownership from Project organiser snapshot fields.
-5. Keep C2 dashboard expansion paused until Client/account scope is accepted.
+2. Treat 1P-F-D as the C1 Client API/services foundation.
+3. Build only C1 admin Client list/detail UI using `fund.clients.*`.
+4. Keep Client primary contact fields as snapshots only.
+5. Keep Project Client selector/linkage, Client users, invitations, Store, Orders, Commerce, Sales/Reporting and Communications out of scope unless separately planned.
 
 Do not start:
 - C2 dashboard expansion;
