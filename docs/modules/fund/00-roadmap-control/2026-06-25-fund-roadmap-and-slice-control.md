@@ -41,6 +41,9 @@ Release result:
 - 1P-D staging alignment was pushed by operator request; Render deployment and migration confirmation remain post-deploy checks.
 - A post-1P-D C2 organisation/account scope clarification has been raised. The current participant-scoped dashboard remains safe but should be treated as an interim bridge until this is decided.
 - Additional correction: C2 is the Project management node, not a passive/read-only recipient of Project information. Future C2 dashboard work must be Client/account scoped, not merely participant scoped.
+- AMOW founding-tenant priority has been re-centred on the C1 organisational dashboard: C1 Client management, Products, Events, Projects and the operational framework for managing fundraising Clients and their Projects.
+- 1P-D remains technically safe but is not the immediate AMOW product priority.
+- 1P-F-A C1 Client Management Foundation is the next priority planning lane.
 - Staging `/api/health` returned HTTP 200 after alignment.
 - `main` remains held at `62b727e` until the 1P-B/staging migration and smoke testing are accepted.
 - Docs repo `main` latest before this staging-readiness update was `c4aaff0`.
@@ -153,6 +156,7 @@ isodocs/docs/modules/fund/implementation/
 | 1P-D0 | C2 Organisation Scope Clarification | Active planning clarification |
 | 1P-F | C2 Client/Account Organisation Model Planning | Active architecture planning |
 | 1P-F-CORR | C2 Client/Account As Project Management Node Planning | Active architecture correction |
+| 1P-F-A | C1 Client Management Foundation For AMOW | Active priority planning |
 
 ### C1 Admin Surfaces Released
 
@@ -409,6 +413,33 @@ Control rule:
 Further C2 dashboard expansion must pause before write-capable or commercially meaningful surfaces until this is resolved.
 ```
 
+### AMOW Founding-Tenant Priority
+
+The immediate AMOW presentation priority is the C1 organisational dashboard, not expansion of the interim C2 read-only dashboard.
+
+AMOW needs to be able to explain and demonstrate the operating model:
+
+```text
+AMOW manages Clients, Products, Events and Projects.
+Clients are fundraising organisations such as schools, clubs or PTAs.
+Projects belong to Clients.
+Future Store, Orders, Sales, Communications and Reporting sit naturally under the Client and Project structure.
+```
+
+Current priority slice:
+
+```text
+1P-F-A - C1 Client Management Foundation
+```
+
+Control decision:
+
+- 1P-D remains technically safe as a read-only participant-scoped interim dashboard.
+- 1P-D is not the immediate AMOW product priority.
+- Further C2 dashboard expansion remains paused.
+- C2 mutations, invitations, Project Request/onboarding, Store, Orders, Commerce, Sales/Reporting and Communications remain deferred.
+- C1 Client management is the next priority planning lane.
+
 ## 6. Architecture Planning Required Before Store / Commerce
 
 The first remediation CR surfaced two architecture questions that should be resolved before Store, Order, Commerce or production workflow work.
@@ -510,7 +541,7 @@ SeasonPro fixes start in the SeasonPro remediation lane unless the fix is genuin
 Deferred until explicitly planned:
 
 - C2 organiser dashboard mutations or expansion beyond the implemented read-only interim participant-scoped view.
-- C2 organisation/account model implementation.
+- C2 organisation/account model implementation beyond controlled Client-management planning.
 - C2 organiser invitations.
 - Project Request/onboarding.
 - Organiser account provisioning.
@@ -544,7 +575,7 @@ Until remediation and architecture planning are complete, do not build:
 - Production export/batching.
 - C2 dashboard implementation.
 - C2 dashboard mutation/management expansion.
-- C2 organisation/account schema.
+- C2 organisation/account schema before the Client/account schema-options slice is accepted.
 - C2 invitation/onboarding flow.
 - Project Request public flow.
 - Organiser dashboard actions.
@@ -623,60 +654,56 @@ Pre-implementation note:
 Confirm staging has applied 20260625143000_add_fund_project_participants before authenticated staging testing.
 ```
 
-### Next 3 - C2 Dashboard Authenticated Smoke Testing
+### Next 3 - C1 Client Management Foundation For AMOW
 
 Suggested slice:
 
 ```text
-Slice 1P-D-R2 - C2 Read-Only Dashboard Authenticated Smoke Testing
+Slice 1P-F-A - C1 Client Management Foundation
 ```
 
 Scope:
 
-- verify ACTIVE participant visibility;
-- verify INVITED/DISABLED/REMOVED/null-user participants do not grant access;
-- verify organiserEmail alone does not grant access;
-- verify C1 admin Project endpoints remain separate.
-- confirm 1P-D remains read-only and interim.
-- confirm no C2 organisation/account assumptions have been hard-coded into mutation or management surfaces.
-
-Gate:
-
-```text
-Confirm 20260625143000_add_fund_project_participants has applied in Render/Neon before authenticated staging testing.
-```
-
-Current status:
-
-```text
-Staging aligned to f43d63b.
-Begin 1P-D-R2 only after Render deployment completes and Render/Neon confirms migration 20260625143000_add_fund_project_participants has applied.
-1P-D-R2 is technical smoke testing only. It is not decisive product validation for the final C2 dashboard because Client/account scope is not implemented yet.
-```
-
-### Next 4 - C2 Organisation / Account Scope Planning
-
-Suggested slice:
-
-```text
-Slice 1P-F - C2 Client/Account As Project Management Node Planning
-```
-
-Scope:
-
-- decide whether to continue direct Project participants, introduce a FUND-specific C2 organisation/account model, create a reusable IsoStack C2 account model, or use a hybrid;
-- decide whether active C2 users in an organisation/account should see all organisation Projects;
-- decide how future sales/orders/reporting scope to C2 organisation/account;
-- decide whether `Client` is the user-facing/admin term for C2 organisation/account;
-- decide how C1 Client view differs from C2 user hat-swapping;
-- decide whether `/app/fund/organiser` remains the correct route name.
-- decide how C2 Clients/accounts initiate and manage Projects;
-- decide how C2 Projects link to C1 Events or operate standalone.
+- plan the AMOW-facing C1 Client management foundation;
+- decide how `Client` should be presented as the C2 organisation/account concept;
+- define the minimal Client record needed for AMOW explanation and near-term implementation;
+- define Client to Project relationship expectations;
+- document how future Orders, Sales, Reporting, Communications and key-date automation sit under Client and Project;
+- defer schema implementation until schema-options planning is accepted.
 
 Status:
 
 ```text
-Planning document created. Further C2 expansion remains paused until the C2 Client/account Project management node model is accepted.
+Active priority planning.
+```
+
+Planning document:
+
+```text
+isodocs/docs/modules/fund/03-slice-planning/2026-06-25-fund-phase-1-slice-1p-f-a-c1-client-management-foundation-planning.md
+```
+
+### Next 4 - C1 Client / Account Schema Options
+
+Suggested slice:
+
+```text
+Slice 1P-F-B - C1 Client Management Schema Options
+```
+
+Scope:
+
+- decide whether Client/account should be FUND-specific, reusable IsoStack core, or hybrid;
+- define tenant scoping and same-tenant Project linkage;
+- decide Project `clientId` / `clientAccountId` direction;
+- define migration/backfill approach for existing Projects;
+- define SeasonPro Club mapping guardrails;
+- define C1 Client list/detail UI implications.
+
+Status:
+
+```text
+Not started.
 ```
 
 ### Next 5 - Event / Catalogue / Product Availability Planning
@@ -706,6 +733,7 @@ Only start after:
 - C1 immediate remediation is complete;
 - 1P-D read-only dashboard review is complete;
 - C2 organisation/account scope is accepted;
+- C1 Client/account schema direction is accepted;
 - C2 read-only visibility rules are clear.
 
 ## 12. Prompt To Use In A Fresh Chat
@@ -733,20 +761,25 @@ Context:
 - Do not mix unrelated SeasonPro fixes into FUND unless explicitly requested.
 
 Immediate recommended work:
-Proceed with C1 admin immediate remediation for:
-1. Issue #46 - Event-linked Project close date must not be later than Event closesAt.
-2. Issue #50 - Issue Manager module filtering/server render error.
-Optionally include small UI polish for Issues #47, #44 and #45 if scope stays contained.
+Proceed with C1 Client Management Foundation planning for the AMOW founding-tenant priority:
+1. Treat the implemented 1P-D C2 read-only dashboard as technically safe but functionally interim.
+2. Do not expand C2 dashboard behaviour until the C2 Client/account organisation model is accepted.
+3. Plan the C1 Client management foundation so AMOW can explain: Clients, Products, Events and Projects.
+4. Keep Client/account schema implementation behind a dedicated schema-options slice.
 
 Do not start:
-- C2 dashboard implementation;
+- C2 dashboard expansion;
+- C2 mutations;
+- C2 invitations;
+- Project Request/onboarding;
 - Commerce Core;
 - Store;
 - Order;
+- Sales/Reporting implementation;
+- Communications implementation;
 - payments;
 - commissions;
 - production batching;
-- organiser onboarding;
 - Event-Catalogue/Product availability schema;
 - Product workflow suitability schema;
 until their planning slices are accepted.
