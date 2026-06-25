@@ -518,7 +518,14 @@ Status:
 
 ```text
 1P-A planning document updated 2026-06-25 with current staging/remediation status.
+1P-B schema implemented and check-passed on 2026-06-25.
 1P-B should not be promoted beyond local/dev review until 1P-R1/1P-R1A staging spot-check is accepted.
+```
+
+Implementation confirmation:
+
+```text
+04-implementation-confirmations/2026-06-25-phase-1-slice-1p-b-c2-project-participant-schema-confirmation.md
 ```
 
 ### Next 4 - Event / Catalogue / Product Availability Planning

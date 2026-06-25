@@ -131,7 +131,7 @@ model FundProjectParticipant {
   phone String?
 
   role   FundProjectParticipantRole   @default(PRIMARY_ORGANISER)
-  status FundProjectParticipantStatus @default(ACTIVE)
+  status FundProjectParticipantStatus @default(INVITED)
 
   isPrimary Boolean @default(false) @map("is_primary")
 
@@ -204,6 +204,8 @@ participant.organizationId = current tenant
 ```
 
 Pending email-only participants should not grant dashboard access until linked to an authenticated user.
+
+For least-privilege schema defaults, `FundProjectParticipant.status` should default to `INVITED`. Later services must explicitly set or transition a participant to `ACTIVE` before it grants C2 dashboard access.
 
 ## 7. Role And Status Enum Strategy
 
@@ -498,7 +500,7 @@ Scope:
 - add FundProjectParticipant model;
 - add required Organization relation;
 - add FundProject relation using organizationId/projectId same-tenant constraint;
-- add optional User relation if Prisma relation naming is straightforward;
+- add optional User relation only if it follows existing Prisma relation conventions cleanly;
 - add indexes and uniqueness constraints;
 - create migration;
 - create implementation confirmation document.
@@ -513,8 +515,14 @@ Do not run seed/reset commands.
 
 Important:
 - FundProjectParticipant grants access only when linked to userId and status ACTIVE in later services.
+- Do not implement any runtime access checks in this schema-only slice.
+- Document that later C2 access must require:
+  - participant.organizationId = current tenant;
+  - participant.userId = currentUser.id;
+  - participant.status = ACTIVE.
 - Existing FundProject organiserName/email/phone remain snapshots and must not grant access.
 - Keep multi-C1 organiser access deferred unless explicitly approved.
+- If optional User relation naming becomes ambiguous, stop and report the required relation-name options rather than improvising.
 
 Run:
 - npx prisma validate
