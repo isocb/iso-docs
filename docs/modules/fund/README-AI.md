@@ -1,47 +1,106 @@
 # FUND AI Handoff
 
-Do not implement from old Phase 1 backlog documents.
-The next task is schema design proposal only, not implementation.
 Use this when resuming FUND work with an AI coding assistant.
 
-## Required Reading
+## Read First
 
-1. `01-fund-module-brief.md`
-2. `02-fund-architecture-principles.md`
-3. `03-fund-functional-specification.md`
-4. `04-fund-phase-1-implementation-plan.md`
+1. `00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md`
+2. `02-triage/2026-06-25-fund-c1-admin-remediation-and-architecture-triage.md`
+3. `03-slice-planning/2026-06-24-fund-phase-1-slice-1p-a-c2-project-access-model-proposal.md`
+4. `03-slice-planning/2026-06-24-fund-phase-1-slice-1p-c2-organiser-dashboard-proposal.md`
 5. `05-fund-open-questions.md`
-6. `_archive/` only when historical context is needed
+6. `01-fund-module-brief.md`
+7. `02-fund-architecture-principles.md`
+
+Read CR input files only when triage or implementation needs raw issue evidence.
 
 ## Current State
 
-FUND has a shell only and is otherwise planning-ready.
-
-- No Prisma models exist yet.
-- No Prisma migrations exist yet.
-- No tRPC routers or services exist yet.
-- No FUND CRUD UI exists yet.
-- `/app/fund` exists as a shell page only.
-- AMOW is the founding use case/production partner context, not the FUND module identity.
-- Do not use `FUND_MODULE_PROJECT.md` as an active plan; it is historical only.
-- Do not use old Phase 1 backlog documents as active implementation plans.
-
-## Safe Next Prompt
+The FUND C1 admin foundation has been released and aligned:
 
 ```text
-Review and approve the active FUND documentation set:
-- 01-fund-module-brief.md
-- 02-fund-architecture-principles.md
-- 03-fund-functional-specification.md
-- 04-fund-phase-1-implementation-plan.md
-- 05-fund-open-questions.md
-
-Then produce a schema design proposal only.
-
-Do not edit code.
-Do not edit Prisma schema.
-Do not create migrations.
-Do not use db:push.
-Do not run seed or reset commands.
-Do not create routers, UI pages or services.
+main = dev = staging = 62b727e chore(release): promote FUND C1 admin foundation
 ```
+
+Active app branches:
+
+```text
+feature/fund-phase-1-c2-project-access
+feature/seasonpro-remediation
+```
+
+FUND C1 released/admin foundation includes:
+
+- Products.
+- Catalogues.
+- Catalogue Product membership.
+- Projects.
+- Project Product membership.
+- Events.
+- Project/Event linkage.
+
+Current FUND work is not a greenfield shell. Do not rely on old docs that say FUND has only a shell.
+
+## Current Workflow
+
+```text
+CR input -> triage -> slice planning -> implementation confirmation -> review/test confirmation -> roadmap/control update
+```
+
+Folder meanings:
+
+- `00-roadmap-control/` controls the current sequence.
+- `01-cr-inputs/` stores raw issue/change request exports.
+- `02-triage/` stores decision and priority documents.
+- `03-slice-planning/` stores active/new slice plans.
+- `04-implementation-confirmations/` stores new implementation confirmations.
+- `05-review-and-test/` stores new review/test confirmations.
+
+Historical `Planning/` and `implementation/` documents remain valid records but are not the first place to look for current next steps.
+
+## Current Recommended Work
+
+Immediate recommended work is C1 admin remediation:
+
+1. Issue #46 - Event-linked Project close date must not be later than Event closesAt.
+2. Issue #50 - Issue Manager module filtering/server render error.
+3. Optional small polish if scope remains contained:
+   - Project Product activation gate visibility.
+   - Product breadcrumb navigation.
+   - Sidebar icon specificity and UI guidance.
+
+## Do Not Start Yet
+
+Do not start these until their planning slices are accepted:
+
+- C2 dashboard implementation.
+- Commerce Core.
+- Store schema.
+- Order schema.
+- Payments.
+- Commissions.
+- Production batching.
+- Organiser onboarding.
+- Project Request flow.
+- Event/Catalogue/Product availability schema.
+- Product workflow suitability schema.
+- Lifecycle transition engine.
+- AI workflows.
+
+## Safe Fresh Prompt
+
+```text
+We are working on IsoStack FUND.
+
+Current app branch:
+feature/fund-phase-1-c2-project-access
+
+Read first:
+- isodocs/docs/modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md
+- isodocs/docs/modules/fund/02-triage/2026-06-25-fund-c1-admin-remediation-and-architecture-triage.md
+- isodocs/docs/modules/fund/README-AI.md
+
+Proceed with the next recommended remediation/planning slice only.
+Do not implement unrelated features.
+```
+
