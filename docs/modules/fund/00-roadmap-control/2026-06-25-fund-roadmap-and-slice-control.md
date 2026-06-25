@@ -37,6 +37,8 @@ Release result:
 - Staging browser testing found no blocking C1 admin foundation issues before release alignment.
 - FUND remains expected to need refinement; the baseline is accepted as the foundation, not as final product polish.
 - 1P-R1/1P-R1A remediation, 1P-B schema work and 1P-C read-only organiser Project API/services have been aligned to `dev` and `staging` at `69a9632`.
+- 1P-D read-only organiser dashboard UI has been implemented on `feature/fund-phase-1-c2-project-access` and is pending review/alignment.
+- A post-1P-D C2 organisation/account scope clarification has been raised. The current participant-scoped dashboard remains safe but should be treated as an interim bridge until this is decided.
 - Staging `/api/health` returned HTTP 200 after alignment.
 - `main` remains held at `62b727e` until the 1P-B/staging migration and smoke testing are accepted.
 
@@ -142,7 +144,9 @@ isodocs/docs/modules/fund/implementation/
 | 1P-B | C2 Project Participant Schema | Complete / aligned to dev+staging |
 | 1P-C | C2 Read-Only Project API/Services | Complete / reviewed / aligned to dev+staging |
 | 1P-C-R1 | C2 Read-Only Project API/Services Review | Complete / proceed with caveats |
-| 1P-D | C2 Read-Only Organiser Dashboard UI Planning | In planning |
+| 1P-D | C2 Read-Only Organiser Dashboard UI | Implemented / pending review |
+| 1P-D-R1 | C2 Dashboard UI Review And C2 Organisation Scope Note | Pending |
+| 1P-D0 | C2 Organisation Scope Clarification | Active planning clarification |
 
 ### C1 Admin Surfaces Released
 
@@ -244,7 +248,8 @@ Current C2 lane status:
 - 1P-A access model planning is complete.
 - 1P-B participant schema is implemented.
 - 1P-C read-only organiser Project API/services are implemented and reviewed.
-- 1P-D read-only organiser dashboard UI planning is next.
+- 1P-D read-only organiser dashboard UI is implemented on the feature branch and pending review/alignment.
+- 1P-D0 C2 organisation/account scope clarification has been raised and must be decided before C2 expansion.
 
 Staging migration note:
 
@@ -305,6 +310,7 @@ Current C2 planning documents:
 ```text
 isodocs/docs/modules/fund/03-slice-planning/2026-06-24-fund-phase-1-slice-1p-c2-organiser-dashboard-proposal.md
 isodocs/docs/modules/fund/03-slice-planning/2026-06-24-fund-phase-1-slice-1p-a-c2-project-access-model-proposal.md
+isodocs/docs/modules/fund/03-slice-planning/2026-06-25-fund-phase-1-slice-1p-d0-c2-organisation-scope-clarification.md
 ```
 
 Recommended model:
@@ -323,12 +329,50 @@ C2 Project access must not derive from organiserName/organiserEmail/organiserPho
 
 Current C2 recommendation:
 
-- Continue planning the access model.
-- Do not implement the C2 dashboard UI until immediate C1 remediation has had its authenticated browser spot-check or is accepted as low-risk enough to continue planning in parallel.
-- C2 access-model planning may proceed now because it does not change runtime behaviour.
-- C2 participant schema/API/UI implementation should wait for the remediation browser spot-check or explicitly record the risk if proceeding in parallel.
-- First C2 dashboard should likely be narrow/read-only.
-- C2 users should see only Projects explicitly assigned through a participant/access record.
+- Treat the implemented 1P-D read-only dashboard as a safe participant-scoped interim bridge.
+- Complete 1P-D-R1 authenticated review before alignment/promotion decisions.
+- Decide the C2 organisation/account scope before adding C2 mutations, participant management UI, invitations, Project Request/onboarding, sales/order/reporting views, Store or Commerce coupling.
+- Do not assume direct `FundProjectParticipant` access is the final C2 operating model.
+- Likely long-term direction to evaluate: C2 organisation/account owns Projects, C2 users belong to that account, and `FundProjectParticipant` remains for named contacts, overrides, exceptions and transition access.
+
+### C2 Organisation / Account Scope Clarification
+
+Post-1P-D clarification:
+
+```text
+Current interim model:
+User -> FundProjectParticipant -> FundProject
+
+Wider likely model:
+C1 Producer/Admin Tenant
+-> C2 Fundraising Organisation / School / Club / PTA / Customer Account
+-> Projects
+-> C2 users
+-> future Project sales/orders/reporting
+```
+
+SeasonPro precedent:
+
+```text
+C1 League Tenant
+-> C2 Club
+-> Teams
+-> Club users
+```
+
+Integrated SeasonPro + FUND may use the SeasonPro Club as the fundraising Project creator/account.
+
+Open decision:
+
+```text
+Should FUND create a FUND-specific C2 organisation/account model, a reusable IsoStack C2 organisation/account model, or a hybrid that retains FundProjectParticipant for Project-level exceptions?
+```
+
+Control rule:
+
+```text
+Further C2 dashboard expansion must pause before write-capable or commercially meaningful surfaces until this is resolved.
+```
 
 ## 6. Architecture Planning Required Before Store / Commerce
 
@@ -430,7 +474,8 @@ SeasonPro fixes start in the SeasonPro remediation lane unless the fix is genuin
 
 Deferred until explicitly planned:
 
-- C2 organiser dashboard implementation.
+- C2 organiser dashboard mutations or expansion beyond the implemented read-only interim participant-scoped view.
+- C2 organisation/account model implementation.
 - C2 organiser invitations.
 - Project Request/onboarding.
 - Organiser account provisioning.
@@ -463,6 +508,8 @@ Until remediation and architecture planning are complete, do not build:
 - Payment webhooks.
 - Production export/batching.
 - C2 dashboard implementation.
+- C2 dashboard mutation/management expansion.
+- C2 organisation/account schema.
 - C2 invitation/onboarding flow.
 - Project Request public flow.
 - Organiser dashboard actions.
@@ -523,7 +570,8 @@ Status:
 1P-A planning complete.
 1P-B participant schema implemented and aligned to dev/staging.
 1P-C read-only organiser Project API/services implemented, reviewed and aligned to dev/staging.
-1P-D planning document created 2026-06-25.
+1P-D implemented on feature/fund-phase-1-c2-project-access.
+1P-D-R1 review required.
 ```
 
 Scope:
@@ -545,7 +593,7 @@ Confirm staging has applied 20260625143000_add_fund_project_participants before 
 Suggested slice:
 
 ```text
-Slice 1P-E - C2 Dashboard API/UI Review And Manual Testing
+Slice 1P-D-R1 - C2 Read-Only Dashboard UI Review And C2 Organisation Scope Note
 ```
 
 Scope:
@@ -554,8 +602,25 @@ Scope:
 - verify INVITED/DISABLED/REMOVED/null-user participants do not grant access;
 - verify organiserEmail alone does not grant access;
 - verify C1 admin Project endpoints remain separate.
+- confirm 1P-D remains read-only and interim.
+- confirm no C2 organisation/account assumptions have been hard-coded into mutation or management surfaces.
 
-### Next 4 - Event / Catalogue / Product Availability Planning
+### Next 4 - C2 Organisation / Account Scope Planning
+
+Suggested slice:
+
+```text
+Slice 1P-D0 / 1P-F - C2 Organisation/Account Scope Decision
+```
+
+Scope:
+
+- decide whether to continue direct Project participants, introduce a FUND-specific C2 organisation/account model, create a reusable IsoStack C2 account model, or use a hybrid;
+- decide whether active C2 users in an organisation/account should see all organisation Projects;
+- decide how future sales/orders/reporting scope to C2 organisation/account;
+- decide whether `/app/fund/organiser` remains the correct route name.
+
+### Next 5 - Event / Catalogue / Product Availability Planning
 
 Suggested slice:
 
@@ -569,18 +634,19 @@ Scope:
 - produce schema/API plan;
 - explicitly record Store/Commerce impacts.
 
-### Next 5 - C2 Dashboard Foundation Planning / Read-Only Implementation
+### Next 6 - C2 Dashboard Foundation Expansion
 
 Suggested slice:
 
 ```text
-Slice 1R - C2 Dashboard Foundation
+Slice 1R - C2 Dashboard Foundation Expansion
 ```
 
 Only start after:
 
 - C1 immediate remediation is complete;
-- C2 participant/access model is accepted;
+- 1P-D read-only dashboard review is complete;
+- C2 organisation/account scope is accepted;
 - C2 read-only visibility rules are clear.
 
 ## 12. Prompt To Use In A Fresh Chat
