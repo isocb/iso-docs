@@ -207,11 +207,11 @@ This table is the current compact issue-status view for planning. It should be u
 
 | Issue | Current Status | Category | Next Action | Blocks C2? | Blocks Store/Commerce? | Current / Suggested Slice |
 | --- | --- | --- | --- | --- | --- | --- |
-| #46 Project/Event close-date constraint | Remediated in 1P-R1; pending 1P-R2 review | Immediate remediation | Review and manually test server/UI behaviour | Partially until reviewed | No, but must be clean before Store date generation | 1P-R2 |
-| #50 Issue Manager module filtering/server render error | Remediated in 1P-R1; pending 1P-R2 review | Immediate platform remediation | Review Issue Manager filtering/export path | No | No | 1P-R2 |
-| #47 Product activation gate visibility | Small UX remediation included in 1P-R1; pending review | UI/UX polish | Review Project readiness panel and Products-tab affordance | No | No | 1P-R2 |
-| #44 Product breadcrumb navigation | Small UI polish included in 1P-R1; pending review | UI polish | Review Products/Catalogues page navigation | No | No | 1P-R2 |
-| #45 Sidebar icons repeated | Small UI polish/guidance included in 1P-R1; pending review | UI polish | Review FUND navigation icons and standard note | No | No | 1P-R2 |
+| #46 Project/Event close-date constraint | Remediated in 1P-R1; 1P-R2 static/check review passed | Immediate remediation | Authenticated browser spot-check before staging promotion | No for planning; spot-check before promotion | No, but must remain clean before Store date generation | Browser spot-check / next promotion gate |
+| #50 Issue Manager module filtering/server render error | Remediated in 1P-R1; 1P-R2 static/check review passed | Immediate platform remediation | Authenticated Issue Manager spot-check before staging promotion | No | No | Browser spot-check / next promotion gate |
+| #47 Product activation gate visibility | Small UX remediation included in 1P-R1; 1P-R2 static/check review passed | UI/UX polish | Browser spot-check Project Overview affordance | No | No | Browser spot-check / next promotion gate |
+| #44 Product breadcrumb navigation | Small UI polish included in 1P-R1; 1P-R2 static/check review passed | UI polish | Browser spot-check Products/Catalogues page | No | No | Browser spot-check / next promotion gate |
+| #45 Sidebar icons repeated | Small UI polish included in 1P-R1; 1P-R2 static/check review passed | UI polish | Browser spot-check FUND navigation icons | No | No | Browser spot-check / next promotion gate |
 | #48 Events should link to one or more Product Catalogues | Open | Architecture planning | Plan Event/Catalogue/Product availability before implementation | Partially for C2 product/action surfaces | Yes | 1Q |
 | #49 Product Workflow Class suitability | Open | Architecture planning | Plan workflow suitability/availability layer before Store, production or workflow expansion | Partially for C2 product/action surfaces | Yes | 1Q |
 
@@ -425,6 +425,12 @@ Suggested slice:
 Slice 1P-R1 - C1 Admin Immediate Remediation
 ```
 
+Status:
+
+```text
+Implemented.
+```
+
 Planning document:
 
 ```text
@@ -449,6 +455,13 @@ Suggested slice:
 
 ```text
 Slice 1P-R2 - C1 Admin Remediation Review And Staging Readiness
+```
+
+Status:
+
+```text
+Static/code review and automated checks complete.
+Authenticated browser spot-check remains recommended before staging promotion.
 ```
 
 Scope:

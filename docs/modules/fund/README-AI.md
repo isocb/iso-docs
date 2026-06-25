@@ -69,6 +69,12 @@ Immediate recommended work is C1 admin remediation:
    - Product breadcrumb navigation.
    - Sidebar icon specificity and UI guidance.
 
+## FUND UI Guardrails
+
+- Use destination-specific sidebar/navigation icons for FUND surfaces.
+- Avoid repeating generic `Home` icons within the same module navigation.
+- Shared owner-controlled UI standards in `isostack-bedrock/docs/2026-IsoStack-Docs/Standards/` should not be edited unless owner approval is explicit. Put FUND-specific guardrails here or in active FUND planning/control docs.
+
 ## Do Not Start Yet
 
 Do not start these until their planning slices are accepted:
@@ -103,4 +109,3 @@ Read first:
 Proceed with the next recommended remediation/planning slice only.
 Do not implement unrelated features.
 ```
-
