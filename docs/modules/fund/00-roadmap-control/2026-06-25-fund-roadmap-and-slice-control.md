@@ -22,12 +22,12 @@ Current released app baseline:
 62b727e chore(release): promote FUND C1 admin foundation
 ```
 
-Current branch alignment after 1P-D staging alignment:
+Current branch alignment after 1P-F-E Client Management alignment:
 
 ```text
 main    = 62b727e released C1 admin foundation baseline
-dev     = f43d63b 1P-D C2 read-only organiser dashboard UI
-staging = f43d63b 1P-D C2 read-only organiser dashboard UI
+dev     = da6fd0f 1P-F-E C1 Client Management
+staging = da6fd0f 1P-F-E C1 Client Management
 ```
 
 Release result:
@@ -43,9 +43,10 @@ Release result:
 - Additional correction: C2 is the Project management node, not a passive/read-only recipient of Project information. Future C2 dashboard work must be Client/account scoped, not merely participant scoped.
 - AMOW founding-tenant priority has been re-centred on the C1 organisational dashboard: C1 Client management, Products, Events, Projects and the operational framework for managing fundraising Clients and their Projects.
 - 1P-D remains technically safe but is not the immediate AMOW product priority.
-- 1P-F-C C1 Client Management schema has been implemented locally on the active FUND branch as schema-only work; it is not promoted to `main`.
-- 1P-F-D C1 Client Management API/services has been implemented locally on the active FUND branch.
-- 1P-F-E C1 Client Management UI is the next recommended planning/implementation lane.
+- 1P-F-C C1 Client Management schema has been implemented and aligned to `dev`/`staging` as part of `da6fd0f`.
+- 1P-F-D C1 Client Management API/services has been implemented and aligned to `dev`/`staging` as part of `da6fd0f`.
+- 1P-F-E C1 Client Management UI has been implemented, reviewed with caveats and aligned to `dev`/`staging` as part of `da6fd0f`.
+- 1P-H Project Client selector/linkage planning is the next recommended planning lane.
 - Project Intake / Project Request forms are a future critical lane. C1-created forms may eventually collect external or Client-originated Project requests and, after C1 moderation, create or link Client/account, C2 user/member, Project and Event records.
 - Notification management remains deferred. Project intake, Client creation, C2 user creation and Project approval must not accidentally send notifications until controlled communications are explicitly planned.
 - Staging `/api/health` returned HTTP 200 after alignment.
@@ -66,15 +67,15 @@ Current state:
 
 ```text
 main held at 62b727e
-dev aligned at f43d63b
-staging aligned at f43d63b
+dev aligned at da6fd0f
+staging aligned at da6fd0f
 ```
 
 Use:
 
 - `main` is the live/release baseline.
-- `dev` is the integration baseline for the current C2 access lane and now includes 1P-D.
-- `staging` carries 1P-D for Render deployment and authenticated smoke validation.
+- `dev` is the integration baseline for the current FUND Client/Project linkage lane and now includes 1P-F-E.
+- `staging` carries 1P-F-E for Render deployment and authenticated smoke validation.
 
 ### Active FUND Branch
 
@@ -162,9 +163,10 @@ isodocs/docs/modules/fund/implementation/
 | 1P-F-CORR | C2 Client/Account As Project Management Node Planning | Active architecture correction |
 | 1P-F-A | C1 Client Management Foundation For AMOW | Planning complete |
 | 1P-F-B | C1 Client Management Schema Options | Planning complete |
-| 1P-F-C | C1 Client Management Schema | Implemented locally / schema only |
-| 1P-F-D | C1 Client Management API/Services | Implemented locally / API-services only |
-| 1P-F-E | C1 Client Management UI | Recommended next |
+| 1P-F-C | C1 Client Management Schema | Implemented / aligned to dev+staging |
+| 1P-F-D | C1 Client Management API/Services | Implemented / aligned to dev+staging |
+| 1P-F-E | C1 Client Management UI | Implemented / reviewed with caveats / aligned to dev+staging |
+| 1P-H | Project Client Selector And Linkage Planning | Active next planning slice |
 
 ### C1 Admin Surfaces Released
 
@@ -741,7 +743,7 @@ Scope:
 Status:
 
 ```text
-Planning document created.
+Implemented, reviewed with caveats and aligned to dev/staging as da6fd0f.
 ```
 
 Planning document:
@@ -832,25 +834,52 @@ Planning document:
 isodocs/docs/modules/fund/03-slice-planning/2026-06-25-fund-phase-1-slice-1p-f-e-c1-client-management-ui-planning.md
 ```
 
-Recommended next implementation slice:
+Confirmation document:
 
 ```text
-Slice 1P-F-E - C1 Client Management UI
+isodocs/docs/modules/fund/04-implementation-confirmations/2026-06-25-phase-1-slice-1p-f-e-c1-client-management-ui-confirmation.md
 ```
 
-### Next 7 - Event / Catalogue / Product Availability Planning
+Review document:
+
+```text
+isodocs/docs/modules/fund/05-review-and-test/2026-06-25-phase-1-slice-1p-f-e-r1-c1-client-management-ui-review.md
+```
+
+### Next 7 - Project Client Selector And Linkage Planning
 
 Suggested slice:
 
 ```text
-Slice 1Q - Event/Catalogue/Product Availability And Workflow Suitability Planning
+Slice 1P-H - Project Client Selector And Linkage Planning
 ```
 
 Scope:
 
-- resolve Issues #48 and #49 together;
-- produce schema/API plan;
-- explicitly record Store/Commerce impacts.
+- plan how C1 admins link Projects to Clients;
+- plan Project create/update API/service changes for `clientId`;
+- plan DRAFT-only link/change/unlink rule;
+- plan read-only historical display for non-DRAFT and archived linked Clients;
+- plan Project create/detail Client selector UI;
+- keep Client users, invitations, notification sending, Project Intake forms, Store, Orders, Commerce, Sales/Reporting and Communications out of scope.
+
+Status:
+
+```text
+Active next planning slice.
+```
+
+Planning document:
+
+```text
+isodocs/docs/modules/fund/03-slice-planning/2026-06-25-fund-phase-1-slice-1p-h-project-client-selector-linkage-planning.md
+```
+
+Recommended next implementation slice:
+
+```text
+1P-H-A - Project Client Linkage API/Services
+```
 
 ### Next 8 - Project Intake / Client Onboarding Planning
 
@@ -884,7 +913,21 @@ Planning document:
 isodocs/docs/modules/fund/03-slice-planning/2026-06-25-fund-phase-1-slice-1p-g-project-intake-client-onboarding-and-moderation-planning.md
 ```
 
-### Next 9 - C2 Dashboard Foundation Expansion
+### Next 9 - Event / Catalogue / Product Availability Planning
+
+Suggested slice:
+
+```text
+Slice 1Q - Event/Catalogue/Product Availability And Workflow Suitability Planning
+```
+
+Scope:
+
+- resolve Issues #48 and #49 together;
+- produce schema/API plan;
+- explicitly record Store/Commerce impacts.
+
+### Next 10 - C2 Dashboard Foundation Expansion
 
 Suggested slice:
 
@@ -920,17 +963,18 @@ Read first:
 
 Context:
 - FUND C1 admin foundation has been released and aligned to main/dev/staging.
-- Active FUND branch is for C2 access planning and C1 remediation.
+- Active FUND branch is for Client/Project linkage, Project Intake planning and future C2 access work.
 - SeasonPro remediation has its own branch: feature/seasonpro-remediation.
 - Do not mix unrelated SeasonPro fixes into FUND unless explicitly requested.
 
 Immediate recommended work:
-Proceed with C1 Client Management UI planning/implementation:
+Proceed with Project Client selector/linkage planning and implementation split:
 1. Treat 1P-F-C as the schema-only Client foundation.
 2. Treat 1P-F-D as the C1 Client API/services foundation.
-3. Build only C1 admin Client list/detail UI using `fund.clients.*`.
-4. Keep Client primary contact fields as snapshots only.
-5. Keep Project Client selector/linkage, Client users, invitations, Store, Orders, Commerce, Sales/Reporting and Communications out of scope unless separately planned.
+3. Treat 1P-F-E as the C1 Client UI foundation.
+4. Use 1P-H to plan Project-to-Client linkage before Project Intake.
+5. Implement Project Client linkage API/services before UI selector work.
+6. Keep Client users, invitations, notification sending, Project Intake forms, Store, Orders, Commerce, Sales/Reporting and Communications out of scope unless separately planned.
 
 Do not start:
 - C2 dashboard expansion;
