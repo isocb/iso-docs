@@ -73,6 +73,15 @@ Immediate recommended work is C1 admin remediation:
 
 - Use destination-specific sidebar/navigation icons for FUND surfaces.
 - Avoid repeating generic `Home` icons within the same module navigation.
+- FUND dashboard cards, including future C2 organiser dashboard cards, should use one consistent card pattern:
+  - the whole card should be the navigation click target when the card opens a section page;
+  - title and destination-specific section icon in the card header;
+  - short body copy beneath the header;
+  - one consistent navigation affordance at the bottom, such as `Open <section>` with a small arrow icon;
+  - use muted card surfaces with brand primary/secondary accents inherited from the active module/tenant branding;
+  - do not assign arbitrary red, blue, green, pink or other decorative colours to peer cards;
+  - non-brand colour should indicate RAG status, urgency, error, warning, success, information or action required, not visual decoration;
+  - avoid nested link buttons inside clickable cards.
 - Shared owner-controlled UI standards in `isostack-bedrock/docs/2026-IsoStack-Docs/Standards/` should not be edited unless owner approval is explicit. Put FUND-specific guardrails here or in active FUND planning/control docs.
 
 ## Do Not Start Yet

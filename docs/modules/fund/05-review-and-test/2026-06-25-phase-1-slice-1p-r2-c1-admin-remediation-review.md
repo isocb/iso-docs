@@ -4,7 +4,7 @@ Date: 2026-06-25
 
 ## Review Summary
 
-Reviewed the 1P-R1 C1 admin remediation against the triage document, slice plan and implementation confirmation.
+Reviewed the 1P-R1 C1 admin remediation and the retrospective 1P-R1A UI consistency remediation against the triage document, slice plans and implementation confirmations.
 
 Recommendation:
 
@@ -26,7 +26,9 @@ Completed:
 - reviewed optional polish for Project Product activation gate visibility;
 - reviewed Products breadcrumb addition;
 - reviewed FUND sidebar icon changes;
-- reviewed documentation-owner concern for shared UI standard guidance;
+- reviewed FUND dashboard card interaction/colour consistency changes;
+- reviewed Issue Manager module input consolidation;
+- reviewed shared UI standard updates that were explicitly owner/user requested during the review;
 - ran `npm run type-check`;
 - ran `npm run verify`;
 - ran `git diff --check` in the app repo;
@@ -81,8 +83,10 @@ Confirmed:
 - FUND module catalogue upsert uses `update: {}`, so existing customisations are not overwritten.
 - Non-P1 users remain limited to modules enabled for their own organisation.
 - Issue module tagging is idempotent.
-- Issue modal distinguishes `Application / Area` from `Issue Modules`.
+- Issue modal distinguishes `Application / Area` from `Modules`.
 - Selecting a matching application/area auto-selects the matching Issue Module when available.
+- Issue modal now exposes a single `Modules` control for the module data used by filtering, issue-list badges and Change Request exports.
+- The legacy singular IsoStack `Module` selector is no longer shown in the CRUD form.
 
 Remaining manual browser checks:
 
@@ -119,6 +123,8 @@ Passed at code-review level.
 Confirmed:
 
 - `/app/fund/products` now includes a breadcrumb back to FUND.
+- `/app/fund/projects` now includes a breadcrumb back to FUND.
+- `/app/fund/events` now includes a breadcrumb back to FUND.
 
 ### Issue #45 — Sidebar Icon Polish
 
@@ -133,16 +139,36 @@ Confirmed:
 - FUND overview navigation uses `IconLayoutDashboard`.
 - FUND Projects navigation uses `IconClipboardList`.
 - FUND Events and Products remain destination-specific.
+- the sidebar renderer icon map includes the FUND destination-specific icon names and should no longer fall back to generic Home icons.
+
+### 1P-R1A — Dashboard Cards, Colour Semantics And Table Sorting
+
+Static/code review result:
+
+```text
+Passed at code-review level.
+```
+
+Confirmed:
+
+- `/app/fund` dashboard cards are whole-card navigation targets.
+- Nested link buttons were removed from clickable dashboard cards.
+- FUND dashboard cards use muted surfaces with brand-accent affordances rather than arbitrary peer-card colours.
+- IsoStack colour guidance now explicitly states that non-brand colour is for RAG/status/urgency/action-required meaning, not decoration.
+- FUND Products, Catalogues, Projects and Events tables now use column-header click/reverse-sort behaviour.
+- Sorting guidance was removed from the search/filter control-bar pattern and documented as visible column-header sorting.
 
 ## Documentation-Owner Note
 
-The initial 1P-R1 implementation placed icon guidance in:
+The review handled two documentation-owner cases:
+
+1. The initial 1P-R1 implementation placed icon guidance in:
 
 ```text
 docs/2026-IsoStack-Docs/Standards/ui-ux/isostack-ux-ui-standard.md
 ```
 
-That file is treated as owner-controlled/reference-only. No explicit owner approval was present in the prompt trail.
+That file is treated as owner-controlled/reference-only. No explicit owner approval was present in the original prompt trail for that icon guidance.
 
 Review correction made:
 
@@ -155,6 +181,13 @@ isodocs/docs/modules/fund/README-AI.md
 
 This keeps the shared standard unchanged while preserving the FUND AI guardrail.
 
+2. Later in the review, the user explicitly requested shared UI standard changes for:
+
+- column-header sorting rather than sort controls in the filter bar;
+- semantic colour use, where brand primary/secondary handle normal accents and non-brand colours indicate RAG/status/urgency/action-required meaning.
+
+Those owner-requested shared UI standard changes remain in the active standard.
+
 ## Defects Found
 
 Two review defects were found after the first review pass:
@@ -165,6 +198,12 @@ Two review defects were found after the first review pass:
 Documentation process defect found and corrected:
 
 - owner-controlled UI standard had been edited without explicit owner approval.
+
+Additional UI consistency issues found interactively and corrected:
+
+- FUND dashboard cards were not all using a whole-card click target.
+- FUND dashboard cards used arbitrary blue/cyan/pink section colours.
+- Issue Manager CRUD had both a singular legacy `Module` selector and a separate module-tagging selector, even though table filtering, badges and CR exports use the module-tagging relation.
 
 ## Fixes Made During Review
 
@@ -178,10 +217,18 @@ Application:
 
 Documentation:
 
-- reverted the unapproved shared UI standard wording by removing the 1P-R1 added note;
 - added FUND-specific icon guidance to `README-AI.md`.
+- added retrospective 1P-R1A planning and implementation confirmation documents for UI consistency remediation.
+- updated active UI standards for owner-requested column-header sorting and semantic colour use.
 
-No new product feature work was added during 1P-R2; changes were limited to review corrections for #44/#45 and documentation-owner handling.
+Additional UI consistency corrections:
+
+- changed `/app/fund` dashboard cards to whole-card links;
+- removed arbitrary per-card dashboard colours and used brand-accent navigation affordances;
+- aligned FUND tables to column-header sorting;
+- consolidated the Issue Manager CRUD module field to one `Modules` selector used by filtering, badges and CR exports.
+
+No new product feature work was added during 1P-R2; changes were limited to review corrections, UI consistency remediation and documentation alignment.
 
 ## Schema / Migration / Data Safety
 
@@ -213,11 +260,14 @@ Static/code review found no regressions to:
 - non-P1 organisation-scoped module visibility;
 - Products/Catalogues page structure;
 - FUND navigation configuration.
+- Issue Manager module filtering/export semantics.
 
 Post-review correction checks confirmed:
 
 - FUND sidebar icon names are now present in the renderer icon map and should no longer fall back to `IconHome`.
 - FUND list pages now have breadcrumbs for Projects, Events and Products/Catalogues.
+- FUND dashboard cards are now a consistent single-click navigation surface.
+- Issue Manager module CRUD input now matches the table/filter/export module model.
 
 Authenticated browser route regression was not completed in this CLI session.
 
@@ -231,7 +281,7 @@ Authenticated browser route regression was not completed in this CLI session.
 ## Remaining Risks / Follow-Ups
 
 - Authenticated browser spot-check remains recommended before staging promotion.
-- Issue Manager still has legacy application/module terminology. 1P-R1 made the immediate FUND path clearer but did not redesign Issue Manager.
+- Issue Manager still has some legacy data fields (`moduleName`, `isocareModule`) for compatibility, but the visible CRUD module selector now follows the module tagging model used by filters and exports.
 - #48 Event/Catalogue/Product availability remains open and should be handled in an architecture-planning slice.
 - #49 Product Workflow Class suitability remains open and should be handled with #48 before Store, Commerce or production workflow expansion.
 

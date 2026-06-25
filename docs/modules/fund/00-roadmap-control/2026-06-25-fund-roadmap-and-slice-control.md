@@ -176,18 +176,36 @@ isodocs/docs/modules/fund/01-cr-inputs/change-request-cmqt61xmf000612xt5ifl1mdn-
 
 ### Immediate Remediation
 
-These should be handled before C2 dashboard implementation:
+These have been handled at code/static-check level and should receive an authenticated browser spot-check before staging promotion:
 
 1. Issue #46 - Project close date after linked Event close date accepted.
 2. Issue #50 - Issue Manager module filtering/server render error.
 
 ### Near-Term UI/UX Remediation
 
-These can be grouped with immediate remediation if scope remains small:
+These were included because scope remained small:
 
 1. Issue #47 - Adding a Project Product is an activation gate but not intuitive.
 2. Issue #44 - Product breadcrumb navigation.
 3. Issue #45 - Sidebar icons repeated; update UI guidance.
+
+### 1P-R1A UI Consistency Addendum
+
+An iterative UI consistency addendum was documented retrospectively as:
+
+```text
+03-slice-planning/2026-06-25-fund-phase-1-slice-1p-r1a-c1-admin-ui-consistency-remediation.md
+04-implementation-confirmations/2026-06-25-phase-1-slice-1p-r1a-c1-admin-ui-consistency-remediation-confirmation.md
+```
+
+It covers:
+
+- whole-card FUND dashboard navigation;
+- brand/semantic colour use instead of decorative peer-card colours;
+- column-header sort/reverse-sort;
+- consistent breadcrumbs;
+- destination-specific navigation icons;
+- Issue Manager `Modules` CRUD field consolidation to match filtering, badges and CR exports.
 
 Recommended branch:
 
@@ -210,8 +228,8 @@ This table is the current compact issue-status view for planning. It should be u
 | #46 Project/Event close-date constraint | Remediated in 1P-R1; 1P-R2 static/check review passed | Immediate remediation | Authenticated browser spot-check before staging promotion | No for planning; spot-check before promotion | No, but must remain clean before Store date generation | Browser spot-check / next promotion gate |
 | #50 Issue Manager module filtering/server render error | Remediated in 1P-R1; 1P-R2 static/check review passed | Immediate platform remediation | Authenticated Issue Manager spot-check before staging promotion | No | No | Browser spot-check / next promotion gate |
 | #47 Product activation gate visibility | Small UX remediation included in 1P-R1; 1P-R2 static/check review passed | UI/UX polish | Browser spot-check Project Overview affordance | No | No | Browser spot-check / next promotion gate |
-| #44 Product breadcrumb navigation | Small UI polish included in 1P-R1; 1P-R2 static/check review passed | UI polish | Browser spot-check Products/Catalogues page | No | No | Browser spot-check / next promotion gate |
-| #45 Sidebar icons repeated | Small UI polish included in 1P-R1; 1P-R2 static/check review passed | UI polish | Browser spot-check FUND navigation icons | No | No | Browser spot-check / next promotion gate |
+| #44 Product breadcrumb navigation | Small UI polish included in 1P-R1/1P-R1A; 1P-R2 static/check review passed | UI polish | Browser spot-check Products, Projects and Events breadcrumbs | No | No | Browser spot-check / next promotion gate |
+| #45 Sidebar icons repeated | Small UI polish included in 1P-R1/1P-R1A; 1P-R2 static/check review passed | UI polish | Browser spot-check FUND navigation icons | No | No | Browser spot-check / next promotion gate |
 | #48 Events should link to one or more Product Catalogues | Open | Architecture planning | Plan Event/Catalogue/Product availability before implementation | Partially for C2 product/action surfaces | Yes | 1Q |
 | #49 Product Workflow Class suitability | Open | Architecture planning | Plan workflow suitability/availability layer before Store, production or workflow expansion | Partially for C2 product/action surfaces | Yes | 1Q |
 
@@ -272,7 +290,7 @@ C2 Project access must not derive from organiserName/organiserEmail/organiserPho
 Current C2 recommendation:
 
 - Continue planning the access model.
-- Do not implement the C2 dashboard UI until immediate C1 remediation is complete.
+- Do not implement the C2 dashboard UI until immediate C1 remediation has had its authenticated browser spot-check or is accepted as low-risk enough to continue planning in parallel.
 - First C2 dashboard should likely be narrow/read-only.
 - C2 users should see only Projects explicitly assigned through a participant/access record.
 
@@ -423,12 +441,13 @@ Suggested slice:
 
 ```text
 Slice 1P-R1 - C1 Admin Immediate Remediation
+Slice 1P-R1A - C1 Admin UI Consistency Remediation
 ```
 
 Status:
 
 ```text
-Implemented.
+Implemented and check-passed.
 ```
 
 Planning document:
@@ -441,7 +460,12 @@ Scope:
 
 - Issue #46 Project/Event date constraint fix.
 - Issue #50 Issue Manager module filtering/server render fix.
-- Optionally include #47/#44/#45 if still small.
+- Issue #47 Project Product activation gate visibility.
+- Issue #44 breadcrumbs.
+- Issue #45 sidebar icon specificity.
+- Dashboard card interaction/colour consistency.
+- Column-header sort alignment.
+- Issue Manager module field consolidation.
 
 Branch:
 
@@ -475,11 +499,13 @@ Scope:
 Suggested slice:
 
 ```text
+Slice 1P-A - C2 Project Access Model Planning
 Slice 1P-B - C2 Project Participant Schema
 ```
 
 Scope:
 
+- finish/accept the access-model planning decision;
 - schema-only implementation of `FundProjectParticipant` or equivalent, if planning is accepted;
 - no dashboard UI yet.
 
