@@ -2,7 +2,9 @@
 
 Date: 2026-06-24
 
-Status: Planning only
+Last updated: 2026-06-25
+
+Status: Planning complete / ready for review
 
 Target app branch:
 
@@ -17,6 +19,28 @@ Define the minimal safe access model for C2 Project organisers before any C2 das
 The C1 admin foundation is already implemented through the staged C1 FUND admin surface. C2 dashboard work must not start until Project visibility and organiser access are modelled explicitly.
 
 This slice is planning only. It does not edit application code, Prisma schema, migrations, routers, services, Zod schemas or tRPC endpoints.
+
+## 1.1 Current Runway / Outstanding Issue Note
+
+Current release and remediation state:
+
+```text
+main/dev released baseline: 62b727e chore(release): promote FUND C1 admin foundation
+staging remediation baseline: 90325c1 fix(fund): close c1 admin remediation review fixes
+```
+
+The 1P-R1/1P-R1A C1 admin remediation batch has passed static/code review and automated checks, and has been pushed to staging. An authenticated browser spot-check remains outstanding before promoting that remediation to main/dev.
+
+Outstanding spot-check areas:
+
+- #46 Project/Event close-date constraint.
+- #50 Issue Manager module filtering and server render stability.
+- #47 Project Product activation gate visibility.
+- #44 breadcrumbs on FUND C1 admin pages.
+- #45 sidebar/navigation icon specificity.
+- 1P-R1A dashboard card, colour semantics, table sorting and Issue Manager module-field consistency.
+
+This does not block C2 access-model planning. It should block C2 schema/API/UI implementation promotion until the staged remediation has been accepted or deliberately carried forward as known low-risk.
 
 ## 2. Recommended Model
 
@@ -462,6 +486,7 @@ feature/fund-phase-1-c2-project-access
 
 Use:
 - isodocs/docs/modules/fund/03-slice-planning/2026-06-24-fund-phase-1-slice-1p-a-c2-project-access-model-proposal.md
+- isodocs/docs/modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md
 - active FUND docs in isodocs/docs/modules/fund/
 - current Prisma schema conventions
 - current FundProject schema
@@ -498,7 +523,7 @@ Run:
 - npm run verify
 
 Create confirmation document:
-isodocs/docs/modules/fund/implementation/2026-06-24-phase-1-slice-1p-b-c2-project-participant-schema-confirmation.md
+isodocs/docs/modules/fund/04-implementation-confirmations/2026-06-25-phase-1-slice-1p-b-c2-project-participant-schema-confirmation.md
 
 Planning/schema only. Do not implement C2 dashboard.
 ```
@@ -511,9 +536,10 @@ The safe order is:
 
 ```text
 1P-B - C2 Project Participant Schema
-1Q-A - C2 read-only API/services
-1Q-B - C2 read-only organiser dashboard UI
-1Q-C - C2 dashboard review/manual testing
+1P-C - C2 read-only API/services
+1P-D - C2 read-only organiser dashboard UI
+1P-E - C2 dashboard review/manual testing
+1Q - Event/Catalogue/Product availability and workflow suitability planning
 ```
 
 This preserves the C1/C2 boundary and prevents organiser snapshot fields from becoming accidental permissions.

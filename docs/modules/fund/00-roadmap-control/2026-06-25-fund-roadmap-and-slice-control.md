@@ -27,7 +27,7 @@ Branch alignment after release:
 ```text
 main    = 62b727e
 dev     = 62b727e
-staging = 62b727e
+staging = 90325c1 after 1P-R1/1P-R1A remediation push
 ```
 
 Release result:
@@ -36,6 +36,8 @@ Release result:
 - SeasonPro/LMSPro export hotfix is included.
 - Staging browser testing found no blocking C1 admin foundation issues before release alignment.
 - FUND remains expected to need refinement; the baseline is accepted as the foundation, not as final product polish.
+- 1P-R1/1P-R1A remediation has now been pushed to staging at `90325c1`.
+- Main/dev remain at the released baseline `62b727e` until the remediation browser spot-check is accepted.
 
 ## 2. Current Branch Landscape
 
@@ -50,14 +52,15 @@ staging
 Current state:
 
 ```text
-all aligned at 62b727e
+main/dev aligned at 62b727e
+staging aligned to 90325c1 for C1 remediation validation
 ```
 
 Use:
 
 - `main` is the live/release baseline.
 - `dev` is the integration baseline.
-- `staging` tracks the staged release baseline.
+- `staging` currently carries the 1P-R1/1P-R1A C1 remediation batch for validation.
 
 ### Active FUND Branch
 
@@ -291,6 +294,8 @@ Current C2 recommendation:
 
 - Continue planning the access model.
 - Do not implement the C2 dashboard UI until immediate C1 remediation has had its authenticated browser spot-check or is accepted as low-risk enough to continue planning in parallel.
+- C2 access-model planning may proceed now because it does not change runtime behaviour.
+- C2 participant schema/API/UI implementation should wait for the remediation browser spot-check or explicitly record the risk if proceeding in parallel.
 - First C2 dashboard should likely be narrow/read-only.
 - C2 users should see only Projects explicitly assigned through a participant/access record.
 
@@ -508,6 +513,13 @@ Scope:
 - finish/accept the access-model planning decision;
 - schema-only implementation of `FundProjectParticipant` or equivalent, if planning is accepted;
 - no dashboard UI yet.
+
+Status:
+
+```text
+1P-A planning document updated 2026-06-25 with current staging/remediation status.
+1P-B should not be promoted beyond local/dev review until 1P-R1/1P-R1A staging spot-check is accepted.
+```
 
 ### Next 4 - Event / Catalogue / Product Availability Planning
 
