@@ -48,10 +48,13 @@ Release result:
 - 1P-F-E C1 Client Management UI has been implemented, reviewed with caveats and aligned to `dev`/`staging` as part of `da6fd0f`.
 - Client is the C2 organisation/account concept. Primary contact fields on `FundClient` are C1 operational contact snapshots only, not the final Client user/member model.
 - Client users/members, roles, invitations and notification boundaries require a future planning slice before implementation.
+- Client organisation details, structured physical addresses, delivery/fulfilment defaults and Project-level delivery snapshots/overrides require future planning before Store, Orders, Production or Dispatch.
+- Existing Client dashboard Project initiation must use trusted Client route, token or authenticated context and should auto-scope requests or Projects to the authenticated Client/account. It must not infer Client ownership from organiser snapshot fields, respondent email alone, proposed Client contact fields alone or user-editable hidden fields.
 - 1P-H Project Client selector/linkage planning is complete. 1P-H-A API/services and 1P-H-B UI are committed on `feature/fund-phase-1-c2-project-access` at `536c947` and aligned to `dev`/`staging`.
 - 1P-H-C static/code review and authenticated staging browser smoke testing passed. No remedial work is required at this stage.
 - 1P-G-A Project Intake Schema And Moderation Model planning is complete. Project Intake remains moderation-first: submissions must not directly create Clients, Client users, Projects, Event links, notifications or invitations.
-- 1P-G-B Project Intake Schema Options planning is complete. Recommended next slice is 1P-G-C schema-only implementation after review/acceptance.
+- 1P-G-B Project Intake Schema Options planning is complete and has led into 1P-G-C schema-only implementation.
+- 1P-G-C Project Intake schema-only implementation is complete locally and ready for schema review. It adds intake form/submission enums, models, tenant-scoped relations and migration only.
 - Future Client dashboard is not merely passive Project display. It is expected to become the Client Project initiation, engagement, announcements, special offers/campaign prompts, 1:1 communication and dashboard-visible communications surface.
 - C1 dashboard is the Project administration, artwork checking, production grouping, dispatch/fulfilment and commission workflow surface.
 - Store, Orders and Commerce must align with the future Client dashboard and C1 production/admin workflow surfaces rather than proceeding as isolated features.
@@ -185,6 +188,7 @@ isodocs/docs/modules/fund/implementation/
 | 1P-H-C | Project Client Linkage UI Review | Complete / accepted |
 | 1P-G-A | Project Intake Schema And Moderation Model Planning | Planning complete |
 | 1P-G-B | Project Intake Schema Options Planning | Planning complete |
+| 1P-G-C | Project Intake Schema | Implemented / pending review |
 | 1P-I | C1 Production, Dispatch And Commission Workflow Planning | Planning note created |
 | 1P-J | SeasonPro Club To FUND Project Initiation Planning | Future planning placeholder created |
 
@@ -296,7 +300,7 @@ Current C2 lane status:
 - 1P-H alignment status: feature branch, `dev` and `staging` are aligned at `536c947`.
 - 1P-G-A Project Intake schema/moderation model planning is complete.
 - 1P-G-B Project Intake schema options planning is complete.
-- 1P-G-C Project Intake schema-only implementation is the next recommended slice after review/acceptance.
+- 1P-G-C Project Intake schema-only implementation is complete locally and pending review.
 
 Staging migration note:
 
@@ -416,12 +420,14 @@ Client organisation / user clarification:
 
 ```text
 FundClient = organisation/account.
-Client user/member = person linked to Client.
+Client user/member = future login-capable person linked to Client.
 User = authenticated platform identity.
 Client role = future role label or access role within the Client/account.
 ```
 
 Primary contact fields on `FundClient` are C1 operational contact snapshots only. They are not full user accounts, login identity, invitation state, role membership, notification consent, access control or the final C2 user model.
+
+Future Client organisation details need structured physical address and delivery/fulfilment support. Projects should be able to default or inherit delivery address from the linked Client where appropriate, but Project-level delivery snapshots and overrides require separate planning before Store, Orders, Production or Dispatch.
 
 SeasonPro precedent:
 
@@ -516,6 +522,10 @@ Control rules:
 - Form submissions must be moderated before operational records are created or linked.
 - Approval may create/link Client/account, C2 user/member, Project and Event linkage.
 - Future Client dashboard-originated Project initiation should use the same moderation/intake model or a deliberately planned variant.
+- Client-scoped Project initiation must use trusted Client route, token or authenticated Client context. Existing Client dashboard initiation should auto-scope the request or Project to the authenticated Client/account.
+- Client ownership must not be inferred from organiser snapshot fields, respondent email alone, proposed Client contact fields alone or user-editable hidden fields.
+- New Client / first Project intake may create or match Client/account, create or link a primary Client login user/member and create a Project linked through `FundProject.clientId` only after explicit C1 moderation/approval or a separately planned trusted direct-creation policy.
+- Future approval/idempotency planning must account for initiator email matching and/or future Client user/member matching.
 - The future Client dashboard is also the intended Client engagement surface for C1 announcements, special offers/campaign prompts, dashboard-visible messages and 1:1 communication.
 - Client dashboard communications must follow a controlled SeasonPro-style communications pattern and must not be implied by Project Intake schema alone.
 - Projects may be linked to a C1 Event or may be standalone depending on campaign/form policy.
@@ -1020,7 +1030,7 @@ isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-g-b
 Recommended next slice:
 
 ```text
-1P-G-C - Project Intake Schema
+1P-G-C-R1 - Project Intake Schema Review
 ```
 
 ### Next 9 - SeasonPro Club To FUND Project Initiation Planning
@@ -1140,7 +1150,7 @@ Context:
 - Do not mix unrelated SeasonPro fixes into FUND unless explicitly requested.
 
 Immediate recommended work:
-Proceed with Project Intake schema-only implementation planning/review gate:
+Proceed with Project Intake schema review gate:
 1. Treat 1P-F-C as the schema-only Client foundation.
 2. Treat 1P-F-D as the C1 Client API/services foundation.
 3. Treat 1P-F-E as the C1 Client UI foundation.
@@ -1148,10 +1158,11 @@ Proceed with Project Intake schema-only implementation planning/review gate:
 5. Treat 1P-H-C as accepted after authenticated staging smoke testing.
 6. Treat 1P-G-A as completed Project Intake schema and moderation-model planning.
 7. Treat 1P-G-B as completed Project Intake schema-options planning.
-8. Treat 1P-J as the SeasonPro Club-to-FUND Project initiation planning placeholder. This is future-facing and depends on SeasonPro module entitlement, League configuration, catalogue availability, sale method planning and explicit Club-to-FUND Client/account mapping.
-9. Treat 1P-I as the current production/admin workflow planning guardrail before Store/Commerce implementation.
-10. Next recommended slice is 1P-G-C Project Intake schema-only implementation, after reviewing/accepting the schema options.
-11. Keep Client users, invitations, notification sending, Client dashboard communications, Project Intake public forms/UI/services, Store, Orders, Commerce, Sales/Reporting, production workflow implementation, SeasonPro integration implementation and Communications out of scope unless separately planned.
+8. Treat 1P-G-C as schema-only implemented locally and pending review.
+9. Treat 1P-J as the SeasonPro Club-to-FUND Project initiation planning placeholder. This is future-facing and depends on SeasonPro module entitlement, League configuration, catalogue availability, sale method planning and explicit Club-to-FUND Client/account mapping.
+10. Treat 1P-I as the current production/admin workflow planning guardrail before Store/Commerce implementation.
+11. Next recommended slice is 1P-G-C-R1 Project Intake Schema Review.
+12. Keep Client users, invitations, notification sending, Client dashboard communications, Project Intake public forms/UI/services, Store, Orders, Commerce, Sales/Reporting, production workflow implementation, SeasonPro integration implementation and Communications out of scope unless separately planned.
 
 Do not start:
 - C2 dashboard expansion;

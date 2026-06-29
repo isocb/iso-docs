@@ -199,6 +199,14 @@ Recommended Client/account fields:
 - address fields later if Client organisation details planning accepts them;
 - existing Client reference only if the form is scoped to authenticated or known Client users.
 
+Client organisation clarification:
+
+- `FundClient` is the Client organisation/account, such as a school, club, PTA, charity branch or customer account.
+- Primary contact fields are C1 operational contact snapshots only. They are not login identity, role membership, invitation state, notification consent, access control or the final Client user/member model.
+- Future Client users/members are login-capable people linked to the Client/account.
+- Future Client organisation details need structured physical address and delivery/fulfilment support before Store, Orders, Production or Dispatch.
+- Projects should be able to default or inherit delivery location from the linked Client, but Project-level delivery snapshots and overrides require separate planning.
+
 Recommended Project fields:
 
 - Project name;
@@ -364,6 +372,14 @@ authenticated C2 user
 
 This depends on a future accepted Client user/member model.
 
+Client-scoped Project initiation rule:
+
+```text
+Client scope must come from trusted route, token or authenticated Client context.
+```
+
+For an existing Client dashboard route, Project initiation should auto-scope the request or Project to the authenticated Client/account. It must not rely on respondent email, organiser snapshot fields, proposed Client contact fields or user-editable hidden inputs as proof of Client ownership.
+
 Until then:
 
 - public intake may collect claimed Client information;
@@ -375,10 +391,12 @@ Until then:
 New Client / first Project approval should support:
 
 1. Create a new `FundClient` from moderated organisation details.
-2. Optionally create/link a future Client user/member after that model exists.
+2. Optionally create/link a future primary Client login user/member after that model exists.
 3. Create a DRAFT `FundProject`.
 4. Link Project to the new Client.
 5. Optionally link Project to an Event if requested and valid.
+
+This approval path is subject to future idempotency rules, especially matching the initiator's email address and/or future Client user/member records. Unknown public respondents should still create moderation submissions first.
 
 Important:
 

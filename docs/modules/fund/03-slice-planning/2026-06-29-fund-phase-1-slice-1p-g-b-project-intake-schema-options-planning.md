@@ -27,6 +27,15 @@ Accepted foundation:
 - 1P-H-C authenticated staging browser smoke testing passed with no remedial work required at this stage.
 - Project Intake planning can depend on explicit Project-to-Client linkage.
 
+Client organisation clarification:
+
+- `FundClient` is the Client organisation/account, such as a school, club, PTA, charity branch or customer account.
+- Client users/members are future login-capable users linked to the Client/account.
+- Primary contact fields on `FundClient` remain C1 operational contact snapshots only. They are not the Client user model, login identity, invitation state, role membership, notification consent or access control.
+- Future Client organisation details need structured physical address and delivery/fulfilment support before Store, Orders, Production or Dispatch.
+- Projects should default or inherit delivery address from the linked Client where appropriate, but Project-level delivery snapshots and overrides need separate planning.
+- Client-scoped Project initiation must use trusted Client route, token or authenticated context. Client ownership must not be inferred from organiser snapshot fields, respondent email alone, proposed Client contact fields alone or user-editable hidden fields.
+
 Current branch baseline:
 
 ```text
@@ -92,6 +101,8 @@ Rejected because:
 - public endpoints must not create operational records automatically.
 
 This rejection also applies to future Client-dashboard-originated Project requests until a controlled C2 Project initiation flow is explicitly planned. Existing Client users may eventually initiate additional Project requests from their dashboard, but the first intake model should still create a moderation record unless a later policy slice deliberately allows direct creation.
+
+When direct creation is eventually planned, existing Client dashboard Project initiation should auto-scope the Project to the authenticated Client/account through trusted route/auth context. New Client / first Project intake may create or match Client/account, create or link a primary Client user/member and create a linked Project only after explicit C1 moderation/approval or a separately planned trusted direct-creation policy.
 
 ### Option C - Store Intake As Raw Issue / Change Request
 
