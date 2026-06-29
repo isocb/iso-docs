@@ -37,7 +37,7 @@ Current work should remain on dev/remediation branches until reviewed and explic
 
 ### R1 - Playing Season Date Boundaries
 
-Status: R1-A implemented and reviewed; proceed with caveats pending final local browser re-test
+Status: R1-A reviewed on staging and approved for live promotion
 
 Goal:
 
@@ -89,6 +89,20 @@ Review notes:
 - DateInput values are now normalised to UTC midnight immediately on selection and on save.
 - Final browser re-test should confirm exact selected dates display after re-saving.
 
+Live promotion:
+
+```text
+05-review-and-test/2026-06-29-lmspro-r1-a-and-branding-live-promotion-confirmation.md
+```
+
+Promotion target:
+
+```text
+main = dev = staging = 682ddb4
+```
+
+This promotion also carries the SVG branding upload fix to live.
+
 ## Deferred Items
 
 - Dashboard announcement automation from playing-season offsets.
@@ -110,12 +124,12 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Slice
 
 ```text
-Commit R1-A and align dev after final local browser re-test
+Live smoke test after Render deployment
 ```
 
 Goal:
 
-Commit the reviewed R1-A app/docs changes once local browser re-test confirms exact selected playing-season dates display, then align dev. Staging alignment should wait for deployment/migration confirmation.
+Confirm the live deployment at `682ddb4` works as expected, including LMSPro seasons, LMSPro communication fixes, SVG branding upload support and existing FUND admin surfaces.
 
 ## Fresh Chat Prompt
 
@@ -124,10 +138,10 @@ Proceed with LMSPro / SeasonPro remediation planning from:
 isodocs/docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
 
 Next step:
-Commit R1-A and align dev after final local browser re-test.
+Live smoke test after Render deployment.
 
 Goal:
-Confirm exact selected playing-season dates display after re-saving locally. Then commit the R1-A app/docs changes and align dev. Staging alignment should wait for deployment/migration confirmation. Dashboard announcements and offset automation remain deferred.
+Confirm the live deployment at `682ddb4` works as expected. Check LMSPro seasons, playing-season date display, LMSPro communication changes, SVG branding upload support and existing FUND admin surfaces. Dashboard announcements and offset automation remain deferred.
 
 Do not implement dashboard announcement automation, notification sending, C2 Club dashboard countdown widgets, broader key-date architecture, season rollover changes or FUND logic.
 ```
