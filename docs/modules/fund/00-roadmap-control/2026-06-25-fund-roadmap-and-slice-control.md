@@ -56,8 +56,10 @@ Release result:
 - C1 dashboard is the Project administration, artwork checking, production grouping, dispatch/fulfilment and commission workflow surface.
 - Store, Orders and Commerce must align with the future Client dashboard and C1 production/admin workflow surfaces rather than proceeding as isolated features.
 - 1P-I C1 Production, Dispatch And Commission Workflow planning note is created to protect production/admin design before Store/Commerce implementation.
+- 1P-J SeasonPro Club to FUND Project Initiation planning placeholder is created to preserve the future Club-originated intake path without implementing SeasonPro integration.
 - Project Intake and Commerce must not proceed as isolated features without preserving the future Client dashboard engagement surface and C1 production/admin workflow surface.
 - Project Intake / Project Request forms are a future critical lane. C1-created forms may eventually collect external or Client-originated Project requests and, after C1 moderation, create or link Client/account, C2 user/member, Project and Event records.
+- SeasonPro Club-originated Project initiation is a future intake path. It depends on SeasonPro League FUND/Fundraising module entitlement, League configuration of approved FUND producer tenant(s), catalogue availability to Clubs, sale method planning and explicit Club-to-FUND Client/account mapping.
 - Notification management remains deferred. Project intake, Client creation, C2 user creation and Project approval must not accidentally send notifications until controlled communications are explicitly planned.
 - Staging `/api/health` returned HTTP 200 after alignment.
 - `main` remains held at `62b727e` until the 1P-B/staging migration and smoke testing are accepted.
@@ -184,6 +186,7 @@ isodocs/docs/modules/fund/implementation/
 | 1P-G-A | Project Intake Schema And Moderation Model Planning | Planning complete |
 | 1P-G-B | Project Intake Schema Options Planning | Planning complete |
 | 1P-I | C1 Production, Dispatch And Commission Workflow Planning | Planning note created |
+| 1P-J | SeasonPro Club To FUND Project Initiation Planning | Future planning placeholder created |
 
 ### C1 Admin Surfaces Released
 
@@ -517,6 +520,9 @@ Control rules:
 - Client dashboard communications must follow a controlled SeasonPro-style communications pattern and must not be implied by Project Intake schema alone.
 - Projects may be linked to a C1 Event or may be standalone depending on campaign/form policy.
 - Existing SeasonPro Clubs may later act as the FUND Client/account and Project creator.
+- SeasonPro Club-originated Project initiation depends on the League tenant having the FUND / Fundraising module enabled through subscription, League configuration of approved FUND producer tenant(s), catalogue availability to Clubs, sale method planning and explicit Club-to-FUND Client/account mapping.
+- Club-facing product options should be presented as fundraising products available through the SeasonPro/League context, not as supplier-management records or producer internals.
+- Until trusted direct creation is deliberately planned, SeasonPro Club-originated Project initiation should create or route through a moderated Project Intake submission with source `SEASONPRO_CLUB`.
 - Notification/invitation sending is deferred and must follow a controlled SeasonPro-style communications pattern.
 - 1P-F-E Client UI remains C1 admin only and does not implement Project Intake forms, Client users, invitations or automatic Project creation.
 
@@ -666,6 +672,9 @@ Deferred until explicitly planned:
 - Media/asset library.
 - Marketplace / AMOW product sharing.
 - SeasonPro integration/distribution channel.
+- SeasonPro Club-to-FUND Project initiation implementation.
+- SeasonPro League approved FUND producer/catalogue configuration UI.
+- SeasonPro Club sale method workflows.
 - AI workflows.
 - Lifecycle transition engine.
 - Lifecycle tables/templates.
@@ -687,6 +696,9 @@ Until remediation and architecture planning are complete, do not build:
 - C2 organisation/account schema before the Client/account schema-options slice is accepted.
 - C2 invitation/onboarding flow.
 - Project Intake / Project Request public flow.
+- SeasonPro Club-to-FUND Project initiation flow.
+- SeasonPro League producer/catalogue availability configuration.
+- Sale method selection workflows.
 - Organiser dashboard actions.
 - C1 production batching/artwork checking/dispatch/commission workflow.
 - Product marketplace/sharing.
@@ -1011,7 +1023,39 @@ Recommended next slice:
 1P-G-C - Project Intake Schema
 ```
 
-### Next 9 - C1 Production / Dispatch / Commission Workflow Planning
+### Next 9 - SeasonPro Club To FUND Project Initiation Planning
+
+Suggested slice:
+
+```text
+Slice 1P-J - SeasonPro Club To FUND Project Initiation Planning
+```
+
+Scope:
+
+- preserve the future SeasonPro Club-originated fundraising Project initiation path;
+- record dependency on SeasonPro League FUND/Fundraising module entitlement;
+- record League configuration of approved FUND producer tenant(s), such as AMOW;
+- record catalogue/product availability to Clubs;
+- protect the supplier/producer visibility boundary;
+- require explicit SeasonPro Club to FUND Client/account mapping;
+- preserve `SEASONPRO_CLUB` as a Project Intake submission source;
+- preserve sale method options for later Store/Orders/Commerce planning;
+- keep implementation deferred.
+
+Status:
+
+```text
+Planning placeholder created. Do not implement yet.
+```
+
+Planning document:
+
+```text
+isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-j-seasonpro-club-to-fund-project-initiation-planning.md
+```
+
+### Next 10 - C1 Production / Dispatch / Commission Workflow Planning
 
 Suggested slice:
 
@@ -1041,7 +1085,7 @@ Planning document:
 isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-i-c1-production-dispatch-commission-workflow-planning.md
 ```
 
-### Next 10 - Event / Catalogue / Product Availability Planning
+### Next 11 - Event / Catalogue / Product Availability Planning
 
 Suggested slice:
 
@@ -1055,7 +1099,7 @@ Scope:
 - produce schema/API plan;
 - explicitly record Store/Commerce impacts.
 
-### Next 11 - C2 Dashboard Foundation Expansion
+### Next 12 - C2 Dashboard Foundation Expansion
 
 Suggested slice:
 
@@ -1104,9 +1148,10 @@ Proceed with Project Intake schema-only implementation planning/review gate:
 5. Treat 1P-H-C as accepted after authenticated staging smoke testing.
 6. Treat 1P-G-A as completed Project Intake schema and moderation-model planning.
 7. Treat 1P-G-B as completed Project Intake schema-options planning.
-8. Treat 1P-I as the current production/admin workflow planning guardrail before Store/Commerce implementation.
-9. Next recommended slice is 1P-G-C Project Intake schema-only implementation, after reviewing/accepting the schema options.
-10. Keep Client users, invitations, notification sending, Client dashboard communications, Project Intake public forms/UI/services, Store, Orders, Commerce, Sales/Reporting, production workflow implementation and Communications out of scope unless separately planned.
+8. Treat 1P-J as the SeasonPro Club-to-FUND Project initiation planning placeholder. This is future-facing and depends on SeasonPro module entitlement, League configuration, catalogue availability, sale method planning and explicit Club-to-FUND Client/account mapping.
+9. Treat 1P-I as the current production/admin workflow planning guardrail before Store/Commerce implementation.
+10. Next recommended slice is 1P-G-C Project Intake schema-only implementation, after reviewing/accepting the schema options.
+11. Keep Client users, invitations, notification sending, Client dashboard communications, Project Intake public forms/UI/services, Store, Orders, Commerce, Sales/Reporting, production workflow implementation, SeasonPro integration implementation and Communications out of scope unless separately planned.
 
 Do not start:
 - C2 dashboard expansion;

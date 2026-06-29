@@ -74,6 +74,36 @@ The form audience may include:
 
 Submissions are moderation inputs, not operational records.
 
+### SeasonPro Club-Originated Project Initiation (Future)
+
+SeasonPro Club-originated Project initiation is a future FUND intake path.
+
+Where a SeasonPro League has the FUND / Fundraising module enabled through its subscription, the League tenant may configure fundraising availability for its Clubs. The League may choose which approved FUND producer tenant(s), such as AMOW, and which fundraising catalogue/product options are available to Clubs.
+
+Future Club-facing flow:
+
+```text
+SeasonPro Club dashboard
+-> Start fundraising Project
+-> choose available fundraising catalogue / product options
+-> choose sale method
+-> submit Project request / create Project according to configured policy
+```
+
+Possible sale methods to preserve for later planning:
+
+- direct purchase, for example parent/customer pays through a public Store;
+- club-funded purchase, for example the Club is invoiced;
+- bulk purchase via Store or campaign order workflow.
+
+The Club should not see supplier/producer internals unless explicitly planned. Product options should be presented as fundraising products available through the League/SeasonPro context, not as supplier-management records.
+
+The SeasonPro Club should map to, create or link to a FUND Client/account. Any resulting FUND Project must use explicit Client linkage through `FundProject.clientId`, not organiser snapshot fields or respondent email inference.
+
+Until trusted direct creation is explicitly planned, this path should create or route through a moderated Project Intake submission using source `SEASONPRO_CLUB`.
+
+This planning note does not implement SeasonPro integration, Store, Orders, Commerce, notification sending or public intake forms.
+
 ## 4. Proposed Models / Entities
 
 Recommended first schema direction:

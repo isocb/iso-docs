@@ -192,6 +192,36 @@ The future Client dashboard is expected to become more than a passive Project di
 
 Those communications and engagement surfaces are deferred. The intake schema may record a Client dashboard submission source, but it must not imply notification sending, announcement delivery, messaging threads or Client dashboard communication implementation.
 
+SeasonPro Club clarification:
+
+```text
+SEASONPRO_CLUB represents future Project initiation from a SeasonPro Club surface.
+```
+
+This source is future-facing. It depends on a SeasonPro League tenant having the FUND / Fundraising module enabled through subscription, League-level configuration of approved FUND producer tenant(s), catalogue availability to Clubs and an explicit SeasonPro Club to FUND Client/account mapping.
+
+Future Club-facing flow:
+
+```text
+SeasonPro Club dashboard
+-> Start fundraising Project
+-> choose available fundraising catalogue / product options
+-> choose sale method
+-> submit Project request / create Project according to configured policy
+```
+
+Possible sale methods to preserve for later planning:
+
+- direct purchase, for example parent/customer pays through a public Store;
+- club-funded purchase, for example the Club is invoiced;
+- bulk purchase via Store or campaign order workflow.
+
+The Club should not see supplier/producer internals unless explicitly exposed. Product options should be presented as fundraising products available through the League/SeasonPro context, not as supplier-management records.
+
+The SeasonPro Club should map to, create or link to a `FundClient` account. Any resulting FUND Project should use explicit `FundProject.clientId` linkage, not organiser snapshot fields or respondent email inference.
+
+No SeasonPro integration is implemented by this schema slice. Until trusted direct creation is explicitly planned, SeasonPro Club-originated requests should create or route through moderated Project Intake submissions.
+
 ### FundProjectIntakeModerationDecision
 
 Recommended values:
