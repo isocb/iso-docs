@@ -54,7 +54,7 @@ Release result:
 - 1P-H-C static/code review and authenticated staging browser smoke testing passed. No remedial work is required at this stage.
 - 1P-G-A Project Intake Schema And Moderation Model planning is complete. Project Intake remains moderation-first: submissions must not directly create Clients, Client users, Projects, Event links, notifications or invitations.
 - 1P-G-B Project Intake Schema Options planning is complete and has led into 1P-G-C schema-only implementation.
-- 1P-G-C Project Intake schema-only implementation is complete locally and ready for schema review. It adds intake form/submission enums, models, tenant-scoped relations and migration only.
+- 1P-G-C Project Intake schema-only implementation and 1P-G-C-R1 schema review are complete. Staging deployment/smoke testing passed; pre-existing data loads correctly and no remedial work is required at this stage.
 - Future Client dashboard is not merely passive Project display. It is expected to become the Client Project initiation, engagement, announcements, special offers/campaign prompts, 1:1 communication and dashboard-visible communications surface.
 - C1 dashboard is the Project administration, artwork checking, production grouping, dispatch/fulfilment and commission workflow surface.
 - Store, Orders and Commerce must align with the future Client dashboard and C1 production/admin workflow surfaces rather than proceeding as isolated features.
