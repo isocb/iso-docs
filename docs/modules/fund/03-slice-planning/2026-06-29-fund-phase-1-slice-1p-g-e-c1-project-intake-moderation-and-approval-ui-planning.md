@@ -81,7 +81,55 @@ Route behaviour:
 
 Do not use public form routes in this slice.
 
-## 4. Dashboard And Navigation
+## 4. C1 Action Widget/Card Standard
+
+The Project Intake dashboard card should be treated as the first FUND C1 action widget/card pattern.
+
+SeasonPro/LMSPro precedent:
+
+- the C1 League dashboard separates action-required workflow cards from general navigation;
+- action cards use concise tenant-facing labels;
+- cards show live row counts for workflow states;
+- a branded border indicates that the card requires operator attention;
+- row-level counts can navigate to the relevant filtered work queue;
+- general navigation cards remain simpler and do not imply pending action.
+
+FUND should adopt the same principle for C1 operational workflows. The C1 FUND dashboard should eventually contain multiple action widgets/cards for workflow areas such as Project Intake, artwork checking, production grouping, dispatch/fulfilment, commission and later Store/Commerce operations.
+
+Core action card rules:
+
+- use a concise tenant-facing title;
+- use a short operational subtitle;
+- include live summary row counts for non-terminal pipeline states;
+- show zero counts in muted text;
+- use compact badges for non-zero counts;
+- apply a subtle `1px` brand-primary border when any action-required count is greater than zero;
+- avoid colour-heavy backgrounds as the primary action signal;
+- keep hover feedback subtle and consistent with existing IsoStack cards;
+- make the whole card clickable to the workflow landing page;
+- allow individual summary rows to deep-link to filtered views when practical;
+- do not use row-level edit/delete/action icon buttons inside the card;
+- only show action cards to users with the relevant C1 admin permission.
+
+For Project Intake, the action-required count should exclude:
+
+- `CONFIRMATION_PENDING`;
+- `APPROVED`;
+- `REJECTED`;
+- `CANCELLED`;
+- `SPAM`;
+- `ARCHIVED`.
+
+The Project Intake action-required count should include confirmed, non-terminal pipeline statuses such as:
+
+- `SUBMITTED`;
+- `IN_REVIEW`;
+- `NEEDS_INFO`;
+- approval-ready submissions, where the UI can determine this safely.
+
+This C1 action widget/card pattern should become the standard for later FUND workflow cards so AMOW sees a consistent operational dashboard rather than a set of unrelated feature links.
+
+## 5. Dashboard And Navigation
 
 Add a C1 FUND dashboard card or navigation entry for:
 
@@ -99,7 +147,16 @@ The card should link to `/app/fund/project-intake`.
 
 The FUND sidebar/navigation should expose Project Intake only for C1 FUND admins. It must remain separate from C2 organiser/client dashboard navigation.
 
-## 5. Moderation Landing Behaviour
+The Project Intake dashboard action card should show summary rows, for example:
+
+- Awaiting review;
+- In review;
+- Needs information;
+- Ready for approval.
+
+If the combined action-required count is greater than zero, the card should show the `1px` brand-primary active border. This is an attention cue, not a warning state. Rejected, approved, cancelled, spam, archived and unconfirmed records should not activate the card.
+
+## 6. Moderation Landing Behaviour
 
 The moderation landing should include:
 
@@ -133,7 +190,7 @@ Use the existing IsoStack/FUND table pattern:
 - row click opens detail or approval page;
 - no edit/delete/action icon buttons in table rows.
 
-## 6. Submission Table Behaviour
+## 7. Submission Table Behaviour
 
 The submission table should show:
 
@@ -162,7 +219,7 @@ Default query behaviour:
 - exclude `CONFIRMATION_PENDING`;
 - sort newest actionable submissions first.
 
-## 7. Submission Detail Behaviour
+## 8. Submission Detail Behaviour
 
 The submission detail page should show:
 
@@ -196,7 +253,7 @@ That command should navigate to:
 /app/fund/project-intake/submissions/[id]/approval
 ```
 
-## 8. Approval Page Behaviour
+## 9. Approval Page Behaviour
 
 The approval page is a deliberate C1 decision surface.
 
@@ -221,7 +278,7 @@ After approval, show links to:
 - created Project detail;
 - linked Event detail, if applicable.
 
-## 9. Approval Form Fields
+## 10. Approval Form Fields
 
 ### Create Client And Project
 
@@ -264,7 +321,7 @@ Only visible when the form allows standalone Projects.
 
 Project fields are the same as above, with no Client selector.
 
-## 10. Return-To-Review Policy
+## 11. Return-To-Review Policy
 
 The 1P-G-D3-A-R1 review recorded a caveat: the API currently allows most non-approved, non-confirmation-pending submissions to return to `IN_REVIEW`.
 
@@ -283,7 +340,7 @@ Confirm whether return-to-review should be allowed from REJECTED, CANCELLED and 
 
 If necessary, implement a tiny API policy tightening before the approval UI.
 
-## 11. Error And Conflict Handling
+## 12. Error And Conflict Handling
 
 The UI should surface approval errors clearly:
 
@@ -297,12 +354,14 @@ The UI should surface approval errors clearly:
 
 Do not hide errors in table body text alone. Use the existing alert/notification patterns from FUND Client and Project pages.
 
-## 12. UI Standard Compliance
+## 13. UI Standard Compliance
 
 Follow current FUND admin conventions:
 
 - muted operational styling;
 - semantic colour only for status/action meaning;
+- use the C1 action widget/card standard for dashboard workflow cards;
+- use a `1px` brand-primary border only when a workflow card has action-required counts greater than zero;
 - no oversized hero or marketing surfaces;
 - row click opens detail/approval pages;
 - no edit/delete/archive action icons inside table rows;
@@ -310,7 +369,7 @@ Follow current FUND admin conventions:
 - use current Mantine/DataTable/FUND shared components where practical;
 - keep compact headings inside cards and tables.
 
-## 13. Non-Goals
+## 14. Non-Goals
 
 Do not implement:
 
@@ -333,11 +392,15 @@ Do not implement:
 - SeasonPro integration;
 - schema changes or migrations.
 
-## 14. Manual Test Checklist For Future Implementation
+## 15. Manual Test Checklist For Future Implementation
 
 When implemented, manually verify:
 
 - C1 admin can open `/app/fund/project-intake`.
+- C1 FUND dashboard shows a Project Intake action card/widget.
+- Project Intake action card shows non-terminal pipeline summary counts.
+- Project Intake action card uses a `1px` brand-primary border only when an action-required count is greater than zero.
+- Approved, rejected, cancelled, spam, archived and confirmation-pending records do not activate the Project Intake action card.
 - `CONFIRMATION_PENDING` submissions do not appear by default.
 - Empty state is clear when no submissions exist.
 - Search, filter and sorting work.
@@ -352,7 +415,7 @@ When implemented, manually verify:
 - Created Client and Project links navigate to existing C1 admin pages.
 - No Client users, invitations, notifications, Store, Orders, Commerce or SeasonPro surfaces appear.
 
-## 15. Implementation Prompt
+## 16. Implementation Prompt
 
 ```text
 Proceed with FUND Phase 1 Slice 1P-G-E implementation: C1 Project Intake Moderation And Approval UI.
@@ -383,6 +446,9 @@ Use only:
 
 Requirements:
 - C1 Project Intake dashboard/navigation entry;
+- Project Intake dashboard action card/widget using the documented C1 action-card standard;
+- action card summary rows for non-terminal pipeline statuses;
+- 1px brand-primary active border only when action-required counts are greater than zero;
 - moderation landing with summary cards, approval summary card and submissions table;
 - row click opens detail/approval pages;
 - no action icon buttons in table rows;
@@ -416,7 +482,7 @@ Create implementation confirmation documentation.
 Do not promote to main after implementation.
 ```
 
-## 16. Recommended Next Slice
+## 17. Recommended Next Slice
 
 ```text
 1P-G-E-A - C1 Project Intake Moderation And Approval UI Implementation
