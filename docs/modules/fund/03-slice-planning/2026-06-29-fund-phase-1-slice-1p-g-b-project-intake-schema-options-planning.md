@@ -91,6 +91,8 @@ Rejected because:
 - notification and invitation boundaries are not planned;
 - public endpoints must not create operational records automatically.
 
+This rejection also applies to future Client-dashboard-originated Project requests until a controlled C2 Project initiation flow is explicitly planned. Existing Client users may eventually initiate additional Project requests from their dashboard, but the first intake model should still create a moderation record unless a later policy slice deliberately allows direct creation.
+
 ### Option C - Store Intake As Raw Issue / Change Request
 
 Description:
@@ -179,6 +181,16 @@ Rationale:
 - Captures where the request originated.
 - Does not require SeasonPro integration yet.
 - Leaves room for future authenticated Client dashboard requests.
+
+Client dashboard clarification:
+
+```text
+CLIENT_DASHBOARD represents future Project initiation by an existing Client/account user.
+```
+
+The future Client dashboard is expected to become more than a passive Project display surface. It is expected to support Client Project initiation, engagement, C1 announcements, special offers/campaign prompts, 1:1 communication and dashboard-visible messages.
+
+Those communications and engagement surfaces are deferred. The intake schema may record a Client dashboard submission source, but it must not imply notification sending, announcement delivery, messaging threads or Client dashboard communication implementation.
 
 ### FundProjectIntakeModerationDecision
 
@@ -432,6 +444,10 @@ Recommended future fields, deferred:
 - needs-info message;
 - external respondent reply thread;
 - notification/invitation ids.
+- dashboard-visible announcement/message ids.
+- special offer or campaign prompt ids.
+
+Future dashboard-visible communication fields are deferred. Do not add announcement, offer, message-thread or communication-delivery fields to the intake schema in the first schema slice.
 
 ## 14. Approval Output Boundaries
 
@@ -450,6 +466,8 @@ They do not mean:
 - automatic Project creation;
 - automatic Event linkage;
 - automatic notification sending.
+- dashboard announcement/message creation.
+- special offer or campaign prompt delivery.
 
 ## 15. Audit Requirements
 
@@ -518,6 +536,9 @@ It must not implement:
 - Client user/member schema;
 - invitations;
 - notification sending;
+- dashboard announcements;
+- 1:1 Client communications;
+- special offers or campaign prompts;
 - approval automation;
 - Project creation from submissions;
 - Store;
