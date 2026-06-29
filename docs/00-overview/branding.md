@@ -46,7 +46,8 @@ All branding contexts support:
 ### **2.3 Upload Constraints**
 
 * **Logos:** Max 2MB, formats: PNG, JPG, WebP, SVG (preferred)
-* **Favicon:** Max 100KB, recommended 32x32 or 64x64 pixels
+* **Favicon:** Max 100KB, recommended 32x32 or 64x64 pixels; SVG is allowed for branding favicons
+* **SVG boundary:** SVG upload is allowed for branding assets only: Platform Core/P1 app branding, module branding and organization/tenant branding. SVG remains blocked for general media uploads unless separately approved.
 * **Storage:** Cloudflare R2 with presigned URLs (1-hour expiry)
 * **Path Structure:** `branding/{organizationId}/{assetType}-{timestamp}.{ext}`
 
@@ -524,4 +525,3 @@ const hasWhiteLabel = features.length > 0;
 - [ ] Platform Core logo and Module logo are different images
 - [ ] Uploading module logo does NOT change Platform Core logo
 - [ ] Both logos persist independently across page refreshes
-
