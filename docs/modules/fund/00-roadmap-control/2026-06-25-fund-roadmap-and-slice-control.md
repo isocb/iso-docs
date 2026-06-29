@@ -55,7 +55,7 @@ Release result:
 - 1P-G-A Project Intake Schema And Moderation Model planning is complete. Project Intake remains moderation-first: submissions must not directly create Clients, Client users, Projects, Event links, notifications or invitations.
 - 1P-G-B Project Intake Schema Options planning is complete and has led into 1P-G-C schema-only implementation.
 - 1P-G-C Project Intake schema-only implementation and 1P-G-C-R1 schema review are complete. Staging deployment/smoke testing passed; pre-existing data loads correctly and no remedial work is required at this stage.
-- 1P-G-D0 Client-Scoped Project Initiation And Idempotency planning is complete. Unknown/new Client intake remains moderation-first, while future authenticated Client users with the correct Client role/permission may create DRAFT/REQUESTED Projects directly under their Client account. Later activation, Store, Commerce, production, dispatch and notification gates may still require C1 approval or separate policy.
+- 1P-G-D0 Client-Scoped Project Initiation And Idempotency planning is complete. Unknown/public intake and new Client onboarding remain moderation-first. Existing authenticated C2 Client users with the correct future Client role/permission create Client-owned Projects directly under `FundProject.clientId` from trusted Client/account context. C1 is the FUND producer tenant/supplier/fulfilment operator, not the default approver of Project existence. Later activation, Store, Commerce, production, dispatch and notification gates may still require C1 approval or separate policy.
 - 2026-06-29 live/main alignment target is `aac38c1`; post-main smoke confirmation should follow `05-review-and-test/2026-06-29-phase-1-main-live-alignment-confirmation-and-smoke-checklist.md`.
 - Future Client dashboard is not merely passive Project display. It is expected to become the Client Project initiation, engagement, announcements, special offers/campaign prompts, 1:1 communication and dashboard-visible communications surface.
 - C1 dashboard is the Project administration, artwork checking, production grouping, dispatch/fulfilment and commission workflow surface.
@@ -502,14 +502,17 @@ Control decision:
 
 ### Project Intake / Client Onboarding Clarification
 
-Future FUND Project creation has two important paths:
+Future FUND Project creation has three important lanes:
 
 ```text
-New Client / first Project:
+Unknown / public intake:
 external or unknown respondent -> C1 Project Intake form -> C1 moderation -> Client/account + C2 user/member + Project
 
+New Client / first Project:
+new organisation / first Project -> intake/onboarding submission -> C1 moderation -> Client/account + first user + Project
+
 Existing Client / additional Project:
-authenticated Client user -> Client dashboard -> New Project -> direct DRAFT/REQUESTED Project creation under authenticated Client context
+authenticated C2 Client user -> Client dashboard -> New Project -> direct Client-owned FundProject creation under authenticated Client/account context
 
 SeasonPro Club:
 SeasonPro Club user -> Club view -> Project request/create flow -> C1 moderation or trusted direct creation only if policy allows
@@ -521,19 +524,22 @@ Project Intake / Project Request forms may later be:
 - linked from emails;
 - linked from campaign pages;
 - linked from SeasonPro Club views;
-- linked from future Client dashboards.
+- used from future Client dashboards only where a deliberate request/intake path is needed instead of direct Client-owned Project creation.
 
 Control rules:
 
 - C1 users may create/manage Project Intake forms in a future slice.
 - Unknown/public and new Client form submissions must be moderated before operational records are created or linked.
 - Approval may create/link Client/account, C2 user/member, Project and Event linkage for moderated intake.
-- Existing authenticated Client dashboard Project initiation should be able to create a Project directly once the Client user/member and role/permission model exists.
-- Direct Client-created Projects should start as DRAFT or REQUESTED and remain subject to later gates before activation, Store launch, public ordering, production batching, dispatch/fulfilment, notification sending or commerce/payment activity.
-- Client-scoped Project initiation must use trusted Client route, token or authenticated Client context. Existing Client dashboard initiation should auto-scope the request or Project to the authenticated Client/account.
+- Existing authenticated Client dashboard Project initiation is not an intake submission by default.
+- Existing authenticated C2 Client users should be able to create Client-owned Projects directly once the Client user/member and role/permission model exists.
+- Direct Client-created Projects should start in a safe pre-operational state and remain subject to later gates before activation, Store launch, public ordering, production batching, dispatch/fulfilment, notification sending or commerce/payment activity.
+- Client-scoped Project initiation must use trusted Client route, token or authenticated Client context. Existing Client dashboard initiation should auto-scope the Project to the authenticated Client/account.
 - Client ownership must not be inferred from organiser snapshot fields, respondent email alone, proposed Client contact fields alone or user-editable hidden fields.
 - New Client / first Project intake may create or match Client/account, create or link a primary Client login user/member and create a Project linked through `FundProject.clientId` only after explicit C1 moderation/approval or a separately planned trusted direct-creation policy.
-- Future approval/idempotency planning must account for initiator email matching and/or future Client user/member matching.
+- The C2 Client user is the Project manager and may later plan, update, cancel, archive or manage the Project within operational rules.
+- C1 is the FUND producer tenant/supplier/fulfilment operator. C1 manages Products/Catalogues, Event/Product availability, artwork checking, production, dispatch, commission, order/commerce oversight and supplier-side exceptions rather than approving every authenticated C2 Project by default.
+- Future direct Client Project creation idempotency must account for double-click/retry protection and authenticated Client user/member audit. Future moderation approval idempotency must account for initiator email matching and/or future Client user/member matching.
 - The future Client dashboard is also the intended Client engagement surface for C1 announcements, special offers/campaign prompts, dashboard-visible messages and 1:1 communication.
 - Client dashboard communications must follow a controlled SeasonPro-style communications pattern and must not be implied by Project Intake schema alone.
 - Projects may be linked to a C1 Event or may be standalone depending on campaign/form policy.

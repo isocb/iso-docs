@@ -8,18 +8,26 @@ Status: Planning only
 
 Decide how Client-scoped Project initiation should work before implementing Project Intake moderation API/services.
 
-This slice protects the boundary between:
+This slice protects the boundary between three different initiation lanes:
 
 - public or unknown Project requests;
-- authenticated Client dashboard Project initiation;
+- new Client onboarding / first Project requests;
+- existing authenticated Client dashboard Project creation;
 - C1 admin-created intake forms;
 - C1 moderation decisions;
-- future direct Project creation policies.
+- downstream operational approval gates.
 
 Core decision:
 
 ```text
 Client ownership must come from trusted Client route, token or authenticated context, not from respondent email, organiser snapshot fields, proposed Client contact fields or user-editable hidden fields.
+```
+
+Product principle:
+
+```text
+An authenticated C2 Client user creating a Project from the Client dashboard is not creating an intake submission by default.
+The Project is created directly as a Client-owned selling unit under FundProject.clientId.
 ```
 
 ## 2. Dependencies
@@ -44,6 +52,14 @@ Relevant documents:
 - `00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md`
 
 ## 3. Initiation Contexts
+
+### Three-Lane Model
+
+| Lane | Who initiates? | What happens? | C1 role |
+| --- | --- | --- | --- |
+| Unknown / public intake | Unknown person, public form, campaign link | Creates moderation submission | C1 approves/rejects and may create Client/user/Project |
+| New Client onboarding | Organisation not yet trusted/linked | Creates moderation/onboarding submission | C1 creates/links Client and first user |
+| Existing authenticated Client Project creation | C2 user in known Client/account | Creates Project directly under `FundProject.clientId` | C1 supplies products and manages fulfilment/production/commission |
 
 ### C1 Admin Intake Form
 
@@ -90,15 +106,23 @@ Moderation may later:
 
 A future authenticated Client user starts a Project from the Client dashboard.
 
+This is not an intake submission by default.
+
 Recommended future behaviour:
 
 ```text
-authenticated Client user
+authenticated C2 Client user
   -> Client dashboard
   -> New Project
   -> create FundProject directly
-  -> set FundProject.clientId from authenticated Client context
-  -> Project starts as DRAFT or REQUESTED
+  -> set FundProject.clientId from authenticated Client/account context
+  -> Project starts in a safe Client-managed pre-operational state
+```
+
+Do not choose a final status enum in this planning note. The product principle is:
+
+```text
+Project is created directly as a Client-owned selling unit in a safe pre-operational state.
 ```
 
 This should not require C1 moderation merely to create the Project record.
@@ -110,7 +134,7 @@ Direct Client dashboard Project creation requires a future Client user/member an
 - which Client users can directly create Projects;
 - which Client users can only request Projects;
 - which Project fields can be self-entered;
-- whether Projects start as `DRAFT` or `REQUESTED`;
+- which safe pre-operational Project status is used;
 - whether C1 review is required before activation;
 - how audit and notification boundaries work.
 
@@ -123,6 +147,39 @@ C1 review or approval may still be required before:
 - dispatch/fulfilment;
 - notification sending;
 - commerce/payment activity.
+
+### C2 Client Project Manager Role
+
+The authenticated C2 Client user is the Project manager for Client-owned Projects.
+
+Within future role/permission rules and operational constraints, the C2 Client user may manage their own Project, including:
+
+- planning;
+- editing core Project details;
+- choosing dates;
+- choosing whether the Project is Event-linked or standalone where permitted;
+- cancelling;
+- archiving;
+- managing the Project lifecycle from the Client dashboard.
+
+Exact role/permission rules require the future Client users/members planning slice.
+
+### C1 Producer / Supplier Role
+
+C1 is the FUND producer tenant, supplier and fulfilment operator.
+
+C1 is responsible for operational and fulfilment surfaces such as:
+
+- Product and Catalogue availability;
+- Event/Product availability rules;
+- artwork checking where required;
+- production and fulfilment;
+- dispatch;
+- commission;
+- order/commerce operational oversight;
+- supplier-side status and exception handling.
+
+C1 should not be described as approving every authenticated C2 Project creation by default.
 
 ### Client-Scoped Token Or Link
 
@@ -189,6 +246,7 @@ Principle:
 
 ```text
 Submission records may be duplicated as evidence, but approval actions must be idempotent where they create or link operational records.
+Authenticated Client dashboard Project creation must also be idempotent where it creates Client-owned Projects directly.
 ```
 
 ## 6. Idempotency Inputs
@@ -217,8 +275,8 @@ Recommended future behaviour:
 authenticated Client context
   -> Client dashboard New Project
   -> create FundProject directly
-  -> set FundProject.clientId from authenticated Client context
-  -> Project starts as DRAFT or REQUESTED
+  -> set FundProject.clientId from authenticated Client/account context
+  -> Project starts in a safe Client-managed pre-operational state
 ```
 
 This does not need C1 moderation simply to create the Project record.
@@ -264,7 +322,7 @@ The first Project flow needs a later idempotency decision for:
 
 ## 9. Approval Action Idempotency
 
-Future approval services should be designed so repeated approval attempts do not create duplicate Clients or Projects.
+Future C1 moderation approval services for unknown/public/new Client intake should be designed so repeated approval attempts do not create duplicate Clients or Projects.
 
 Recommended service guardrails:
 
@@ -275,19 +333,22 @@ Recommended service guardrails:
 - C1 must explicitly confirm create-new versus link-existing;
 - duplicate hints should be advisory, not automatic ownership assignment.
 
-Authenticated Client dashboard direct Project creation also needs idempotency protection:
+Do not frame authenticated Client dashboard Project creation as C1 approval-action idempotency.
+
+Authenticated Client dashboard direct Project creation needs its own idempotency protection:
 
 - create requests should run inside server-side transaction boundaries;
 - repeated double-click/retry should not create duplicate Projects;
 - a future idempotency key should be considered for create Project requests;
 - if the same authenticated request is retried, return the existing Project where possible;
-- audit the creating Client user/member and Client account.
+- prevent duplicate Project creation within the same Client/account where a request is retried;
+- audit the creating authenticated Client user/member and Client account.
 
 ## 10. Project Creation Boundary
 
 When future moderation or authenticated Client dashboard creation creates a Project:
 
-- Project should start as `DRAFT` or `REQUESTED` according to the future policy slice;
+- Project should start in a safe pre-operational state according to the future policy slice;
 - `FundProject.clientId` should be set only from C1-selected or trusted Client context;
 - Event linkage should use accepted Project/Event constraints;
 - organiser snapshot fields may be copied as contact snapshots but not access control;
@@ -344,12 +405,19 @@ Future implementation must include:
 
 Recommended sequence:
 
+Client-owned Project creation lane:
+
+1. 1P-K0 - Client-Owned Project Lifecycle And Dashboard Management Planning.
+2. 1P-K1 - Client User/Member Role And Project Permission Planning.
+3. 1P-K2 - Authenticated Client Dashboard Project Creation API/Services Planning.
+
+Public/new Client intake lane:
+
 1. 1P-G-D - Project Intake Moderation API/Services Planning.
 2. 1P-G-D1 - Project Intake C1 Form API/Services.
 3. 1P-G-D2 - Project Intake Submission Review API/Services.
 4. 1P-G-D3 - Approval Action Planning/Implementation, if accepted.
-5. 1P-G-D4 - Authenticated Client Dashboard Project Creation Policy Planning.
-6. 1P-G-E - C1 Intake Moderation UI Planning.
+5. 1P-G-E - C1 Intake Moderation UI Planning.
 
 Public forms, Client dashboard initiation and SeasonPro Club initiation should remain deferred until the relevant trust/context, role/permission and idempotency models are accepted.
 
@@ -383,7 +451,21 @@ Do not run:
 
 ## 16. Recommended Next Slice
 
-Recommended next slice:
+Recommended next slices are split by lane.
+
+Client-owned Project creation lane:
+
+```text
+1P-K0 - Client-Owned Project Lifecycle And Dashboard Management Planning
+```
+
+Planning goal:
+
+```text
+Define how authenticated C2 Client users manage Client-owned Projects from the Client dashboard, including Project lifecycle, safe pre-operational status, edit/cancel/archive rules and C1 downstream operational gates.
+```
+
+Public/new Client intake lane:
 
 ```text
 1P-G-D - Project Intake Moderation API/Services Planning
