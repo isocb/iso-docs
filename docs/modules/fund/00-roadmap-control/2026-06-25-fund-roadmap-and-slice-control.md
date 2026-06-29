@@ -14,25 +14,25 @@ This document is planning/documentation only. It does not implement code, change
 
 ## 1. Current Released Baseline
 
-The FUND C1 admin foundation has been tested on staging and accepted as the release baseline.
+The FUND Phase 1 baseline through 1P-G-C-R1 has been tested on staging and accepted as a live-alignment candidate.
 
 Current released app baseline:
 
 ```text
-62b727e chore(release): promote FUND C1 admin foundation
+aac38c1 fix(fund): polish c1 dashboard cards
 ```
 
-Current branch alignment after 1P-F-E Client Management alignment:
+Current branch alignment after 1P-G-C-R1 review, staging smoke testing and main live alignment:
 
 ```text
-main    = 62b727e released C1 admin foundation baseline
-dev     = da6fd0f 1P-F-E C1 Client Management
-staging = 536c947 1P-H Project Client linkage
+main    = aac38c1 accepted FUND Phase 1 baseline through 1P-G-C-R1
+dev     = aac38c1 accepted FUND Phase 1 baseline through 1P-G-C-R1
+staging = aac38c1 accepted FUND Phase 1 baseline through 1P-G-C-R1
 ```
 
 Release result:
 
-- FUND C1 admin foundation is released on `main`.
+- FUND Phase 1 baseline through 1P-G-C-R1 is aligned to `main`.
 - SeasonPro/LMSPro export hotfix is included in the released baseline.
 - Staging browser testing found no blocking C1 admin foundation issues before release alignment.
 - FUND remains expected to need refinement; the baseline is accepted as the foundation, not as final product polish.
@@ -55,6 +55,7 @@ Release result:
 - 1P-G-A Project Intake Schema And Moderation Model planning is complete. Project Intake remains moderation-first: submissions must not directly create Clients, Client users, Projects, Event links, notifications or invitations.
 - 1P-G-B Project Intake Schema Options planning is complete and has led into 1P-G-C schema-only implementation.
 - 1P-G-C Project Intake schema-only implementation and 1P-G-C-R1 schema review are complete. Staging deployment/smoke testing passed; pre-existing data loads correctly and no remedial work is required at this stage.
+- 2026-06-29 live/main alignment target is `aac38c1`; post-main smoke confirmation should follow `05-review-and-test/2026-06-29-phase-1-main-live-alignment-confirmation-and-smoke-checklist.md`.
 - Future Client dashboard is not merely passive Project display. It is expected to become the Client Project initiation, engagement, announcements, special offers/campaign prompts, 1:1 communication and dashboard-visible communications surface.
 - C1 dashboard is the Project administration, artwork checking, production grouping, dispatch/fulfilment and commission workflow surface.
 - Store, Orders and Commerce must align with the future Client dashboard and C1 production/admin workflow surfaces rather than proceeding as isolated features.
@@ -65,8 +66,8 @@ Release result:
 - SeasonPro Club-originated Project initiation is a future intake path. It depends on SeasonPro League FUND/Fundraising module entitlement, League configuration of approved FUND producer tenant(s), catalogue availability to Clubs, sale method planning and explicit Club-to-FUND Client/account mapping.
 - Notification management remains deferred. Project intake, Client creation, C2 user creation and Project approval must not accidentally send notifications until controlled communications are explicitly planned.
 - Staging `/api/health` returned HTTP 200 after alignment.
-- `main` remains held at `62b727e` until the 1P-B/staging migration and smoke testing are accepted.
-- Docs repo `main` latest before this staging-readiness update was `c4aaff0`.
+- `main`, `dev`, `staging` and `feature/fund-phase-1-c2-project-access` are intended to align at `aac38c1` after this live alignment.
+- Docs repo `main` latest before this live-alignment update was `cb559f2`.
 
 ## 2. Current Branch Landscape
 
@@ -81,16 +82,16 @@ staging
 Current state:
 
 ```text
-main held at 62b727e
-dev aligned at 536c947
-staging aligned at 536c947
+main aligned at aac38c1
+dev aligned at aac38c1
+staging aligned at aac38c1
 ```
 
 Use:
 
-- `main` is the live/release baseline.
-- `dev` is the integration baseline for the current FUND Project Intake planning lane and includes accepted Project Client linkage.
-- `staging` carries accepted Project Client linkage for Render deployment and authenticated smoke validation.
+- `main` is the live/release baseline through accepted 1P-G-C-R1 work.
+- `dev` is the integration baseline aligned to the current live candidate.
+- `staging` carries the same accepted baseline for Render deployment and authenticated smoke validation.
 
 ### Active FUND Branch
 
@@ -188,7 +189,7 @@ isodocs/docs/modules/fund/implementation/
 | 1P-H-C | Project Client Linkage UI Review | Complete / accepted |
 | 1P-G-A | Project Intake Schema And Moderation Model Planning | Planning complete |
 | 1P-G-B | Project Intake Schema Options Planning | Planning complete |
-| 1P-G-C | Project Intake Schema | Implemented / pending review |
+| 1P-G-C | Project Intake Schema | Implemented / reviewed / accepted |
 | 1P-I | C1 Production, Dispatch And Commission Workflow Planning | Planning note created |
 | 1P-J | SeasonPro Club To FUND Project Initiation Planning | Future planning placeholder created |
 
@@ -281,10 +282,10 @@ Fix the C1 foundation in place before exposing dependent behaviour to C2 organis
 Current branch state:
 
 ```text
-feature/fund-phase-1-c2-project-access = 536c947
-dev                              = 536c947
-staging                          = 536c947
-main                             = 62b727e
+feature/fund-phase-1-c2-project-access = aac38c1
+dev                              = aac38c1
+staging                          = aac38c1
+main                             = aac38c1
 ```
 
 Current C2 lane status:
@@ -300,7 +301,7 @@ Current C2 lane status:
 - 1P-H alignment status: feature branch, `dev` and `staging` are aligned at `536c947`.
 - 1P-G-A Project Intake schema/moderation model planning is complete.
 - 1P-G-B Project Intake schema options planning is complete.
-- 1P-G-C Project Intake schema-only implementation is complete locally and pending review.
+- 1P-G-C Project Intake schema-only implementation and 1P-G-C-R1 schema review are complete and accepted.
 
 Staging migration note:
 
