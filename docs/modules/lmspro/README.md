@@ -32,6 +32,44 @@ Planning documents are under `planning/`:
 - CR planning documents (`CR-18`, `CR-19`, `CR-20`, `CR-21`)
 - `Venues-Referees-Implementation-Plan.md`
 
+## Operational Workflow
+
+New LMSPro / SeasonPro operational work should use the numbered lifecycle folders:
+
+```text
+Issue / CR input
+  -> triage decision
+  -> slice planning
+  -> implementation confirmation
+  -> review/test confirmation
+  -> roadmap/control update
+```
+
+Meaning:
+
+- CR inputs are raw observation and evidence.
+- Triage documents decide priority, category, blocker status and next action.
+- Slice planning documents define what will be built or reviewed.
+- Implementation confirmations record what was actually changed.
+- Review/test confirmations prove behaviour and record defects.
+- Roadmap/control documents maintain the current master sequence.
+
+Start current remediation work at:
+
+```text
+00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
+```
+
+Current folder roles:
+
+- `00-roadmap-control/` - current roadmap and slice-control documents.
+- `01-cr-inputs/` - raw issue/change request evidence.
+- `02-triage/` - prioritisation and decision documents.
+- `03-slice-planning/` - current and future active slice plans.
+- `04-implementation-confirmations/` - implementation confirmations.
+- `05-review-and-test/` - review/test confirmations.
+- `planning/` - historical and broader planning records retained in place unless actively moved.
+
 ## Legacy Imports
 
 Older files copied from `isostack-bedrock/docs/00-READ_THIS/modules/lmspro/` are preserved under `legacy-read-this/` for searchability and historical context. Prefer newer documents in the root or `planning/` when there is overlap.
