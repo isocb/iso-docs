@@ -49,8 +49,9 @@ Release result:
 - Client is the C2 organisation/account concept. Primary contact fields on `FundClient` are C1 operational contact snapshots only, not the final Client user/member model.
 - Client users/members, roles, invitations and notification boundaries require a future planning slice before implementation.
 - 1P-H Project Client selector/linkage planning is complete. 1P-H-A API/services and 1P-H-B UI are committed on `feature/fund-phase-1-c2-project-access` at `536c947` and aligned to `dev`/`staging`.
-- 1P-H-C static/code review passed with caveats. Authenticated browser smoke testing remains outstanding as a staging post-deploy validation item.
+- 1P-H-C static/code review and authenticated staging browser smoke testing passed. No remedial work is required at this stage.
 - 1P-G-A Project Intake Schema And Moderation Model planning is complete. Project Intake remains moderation-first: submissions must not directly create Clients, Client users, Projects, Event links, notifications or invitations.
+- 1P-G-B Project Intake Schema Options planning is complete. Recommended next slice is 1P-G-C schema-only implementation after review/acceptance.
 - Project Intake / Project Request forms are a future critical lane. C1-created forms may eventually collect external or Client-originated Project requests and, after C1 moderation, create or link Client/account, C2 user/member, Project and Event records.
 - Notification management remains deferred. Project intake, Client creation, C2 user creation and Project approval must not accidentally send notifications until controlled communications are explicitly planned.
 - Staging `/api/health` returned HTTP 200 after alignment.
@@ -172,10 +173,11 @@ isodocs/docs/modules/fund/implementation/
 | 1P-F-E | C1 Client Management UI | Implemented / reviewed with caveats / aligned to dev+staging |
 | 1P-F-F | Client Organisation Details, Users, Roles And Notification Planning | Future planning note created |
 | 1P-H | Project Client Selector And Linkage Planning | Planning complete |
-| 1P-H-A | Project Client Linkage API/Services | Implemented / static checks passed / pending commit+alignment |
-| 1P-H-B | Project Client Selector UI | Implemented / static checks passed / pending commit+alignment |
-| 1P-H-C | Project Client Linkage UI Review | Complete / proceed with caveats |
+| 1P-H-A | Project Client Linkage API/Services | Implemented / aligned to dev+staging |
+| 1P-H-B | Project Client Selector UI | Implemented / aligned to dev+staging |
+| 1P-H-C | Project Client Linkage UI Review | Complete / accepted |
 | 1P-G-A | Project Intake Schema And Moderation Model Planning | Planning complete |
+| 1P-G-B | Project Intake Schema Options Planning | Planning complete |
 
 ### C1 Admin Surfaces Released
 
@@ -281,10 +283,11 @@ Current C2 lane status:
 - 1P-D0 C2 organisation/account scope clarification has been raised and must be decided before C2 expansion.
 - 1P-H-A Project Client linkage API/services are implemented, static-check passed and committed.
 - 1P-H-B Project Client selector UI is implemented, static-check passed and committed.
-- 1P-H-C review is complete with caveats. Authenticated browser smoke testing remains outstanding.
-- 1P-H alignment status: feature branch, `dev` and `staging` are aligned at `536c947`; authenticated staging smoke testing remains a post-deploy validation item.
+- 1P-H-C review and authenticated staging smoke testing are complete and accepted.
+- 1P-H alignment status: feature branch, `dev` and `staging` are aligned at `536c947`.
 - 1P-G-A Project Intake schema/moderation model planning is complete.
-- 1P-G-B Project Intake schema options is the next recommended planning slice.
+- 1P-G-B Project Intake schema options planning is complete.
+- 1P-G-C Project Intake schema-only implementation is the next recommended slice after review/acceptance.
 
 Staging migration note:
 
@@ -898,8 +901,8 @@ Status:
 1P-H planning complete.
 1P-H-A API/services implemented and static-check passed.
 1P-H-B UI implemented and static-check passed.
-1P-H-C review complete with caveats.
-Authenticated browser smoke testing remains outstanding.
+1P-H-C review and authenticated staging smoke testing complete.
+Accepted with no remedial work required at this stage.
 ```
 
 Planning document:
@@ -924,7 +927,7 @@ isodocs/docs/modules/fund/05-review-and-test/2026-06-25-phase-1-slice-1p-h-c-pro
 Alignment recommendation:
 
 ```text
-1P-H-A/1P-H-B are committed and aligned to dev/staging at `536c947`. Run authenticated staging smoke testing as post-deploy validation.
+1P-H-A/1P-H-B are committed and aligned to dev/staging at `536c947`. Authenticated staging smoke testing passed.
 ```
 
 ### Next 8 - Project Intake / Client Onboarding Planning
@@ -952,6 +955,7 @@ Status:
 ```text
 1P-G future lane documented.
 1P-G-A schema and moderation model planning complete.
+1P-G-B schema options planning complete.
 Do not implement yet.
 ```
 
@@ -960,12 +964,13 @@ Planning document:
 ```text
 isodocs/docs/modules/fund/03-slice-planning/2026-06-25-fund-phase-1-slice-1p-g-project-intake-client-onboarding-and-moderation-planning.md
 isodocs/docs/modules/fund/03-slice-planning/2026-06-25-fund-phase-1-slice-1p-g-a-project-intake-schema-and-moderation-model-planning.md
+isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-g-b-project-intake-schema-options-planning.md
 ```
 
-Recommended next planning slice:
+Recommended next slice:
 
 ```text
-1P-G-B - Project Intake Schema Options
+1P-G-C - Project Intake Schema
 ```
 
 ### Next 9 - Event / Catalogue / Product Availability Planning
@@ -1023,15 +1028,16 @@ Context:
 - Do not mix unrelated SeasonPro fixes into FUND unless explicitly requested.
 
 Immediate recommended work:
-Proceed with Project Client linkage alignment and then Project Intake schema-options planning:
+Proceed with Project Intake schema-only implementation planning/review gate:
 1. Treat 1P-F-C as the schema-only Client foundation.
 2. Treat 1P-F-D as the C1 Client API/services foundation.
 3. Treat 1P-F-E as the C1 Client UI foundation.
-4. Treat 1P-H-A/1P-H-B as implemented Project-to-Client linkage, pending commit/alignment.
-5. Use 1P-H-C review as the current alignment gate.
+4. Treat 1P-H-A/1P-H-B as implemented Project-to-Client linkage aligned to dev/staging.
+5. Treat 1P-H-C as accepted after authenticated staging smoke testing.
 6. Treat 1P-G-A as completed Project Intake schema and moderation-model planning.
-7. After alignment, proceed to 1P-G-B Project Intake schema options planning.
-8. Keep Client users, invitations, notification sending, Project Intake implementation, Store, Orders, Commerce, Sales/Reporting and Communications out of scope unless separately planned.
+7. Treat 1P-G-B as completed Project Intake schema-options planning.
+8. Next recommended slice is 1P-G-C Project Intake schema-only implementation, after reviewing/accepting the schema options.
+9. Keep Client users, invitations, notification sending, Project Intake public forms/UI/services, Store, Orders, Commerce, Sales/Reporting and Communications out of scope unless separately planned.
 
 Do not start:
 - C2 dashboard expansion;

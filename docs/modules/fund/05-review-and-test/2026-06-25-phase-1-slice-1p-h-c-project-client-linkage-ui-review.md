@@ -2,18 +2,20 @@
 
 Date: 2026-06-25
 
-Status: Review complete / proceed with caveats
+Status: Review complete / accepted
 
 ## 1. Review Verdict
 
-Proceed with caveats.
+Proceed.
 
-The Project Client linkage API/services and UI are correctly scoped and passed code/static verification. Authenticated browser smoke testing was not completed from this shell because no logged-in local or staging browser session was available.
+The Project Client linkage API/services and UI are correctly scoped and passed code/static verification.
+
+Authenticated browser smoke testing was completed by the operator after staging alignment and passed with no remedial work required at this stage.
 
 Recommendation:
 
 ```text
-Commit the 1P-H-A/1P-H-B batch, align to dev, then align to staging after a quick authenticated smoke test or with the smoke test explicitly accepted as a post-deploy check.
+Accept 1P-H as the current Project Client linkage baseline and proceed to 1P-G-B Project Intake schema-options planning.
 ```
 
 ## 2. Files Reviewed
@@ -79,7 +81,7 @@ Passed by code/static review:
 - Client contact fields are not copied into Project organiser fields.
 - Client list is invalidated after create when a Client is linked.
 
-Authenticated browser check remains required to confirm the actual selector data and create flow in the running environment.
+Authenticated browser smoke testing subsequently passed with no remedial work required at this stage.
 
 ## 6. Project Detail Assessment
 
@@ -95,7 +97,7 @@ Passed by code/static review:
 - UI text confirms Client linkage does not copy Client contact fields into organiser fields.
 - Project and Client queries are invalidated after successful link/change/unlink.
 
-Authenticated browser check remains required to confirm the end-to-end save behaviour and navigation.
+Authenticated browser smoke testing subsequently passed with no remedial work required at this stage.
 
 ## 7. Project List Assessment
 
@@ -148,9 +150,15 @@ Not introduced:
 
 ## 10. Authenticated Smoke Test Status
 
-Not completed from this shell.
+Completed by the operator after staging alignment.
 
-Required browser smoke checklist before or immediately after staging alignment:
+Result:
+
+```text
+Passed. No remedial work required at this stage.
+```
+
+Smoke checklist covered:
 
 - `/app/fund/projects` loads for C1 admin.
 - Create Project modal loads active Clients in the Client selector.
@@ -190,24 +198,25 @@ No fixes were made in this review slice.
 Recommendation:
 
 ```text
-Proceed with caveats.
+Proceed.
 ```
 
-Suggested sequence:
+Alignment result:
 
-1. Commit the 1P-H-A API/services and 1P-H-B UI batch.
-2. Align the committed batch to `dev`.
-3. Run the authenticated smoke checklist locally or on dev/staging.
-4. Align to `staging` if the smoke checklist passes, or align deliberately with the smoke test recorded as post-deploy validation.
+```text
+feature/fund-phase-1-c2-project-access = 536c947
+dev = 536c947
+staging = 536c947
+```
 
 Because 1P-H-A/1P-H-B introduce no schema changes or migrations, staging alignment does not require a new migration gate.
 
 ## 14. Recommended Next Slice
 
-Recommended next slice after alignment decision:
+Recommended next slice:
 
 ```text
-1P-G-A - Project Intake Schema And Moderation Planning
+1P-G-B - Project Intake Schema Options
 ```
 
-Keep Project Intake as planning-only until Project Client linkage is accepted in the C1 admin workflow.
+Keep Project Intake as planning-only until schema options are reviewed and accepted.
