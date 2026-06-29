@@ -169,13 +169,21 @@ Project create defaults should follow existing C1 Project service conventions wh
 
 When creating a Client from a submission:
 
-- create a `FundClient` in the current C1 tenant only;
+- create a `FundClient` organisation/account in the current C1 tenant only;
 - use C1-selected/confirmed Client code, name, slug and client type;
 - use proposed organisation/contact fields only as source evidence;
 - set primary contact snapshot fields only if C1 confirms them;
 - do not create a login-capable Client user/member;
 - do not send invitations;
 - do not send notifications.
+
+Clarification:
+
+- `FundClient` means the C2 organisation/account that is a client of the C1 tenant, such as a school, club, PTA, charity branch or fundraising organisation.
+- `FundClient` is not the C2 person/user.
+- The respondent/main organiser is a future Client user/member candidate, not the Client organisation itself.
+- Project initiation forms may create or link C2 Client organisations and future C2 Client users/members after C1 approval, but they must never create new C1 tenant organisations.
+- New C1 tenants remain P1/platform-controlled or module-signup-controlled, outside this Project Intake approval lane.
 
 Primary contact fields remain C1 operational contact snapshots only.
 
