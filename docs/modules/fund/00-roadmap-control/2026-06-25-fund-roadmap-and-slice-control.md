@@ -65,7 +65,11 @@ Release result:
 - 1P-G-D3-A-R1 Project Intake Approval API/Services Review is complete. Verdict: proceed with caveats; no blocking defects were found, but return-to-review status policy and authenticated API smoke testing remain follow-ups before approval UI implementation.
 - 1P-G-E C1 Project Intake Moderation And Approval UI has been implemented. It adds the C1 Project Intake dashboard action card, moderation landing page, form admin pages, submission detail/review page and explicit approval page.
 - 1P-G-E-R1 C1 Project Intake Moderation And Approval UI Review is complete. Verdict: proceed; authenticated browser smoke testing on dev passed with no remedial work requested before staging promotion.
-- The first visible Project initiation form should use client-facing sections for Project basics, organisation details and main organiser details. It should include "What kind of fundraising project would you like to run?" with options for artwork fundraising, group personalised products, bulk order / club-funded projects and "not sure yet". It should not ask whether a Store is required.
+- 1P-G-F Public Project Initiation Form UI Planning is initiated. It plans the public/client-facing multi-step Project initiation form UI and preserves the moderation-first boundary.
+- General email content, trigger behaviour, default recipients and pause/resume controls for FUND must be handled through a dedicated communications/notifications UI, following the SeasonPro/LMSPro communications Notifications tab precedent. Project Intake implementation slices should use placeholder trigger annotations, except that email required for authentication or confirmation steps may use bounded hard-coded transactional copy until the notification lane exists.
+- The first visible Project initiation form should use trusted branding/letterhead/footer fallback: trusted Client/tenant branding, then FUND module branding, then IsoStack/platform branding. It should use client-facing sections for Project basics, organisation details and main organiser details. It should include "What kind of fundraising project would you like to run?" with options for artwork fundraising, group personalised products, bulk order / club-funded projects and "not sure yet". It should not ask whether a Store is required.
+- Project Intake forms may be general or Event-scoped. Event-scoped forms use the trusted C1 form definition `FundProjectIntakeForm.defaultEventId`; public respondents must not choose or spoof internal Event linkage through editable fields. Approved Projects remain C2 Client-owned through `FundProject.clientId` and may link to the scoped C1 Event.
+- C1 Project Intake form admin must expose Default Event selection for Event-scoped forms and provide a clear copy/open public link affordance for `/fund/project-initiation/[formSlug]` to support testing and tenant operation.
 - 1P-G-C2-A Project Intake Email Confirmation Schema Addendum is implemented as schema-only work. It adds `CONFIRMATION_PENDING`, confirmation token/hash expiry fields, confirmation/submitted timestamps and idempotency/fingerprint fields so future public form services can separate unconfirmed records from actionable C1 moderation submissions.
 - 2026-06-29 live/main alignment target is `aac38c1`; post-main smoke confirmation should follow `05-review-and-test/2026-06-29-phase-1-main-live-alignment-confirmation-and-smoke-checklist.md`.
 - Future Client dashboard is not merely passive Project display. It is expected to become the Client Project initiation, engagement, announcements, special offers/campaign prompts, 1:1 communication and dashboard-visible communications surface.
@@ -212,6 +216,8 @@ isodocs/docs/modules/fund/implementation/
 | 1P-G-D3-A-R1 | Project Intake Approval API/Services Review | Complete / proceed with caveats |
 | 1P-G-E | C1 Project Intake Moderation And Approval UI | Implemented / reviewed / staging candidate |
 | 1P-G-E-R1 | C1 Project Intake Moderation And Approval UI Review | Complete / proceed |
+| 1P-G-F | Public Project Initiation Form UI Planning | Planning initiated |
+| 1P-N0 | FUND System Notifications And Editable Email Defaults Planning | Future planning lane |
 | 1P-I | C1 Production, Dispatch And Commission Workflow Planning | Planning note created |
 | 1P-J | SeasonPro Club To FUND Project Initiation Planning | Future planning placeholder created |
 
@@ -1045,6 +1051,7 @@ Scope:
 - plan C1 moderation before creating/linking operational records;
 - plan approval creating/linking Client/account, C2 user/member, Project and Event linkage;
 - define notification/invitation boundary;
+- treat email trigger points as placeholders until the dedicated editable notifications lane is implemented;
 - defer Store, Orders, Commerce, Sales/Reporting and Communications implementation.
 
 Status:
@@ -1064,6 +1071,8 @@ Status:
 1P-G-D3-A-R1 Project Intake Approval API/Services Review complete with caveats.
 1P-G-E C1 Project Intake Moderation And Approval UI implemented.
 1P-G-E-R1 C1 Project Intake Moderation And Approval UI Review complete with a proceed verdict.
+1P-G-F Public Project Initiation Form UI Planning initiated.
+1P-N0 FUND System Notifications And Editable Email Defaults Planning added as a future communications lane.
 Resume context after SeasonPro/auth remediation is documented.
 ```
 
@@ -1078,19 +1087,32 @@ isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-g-d
 isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-g-d2-c1-project-intake-submission-review-api-services-planning.md
 isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-g-d3-project-intake-approval-action-planning.md
 isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-g-e-c1-project-intake-moderation-and-approval-ui-planning.md
+isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-g-f-public-project-initiation-form-ui-planning.md
 isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-resume-context-after-seasonpro-remediation.md
 ```
 
 Recommended next implementation slice:
 
 ```text
-1P-G-F - Public Project Initiation Form UI Planning
+1P-G-F-A - Public Project Initiation Form UI Implementation
 ```
 
 Implementation goal:
 
 ```text
-Plan the first public/client-facing Project initiation form UI using the approved client-facing field set, while keeping email sending, Client users/members and Store/Commerce out of scope unless separately planned.
+Build the public multi-step Project initiation form UI using the approved client-facing field set, trusted branding fallback and confirmation-state screens. Use email trigger placeholders, with a narrow permitted hard-coded transactional exception for required confirmation/authentication email.
+```
+
+Required parallel/follow-up planning lane:
+
+```text
+1P-N0 - FUND System Notifications And Editable Email Defaults Planning
+```
+
+Communications goal:
+
+```text
+Plan FUND notification trigger keys, editable default email content, recipient rules, pause/resume controls and audit/test behaviour using the SeasonPro/LMSPro communications Notifications tab as the precedent.
 ```
 
 Deferred later lane:
@@ -1217,7 +1239,7 @@ Context:
 - Do not mix unrelated SeasonPro fixes into FUND unless explicitly requested.
 
 Immediate recommended work:
-Proceed with 1P-G-F Public Project Initiation Form UI Planning after staging confirmation:
+Proceed with 1P-G-F-A Public Project Initiation Form UI Implementation after 1P-G-F planning acceptance:
 1. Treat 1P-F-C as the schema-only Client foundation.
 2. Treat 1P-F-D as the C1 Client API/services foundation.
 3. Treat 1P-F-E as the C1 Client UI foundation.
@@ -1238,11 +1260,16 @@ Proceed with 1P-G-F Public Project Initiation Form UI Planning after staging con
 18. Treat 1P-G-D3-A-R1 as completed Project Intake Approval API/Services Review with a proceed-with-caveats verdict.
 19. Treat 1P-G-E as implemented C1 Project Intake Moderation And Approval UI.
 20. Treat 1P-G-E-R1 as completed C1 Project Intake Moderation And Approval UI Review with a proceed verdict.
-21. Next recommended slice after staging confirmation is 1P-G-F Public Project Initiation Form UI Planning.
-22. Planning goal: define the first public/client-facing Project initiation form UI around Project basics, organisation details and main organiser details, preserving the email-confirmation and moderation boundaries.
-22. Preserve the first visible initiation form field-set decision: Project basics, organisation details and main organiser details, including the client-facing Project Type question and no direct "Do you require a Store?" question.
-23. Keep 1P-K0 Client-Owned Project Lifecycle And Dashboard Management Planning as the later authenticated Client dashboard lane.
-24. Keep Client users, invitations, notification sending, Client dashboard communications, public Project Intake form rendering, Store, Orders, Commerce, Sales/Reporting, production workflow implementation, SeasonPro integration implementation and Communications out of scope unless separately planned.
+21. Treat 1P-G-F as initiated Public Project Initiation Form UI Planning.
+22. Next recommended implementation slice after planning acceptance is 1P-G-F-A Public Project Initiation Form UI Implementation.
+23. Implementation goal: build the public multi-step Project initiation form UI around Project basics, organisation details and main organiser details, preserving the email-confirmation and moderation boundaries.
+24. Preserve the first visible initiation form field-set decision, including the client-facing Project Type question and no direct "Do you require a Store?" question.
+25. Add email trigger placeholders/annotations. Do not send general workflow email inline. Required confirmation/authentication email may use bounded hard-coded transactional copy with trusted branding/letterhead/footer fallback. Email content, triggers, default recipients and pause/resume controls for broader workflows belong to the future 1P-N0 editable notifications lane.
+26. Use trusted branding fallback for public forms and required confirmation/authentication email: trusted Client/tenant branding, then FUND module branding, then IsoStack/platform branding.
+27. Preserve Event-scoped intake forms: `FundProjectIntakeForm.defaultEventId` is the trusted C1-selected Event scope for public submissions, public respondents must not choose/spoof Event linkage, and approved Projects remain C2 Client-owned through `FundProject.clientId`.
+28. Expose Default Event selection in C1 Project Intake form create/edit and provide copy/open public link affordances for `/fund/project-initiation/[formSlug]`.
+29. Keep 1P-K0 Client-Owned Project Lifecycle And Dashboard Management Planning as the later authenticated Client dashboard lane.
+30. Keep Client users, invitations, broader notification sending, Client dashboard communications, Store, Orders, Commerce, Sales/Reporting, production workflow implementation, SeasonPro integration implementation and Communications out of scope unless separately planned.
 
 Do not start:
 - C2 dashboard expansion;
