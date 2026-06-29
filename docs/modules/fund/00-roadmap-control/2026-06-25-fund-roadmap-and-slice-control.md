@@ -57,6 +57,7 @@ Release result:
 - 1P-G-C Project Intake schema-only implementation and 1P-G-C-R1 schema review are complete. Staging deployment/smoke testing passed; pre-existing data loads correctly and no remedial work is required at this stage.
 - 1P-G-D0 Client-Scoped Project Initiation And Idempotency planning is complete. Unknown/public intake and new Client onboarding remain moderation-first. Existing authenticated C2 Client users with the correct future Client role/permission create Client-owned Projects directly under `FundProject.clientId` from trusted Client/account context. C1 is the FUND producer tenant/supplier/fulfilment operator, not the default approver of Project existence. Later activation, Store, Commerce, production, dispatch and notification gates may still require C1 approval or separate policy.
 - Implementation priority after 1P-G-D0 is the moderated Project initiation form and C1 approval services. Authenticated Client dashboard direct Project creation remains a later Client dashboard / role-permission lane.
+- 1P-G-D Project Intake Moderation API/Services planning is complete. The recommended implementation split starts with C1 Project Intake Form API/services, then C1 submission review services, then explicit approval-action planning.
 - 2026-06-29 live/main alignment target is `aac38c1`; post-main smoke confirmation should follow `05-review-and-test/2026-06-29-phase-1-main-live-alignment-confirmation-and-smoke-checklist.md`.
 - Future Client dashboard is not merely passive Project display. It is expected to become the Client Project initiation, engagement, announcements, special offers/campaign prompts, 1:1 communication and dashboard-visible communications surface.
 - C1 dashboard is the Project administration, artwork checking, production grouping, dispatch/fulfilment and commission workflow surface.
@@ -193,6 +194,7 @@ isodocs/docs/modules/fund/implementation/
 | 1P-G-B | Project Intake Schema Options Planning | Planning complete |
 | 1P-G-C | Project Intake Schema | Implemented / reviewed / accepted |
 | 1P-G-D0 | Client-Scoped Project Initiation And Idempotency Planning | Planning complete |
+| 1P-G-D | Project Intake Moderation API/Services Planning | Planning complete |
 | 1P-I | C1 Production, Dispatch And Commission Workflow Planning | Planning note created |
 | 1P-J | SeasonPro Club To FUND Project Initiation Planning | Future planning placeholder created |
 
@@ -1036,6 +1038,7 @@ Status:
 1P-G-B schema options planning complete.
 1P-G-C schema implementation and 1P-G-C-R1 review complete.
 1P-G-D0 client-scoped initiation/idempotency planning complete.
+1P-G-D Project Intake Moderation API/Services planning complete.
 ```
 
 Planning document:
@@ -1044,18 +1047,19 @@ Planning document:
 isodocs/docs/modules/fund/03-slice-planning/2026-06-25-fund-phase-1-slice-1p-g-project-intake-client-onboarding-and-moderation-planning.md
 isodocs/docs/modules/fund/03-slice-planning/2026-06-25-fund-phase-1-slice-1p-g-a-project-intake-schema-and-moderation-model-planning.md
 isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-g-b-project-intake-schema-options-planning.md
+isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-g-d-project-intake-moderation-api-services-planning.md
 ```
 
-Recommended next slice:
+Recommended next implementation slice:
 
 ```text
-1P-G-D - Project Intake Moderation API/Services Planning
+1P-G-D1 - C1 Project Intake Form API/Services
 ```
 
-Planning goal:
+Implementation goal:
 
 ```text
-Define the moderated Project initiation form and C1 approval services, including multi-step form flow, email confirmation midpoint, submission creation, Client/user/Project matching, idempotency and approval outputs.
+Implement C1 admin Project Intake Form API/services for list, get, create, update, activate, pause, archive and restore, without public form endpoints, submission review services, email sending, approval automation, Client user creation or Project creation from submissions.
 ```
 
 Deferred later lane:
@@ -1169,6 +1173,7 @@ aac38c1 fix(fund): polish c1 dashboard cards
 
 Read first:
 - isodocs/docs/modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md
+- isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-g-d-project-intake-moderation-api-services-planning.md
 - isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-g-d0-client-scoped-project-initiation-and-idempotency-planning.md
 - isodocs/docs/modules/fund/04-implementation-confirmations/2026-06-29-phase-1-slice-1p-g-c-project-intake-schema-confirmation.md
 - isodocs/docs/modules/fund/05-review-and-test/2026-06-29-phase-1-slice-1p-g-c-r1-project-intake-schema-review.md
@@ -1181,7 +1186,7 @@ Context:
 - Do not mix unrelated SeasonPro fixes into FUND unless explicitly requested.
 
 Immediate recommended work:
-Proceed with 1P-G-D Project Intake Moderation API/Services Planning:
+Proceed with 1P-G-D1 C1 Project Intake Form API/Services implementation:
 1. Treat 1P-F-C as the schema-only Client foundation.
 2. Treat 1P-F-D as the C1 Client API/services foundation.
 3. Treat 1P-F-E as the C1 Client UI foundation.
@@ -1193,10 +1198,12 @@ Proceed with 1P-G-D Project Intake Moderation API/Services Planning:
 9. Treat 1P-G-D0 as the accepted split-lane policy: public/new Client initiation remains moderated, while authenticated Client-owned Project creation is a later direct Client dashboard lane.
 10. Treat 1P-J as the SeasonPro Club-to-FUND Project initiation planning placeholder. This is future-facing and depends on SeasonPro module entitlement, League configuration, catalogue availability, sale method planning and explicit Club-to-FUND Client/account mapping.
 11. Treat 1P-I as the current production/admin workflow planning guardrail before Store/Commerce implementation.
-12. Next recommended slice is 1P-G-D Project Intake Moderation API/Services Planning.
-13. Planning goal: define the moderated Project initiation form and C1 approval services, including multi-step form flow, email confirmation midpoint, submission creation, Client/user/Project matching, idempotency and approval outputs.
-14. Keep 1P-K0 Client-Owned Project Lifecycle And Dashboard Management Planning as the later authenticated Client dashboard lane.
-15. Keep Client users, invitations, notification sending, Client dashboard communications, Project Intake public forms/UI implementation, Store, Orders, Commerce, Sales/Reporting, production workflow implementation, SeasonPro integration implementation and Communications out of scope unless separately planned.
+12. Treat 1P-G-D as completed Project Intake Moderation API/Services planning.
+13. Next recommended implementation slice is 1P-G-D1 C1 Project Intake Form API/Services.
+14. Implementation goal: add C1 admin form list/get/create/update/activate/pause/archive/restore services only.
+15. Keep public form endpoints, submission review services, email confirmation, approval automation, Client user creation and Project creation from submissions out of the first 1P-G-D1 implementation.
+16. Keep 1P-K0 Client-Owned Project Lifecycle And Dashboard Management Planning as the later authenticated Client dashboard lane.
+17. Keep Client users, invitations, notification sending, Client dashboard communications, Project Intake public forms/UI implementation, Store, Orders, Commerce, Sales/Reporting, production workflow implementation, SeasonPro integration implementation and Communications out of scope unless separately planned.
 
 Do not start:
 - C2 dashboard expansion;
