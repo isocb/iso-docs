@@ -58,7 +58,7 @@ Release result:
 - 1P-G-D0 Client-Scoped Project Initiation And Idempotency planning is complete. Unknown/public intake and new Client onboarding remain moderation-first. Existing authenticated C2 Client users with the correct future Client role/permission create Client-owned Projects directly under `FundProject.clientId` from trusted Client/account context. C1 is the FUND producer tenant/supplier/fulfilment operator, not the default approver of Project existence. Later activation, Store, Commerce, production, dispatch and notification gates may still require C1 approval or separate policy.
 - Implementation priority after 1P-G-D0 is the moderated Project initiation form and C1 approval services. Authenticated Client dashboard direct Project creation remains a later Client dashboard / role-permission lane.
 - 1P-G-D Project Intake Moderation API/Services planning is complete. The recommended implementation split starts with C1 Project Intake Form API/services, then C1 submission review services, then explicit approval-action planning.
-- 1P-G-D1 C1 Project Intake Form API/Services planning is complete. The next implementation slice should add C1 admin form list/get/create/update/activate/pause/archive/restore only.
+- 1P-G-D1 C1 Project Intake Form API/Services has been implemented. It adds C1 admin form list/get/create/update/activate/pause/archive/restore only.
 - The first visible Project initiation form should use client-facing sections for Project basics, organisation details and main organiser details. It should include "What kind of fundraising project would you like to run?" with options for artwork fundraising, group personalised products, bulk order / club-funded projects and "not sure yet". It should not ask whether a Store is required.
 - 1P-G-C2-A Project Intake Email Confirmation Schema Addendum is implemented as schema-only work. It adds `CONFIRMATION_PENDING`, confirmation token/hash expiry fields, confirmation/submitted timestamps and idempotency/fingerprint fields so future public form services can separate unconfirmed records from actionable C1 moderation submissions.
 - 2026-06-29 live/main alignment target is `aac38c1`; post-main smoke confirmation should follow `05-review-and-test/2026-06-29-phase-1-main-live-alignment-confirmation-and-smoke-checklist.md`.
@@ -199,7 +199,7 @@ isodocs/docs/modules/fund/implementation/
 | 1P-G-C2-A | Project Intake Email Confirmation Schema Addendum | Implemented schema-only |
 | 1P-G-D0 | Client-Scoped Project Initiation And Idempotency Planning | Planning complete |
 | 1P-G-D | Project Intake Moderation API/Services Planning | Planning complete |
-| 1P-G-D1 | C1 Project Intake Form API/Services Planning | Planning complete |
+| 1P-G-D1 | C1 Project Intake Form API/Services | Implemented |
 | 1P-I | C1 Production, Dispatch And Commission Workflow Planning | Planning note created |
 | 1P-J | SeasonPro Club To FUND Project Initiation Planning | Future planning placeholder created |
 
@@ -1045,7 +1045,7 @@ Status:
 1P-G-C2-A email confirmation schema addendum implemented as schema-only work.
 1P-G-D0 client-scoped initiation/idempotency planning complete.
 1P-G-D Project Intake Moderation API/Services planning complete.
-1P-G-D1 C1 Project Intake Form API/Services planning complete.
+1P-G-D1 C1 Project Intake Form API/Services implemented.
 Resume context after SeasonPro/auth remediation is documented.
 ```
 
@@ -1063,13 +1063,13 @@ isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-resume-context-after
 Recommended next implementation slice:
 
 ```text
-1P-G-D1 - C1 Project Intake Form API/Services
+1P-G-D2 - C1 Project Intake Submission Review API/Services
 ```
 
 Implementation goal:
 
 ```text
-Implement C1 admin Project Intake Form API/services for list, get, create, update, activate, pause, archive and restore, without public form endpoints, submission review services, email sending, approval automation, Client user creation or Project creation from submissions.
+Implement C1 admin submission review services for confirmed Project Intake submissions, without public form endpoints, email sending, approval automation, Client user creation or Project creation from submissions.
 ```
 
 Deferred later lane:
@@ -1196,7 +1196,7 @@ Context:
 - Do not mix unrelated SeasonPro fixes into FUND unless explicitly requested.
 
 Immediate recommended work:
-Proceed with 1P-G-D1 C1 Project Intake Form API/Services implementation:
+Proceed with 1P-G-D2 C1 Project Intake Submission Review API/Services planning/implementation:
 1. Treat 1P-F-C as the schema-only Client foundation.
 2. Treat 1P-F-D as the C1 Client API/services foundation.
 3. Treat 1P-F-E as the C1 Client UI foundation.
@@ -1210,10 +1210,10 @@ Proceed with 1P-G-D1 C1 Project Intake Form API/Services implementation:
 11. Treat 1P-I as the current production/admin workflow planning guardrail before Store/Commerce implementation.
 12. Treat 1P-G-D as completed Project Intake Moderation API/Services planning.
 13. Treat 1P-G-C2-A as implemented schema-only email confirmation support for `CONFIRMATION_PENDING`, confirmation token/hash expiry fields, confirmation/submitted timestamps and idempotency/fingerprint fields.
-14. Treat 1P-G-D1 as completed planning for C1 Project Intake Form API/Services.
-15. Next recommended implementation slice is 1P-G-D1 C1 Project Intake Form API/Services.
-16. Implementation goal: add C1 admin form list/get/create/update/activate/pause/archive/restore services only.
-17. Keep public form endpoints, submission review services, email confirmation, approval automation, Client user creation and Project creation from submissions out of the first 1P-G-D1 implementation.
+14. Treat 1P-G-D1 as implemented C1 Project Intake Form API/Services.
+15. Next recommended implementation slice is 1P-G-D2 C1 Project Intake Submission Review API/Services.
+16. Implementation goal: add C1 admin review queue/detail/status services for confirmed submissions only.
+17. Keep public form endpoints, email confirmation, approval automation, Client user creation and Project creation from submissions out of the first 1P-G-D2 implementation unless separately planned.
 18. Preserve the first visible initiation form field-set decision: Project basics, organisation details and main organiser details, including the client-facing Project Type question and no direct "Do you require a Store?" question.
 19. Keep 1P-K0 Client-Owned Project Lifecycle And Dashboard Management Planning as the later authenticated Client dashboard lane.
 20. Keep Client users, invitations, notification sending, Client dashboard communications, Project Intake public forms/UI implementation, Store, Orders, Commerce, Sales/Reporting, production workflow implementation, SeasonPro integration implementation and Communications out of scope unless separately planned.
