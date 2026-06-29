@@ -55,6 +55,7 @@ Release result:
 - 1P-G-A Project Intake Schema And Moderation Model planning is complete. Project Intake remains moderation-first: submissions must not directly create Clients, Client users, Projects, Event links, notifications or invitations.
 - 1P-G-B Project Intake Schema Options planning is complete and has led into 1P-G-C schema-only implementation.
 - 1P-G-C Project Intake schema-only implementation and 1P-G-C-R1 schema review are complete. Staging deployment/smoke testing passed; pre-existing data loads correctly and no remedial work is required at this stage.
+- 1P-G-D0 Client-Scoped Project Initiation And Idempotency planning is complete. Future Client-scoped Project initiation must use trusted Client route, token or authenticated context and approval actions must be designed to avoid duplicate Clients, Client users or Projects.
 - 2026-06-29 live/main alignment target is `aac38c1`; post-main smoke confirmation should follow `05-review-and-test/2026-06-29-phase-1-main-live-alignment-confirmation-and-smoke-checklist.md`.
 - Future Client dashboard is not merely passive Project display. It is expected to become the Client Project initiation, engagement, announcements, special offers/campaign prompts, 1:1 communication and dashboard-visible communications surface.
 - C1 dashboard is the Project administration, artwork checking, production grouping, dispatch/fulfilment and commission workflow surface.
@@ -190,6 +191,7 @@ isodocs/docs/modules/fund/implementation/
 | 1P-G-A | Project Intake Schema And Moderation Model Planning | Planning complete |
 | 1P-G-B | Project Intake Schema Options Planning | Planning complete |
 | 1P-G-C | Project Intake Schema | Implemented / reviewed / accepted |
+| 1P-G-D0 | Client-Scoped Project Initiation And Idempotency Planning | Planning complete |
 | 1P-I | C1 Production, Dispatch And Commission Workflow Planning | Planning note created |
 | 1P-J | SeasonPro Club To FUND Project Initiation Planning | Future planning placeholder created |
 
@@ -302,6 +304,7 @@ Current C2 lane status:
 - 1P-G-A Project Intake schema/moderation model planning is complete.
 - 1P-G-B Project Intake schema options planning is complete.
 - 1P-G-C Project Intake schema-only implementation and 1P-G-C-R1 schema review are complete and accepted.
+- 1P-G-D0 Client-scoped Project initiation and idempotency planning is complete.
 
 Staging migration note:
 
