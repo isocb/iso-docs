@@ -37,7 +37,7 @@ Current work should remain on dev/remediation branches until reviewed and explic
 
 ### R1 - Playing Season Date Boundaries
 
-Status: Planning tightened; ready for R1-A implementation when approved
+Status: R1-A implemented and reviewed; proceed with caveats pending final local browser re-test
 
 Goal:
 
@@ -69,6 +69,26 @@ Scope:
 - Update `% season remaining` to use playing-season dates only when both are set and the playing season has started.
 - Keep announcement/countdown automation deferred.
 
+Implementation confirmation:
+
+```text
+04-implementation-confirmations/2026-06-29-lmspro-remediation-slice-r1-a-playing-season-date-fields-and-season-admin-display-confirmation.md
+```
+
+Review confirmation:
+
+```text
+05-review-and-test/2026-06-29-lmspro-remediation-slice-r1-a-r1-playing-season-date-boundaries-review.md
+```
+
+Review notes:
+
+- Dev database initially lacked the new migration, causing the Seasons list to appear empty.
+- The migration was applied with `npx prisma migrate deploy`.
+- Playing-season dates initially displayed one day prior in UK summer time.
+- DateInput values are now normalised to UTC midnight immediately on selection and on save.
+- Final browser re-test should confirm exact selected dates display after re-saving.
+
 ## Deferred Items
 
 - Dashboard announcement automation from playing-season offsets.
@@ -90,12 +110,12 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Slice
 
 ```text
-LMSPro R1-A - Playing Season Date Fields And Season Admin Display
+Commit R1-A and align dev after final local browser re-test
 ```
 
-Planning goal:
+Goal:
 
-Implement the accepted nullable playing-season date fields, Season CRUD/admin display updates and playing-season progress calculation.
+Commit the reviewed R1-A app/docs changes once local browser re-test confirms exact selected playing-season dates display, then align dev. Staging alignment should wait for deployment/migration confirmation.
 
 ## Fresh Chat Prompt
 
@@ -103,11 +123,11 @@ Implement the accepted nullable playing-season date fields, Season CRUD/admin di
 Proceed with LMSPro / SeasonPro remediation planning from:
 isodocs/docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
 
-Next slice:
-LMSPro R1-A - Playing Season Date Fields And Season Admin Display.
+Next step:
+Commit R1-A and align dev after final local browser re-test.
 
 Goal:
-Implement the distinction between technical/admin Season Start/End and effective Playing Season Start/End. Playing-season dates should be optional and blank until manually set. They should appear in the Season CRUD modal and on the Season admin page. Season-progress behaviour should use playing-season dates only when both are set and the playing season has started. Dashboard announcements and offset automation remain deferred.
+Confirm exact selected playing-season dates display after re-saving locally. Then commit the R1-A app/docs changes and align dev. Staging alignment should wait for deployment/migration confirmation. Dashboard announcements and offset automation remain deferred.
 
 Do not implement dashboard announcement automation, notification sending, C2 Club dashboard countdown widgets, broader key-date architecture, season rollover changes or FUND logic.
 ```
