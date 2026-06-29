@@ -56,6 +56,7 @@ Release result:
 - 1P-G-B Project Intake Schema Options planning is complete and has led into 1P-G-C schema-only implementation.
 - 1P-G-C Project Intake schema-only implementation and 1P-G-C-R1 schema review are complete. Staging deployment/smoke testing passed; pre-existing data loads correctly and no remedial work is required at this stage.
 - 1P-G-D0 Client-Scoped Project Initiation And Idempotency planning is complete. Unknown/public intake and new Client onboarding remain moderation-first. Existing authenticated C2 Client users with the correct future Client role/permission create Client-owned Projects directly under `FundProject.clientId` from trusted Client/account context. C1 is the FUND producer tenant/supplier/fulfilment operator, not the default approver of Project existence. Later activation, Store, Commerce, production, dispatch and notification gates may still require C1 approval or separate policy.
+- Implementation priority after 1P-G-D0 is the moderated Project initiation form and C1 approval services. Authenticated Client dashboard direct Project creation remains a later Client dashboard / role-permission lane.
 - 2026-06-29 live/main alignment target is `aac38c1`; post-main smoke confirmation should follow `05-review-and-test/2026-06-29-phase-1-main-live-alignment-confirmation-and-smoke-checklist.md`.
 - Future Client dashboard is not merely passive Project display. It is expected to become the Client Project initiation, engagement, announcements, special offers/campaign prompts, 1:1 communication and dashboard-visible communications surface.
 - C1 dashboard is the Project administration, artwork checking, production grouping, dispatch/fulfilment and commission workflow surface.
@@ -530,6 +531,9 @@ Control rules:
 
 - C1 users may create/manage Project Intake forms in a future slice.
 - Unknown/public and new Client form submissions must be moderated before operational records are created or linked.
+- The moderated initiation form is the next implementation priority and remains moderated for both new and existing Client respondents.
+- If an existing Client/contact uses the initiation form, email/Client matching may flag likely linkage or an additional Project, but it must not bypass C1 approval.
+- The initiation form should follow the proven SeasonPro-style pattern: multi-step form -> email confirmation midpoint -> confirmed submission -> C1 moderation -> create/link Client, Client user/member and Project.
 - Approval may create/link Client/account, C2 user/member, Project and Event linkage for moderated intake.
 - Existing authenticated Client dashboard Project initiation is not an intake submission by default.
 - Existing authenticated C2 Client users should be able to create Client-owned Projects directly once the Client user/member and role/permission model exists.
@@ -1030,7 +1034,8 @@ Status:
 1P-G future lane documented.
 1P-G-A schema and moderation model planning complete.
 1P-G-B schema options planning complete.
-Do not implement yet.
+1P-G-C schema implementation and 1P-G-C-R1 review complete.
+1P-G-D0 client-scoped initiation/idempotency planning complete.
 ```
 
 Planning document:
@@ -1044,7 +1049,19 @@ isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-g-b
 Recommended next slice:
 
 ```text
-1P-G-C-R1 - Project Intake Schema Review
+1P-G-D - Project Intake Moderation API/Services Planning
+```
+
+Planning goal:
+
+```text
+Define the moderated Project initiation form and C1 approval services, including multi-step form flow, email confirmation midpoint, submission creation, Client/user/Project matching, idempotency and approval outputs.
+```
+
+Deferred later lane:
+
+```text
+1P-K0 - Client-Owned Project Lifecycle And Dashboard Management Planning
 ```
 
 ### Next 9 - SeasonPro Club To FUND Project Initiation Planning
@@ -1148,23 +1165,23 @@ Current app branch:
 feature/fund-phase-1-c2-project-access
 
 Current released baseline:
-62b727e chore(release): promote FUND C1 admin foundation
+aac38c1 fix(fund): polish c1 dashboard cards
 
 Read first:
 - isodocs/docs/modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md
-- isodocs/docs/modules/fund/02-triage/2026-06-25-fund-c1-admin-remediation-and-architecture-triage.md
-- isodocs/docs/modules/fund/01-cr-inputs/change-request-cmqt61xmf000612xt5ifl1mdn-2026-06-25.md
-- isodocs/docs/modules/fund/05-fund-open-questions.md
+- isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-g-d0-client-scoped-project-initiation-and-idempotency-planning.md
+- isodocs/docs/modules/fund/04-implementation-confirmations/2026-06-29-phase-1-slice-1p-g-c-project-intake-schema-confirmation.md
+- isodocs/docs/modules/fund/05-review-and-test/2026-06-29-phase-1-slice-1p-g-c-r1-project-intake-schema-review.md
 - current app implementation on feature/fund-phase-1-c2-project-access
 
 Context:
-- FUND C1 admin foundation has been released and aligned to main/dev/staging.
-- Active FUND branch is for Client/Project linkage, Project Intake planning and future C2 access work.
+- FUND Phase 1 baseline through 1P-G-C-R1 has been released and aligned to main/dev/staging at `aac38c1`.
+- Active FUND branch is for Project Intake, Client-owned Project lifecycle planning and future C2 Client/account work.
 - SeasonPro remediation has its own branch: feature/seasonpro-remediation.
 - Do not mix unrelated SeasonPro fixes into FUND unless explicitly requested.
 
 Immediate recommended work:
-Proceed with Project Intake schema review gate:
+Proceed with 1P-G-D Project Intake Moderation API/Services Planning:
 1. Treat 1P-F-C as the schema-only Client foundation.
 2. Treat 1P-F-D as the C1 Client API/services foundation.
 3. Treat 1P-F-E as the C1 Client UI foundation.
@@ -1172,11 +1189,14 @@ Proceed with Project Intake schema review gate:
 5. Treat 1P-H-C as accepted after authenticated staging smoke testing.
 6. Treat 1P-G-A as completed Project Intake schema and moderation-model planning.
 7. Treat 1P-G-B as completed Project Intake schema-options planning.
-8. Treat 1P-G-C as schema-only implemented locally and pending review.
-9. Treat 1P-J as the SeasonPro Club-to-FUND Project initiation planning placeholder. This is future-facing and depends on SeasonPro module entitlement, League configuration, catalogue availability, sale method planning and explicit Club-to-FUND Client/account mapping.
-10. Treat 1P-I as the current production/admin workflow planning guardrail before Store/Commerce implementation.
-11. Next recommended slice is 1P-G-C-R1 Project Intake Schema Review.
-12. Keep Client users, invitations, notification sending, Client dashboard communications, Project Intake public forms/UI/services, Store, Orders, Commerce, Sales/Reporting, production workflow implementation, SeasonPro integration implementation and Communications out of scope unless separately planned.
+8. Treat 1P-G-C as schema-only implemented, reviewed and accepted.
+9. Treat 1P-G-D0 as the accepted split-lane policy: public/new Client initiation remains moderated, while authenticated Client-owned Project creation is a later direct Client dashboard lane.
+10. Treat 1P-J as the SeasonPro Club-to-FUND Project initiation planning placeholder. This is future-facing and depends on SeasonPro module entitlement, League configuration, catalogue availability, sale method planning and explicit Club-to-FUND Client/account mapping.
+11. Treat 1P-I as the current production/admin workflow planning guardrail before Store/Commerce implementation.
+12. Next recommended slice is 1P-G-D Project Intake Moderation API/Services Planning.
+13. Planning goal: define the moderated Project initiation form and C1 approval services, including multi-step form flow, email confirmation midpoint, submission creation, Client/user/Project matching, idempotency and approval outputs.
+14. Keep 1P-K0 Client-Owned Project Lifecycle And Dashboard Management Planning as the later authenticated Client dashboard lane.
+15. Keep Client users, invitations, notification sending, Client dashboard communications, Project Intake public forms/UI implementation, Store, Orders, Commerce, Sales/Reporting, production workflow implementation, SeasonPro integration implementation and Communications out of scope unless separately planned.
 
 Do not start:
 - C2 dashboard expansion;

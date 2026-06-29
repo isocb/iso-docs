@@ -405,12 +405,6 @@ Future implementation must include:
 
 Recommended sequence:
 
-Client-owned Project creation lane:
-
-1. 1P-K0 - Client-Owned Project Lifecycle And Dashboard Management Planning.
-2. 1P-K1 - Client User/Member Role And Project Permission Planning.
-3. 1P-K2 - Authenticated Client Dashboard Project Creation API/Services Planning.
-
 Public/new Client intake lane:
 
 1. 1P-G-D - Project Intake Moderation API/Services Planning.
@@ -418,6 +412,12 @@ Public/new Client intake lane:
 3. 1P-G-D2 - Project Intake Submission Review API/Services.
 4. 1P-G-D3 - Approval Action Planning/Implementation, if accepted.
 5. 1P-G-E - C1 Intake Moderation UI Planning.
+
+Client-owned Project creation lane:
+
+1. 1P-K0 - Client-Owned Project Lifecycle And Dashboard Management Planning.
+2. 1P-K1 - Client User/Member Role And Project Permission Planning.
+3. 1P-K2 - Authenticated Client Dashboard Project Creation API/Services Planning.
 
 Public forms, Client dashboard initiation and SeasonPro Club initiation should remain deferred until the relevant trust/context, role/permission and idempotency models are accepted.
 
@@ -451,21 +451,7 @@ Do not run:
 
 ## 16. Recommended Next Slice
 
-Recommended next slices are split by lane.
-
-Client-owned Project creation lane:
-
-```text
-1P-K0 - Client-Owned Project Lifecycle And Dashboard Management Planning
-```
-
-Planning goal:
-
-```text
-Define how authenticated C2 Client users manage Client-owned Projects from the Client dashboard, including Project lifecycle, safe pre-operational status, edit/cancel/archive rules and C1 downstream operational gates.
-```
-
-Public/new Client intake lane:
+Recommended next slice:
 
 ```text
 1P-G-D - Project Intake Moderation API/Services Planning
@@ -474,5 +460,17 @@ Public/new Client intake lane:
 Planning goal:
 
 ```text
-Define C1 admin Project Intake form and submission moderation services while preserving moderation-first behaviour for unknown/new Client intake, trusted Client scope boundaries and idempotent approval design.
+Define the moderated Project initiation form and C1 approval services, including multi-step form flow, email confirmation midpoint, submission creation, Client/user/Project matching, idempotency and approval outputs.
+```
+
+Deferred later lane:
+
+```text
+1P-K0 - Client-Owned Project Lifecycle And Dashboard Management Planning
+```
+
+Deferred lane goal:
+
+```text
+Define how authenticated C2 Client users manage Client-owned Projects from the Client dashboard, including Project lifecycle, safe pre-operational status, edit/cancel/archive rules and C1 downstream operational gates.
 ```
