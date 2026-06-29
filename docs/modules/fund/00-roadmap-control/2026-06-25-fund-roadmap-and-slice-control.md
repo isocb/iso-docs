@@ -59,6 +59,7 @@ Release result:
 - Implementation priority after 1P-G-D0 is the moderated Project initiation form and C1 approval services. Authenticated Client dashboard direct Project creation remains a later Client dashboard / role-permission lane.
 - 1P-G-D Project Intake Moderation API/Services planning is complete. The recommended implementation split starts with C1 Project Intake Form API/services, then C1 submission review services, then explicit approval-action planning.
 - 1P-G-D1 C1 Project Intake Form API/Services has been implemented. It adds C1 admin form list/get/create/update/activate/pause/archive/restore only.
+- 1P-G-D2 C1 Project Intake Submission Review API/Services planning is complete. The next implementation slice should add confirmed-submission queue/detail/review/status services only.
 - The first visible Project initiation form should use client-facing sections for Project basics, organisation details and main organiser details. It should include "What kind of fundraising project would you like to run?" with options for artwork fundraising, group personalised products, bulk order / club-funded projects and "not sure yet". It should not ask whether a Store is required.
 - 1P-G-C2-A Project Intake Email Confirmation Schema Addendum is implemented as schema-only work. It adds `CONFIRMATION_PENDING`, confirmation token/hash expiry fields, confirmation/submitted timestamps and idempotency/fingerprint fields so future public form services can separate unconfirmed records from actionable C1 moderation submissions.
 - 2026-06-29 live/main alignment target is `aac38c1`; post-main smoke confirmation should follow `05-review-and-test/2026-06-29-phase-1-main-live-alignment-confirmation-and-smoke-checklist.md`.
@@ -200,6 +201,7 @@ isodocs/docs/modules/fund/implementation/
 | 1P-G-D0 | Client-Scoped Project Initiation And Idempotency Planning | Planning complete |
 | 1P-G-D | Project Intake Moderation API/Services Planning | Planning complete |
 | 1P-G-D1 | C1 Project Intake Form API/Services | Implemented |
+| 1P-G-D2 | C1 Project Intake Submission Review API/Services Planning | Planning complete |
 | 1P-I | C1 Production, Dispatch And Commission Workflow Planning | Planning note created |
 | 1P-J | SeasonPro Club To FUND Project Initiation Planning | Future planning placeholder created |
 
@@ -1046,6 +1048,7 @@ Status:
 1P-G-D0 client-scoped initiation/idempotency planning complete.
 1P-G-D Project Intake Moderation API/Services planning complete.
 1P-G-D1 C1 Project Intake Form API/Services implemented.
+1P-G-D2 C1 Project Intake Submission Review API/Services planning complete.
 Resume context after SeasonPro/auth remediation is documented.
 ```
 
@@ -1057,6 +1060,7 @@ isodocs/docs/modules/fund/03-slice-planning/2026-06-25-fund-phase-1-slice-1p-g-a
 isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-g-b-project-intake-schema-options-planning.md
 isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-g-d-project-intake-moderation-api-services-planning.md
 isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-g-d1-c1-project-intake-form-api-services-planning.md
+isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-g-d2-c1-project-intake-submission-review-api-services-planning.md
 isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-resume-context-after-seasonpro-remediation.md
 ```
 
