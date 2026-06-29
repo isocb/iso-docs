@@ -102,6 +102,85 @@ Moderation may later:
 - create a Project;
 - link an Event where allowed.
 
+### First Visible Public Initiation Form
+
+The first client-facing Project initiation form should use tenant/product language, not internal intake-schema language.
+
+Recommended form structure:
+
+```text
+Project basics
+-> Organisation details
+-> Main organiser details
+-> email confirmation midpoint
+-> confirmed submission
+-> C1 moderation
+```
+
+Project basics:
+
+- Project name.
+- Type of fundraising project.
+- Preferred project dates / target date.
+- Notes / project description.
+
+Client-facing Project Type question:
+
+```text
+What kind of fundraising project would you like to run?
+```
+
+Initial options:
+
+- Artwork fundraising project.
+- Group personalised product project.
+- Bulk order / club-funded project.
+- Not sure yet.
+
+Do not expose internal terms such as workflow class, Store requirement, Commerce option or product workflow.
+
+Organisation details:
+
+- Organisation name.
+- Organisation type:
+  - School;
+  - Club;
+  - PTA / Friends group;
+  - Charity / community group;
+  - Other.
+- Organisation address.
+
+Main organiser details:
+
+- First name.
+- Last name.
+- Email address.
+- Phone number.
+- Role in organisation.
+
+Use "Main organiser details" as the public section label. Do not call this "primary user" on the public form.
+
+Internal interpretation:
+
+- the main organiser may become the future primary Client user/member after C1 approval;
+- no Client user/member is created before approval;
+- no Client user/member is created until the relevant user/member model exists;
+- current primary contact fields remain C1 operational contact snapshots only.
+
+Store/Commerce boundary:
+
+```text
+Do not ask "Do you require a Store?" on the first form.
+```
+
+Project Type helps C1 understand the likely route during moderation. Store, Orders, Commerce, payment, production and fulfilment remain deferred.
+
+Data handling:
+
+- use dedicated schema fields where they exist;
+- store additional first-form values in `rawPayload` and/or `sourceContext` as moderation evidence where dedicated fields do not exist;
+- do not add schema fields in this planning note.
+
 ### Existing Client Dashboard
 
 A future authenticated Client user starts a Project from the Client dashboard.

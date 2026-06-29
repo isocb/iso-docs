@@ -58,6 +58,7 @@ Release result:
 - 1P-G-D0 Client-Scoped Project Initiation And Idempotency planning is complete. Unknown/public intake and new Client onboarding remain moderation-first. Existing authenticated C2 Client users with the correct future Client role/permission create Client-owned Projects directly under `FundProject.clientId` from trusted Client/account context. C1 is the FUND producer tenant/supplier/fulfilment operator, not the default approver of Project existence. Later activation, Store, Commerce, production, dispatch and notification gates may still require C1 approval or separate policy.
 - Implementation priority after 1P-G-D0 is the moderated Project initiation form and C1 approval services. Authenticated Client dashboard direct Project creation remains a later Client dashboard / role-permission lane.
 - 1P-G-D Project Intake Moderation API/Services planning is complete. The recommended implementation split starts with C1 Project Intake Form API/services, then C1 submission review services, then explicit approval-action planning.
+- The first visible Project initiation form should use client-facing sections for Project basics, organisation details and main organiser details. It should include "What kind of fundraising project would you like to run?" with options for artwork fundraising, group personalised products, bulk order / club-funded projects and "not sure yet". It should not ask whether a Store is required.
 - 2026-06-29 live/main alignment target is `aac38c1`; post-main smoke confirmation should follow `05-review-and-test/2026-06-29-phase-1-main-live-alignment-confirmation-and-smoke-checklist.md`.
 - Future Client dashboard is not merely passive Project display. It is expected to become the Client Project initiation, engagement, announcements, special offers/campaign prompts, 1:1 communication and dashboard-visible communications surface.
 - C1 dashboard is the Project administration, artwork checking, production grouping, dispatch/fulfilment and commission workflow surface.
@@ -1202,8 +1203,9 @@ Proceed with 1P-G-D1 C1 Project Intake Form API/Services implementation:
 13. Next recommended implementation slice is 1P-G-D1 C1 Project Intake Form API/Services.
 14. Implementation goal: add C1 admin form list/get/create/update/activate/pause/archive/restore services only.
 15. Keep public form endpoints, submission review services, email confirmation, approval automation, Client user creation and Project creation from submissions out of the first 1P-G-D1 implementation.
-16. Keep 1P-K0 Client-Owned Project Lifecycle And Dashboard Management Planning as the later authenticated Client dashboard lane.
-17. Keep Client users, invitations, notification sending, Client dashboard communications, Project Intake public forms/UI implementation, Store, Orders, Commerce, Sales/Reporting, production workflow implementation, SeasonPro integration implementation and Communications out of scope unless separately planned.
+16. Preserve the first visible initiation form field-set decision: Project basics, organisation details and main organiser details, including the client-facing Project Type question and no direct "Do you require a Store?" question.
+17. Keep 1P-K0 Client-Owned Project Lifecycle And Dashboard Management Planning as the later authenticated Client dashboard lane.
+18. Keep Client users, invitations, notification sending, Client dashboard communications, Project Intake public forms/UI implementation, Store, Orders, Commerce, Sales/Reporting, production workflow implementation, SeasonPro integration implementation and Communications out of scope unless separately planned.
 
 Do not start:
 - C2 dashboard expansion;
