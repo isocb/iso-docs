@@ -55,7 +55,7 @@ Release result:
 - 1P-G-A Project Intake Schema And Moderation Model planning is complete. Project Intake remains moderation-first: submissions must not directly create Clients, Client users, Projects, Event links, notifications or invitations.
 - 1P-G-B Project Intake Schema Options planning is complete and has led into 1P-G-C schema-only implementation.
 - 1P-G-C Project Intake schema-only implementation and 1P-G-C-R1 schema review are complete. Staging deployment/smoke testing passed; pre-existing data loads correctly and no remedial work is required at this stage.
-- 1P-G-D0 Client-Scoped Project Initiation And Idempotency planning is complete. Future Client-scoped Project initiation must use trusted Client route, token or authenticated context and approval actions must be designed to avoid duplicate Clients, Client users or Projects.
+- 1P-G-D0 Client-Scoped Project Initiation And Idempotency planning is complete. Unknown/new Client intake remains moderation-first, while future authenticated Client users with the correct Client role/permission may create DRAFT/REQUESTED Projects directly under their Client account. Later activation, Store, Commerce, production, dispatch and notification gates may still require C1 approval or separate policy.
 - 2026-06-29 live/main alignment target is `aac38c1`; post-main smoke confirmation should follow `05-review-and-test/2026-06-29-phase-1-main-live-alignment-confirmation-and-smoke-checklist.md`.
 - Future Client dashboard is not merely passive Project display. It is expected to become the Client Project initiation, engagement, announcements, special offers/campaign prompts, 1:1 communication and dashboard-visible communications surface.
 - C1 dashboard is the Project administration, artwork checking, production grouping, dispatch/fulfilment and commission workflow surface.
@@ -509,7 +509,10 @@ New Client / first Project:
 external or unknown respondent -> C1 Project Intake form -> C1 moderation -> Client/account + C2 user/member + Project
 
 Existing Client / additional Project:
-existing C2 user or SeasonPro Club user -> Client dashboard or Club view -> Project request/create flow -> C1 moderation if policy requires
+authenticated Client user -> Client dashboard -> New Project -> direct DRAFT/REQUESTED Project creation under authenticated Client context
+
+SeasonPro Club:
+SeasonPro Club user -> Club view -> Project request/create flow -> C1 moderation or trusted direct creation only if policy allows
 ```
 
 Project Intake / Project Request forms may later be:
@@ -523,9 +526,10 @@ Project Intake / Project Request forms may later be:
 Control rules:
 
 - C1 users may create/manage Project Intake forms in a future slice.
-- Form submissions must be moderated before operational records are created or linked.
-- Approval may create/link Client/account, C2 user/member, Project and Event linkage.
-- Future Client dashboard-originated Project initiation should use the same moderation/intake model or a deliberately planned variant.
+- Unknown/public and new Client form submissions must be moderated before operational records are created or linked.
+- Approval may create/link Client/account, C2 user/member, Project and Event linkage for moderated intake.
+- Existing authenticated Client dashboard Project initiation should be able to create a Project directly once the Client user/member and role/permission model exists.
+- Direct Client-created Projects should start as DRAFT or REQUESTED and remain subject to later gates before activation, Store launch, public ordering, production batching, dispatch/fulfilment, notification sending or commerce/payment activity.
 - Client-scoped Project initiation must use trusted Client route, token or authenticated Client context. Existing Client dashboard initiation should auto-scope the request or Project to the authenticated Client/account.
 - Client ownership must not be inferred from organiser snapshot fields, respondent email alone, proposed Client contact fields alone or user-editable hidden fields.
 - New Client / first Project intake may create or match Client/account, create or link a primary Client login user/member and create a Project linked through `FundProject.clientId` only after explicit C1 moderation/approval or a separately planned trusted direct-creation policy.

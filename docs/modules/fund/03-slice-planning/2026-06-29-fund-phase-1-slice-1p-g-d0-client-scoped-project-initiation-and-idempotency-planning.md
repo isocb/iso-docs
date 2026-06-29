@@ -90,21 +90,39 @@ Moderation may later:
 
 A future authenticated Client user starts a Project from the Client dashboard.
 
-Default recommended behaviour for first implementation:
+Recommended future behaviour:
 
 ```text
-Client dashboard request -> moderated Project Intake submission
+authenticated Client user
+  -> Client dashboard
+  -> New Project
+  -> create FundProject directly
+  -> set FundProject.clientId from authenticated Client context
+  -> Project starts as DRAFT or REQUESTED
 ```
 
-The trusted Client scope should come from authenticated Client membership/context, not from form fields.
+This should not require C1 moderation merely to create the Project record.
 
-Future direct creation may be allowed only after a separate policy slice decides:
+The trusted Client scope must come from authenticated Client membership/context, not from form fields.
+
+Direct Client dashboard Project creation requires a future Client user/member and role/permission model. A separate policy slice must decide:
 
 - which Client users can directly create Projects;
-- whether C1 approval is still required;
+- which Client users can only request Projects;
 - which Project fields can be self-entered;
-- whether Project starts as DRAFT or REQUESTED;
+- whether Projects start as `DRAFT` or `REQUESTED`;
+- whether C1 review is required before activation;
 - how audit and notification boundaries work.
+
+C1 review or approval may still be required before:
+
+- Project activation;
+- Store launch;
+- public ordering;
+- production batching;
+- dispatch/fulfilment;
+- notification sending;
+- commerce/payment activity.
 
 ### Client-Scoped Token Or Link
 
@@ -130,7 +148,7 @@ The trusted source would be SeasonPro League and Club context, subject to:
 - League configuration of approved FUND producer tenant(s);
 - Club-to-FUND Client/account mapping;
 - catalogue and sale method planning;
-- moderation-first behaviour unless trusted direct creation is separately approved.
+- moderation-first behaviour unless trusted direct creation is separately approved for the SeasonPro context.
 
 ## 4. Trusted Client Scope Rule
 
@@ -163,6 +181,7 @@ Potential duplicate risks:
 - public form is refreshed or retried;
 - C1 moderator clicks approve twice;
 - Client dashboard submit button is retried;
+- authenticated Client dashboard Project creation request is retried;
 - SeasonPro integration retries a request;
 - new Client / first Project approval creates duplicate Client or User records.
 
@@ -186,26 +205,40 @@ Possible inputs for future matching:
 - external source and external id for SeasonPro;
 - future Client user/member id;
 - future idempotency key from public/API requests.
+- future idempotency key from authenticated Client dashboard Project creation requests.
 
 Email matching may assist duplicate detection but must not prove Client ownership by itself.
 
 ## 7. Existing Client / Additional Project Flow
 
-Recommended first behaviour:
+Recommended future behaviour:
 
 ```text
 authenticated Client context
-  -> create moderated intake submission with source CLIENT_DASHBOARD
-  -> store trusted matchedClientId or equivalent server-derived Client reference
-  -> C1 review
-  -> create DRAFT Project linked through FundProject.clientId
+  -> Client dashboard New Project
+  -> create FundProject directly
+  -> set FundProject.clientId from authenticated Client context
+  -> Project starts as DRAFT or REQUESTED
 ```
+
+This does not need C1 moderation simply to create the Project record.
+
+Later C1 review or separate policy gates may still control:
+
+- Project activation;
+- Store launch;
+- public ordering;
+- production batching;
+- dispatch/fulfilment;
+- notification sending;
+- commerce/payment activity.
 
 Do not implement yet:
 
 - Client dashboard initiation UI;
 - Client user membership checks;
-- direct Project creation;
+- role/permission checks;
+- direct Project creation services;
 - notification sending.
 
 ## 8. New Client / First Project Flow
@@ -242,15 +275,24 @@ Recommended service guardrails:
 - C1 must explicitly confirm create-new versus link-existing;
 - duplicate hints should be advisory, not automatic ownership assignment.
 
+Authenticated Client dashboard direct Project creation also needs idempotency protection:
+
+- create requests should run inside server-side transaction boundaries;
+- repeated double-click/retry should not create duplicate Projects;
+- a future idempotency key should be considered for create Project requests;
+- if the same authenticated request is retried, return the existing Project where possible;
+- audit the creating Client user/member and Client account.
+
 ## 10. Project Creation Boundary
 
-When future moderation creates a Project:
+When future moderation or authenticated Client dashboard creation creates a Project:
 
-- Project should start as `DRAFT` unless a later slice approves another status;
+- Project should start as `DRAFT` or `REQUESTED` according to the future policy slice;
 - `FundProject.clientId` should be set only from C1-selected or trusted Client context;
 - Event linkage should use accepted Project/Event constraints;
 - organiser snapshot fields may be copied as contact snapshots but not access control;
-- Project readiness and activation rules remain unchanged.
+- Project readiness and activation rules remain unchanged;
+- direct Client-created Projects do not imply Store, Orders, Commerce, production, dispatch or notification approval.
 
 ## 11. Client User / Member Boundary
 
@@ -306,9 +348,10 @@ Recommended sequence:
 2. 1P-G-D1 - Project Intake C1 Form API/Services.
 3. 1P-G-D2 - Project Intake Submission Review API/Services.
 4. 1P-G-D3 - Approval Action Planning/Implementation, if accepted.
-5. 1P-G-E - C1 Intake Moderation UI Planning.
+5. 1P-G-D4 - Authenticated Client Dashboard Project Creation Policy Planning.
+6. 1P-G-E - C1 Intake Moderation UI Planning.
 
-Public forms, Client dashboard initiation and SeasonPro Club initiation should remain deferred until the relevant trust/context models are accepted.
+Public forms, Client dashboard initiation and SeasonPro Club initiation should remain deferred until the relevant trust/context, role/permission and idempotency models are accepted.
 
 ## 15. Explicit Non-Goals
 
@@ -349,5 +392,5 @@ Recommended next slice:
 Planning goal:
 
 ```text
-Define C1 admin Project Intake form and submission moderation services while preserving moderation-first behaviour, trusted Client scope boundaries and idempotent approval design.
+Define C1 admin Project Intake form and submission moderation services while preserving moderation-first behaviour for unknown/new Client intake, trusted Client scope boundaries and idempotent approval design.
 ```
