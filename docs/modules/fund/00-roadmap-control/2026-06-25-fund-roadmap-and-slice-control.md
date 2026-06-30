@@ -77,6 +77,8 @@ Release result:
 - 1P-G-F-A-R2 live promotion target is `b1ee0fd`, aligning `main`, `dev` and `staging` to the public Project initiation remediation.
 - Phase 2 refinement wishlist control has been created at `00-roadmap-control/2026-06-30-fund-phase-2-refinement-wishlist-and-slice-control.md`. Use it to park desirable but non-blocking refinements such as Event media/branding, Event type option sets, Client organisation type option sets, embed route/CSP planning, action-widget polish and communications defaults without interrupting Phase 1 structural momentum.
 - 1P-K0 Client Dashboard And Client-Owned Project Lifecycle Planning is initiated as the next core planning lane after public Project initiation remediation review. The Client dashboard should allow authenticated C2 Client users to monitor their Projects, create directly Client-owned Projects from trusted Client context, select available live Events or standalone Project creation where allowed, and download Project templates/resources. Sales monitoring is a future dashboard purpose but depends on Store/Orders/Commerce. Communications/announcements and commission payment management are wishlist/future surfaces, not first implementation scope.
+- 1P-K1 Client User/Member Access Model And C1 Management Planning is initiated as the practical bridge before the C2 Client dashboard. C1 Client detail should evolve into top-level tabs for Client Details, Projects and Users. The Projects tab should show linked Projects with search/filter/sort and row click to Project detail. The Users tab should allow C1 to manage Client users/members who may later access FUND as C2 users, but onboarding/access email remains a manual operational step until the dedicated 1P-N0 notification/email lane is accepted.
+- 1P-K1-A Client User/Member Schema Options Planning recommends a small FUND-specific `FundClientMember` model rather than reusing Project participants or platform Users alone. The model should be tenant-scoped, Client-scoped, optionally linked to a platform `User`, and should separate role labels from access permissions. Schema implementation is the next bounded step, with no automatic email, invitations, C2 dashboard UI or Client-owned Project creation.
 - Recommended major core sequence after K0: Client dashboard/access model, then Store/Orders/Commerce core planning, then C1 production/dispatch/commission implementation planning.
 - 1P-G-C2-A Project Intake Email Confirmation Schema Addendum is implemented as schema-only work. It adds `CONFIRMATION_PENDING`, confirmation token/hash expiry fields, confirmation/submitted timestamps and idempotency/fingerprint fields so future public form services can separate unconfirmed records from actionable C1 moderation submissions.
 - 2026-06-29 live/main alignment target is `aac38c1`; post-main smoke confirmation should follow `05-review-and-test/2026-06-29-phase-1-main-live-alignment-confirmation-and-smoke-checklist.md`.
@@ -361,8 +363,8 @@ This table is the current compact issue-status view for planning. It should be u
 | #47 Product activation gate visibility | Small UX remediation included in 1P-R1; 1P-R2 static/check review passed | UI/UX polish | Browser spot-check Project Overview affordance | No | No | Browser spot-check / next promotion gate |
 | #44 Product breadcrumb navigation | Small UI polish included in 1P-R1/1P-R1A; 1P-R2 static/check review passed | UI polish | Browser spot-check Products, Projects and Events breadcrumbs | No | No | Browser spot-check / next promotion gate |
 | #45 Sidebar icons repeated | Small UI polish included in 1P-R1/1P-R1A; 1P-R2 static/check review passed | UI polish | Browser spot-check FUND navigation icons | No | No | Browser spot-check / next promotion gate |
-| #48 Events should link to one or more Product Catalogues | Open | Architecture planning | Plan Event/Catalogue/Product availability before implementation | Partially for C2 product/action surfaces | Yes | 1Q |
-| #49 Product Workflow Class suitability | Open | Architecture planning | Plan workflow suitability/availability layer before Store, production or workflow expansion | Partially for C2 product/action surfaces | Yes | 1Q |
+| #48 Events should link to one or more Product Catalogues | Open | Core architecture planning | Plan Event/Catalogue/Product availability before Store/Commerce implementation. Events should be able to expose one or more Catalogues, Projects should inherit eligible Products from Event or standalone availability, and Projects should be able to select/deselect eligible Products according to Project type and workflow rules. | Yes for Client dashboard Project creation where Event/product selection is exposed | Yes | 1Q |
+| #49 Product Workflow Class suitability | Open | Core architecture planning | Plan workflow suitability/availability layer before Store, production or workflow expansion. Product workflow class is currently a default/snapshot; future suitability must decide whether a Product can support multiple Project types/workflows through Product, Catalogue membership, Event or Project Product rules. | Yes for Project creation/product selection where Project type constrains Products | Yes | 1Q |
 
 Planning rule:
 
@@ -608,12 +610,25 @@ How should Event-linked Projects and standalone Projects determine eligible Prod
 Planning needed:
 
 - Event-to-Catalogue links.
+- Optional Event-to-ad-hoc Product links where a Product should be available for one Event without first creating a broader Catalogue.
 - Standalone Project Catalogues.
 - Catalogue type/scope.
 - Whether Events can use multiple Catalogues.
 - Whether Catalogues can serve multiple Events.
 - Project Product picker eligibility.
+- Project inheritance from linked Event availability.
+- Project ability to select or deselect Products from inherited Event/standalone availability.
+- Project type and workflow suitability constraints that limit the eligible Product list.
 - Future Store generation eligibility.
+
+Accepted conceptual direction:
+
+- Event-linked Projects should normally inherit eligible Products from the Event's linked Catalogue(s).
+- Standalone Projects should choose from tenant-approved standalone/default Catalogue(s) or explicitly configured Products.
+- Events may need ad-hoc Product availability where a Product is specific to a campaign/Event.
+- Product selection and deselection should happen at the Project level, because individual Projects may not use every Product available from the Event or Catalogue.
+- Store/Orders/Commerce must not be implemented until Product eligibility for a Project is explicit and auditable.
+- Rich Product media, image galleries, option definitions and option-image mapping are important but belong to Product/Catalogue refinement planning unless they become Store MVP blockers.
 
 ### Product Workflow Suitability
 
@@ -1203,6 +1218,8 @@ Scope:
 
 - resolve Issues #48 and #49 together;
 - produce schema/API plan;
+- explicitly define Event-to-Catalogue, optional Event-to-Product and Project Product inheritance/selection rules;
+- decide how Project type and Product workflow suitability constrain Product eligibility;
 - explicitly record Store/Commerce impacts.
 
 ### Next 12 - C2 Dashboard Foundation Expansion

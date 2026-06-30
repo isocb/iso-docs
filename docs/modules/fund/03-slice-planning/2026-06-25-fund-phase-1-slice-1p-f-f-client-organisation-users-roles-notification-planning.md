@@ -131,10 +131,14 @@ No automatic notification should be sent when:
 - a Client is created;
 - a primary contact email is entered;
 - a Client user/member record is drafted;
+- a Client user/member record is linked to an existing platform User;
+- a Client user/member role label, access permission or status is updated;
 - a Project Intake submission is received;
 - a Project is approved.
 
 Invitation and notification sending must be explicitly planned.
+
+Until that planning exists, C1 onboarding/access email for newly created or linked Client users/members is a manual operational step.
 
 Future notification design should follow the SeasonPro-style controlled communications pattern:
 
@@ -196,6 +200,14 @@ Future Client users/members may define:
 - whether they can see Orders/Sales/Reporting later.
 
 These permissions are not part of 1P-F-E.
+
+C1 Client detail should later become the management surface for this model:
+
+- `Client Details` tab for organisation/account fields;
+- `Projects` tab for linked Projects, with search, status filtering, sorting and row click to Project detail;
+- `Users` tab for Client users/members, with search, filtering, sorting, row click to edit and a controlled add/link user flow.
+
+The `Users` tab must not send invitation or notification email until the dedicated notification/email lane is planned.
 
 ## 12. Out Of Scope
 

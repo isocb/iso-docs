@@ -187,7 +187,42 @@ Research notes:
 - primary contact fields remain C1 operational snapshots until the Client user/member model is planned;
 - public intake may propose a Client organisation and main organiser, but ownership is only established through trusted approval/auth flows.
 
-### 4.4 C1 Dashboard And Action Widgets
+### 4.4 Products, Catalogues And Presentation
+
+Focus:
+
+- richer Product definitions;
+- Product media and image galleries;
+- Product option modelling;
+- option-to-image mapping;
+- Catalogue presentation;
+- public Store readiness once the core availability model exists.
+
+Core boundary:
+
+```text
+Event/Catalogue/Product availability is core 1Q architecture, not optional refinement.
+```
+
+This section covers the richer Product/Catalogue presentation layer that improves Store quality and user confidence after the core availability rules are planned.
+
+Wishlist entries:
+
+| Refinement ID | Phase 1 Alias | Name | Intent | Status |
+| --- | --- | --- | --- | --- |
+| `2R-PRODUCT-01` | none | Product Media, Gallery And Option Definition Planning | Plan Product image galleries, Product option definitions and public/product-admin display expectations. | Wishlist |
+| `2R-PRODUCT-02` | none | Product Option Image Mapping Planning | Decide how options such as colour, style, size or personalisation choices map to images or previews. | Wishlist |
+| `2R-CATALOGUE-01` | `1Q` | Catalogue Presentation And Availability Refinement | Refine Catalogue presentation and merchandising after Event/Catalogue/Product availability rules are accepted. | Wishlist |
+| `2R-CATALOGUE-02` | none | Catalogue/Product Public Store Readiness Review | Review whether Product and Catalogue presentation is sufficient before Store UI implementation. | Wishlist |
+
+Research notes:
+
+- Product eligibility for Events/Projects belongs to `1Q`.
+- Store generation should use Project-selected Products, not all active tenant Products.
+- Product gallery/options work can be deferred unless Store MVP needs it to avoid a poor or ambiguous buying experience.
+- Product option media should not be bolted on after Orders if order lines need option/image evidence.
+
+### 4.5 C1 Dashboard And Action Widgets
 
 Focus:
 
@@ -210,7 +245,7 @@ Research notes:
 - row click should open the relevant workflow/detail page;
 - avoid row action icon clutter where table/card row click is the established pattern.
 
-### 4.5 Production, Dispatch And Commission
+### 4.6 Production, Dispatch And Commission
 
 Focus:
 
@@ -236,7 +271,7 @@ Research notes:
 - Project context remains important even when production is grouped across Projects;
 - dispatch is both Project-linked and Client-linked.
 
-### 4.6 Notifications And Communications
+### 4.7 Notifications And Communications
 
 Focus:
 
@@ -260,7 +295,7 @@ Research notes:
 - broader workflow emails should not be scattered through feature code;
 - notification content and trigger behaviour should be managed centrally.
 
-### 4.7 SeasonPro Integration
+### 4.8 SeasonPro Integration
 
 Focus:
 
@@ -310,6 +345,8 @@ Near-term candidates after the current public Project initiation remediation rev
 2R-EVENT-01 - Event Type Option Set Planning
 2R-INTAKE-01 / 2R-EVENT-02 - Event Media And Branding Schema/UI Planning
 2R-CLIENT-01 - Client Organisation Type Option Set Planning
+2R-PRODUCT-01 - Product Media, Gallery And Option Definition Planning
+2R-PRODUCT-02 - Product Option Image Mapping Planning
 2R-COMMS-01 - FUND System Notifications And Editable Email Defaults Planning
 ```
 

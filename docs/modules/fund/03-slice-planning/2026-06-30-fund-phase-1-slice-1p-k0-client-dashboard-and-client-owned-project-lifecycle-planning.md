@@ -220,7 +220,15 @@ Selectable Events should be:
 - not archived;
 - optionally constrained by future catalogue/product availability.
 
-This may need a future Event availability service before implementation.
+This depends on the future core availability lane:
+
+```text
+1Q - Event/Catalogue/Product Availability And Workflow Suitability Planning
+```
+
+Client dashboard Project creation should not expose all Products or Catalogues blindly. Event-linked Projects should inherit eligible Products from the selected Event's available Catalogue(s), while standalone Projects should use tenant-approved standalone/default availability. Product selection and deselection should ultimately happen at the Project level before Store/Orders/Commerce.
+
+This may need a future Event/Product availability service before implementation.
 
 Initial planning can use existing safe Event list/read APIs only if they are tenant-scoped and expose no supplier internals.
 
@@ -369,13 +377,26 @@ This slice does not implement:
 ## 16. Recommended Next Slice
 
 ```text
-1P-K1 - Client User/Member Access Model Planning
+1P-K1 - Client User/Member Access Model And C1 Management Planning
 ```
 
 Planning goal:
 
 ```text
-Define the authenticated Client user/member, role and permission model required before the Client dashboard can safely expose Client-owned Project views or creation actions.
+Define the authenticated Client user/member, role and permission model required before the Client dashboard can safely expose Client-owned Project views or creation actions, and define the C1 Client detail management surface for Client Details, Projects and Users.
 ```
 
 Do not implement the Client dashboard before K1 has resolved trusted Client/account context.
+
+K1 should keep onboarding email manual until the dedicated notification/email lane is planned. Creating or linking a Client user/member must not automatically send invitations, access emails or workflow notifications.
+
+Recommended follow-on split:
+
+```text
+1P-K1-A - Client User/Member Schema Options Planning
+1P-K1-B - Client User/Member Schema Implementation
+1P-K1-C - C1 Client User/Member API/Services
+1P-K1-D - C1 Client Detail Tabs: Details / Projects / Users UI
+1P-K1-E - Client User/Member Review And Authenticated Smoke Test
+1P-K2 - C2 Client Dashboard Read-Only Project View Planning
+```
