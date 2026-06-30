@@ -280,10 +280,11 @@ Recommended sequence:
 1P-K1-C - C1 Client User/Member API/Services
 1P-K1-D - C1 Client Detail Tabs: Details / Projects / Users UI
 1P-K1-E - Client User/Member Review And Authenticated Smoke Test
+1P-K1-F - Client Member Login/Onboarding And Auth Routing Planning
 1P-K2 - C2 Client Dashboard Read-Only Project View Planning
 ```
 
-This keeps the C1 management surface and access model ahead of C2 dashboard implementation.
+This keeps the C1 management surface, access model and auth-routing policy ahead of C2 dashboard implementation.
 
 ## 12. Explicit Non-Goals
 
