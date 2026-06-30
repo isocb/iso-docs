@@ -516,6 +516,27 @@ All CRUD modals share identical layout and behaviour.
 * Buttons show loading state when submitting
 * Modal respects module/tenant branding
 
+## 8.2A Form Field Alignment And Date Inputs
+
+Forms must preserve visual rhythm across rows and columns.
+
+Field guidance:
+
+* Use the same date/time input component for the same semantic date type within a workflow.
+* When a workflow elsewhere uses a date/time picker for operational dates, related public/admin forms should use the same date/time picker unless a date-only value is explicitly required.
+* Do not mix plain date inputs and date/time pickers for the same operational concept in the same module area.
+* If one field in a grid row has helper text, description text or explanatory subtitle, sibling fields must reserve equivalent vertical helper-text space, even when they have no copy.
+* This reserved helper-text space may be blank, but the input boxes must align horizontally.
+* Avoid using helper text as a layout accident; helper text is either consistently present, consistently reserved or moved above the grouped fields.
+* Dropdown/select fields must be used for bounded option sets. Do not use free-text inputs where the tenant should choose from configured options.
+* Free text is appropriate only when the value is intentionally open-ended.
+
+Rationale:
+
+```text
+Misaligned input boxes caused by uneven helper text create visual tension and make forms feel less trustworthy, especially in public or tenant-facing workflows.
+```
+
 ## 8.3 Request-Flow CRUD Variant
 
 Some entities are **not directly editable** by the user — instead, the user submits a *request*, and an administrator approves or rejects it. This is a common pattern for records where data integrity or governance requires admin oversight.
