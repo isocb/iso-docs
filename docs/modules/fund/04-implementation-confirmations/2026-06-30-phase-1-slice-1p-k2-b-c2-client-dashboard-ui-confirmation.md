@@ -50,6 +50,15 @@ The app shell now hides the tenant admin sidebar on FUND Client routes, matching
 
 The C2 pages provide their own simple dashboard/project navigation.
 
+Post-implementation routing fix:
+
+- the legacy `/app/fund/client-unavailable` route is retained only as a compatibility redirect;
+- recognised C2 Client members are redirected from `/app/fund/client-unavailable` to `/app/fund/client`;
+- middleware now allows `/app/fund/client` and child routes for C2 Client members;
+- middleware still blocks C2 Client members from C1 FUND admin routes such as `/app/fund`, `/app/fund/projects` and `/app/fund/clients`.
+
+This resolved a localhost redirect loop where `/app/fund/client` was still being classified by middleware as an unavailable C2 route.
+
 ## 5. Project Create/Edit UI
 
 C2 Client members with `PROJECT_MANAGER` or `ADMIN` access can create/edit safe Project basics:
@@ -100,10 +109,12 @@ The Orders tab is a placeholder only and does not implement:
 Application files:
 
 - `src/app/(app)/app/fund/client/page.tsx`;
+- `src/app/(app)/app/fund/client-unavailable/page.tsx`;
 - `src/app/(app)/app/fund/client/projects/page.tsx`;
 - `src/app/(app)/app/fund/client/projects/[id]/page.tsx`;
 - `src/app/(app)/welcome/page.tsx`;
 - `src/core/components/layout/AppShell.tsx`;
+- `src/middleware.ts`;
 - `src/modules/fund/lib/client-member-routing.ts`;
 - `src/modules/fund/components/client-dashboard/ClientDashboardShell.tsx`;
 - `src/modules/fund/components/client-dashboard/ClientProjectModal.tsx`.
@@ -151,6 +162,19 @@ Result:
 
 ```text
 Passed after implementation.
+```
+
+Additional routing fix checks:
+
+```text
+npm run type-check
+git diff --check
+```
+
+Result:
+
+```text
+Passed after middleware route allowance and legacy unavailable-route redirect fix.
 ```
 
 ## 11. Recommended Next Slice
