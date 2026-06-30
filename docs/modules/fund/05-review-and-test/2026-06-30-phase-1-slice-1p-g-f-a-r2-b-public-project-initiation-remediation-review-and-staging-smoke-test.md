@@ -4,9 +4,11 @@ Date: 2026-06-30
 
 ## Verdict
 
-Proceed to commit and promote to staging for final authenticated/public smoke testing.
+Proceed to live.
 
 Local browser smoke testing was completed by the product owner and the remediation changes were visible in the UI and working as expected.
+
+Staging browser smoke testing did not reveal any major problems. Remaining refinements/remedial observations can be handled as a batched CR rather than blocking live promotion.
 
 ## Scope Reviewed
 
@@ -93,7 +95,9 @@ Confirmed by product owner:
 
 ## Staging Smoke Checklist
 
-After promotion to staging, confirm:
+Staging smoke testing was completed by the product owner. No major blockers were found.
+
+Checked/covered areas:
 
 - unauthenticated `/fund/project-initiation/[formSlug]` loads without redirecting to sign-in;
 - public page has no generic IsoStack marketing header/navigation;
@@ -108,6 +112,8 @@ After promotion to staging, confirm:
 - C1 form allowed organisation type selector works;
 - submitted public request enters confirmation-pending/submitted moderation flow as expected;
 - no Store, Orders, Commerce, Client user/member, invitation or broader workflow notification behaviour appears.
+
+Remedial observations should be collected through a CR and planned as a batch remediation slice rather than interrupting this live promotion.
 
 ## Checks Run
 
@@ -127,11 +133,11 @@ Results:
 
 ## Blockers
 
-No blockers found for commit or staging promotion.
+No blockers found for live promotion.
 
 ## Caveats
 
-- Staging browser smoke testing is still required after deployment.
+- Remaining remedial observations should be captured through a CR and grouped into a batch remediation plan.
 - Third-party embed support remains future architecture work; this remediation does not relax iframe/CSP policy globally.
 - Event media/imagery and configurable Event type/category option sets remain follow-up items.
 
@@ -154,4 +160,10 @@ This review confirms the remediation did not implement:
 
 ## Recommendation
 
-Commit the R2-A app and documentation changes, promote to staging, then complete the staging smoke checklist above before considering live promotion.
+Promote the R2-A remediation from staging to live.
+
+After live promotion:
+
+- complete a light live smoke check for the public Project initiation route and C1 Project Intake admin;
+- capture any minor UI/UX or workflow observations in a CR;
+- create a batch remediation plan from that CR rather than treating non-blocking refinements as live blockers.
