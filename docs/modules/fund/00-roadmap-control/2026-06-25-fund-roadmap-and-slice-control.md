@@ -83,7 +83,9 @@ Release result:
 - 1P-K1-F Client Member Login/Onboarding And Auth Routing Planning is required before K2. It must define platform User link/create policy, magic-link/manual onboarding boundary, post-auth routing, safe unavailable states and the rule that C2 Client users must not be routed to `/platform`, P1 or C1 dashboards by default.
 - 1P-K2 C2 Client Dashboard And Client-Owned Project Management Planning is initiated. K2 should replace the temporary Client unavailable state with the first authenticated C2 dashboard: Client context, Projects list, Client-owned Project create/edit basics, row click to Project detail and Details/Products/Orders tabs. Client-created Projects should capture the same Project type / fundraising format option used by the public Project initiation form so later Product/Catalogue suitability can constrain selectable Products. Products and Orders are placeholders only until Product availability and Store/Orders/Commerce planning is accepted.
 - 1P-K2-B C2 Client Dashboard UI is implemented on top of K2-A services. It adds `/app/fund/client`, `/app/fund/client/projects` and `/app/fund/client/projects/[id]`, replaces the temporary C2 unavailable redirect, hides the C1 tenant admin sidebar on FUND Client routes, and keeps Products/Orders as placeholders only pending later Product and Commerce planning.
-- Recommended major core sequence after K0: Client dashboard/access model, then Store/Orders/Commerce core planning, then C1 production/dispatch/commission implementation planning.
+- 1P-K2 live promotion completed at `bb50bc6`. K2-C review records successful C2 dashboard smoke testing after the middleware route-loop fix. Live smoke should confirm C2 access to `/app/fund/client`, Project create/edit, Project detail row click and C2 denial from C1 admin routes.
+- Next core architecture phase is Product/Catalogue suitability through the Product Manager lane. Product/Catalogue suitability is required for both selling and making, so it should be planned before Store/Orders/Commerce and before production/dispatch implementation.
+- Recommended major core sequence after K2: Product/Catalogue suitability, then Store/Orders/Commerce core planning, then C1 production/dispatch/commission implementation planning.
 - 1P-G-C2-A Project Intake Email Confirmation Schema Addendum is implemented as schema-only work. It adds `CONFIRMATION_PENDING`, confirmation token/hash expiry fields, confirmation/submitted timestamps and idempotency/fingerprint fields so future public form services can separate unconfirmed records from actionable C1 moderation submissions.
 - 2026-06-29 live/main alignment target is `aac38c1`; post-main smoke confirmation should follow `05-review-and-test/2026-06-29-phase-1-main-live-alignment-confirmation-and-smoke-checklist.md`.
 - Future Client dashboard is not merely passive Project display. It is expected to become the Client Project initiation, engagement, announcements, special offers/campaign prompts, 1:1 communication and dashboard-visible communications surface.
@@ -1215,15 +1217,16 @@ isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-i-c
 Suggested slice:
 
 ```text
-Slice 1Q - Event/Catalogue/Product Availability And Workflow Suitability Planning
+Slice 1Q-A - Product/Catalogue Suitability Schema Options Planning
 ```
 
 Scope:
 
 - resolve Issues #48 and #49 together;
-- produce schema/API plan;
+- produce Product Manager schema/options plan;
 - explicitly define Event-to-Catalogue, optional Event-to-Product and Project Product inheritance/selection rules;
 - decide how Project type and Product workflow suitability constrain Product eligibility;
+- distinguish core eligibility from Phase 2 Product media/gallery/option refinement;
 - explicitly record Store/Commerce impacts.
 
 ### Next 12 - C2 Dashboard Foundation Expansion
