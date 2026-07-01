@@ -212,8 +212,10 @@ Wishlist entries:
 | --- | --- | --- | --- | --- |
 | `2R-PRODUCT-01` | none | Product Media, Gallery And Option Definition Planning | Plan Product image galleries, Product option definitions and public/product-admin display expectations. | Wishlist |
 | `2R-PRODUCT-02` | none | Product Option Image Mapping Planning | Decide how options such as colour, style, size or personalisation choices map to images or previews. | Wishlist |
+| `2R-PRODUCT-03` | none | Product Duplication Planning | Plan safe C1 duplication of complex Products, including details, options, images/media references, workflow defaults and unique naming such as `Product name (copy)` and `Product name (copy 2)`. | Wishlist |
 | `2R-CATALOGUE-01` | `1Q` | Catalogue Presentation And Availability Refinement | Refine Catalogue presentation and merchandising after Event/Catalogue/Product availability rules are accepted. | Wishlist |
 | `2R-CATALOGUE-02` | none | Catalogue/Product Public Store Readiness Review | Review whether Product and Catalogue presentation is sufficient before Store UI implementation. | Wishlist |
+| `2R-CATALOGUE-03` | none | Catalogue Duplication And Product Copy Policy | Plan Catalogue duplication, including whether duplication copies only Catalogue membership or deep-copies the Products in the Catalogue. If deep-copying Products, copied Products should receive unique names/slugs/SKUs/references with `(copy)` / numbered suffixes and idempotency protection. | Wishlist |
 
 Research notes:
 
@@ -221,6 +223,8 @@ Research notes:
 - Store generation should use Project-selected Products, not all active tenant Products.
 - Product gallery/options work can be deferred unless Store MVP needs it to avoid a poor or ambiguous buying experience.
 - Product option media should not be bolted on after Orders if order lines need option/image evidence.
+- Catalogue duplication probably needs two modes: duplicate Catalogue only as a new Catalogue with the same linked Products, and duplicate Catalogue plus Products as a new Catalogue with copied Products.
+- Deep Product copying is powerful but needs careful planning around SKUs, slugs, image/media reuse, options, audit history, references and idempotency.
 
 ### 4.5 C1 Dashboard And Action Widgets
 

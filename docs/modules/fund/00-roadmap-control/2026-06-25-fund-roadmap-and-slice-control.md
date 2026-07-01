@@ -1229,6 +1229,18 @@ Scope:
 - distinguish core eligibility from Phase 2 Product media/gallery/option refinement;
 - explicitly record Store/Commerce impacts.
 
+Accepted implementation sequence:
+
+```text
+1Q-A - Event/Catalogue/Product Availability Schema Options
+1Q-B - Event/Catalogue Availability Schema Implementation
+1Q-C - C1 Event Catalogue Availability API/Services
+1Q-D - C1 Event Catalogue Availability UI
+1Q-E - Project Product Eligibility API/Services
+1Q-F - Project Product Picker UI Remediation
+1Q-G - Availability Review And Store/Commerce Readiness Check
+```
+
 ### Next 12 - C2 Dashboard Foundation Expansion
 
 Suggested slice:
