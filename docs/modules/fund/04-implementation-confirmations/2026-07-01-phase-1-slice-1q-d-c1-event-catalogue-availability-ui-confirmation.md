@@ -159,9 +159,15 @@ Result: failed on pre-existing unrelated repository-wide lint issues outside the
 
 ## 9. Testing Expectations
 
-Before promoting this slice, perform authenticated C1 browser smoke testing.
+Post-review status:
 
-Minimum C1 smoke path:
+```text
+1Q-D-R1 is accepted as passed by operator confirmation on 2026-07-01.
+```
+
+Static checks, route smoke and authenticated C1 browser smoke are accepted for this slice. Detailed UI/UX revisions are deferred to a later refinement pass and do not block 1Q-E.
+
+Accepted C1 smoke path:
 
 1. Sign in as a FUND C1 admin user.
 2. Open `/app/fund/products`.
@@ -196,9 +202,9 @@ Expected route behaviour:
 
 ## 10. Risks And Follow-Ups
 
-- 1Q-E must define Product eligibility query behaviour, especially whether a Product with no suitability rows is treated as broadly eligible or not eligible until configured.
+- 1Q-E planning now locks Product eligibility query behaviour: Products with no active suitability rows remain unrestricted for that suitability dimension after source availability passes.
 - 1Q-E must consume Event/standalone Catalogue availability and Product suitability as eligibility inputs without creating Project Product memberships directly.
-- 1Q-F must update the Project Product picker to use eligible Products as the source list and `FundProjectProduct` as the selected subset.
+- 1Q-F must update the Project Product picker to use eligible Products as the source list, group Products by source Catalogue, deduplicate by Product identity and keep `FundProjectProduct` as the selected subset.
 - Store generation must use `FundProjectProduct`, not raw Event/Catalogue availability.
 - Product media, options and richer Catalogue presentation remain deferred Product Manager refinement unless Store MVP planning makes them blockers.
 
@@ -229,9 +235,12 @@ Read first:
 - isodocs/docs/modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md
 - isodocs/docs/modules/fund/03-slice-planning/2026-06-30-fund-phase-1-slice-1q-event-catalogue-product-availability-and-workflow-suitability-planning.md
 - isodocs/docs/modules/fund/03-slice-planning/2026-06-30-fund-phase-1-slice-1q-a-product-catalogue-suitability-schema-options-planning.md
+- isodocs/docs/modules/fund/03-slice-planning/2026-07-01-fund-phase-1-slice-1q-e-project-product-eligibility-api-services-planning.md
+- isodocs/docs/modules/fund/03-slice-planning/2026-07-01-fund-phase-1-slice-1q-f-catalogue-centric-project-product-picker-ui-planning.md
 - isodocs/docs/modules/fund/04-implementation-confirmations/2026-06-30-phase-1-slice-1q-b-event-catalogue-availability-schema-implementation-confirmation.md
 - isodocs/docs/modules/fund/04-implementation-confirmations/2026-06-30-phase-1-slice-1q-c-c1-event-catalogue-availability-api-services-confirmation.md
 - isodocs/docs/modules/fund/04-implementation-confirmations/2026-07-01-phase-1-slice-1q-d-c1-event-catalogue-availability-ui-confirmation.md
+- isodocs/docs/modules/fund/05-review-and-test/2026-07-01-phase-1-slice-1q-d-r1-c1-event-catalogue-availability-ui-review-and-smoke-test.md
 
 Proceed with:
 1Q-E - Project Product Eligibility API/Services
@@ -246,5 +255,5 @@ Important boundaries:
 - Do not implement C2 Product picker UI.
 - Do not implement Store, Orders, Commerce, Sales/Reporting, Product media galleries, Product options, production, dispatch, notifications or SeasonPro integration.
 - Preserve same-tenant checks and archived/inactive exclusion.
-- Decide and document the no-suitability-rows policy for Product eligibility.
+- Use the accepted no-suitability-rows policy: missing active suitability rows mean unrestricted for that suitability dimension after source availability passes.
 ```

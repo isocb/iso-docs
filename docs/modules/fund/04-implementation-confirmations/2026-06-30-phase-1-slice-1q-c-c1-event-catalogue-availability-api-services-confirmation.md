@@ -216,8 +216,8 @@ Result: passed.
 ## 11. Risks And Follow-Ups
 
 - 1Q-D must provide a clear C1 UI for Event Catalogue availability and Product suitability without exposing internal jargon to C2 users.
-- 1Q-E must define Product eligibility query behaviour, especially whether a Product with no suitability rows is treated as broadly eligible or not eligible until configured.
-- C2 Product picker must use eligible Products as the source list and `FundProjectProduct` as the selected subset.
+- 1Q-E planning now locks Product eligibility query behaviour: Products with no active suitability rows remain unrestricted for that suitability dimension after source availability passes.
+- C2/Product picker work must use eligible Products as the source list, group by source Catalogue for context, deduplicate by Product identity and keep `FundProjectProduct` as the selected subset.
 - Store generation must use `FundProjectProduct`, not raw Event/Catalogue availability.
 
 ## 12. Recommended Next Slice

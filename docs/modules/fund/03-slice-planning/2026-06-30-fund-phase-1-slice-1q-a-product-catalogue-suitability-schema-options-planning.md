@@ -384,7 +384,7 @@ Do not implement:
 1Q-C - C1 Event Catalogue Availability API/Services
 1Q-D - C1 Event Catalogue Availability UI
 1Q-E - Project Product Eligibility API/Services
-1Q-F - Project Product Picker UI Remediation
+1Q-F - Catalogue-Centric Project Product Picker UI Remediation
 1Q-G - Availability Review And Store/Commerce Readiness Check
 ```
 

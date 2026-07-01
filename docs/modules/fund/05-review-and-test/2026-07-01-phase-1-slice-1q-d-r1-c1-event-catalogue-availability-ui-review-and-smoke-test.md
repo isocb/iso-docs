@@ -163,9 +163,16 @@ The dev server was stopped after the route smoke check.
 
 ## 6. Authenticated Browser Smoke Status
 
-Authenticated C1 browser smoke testing was not completed in this review pass.
+Authenticated C1 browser smoke testing is accepted as passed by operator confirmation on 2026-07-01.
 
-Required authenticated C1 smoke checks before staging/live promotion:
+Confirmation summary:
+
+- the 1Q-D C1 Availability UI is technically acceptable;
+- static checks, type-check, targeted ESLint, route smoke and verify passed;
+- detailed C1 UI/UX revisions are deliberately deferred to a later refinement pass;
+- the previous authenticated C1 browser smoke caveat is closed for this slice.
+
+Accepted smoke coverage:
 
 - sign in as a FUND C1 admin user;
 - open `/app/fund/products`;
@@ -212,16 +219,14 @@ Confirmed still out of scope:
 1Q-D-R1 review outcome:
 
 ```text
-Proceed with caveat: static checks and local unauthenticated route smoke passed; authenticated C1 browser smoke remains required before promotion.
+Pass: static checks, type-check, targeted ESLint, local unauthenticated route smoke, verify and operator-confirmed authenticated C1 browser smoke are accepted for 1Q-D.
 ```
 
-The C1 Availability UI is suitable for authenticated dev/staging smoke testing.
+The C1 Availability UI is technically acceptable for the 1Q lane. Detailed UI/UX revisions should be handled in the refinement pass rather than blocking 1Q-E.
 
 ## 9. Recommended Next Step
 
-Complete authenticated C1 smoke testing for 1Q-D.
-
-Then proceed to:
+Proceed to:
 
 ```text
 1Q-E - Project Product Eligibility API/Services
@@ -236,4 +241,6 @@ Then proceed to:
 - same-tenant checks;
 - archived/inactive exclusion.
 
-1Q-E must also decide and document whether a Product with no suitability rows is broadly eligible or not eligible until configured.
+The 1Q-E planning document now locks the no-suitability-rows policy: Products with no active suitability rows remain unrestricted for that suitability dimension after source availability passes.
+
+The 1Q-F planning document now locks the follow-on picker direction: group eligible Products by source Catalogue, deduplicate by Product identity and keep one shared selected Product state for `FundProjectProduct`.

@@ -31,6 +31,7 @@ Phase 2 refinement is the resolution pass:
 - richer option sets;
 - better configured defaults;
 - clearer operator ergonomics;
+- Event-as-domain-window planning;
 - workflow-specific UI polish;
 - communication/notification manageability;
 - deeper production and commerce readiness;
@@ -144,6 +145,7 @@ Research notes:
 Focus:
 
 - Event configuration depth;
+- Event as a domain-window planning unit;
 - Event type/category taxonomy;
 - Event branding and media;
 - Event date and lifecycle clarity;
@@ -154,14 +156,20 @@ Wishlist entries:
 | Refinement ID | Phase 1 Alias | Name | Intent | Status |
 | --- | --- | --- | --- | --- |
 | `2R-EVENT-01` | `1P-G-F-A-R2C` | Event Type Option Set Planning | Replace free-text Event type/category with a C1-configurable dropdown/option-set pattern. | Wishlist |
-| `2R-EVENT-02` | `1P-G-F-A-R2B` | Event Image And Public Context Planning | Decide whether Events need hero image, thumbnail, public form image, brand colour override or document/media attachments. | Wishlist |
-| `2R-EVENT-03` | none | Event Date Constraint Review | Review how Event dates constrain Projects, Stores, production windows and public ordering windows. | Wishlist |
+| `2R-EVENT-02` | `1P-G-F-A-R2B` | Event Media, Branding And Public Context Planning | Decide whether Events need hero image, thumbnail, public form image, brand colour override or document/media attachments. | Wishlist |
+| `2R-EVENT-03` | none | Event Date Constraint Review | Review how Event opens, closes and deadline anchors constrain Projects, Stores, production windows and public ordering windows. | Wishlist |
+| `2R-EVENT-04` | none | Event Domain Window And Key Date Precedent Planning | Frame FUND Events against the LMSPro Key Date precedent: reminders, windows with open/close date-times and trigger date-times, with named anchors that can drive email sequences, commission periods and later operational rules. | Wishlist / Architecture planning |
 
 Research notes:
 
 - compare current Event CRUD modal, Add Project modal and Project Intake form controls;
 - avoid adding Event type schema until option ownership and defaults are understood;
-- preserve existing Event-linked Project behaviour.
+- preserve existing Event-linked Project behaviour;
+- Events are optional for standalone Projects, but where they exist they are key architectural control records rather than simple labels.
+- LMSPro Key Dates provide the precedent: a planning unit may be a reminder, a window with open/close date-times, or a trigger date/time.
+- FUND Events are closest to window-type Key Dates because they provide an open/close frame for fundraising activity.
+- Event anchors should be reusable by multiple future systems: email sequences, reminders, prompts, post-close follow-ups, commission ladders, Store windows, production deadlines and other rules still to be identified.
+- Event media and branding should be planned as part of Event public context, not as a disconnected public-form embellishment.
 
 ### 4.3 Clients And Client Organisations
 
@@ -212,19 +220,21 @@ Wishlist entries:
 | --- | --- | --- | --- | --- |
 | `2R-PRODUCT-01` | none | Product Media, Gallery And Option Definition Planning | Plan Product image galleries, Product option definitions and public/product-admin display expectations. | Wishlist |
 | `2R-PRODUCT-02` | none | Product Option Image Mapping Planning | Decide how options such as colour, style, size or personalisation choices map to images or previews. | Wishlist |
-| `2R-PRODUCT-03` | none | Product Duplication Planning | Plan safe C1 duplication of complex Products, including details, options, images/media references, workflow defaults and unique naming such as `Product name (copy)` and `Product name (copy 2)`. | Wishlist |
+| `2R-PRODUCT-03` | none | Product Duplication Planning | Plan safe C1 duplication of complex Products, including details, pricing, commission assumptions, public/admin copy, options, images/media references, workflow defaults and unique naming such as `Product name (copy)` and `Product name (copy 2)`. Copied Products may deliberately drift from the original. | Wishlist |
 | `2R-CATALOGUE-01` | `1Q` | Catalogue Presentation And Availability Refinement | Refine Catalogue presentation and merchandising after Event/Catalogue/Product availability rules are accepted. | Wishlist |
 | `2R-CATALOGUE-02` | none | Catalogue/Product Public Store Readiness Review | Review whether Product and Catalogue presentation is sufficient before Store UI implementation. | Wishlist |
-| `2R-CATALOGUE-03` | none | Catalogue Duplication And Product Copy Policy | Plan Catalogue duplication, including whether duplication copies only Catalogue membership or deep-copies the Products in the Catalogue. If deep-copying Products, copied Products should receive unique names/slugs/SKUs/references with `(copy)` / numbered suffixes and idempotency protection. | Wishlist |
+| `2R-CATALOGUE-03` | none | Catalogue Duplication And Product Copy Policy | Plan Catalogue duplication, including reference mode where the new Catalogue links to the same Products, and copy mode where the new Catalogue gets copied Product records. If deep-copying Products, copied Products should receive unique names/slugs/SKUs/references with `(copy)` / numbered suffixes and idempotency protection, and may drift in pricing, commission, copy, options, media and fulfilment behaviour. | Wishlist |
 
 Research notes:
 
 - Product eligibility for Events/Projects belongs to `1Q`.
 - Store generation should use Project-selected Products, not all active tenant Products.
+- Products referenced by multiple eligible Catalogues should collapse to one Project selection and one Store display row.
+- Product copies created through duplication are distinct Product records and may appear separately if both original and copy are eligible.
 - Product gallery/options work can be deferred unless Store MVP needs it to avoid a poor or ambiguous buying experience.
 - Product option media should not be bolted on after Orders if order lines need option/image evidence.
-- Catalogue duplication probably needs two modes: duplicate Catalogue only as a new Catalogue with the same linked Products, and duplicate Catalogue plus Products as a new Catalogue with copied Products.
-- Deep Product copying is powerful but needs careful planning around SKUs, slugs, image/media reuse, options, audit history, references and idempotency.
+- Catalogue duplication needs two modes: duplicate Catalogue only as a new Catalogue with the same linked Products, and duplicate Catalogue plus Products as a new Catalogue with copied Products.
+- Deep Product copying is powerful but needs careful planning around pricing, commission, public copy, SKUs, slugs, image/media reuse, options, audit history, references and idempotency.
 
 ### 4.5 C1 Dashboard And Action Widgets
 
@@ -268,12 +278,15 @@ Wishlist entries:
 | `2R-PROD-02` | none | Artwork Checking Workflow | Plan Project-linked artwork review states and evidence before production batching. | Wishlist |
 | `2R-PROD-03` | none | Dispatch And Delivery Defaults | Align dispatch workflow with Client/Project delivery address planning. | Wishlist |
 | `2R-PROD-04` | none | Commission Surface Planning | Place commission under the Client/Project/Order/Commerce structure with clear reporting boundaries. | Wishlist |
+| `2R-PROD-05` | none | Event-Window Commission Ladder Planning | Plan whether Event window offsets can drive commission tiers, such as higher commission for early sales and lower commission for late sales as the Event close approaches. | Wishlist |
 
 Research notes:
 
 - production may group similar Products across Projects for efficiency;
 - Project context remains important even when production is grouped across Projects;
-- dispatch is both Project-linked and Client-linked.
+- dispatch is both Project-linked and Client-linked;
+- commission planning should consider Event-window offset rules, for example "more than 45 days before close" versus "last-minute sales";
+- commission ladders must wait for Commerce/Orders planning, but the Event anchor model should leave room for them.
 
 ### 4.7 Notifications And Communications
 
@@ -292,12 +305,21 @@ Wishlist entries:
 | --- | --- | --- | --- | --- |
 | `2R-COMMS-01` | `1P-N0` | FUND System Notifications And Editable Email Defaults Planning | Plan notification triggers, editable copy, default recipients and pause/resume controls using the SeasonPro/LMSPro communications Notifications tab precedent. | Wishlist / Future core dependency |
 | `2R-COMMS-02` | none | Client Dashboard Announcements Planning | Plan C1-to-Client announcements, campaign prompts and 1:1 communication surfaces. | Wishlist |
+| `2R-COMMS-03` | none | FUND Event And Project Email Sequences Planning | Plan SeasonPro-style domain-window email sequences for FUND Events, Projects, Store windows, artwork deadlines, production deadlines and dispatch milestones, using positive or negative offsets from named anchors such as Event open or Event close. | Wishlist / Future core dependency |
+| `2R-COMMS-04` | none | Email Content Editor UX Alignment | Align editable email content surfaces for FUND notifications and sequences with the shared rich text email compose pattern, including a large comfortable data-entry window consistent with the LMSPro ad hoc email editor. | Wishlist |
 
 Research notes:
 
 - required authentication/confirmation emails may remain bounded transactional exceptions until the notification registry exists;
 - broader workflow emails should not be scattered through feature code;
-- notification content and trigger behaviour should be managed centrally.
+- notification content and trigger behaviour should be managed centrally;
+- background email planning lives in `/Volumes/isostack/Git/isostack-bedrock/docs/00-READ_THIS/EMAIL_SERVICES/`;
+- read `README.md`, `core-system-email-planning.md`, `seasonpro-email-reference-model.md` and `fund-event-email-scheduling-application.md` before promoting FUND email work;
+- FUND should reuse the shared core email vocabulary: hard-coded transactional email, notification email, scheduled sequence and ad hoc email;
+- SeasonPro/LMSPro is the working precedent for notification settings, recipient providers, sequence management and ad hoc email composition;
+- the LMSPro Key Date precedent should be treated as the scheduling model: one domain window can have many email steps, each with recipients and an offset before or after open/close;
+- notification and sequence body editors should not regress to cramped plain text inputs where the richer shared email editor pattern is available;
+- email content editing should support longer copy, formatting, shortcodes/placeholders, preview/review affordances and comfortable drafting before send/save.
 
 ### 4.8 SeasonPro Integration
 
@@ -348,10 +370,14 @@ Near-term candidates after the current public Project initiation remediation rev
 2R-INTAKE-03 - Public Form Embed Route And CSP Planning
 2R-EVENT-01 - Event Type Option Set Planning
 2R-INTAKE-01 / 2R-EVENT-02 - Event Media And Branding Schema/UI Planning
+2R-EVENT-04 - Event Domain Window And Key Date Precedent Planning
 2R-CLIENT-01 - Client Organisation Type Option Set Planning
 2R-PRODUCT-01 - Product Media, Gallery And Option Definition Planning
 2R-PRODUCT-02 - Product Option Image Mapping Planning
+2R-PROD-05 - Event-Window Commission Ladder Planning
 2R-COMMS-01 - FUND System Notifications And Editable Email Defaults Planning
+2R-COMMS-03 - FUND Event And Project Email Sequences Planning
+2R-COMMS-04 - Email Content Editor UX Alignment
 ```
 
 These are valuable but should not displace Phase 1 core architecture unless they become a promotion blocker.
