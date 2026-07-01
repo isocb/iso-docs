@@ -14,25 +14,25 @@ This document is planning/documentation only. It does not implement code, change
 
 ## 1. Current Released Baseline
 
-The FUND Phase 1 baseline through 1P-G-C-R1 has been tested on staging and accepted as a live-alignment candidate.
+The FUND Phase 1 baseline has moved beyond 1P-G-C-R1. The current released/live baseline is through the 1P-K2 Client dashboard route fix.
 
 Current released app baseline:
 
 ```text
-aac38c1 fix(fund): polish c1 dashboard cards
+bb50bc6 fix(fund): allow c2 client dashboard route
 ```
 
-Current branch alignment after 1P-G-C-R1 review, staging smoke testing and main live alignment:
+Current remote branch alignment after 1P-K2 live promotion:
 
 ```text
-main    = aac38c1 accepted FUND Phase 1 baseline through 1P-G-C-R1
-dev     = aac38c1 accepted FUND Phase 1 baseline through 1P-G-C-R1
-staging = aac38c1 accepted FUND Phase 1 baseline through 1P-G-C-R1
+main    = bb50bc6 accepted FUND Phase 1 baseline through 1P-K2 route fix
+dev     = bb50bc6 accepted FUND Phase 1 baseline through 1P-K2 route fix
+staging = bb50bc6 accepted FUND Phase 1 baseline through 1P-K2 route fix
 ```
 
 Release result:
 
-- FUND Phase 1 baseline through 1P-G-C-R1 is aligned to `main`.
+- FUND Phase 1 baseline through 1P-K2 is aligned to `main`.
 - SeasonPro/LMSPro export hotfix is included in the released baseline.
 - Staging browser testing found no blocking C1 admin foundation issues before release alignment.
 - FUND remains expected to need refinement; the baseline is accepted as the foundation, not as final product polish.
@@ -84,10 +84,14 @@ Release result:
 - 1P-K2 C2 Client Dashboard And Client-Owned Project Management Planning is initiated. K2 should replace the temporary Client unavailable state with the first authenticated C2 dashboard: Client context, Projects list, Client-owned Project create/edit basics, row click to Project detail and Details/Products/Orders tabs. Client-created Projects should capture the same Project type / fundraising format option used by the public Project initiation form so later Product/Catalogue suitability can constrain selectable Products. Products and Orders are placeholders only until Product availability and Store/Orders/Commerce planning is accepted.
 - 1P-K2-B C2 Client Dashboard UI is implemented on top of K2-A services. It adds `/app/fund/client`, `/app/fund/client/projects` and `/app/fund/client/projects/[id]`, replaces the temporary C2 unavailable redirect, hides the C1 tenant admin sidebar on FUND Client routes, and keeps Products/Orders as placeholders only pending later Product and Commerce planning.
 - 1P-K2 live promotion completed at `bb50bc6`. K2-C review records successful C2 dashboard smoke testing after the middleware route-loop fix. Live smoke should confirm C2 access to `/app/fund/client`, Project create/edit, Project detail row click and C2 denial from C1 admin routes.
-- Next core architecture phase is Product/Catalogue suitability through the Product Manager lane. Product/Catalogue suitability is required for both selling and making, so it should be planned before Store/Orders/Commerce and before production/dispatch implementation.
-- Recommended major core sequence after K2: Product/Catalogue suitability, then Store/Orders/Commerce core planning, then C1 production/dispatch/commission implementation planning.
+- 1Q-A Product/Catalogue Suitability Schema Options Planning is complete.
+- 1Q-B Event/Catalogue Availability Schema Implementation is complete as schema foundation.
+- 1Q-C C1 Event Catalogue Availability API/Services is implemented in app commit `2bb8db3` on local `dev`, which is currently ahead of `origin/dev`.
+- 1Q-D C1 Event Catalogue Availability UI is implemented as local working-tree app changes and documented in `04-implementation-confirmations` and `05-review-and-test`. Static checks, targeted ESLint, `git diff --check`, `npm run type-check` and `npm run verify` passed; authenticated C1 browser smoke remains required before promotion.
+- Current Product/Catalogue suitability stage is after 1Q-D and before 1Q-E. Next implementation slice is 1Q-E Project Product Eligibility API/Services.
+- Recommended major core sequence after K2 remains: Product/Catalogue suitability, then Store/Orders/Commerce core planning, then C1 production/dispatch/commission implementation planning.
 - 1P-G-C2-A Project Intake Email Confirmation Schema Addendum is implemented as schema-only work. It adds `CONFIRMATION_PENDING`, confirmation token/hash expiry fields, confirmation/submitted timestamps and idempotency/fingerprint fields so future public form services can separate unconfirmed records from actionable C1 moderation submissions.
-- 2026-06-29 live/main alignment target is `aac38c1`; post-main smoke confirmation should follow `05-review-and-test/2026-06-29-phase-1-main-live-alignment-confirmation-and-smoke-checklist.md`.
+- 1P-K2 live/main alignment target was `bb50bc6`; K2 live promotion is confirmed in `05-review-and-test/2026-06-30-phase-1-slice-1p-k2-live-promotion-confirmation.md`.
 - Future Client dashboard is not merely passive Project display. It is expected to become the Client Project initiation, engagement, announcements, special offers/campaign prompts, 1:1 communication and dashboard-visible communications surface.
 - C1 dashboard is the Project administration, artwork checking, production grouping, dispatch/fulfilment and commission workflow surface.
 - Store, Orders and Commerce must align with the future Client dashboard and C1 production/admin workflow surfaces rather than proceeding as isolated features.
@@ -98,8 +102,8 @@ Release result:
 - SeasonPro Club-originated Project initiation is a future intake path. It depends on SeasonPro League FUND/Fundraising module entitlement, League configuration of approved FUND producer tenant(s), catalogue availability to Clubs, sale method planning and explicit Club-to-FUND Client/account mapping.
 - Notification management remains deferred. Project intake, Client creation, C2 user creation and Project approval must not accidentally send notifications until controlled communications are explicitly planned.
 - Staging `/api/health` returned HTTP 200 after alignment.
-- `main`, `dev`, `staging` and `feature/fund-phase-1-c2-project-access` are intended to align at `aac38c1` after this live alignment.
-- Docs repo `main` latest before this live-alignment update was `cb559f2`.
+- `origin/main`, `origin/dev` and `origin/staging` are aligned at `bb50bc6`; local `dev` is ahead for 1Q work.
+- Docs repo local `main` currently includes 1Q-C confirmation work plus uncommitted 1Q-D implementation confirmation, review/test and roadmap-control updates.
 
 ## 2. Current Branch Landscape
 
@@ -114,18 +118,31 @@ staging
 Current state:
 
 ```text
-main aligned at aac38c1
-dev aligned at aac38c1
-staging aligned at aac38c1
+origin/main    aligned at bb50bc6
+origin/dev     aligned at bb50bc6
+origin/staging aligned at bb50bc6
+local dev      at 2bb8db3 plus local 1Q-D working-tree UI changes
 ```
 
 Use:
 
-- `main` is the live/release baseline through accepted 1P-G-C-R1 work.
-- `dev` is the integration baseline aligned to the current live candidate.
-- `staging` carries the same accepted baseline for Render deployment and authenticated smoke validation.
+- `main` is the live/release baseline through accepted 1P-K2 work.
+- `origin/dev` and `origin/staging` are aligned to the current live baseline at `bb50bc6`.
+- local `dev` currently carries 1Q-C app commit `2bb8db3` and uncommitted 1Q-D UI work pending review/smoke/promotion.
 
-### Active FUND Branch
+### Active FUND Working Branch
+
+```text
+dev
+```
+
+Purpose:
+
+- FUND Product/Catalogue suitability 1Q work.
+- Local implementation and verification before staging/live promotion.
+- Current next slice: 1Q-E Project Product Eligibility API/Services.
+
+### Historical FUND Feature Branch
 
 ```text
 feature/fund-phase-1-c2-project-access
@@ -133,9 +150,8 @@ feature/fund-phase-1-c2-project-access
 
 Purpose:
 
-- FUND C2 organiser access model planning.
-- Immediate C1 admin remediation from first release feedback.
-- Architecture planning for Event/Catalogue/Product availability and workflow suitability.
+- Historical FUND C2 organiser/client access and Project Intake work.
+- No longer the current Product/Catalogue suitability working lane.
 
 This branch should not absorb unrelated SeasonPro remediation unless intentionally cherry-picked.
 
@@ -309,7 +325,7 @@ It covers:
 - destination-specific navigation icons;
 - Issue Manager `Modules` CRUD field consolidation to match filtering, badges and CR exports.
 
-Recommended branch:
+Historical branch used for this remediation:
 
 ```text
 feature/fund-phase-1-c2-project-access
@@ -321,18 +337,15 @@ Recommended remediation principle:
 Fix the C1 foundation in place before exposing dependent behaviour to C2 organisers.
 ```
 
-### Current C2 Access Lane Status
+### C2 Access Lane Status
 
-Current branch state:
+Current branch state is controlled by section 2. Historical branch state at the earlier C2 planning point was:
 
 ```text
-feature/fund-phase-1-c2-project-access = aac38c1
-dev                              = aac38c1
-staging                          = aac38c1
-main                             = aac38c1
+feature/fund-phase-1-c2-project-access = historical C2/Project Intake branch
 ```
 
-Current C2 lane status:
+Current C2 lane status through K2:
 
 - 1P-A access model planning is complete.
 - 1P-B participant schema is implemented.
@@ -369,8 +382,8 @@ This table is the current compact issue-status view for planning. It should be u
 | #47 Product activation gate visibility | Small UX remediation included in 1P-R1; 1P-R2 static/check review passed | UI/UX polish | Browser spot-check Project Overview affordance | No | No | Browser spot-check / next promotion gate |
 | #44 Product breadcrumb navigation | Small UI polish included in 1P-R1/1P-R1A; 1P-R2 static/check review passed | UI polish | Browser spot-check Products, Projects and Events breadcrumbs | No | No | Browser spot-check / next promotion gate |
 | #45 Sidebar icons repeated | Small UI polish included in 1P-R1/1P-R1A; 1P-R2 static/check review passed | UI polish | Browser spot-check FUND navigation icons | No | No | Browser spot-check / next promotion gate |
-| #48 Events should link to one or more Product Catalogues | Open | Core architecture planning | Plan Event/Catalogue/Product availability before Store/Commerce implementation. Events should be able to expose one or more Catalogues, Projects should inherit eligible Products from Event or standalone availability, and Projects should be able to select/deselect eligible Products according to Project type and workflow rules. | Yes for Client dashboard Project creation where Event/product selection is exposed | Yes | 1Q |
-| #49 Product Workflow Class suitability | Open | Core architecture planning | Plan workflow suitability/availability layer before Store, production or workflow expansion. Product workflow class is currently a default/snapshot; future suitability must decide whether a Product can support multiple Project types/workflows through Product, Catalogue membership, Event or Project Product rules. | Yes for Project creation/product selection where Project type constrains Products | Yes | 1Q |
+| #48 Events should link to one or more Product Catalogues | Partially implemented through 1Q-D | Core architecture implementation | 1Q-B added Event/Catalogue schema, 1Q-C added C1 services and 1Q-D added C1 UI. Next: 1Q-E must expose Project Product eligibility services before picker/store work. | Yes for Client dashboard Project creation where Event/product selection is exposed until 1Q-E/1Q-F are complete | Yes until 1Q-G readiness review | 1Q-E next |
+| #49 Product Workflow Class suitability | Partially implemented through 1Q-D | Core architecture implementation | 1Q-B added Product suitability schema, 1Q-C added C1 services and 1Q-D added C1 UI. Next: 1Q-E must define eligibility behaviour, including the no-suitability-rows policy. | Yes for Project creation/product selection where Project type constrains Products until 1Q-E/1Q-F are complete | Yes until 1Q-G readiness review | 1Q-E next |
 
 Planning rule:
 
@@ -763,21 +776,20 @@ Deferred until explicitly planned:
 
 ## 10. Current Do Not Build Yet List
 
-Until remediation and architecture planning are complete, do not build:
+Until explicit future slices are accepted, do not build:
 
-- Event-Catalogue linking schema.
-- Product workflow suitability schema.
+- Project Product eligibility services beyond the accepted 1Q-E scope.
+- C2 Product picker UI before 1Q-F.
 - Store generation.
 - Order management.
 - Commerce checkout.
 - Payment webhooks.
 - Production export/batching.
-- C2 dashboard implementation.
 - C2 dashboard mutation/management expansion.
 - Client dashboard communications, announcements, special offers or 1:1 messaging.
 - C2 organisation/account schema before the Client/account schema-options slice is accepted.
 - C2 invitation/onboarding flow.
-- Project Intake / Project Request public flow.
+- new Project Intake / Project Request / onboarding flows beyond the current public Project initiation implementation.
 - SeasonPro Club-to-FUND Project initiation flow.
 - SeasonPro League producer/catalogue availability configuration.
 - Sale method selection workflows.
@@ -1217,17 +1229,19 @@ isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-i-c
 Suggested slice:
 
 ```text
-Slice 1Q-A - Product/Catalogue Suitability Schema Options Planning
+Slice 1Q-E - Project Product Eligibility API/Services
 ```
 
-Scope:
+Current 1Q status:
 
-- resolve Issues #48 and #49 together;
-- produce Product Manager schema/options plan;
-- explicitly define Event-to-Catalogue, optional Event-to-Product and Project Product inheritance/selection rules;
-- decide how Project type and Product workflow suitability constrain Product eligibility;
-- distinguish core eligibility from Phase 2 Product media/gallery/option refinement;
-- explicitly record Store/Commerce impacts.
+- 1Q-A Product/Catalogue Suitability Schema Options Planning is complete.
+- 1Q-B Event/Catalogue Availability Schema Implementation is complete.
+- 1Q-C C1 Event Catalogue Availability API/Services is complete in local app commit `2bb8db3`.
+- 1Q-D C1 Event Catalogue Availability UI is implemented as local working-tree app changes.
+- 1Q-D implementation confirmation and R1 review/test documents are created.
+- 1Q-D static/type/verify checks passed.
+- 1Q-D authenticated C1 browser smoke remains required before promotion.
+- 1Q-E is the next implementation slice.
 
 Accepted implementation sequence:
 
@@ -1240,6 +1254,18 @@ Accepted implementation sequence:
 1Q-F - Project Product Picker UI Remediation
 1Q-G - Availability Review And Store/Commerce Readiness Check
 ```
+
+1Q-E scope:
+
+- derive eligible Products for a Project from linked Event Catalogue availability or standalone/default Catalogue availability;
+- apply Product Project type suitability;
+- apply Product organisation type suitability where Client organisation type is available;
+- preserve same-tenant checks;
+- exclude archived/inactive Events, Catalogues, Catalogue memberships and Products;
+- define and document the no-suitability-rows policy;
+- return eligibility data only;
+- do not create Project Product memberships;
+- do not implement C2 Product picker UI, Store, Orders or Commerce.
 
 ### Next 12 - C2 Dashboard Foundation Expansion
 
@@ -1263,67 +1289,53 @@ Only start after:
 We are working on IsoStack FUND.
 
 Current app branch:
-feature/fund-phase-1-c2-project-access
+dev
 
 Current released baseline:
-aac38c1 fix(fund): polish c1 dashboard cards
+bb50bc6 fix(fund): allow c2 client dashboard route
+
+Current local app state:
+- local dev is ahead of origin/dev at 2bb8db3 feat(fund): add catalogue availability services;
+- 1Q-D C1 Event Catalogue Availability UI exists as local working-tree changes pending commit/promotion;
+- unrelated untracked local files may exist and must not be reverted unless explicitly requested.
 
 Read first:
 - isodocs/docs/modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md
-- isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-g-d-project-intake-moderation-api-services-planning.md
-- isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-g-d0-client-scoped-project-initiation-and-idempotency-planning.md
-- isodocs/docs/modules/fund/04-implementation-confirmations/2026-06-29-phase-1-slice-1p-g-c-project-intake-schema-confirmation.md
-- isodocs/docs/modules/fund/05-review-and-test/2026-06-29-phase-1-slice-1p-g-c-r1-project-intake-schema-review.md
-- current app implementation on feature/fund-phase-1-c2-project-access
+- isodocs/docs/modules/fund/00-roadmap-control/README.md
+- isodocs/docs/modules/fund/03-slice-planning/2026-06-30-fund-phase-1-slice-1q-event-catalogue-product-availability-and-workflow-suitability-planning.md
+- isodocs/docs/modules/fund/03-slice-planning/2026-06-30-fund-phase-1-slice-1q-a-product-catalogue-suitability-schema-options-planning.md
+- isodocs/docs/modules/fund/04-implementation-confirmations/2026-06-30-phase-1-slice-1q-b-event-catalogue-availability-schema-implementation-confirmation.md
+- isodocs/docs/modules/fund/04-implementation-confirmations/2026-06-30-phase-1-slice-1q-c-c1-event-catalogue-availability-api-services-confirmation.md
+- isodocs/docs/modules/fund/04-implementation-confirmations/2026-07-01-phase-1-slice-1q-d-c1-event-catalogue-availability-ui-confirmation.md
+- isodocs/docs/modules/fund/05-review-and-test/2026-07-01-phase-1-slice-1q-d-r1-c1-event-catalogue-availability-ui-review-and-smoke-test.md
 
 Context:
-- FUND Phase 1 baseline through 1P-G-C-R1 has been released and aligned to main/dev/staging at `aac38c1`.
-- Active FUND branch is for Project Intake, Client-owned Project lifecycle planning and future C2 Client/account work.
-- SeasonPro remediation has its own branch: feature/seasonpro-remediation.
-- Do not mix unrelated SeasonPro fixes into FUND unless explicitly requested.
+- K2 Client dashboard live promotion completed at bb50bc6.
+- 1Q-A planning, 1Q-B schema, 1Q-C API/services and 1Q-D C1 UI are complete locally/documented.
+- 1Q-D static/type/verify checks passed, but authenticated C1 browser smoke remains required before promotion.
+- Availability is the Product source list. FundProjectProduct remains the selected Product list.
+- Store, Orders, Commerce, production, dispatch, notifications and SeasonPro integration remain out of scope unless separately planned.
 
 Immediate recommended work:
-Proceed with 1P-G-F-A-R2-B Public Project Initiation Remediation Review And Staging Smoke Test after 1P-G-F-A-R2-A implementation:
-1. Treat 1P-F-C as the schema-only Client foundation.
-2. Treat 1P-F-D as the C1 Client API/services foundation.
-3. Treat 1P-F-E as the C1 Client UI foundation.
-4. Treat 1P-H-A/1P-H-B as implemented Project-to-Client linkage aligned to dev/staging.
-5. Treat 1P-H-C as accepted after authenticated staging smoke testing.
-6. Treat 1P-G-A as completed Project Intake schema and moderation-model planning.
-7. Treat 1P-G-B as completed Project Intake schema-options planning.
-8. Treat 1P-G-C as schema-only implemented, reviewed and accepted.
-9. Treat 1P-G-D0 as the accepted split-lane policy: public/new Client initiation remains moderated, while authenticated Client-owned Project creation is a later direct Client dashboard lane.
-10. Treat 1P-J as the SeasonPro Club-to-FUND Project initiation planning placeholder. This is future-facing and depends on SeasonPro module entitlement, League configuration, catalogue availability, sale method planning and explicit Club-to-FUND Client/account mapping.
-11. Treat 1P-I as the current production/admin workflow planning guardrail before Store/Commerce implementation.
-12. Treat 1P-G-D as completed Project Intake Moderation API/Services planning.
-13. Treat 1P-G-C2-A as implemented schema-only email confirmation support for `CONFIRMATION_PENDING`, confirmation token/hash expiry fields, confirmation/submitted timestamps and idempotency/fingerprint fields.
-14. Treat 1P-G-D1 as implemented C1 Project Intake Form API/Services.
-15. Treat 1P-G-D2 as implemented C1 Project Intake Submission Review API/Services.
-16. Treat 1P-G-D3 as completed Project Intake Approval Action Planning.
-17. Treat 1P-G-D3-A as implemented Project Intake Approval API/Services.
-18. Treat 1P-G-D3-A-R1 as completed Project Intake Approval API/Services Review with a proceed-with-caveats verdict.
-19. Treat 1P-G-E as implemented C1 Project Intake Moderation And Approval UI.
-20. Treat 1P-G-E-R1 as completed C1 Project Intake Moderation And Approval UI Review with a proceed verdict.
-21. Treat 1P-G-F as completed Public Project Initiation Form UI Planning.
-22. Treat 1P-G-F-A as implemented and promoted to staging at `da023d5`.
-23. Treat 1P-G-F-A-R1 as completed staging security/pre-live review with a proceed-with-caveats verdict.
-24. Treat 1P-G-F-A-R2-A as implemented Public Project Initiation Route And Event-Scoped Form Remediation.
-25. Next recommended review slice is 1P-G-F-A-R2-B Public Project Initiation Remediation Review And Staging Smoke Test.
-26. Review goal: confirm unauthenticated public route access, no generic IsoStack marketing navigation on the public form, Event-scoped form context, Project start/closing date defaults and constraints, bounded organisation type behaviour, C1 form create/edit Default Event/allowed type controls and submission moderation output.
-27. Preserve the first visible initiation form field-set decision, including the client-facing Project Type question and no direct "Do you require a Store?" question.
-28. Add email trigger placeholders/annotations. Do not send general workflow email inline. Required confirmation/authentication email may use bounded hard-coded transactional copy with trusted branding/letterhead/footer fallback. Email content, triggers, default recipients and pause/resume controls for broader workflows belong to the future 1P-N0 editable notifications lane.
-29. Use trusted branding fallback for public forms and required confirmation/authentication email: trusted Event/form/tenant context where available, then FUND module branding, then IsoStack/platform branding.
-30. Preserve Event-scoped intake forms: `FundProjectIntakeForm.defaultEventId` is the trusted C1-selected Event scope for public submissions, public respondents must not choose/spoof Event linkage, and approved Projects remain C2 Client-owned through `FundProject.clientId`.
-31. Default Event selection in C1 Project Intake form create/edit and copy/open public link affordances for `/fund/project-initiation/[formSlug]` are implemented.
-32. Treat free-text Event Type / Category as a remediation/follow-up candidate for a bounded C1-configurable option set.
-33. Keep 1P-K0 Client-Owned Project Lifecycle And Dashboard Management Planning as the later authenticated Client dashboard lane.
-34. Keep Client users, invitations, broader notification sending, Client dashboard communications, Store, Orders, Commerce, Sales/Reporting, production workflow implementation, SeasonPro integration implementation and Communications out of scope unless separately planned.
+Proceed with 1Q-E - Project Product Eligibility API/Services.
+
+1Q-E goal:
+Implement tenant-scoped Project Product eligibility API/services that derive eligible Products from Event-linked or standalone Catalogue availability, Product Project type suitability and Product organisation type suitability, without implementing C2 Product picker UI, Store, Orders or Commerce behaviour.
+
+1Q-E must:
+- derive eligible Products for Event-linked Projects from active Event Catalogue availability;
+- derive eligible Products for standalone Projects from standalone/default Catalogue availability;
+- apply active Catalogue Product membership;
+- apply Product Project type suitability;
+- apply Product organisation type suitability where Client organisation type is available;
+- preserve same-tenant checks;
+- exclude archived/inactive Events, Catalogues, Catalogue memberships and Products;
+- decide and document the no-suitability-rows policy;
+- return eligibility data only;
+- avoid creating FundProjectProduct memberships.
 
 Do not start:
-- C2 dashboard expansion;
-- C2 mutations;
-- C2 invitations;
-- Project Request/onboarding;
+- C2 Product picker UI before 1Q-F;
 - Commerce Core;
 - Store;
 - Order;
@@ -1334,7 +1346,11 @@ Do not start:
 - commissions;
 - production batching;
 - artwork checking/production/dispatch workflow implementation;
-- Event-Catalogue/Product availability schema;
-- Product workflow suitability schema;
+- Product media galleries;
+- Product option modelling;
+- SeasonPro integration;
 until their planning slices are accepted.
+
+Process rule:
+After implementation, add a labelled implementation confirmation in 04-implementation-confirmations, add a review/test summary in 05-review-and-test, then recursively update the roadmap-control document and README if the process/current status changed.
 ```
