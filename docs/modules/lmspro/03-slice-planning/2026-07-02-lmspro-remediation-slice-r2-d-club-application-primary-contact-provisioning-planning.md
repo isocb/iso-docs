@@ -2,7 +2,7 @@
 
 Date: 2026-07-02
 Module: LMSPro / SeasonPro
-Status: Planned for immediate implementation on app `dev`
+Status: Implemented, committed and promoted to live
 Type: Preventive code hardening after R2 staging audit
 
 ## Goal
@@ -94,7 +94,7 @@ git diff --check
 Code:
 
 ```text
-local dev -> origin/dev -> staging -> origin/staging
+local dev -> origin/dev -> staging -> origin/staging -> main -> origin/main
 ```
 
 Docs:
@@ -109,3 +109,15 @@ Commit the documentation to the docs repo without disturbing unrelated existing 
 - Focused tests and type-check pass.
 - R2-D confirmation and review docs exist.
 - The live repair plan notes that R2-D should be included before final live promotion.
+
+Outcome:
+
+```text
+f09000b fix(lmspro): align club application user provisioning
+```
+
+Confirmation:
+
+```text
+04-implementation-confirmations/2026-07-02-lmspro-remediation-slice-r2-d-club-application-primary-contact-provisioning-confirmation.md
+```

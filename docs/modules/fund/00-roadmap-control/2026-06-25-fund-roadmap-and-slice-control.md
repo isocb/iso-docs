@@ -90,9 +90,10 @@ Release result:
 - 1Q-D C1 Event Catalogue Availability UI is implemented in app commit `28662af` and documented in `04-implementation-confirmations` and `05-review-and-test`.
 - 1Q-D-R1 review/test is accepted as passed: static checks, targeted ESLint, `git diff --check`, `npm run type-check`, `npm run verify`, route smoke and operator-confirmed authenticated C1 browser smoke are accepted. Detailed UI/UX revisions are deferred to refinement.
 - 1Q-E Project Product Eligibility API/Services planning is created at `03-slice-planning/2026-07-01-fund-phase-1-slice-1q-e-project-product-eligibility-api-services-planning.md`.
-- 1Q-E Project Product Eligibility API/Services is implemented locally on `dev`; implementation confirmation is created at `04-implementation-confirmations/2026-07-01-phase-1-slice-1q-e-project-product-eligibility-api-services-confirmation.md`. Review/test is the next step before 1Q-F.
+- 1Q-E Project Product Eligibility API/Services is implemented and promoted to `origin/dev` / `origin/staging` at app commit `7a7354a`; implementation confirmation is created at `04-implementation-confirmations/2026-07-01-phase-1-slice-1q-e-project-product-eligibility-api-services-confirmation.md`.
+- 1Q-E-R1 Project Product Eligibility API/Services Review And Smoke Test is accepted as passed: static checks, type-check, targeted ESLint, `npm run verify`, `git diff --check` and transaction-scoped API/service smoke are documented in `05-review-and-test/2026-07-01-phase-1-slice-1q-e-r1-project-product-eligibility-api-services-review-and-smoke-test.md`.
 - 1Q-F Catalogue-Centric Project Product Picker UI planning is created at `03-slice-planning/2026-07-01-fund-phase-1-slice-1q-f-catalogue-centric-project-product-picker-ui-planning.md`.
-- Current Product/Catalogue suitability stage is ready for 1Q-E-R1 Project Product Eligibility API/Services review/test.
+- Current Product/Catalogue suitability stage is ready for 1Q-F Catalogue-Centric Project Product Picker UI Remediation.
 - Recommended major core sequence after K2 remains: Product/Catalogue suitability, then Store/Orders/Commerce core planning, then C1 production/dispatch/commission implementation planning.
 - 1P-G-C2-A Project Intake Email Confirmation Schema Addendum is implemented as schema-only work. It adds `CONFIRMATION_PENDING`, confirmation token/hash expiry fields, confirmation/submitted timestamps and idempotency/fingerprint fields so future public form services can separate unconfirmed records from actionable C1 moderation submissions.
 - 1P-K2 live/main alignment target was `bb50bc6`; K2 live promotion is confirmed in `05-review-and-test/2026-06-30-phase-1-slice-1p-k2-live-promotion-confirmation.md`.
@@ -106,8 +107,8 @@ Release result:
 - SeasonPro Club-originated Project initiation is a future intake path. It depends on SeasonPro League FUND/Fundraising module entitlement, League configuration of approved FUND producer tenant(s), catalogue availability to Clubs, sale method planning and explicit Club-to-FUND Client/account mapping.
 - Notification management remains deferred. Project intake, Client creation, C2 user creation and Project approval must not accidentally send notifications until controlled communications are explicitly planned.
 - Staging `/api/health` returned HTTP 200 after alignment.
-- Current app refs after 1Q-E local implementation: base `origin/dev` remains at `8894721`; local `dev` has uncommitted 1Q-E Product eligibility API/services changes pending review/test and commit.
-- Docs repo local `main` includes the Finder metadata cleanup commit `76841d1` and 1Q planning/refinement commit `ab15470`; this roadmap update and the 1Q-E implementation confirmation should be committed with the next docs checkpoint.
+- Current app refs after 1Q-E promotion for staging test: local `dev`, `origin/dev`, local `staging` and `origin/staging` are aligned at `7a7354a`.
+- Docs repo local `main` includes the Finder metadata cleanup commit `76841d1`, 1Q planning/refinement commit `ab15470` and 1Q-E implementation confirmation commit `f582c3e`; this roadmap update, 1Q-E confirmation clarification and 1Q-E-R1 review document should be committed with the next docs checkpoint.
 
 ## 2. Current Branch Landscape
 
@@ -123,17 +124,17 @@ Current state:
 
 ```text
 origin/main    live baseline at bb50bc6
-origin/staging 1Q-D C1 Availability UI at 28662af
-origin/dev     aligned with local dev at 8894721
-local dev      aligned with origin/dev at 8894721
+origin/staging 1Q-E Project Product Eligibility API/Services at 7a7354a
+origin/dev     aligned with local dev at 7a7354a
+local dev      aligned with origin/dev at 7a7354a
 ```
 
 Use:
 
 - `main` is the live/release baseline through accepted 1P-K2 work.
-- `staging` carries the 1Q-D C1 Availability UI at `28662af`.
-- local `dev` is based on `origin/dev` at `8894721` and currently carries uncommitted 1Q-E implementation work pending review/test and commit.
-- If the app checkout is on `staging`, switch to `dev` before reviewing or continuing 1Q-E.
+- `staging` carries the 1Q-E Project Product Eligibility API/Services at `7a7354a` for staging test.
+- local `dev` is aligned with `origin/dev` at `7a7354a`.
+- If the app checkout is on `staging`, switch to `dev` before implementing 1Q-F.
 
 ### Active FUND Working Branch
 
@@ -145,8 +146,8 @@ Purpose:
 
 - FUND Product/Catalogue suitability 1Q work.
 - Local implementation and verification before staging/live promotion.
-- Current next slice: 1Q-E-R1 Project Product Eligibility API/Services Review And Smoke Test.
-- Follow-on UI slice after 1Q-E-R1 passes: 1Q-F Catalogue-Centric Project Product Picker UI Remediation.
+- Current next slice: 1Q-F Catalogue-Centric Project Product Picker UI Remediation.
+- Follow-on readiness slice after 1Q-F passes: 1Q-G Availability Review And Store/Commerce Readiness Check.
 
 ### Historical FUND Feature Branch
 
@@ -388,8 +389,8 @@ This table is the current compact issue-status view for planning. It should be u
 | #47 Product activation gate visibility | Small UX remediation included in 1P-R1; 1P-R2 static/check review passed | UI/UX polish | Browser spot-check Project Overview affordance | No | No | Browser spot-check / next promotion gate |
 | #44 Product breadcrumb navigation | Small UI polish included in 1P-R1/1P-R1A; 1P-R2 static/check review passed | UI polish | Browser spot-check Products, Projects and Events breadcrumbs | No | No | Browser spot-check / next promotion gate |
 | #45 Sidebar icons repeated | Small UI polish included in 1P-R1/1P-R1A; 1P-R2 static/check review passed | UI polish | Browser spot-check FUND navigation icons | No | No | Browser spot-check / next promotion gate |
-| #48 Events should link to one or more Product Catalogues | Implemented locally through 1Q-E; review pending | Core architecture implementation | 1Q-B added Event/Catalogue schema, 1Q-C added C1 services, 1Q-D added C1 UI and 1Q-E exposes Project Product eligibility services before picker/store work. Next: review/test 1Q-E. | Yes for Client dashboard Project creation where Event/product selection is exposed until 1Q-F is complete | Yes until 1Q-G readiness review | 1Q-E-R1 review/test |
-| #49 Product Workflow Class suitability | Implemented locally through 1Q-E; review pending | Core architecture implementation | 1Q-B added Product suitability schema, 1Q-C added C1 services, 1Q-D added C1 UI and 1Q-E implements the accepted eligibility behaviour, including the locked no-suitability-rows policy. Next: review/test 1Q-E. | Yes for Project creation/product selection where Project type constrains Products until 1Q-F is complete | Yes until 1Q-G readiness review | 1Q-E-R1 review/test |
+| #48 Events should link to one or more Product Catalogues | Implemented/reviewed through 1Q-E-R1; 1Q-F UI pending | Core architecture implementation | 1Q-B added Event/Catalogue schema, 1Q-C added C1 services, 1Q-D added C1 UI and 1Q-E exposes reviewed Project Product eligibility services. Next: make eligibility visible in the Catalogue-centric Project Product picker. | Yes for Client dashboard Project creation where Event/product selection is exposed until 1Q-F is complete | Yes until 1Q-G readiness review | 1Q-F Catalogue-centric picker UI |
+| #49 Product Workflow Class suitability | Implemented/reviewed through 1Q-E-R1; 1Q-F UI pending | Core architecture implementation | 1Q-B added Product suitability schema, 1Q-C added C1 services, 1Q-D added C1 UI and 1Q-E implements the accepted eligibility behaviour, including the locked no-suitability-rows policy. Next: consume eligibility in the Project Product picker. | Yes for Project creation/product selection where Project type constrains Products until 1Q-F is complete | Yes until 1Q-G readiness review | 1Q-F Catalogue-centric picker UI |
 
 Planning rule:
 
@@ -1235,7 +1236,7 @@ isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-i-c
 Suggested slice:
 
 ```text
-Slice 1Q-E-R1 - Project Product Eligibility API/Services Review And Smoke Test
+Slice 1Q-F - Catalogue-Centric Project Product Picker UI Remediation
 ```
 
 Current 1Q status:
@@ -1248,8 +1249,9 @@ Current 1Q status:
 - 1Q-D static/type/verify checks passed.
 - 1Q-D authenticated C1 browser smoke is accepted as passed by operator confirmation; detailed UI/UX revisions are deferred to refinement.
 - 1Q-E planning is created and locks the no-suitability-rows policy and service contract.
-- 1Q-E is implemented locally on `dev` with implementation confirmation created.
-- 1Q-E-R1 review/test is the next step before 1Q-F starts.
+- 1Q-E is implemented and promoted to `origin/dev` / `origin/staging` at `7a7354a`, with implementation confirmation created.
+- 1Q-E-R1 developer API/service review/test is accepted as passed and documented in `05-review-and-test/2026-07-01-phase-1-slice-1q-e-r1-project-product-eligibility-api-services-review-and-smoke-test.md`.
+- 1Q-E has no operator-visible browser UI; operator/browser Product picker testing resumes in 1Q-F.
 
 Accepted implementation sequence:
 
@@ -1276,15 +1278,17 @@ Accepted implementation sequence:
 - do not create Project Product memberships;
 - do not implement C2 Product picker UI, Store, Orders or Commerce.
 
-1Q-E-R1 review/test scope:
+1Q-E-R1 review/test result:
 
-- confirm the new `fund.productEligibility.listForProject` procedure is read-only;
-- confirm source availability is mandatory;
-- confirm no-suitability-rows means unrestricted for that suitability dimension;
-- confirm active suitability rows narrow eligibility;
-- confirm Products available through multiple source Catalogues appear once with all source Catalogue references;
-- confirm same-tenant checks and archived/inactive exclusions;
-- confirm no C2 Product picker UI, Store, Orders or Commerce behaviour was added.
+- operator-visible browser smoke was confirmed not applicable to the new 1Q-E behaviour;
+- browser scope is limited to negative/regression confirmation because 1Q-E intentionally adds no visible browser surface;
+- `fund.productEligibility.listForProject` is read-only;
+- source availability is mandatory;
+- no-suitability-rows means unrestricted for that suitability dimension after source availability passes;
+- active suitability rows narrow eligibility;
+- Products available through multiple source Catalogues appear once with all source Catalogue references;
+- same-tenant checks and archived/inactive exclusions are covered;
+- no C2 Product picker UI, Store, Orders or Commerce behaviour was added.
 
 1Q-F direction:
 
@@ -1329,11 +1333,11 @@ Current released baseline:
 bb50bc6 fix(fund): allow c2 client dashboard route
 
 Current local app state:
-- local dev is aligned with origin/dev at 8894721 docs: track email service planning workspace;
-- staging is aligned with origin/staging at 28662af feat(fund): add c1 availability ui;
+- local dev is aligned with origin/dev at 7a7354a feat(fund): add project product eligibility services;
+- local staging is aligned with origin/staging at 7a7354a feat(fund): add project product eligibility services;
 - 1Q-C C1 Event Catalogue Availability API/Services is implemented at 2bb8db3;
 - 1Q-D C1 Event Catalogue Availability UI is implemented at 28662af;
-- 1Q-E Project Product Eligibility API/Services is implemented locally on dev and pending review/test and commit;
+- 1Q-E Project Product Eligibility API/Services is implemented, committed, promoted to origin/dev and origin/staging, and reviewed at 7a7354a;
 - unrelated untracked local files may exist and must not be reverted unless explicitly requested.
 
 Read first:
@@ -1348,6 +1352,7 @@ Read first:
 - isodocs/docs/modules/fund/04-implementation-confirmations/2026-07-01-phase-1-slice-1q-d-c1-event-catalogue-availability-ui-confirmation.md
 - isodocs/docs/modules/fund/04-implementation-confirmations/2026-07-01-phase-1-slice-1q-e-project-product-eligibility-api-services-confirmation.md
 - isodocs/docs/modules/fund/05-review-and-test/2026-07-01-phase-1-slice-1q-d-r1-c1-event-catalogue-availability-ui-review-and-smoke-test.md
+- isodocs/docs/modules/fund/05-review-and-test/2026-07-01-phase-1-slice-1q-e-r1-project-product-eligibility-api-services-review-and-smoke-test.md
 
 Context:
 - K2 Client dashboard live promotion completed at bb50bc6.
@@ -1355,7 +1360,9 @@ Context:
 - 1Q-D static/type/verify checks passed; authenticated C1 browser smoke is accepted as passed by operator confirmation.
 - Detailed 1Q-D UI/UX revisions are deferred to refinement and should not block 1Q-E.
 - 1Q-E planning is accepted and locks the no-suitability-rows policy.
-- 1Q-E implementation adds read-only `fund.productEligibility.listForProject`.
+- 1Q-E implementation adds read-only `fund.productEligibility.listForProject` and is promoted to `origin/dev` / `origin/staging` at `7a7354a`.
+- 1Q-E-R1 developer/API service review passed with transaction-scoped smoke coverage and no `FundProjectProduct` mutation.
+- 1Q-E has no operator-visible browser UI; operator-visible picker testing belongs to 1Q-F.
 - 1Q-F planning is accepted as Catalogue-centric: grouped by source Catalogue, deduped by Product identity, one shared selected Product state.
 - Availability is the Product source list. Source Catalogues explain eligibility. FundProjectProduct remains the selected Product list.
 - Store pages should eventually display each selected Product once, even if it was eligible through multiple Catalogues.
@@ -1363,26 +1370,23 @@ Context:
 - Store, Orders, Commerce, production, dispatch, notifications and SeasonPro integration remain out of scope unless separately planned.
 
 Immediate recommended work:
-Proceed with 1Q-E-R1 - Project Product Eligibility API/Services Review And Smoke Test.
+Proceed with 1Q-F - Catalogue-Centric Project Product Picker UI Remediation.
 
-1Q-E-R1 goal:
-Review and test the tenant-scoped Project Product eligibility API/services that derive eligible Products from Event-linked or standalone Catalogue availability, Product Project type suitability and Product organisation type suitability, without implementing C2 Product picker UI, Store, Orders or Commerce behaviour.
+1Q-F goal:
+Make the reviewed 1Q-E eligibility service visible in the Project Product picker while preserving the Catalogue-centric source explanation and one selected Product state.
 
-1Q-E-R1 must confirm:
-- derive eligible Products for Event-linked Projects from active Event Catalogue availability;
-- derive eligible Products for standalone Projects from standalone/default Catalogue availability;
-- apply active Catalogue Product membership;
-- apply Product Project type suitability;
-- apply Product organisation type suitability where Client organisation type is available;
-- treat Products with no active suitability rows as unrestricted for that suitability dimension after source availability passes;
-- deduplicate Products that are available through more than one source Catalogue while returning all source Catalogue references;
-- preserve same-tenant checks;
-- exclude archived/inactive Events, Catalogues, Catalogue memberships and Products;
-- return eligibility data only;
-- avoid creating FundProjectProduct memberships.
+1Q-F should consume `fund.productEligibility.listForProject` rather than `fund.products.list`.
+
+1Q-F must:
+- show eligible Products grouped by source Catalogue;
+- deduplicate shared Products by Product identity while showing all source Catalogue references;
+- keep one shared selected state per `productId`;
+- create/reactivate at most one `FundProjectProduct` row per selected Product;
+- avoid duplicating Products merely because they appear in more than one Catalogue;
+- keep Store pages out of scope, while preserving the later rule that Store pages should display each selected Product once;
+- add or explicitly defer a Product-side Catalogue memberships view so Products do not become an unmanageable flat list.
 
 Do not start:
-- C2 Product picker UI before 1Q-F;
 - Commerce Core;
 - Store;
 - Order;

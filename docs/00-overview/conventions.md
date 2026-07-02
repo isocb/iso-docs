@@ -275,6 +275,26 @@ These should remain small, disposable, and isolated.
 
 To support your **Dev → Staging → Production** flow, branches must follow:
 
+### **5.0 Working Model**
+
+For day-to-day collaboration, treat short-lived work branches as local branches before `dev`.
+
+```text
+local work branch -> dev -> origin/dev -> staging -> live
+```
+
+Use this wording in planning, implementation confirmations, review notes, and AI status updates:
+
+* "still on a local work branch"
+* "consolidated into dev"
+* "dev and origin/dev match"
+* "promoted to staging"
+
+See:
+
+* `../core/how-we-work-addendum.md`
+* `../guides/git-workflow.md`
+
 ### **5.1 Mainline Branches**
 
 ```
@@ -798,5 +818,4 @@ Together these form a **three-layer Single Source of Truth**.
 Published: 1 December 2025
 Author: Isoblue Ltd
 Status: Approved
-
 

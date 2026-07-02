@@ -11,3 +11,8 @@ Review/test documents should record:
 - fixes made, if any;
 - release or branch-alignment recommendation;
 - next slice recommendation.
+
+Current control documents:
+
+- `2026-07-02-lmspro-r2-complex-data-issue-review-and-promotion-method.md`
+- `2026-07-02-lmspro-next-season-roll-forward-staging-dummy-rehearsal-plan.md`

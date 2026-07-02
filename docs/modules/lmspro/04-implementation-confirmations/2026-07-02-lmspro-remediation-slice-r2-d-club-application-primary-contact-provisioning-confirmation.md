@@ -2,7 +2,7 @@
 
 Date: 2026-07-02
 Module: LMSPro / SeasonPro
-Status: Implemented, committed, promoted to staging
+Status: Implemented, committed, promoted to staging and live
 Type: Preventive code hardening confirmation
 
 ## Goal
@@ -73,11 +73,15 @@ f09000b fix(lmspro): align club application user provisioning
 ## Promotion Reference
 
 ```text
-local dev -> origin/dev -> staging -> origin/staging
+local dev -> origin/dev -> staging -> origin/staging -> main -> origin/main
 ```
 
 Promotion completed:
 
 ```text
-f09000b is present on local dev, origin/dev, local staging and origin/staging.
+f09000b is present on local dev, origin/dev, local staging, origin/staging, local main and origin/main.
 ```
+
+This preventive path is part of the live R2 remediation because it prevents newly approved
+or waitlisted Club applications from recreating the weak primary-contact membership pattern
+before the next season roll-forward.

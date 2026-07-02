@@ -11,3 +11,10 @@ Each confirmation should record:
 - checks run;
 - risks and follow-ups;
 - recommended next slice.
+
+Recent remediation confirmations:
+
+- `2026-07-01-lmspro-remediation-slice-r2-a-import-club-user-membership-strengthening-confirmation.md`
+- `2026-07-02-lmspro-remediation-slice-r2-b-staging-live-snapshot-audit-and-manual-repair-rehearsal-confirmation.md`
+- `2026-07-02-lmspro-remediation-slice-r2-c-live-club-user-membership-repair-confirmation.md`
+- `2026-07-02-lmspro-remediation-slice-r2-d-club-application-primary-contact-provisioning-confirmation.md`

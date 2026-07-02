@@ -2,7 +2,7 @@
 
 Date: 2026-07-02
 Module: LMSPro / SeasonPro
-Status: In progress - staging rehearsal evidence captured
+Status: Completed - staging rehearsal method accepted and reused on live
 Type: Staging live-snapshot data audit and manual C1 repair rehearsal
 
 ## Goal
@@ -196,10 +196,23 @@ be caused by historical import, season roll-forward or relationship drift.
 
 ## Remaining Before Live
 
-- Complete any further staging manual cleanup chosen by the client.
-- Rerun the staging graph audit after the staging pass.
-- Confirm promotion commit and live deployment window.
-- Take or confirm a live restore point.
-- Run the live audit before manual live changes.
-- Use the CSV during the live C1 membership remove/re-add pass.
-- Rerun live audit after manual live changes.
+These actions were carried forward into R2-C:
+
+- live app promotion completed;
+- live audit run before/after manual repair;
+- ordinary active C2 Club users repaired through the C1 membership remove/re-add pattern;
+- active-only audit showed no active user in `NO_CURRENT_SEASON_CLUB_ACCESS`;
+- residual active `CODE_FIX_COVERS_ROLLED_CLUB` rows were identified as C1/league,
+  role-play or hat-switching accounts rather than the ordinary C2 Club-user fault.
+
+R2-C confirmation:
+
+```text
+docs/modules/lmspro/04-implementation-confirmations/2026-07-02-lmspro-remediation-slice-r2-c-live-club-user-membership-repair-confirmation.md
+```
+
+Next season roll-forward control:
+
+```text
+docs/modules/lmspro/05-review-and-test/2026-07-02-lmspro-next-season-roll-forward-staging-dummy-rehearsal-plan.md
+```

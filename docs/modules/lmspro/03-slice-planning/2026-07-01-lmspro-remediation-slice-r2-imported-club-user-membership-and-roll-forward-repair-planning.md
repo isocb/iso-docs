@@ -2,7 +2,7 @@
 
 Date: 2026-07-01
 Module: LMSPro / SeasonPro
-Status: Active remediation - code promoted to staging; staging live-snapshot audit and manual repair rehearsal in progress
+Status: Completed for ordinary active C2 Club users; next-season roll-forward rehearsal planned
 Type: Remedial import, membership and data-repair planning
 
 ## Goal
@@ -65,9 +65,9 @@ The remediation should treat these records as follows:
 - C2 save paths must resolve club access from all valid membership sources, not only `User.lmsproClubId`.
 - Imports must create or repair the `LMSProClubOfficial` row whenever they create or link a primary contact user.
 
-## Current Operational Sequence
+## Operational Sequence
 
-The remediation is now being handled in four operational steps.
+The remediation was handled in four operational steps, with one future seasonal control.
 
 ### R2-A - Prevention And Save-Path Strengthening
 
@@ -87,8 +87,7 @@ No data remediation.
 Status:
 
 - implemented and committed in `isostack-bedrock`;
-- promoted through local `dev`, `origin/dev`, `staging` and `origin/staging`;
-- staging deployment triggered;
+- promoted through local `dev`, `origin/dev`, `staging`, `origin/staging`, `main` and `origin/main`;
 - no data repair run.
 
 Commit references:
@@ -226,21 +225,42 @@ accounts need explicit review before any live remove/re-add action.
 
 ### R2-C - Live App Implementation And Live Data Repair
 
-Only after staging data is fixed and accepted:
+Live repair was completed after staging data was rehearsed and accepted.
 
-- confirm the app code to promote to live;
-- take or confirm a fresh Neon backup/restore point;
-- run the same all-user and action-focused audit against live before any write;
-- compare live counts with the accepted staging rehearsal;
-- apply only the approved repair steps;
-- rerun the live audit;
-- smoke test named live examples and a small sample of imported C2 users;
-- record the live commit, data actions, audit before/after counts and rollback point.
+Final live audit evidence:
+
+```text
+Team graph issue counts: {}
+
+All rows:
+NO_AUDIT_SIGNAL: 92
+CODE_FIX_COVERS_ROLLED_CLUB: 18
+NO_CURRENT_SEASON_CLUB_ACCESS: 14
+
+Active users only:
+NO_AUDIT_SIGNAL: 77
+CODE_FIX_COVERS_ROLLED_CLUB: 8
+NO_CURRENT_SEASON_CLUB_ACCESS: 0
+```
+
+Interpretation:
+
+- ordinary active C2 Club users were repaired through the C1 membership remove/re-add pattern;
+- no active user remained in `NO_CURRENT_SEASON_CLUB_ACCESS`;
+- the current Derby Team/Club/Division/AGG graph remained clean;
+- the remaining active `CODE_FIX_COVERS_ROLLED_CLUB` rows were reviewed as C1/league,
+  role-play or hat-switching access accounts.
 
 Dedicated live planning document:
 
 ```text
 03-slice-planning/2026-07-02-lmspro-remediation-slice-r2-c-live-club-user-membership-repair-planning.md
+```
+
+Dedicated live confirmation document:
+
+```text
+04-implementation-confirmations/2026-07-02-lmspro-remediation-slice-r2-c-live-club-user-membership-repair-confirmation.md
 ```
 
 ### R2-D - Club Application Primary Contact Provisioning Hardening
@@ -260,6 +280,32 @@ Dedicated planning document:
 
 ```text
 03-slice-planning/2026-07-02-lmspro-remediation-slice-r2-d-club-application-primary-contact-provisioning-planning.md
+```
+
+Dedicated confirmation document:
+
+```text
+04-implementation-confirmations/2026-07-02-lmspro-remediation-slice-r2-d-club-application-primary-contact-provisioning-confirmation.md
+```
+
+### Future Control - Next Season Dummy Roll-Forward
+
+Before the next real live season roll-forward, staging must be pointed at a fresh live
+snapshot and a dummy roll-forward must be performed. The R2 graph audit script should be
+run before and after that staging roll-forward to prove that C2 Club users, C1 hat-switching
+users, Teams, Clubs and Division/AGG links survive the seasonal transition.
+
+Dedicated review/test plan:
+
+```text
+05-review-and-test/2026-07-02-lmspro-next-season-roll-forward-staging-dummy-rehearsal-plan.md
+```
+
+Reusable app audit script locations:
+
+```text
+/Volumes/isostack/Git/isostack-bedrock/scripts/lmspro-r2-membership-audit.ts
+/Volumes/isostack/Git/isostack-bedrock/scripts/lmspro-r2-rollforward-graph-audit.ts
 ```
 
 ## Implementation Boundary For R2-A

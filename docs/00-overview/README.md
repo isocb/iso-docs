@@ -197,6 +197,23 @@ To maximise AI understanding:
 * avoid long monolithic files
 * establish patterns that AI can infer
 
+### **Branch and Promotion Language**
+
+For human-friendly collaboration, use this working model:
+
+```text
+local work branch -> dev -> origin/dev -> staging -> live
+```
+
+This is documented in:
+
+* [`../core/how-we-work-addendum.md`](../core/how-we-work-addendum.md)
+* [`../guides/git-workflow.md`](../guides/git-workflow.md)
+
+AI assistants should use phrases such as "still on a local work branch",
+"consolidated into dev", "dev and origin/dev match", and "promoted to staging".
+Avoid ambiguous shorthand such as "staged" unless specifically discussing the Git index.
+
 ---
 
 ## 🔧 **Working With Docs Locally**
@@ -248,5 +265,4 @@ This documentation hub exists to:
 * maintain long-term consistency and architectural integrity
 
 Everything you build in IsoStack or Isoblue should be reflected somewhere in this repository.
-
 

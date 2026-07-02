@@ -34,11 +34,16 @@ Shows the delivered functionality and planned platform features such as organisa
 `design-rationale.md`  
 Explains why IsoStack is structured the way it is. Prevents architectural drift or regression.
 
-### **4. Architecture Overview**
+### **4. How We Work Addendum**
+`how-we-work-addendum.md`
+Defines the plain-English collaboration model for branches and promotion:
+`local work branch -> dev -> origin/dev -> staging -> live`.
+
+### **5. Architecture Overview**
 (coming soon or based on future input)  
 High-level explanation of the core stack, Next.js App Router structure, tRPC setup, Prisma, Neon, and Mantine.
 
-### **5. Settings & Feature Flags**
+### **6. Settings & Feature Flags**
 (placeholder)  
 Will document:
 - Tenant-level configuration  
@@ -46,7 +51,7 @@ Will document:
 - Feature flag logic  
 - Module enable/disable pipeline  
 
-### **6. Tooltip System**
+### **7. Tooltip System**
 Pointer to:  
 `/docs/modules/tooltips/`  
 A deep-dive into the two-tier tooltip architecture, editor, inheritance, and metadata model.
@@ -98,6 +103,7 @@ When asking AI for development help:
 - Ask AI to confirm all changes align with Core’s invariants  
 - Provide file paths when requesting edits (AI will follow them)  
 - AI should never use cached versions—always request latest content from GitHub or VS
+- Use the branch corridor language in `how-we-work-addendum.md` when discussing local work, dev, origin/dev, staging and live promotion
 
 ---
 

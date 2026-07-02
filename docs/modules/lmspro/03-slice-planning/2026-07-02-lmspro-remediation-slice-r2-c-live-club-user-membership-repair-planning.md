@@ -2,7 +2,7 @@
 
 Date: 2026-07-02
 Module: LMSPro / SeasonPro
-Status: Planning - blocked until staging repair is proven, accepted and live promotion is approved
+Status: Live repair completed for ordinary active C2 club users; residual lifecycle work moved to R3
 Type: Live implementation and live data repair planning
 
 ## Goal
@@ -18,6 +18,67 @@ R2-C: live app implementation and live data repair
 ```
 
 R2-C must not start until R2-B has produced accepted staging before/after evidence.
+
+## Live Outcome Summary
+
+R2-C was completed on live after the R2-A/R2-D application fixes were promoted and the
+staging repair method had been rehearsed against a Neon live-snapshot branch.
+
+The live repair method used by the operator was:
+
+1. Open the relevant current-season Club in the C1 interface.
+2. Remove the affected club user membership.
+3. Add the same user/email back to the intended current-season Club.
+4. Save.
+5. Rerun the read-only roll-forward graph audit from the Render live shell.
+
+Where the club membership route was not available or returned an official-link error, the
+safe fallback was to use the C1 Users modal to set/save the intended current-season Club.
+This route ensures the authoritative `LMSProClubOfficial` membership row is present.
+
+Final live audit evidence recorded:
+
+```text
+Team graph issue counts: {}
+
+All rows:
+NO_AUDIT_SIGNAL: 92
+CODE_FIX_COVERS_ROLLED_CLUB: 18
+NO_CURRENT_SEASON_CLUB_ACCESS: 14
+
+Active users only:
+NO_AUDIT_SIGNAL: 77
+CODE_FIX_COVERS_ROLLED_CLUB: 8
+NO_CURRENT_SEASON_CLUB_ACCESS: 0
+```
+
+The remaining active `CODE_FIX_COVERS_ROLLED_CLUB` rows were reviewed as C1/league,
+role-play or hat-switching access accounts rather than ordinary C2 Club users:
+
+- `djfl@isodo.co.uk`
+- `djflclub@isodo.co.uk`
+- `secretary@derbyjfl.com`
+- `steve.nicks@derbyjfl.com`
+- `steve.nicks@gmail.com`
+- `treasurer@derbyjfl.com`
+- `u8fixtures@derbyjfl.com`
+- `secretary@sheltonfc.com`, to be checked only if it is not intentional dual access.
+
+The original live problem is therefore treated as resolved for ordinary active C2 Club
+users. The remaining `NO_CURRENT_SEASON_CLUB_ACCESS` rows are deactivated/test/history
+records and belong to the R3 archived-user/access-lifecycle work, not the R2 stale club
+link repair.
+
+Future seasonal control:
+
+```text
+docs/modules/lmspro/05-review-and-test/2026-07-02-lmspro-next-season-roll-forward-staging-dummy-rehearsal-plan.md
+```
+
+Before the next real season roll-forward, run a dummy roll-forward in staging against a
+fresh live-snapshot branch and rerun the same graph audit. This is now a required control
+to prove that current-season Club, Team, Division/AGG and C2 membership links survive the
+roll-forward process.
 
 ## Problem Being Fixed
 
@@ -169,6 +230,12 @@ For the wider manual cleanup, the expected C1 pattern is:
 Do not use a name-only edit. Staging proved that a name-only edit did not refresh the stale
 club pointer, while membership remove/re-add did.
 
+Do not use the current C1 `Delete User` button as the normal repair path. At the time of
+this planning note, that button deactivates the user rather than permanently removing the
+user row. It is useful for access removal, not for rebuilding a broken club relationship.
+If a true permanent delete is needed for a test, erroneous or GDPR-approved user, handle it
+as a separate explicit action with backup, confirmation and before/after audit evidence.
+
 ## Safety Controls
 
 Before live write:
@@ -229,9 +296,7 @@ If mailbox access is not available, the minimum evidence is:
 - old live-style team counts move from `0` to the current club team count where applicable;
 - `Team graph issue counts` remains `{}`.
 
-## Implementation Confirmation To Create
-
-After R2-C live work, create:
+## Implementation Confirmation
 
 ```text
 docs/modules/lmspro/04-implementation-confirmations/2026-07-02-lmspro-remediation-slice-r2-c-live-club-user-membership-repair-confirmation.md

@@ -183,15 +183,41 @@ Result: passed.
 - 1Q-F must keep grouped Catalogue UX and one shared Product selection state by `productId`.
 - Store generation must use `FundProjectProduct`, not raw Event/Catalogue availability.
 
-## 8. Recommended Next Step
+## 8. Review Status
 
-Proceed to:
+1Q-E-R1 is now complete and accepted as passed.
+
+Review document:
 
 ```text
-1Q-E-R1 - Project Product Eligibility API/Services Review And Smoke Test
+docs/modules/fund/05-review-and-test/2026-07-01-phase-1-slice-1q-e-r1-project-product-eligibility-api-services-review-and-smoke-test.md
 ```
 
-Review/test should confirm:
+Next operator-visible Product selection work:
+
+```text
+1Q-F - Catalogue-Centric Project Product Picker UI Remediation
+```
+
+Important smoke-test boundary:
+
+```text
+1Q-E has no visible browser UI.
+```
+
+The checks below are API/service smoke checks for `fund.productEligibility.listForProject`.
+They are not expected to appear as new tabs, buttons, picker behaviour or Product rows on
+`localhost:3000`. Visible Product picker evidence belongs to 1Q-F.
+
+Operator/browser smoke is not applicable for the new 1Q-E behaviour because no browser
+surface was intentionally added. C1 operator testing should resume in 1Q-F, when the
+Project Product picker consumes this API and makes eligibility visible.
+
+Browser smoke for 1Q-E is limited to negative/regression confirmation: existing protected
+FUND routes still load, and no C2 Product picker, Store, Orders or Commerce behaviour has
+appeared.
+
+Codex/developer API/service review/test confirmed:
 
 - Event-linked Project with active Event Catalogue returns eligible Products;
 - standalone Project with default standalone Catalogue returns eligible Products;
