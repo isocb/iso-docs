@@ -2,7 +2,7 @@
 
 Date: 2026-07-01
 
-Status: Planned follow-on after 1Q-E
+Status: Implemented locally - functional browser smoke passed; UX refinement deferred
 
 ## 1. Slice Goal
 
@@ -188,4 +188,20 @@ Goal:
 
 ```text
 Review the full availability-to-selection path before Store, Orders or Commerce implementation begins.
+```
+
+## 11. Implementation Confirmation
+
+Local implementation confirmation:
+
+```text
+docs/modules/fund/04-implementation-confirmations/2026-07-06-phase-1-slice-1q-f-catalogue-centric-project-product-picker-ui-confirmation.md
+```
+
+Functional browser smoke is operator-confirmed as passed, subject to later UX refinement.
+
+Related refinement parked during smoke review:
+
+```text
+2R-EVENT-05 - Event Catalogue And Product Visibility Management Planning
 ```

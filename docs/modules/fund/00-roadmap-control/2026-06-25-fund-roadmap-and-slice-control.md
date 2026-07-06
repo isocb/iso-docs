@@ -93,7 +93,8 @@ Release result:
 - 1Q-E Project Product Eligibility API/Services is implemented and promoted to `origin/dev` / `origin/staging` at app commit `7a7354a`; implementation confirmation is created at `04-implementation-confirmations/2026-07-01-phase-1-slice-1q-e-project-product-eligibility-api-services-confirmation.md`.
 - 1Q-E-R1 Project Product Eligibility API/Services Review And Smoke Test is accepted as passed: static checks, type-check, targeted ESLint, `npm run verify`, `git diff --check` and transaction-scoped API/service smoke are documented in `05-review-and-test/2026-07-01-phase-1-slice-1q-e-r1-project-product-eligibility-api-services-review-and-smoke-test.md`.
 - 1Q-F Catalogue-Centric Project Product Picker UI planning is created at `03-slice-planning/2026-07-01-fund-phase-1-slice-1q-f-catalogue-centric-project-product-picker-ui-planning.md`.
-- Current Product/Catalogue suitability stage is ready for 1Q-F Catalogue-Centric Project Product Picker UI Remediation.
+- 1Q-F Catalogue-Centric Project Product Picker UI implementation is started locally and documented at `04-implementation-confirmations/2026-07-06-phase-1-slice-1q-f-catalogue-centric-project-product-picker-ui-confirmation.md`; 1Q-F-R1 functional browser smoke is operator-confirmed as passed in `05-review-and-test/2026-07-06-phase-1-slice-1q-f-r1-catalogue-centric-project-product-picker-ui-review-and-smoke-test.md`, with broader UX refinement deferred.
+- 1Q-F browser review surfaced a future Event-side management refinement: Event detail should expose linked Catalogues and contributed Products so Events become visible C1 management units. This is parked as `2R-EVENT-05`.
 - Recommended major core sequence after K2 remains: Product/Catalogue suitability, then Store/Orders/Commerce core planning, then C1 production/dispatch/commission implementation planning.
 - 1P-G-C2-A Project Intake Email Confirmation Schema Addendum is implemented as schema-only work. It adds `CONFIRMATION_PENDING`, confirmation token/hash expiry fields, confirmation/submitted timestamps and idempotency/fingerprint fields so future public form services can separate unconfirmed records from actionable C1 moderation submissions.
 - 1P-K2 live/main alignment target was `bb50bc6`; K2 live promotion is confirmed in `05-review-and-test/2026-06-30-phase-1-slice-1p-k2-live-promotion-confirmation.md`.
@@ -1304,6 +1305,7 @@ Duplication/copy boundary:
 - referenced Products shared across multiple Catalogues remain one Product identity and should collapse to one selection/store row;
 - copied Products are distinct Product records and may drift in pricing, commission, copy, options, media or fulfilment behaviour;
 - Product/Catalogue duplication policy belongs to refinement planning unless Store readiness makes it a blocker.
+- per-Catalogue pricing, commission and display-copy override policy is future commercial-terms work tracked in the Phase 2 wishlist, not part of 1Q-F.
 
 ### Next 12 - C2 Dashboard Foundation Expansion
 
@@ -1367,6 +1369,7 @@ Context:
 - Availability is the Product source list. Source Catalogues explain eligibility. FundProjectProduct remains the selected Product list.
 - Store pages should eventually display each selected Product once, even if it was eligible through multiple Catalogues.
 - Future duplication can create referenced Catalogues that share Product records or copied Product records that drift in pricing, commission, copy, options, media or fulfilment behaviour.
+- Future per-Catalogue Product commercial terms, including pricing, commission and display-copy overrides, are tracked in Phase 2 refinement as `2R-CATALOGUE-04`.
 - Store, Orders, Commerce, production, dispatch, notifications and SeasonPro integration remain out of scope unless separately planned.
 
 Immediate recommended work:
@@ -1394,6 +1397,7 @@ Do not start:
 - Communications implementation;
 - Client dashboard announcements, special offers/campaign prompts or 1:1 messaging;
 - payments;
+- per-Catalogue pricing or commission overrides;
 - commissions;
 - production batching;
 - artwork checking/production/dispatch workflow implementation;

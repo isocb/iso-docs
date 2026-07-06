@@ -150,6 +150,7 @@ Focus:
 - Event branding and media;
 - Event date and lifecycle clarity;
 - Event-to-Project constraints.
+- Event-side Catalogue/Product visibility.
 
 Wishlist entries:
 
@@ -159,6 +160,7 @@ Wishlist entries:
 | `2R-EVENT-02` | `1P-G-F-A-R2B` | Event Media, Branding And Public Context Planning | Decide whether Events need hero image, thumbnail, public form image, brand colour override or document/media attachments. | Wishlist |
 | `2R-EVENT-03` | none | Event Date Constraint Review | Review how Event opens, closes and deadline anchors constrain Projects, Stores, production windows and public ordering windows. | Wishlist |
 | `2R-EVENT-04` | none | Event Domain Window And Key Date Precedent Planning | Frame FUND Events against the LMSPro Key Date precedent: reminders, windows with open/close date-times and trigger date-times, with named anchors that can drive email sequences, commission periods and later operational rules. | Wishlist / Architecture planning |
+| `2R-EVENT-05` | none | Event Catalogue And Product Visibility Management Planning | Add Event-side visibility for linked Catalogues and contributed Products, with a future Event detail tab that can show and potentially manage Event-to-Catalogue availability links. This should complement Product-side Catalogue memberships and Catalogue-side Product membership management without duplicating Product selection or Store behaviour. | Wishlist |
 
 Research notes:
 
@@ -170,6 +172,8 @@ Research notes:
 - FUND Events are closest to window-type Key Dates because they provide an open/close frame for fundraising activity.
 - Event anchors should be reusable by multiple future systems: email sequences, reminders, prompts, post-close follow-ups, commission ladders, Store windows, production deadlines and other rules still to be identified.
 - Event media and branding should be planned as part of Event public context, not as a disconnected public-form embellishment.
+- Event detail should become a visible management unit for C1. Future Event UI should expose linked Product Catalogues and the Products they contribute, so C1 users can inspect Event availability from the Event as well as from Product/Catalogue management.
+- Event-side linkage management should operate on Event-to-Catalogue availability. Catalogue-to-Product membership remains Catalogue/Product management, and Project selection remains `FundProjectProduct`.
 
 ### 4.3 Clients And Client Organisations
 
@@ -224,6 +228,7 @@ Wishlist entries:
 | `2R-CATALOGUE-01` | `1Q` | Catalogue Presentation And Availability Refinement | Refine Catalogue presentation and merchandising after Event/Catalogue/Product availability rules are accepted. | Wishlist |
 | `2R-CATALOGUE-02` | none | Catalogue/Product Public Store Readiness Review | Review whether Product and Catalogue presentation is sufficient before Store UI implementation. | Wishlist |
 | `2R-CATALOGUE-03` | none | Catalogue Duplication And Product Copy Policy | Plan Catalogue duplication, including reference mode where the new Catalogue links to the same Products, and copy mode where the new Catalogue gets copied Product records. If deep-copying Products, copied Products should receive unique names/slugs/SKUs/references with `(copy)` / numbered suffixes and idempotency protection, and may drift in pricing, commission, copy, options, media and fulfilment behaviour. | Wishlist |
+| `2R-CATALOGUE-04` | none | Catalogue Product Commercial Terms And Override Planning | Plan whether per-Catalogue Product pricing, commission, display copy, availability wording or other commercial terms should live on Catalogue/Product membership, copied Product records, Store snapshots or later Order snapshots. Keep this separate from 1Q-F selection so commercial drift can be designed safely. | Wishlist |
 
 Research notes:
 
@@ -235,6 +240,7 @@ Research notes:
 - Product option media should not be bolted on after Orders if order lines need option/image evidence.
 - Catalogue duplication needs two modes: duplicate Catalogue only as a new Catalogue with the same linked Products, and duplicate Catalogue plus Products as a new Catalogue with copied Products.
 - Deep Product copying is powerful but needs careful planning around pricing, commission, public copy, SKUs, slugs, image/media reuse, options, audit history, references and idempotency.
+- Per-Catalogue pricing, commission or public display overrides are distinct from Product selection. They should be planned as commercial terms before Store/Order implementation decides what needs to be snapshotted.
 
 ### 4.5 C1 Dashboard And Action Widgets
 
