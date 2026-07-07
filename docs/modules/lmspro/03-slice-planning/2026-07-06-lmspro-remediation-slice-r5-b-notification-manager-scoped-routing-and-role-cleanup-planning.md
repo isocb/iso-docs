@@ -1,8 +1,9 @@
 # LMSPro Remediation Slice R5-B - Notification Manager Scoped Routing And Role Cleanup Planning
 
 Date: 2026-07-06
+Correction date: 2026-07-07
 Module: LMSPro / SeasonPro
-Status: Planned
+Status: Corrected locally on app `dev`; authenticated browser smoke rerun pending
 Type: Notification Manager routing configuration and role model cleanup
 Related CR input: `docs/modules/lmspro/01-cr-inputs/2026-07-06-lmspro-cr-dynamic-age-group-division-role-permissions-routing-input.md`
 Preceding slice: `docs/modules/lmspro/03-slice-planning/2026-07-06-lmspro-remediation-slice-r5-a-age-group-division-manager-notification-routing-planning.md`
@@ -53,9 +54,9 @@ Recommended modes:
 
 ```text
 Manual email override
-Team scoped managers
-Selected Division managers
-Selected Age Group managers
+Event team: Division managers, then Age Group managers
+Event team: Division managers
+Event team: Age Group managers
 Selected role
 League Admin fallback
 ```
@@ -75,35 +76,40 @@ For team-context operational notifications, the recommended default should be:
 This keeps the existing manual override as an explicit top-level override while allowing
 team-context events to route to the people responsible for the work.
 
-### Explicit Scope Selection
+### Event-Derived Scope
 
-For some notifications, C1 may want to route to managers of selected operational scopes
-rather than derive scope from a specific team.
+For team-originated notifications, C1 should not select a fixed Age Group or Division in
+Notification Manager.
 
-Notification Manager should support:
+The notification event supplies the operational scope.
 
-- selected Age Group manager routing;
-- selected Division / AGG manager routing;
-- multi-select of Age Groups;
-- multi-select of Divisions / AGGs;
-- display of which managers will receive the notification based on the selected scope.
-
-Selecting a Division should route to that Division's assigned managers. If a selected
-Division has no managers, the fallback should be configurable but should usually be:
+Example:
 
 ```text
-selected Division
--> parent Age Group managers
--> League Admin fallback
+C2 submits Variation Request
+-> request belongs to Team
+-> Team belongs to Division / AGG and/or Age Group
+-> routing mode uses that event team scope
 ```
 
-Selecting an Age Group should route to that Age Group's assigned managers. If the Age Group
-has no managers, the fallback should be:
+Notification Manager should therefore support event-derived routing modes:
 
 ```text
-selected Age Group
--> League Admin fallback
+event team Division managers
+event team Age Group managers
+event team Division managers -> Age Group managers fallback
 ```
+
+The C1 setting chooses the strategy. It does not store selected Age Group ids or selected
+Division ids.
+
+Events without team, Age Group or Division context should not pretend to be scoped. They
+should use manual override, broad role override or League Admin fallback unless a future
+slice adds a genuine event-level scope.
+
+Initial smoke testing of R5-B exposed a bad implementation shape where fixed Age Group and
+Division selections were added to Notification Manager. That interpretation is rejected.
+The corrected implementation uses event-derived scope only.
 
 ## Role Model Cleanup Policy
 
@@ -144,12 +150,12 @@ Review:
 - current manual recipient override behaviour;
 - current role override behaviour;
 - which notification events have team context;
-- which notification events can be scoped by selected Age Groups or Divisions.
+- which notification events can derive Age Group or Division scope from their team context.
 
 Output:
 
 - final list of supported routing modes;
-- migration decision for storing routing mode and selected scopes.
+- migration decision for storing routing mode only.
 
 ### R5-B2 - Notification Setting Data Model
 
@@ -159,23 +165,11 @@ Likely options:
 
 ```text
 recipientRoutingMode
-recipientScopeConfig JSON
-```
-
-or specific fields such as:
-
-```text
-recipientRoutingMode
-recipientAgeGroupIds
-recipientAgeGroupGroupIds
-recipientFallbackMode
 ```
 
 The implementation should choose the smallest durable shape that:
 
 - supports team-derived manager routing;
-- supports selected Age Group manager routing;
-- supports selected Division / AGG manager routing;
 - preserves manual recipient override;
 - preserves selected role override where still useful;
 - remains understandable in Notification Manager.
@@ -188,10 +182,14 @@ Expected UI behaviour:
 
 - show whether the event supports team-derived manager routing;
 - show routing mode selector;
-- when `Team scoped managers` is selected, explain the fallback path;
-- when `Selected Age Group managers` is selected, show Age Group multi-select;
-- when `Selected Division managers` is selected, show Division / AGG multi-select;
-- show a preview/count of resolved recipients where practical;
+- when `Event team: Division managers, then Age Group managers` is selected, explain the
+  fallback path;
+- when `Event team: Age Group managers` is selected, explain that the Age Group is derived
+  from the event team;
+- when `Event team: Division managers` is selected, explain that the Division / AGG is
+  derived from the event team;
+- do not show fixed Age Group or Division multi-selects for team-originated routing;
+- show a preview/count of resolved recipients where practical in a later refinement;
 - keep manual email override available and clearly labelled as an override;
 - keep role override available only for broad roles, not Age Group-specific role variants.
 
@@ -201,8 +199,6 @@ Extend the R5-A resolver so it can resolve recipients from:
 
 ```text
 event team context
-selected Age Group ids
-selected Division / AGG ids
 manual override
 selected broad role
 League Admin fallback
@@ -212,9 +208,8 @@ Resolver acceptance scenarios:
 
 - team has Division managers: route to Division managers;
 - team has no Division manager but has Age Group managers: route to Age Group managers;
-- selected Division has managers: route to selected Division managers;
-- selected Division has no managers but parent Age Group has managers: fall back to parent Age Group managers;
-- selected Age Group has managers: route to selected Age Group managers;
+- event team Age Group manager mode: route to managers of the event team's Age Group;
+- event team Division manager mode: route to managers of the event team's Division / AGG;
 - no scoped managers: route to League Admin / Owner fallback;
 - manual override: manual emails win.
 
@@ -229,9 +224,9 @@ Review and update team-context notifications, including at least:
 - Team continuation / roll-forward events where team or Age Group is known;
 - future team placement / allocation notifications.
 
-Events without team, Age Group or Division context should not pretend to be scoped. They can
-still use selected Age Group / Division scope if C1 has configured that explicitly in
-Notification Manager.
+Events without team, Age Group or Division context should not pretend to be scoped. They
+should remain on manual override, broad role override or League Admin fallback unless a
+future event supplies a real operational scope.
 
 ### R5-B6 - Role Cleanup Audit
 
@@ -311,9 +306,11 @@ Expected routing:
 - Team 1 Variation Request routes to Manager C;
 - Team 2 Variation Request routes to Manager A and Manager B;
 - Team 3 Free Day Request routes to Manager A and Manager B;
-- selected Division U10 Red notification preview resolves Manager C;
-- selected Division U10 Blue notification preview falls back to Manager A and Manager B;
-- selected Age Group U10 notification preview resolves Manager A and Manager B;
+- Team 1 with U10 Red routes to Manager C when Division manager routing is selected;
+- Team 2 with U10 Blue falls back to Manager A and Manager B when team-scoped fallback
+  routing is selected;
+- Team 3 in U10 routes to Manager A and Manager B when Age Group manager routing is
+  selected;
 - scoped notification with no managers falls back to League Admin / Owner;
 - manual override wins over scoped routing.
 
@@ -331,8 +328,12 @@ R5-B is complete when:
 
 - Notification Manager exposes scoped manager routing clearly;
 - C1 can select team-derived manager routing where supported;
-- C1 can select specific Age Groups for manager routing;
-- C1 can select specific Divisions / AGGs for manager routing;
+- C1 can choose event-derived Age Group manager routing where the notification has team
+  context;
+- C1 can choose event-derived Division / AGG manager routing where the notification has
+  team context;
+- Notification Manager does not store selected Age Group or Division ids for
+  team-originated notifications;
 - recipient preview or review evidence proves the selected routing;
 - Variation Request and Free Day Request routing still work after settings are applied;
 - other team-scoped notification events are reviewed and updated or explicitly deferred;
@@ -349,3 +350,14 @@ and clean removal/retirement of Age Group / Division-specific role complexity. D
 multi-playing-day architecture, club lifecycle policy or unrelated communications compose
 behaviour. Stop and report if role cleanup reveals active ambiguous role assignments that
 cannot be safely mapped to Age Group or Division manager assignments.
+
+## Implementation Note
+
+R5-B was implemented on 2026-07-06 with a cautious role-cleanup boundary:
+
+- broad LMSPro permission roles remain the role model;
+- operational Age Group / Division responsibility is held on manager assignment records;
+- normal role assignment, cohort and Notification Manager role selectors hide operational
+  responsibility-shaped roles;
+- the C1 role admin page can still see those roles for audit/history;
+- no historic roles or audit records were deleted.

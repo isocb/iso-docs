@@ -3,7 +3,7 @@
 Date: 2026-07-06
 Module: LMSPro / SeasonPro
 Source: Operator/client discovery conversation with other leagues
-Status: Major CR input captured for future architectural triage
+Status: Major CR input captured for future architectural triage; near-term mitigation identified
 Priority: Critical / Architectural
 
 ## User Observation
@@ -69,6 +69,141 @@ For multi-playing-day leagues, Age Groups and Divisions may need to be scoped to
 Day. Team records may also need to carry Playing Day so that the same Club can have the
 same team name in different competition streams without conflict.
 
+## Near-Term Mitigation: Playing Day As Age Group Convention
+
+Before the full Playing Day architecture is implemented, a workable mitigation is to use
+Age Groups as the visible playing-day container.
+
+Instead of creating only:
+
+```text
+U7
+U8
+U9
+```
+
+a multi-playing-day league can create explicit playing-day Age Groups:
+
+```text
+U7 Saturday
+U7 Sunday
+U8 Saturday
+U8 Sunday
+U9 Saturday
+U9 Sunday
+```
+
+Divisions / AGGs then sit under those playing-day-named Age Groups:
+
+```text
+U7 Saturday
+-> Division Red
+-> Division Blue
+
+U7 Sunday
+-> Division Red
+-> Division Blue
+```
+
+This does not give the product a true `Playing Day` entity, but it lets the league create
+clean operational separation using structures the app already understands.
+
+### Example: Same Club, Same Age Band, Different Playing Day
+
+```text
+Club: Spondon Dynamos
+
+Team: Spondon Dynamos U7
+Age Group: U7 Saturday
+Division: Division Red
+
+Team: Spondon Dynamos U7
+Age Group: U7 Sunday
+Division: Division Red
+```
+
+The teams are still separate because they are attached to different Age Group / Division
+structures. If existing team-name uniqueness rules still prevent identical names, the team
+names may need a clear suffix during the mitigation period, for example:
+
+```text
+Spondon Dynamos U7 Saturday
+Spondon Dynamos U7 Sunday
+```
+
+### Example: Manager Routing
+
+The R5 Age Group / Division manager model can support this mitigation naturally.
+
+For example:
+
+```text
+U8 Saturday managers:
+-> Saturday Mini Soccer Lead
+
+U8 Sunday managers:
+-> Sunday Mini Soccer Lead
+```
+
+If a Team Variation Request is raised by a team in `U8 Saturday`, notification routing can
+derive the context from the team and route to the `U8 Saturday` manager or the relevant
+Division manager. The notification setting should not ask the operator to pick a fixed
+Age Group value. The team, division and age group on the submitted request provide that
+scope at runtime.
+
+### Example: Roll-Forward
+
+The mitigation only remains safe if roll-forward treats each playing-day-named Age Group
+as a separate successor chain.
+
+Safe successor examples:
+
+```text
+U7 Saturday -> U8 Saturday
+U8 Saturday -> U9 Saturday
+
+U7 Sunday -> U8 Sunday
+U8 Sunday -> U9 Sunday
+```
+
+Unsafe successor examples:
+
+```text
+U7 Saturday -> U8
+U7 Sunday -> U8
+U7 Saturday -> U8 Sunday
+```
+
+Before live roll-forward, staging must prove that teams, divisions, manager assignments
+and notification routing remain in the correct playing-day-named Age Group stream.
+
+### Benefits
+
+- avoids a large schema and UI change before the next roll-forward;
+- keeps single-playing-day leagues unchanged;
+- lets multi-playing-day leagues operate with visible separation immediately;
+- works with the Age Group / Division manager routing already being introduced;
+- makes import/export possible using explicit Age Group names or codes;
+- reduces implementation risk while preserving the full architectural CR.
+
+### Limits
+
+This is a mitigation, not the final architecture.
+
+Known limits:
+
+- the database does not enforce Playing Day as its own scope;
+- reporting by Playing Day depends on naming discipline;
+- imports must use exact Age Group names or stable codes;
+- team-name uniqueness may still need careful naming;
+- operators must not collapse `U7 Saturday` and `U7 Sunday` into one successor Age Group;
+- future migration to true Playing Day architecture will need to map these Age Groups to
+  real Playing Day records.
+
+This convention should therefore be treated as an approved bridge: useful, lower-risk and
+potentially sufficient for some leagues, but not a replacement for the full architectural
+model where stronger separation is needed.
+
 ## UI Direction
 
 For multi-playing-day leagues, the UI should make the separation visible and manageable.
@@ -126,6 +261,8 @@ This CR is expected to affect many parts of LMSPro.
 - Age Groups may need Playing Day scope.
 - Age Group manager assignment may need to be Playing Day-aware.
 - Roll-forward must know whether Age Group succession is per Playing Day.
+- During the mitigation phase, Age Group names/codes may carry the Playing Day, for
+  example `U7 Saturday` and `U7 Sunday`.
 
 ### Divisions / AGGs
 
@@ -145,6 +282,8 @@ This CR is expected to affect many parts of LMSPro.
 - Import templates may need a Playing Day column.
 - Export outputs may need Playing Day filtering and labelling.
 - Existing single-day import/export workflows must remain simple.
+- During the mitigation phase, imports may use exact playing-day-named Age Group values
+  instead of a separate Playing Day column.
 
 ### Roll-Forward
 
@@ -153,6 +292,8 @@ This CR is expected to affect many parts of LMSPro.
 - Divisions / AGGs may roll forward separately by Playing Day.
 - Dummy staging roll-forward testing should include a multi-playing-day case before live
   use.
+- During the mitigation phase, roll-forward must explicitly test successor chains such as
+  `U7 Saturday -> U8 Saturday` and `U7 Sunday -> U8 Sunday`.
 
 ### Cloning / Copying
 
@@ -167,6 +308,9 @@ This CR is expected to affect many parts of LMSPro.
 - Age Group and Division manager routing should respect Playing Day.
 - League Admin fallback may remain global, but scoped manager routing should not cross
   Playing Day boundaries.
+- During the mitigation phase, team-context notifications should derive the Age Group /
+  Division context from the team record and route to the managers for that scoped Age Group
+  or Division.
 
 ### Communications
 
@@ -227,6 +371,8 @@ slicing before implementation.
 
 A future planning slice should not be considered ready until it has:
 
+- separated the near-term Age Group naming mitigation from the full Playing Day
+  architecture;
 - mapped every entity that needs Playing Day scope;
 - identified current uniqueness constraints affected by Playing Day;
 - defined single-day migration/backward compatibility behaviour;
@@ -239,8 +385,9 @@ A future planning slice should not be considered ready until it has:
 
 ## Out Of Scope
 
-This CR input does not request immediate implementation.
+This CR input does not request immediate full architectural implementation.
 
-No planning slice is being created at this point. The purpose of this document is to capture
-the architectural requirement clearly so it can be triaged into a careful future planning
-route.
+The near-term Age Group naming mitigation may be planned and tested separately from the
+full Playing Day architecture. The purpose of this document is to capture both the
+long-term requirement and the safer interim route clearly so the work can be triaged into
+controlled slices.
