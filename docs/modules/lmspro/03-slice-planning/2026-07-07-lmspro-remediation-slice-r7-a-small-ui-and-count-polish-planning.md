@@ -3,7 +3,7 @@
 Date: 2026-07-07
 Module: LMSPro / SeasonPro
 Related CR: `docs/modules/lmspro/01-cr-inputs/2026-07-07-lmspro-cr-small-remedial-ui-and-count-polish-input.md`
-Status: Implemented locally on app `dev`; browser smoke passed
+Status: Implemented, browser-smoke passed, promoted to staging and live
 Priority: Medium / operator polish and smoke-test unblockers
 
 ## Purpose
@@ -156,6 +156,24 @@ Developer checks:
 npm run type-check
 git diff --check
 ```
+
+## Promotion Record
+
+Completed on 2026-07-07.
+
+- app `dev` commit: `af79dec`;
+- app `staging` promoted to `af79dec`;
+- app live `main` promoted to `af79dec`;
+- docs committed to `origin/main`.
+
+Live `main` was behind staging before promotion, so the live fast-forward included the
+current staging train:
+
+- `8ed0c36` - Fund catalogue-centric project product picker;
+- `b091e48` - LMSPro communications workflow refinements;
+- `e282e2f` - LMSPro manager scoped notification routing;
+- `f3ca6f8` - LMSPro scoped notifications and role catalogue polish;
+- `af79dec` - R7-A small UI and count polish.
 
 ## Risks
 

@@ -4,7 +4,7 @@ Date: 2026-07-07
 Module: LMSPro / SeasonPro
 Related CR: `docs/modules/lmspro/01-cr-inputs/2026-07-07-lmspro-cr-small-remedial-ui-and-count-polish-input.md`
 Related plan: `docs/modules/lmspro/03-slice-planning/2026-07-07-lmspro-remediation-slice-r7-a-small-ui-and-count-polish-planning.md`
-Status: Implemented locally on app `dev`; browser smoke passed
+Status: Implemented, browser-smoke passed, promoted to staging and live
 
 ## Summary
 
@@ -85,3 +85,16 @@ Confirmed:
 - Request Type filter includes the full club-side Variation Request option set;
 - Club Dashboard Waiting List count is accurate;
 - R5-B notification routing and R5-C role catalogue behaviour remain intact.
+
+## Promotion Record
+
+Completed on 2026-07-07.
+
+- app `dev` committed and pushed to `origin/dev` at `af79dec`;
+- app `staging` fast-forwarded and pushed to `origin/staging` at `af79dec`;
+- app live `main` fast-forwarded from `f09000b` to `af79dec`;
+- live `main` type-check completed before push;
+- docs updated and pushed to `origin/main`.
+
+The live promotion was a staging-train promotion, not an isolated R7-A-only promotion.
+It included the already-staged Fund/LMSPro commits from `8ed0c36` through `af79dec`.

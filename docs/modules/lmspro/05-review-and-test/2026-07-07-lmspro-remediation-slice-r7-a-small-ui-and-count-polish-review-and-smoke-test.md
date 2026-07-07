@@ -3,7 +3,7 @@
 Date: 2026-07-07
 Module: LMSPro / SeasonPro
 Related implementation: `docs/modules/lmspro/04-implementation-confirmations/2026-07-07-lmspro-remediation-slice-r7-a-small-ui-and-count-polish-confirmation.md`
-Status: Browser smoke passed
+Status: Browser smoke passed; promoted to staging and live
 
 ## Developer Checks
 
@@ -80,3 +80,23 @@ R7-A passes when the small UI/count inconsistencies no longer distract from work
 testing: templates can be removed safely, Variation Requests can be filtered by real
 season Age Groups and complete request types, and the club dashboard waiting-list count
 matches the underlying team data.
+
+## Promotion Result
+
+Completed on 2026-07-07.
+
+Result: promoted to staging and live.
+
+App branch state after promotion:
+
+- `dev`: `af79dec`;
+- `staging`: `af79dec`;
+- live `main`: `af79dec`.
+
+Live pre-push check:
+
+```text
+npm run type-check
+```
+
+Result: pass.

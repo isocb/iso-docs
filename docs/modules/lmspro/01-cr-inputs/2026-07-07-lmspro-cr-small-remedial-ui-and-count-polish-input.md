@@ -3,7 +3,7 @@
 Date: 2026-07-07
 Module: LMSPro / SeasonPro
 Source: Dev/staging smoke testing follow-up
-Status: CR input captured for planning
+Status: Implemented, browser-smoke passed, promoted to staging and live
 Priority: Medium / operator polish and test unblockers
 
 ## User Observation
@@ -107,3 +107,13 @@ This CR is complete when:
 - all changes are implemented on app `dev`;
 - documentation is updated through planning, implementation confirmation and review/test.
 
+## Closure Note
+
+Closed on 2026-07-07.
+
+Result:
+
+- implemented on local app `dev`;
+- passed developer checks;
+- passed user browser smoke testing;
+- promoted to `origin/dev`, `origin/staging` and live `origin/main`.
