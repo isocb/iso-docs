@@ -251,7 +251,7 @@ What kind of fundraising project would you like to run?
 
 Initial options:
 
-- Artwork fundraising project.
+- Individual Artwork Project.
 - Group personalised product project.
 - Bulk order / club-funded project.
 - Not sure yet.
@@ -276,6 +276,7 @@ Fields:
 Initial organisation type options:
 
 - School.
+- Playgroup.
 - Club.
 - PTA / Friends group.
 - Charity / community group.

@@ -77,7 +77,7 @@ Store exposes Project-selected eligible Products, not every active Product in th
 
 The accepted first Project type/format options are:
 
-- Artwork fundraising project;
+- Individual Artwork Project;
 - Group personalised product project;
 - Bulk order / club-funded project;
 - Not sure yet.

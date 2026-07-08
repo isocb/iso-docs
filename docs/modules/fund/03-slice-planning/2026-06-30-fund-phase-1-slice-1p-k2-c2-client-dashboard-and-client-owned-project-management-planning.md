@@ -193,7 +193,7 @@ Do not allow C2 edits that undermine C1 operational control.
 
 Project type should use the same tenant-facing option set as the public Project initiation form:
 
-- Artwork fundraising project;
+- Individual Artwork Project;
 - Group personalised product project;
 - Bulk order / club-funded project;
 - Not sure yet.

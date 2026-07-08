@@ -114,7 +114,7 @@ What kind of fundraising project would you like to run?
 Options:
 
 ```text
-Artwork fundraising project
+Individual Artwork Project
 Group personalised product project
 Bulk order / club-funded project
 Not sure yet

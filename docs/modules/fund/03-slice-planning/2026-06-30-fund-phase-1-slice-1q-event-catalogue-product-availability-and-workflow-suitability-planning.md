@@ -169,7 +169,7 @@ The public initiation form and Client dashboard will ask for Project type/format
 
 Client-facing Project types include:
 
-- Artwork fundraising project;
+- Individual Artwork Project;
 - Group personalised product project;
 - Bulk order / club-funded project;
 - Not sure yet.

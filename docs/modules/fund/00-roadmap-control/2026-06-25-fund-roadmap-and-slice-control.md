@@ -95,7 +95,14 @@ Release result:
 - 1Q-F Catalogue-Centric Project Product Picker UI planning is created at `03-slice-planning/2026-07-01-fund-phase-1-slice-1q-f-catalogue-centric-project-product-picker-ui-planning.md`.
 - 1Q-F Catalogue-Centric Project Product Picker UI implementation is started locally and documented at `04-implementation-confirmations/2026-07-06-phase-1-slice-1q-f-catalogue-centric-project-product-picker-ui-confirmation.md`; 1Q-F-R1 functional browser smoke is operator-confirmed as passed in `05-review-and-test/2026-07-06-phase-1-slice-1q-f-r1-catalogue-centric-project-product-picker-ui-review-and-smoke-test.md`, with broader UX refinement deferred.
 - 1Q-F browser review surfaced a future Event-side management refinement: Event detail should expose linked Catalogues and contributed Products so Events become visible C1 management units. This is parked as `2R-EVENT-05`.
-- Recommended major core sequence after K2 remains: Product/Catalogue suitability, then Store/Orders/Commerce core planning, then C1 production/dispatch/commission implementation planning.
+- 1Q-G-R1 Availability Review And Store/Commerce Readiness Check passed on local app `dev`
+  after Project context, Organisation Type, Availability UI and Project Product picker
+  remediation. The accepted picker shape is now a single filterable eligible Product table
+  with Catalogue source badges and one selected Product state per Product.
+- 1Q-G-R1 accepted app baseline is promoted to `origin/dev` and `origin/staging` at
+  `ea4e619` for online staging testing.
+- Recommended major core sequence after 1Q-G remains: Store/Orders/Commerce core planning,
+  with C1 production/dispatch/commission constraints considered before implementation.
 - 1P-G-C2-A Project Intake Email Confirmation Schema Addendum is implemented as schema-only work. It adds `CONFIRMATION_PENDING`, confirmation token/hash expiry fields, confirmation/submitted timestamps and idempotency/fingerprint fields so future public form services can separate unconfirmed records from actionable C1 moderation submissions.
 - 1P-K2 live/main alignment target was `bb50bc6`; K2 live promotion is confirmed in `05-review-and-test/2026-06-30-phase-1-slice-1p-k2-live-promotion-confirmation.md`.
 - Future Client dashboard is not merely passive Project display. It is expected to become the Client Project initiation, engagement, announcements, special offers/campaign prompts, 1:1 communication and dashboard-visible communications surface.
@@ -108,8 +115,9 @@ Release result:
 - SeasonPro Club-originated Project initiation is a future intake path. It depends on SeasonPro League FUND/Fundraising module entitlement, League configuration of approved FUND producer tenant(s), catalogue availability to Clubs, sale method planning and explicit Club-to-FUND Client/account mapping.
 - Notification management remains deferred. Project intake, Client creation, C2 user creation and Project approval must not accidentally send notifications until controlled communications are explicitly planned.
 - Staging `/api/health` returned HTTP 200 after alignment.
-- Current app refs after 1Q-E promotion for staging test: local `dev`, `origin/dev`, local `staging` and `origin/staging` are aligned at `7a7354a`.
-- Docs repo local `main` includes the Finder metadata cleanup commit `76841d1`, 1Q planning/refinement commit `ab15470` and 1Q-E implementation confirmation commit `f582c3e`; this roadmap update, 1Q-E confirmation clarification and 1Q-E-R1 review document should be committed with the next docs checkpoint.
+- Current app refs after 1Q-G-R1 staging promotion: local `dev`, `origin/dev`,
+  local `staging` and `origin/staging` are aligned at `ea4e619`.
+- Docs repo local `main` records the accepted 1Q-G-R1 browser PASS and staging promotion.
 
 ## 2. Current Branch Landscape
 
@@ -1365,7 +1373,9 @@ Context:
 - 1Q-E implementation adds read-only `fund.productEligibility.listForProject` and is promoted to `origin/dev` / `origin/staging` at `7a7354a`.
 - 1Q-E-R1 developer/API service review passed with transaction-scoped smoke coverage and no `FundProjectProduct` mutation.
 - 1Q-E has no operator-visible browser UI; operator-visible picker testing belongs to 1Q-F.
-- 1Q-F planning is accepted as Catalogue-centric: grouped by source Catalogue, deduped by Product identity, one shared selected Product state.
+- 1Q-F/1Q-G picker behaviour is accepted as Catalogue-aware but not Catalogue-grouped: a
+  single filterable eligible Product table shows Catalogue source badges, dedupes by
+  Product identity and keeps one shared selected Product state.
 - Availability is the Product source list. Source Catalogues explain eligibility. FundProjectProduct remains the selected Product list.
 - Store pages should eventually display each selected Product once, even if it was eligible through multiple Catalogues.
 - Future duplication can create referenced Catalogues that share Product records or copied Product records that drift in pricing, commission, copy, options, media or fulfilment behaviour.
@@ -1373,16 +1383,19 @@ Context:
 - Store, Orders, Commerce, production, dispatch, notifications and SeasonPro integration remain out of scope unless separately planned.
 
 Immediate recommended work:
-Proceed with 1Q-F - Catalogue-Centric Project Product Picker UI Remediation.
+Close and promote the accepted 1Q-G availability-to-selection baseline, then plan
+Store/Orders/Commerce core with C1 production, dispatch and commission constraints visible
+before implementation.
 
 1Q-F goal:
 Make the reviewed 1Q-E eligibility service visible in the Project Product picker while preserving the Catalogue-centric source explanation and one selected Product state.
 
 1Q-F should consume `fund.productEligibility.listForProject` rather than `fund.products.list`.
 
-1Q-F must:
-- show eligible Products grouped by source Catalogue;
-- deduplicate shared Products by Product identity while showing all source Catalogue references;
+1Q-F/1Q-G accepted picker behaviour:
+- show eligible Products once in a single filterable table;
+- show all source Catalogue references as Catalogue badges;
+- deduplicate shared Products by Product identity;
 - keep one shared selected state per `productId`;
 - create/reactivate at most one `FundProjectProduct` row per selected Product;
 - avoid duplicating Products merely because they appear in more than one Catalogue;

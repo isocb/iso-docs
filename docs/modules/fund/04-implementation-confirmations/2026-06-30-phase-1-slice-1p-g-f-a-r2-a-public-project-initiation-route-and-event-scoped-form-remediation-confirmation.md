@@ -77,6 +77,7 @@ When a Project Intake form is not Event-scoped:
 C1 form create/edit now uses bounded allowed organisation types:
 
 - School
+- Playgroup
 - Club
 - PTA / Friends group
 - Charity / community group

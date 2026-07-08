@@ -79,7 +79,7 @@ Project Client ownership, tenant scope, Store settings, Orders, Commerce, Produc
 
 Project type is the fundraising Project type/format and matches the public initiation form options:
 
-- Artwork fundraising project;
+- Individual Artwork Project;
 - Group personalised product project;
 - Bulk order / club-funded project;
 - Not sure yet.

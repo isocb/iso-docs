@@ -229,6 +229,7 @@ Wishlist entries:
 | `2R-CATALOGUE-02` | none | Catalogue/Product Public Store Readiness Review | Review whether Product and Catalogue presentation is sufficient before Store UI implementation. | Wishlist |
 | `2R-CATALOGUE-03` | none | Catalogue Duplication And Product Copy Policy | Plan Catalogue duplication, including reference mode where the new Catalogue links to the same Products, and copy mode where the new Catalogue gets copied Product records. If deep-copying Products, copied Products should receive unique names/slugs/SKUs/references with `(copy)` / numbered suffixes and idempotency protection, and may drift in pricing, commission, copy, options, media and fulfilment behaviour. | Wishlist |
 | `2R-CATALOGUE-04` | none | Catalogue Product Commercial Terms And Override Planning | Plan whether per-Catalogue Product pricing, commission, display copy, availability wording or other commercial terms should live on Catalogue/Product membership, copied Product records, Store snapshots or later Order snapshots. Keep this separate from 1Q-F selection so commercial drift can be designed safely. | Wishlist |
+| `2R-PROJECT-01` | `1Q-G` | Tenant-Defined Project Type Terminology And Suitability Labels | Plan tenant-owned labels/option-set wording for Project workflow types and Product suitability labels, so tenants can use their own terms while preserving stable internal eligibility behaviour. Current first-pass labels include `Individual Artwork Project`, `Group personalised product project`, `Bulk order / club-funded project` and `Not sure yet`. | Wishlist |
 
 Research notes:
 
@@ -241,6 +242,9 @@ Research notes:
 - Catalogue duplication needs two modes: duplicate Catalogue only as a new Catalogue with the same linked Products, and duplicate Catalogue plus Products as a new Catalogue with copied Products.
 - Deep Product copying is powerful but needs careful planning around pricing, commission, public copy, SKUs, slugs, image/media reuse, options, audit history, references and idempotency.
 - Per-Catalogue pricing, commission or public display overrides are distinct from Product selection. They should be planned as commercial terms before Store/Order implementation decides what needs to be snapshotted.
+- Project Type terminology affects Project creation, Product suitability and Store/Product
+  visibility. Tenant-defined labels should be planned without breaking existing internal
+  eligibility codes or historical Project metadata.
 
 ### 4.5 C1 Dashboard And Action Widgets
 

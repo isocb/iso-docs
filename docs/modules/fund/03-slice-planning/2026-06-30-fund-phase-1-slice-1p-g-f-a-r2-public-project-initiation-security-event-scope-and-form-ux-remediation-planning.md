@@ -318,6 +318,7 @@ Initial public organisation labels:
 
 ```text
 School
+Playgroup
 Club
 PTA / Friends group
 Charity / community group

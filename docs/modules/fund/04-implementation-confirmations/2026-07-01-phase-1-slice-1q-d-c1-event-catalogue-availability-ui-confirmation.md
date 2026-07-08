@@ -70,7 +70,7 @@ The Product Suitability panel lets C1 Product Manager users:
 
 Project type labels match the accepted public/C2 wording:
 
-- Artwork fundraising project;
+- Individual Artwork Project;
 - Group personalised product project;
 - Bulk order / club-funded project;
 - Not sure yet.
@@ -78,6 +78,7 @@ Project type labels match the accepted public/C2 wording:
 Organisation type labels use the stable first-pass codes from the public Project initiation flow:
 
 - School;
+- Playgroup;
 - Club;
 - PTA / Friends group;
 - Charity / community group;

@@ -72,7 +72,7 @@ C2 Client members with `PROJECT_MANAGER` or `ADMIN` access can create/edit safe 
 
 The Project type uses the same option set as the public Project initiation form:
 
-- Artwork fundraising project;
+- Individual Artwork Project;
 - Group personalised product project;
 - Bulk order / club-funded project;
 - Not sure yet.
