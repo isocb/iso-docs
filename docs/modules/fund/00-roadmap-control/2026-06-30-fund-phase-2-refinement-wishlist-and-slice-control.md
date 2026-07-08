@@ -223,8 +223,9 @@ Wishlist entries:
 | Refinement ID | Phase 1 Alias | Name | Intent | Status |
 | --- | --- | --- | --- | --- |
 | `2R-PRODUCT-01` | none | Product Media, Gallery And Option Definition Planning | Plan Product image galleries, Product option definitions and public/product-admin display expectations. | Wishlist |
-| `2R-PRODUCT-02` | none | Product Option Image Mapping Planning | Decide how options such as colour, style, size or personalisation choices map to images or previews. | Wishlist |
+| `2R-PRODUCT-02` | none | Product Options, Dependencies And Image Mapping Planning | Decide how options such as size, colour, text, upload/artwork requirements and dependent option combinations are modelled, validated and snapshotted for Project-level production inputs, Store and Order lines. | Wishlist / Store readiness candidate |
 | `2R-PRODUCT-03` | none | Product Duplication Planning | Plan safe C1 duplication of complex Products, including details, pricing, commission assumptions, public/admin copy, options, images/media references, workflow defaults and unique naming such as `Product name (copy)` and `Product name (copy 2)`. Copied Products may deliberately drift from the original. | Wishlist |
+| `2R-PRODUCT-04` | `1R-A` | Product Type / Option Template Planning | Plan reusable Product Type templates such as Clothing, Printed mug or Artwork upload Product, where the type suggests option groups, controls, required uploads and validation rules without implying stock-control inventory. | Wishlist / Store readiness candidate |
 | `2R-CATALOGUE-01` | `1Q` | Catalogue Presentation And Availability Refinement | Refine Catalogue presentation and merchandising after Event/Catalogue/Product availability rules are accepted. | Wishlist |
 | `2R-CATALOGUE-02` | none | Catalogue/Product Public Store Readiness Review | Review whether Product and Catalogue presentation is sufficient before Store UI implementation. | Wishlist |
 | `2R-CATALOGUE-03` | none | Catalogue Duplication And Product Copy Policy | Plan Catalogue duplication, including reference mode where the new Catalogue links to the same Products, and copy mode where the new Catalogue gets copied Product records. If deep-copying Products, copied Products should receive unique names/slugs/SKUs/references with `(copy)` / numbered suffixes and idempotency protection, and may drift in pricing, commission, copy, options, media and fulfilment behaviour. | Wishlist |
@@ -238,7 +239,22 @@ Research notes:
 - Products referenced by multiple eligible Catalogues should collapse to one Project selection and one Store display row.
 - Product copies created through duplication are distinct Product records and may appear separately if both original and copy are eligible.
 - Product gallery/options work can be deferred unless Store MVP needs it to avoid a poor or ambiguous buying experience.
-- Product option media should not be bolted on after Orders if order lines need option/image evidence.
+- Product option media, Project-level production artwork/files, required purchaser uploads
+  and option dependencies should not be bolted on after Orders if the workflow needs
+  option/image/artwork evidence.
+- Product options are buyer-facing configuration and evidence capture rules, not stock
+  inventory. They may include enum/dropdown values, visual colour controls, free text,
+  numeric inputs, toggles, multi-selects and image/file upload controls.
+- Product option values may be mutually dependent, such as one size offering a different
+  set of colours from another size.
+- Artwork/file upload is conditional by Project Type/workflow and Product/Product Type
+  rules. Some Projects may supply production artwork before purchase, some Orders may need
+  purchaser-supplied files at checkout, and some workflows may need no upload at all.
+- Upload planning must allow one or more files of different accepted types where the
+  workflow requires it, and must make production readiness visible to C1 users.
+- A Product Type / Option Template may help C1 configure repeatable option patterns, such
+  as Clothing, Artwork upload Product or Logo/bulk order Product, but should not imply SKU
+  inventory or stock level management unless a future inventory lane is explicitly planned.
 - Catalogue duplication needs two modes: duplicate Catalogue only as a new Catalogue with the same linked Products, and duplicate Catalogue plus Products as a new Catalogue with copied Products.
 - Deep Product copying is powerful but needs careful planning around pricing, commission, public copy, SKUs, slugs, image/media reuse, options, audit history, references and idempotency.
 - Per-Catalogue pricing, commission or public display overrides are distinct from Product selection. They should be planned as commercial terms before Store/Order implementation decides what needs to be snapshotted.
@@ -394,15 +410,18 @@ These are valuable but should not displace Phase 1 core architecture unless they
 
 ## 7. Immediate Control Note
 
-The current Phase 1 priority remains:
+The current Phase 1 priority after the accepted 1Q-G availability baseline is:
 
 ```text
-1P-G-F-A-R2-B - Public Project Initiation Remediation Review And Staging Smoke Test
+1R-A - Store, Orders And Commerce Core Planning
 ```
 
-After the R2-B review, decide whether to:
+Planning document:
 
-- promote the public Project initiation remediation to staging/live;
-- continue Phase 1 public intake hardening;
-- instantiate a refinement slice from this wishlist;
-- return to core Store/Orders/Commerce, production or Client dashboard planning.
+```text
+docs/modules/fund/03-slice-planning/2026-07-08-fund-phase-1-slice-1r-a-store-orders-commerce-core-planning.md
+```
+
+Wishlist entries should feed into 1R-A only where they affect safe Store/Order design,
+snapshot boundaries, production/dispatch/commission readiness, or the minimum viable Store
+experience. They should otherwise remain parked for Phase 2 refinement.

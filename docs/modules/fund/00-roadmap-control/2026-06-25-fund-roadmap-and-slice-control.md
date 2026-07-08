@@ -101,6 +101,10 @@ Release result:
   with Catalogue source badges and one selected Product state per Product.
 - 1Q-G-R1 accepted app baseline is promoted to `origin/dev` and `origin/staging` at
   `ea4e619` for online staging testing.
+- 1R-A Store, Orders And Commerce Core Planning is created at
+  `03-slice-planning/2026-07-08-fund-phase-1-slice-1r-a-store-orders-commerce-core-planning.md`.
+  This remains Phase 1 structural work rather than Phase 2 refinement because Store and
+  Order data contracts must exist before later refinement/UAT polish can safely proceed.
 - Recommended major core sequence after 1Q-G remains: Store/Orders/Commerce core planning,
   with C1 production/dispatch/commission constraints considered before implementation.
 - 1P-G-C2-A Project Intake Email Confirmation Schema Addendum is implemented as schema-only work. It adds `CONFIRMATION_PENDING`, confirmation token/hash expiry fields, confirmation/submitted timestamps and idempotency/fingerprint fields so future public form services can separate unconfirmed records from actionable C1 moderation submissions.
@@ -1315,21 +1319,32 @@ Duplication/copy boundary:
 - Product/Catalogue duplication policy belongs to refinement planning unless Store readiness makes it a blocker.
 - per-Catalogue pricing, commission and display-copy override policy is future commercial-terms work tracked in the Phase 2 wishlist, not part of 1Q-F.
 
-### Next 12 - C2 Dashboard Foundation Expansion
+### Next 12 - Store, Orders And Commerce Core Planning
 
 Suggested slice:
 
 ```text
-Slice 1R - C2 Dashboard Foundation Expansion
+Slice 1R-A - Store, Orders And Commerce Core Planning
 ```
 
-Only start after:
+Rationale:
 
-- C1 immediate remediation is complete;
-- 1P-D read-only dashboard review is complete;
-- C2 organisation/account scope is accepted;
-- C1 Client/account schema direction is accepted;
-- C2 read-only visibility rules are clear.
+- 1Q-G closes the availability-to-selection lane;
+- Store/Orders/Commerce is structural Phase 1 work, not Phase 2 polish;
+- selected `FundProjectProduct` rows must become the Store Product source;
+- Order snapshots must preserve Product, price, VAT, option/personalisation and Project
+  context safely;
+- C1 production, dispatch and commission constraints must be visible before implementation.
+
+Planning document:
+
+```text
+isodocs/docs/modules/fund/03-slice-planning/2026-07-08-fund-phase-1-slice-1r-a-store-orders-commerce-core-planning.md
+```
+
+The previous C2 dashboard foundation-expansion note remains conceptually useful, but it is
+not the next active `1R` lane because K2 has already supplied the first authenticated C2
+Client dashboard foundation and Store/Orders/Commerce now blocks meaningful expansion.
 
 ## 12. Prompt To Use In A Fresh Chat
 
