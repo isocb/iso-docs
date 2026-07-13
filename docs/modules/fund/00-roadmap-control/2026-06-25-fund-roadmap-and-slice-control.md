@@ -105,6 +105,10 @@ Release result:
   `03-slice-planning/2026-07-08-fund-phase-1-slice-1r-a-store-orders-commerce-core-planning.md`.
   This remains Phase 1 structural work rather than Phase 2 refinement because Store and
   Order data contracts must exist before later refinement/UAT polish can safely proceed.
+- Commission Ladder Planner input is captured at
+  `01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md` and must be
+  considered inside 1R-A because aggregate Project-sales commission calculation depends on
+  reliable Order sales evidence and ladder/version auditability.
 - Recommended major core sequence after 1Q-G remains: Store/Orders/Commerce core planning,
   with C1 production/dispatch/commission constraints considered before implementation.
 - 1P-G-C2-A Project Intake Email Confirmation Schema Addendum is implemented as schema-only work. It adds `CONFIRMATION_PENDING`, confirmation token/hash expiry fields, confirmation/submitted timestamps and idempotency/fingerprint fields so future public form services can separate unconfirmed records from actionable C1 moderation submissions.
@@ -1334,12 +1338,22 @@ Rationale:
 - selected `FundProjectProduct` rows must become the Store Product source;
 - Order snapshots must preserve Product, price, VAT, option/personalisation and Project
   context safely;
+- Product options are treated as Store MVP behaviour, while reusable Product Type / Option
+  Template modelling remains later C1 configuration refinement;
+- Commission Ladder Planner requirements must be resolved far enough to know which
+  aggregate sales evidence, ladder references and audit inputs need preserving;
 - C1 production, dispatch and commission constraints must be visible before implementation.
 
 Planning document:
 
 ```text
 isodocs/docs/modules/fund/03-slice-planning/2026-07-08-fund-phase-1-slice-1r-a-store-orders-commerce-core-planning.md
+```
+
+Commission Ladder Planner context:
+
+```text
+isodocs/docs/modules/fund/01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md
 ```
 
 The previous C2 dashboard foundation-expansion note remains conceptually useful, but it is
@@ -1394,7 +1408,8 @@ Context:
 - Availability is the Product source list. Source Catalogues explain eligibility. FundProjectProduct remains the selected Product list.
 - Store pages should eventually display each selected Product once, even if it was eligible through multiple Catalogues.
 - Future duplication can create referenced Catalogues that share Product records or copied Product records that drift in pricing, commission, copy, options, media or fulfilment behaviour.
-- Future per-Catalogue Product commercial terms, including pricing, commission and display-copy overrides, are tracked in Phase 2 refinement as `2R-CATALOGUE-04`.
+- Future commercial terms, including buyer-facing pricing, VAT/tax policy and display-copy overrides, are tracked in Phase 2 refinement as `2R-CATALOGUE-04` and must be decided before Orders.
+- Commission Ladder Planner input is captured as a Phase 1 Store/Orders/Commerce planning dependency at `01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md`; planning must distinguish C1 ladder configuration, buyer-facing sales evidence, aggregate Project sales calculation and later commission accounting/payment.
 - Store, Orders, Commerce, production, dispatch, notifications and SeasonPro integration remain out of scope unless separately planned.
 
 Immediate recommended work:
@@ -1426,7 +1441,8 @@ Do not start:
 - Client dashboard announcements, special offers/campaign prompts or 1:1 messaging;
 - payments;
 - per-Catalogue pricing or commission overrides;
-- commissions;
+- commission implementation, including ladder configuration UI, commission accounting and
+  payment/settlement workflows;
 - production batching;
 - artwork checking/production/dispatch workflow implementation;
 - Product media galleries;

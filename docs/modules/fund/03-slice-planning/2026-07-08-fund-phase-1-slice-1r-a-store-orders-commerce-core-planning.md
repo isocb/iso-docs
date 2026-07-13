@@ -109,14 +109,15 @@ This planning slice must not implement:
 Decide whether Store should be represented by an explicit record such as a Project Store or
 whether the first Store view can be derived from Project state.
 
-Questions:
+Draft decision:
 
-- Does every active Project have a Store, or only Projects with a Store-enabled state?
-- Is Store visibility controlled by Project status, Event dates, Store-specific dates or a
-  combination?
-- Does C1 have an explicit Publish/Pause/Close Store action?
-- Does C2 have any Store visibility/control in the first pass, or is C2 read-only?
-- What is the safe unavailable state when a Project has no selected Products?
+- Most Projects should have a Store by default.
+- Project-level Store enablement should be configurable, defaulting to enabled.
+- Store visibility should be gated by Project status, then Project close/end date, then optional Store closing date.
+- Store closing date should inherit the Project closing date by default, may be earlier, and must not be later.
+- C1 should have explicit Publish, Pause and Close actions.
+- C2 may manage Store-facing Project settings only within C1-defined boundaries.
+- If no Products are selected, the Store should show a safe unavailable state with organiser contact details.
 
 ### 5.2 Store Product Source
 
@@ -125,14 +126,28 @@ Accepted rule:
 ```text
 Store Products = active selected FundProjectProduct rows for the Project.
 ```
+Draft decision:
 
-Questions:
-
-- Which Project Product snapshot fields are sufficient for Store display?
-- Does Store display need additional Store-specific copy, display order or visibility flags?
-- Should source Catalogue badges/context appear in C1 admin only, or also in public Store?
-- If selected Project Product eligibility later changes, does Store preserve the selected
-  Product until C1 removes it, or does it warn/block publication?
+- Store display should use a grid layout showing a primary/key Product image, Product title,
+  Product subtitle and price.
+- Products may support more than one image, but the Store grid should use one key image for
+  the initial card view.
+- Selecting a Store Product should open a Product detail modal with richer information and
+  add-to-basket controls.
+- Store display order should be controlled by C1.
+- C2 users may show or hide Products within the Project Store, subject to C1-defined
+  boundaries.
+- Source Catalogue badges/context should be visible in C1 admin only and should not appear
+  in the public/C2 Store.
+- If a selected Project Product later becomes ineligible, it should be hidden from the
+  Store rather than remaining purchasable.
+  - C1 should see an admin warning when a previously selected Product is hidden because
+  eligibility has changed.
+- Store-specific copy may be managed at Project Store level by C1 or by C2 users within
+  C1-defined boundaries.
+- Event-linked Projects may inherit default Store copy from the Event.
+- C2 users may override inherited Event Store copy at Project level where C1 permits it.
+- Store copy inheritance should follow: Event default copy -> Project Store override.
 
 ### 5.3 Order And Order Line Snapshots
 
@@ -160,29 +175,102 @@ Plan snapshot fields for:
 Questions:
 
 - Are Order lines linked to `FundProjectProduct`, Product, both, or a dedicated Store
-  Product snapshot?
-- Does an Order need to know source Catalogue, or is selected Project Product enough?
-- At what point are price/VAT/currency snapshotted?
-- At what point are Product option choices, Project-level artwork requirements and
-  Order-line purchaser uploads validated and snapshotted?
+  Product snapshot? This is a dedicated Store Product / Project Store Product layer, with Order Lines linked to it plus their own immutable snapshots.
+
+
+Does an Order need to know source Catalogue, or is selected Project Product enough?
+
+Draft decision:
+
+- Selected Project Product / Store Product is enough as the Order source of truth.
+- Order and Order line snapshots may retain Catalogue source context for audit, reporting
+  and C1 admin traceability.
+- Catalogue context must not create duplicate Store Products or duplicate Order lines.
+- If a Product was available through multiple Catalogues, the snapshot should either retain
+  all relevant source Catalogue references or the specific C1-selected display/source
+  context, without changing the Product identity.
+- Public/C2 Store and buyer-facing Order views should not expose Catalogue source badges by
+  default.
+
+At what point are price/VAT/currency snapshotted?
+
+Draft decision:
+
+- Cart lines may capture provisional price, VAT and currency at the point they are added to
+  the cart or the checkout cart is created.
+- Before checkout/order submission, the system must revalidate Store availability, Product
+  visibility, selected options, required uploads and current price/VAT/currency.
+- The immutable Order and Order-line price/VAT/currency snapshot should be created when the
+  buyer submits checkout and the Order is created, before or alongside payment initiation.
+- Payment confirmation should update payment status only and should not recalculate historic
+  Order-line price/VAT/currency.
+- If a checkout session expires or fails before Order creation, a new checkout should use
+  the then-current Store Product price/VAT/currency.
+
+
+At what point are Product option choices, Project-level artwork requirements and
+Order-line purchaser uploads validated and snapshotted?
+
+Draft decision:
+
+- Product option choices may be captured provisionally in the cart.
+- Project-level artwork/file requirements should be checked when the Store Product is added
+  to checkout and revalidated at Order submission.
+- Order-line purchaser uploads should be validated before Order submission where they are
+  required for the selected Product/Project workflow.
+- The immutable snapshot of selected options, required artwork/file evidence, upload
+  references and validation state should be created when the buyer submits checkout and the
+  Order/Order lines are created.
+- Payment confirmation should not alter option, artwork or upload snapshots.
+
 - What happens if C1 removes a selected Product after Orders exist?
+
+Draft decision:
+
+- If Orders exist for a selected Project Product or Store Product, hard removal should be
+  prevented.
+- C1 should use visibility controls instead: hide, pause, close or archive the Store Product.
+- Hidden/archived Products should no longer be purchasable but must remain available for
+  historical Orders, production, dispatch, reporting and commission audit.
+- C1 admin should clearly show that the Product cannot be removed because historic Orders
+  depend on it.
 
 ### 5.4 Purchaser Uploads, Artwork Requirements And Submission Gates
 
 Artwork/image upload is not a universal Store requirement. It is conditional by Project
-Type/workflow and by the selected Product/Product Type/Option Template. Some Project Types
-may supply production artwork at Project setup. Some Products may require purchaser-supplied
-artwork at checkout. Other Project/Product combinations may require no upload at all.
+Type / Store workflow and then refined by the selected Product, Product Type / Option
+Template, Project Product, Store Product or Product option rules. Some Project Types supply
+production artwork at Project setup. Some require purchaser-supplied artwork at checkout.
+Other Project/Product combinations require no upload at all.
 
 This is production information, not just public Store presentation. C1 users will need to
 see whether the production inputs for a Project, Product or Order line have been supplied,
-are missing, are awaiting review, or are approved for production.
+are missing, are awaiting review, or are approved for production. C2 users may also need to
+upload and manage Project-level production files where the Project workflow makes them
+responsible for artwork collection.
+
+Draft decision:
+
+- Artwork/file upload requirements should be determined primarily by the Project Type /
+  Store workflow.
+- Product, Product Type / Option Template, Project Product, Store Product and Product option
+  rules may refine the exact required inputs for a specific Store Product or Order line.
+- Individual artwork Projects may require purchaser-side upload at checkout. Example: a
+  parent receives original artwork at home for review and ordering, but is asked to upload a
+  photo of the artwork during purchase as a production backstop if the original artwork is
+  later mislaid.
+- Other Project Types may require C2 organiser-side upload of many artwork files through the
+  C2 dashboard, with the Store and Orders referencing those Project-level files.
+- Upload timing and ownership must therefore support Project-level C1/C2 uploads,
+  Order-line purchaser uploads, hybrid workflows and no-upload workflows.
 
 Examples:
 
 - a Project-level school/club logo uploaded during Project setup and reused across Orders;
 - Project-level group artwork or production files approved before the Store opens;
+- many artwork files uploaded by a C2 Project organiser through the C2 dashboard;
 - a photograph uploaded by a purchaser for an Order-line personalised Product;
+- a purchaser-uploaded photo of individual artwork as a backstop if physical artwork is lost;
 - an artwork file for a Product purchased at checkout;
 - a child/person image for an individual artwork Project;
 - supporting text/instructions for a bespoke Product.
@@ -199,13 +287,13 @@ Timing models:
 
 Planning must decide whether upload requirements are configured:
 
+- on the Project Type / Store workflow;
 - on the Product;
 - on the Product Type / Option Template;
-- on the Project Type/workflow;
 - on Project Product;
 - on Store Product;
 - on a specific Product option;
-- or as a combination of Project Type plus Product/Product Type rules.
+- or as a combination of Project Type / Store workflow plus Product/Product Type rules.
 
 Decision needed:
 
@@ -218,14 +306,18 @@ Possible policies:
 
 - `PROJECT_INPUT_REQUIRED`: Store/Product selection cannot proceed until Project-level
   production files are supplied;
+- `BLOCK_STORE_OPENING`: the Store cannot be published/opened until required Project-level
+  production files are supplied;
 - `BLOCK_ORDER_SUBMISSION`: the purchaser cannot submit until required Order-line uploads
   are present;
-- `ALLOW_WITH_WARNING`: the Order can be submitted but is marked incomplete;
+- `ALLOW_WITH_WARNING`: the Store can open or the Order can be submitted, but the relevant
+  Project, Store Product or Order line is marked incomplete;
 - `OPTIONAL`: uploads are allowed but not required;
 - `NOT_REQUIRED`: no upload is required for this Project/Product context.
 
 Order and Order line snapshots must retain enough evidence to prove what was supplied at
-submission time, even if the live Product, Store Product or file metadata changes later.
+submission time, even if the live Product, Store Product, Project-level artwork record or
+file metadata changes later.
 
 Open design points:
 
@@ -235,8 +327,13 @@ Open design points:
 - storage location and retention policy;
 - whether uploaded files are linked to Project, Project Product, Store Product, Order,
   Order line or person/participant records;
+- whether Project-level C2 artwork uploads need batching, naming, participant matching or
+  review tools before Store opening;
+- whether purchaser uploads at checkout are mandatory evidence, optional fallback evidence
+  or production-critical assets;
 - virus/malware scanning and safe download policy;
 - C1 artwork review state, notes and production-facing visibility;
+- C2 organiser visibility into missing, rejected or approved Project-level files;
 - GDPR/data minimisation where uploaded images may contain children or sensitive content.
 
 ### 5.5 Product Options, Dependencies And Store MVP
@@ -256,6 +353,20 @@ Decision needed:
 Are Product options, option dependencies or upload requirements required for a safe Store
 MVP, or can Store MVP proceed with simple Product display and defer richer presentation?
 ```
+
+Draft decision:
+
+- Product options are required for the Store MVP.
+- This richness is central to the client value of FUND and should not be deferred as later
+  presentation polish.
+- Store MVP should support structured buyer-facing option groups, required/optional choices,
+  display labels, selected option validation and Order-line option snapshots.
+- Upload requirements may be expressed through Project Type / Store workflow rules and
+  Product/Product Type option rules where relevant.
+- Product Variants should still be avoided unless a choice combination genuinely needs its
+  own SKU, stock, image, weight, fixed price or fulfilment treatment.
+- Full gallery/media richness and advanced option-image mapping may be phased, but the core
+  option model must exist before safe Order capture.
 
 Product options are not stock-control inventory in this context. They are buyer-facing
 configuration and evidence capture rules for an Order line.
@@ -363,8 +474,11 @@ the custom field definition.
 
 ### 5.6 Product Type / Option Template Planning
 
-It may be useful to define a Product Type, or more precisely a Product Type / Option
-Template, that sets the expected option structure for a class of Products.
+Product options are required for Store MVP, but a reusable Product Type / Option Template
+model is not required before first Store MVP.
+
+It may still be useful later to define a Product Type, or more precisely a Product Type /
+Option Template, that sets the expected option structure for a class of Products.
 
 Examples:
 
@@ -391,13 +505,35 @@ It should help C1 configure Store/order capture correctly. It should not imply s
 warehousing, SKU inventory, fulfilment availability or purchase-order behaviour unless a
 future inventory lane is explicitly planned.
 
-Decision needed:
+Draft decision:
 
-- Is Product Type / Option Template required before first Store MVP?
-- Should Product Type be tenant-configurable or module-defaulted?
-- Does Product Type drive default option groups only, or does it enforce order validation?
-- Can C1 override Product Type defaults per Product or per Project Product?
-- Are Product Type labels part of Phase 2 tenant terminology refinement?
+- Product Type / Option Template is not required before the first Store MVP.
+- Store MVP still requires Product options, but those options can initially be configured
+  directly on the Product, Project Product or Store Product.
+- Product Type / Option Template should remain a later refinement for reusable C1 tenant
+  default option structures across similar Products.
+- Product duplication reduces the urgency of Product Type / Option Template because C1 can
+  copy a configured Product and adapt its options, copy and media for a new use case.
+- Do not block Store/Order schema or Store MVP on reusable Product Type / Option Template
+  modelling.
+- When introduced, Product Type / Option Template should be C1 tenant-configurable rather
+  than a fixed module-default list, although IsoStack may provide starter examples or
+  suggested defaults.
+- Product Type / Option Template should initially drive default option groups and workflow
+  suggestions only; hard Order validation should come from the resolved Product, Project
+  Product, Store Product and Project Type / Store workflow rules used at checkout.
+- C1 should be able to override template defaults per Product, Project Product or Store
+  Product.
+- Product Type labels and tenant terminology remain Phase 2 refinement unless the wording
+  blocks safe Store/Order implementation.
+
+Implication:
+
+```text
+Do not confuse Product options required for MVP with reusable Product Type / Option Template
+abstractions. Options are first-order Store/Order behaviour; templates are later C1
+configuration acceleration.
+```
 
 ### 5.7 Per-Catalogue Commercial Terms
 
@@ -408,13 +544,54 @@ Wishlist item:
 Decision needed before Order snapshots:
 
 ```text
-Does price/commission/display copy come from Product, Catalogue/Product membership,
-Project Product snapshot, Store Product snapshot or Order line snapshot?
+Does price, VAT/tax policy and buyer-facing display copy come from Product,
+Catalogue/Product membership, Event, Project Product, Store Product or Order line snapshot?
 ```
+
+Draft decision:
+
+- Commission is not buyer-facing Store commercial data and should not be shown to Store
+  customers.
+- Commission accrues as a benefit to the C2 tenant/client or fundraising beneficiary, not
+  to the individual buyer.
+- The Store may show fundraising progress, for example `We've raised £x for [objective]`,
+  where the objective is Project-level Store/display copy.
+- Buyer-facing price comes from the effective Store Product price and is snapshotted onto
+  the Order line at checkout/order creation.
+- The Order line snapshot must retain final price, VAT/tax amount, VAT/tax rate,
+  VAT/tax-inclusive or VAT/tax-exclusive display basis, and currency.
+- VAT/tax is calculated per purchase/order line because buyer receipts, invoices and
+  payment records need point-in-time tax evidence.
+- C1 needs a Store/Event/Catalogue commercial decision for whether displayed prices include
+  or exclude VAT/tax and which VAT/tax rate applies.
+- Commission payable should be calculated from aggregate Project sales against the
+  applicable Project/Event commission ladder, not as independently rounded per-transaction
+  or per-Order-line commission.
+- C1/C2 dashboards may show live estimated/accrued fundraising or commission figures, but
+  final payable commission belongs to later accounting/reporting logic.
+
+Correction to earlier planning:
+
+```text
+Commission must not be treated as a final per-transaction or per-Order-line payable value.
+Order lines provide sales evidence for later aggregate Project commission calculation.
+```
+
+Unresolved commercial-term source decisions:
+
+- whether first-pass buyer-facing price can safely come from Product only;
+- whether Event-level or Catalogue-level VAT/tax policy is needed before checkout;
+- whether Store Product needs an effective commercial terms snapshot layer before Orders;
+- whether Project Product should carry commercial overrides or only selection state;
+- how public Store price display should show VAT/tax-inclusive versus VAT/tax-exclusive
+  amounts;
+- how refunds, cancellations or adjustments feed the aggregate Project sales basis used for
+  later commission accounting.
 
 Do not implement per-Catalogue commercial terms inside the first Store picker. But before
 Orders are implemented, decide whether the first version can safely use Product-level price
-only or whether commercial terms need a planned Store/Product snapshot layer.
+and simple C1 tax policy only, or whether commercial terms need a planned Event,
+Catalogue, Project Product or Store Product snapshot layer.
 
 ### 5.8 Client Address, Delivery And Fulfilment Context
 
@@ -447,11 +624,48 @@ Wishlist items:
 - `2R-PROD-04` - Commission Surface Planning;
 - `2R-PROD-05` - Event-Window Commission Ladder Planning.
 
+Planning input:
+
+- `docs/modules/fund/01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md`
+  - Commission Ladder Planner.
+
 Decision needed:
 
 ```text
-Which production, dispatch and commission fields must exist in Order/Order line snapshots
-even if the first implementation does not build the full C1 production UI?
+Which production, dispatch and commission calculation inputs must exist in Order/Order line
+snapshots even if the first implementation does not build the full C1 production UI?
+```
+
+Commission ladder planning must decide whether C1 can configure:
+
+- a flat commission rate for an Event or Project;
+- a stepped Event-level ladder inherited by linked Projects;
+- a Project override that uses either a Project-specific ladder or a flat rate.
+
+Each ladder must use exactly one timing method:
+
+- offset-based thresholds calculated from the relevant closing date;
+- fixed calendar-date thresholds.
+
+The two timing methods must not be mixed within the same ladder.
+
+Open commission calculation decisions:
+
+- which closing date controls offset calculations when a Project closes before its Event;
+- what commission applies after the final ladder threshold has passed;
+- whether the applicable ladder/rate basis is evaluated from Store close, Project close,
+  payment totals, production/dispatch milestone or another explicit accounting event;
+- which sales evidence, ladder version and calculation basis must be retained so aggregate
+  Project commission can be recalculated or audited without changing historical Orders;
+- how draft, active and archived ladders are handled;
+- what validation prevents overlapping, duplicated or incorrectly ordered steps.
+
+Boundary:
+
+```text
+1R-A plans ladder configuration, aggregate Project sales calculation inputs and audit
+evidence. It does not implement ladder schema, services, UI, commission accounting or
+payment.
 ```
 
 Store/Orders must not be designed as isolated checkout features. They must leave usable
@@ -480,13 +694,13 @@ considered because they may affect safe Store/Orders/Commerce design:
 | Wishlist ID | Relevance To 1R-A | Initial Position |
 | --- | --- | --- |
 | `2R-CATALOGUE-02` | Catalogue/Product public Store readiness | Treat as a Store readiness review input. |
-| `2R-CATALOGUE-04` | Per-Catalogue pricing, commission or display copy may affect snapshots | Decide before Orders. Do not implement in 1R-A. |
+| `2R-CATALOGUE-04` | Pricing, VAT/tax policy and buyer-facing display copy may affect Store/Product and Order snapshots | Decide commercial-term source before Orders. Do not implement in 1R-A. |
 | `2R-PRODUCT-01` | Product media and conditional Project/Order uploads may be needed for Store confidence, production readiness and Order evidence | Decide whether MVP blocker. |
 | `2R-PRODUCT-02` | Product options, option images, dependency rules and conditional upload requirements may be needed for valid Store/Order flows | Promote if Project or Order flows require options, uploads or dependent choices. |
-| Future `2R-PRODUCT-04` | Product Type / Option Template planning may simplify complex Product configuration | Create/promote if Store MVP needs reusable option templates. |
+| Future `2R-PRODUCT-04` | Product Type / Option Template planning may simplify repeated C1 Product configuration | Park as later refinement; Store MVP needs Product options, not reusable templates. |
 | `2R-CLIENT-02` | Delivery defaults may affect fulfilment-ready Orders | Promote if dispatch/shipping is in first Order scope. |
 | `2R-PROD-01` to `2R-PROD-04` | Store/Orders must support production, dispatch and commission later | Use as constraints, not immediate implementation. |
-| `2R-PROD-05` | Event-window commission ladders may influence future commission snapshots | Keep parked unless commission is pulled into first Order scope. |
+| `2R-PROD-05` | Commission ladders affect aggregate Project-sales commission calculation and audit evidence | Promote into 1R-A planning as a dependency; do not implement ladder schema/UI/accounting in 1R-A. |
 | `2R-EVENT-03` / `2R-EVENT-04` | Event dates/windows may drive Store open/close and later reminders | Use as date-window design context. |
 | `2R-DASH-01` / `2R-DASH-02` | C1 dashboard may need Store/Order action cards later | Keep parked until Store/Order states exist. |
 
@@ -520,6 +734,8 @@ Potential scope:
 - Product Variant boundary only if options alone cannot represent the first Store/Order
   products safely;
 - Order snapshot fields;
+- sales evidence fields needed for later aggregate Project commission calculation if
+  accepted as a first-order requirement;
 - Project-level and Order-line file reference fields if accepted as first-order requirement;
 - status enums;
 - audit events;

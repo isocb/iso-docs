@@ -160,10 +160,19 @@ Future commission planning should decide:
 
 - whether commission belongs primarily to Client, Project, Event, Product, Order line or some combination;
 - whether commission rates vary by Product/Catalogue/Event;
+- whether C1 can configure an Event-level Commission Ladder Planner that linked Projects
+	inherit, and whether Projects can override it with a Project ladder or flat rate;
+- whether ladder timing is offset-based from a relevant closing date or fixed-date based,
+	with no mixing of timing methods inside one ladder;
+- when the applicable ladder version and aggregate Project sales calculation basis are fixed
+	so later ladder changes do not alter historical commission reporting;
 - how commission is calculated from paid Orders;
 - when commission is recognised;
 - how commission is reported to C1 and possibly C2;
 - how adjustments/refunds affect commission.
+
+Commission Ladder Planner context is captured at
+`docs/modules/fund/01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md`.
 
 Do not implement commission before Commerce/Orders and reporting are planned.
 

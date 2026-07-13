@@ -225,11 +225,11 @@ Wishlist entries:
 | `2R-PRODUCT-01` | none | Product Media, Gallery And Option Definition Planning | Plan Product image galleries, Product option definitions and public/product-admin display expectations. | Wishlist |
 | `2R-PRODUCT-02` | none | Product Options, Dependencies And Image Mapping Planning | Decide how options such as size, colour, text, upload/artwork requirements and dependent option combinations are modelled, validated and snapshotted for Project-level production inputs, Store and Order lines. | Wishlist / Store readiness candidate |
 | `2R-PRODUCT-03` | none | Product Duplication Planning | Plan safe C1 duplication of complex Products, including details, pricing, commission assumptions, public/admin copy, options, images/media references, workflow defaults and unique naming such as `Product name (copy)` and `Product name (copy 2)`. Copied Products may deliberately drift from the original. | Wishlist |
-| `2R-PRODUCT-04` | `1R-A` | Product Type / Option Template Planning | Plan reusable Product Type templates such as Clothing, Printed mug or Artwork upload Product, where the type suggests option groups, controls, required uploads and validation rules without implying stock-control inventory. | Wishlist / Store readiness candidate |
+| `2R-PRODUCT-04` | `1R-A` decision: parked | Product Type / Option Template Planning | Plan reusable C1 tenant-configurable Product Type templates such as Clothing, Printed mug or Artwork upload Product, where the type suggests option groups, controls, required uploads and validation rules without implying stock-control inventory. Store MVP requires Product options, but not reusable Product Type / Option Template modelling. | Wishlist / later refinement; not a Store MVP blocker |
 | `2R-CATALOGUE-01` | `1Q` | Catalogue Presentation And Availability Refinement | Refine Catalogue presentation and merchandising after Event/Catalogue/Product availability rules are accepted. | Wishlist |
 | `2R-CATALOGUE-02` | none | Catalogue/Product Public Store Readiness Review | Review whether Product and Catalogue presentation is sufficient before Store UI implementation. | Wishlist |
 | `2R-CATALOGUE-03` | none | Catalogue Duplication And Product Copy Policy | Plan Catalogue duplication, including reference mode where the new Catalogue links to the same Products, and copy mode where the new Catalogue gets copied Product records. If deep-copying Products, copied Products should receive unique names/slugs/SKUs/references with `(copy)` / numbered suffixes and idempotency protection, and may drift in pricing, commission, copy, options, media and fulfilment behaviour. | Wishlist |
-| `2R-CATALOGUE-04` | none | Catalogue Product Commercial Terms And Override Planning | Plan whether per-Catalogue Product pricing, commission, display copy, availability wording or other commercial terms should live on Catalogue/Product membership, copied Product records, Store snapshots or later Order snapshots. Keep this separate from 1Q-F selection so commercial drift can be designed safely. | Wishlist |
+| `2R-CATALOGUE-04` | none | Catalogue Product Commercial Terms And Override Planning | Plan whether Product pricing, VAT/tax policy, display copy, availability wording or other buyer-facing commercial terms should live on Catalogue/Product membership, Event, copied Product records, Store snapshots or later Order snapshots. Keep this separate from 1Q-F selection so commercial drift can be designed safely. | Wishlist / must decide before Orders |
 | `2R-PROJECT-01` | `1Q-G` | Tenant-Defined Project Type Terminology And Suitability Labels | Plan tenant-owned labels/option-set wording for Project workflow types and Product suitability labels, so tenants can use their own terms while preserving stable internal eligibility behaviour. Current first-pass labels include `Individual Artwork Project`, `Group personalised product project`, `Bulk order / club-funded project` and `Not sure yet`. | Wishlist |
 
 Research notes:
@@ -238,7 +238,10 @@ Research notes:
 - Store generation should use Project-selected Products, not all active tenant Products.
 - Products referenced by multiple eligible Catalogues should collapse to one Project selection and one Store display row.
 - Product copies created through duplication are distinct Product records and may appear separately if both original and copy are eligible.
-- Product gallery/options work can be deferred unless Store MVP needs it to avoid a poor or ambiguous buying experience.
+- Core Product options are required for Store MVP because they are central to FUND buyer
+  choice, personalisation and production evidence capture.
+- Advanced Product gallery/media richness and option-image mapping can be phased if the
+  first option model still supports safe Order capture.
 - Product option media, Project-level production artwork/files, required purchaser uploads
   and option dependencies should not be bolted on after Orders if the workflow needs
   option/image/artwork evidence.
@@ -255,9 +258,12 @@ Research notes:
 - A Product Type / Option Template may help C1 configure repeatable option patterns, such
   as Clothing, Artwork upload Product or Logo/bulk order Product, but should not imply SKU
   inventory or stock level management unless a future inventory lane is explicitly planned.
+- Product Type / Option Template is parked as later C1 configuration refinement. It should
+  not block Store MVP because options can initially be configured directly on Products,
+  Project Products or Store Products, and Product duplication can reduce repeated setup.
 - Catalogue duplication needs two modes: duplicate Catalogue only as a new Catalogue with the same linked Products, and duplicate Catalogue plus Products as a new Catalogue with copied Products.
 - Deep Product copying is powerful but needs careful planning around pricing, commission, public copy, SKUs, slugs, image/media reuse, options, audit history, references and idempotency.
-- Per-Catalogue pricing, commission or public display overrides are distinct from Product selection. They should be planned as commercial terms before Store/Order implementation decides what needs to be snapshotted.
+- Buyer-facing price, VAT/tax display policy and public display overrides are distinct from Product selection. They should be planned as commercial terms before Store/Order implementation decides what needs to be snapshotted.
 - Project Type terminology affects Project creation, Product suitability and Store/Product
   visibility. Tenant-defined labels should be planned without breaking existing internal
   eligibility codes or historical Project metadata.
@@ -304,15 +310,16 @@ Wishlist entries:
 | `2R-PROD-02` | none | Artwork Checking Workflow | Plan Project-linked artwork review states and evidence before production batching. | Wishlist |
 | `2R-PROD-03` | none | Dispatch And Delivery Defaults | Align dispatch workflow with Client/Project delivery address planning. | Wishlist |
 | `2R-PROD-04` | none | Commission Surface Planning | Place commission under the Client/Project/Order/Commerce structure with clear reporting boundaries. | Wishlist |
-| `2R-PROD-05` | none | Event-Window Commission Ladder Planning | Plan whether Event window offsets can drive commission tiers, such as higher commission for early sales and lower commission for late sales as the Event close approaches. | Wishlist |
+| `2R-PROD-05` | `1R-A` planning dependency | Event-Window Commission Ladder Planning | Plan whether Event window offsets or fixed dates can drive commission tiers, such as higher commission for early sales and lower commission for late sales as the Event/Project close approaches. See `docs/modules/fund/01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md`. | Promoted to Phase 1 planning dependency; implementation not started. |
 
 Research notes:
 
 - production may group similar Products across Projects for efficiency;
 - Project context remains important even when production is grouped across Projects;
 - dispatch is both Project-linked and Client-linked;
-- commission planning should consider Event-window offset rules, for example "more than 45 days before close" versus "last-minute sales";
-- commission ladders must wait for Commerce/Orders planning, but the Event anchor model should leave room for them.
+- commission planning should consider Event-window offset rules, for example "more than 45 days before close" versus "last-minute sales", and fixed-date ladder thresholds where accepted;
+- commission ladders must be considered during Commerce/Orders planning because aggregate Project-sales commission calculation depends on reliable Order sales evidence and ladder/version auditability;
+- ladder configuration, buyer-facing sales evidence, aggregate Project sales calculation and later commission accounting/payment must remain distinct planning boundaries.
 
 ### 4.7 Notifications And Communications
 
