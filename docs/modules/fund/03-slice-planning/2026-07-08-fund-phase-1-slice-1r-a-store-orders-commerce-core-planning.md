@@ -678,6 +678,7 @@ The roadmap identifies Commerce Core as a future reusable IsoStack platform lane
 Decision needed:
 
 - Is first FUND Store an enquiry/order capture flow without payment?
+
 - Is first FUND Store allowed to create Orders with manual/offline payment status?
 - Does payment integration wait for platform Commerce Core?
 - If payment is included, what provider boundary, webhook/audit policy and tenant safety
