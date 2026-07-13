@@ -1,14 +1,18 @@
 # LMSPro / SeasonPro Roadmap And Slice Control
 
-Date: 2026-06-29  
-Module: LMSPro / SeasonPro  
-Control status: Active remediation structure established
+Date: 2026-06-29
+Last updated: 2026-07-08
+Module: LMSPro / SeasonPro
+Control status: Active roadmap and delivery-cycle control
 
 ## Purpose
 
 This document is the current operational control point for LMSPro / SeasonPro remediation, slice planning and review.
 
 Use it to resume work without reconstructing context from legacy planning notes.
+
+It is now the governing progress document for active LMSPro / SeasonPro work. It should be
+updated after every completed delivery cycle and before opening a new substantive lane.
 
 ## Current Documentation Structure
 
@@ -23,17 +27,136 @@ Current and new operational work should use:
 
 Existing broad/historical planning remains in `planning/` unless it becomes operationally active.
 
-## Current App Branch Context
+## Controlled Delivery Cycle
 
-Active remediation branch:
+Use this cycle for all non-trivial LMSPro / SeasonPro work:
 
 ```text
-feature/seasonpro-remediation
+01-cr-inputs
+-> 02-triage
+-> 03-slice-planning
+-> implementation in app repo
+-> 04-implementation-confirmations
+-> 05-review-and-test
+-> roadmap/control update
+```
+
+Gate rules:
+
+- A CR input is evidence and intent. It is not an implementation plan.
+- Triage decides whether the CR is accepted, deferred, split, rejected or moved to concept
+  control.
+- Slice planning defines the exact build boundary, risks, data model implications,
+  permissions and review expectations.
+- Implementation should not begin until the relevant 03 slice plan is accepted.
+- Implementation confirmation records what was actually changed.
+- Review/test records browser smoke, scripts, known gaps and promotion confidence.
+- This roadmap/control document is updated at cycle close before the next slice begins.
+
+Recommended improvements to the cycle:
+
+- Record branch/environment state in the roadmap before and after promotion.
+- Record explicit "Do Not Build" boundaries in each slice.
+- Add risk and safeguarding notes whenever minors, personal data, exports or impersonation
+  are in scope.
+- Keep concept/product strategy documents separate from near-term feature CRs.
+- Treat suggested slices in CR inputs as advisory until triage and planning accept them.
+- Prefer smaller slices where permission boundaries or sensitive data are involved.
+
+## Current App Branch Context
+
+Current app development baseline:
+
+```text
+dev
 ```
 
 Current work should remain on dev/remediation branches until reviewed and explicitly aligned.
 
-## Current Remediation Lane
+Latest known app alignment from prior cycle:
+
+```text
+origin/main = origin/staging = origin/dev = ea4e619
+```
+
+This alignment included the completed LMSPro remediation and FUND availability baseline
+promotions before returning to LMSPro development planning.
+
+## Current Completed LMSPro Cycle State
+
+Recent LMSPro lanes completed and documented:
+
+- R2 - imported club-user membership and live data repair;
+- R3 - club official removal and archived access lifecycle planning;
+- R4 - communications, email and announcements remediation;
+- R5 - age group/division manager notification routing and role catalogue polish;
+- R6 - playing-day mitigation and architecture overview planning;
+- R7 - small UI/count polish promoted through staging and live.
+
+Current posture:
+
+```text
+No active LMSPro implementation slice is open.
+```
+
+## Current Candidate Lane
+
+### Club Operational Player Management / Team Manager Access
+
+CR input:
+
+```text
+01-cr-inputs/2026-07-08-lmspro-cr-club-player-management.md
+```
+
+Triage:
+
+```text
+02-triage/2026-07-08-lmspro-triage-club-player-management.md
+```
+
+Status:
+
+```text
+PM1-A planning created; not yet accepted for implementation.
+```
+
+Working boundary:
+
+- This is a SeasonPro / LMSPro club-value extension.
+- It is not a league-wide player registration system.
+- It is not the standalone ClubPro product.
+- Player records are club-controlled operational data.
+- Team Manager access must be designed before exposing player data to delegated users.
+
+Next action:
+
+```text
+Review and accept, revise or split PM1-A before any implementation.
+```
+
+Current planning document:
+
+```text
+03-slice-planning/2026-07-08-lmspro-feature-slice-pm1-a-club-player-management-foundation-planning.md
+```
+
+Initial planning should cover Team Manager access and the Player data model together, but
+implementation should remain split so sensitive player data is not exposed before scoped
+permissions, audit and safeguarding controls are proven.
+
+## Product Concept Boundary
+
+ClubPro is tracked separately as a product concept, not as an LMSPro implementation slice:
+
+```text
+docs/modules/clubpro/00-roadmap-control/2026-07-08-clubpro-concept-development-and-product-boundary.md
+```
+
+ClubPro may inform long-term platform design, but it must not expand the immediate LMSPro
+Club Player Management CR.
+
+## Historical Remediation Lane Notes
 
 ### R1 - Playing Season Date Boundaries
 
