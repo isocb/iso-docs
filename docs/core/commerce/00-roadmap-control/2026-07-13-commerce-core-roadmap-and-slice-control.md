@@ -188,6 +188,22 @@ Review/test:
 
 `docs/core/commerce/05-review-and-test/2026-07-14-commerce-a4-audit-idempotency-foundation-review-and-test.md`
 
-`COMMERCE-A5 - Provider-neutral Services And Validation` is therefore the single next
-planning candidate under the root roadmap. It is not yet planned or authorised for
-implementation.
+`COMMERCE-A5 - Provider-neutral Services And Validation` was implemented and reviewed at
+application commit `fd7376b`. Pure validation and provider-neutral
+transaction helpers passed the retained disposable PostgreSQL smoke suite with zero
+residue; no schema migration or shared database deployment was performed.
+
+Planning:
+
+`docs/core/commerce/03-slice-planning/2026-07-14-isostack-commerce-core-slice-commerce-a5-provider-neutral-services-validation-implementation-planning.md`
+
+Implementation confirmation:
+
+`docs/core/commerce/04-implementation-confirmations/2026-07-14-commerce-a5-provider-neutral-services-validation-implementation-confirmation.md`
+
+Review/test:
+
+`docs/core/commerce/05-review-and-test/2026-07-14-commerce-a5-provider-neutral-services-validation-review-and-test.md`
+
+`COMMERCE-A6 - Stripe Adapter And Webhook Handling` is now the single next planning
+candidate. A5 remains dormant until a later route/provider slice calls its primitives.

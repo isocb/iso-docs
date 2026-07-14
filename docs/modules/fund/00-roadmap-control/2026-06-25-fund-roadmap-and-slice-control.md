@@ -134,7 +134,8 @@ COMMERCE-A1 (complete on dev)
   -> FUND 1R-D (implementation/review complete locally at `db85fcc`)
   -> COMMERCE-A3 (implementation/review complete locally at `4a90be1`)
   -> COMMERCE-A4 (implementation/review complete locally at `5b69920`)
-  -> COMMERCE-A5 (single next planning candidate: provider-neutral services and validation)
+  -> COMMERCE-A5 (implemented/reviewed: provider-neutral services and validation)
+  -> COMMERCE-A6 (next Commerce planning candidate: Stripe adapter/webhooks)
 
 FUND 1R-C1 (complete on dev)
   -> 1R-C2 (complete on dev)
@@ -164,8 +165,8 @@ Rules:
 - Store `1R-D` is complete through review/test and must not be rerun as pending work;
 - `COMMERCE-A3` is complete through review/test and must not be rerun as pending work;
 - `COMMERCE-A4` is complete through review/test and must not be rerun as pending work;
-- `COMMERCE-A5` is the single next planning candidate but is not authorised for
-  implementation merely by A4 completion;
+- `COMMERCE-A5` is implemented and reviewed at application commit
+  `fd7376b`; no migration or shared deployment was performed;
 - never implement two slices merely because their planning can be discussed together;
 - finish one slice lifecycle before selecting another unless the user explicitly changes
   the control decision.
@@ -315,8 +316,8 @@ Completed `1P-G-R3-A` lifecycle:
 
 Global next planning control:
 
-- `COMMERCE-A5 - Provider-neutral Services And Validation` is the single next planning
-  candidate under the root roadmap; it has no accepted implementation plan yet.
+- `COMMERCE-A6 - Stripe Adapter And Webhook Handling` is the single next planning
+  candidate under the root roadmap. FUND does not implement Commerce-owned provider work.
 
 Sibling Commerce controls:
 

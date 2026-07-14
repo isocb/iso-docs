@@ -22,6 +22,9 @@ Commerce A3 is implemented/reviewed at local application commit `4a90be1`; its c
 Commerce A4 is implemented/reviewed at local application commit `5b69920`; its complete
 139-migration disposable lifecycle passed with zero residue and no shared deployment.
 
-The integrated root critical path now names `COMMERCE-A5 - Provider-neutral Services And
-Validation` as the single next planning candidate. It is not yet planned or
-authorised for implementation by this README.
+Commerce A5 is implemented/reviewed at application commit `fd7376b`.
+Its provider-neutral validators and idempotency/audit transaction helpers passed unit,
+static and disposable PostgreSQL smoke tests with zero residue and no migration.
+
+The integrated root critical path now names `COMMERCE-A6 - Stripe Adapter And Webhook
+Handling` as the single next planning candidate. A5 is complete and no A6 work has begun.

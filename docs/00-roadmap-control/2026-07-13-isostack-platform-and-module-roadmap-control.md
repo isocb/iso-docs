@@ -160,7 +160,8 @@ COMMERCE-A1 complete
   -> FUND 1R-D Store readiness/configuration services
   -> COMMERCE-A3 payment/refund/pro-forma schema complete
   -> COMMERCE-A4 audit/idempotency complete
-  -> COMMERCE-A5 provider-neutral services (single next planning candidate)
+  -> COMMERCE-A5 provider-neutral services complete
+  -> COMMERCE-A6 Stripe adapter/webhooks (single next planning candidate)
   -> COMMERCE-A6 Stripe adapter/webhooks
   -> COMMERCE-A7 FUND consumer integration
 
@@ -211,8 +212,9 @@ For clarity:
   at local application `4a90be1`, is undeployed to shared databases and must not be rerun;
 - `COMMERCE-A4 - Audit And Idempotency Foundation` is implemented/reviewed at local
   application `5b69920`, is undeployed to shared databases and must not be rerun;
-- `COMMERCE-A5 - Provider-neutral Services And Validation` is the single next planning
-  candidate. It is not yet planned or authorised for implementation;
+- `COMMERCE-A5 - Provider-neutral Services And Validation` is implemented and reviewed at
+  application commit `fd7376b`; its provider-neutral validators and
+  idempotency/audit helpers passed disposable tests with zero residue and no migration;
 - Event policies are defaults for linked Projects, while an active C1-managed flat-rate
   override wins only for its owning Event-linked Project; standalone Project policies may
   be flat or stepped;
@@ -261,8 +263,8 @@ for explicit user input when a genuine business/product choice remains, authorit
 expand, destructive/shared-environment work would be required, or the accepted plan cannot
 be satisfied safely.
 
-Current single next control action: create and review only the bounded `COMMERCE-A5 -
-Provider-neutral Services And Validation` plan. Store UI `1R-E` remains queued in
+Current single next control action: create and review only the bounded `COMMERCE-A6 -
+Stripe Adapter And Webhook Handling` plan. Store UI `1R-E` remains queued in
 the FUND lane and is not the global next slice.
 
 ## 8. Child Roadmap Discipline
