@@ -4,6 +4,14 @@ This folder contains the current master roadmap and slice-control documents.
 
 Read this folder first when resuming FUND work.
 
+The authoritative FUND control is:
+
+`2026-06-25-fund-roadmap-and-slice-control.md`
+
+Read only its numbered current-control sections to select work. Its Appendix A is a
+preserved historical ledger and must not override the current slice table, dependency
+control, live gates or planning handoff.
+
 Roadmap/control documents answer:
 
 - what has been released;

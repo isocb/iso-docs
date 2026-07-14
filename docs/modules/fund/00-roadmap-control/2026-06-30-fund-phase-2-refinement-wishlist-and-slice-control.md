@@ -4,6 +4,10 @@ Date: 2026-06-30
 
 Status: Active refinement wishlist
 
+Parent roadmap:
+
+`docs/00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md`
+
 Purpose:
 
 ```text
@@ -224,12 +228,12 @@ Wishlist entries:
 | --- | --- | --- | --- | --- |
 | `2R-PRODUCT-01` | none | Product Media, Gallery And Option Definition Planning | Plan Product image galleries, Product option definitions and public/product-admin display expectations. | Wishlist |
 | `2R-PRODUCT-02` | none | Product Options, Dependencies And Image Mapping Planning | Decide how options such as size, colour, text, upload/artwork requirements and dependent option combinations are modelled, validated and snapshotted for Project-level production inputs, Store and Order lines. | Wishlist / Store readiness candidate |
-| `2R-PRODUCT-03` | none | Product Duplication Planning | Plan safe C1 duplication of complex Products, including details, pricing, commission assumptions, public/admin copy, options, images/media references, workflow defaults and unique naming such as `Product name (copy)` and `Product name (copy 2)`. Copied Products may deliberately drift from the original. | Wishlist |
+| `2R-PRODUCT-03` | `1R-B` schema dependency | Product Duplication Planning | Plan safe C1 duplication of complex Products, including details, pricing, public/admin copy, options, images/media references, workflow defaults and unique naming such as `Product name (copy)` and `Product name (copy 2)`. Copied Products are independent records and may deliberately drift from the original. | Promoted to Phase 1 Store-preparation dependency; implementation not started. |
 | `2R-PRODUCT-04` | `1R-A` decision: parked | Product Type / Option Template Planning | Plan reusable C1 tenant-configurable Product Type templates such as Clothing, Printed mug or Artwork upload Product, where the type suggests option groups, controls, required uploads and validation rules without implying stock-control inventory. Store MVP requires Product options, but not reusable Product Type / Option Template modelling. | Wishlist / later refinement; not a Store MVP blocker |
 | `2R-CATALOGUE-01` | `1Q` | Catalogue Presentation And Availability Refinement | Refine Catalogue presentation and merchandising after Event/Catalogue/Product availability rules are accepted. | Wishlist |
 | `2R-CATALOGUE-02` | none | Catalogue/Product Public Store Readiness Review | Review whether Product and Catalogue presentation is sufficient before Store UI implementation. | Wishlist |
 | `2R-CATALOGUE-03` | none | Catalogue Duplication And Product Copy Policy | Plan Catalogue duplication, including reference mode where the new Catalogue links to the same Products, and copy mode where the new Catalogue gets copied Product records. If deep-copying Products, copied Products should receive unique names/slugs/SKUs/references with `(copy)` / numbered suffixes and idempotency protection, and may drift in pricing, commission, copy, options, media and fulfilment behaviour. | Wishlist |
-| `2R-CATALOGUE-04` | none | Catalogue Product Commercial Terms And Override Planning | Plan whether Product pricing, VAT/tax policy, display copy, availability wording or other buyer-facing commercial terms should live on Catalogue/Product membership, Event, copied Product records, Store snapshots or later Order snapshots. Keep this separate from 1Q-F selection so commercial drift can be designed safely. | Wishlist / must decide before Orders |
+| `2R-CATALOGUE-04` | `1R-A` boundary resolved | Catalogue Product Commercial Terms And Override Planning | Product owns first-pass price, tax category, options and media; C1 tax profile supplies seller/tax rules; Catalogue membership does not override Product commercial terms. Differently priced seasonal/contextual offerings use independent Product copies. | Decision resolved; per-Catalogue overrides parked. |
 | `2R-PROJECT-01` | `1Q-G` | Tenant-Defined Project Type Terminology And Suitability Labels | Plan tenant-owned labels/option-set wording for Project workflow types and Product suitability labels, so tenants can use their own terms while preserving stable internal eligibility behaviour. Current first-pass labels include `Individual Artwork Project`, `Group personalised product project`, `Bulk order / club-funded project` and `Not sure yet`. | Wishlist |
 
 Research notes:
@@ -310,7 +314,7 @@ Wishlist entries:
 | `2R-PROD-02` | none | Artwork Checking Workflow | Plan Project-linked artwork review states and evidence before production batching. | Wishlist |
 | `2R-PROD-03` | none | Dispatch And Delivery Defaults | Align dispatch workflow with Client/Project delivery address planning. | Wishlist |
 | `2R-PROD-04` | none | Commission Surface Planning | Place commission under the Client/Project/Order/Commerce structure with clear reporting boundaries. | Wishlist |
-| `2R-PROD-05` | `1R-A` planning dependency | Event-Window Commission Ladder Planning | Plan whether Event window offsets or fixed dates can drive commission tiers, such as higher commission for early sales and lower commission for late sales as the Event/Project close approaches. See `docs/modules/fund/01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md`. | Promoted to Phase 1 planning dependency; implementation not started. |
+| `2R-PROD-05` | `1R-A` / `1R-B` planning dependency | Event And Standalone Project Commission Ladder Planning | Event-linked Projects inherit the authoritative Event flat/ladder policy. Standalone Projects use a C1-managed standalone flat rate or ladder. Stepped policies use Project-close offsets or fixed dates and preserve assigned versions for aggregate Project-sales audit. See `docs/modules/fund/01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md`. | Architecture accepted; schema/UI/accounting implementation not started. |
 
 Research notes:
 
@@ -417,18 +421,20 @@ These are valuable but should not displace Phase 1 core architecture unless they
 
 ## 7. Immediate Control Note
 
-The current Phase 1 priority after the accepted 1Q-G availability baseline is:
+The current Phase 1 priority after accepted `1R-A`, `1R-B`, `1R-C` and Commerce Core
+foundation planning is:
 
 ```text
-1R-A - Store, Orders And Commerce Core Planning
+Review 1R-C1 - FUND Product Media/Input/Tax/Duplication Schema Implementation Planning
 ```
 
-Planning document:
+Planning documents:
 
 ```text
-docs/modules/fund/03-slice-planning/2026-07-08-fund-phase-1-slice-1r-a-store-orders-commerce-core-planning.md
+docs/modules/fund/03-slice-planning/2026-07-13-fund-phase-1-slice-1r-c1-product-media-input-tax-duplication-schema-implementation-planning.md
+docs/core/commerce/03-slice-planning/2026-07-13-isostack-commerce-core-slice-commerce-a1-schema-seller-profile-enums-implementation-planning.md
 ```
 
-Wishlist entries should feed into 1R-A only where they affect safe Store/Order design,
-snapshot boundaries, production/dispatch/commission readiness, or the minimum viable Store
-experience. They should otherwise remain parked for Phase 2 refinement.
+Promoted wishlist boundaries are now recorded in `1R-B`/`1R-C`. Remaining wishlist items
+should stay parked unless review shows that they block a safe FUND Store foundation or the
+generic Commerce Core contract.

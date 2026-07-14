@@ -1,8 +1,18 @@
 # FUND Roadmap And Slice Control
 
-Date: 2026-06-25
+Created: 2026-06-25
 
-Status: Active control document
+Last consolidated: 2026-07-14
+
+Status: Active authoritative control for the FUND lane
+
+Parent roadmap:
+
+`docs/00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md`
+
+Sibling Commerce Core roadmap:
+
+`docs/core/commerce/00-roadmap-control/2026-07-13-commerce-core-roadmap-and-slice-control.md`
 
 Purpose:
 
@@ -12,7 +22,237 @@ Provide one current roadmap and slice-control view so future FUND work does not 
 
 This document is planning/documentation only. It does not implement code, change Prisma schema, create migrations, run deployment commands or start new feature work.
 
-## 1. Current Released Baseline
+This FUND roadmap controls the FUND lane only. It records Commerce dependencies but does not
+own or sequence Commerce Core implementation.
+
+## 1. Control Authority And Reading Rule
+
+Use this document as the authoritative control for FUND slice selection, planning status,
+implementation gates and handoff. Use the root roadmap to choose between sibling FUND and
+Commerce work:
+
+`docs/00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md`
+
+Authority order:
+
+1. root roadmap for cross-lane selection and dependencies;
+2. this roadmap for FUND sequence, current status and permitted next action;
+3. bounded `03-slice-planning` documents for an individual slice contract;
+4. `04-implementation-confirmations` for implementation evidence;
+5. `05-review-and-test` for review, test and deployment gates.
+
+Only sections 1 through 10 of this document are current control. Appendix A is a preserved
+historical ledger. Labels such as “current”, “active” or “next” inside Appendix A describe
+the position when that material was written and must not select new work.
+
+## 2. Current Control Snapshot
+
+Current application repository state:
+
+```text
+working branch: dev
+HEAD/local main/local dev/local staging: ea4e619
+origin/main/origin/dev/origin/staging: ea4e619
+```
+
+Local uncommitted schema work:
+
+- `COMMERCE-A1`: implemented and reviewed as passed;
+- FUND `1R-C1`: implemented and reviewed as passed;
+- FUND `1R-C2`: implemented and reviewed as passed;
+- all three have been validated on the retained disposable Neon test database;
+- none is claimed as committed, promoted or deployed to shared development, staging or
+  production by these records.
+
+Disposable test database state after `1R-C2` review:
+
+```text
+applied migrations: 130
+failed migrations: 0
+residual 1R-C2 test rows: 0
+```
+
+`TEST_DATABASE_URL` remains local and uncommitted. Every destructive test must first prove
+it is distinct from `DATABASE_URL`. Prefer the direct Neon endpoint for migration resets so
+session advisory locks are not returned to a pool.
+
+## 3. Current Slice Status
+
+| Slice | Lane | Status | Controlling outcome |
+| --- | --- | --- | --- |
+| `1R-A` | FUND architecture | Accepted | Store/Commerce ownership and business decisions established |
+| `1R-B` | FUND/Commerce boundary | Accepted | Generic Commerce and typed FUND ownership separated |
+| `COMMERCE-A1` | Commerce | Implemented; review passed locally | Commerce namespace, Seller Profile and stable enums only |
+| `1R-C` | FUND architecture | Accepted | FUND schema foundation split into `1R-C1` through `1R-C6` |
+| `1R-C1` | FUND | Implemented; review passed locally | Product media/input/tax/copy-provenance schema foundation |
+| `1R-C2` | FUND | Implemented; review passed locally | Client branding, Project delivery and Event media foundation; Project Intake alignment dependency preserved |
+| `1R-C3` | FUND | Next candidate; not started | Project Store and Store Product schema foundation planning |
+| `1R-C4`–`1R-C5` | FUND | Future | Production-asset and commission foundations |
+| `COMMERCE-A2` | Commerce | Future; not authorised | Checkout, Order and Order-line schema foundation |
+| `1R-C6` | FUND | Blocked | Waits for accepted/implemented Commerce Order and line foundation |
+
+`1R-C1` and `1R-C2` must not be rerun as pending work. No next slice is authorised merely
+because the preceding lifecycle completed.
+
+## 4. Current Sequence And Dependency Control
+
+```text
+COMMERCE-A1 (complete locally)
+
+FUND 1R-C1 (complete locally)
+  -> 1R-C2 (complete locally)
+  -> 1R-C3 (next candidate planning)
+  -> 1R-C4
+  -> 1R-C5
+
+COMMERCE-A2/A3 foundations
+  -> FUND 1R-C6 typed Commerce context
+```
+
+Rules:
+
+- FUND may proceed through `1R-C2` to `1R-C5` without Commerce Orders;
+- `COMMERCE-A2` is not automatically next and remains controlled by the Commerce roadmap;
+- `1R-C6` cannot begin until Commerce Order/line ownership and cross-schema relations are
+  accepted and implemented;
+- never implement two slices merely because their planning can be discussed together;
+- finish one slice lifecycle before selecting another unless the user explicitly changes
+  the control decision.
+
+## 5. Mandatory Slice Lifecycle
+
+Every executable FUND slice follows:
+
+```text
+03-slice-planning acceptance
+-> bounded implementation in the owning repository
+-> 04-implementation-confirmations
+-> 05-review-and-test
+-> roadmap status update
+-> stop before the next slice
+```
+
+Planning must define goal, included models/behavior, exclusions, migration/data policy,
+tenant boundary, verification evidence, failure/rollback handling and the single handoff.
+
+Implementation confirmation must record actual files, actual checks, non-goals, database
+targets, residual risks and deployment status. It must not claim implementation that has
+not occurred.
+
+Review/test must independently verify the accepted boundary, fresh and existing-data
+migration where relevant, constraints/tenant isolation, regression safety, zero test
+residue and any shared-deployment gate.
+
+## 6. Ownership Boundary
+
+FUND owns:
+
+- Project Store and Store Product configuration;
+- Product inputs/media and Project Product snapshots;
+- Client branding, Project delivery and Event media;
+- production assets and immutable production context;
+- Event/standalone commission policy;
+- typed FUND extensions keyed to generic Commerce records.
+
+Commerce owns:
+
+- seller commercial profile;
+- checkout, Order and Order-line lifecycle;
+- money and tax snapshots;
+- payment, refund and pro-forma evidence;
+- provider-neutral audit/idempotency and later provider adapters.
+
+Commerce source references remain generic and opaque. FUND validates source identity and
+stores typed production/Project context. FUND must not create a substitute generic Order or
+payment model.
+
+## 7. Live Gates And Risk Register
+
+| Item | Status | Control |
+| --- | --- | --- |
+| A1/C1/C2 application changes | Local and uncommitted | Do not describe as promoted or shared-deployed |
+| Shared database deployment | Not performed | Use normal reviewed promotion separately |
+| MediaFile tenant relation | Database limitation | Later write service must validate MediaFile ownership before enabling writes |
+| Legacy Prisma drift | Known, unrelated | LMSPro enum/default/name drift is outside `1R-C1`; do not repair incidentally |
+| Product tax classification | Safely `UNCLASSIFIED` | Store readiness must block until explicitly classified |
+| Project Product tax propagation | Not implemented | Later accepted service must copy reviewed Product classification |
+| First-Project onboarding alignment | Required before Store-ready intake approval | Add typed organisation address and atomic Client/member/User/Project/delivery-profile initialization in a separate reviewed slice |
+| `COMMERCE-A2` decisions | Open | Resolve checkout persistence, money type, tax rules and immutable arithmetic first |
+| FUND `1R-C6` | Blocked | Wait for Commerce Order/line foundation |
+
+## 8. Current Authoritative Evidence
+
+Architecture and planning:
+
+- `docs/modules/fund/03-slice-planning/2026-07-08-fund-phase-1-slice-1r-a-store-orders-commerce-core-planning.md`
+- `docs/modules/fund/03-slice-planning/2026-07-13-fund-phase-1-slice-1r-b-commerce-core-and-fund-store-schema-options-planning.md`
+- `docs/modules/fund/03-slice-planning/2026-07-13-fund-phase-1-slice-1r-c-fund-store-input-schema-foundation-planning.md`
+- `docs/modules/fund/03-slice-planning/2026-07-13-fund-phase-1-slice-1r-c1-product-media-input-tax-duplication-schema-implementation-planning.md`
+- `docs/modules/fund/03-slice-planning/2026-07-14-fund-phase-1-slice-1r-c2-client-branding-project-delivery-event-media-schema-implementation-planning.md`
+
+Completed `1R-C1` lifecycle:
+
+- `docs/modules/fund/04-implementation-confirmations/2026-07-13-phase-1-slice-1r-c1-product-media-input-tax-duplication-schema-implementation-confirmation.md`
+- `docs/modules/fund/05-review-and-test/2026-07-13-phase-1-slice-1r-c1-r1-product-media-input-tax-duplication-schema-review-and-test.md`
+
+Completed `1R-C2` lifecycle:
+
+- `docs/modules/fund/04-implementation-confirmations/2026-07-14-phase-1-slice-1r-c2-client-branding-project-delivery-event-media-schema-implementation-confirmation.md`
+- `docs/modules/fund/05-review-and-test/2026-07-14-phase-1-slice-1r-c2-r1-client-branding-project-delivery-event-media-schema-review-and-test.md`
+
+Sibling Commerce controls:
+
+- `docs/core/commerce/00-roadmap-control/2026-07-13-commerce-core-roadmap-and-slice-control.md`
+- `docs/core/commerce/02-triage/2026-07-13-isostack-commerce-core-schema-foundation-planning.md`
+
+## 9. Current Planning Handoff
+
+No implementation slice is currently authorised. `1R-C2` is complete through review/test.
+The next recommended FUND action, only after separate explicit instruction, is bounded
+`1R-C3` Project Store schema implementation planning. Planning does not authorise
+implementation.
+
+The Project Intake alignment exposed by `1R-C2` remains a separate required workflow slice
+before intake-created Projects may be treated as Store-ready. It must not be silently
+included in `1R-C3`.
+
+Current single prompt:
+
+```text
+Continue only FUND Phase 1 Slice 1R-C3 planning. Do not implement schema or application
+code and do not begin the Project Intake alignment, COMMERCE-A2 or another slice.
+
+Review the accepted 1R-C Project Store foundation against the implemented 1R-C1 and 1R-C2
+schema and the current Prisma schema. Create one bounded 1R-C3 schema implementation plan
+for FundProjectStore and FundProjectStoreProduct, including status/readiness separation,
+public identity, Project-date authority, Project Product ownership, media/configuration
+references, tenant relations, migration/backfill, deletion and disposable database tests.
+Preserve the generic Commerce boundary and exclude checkout, Orders, payments, uploads,
+production assets, commission and Project Intake alignment implementation.
+
+If acceptable, leave the new plan awaiting explicit review/acceptance and provide its
+single review prompt. Make no Prisma, migration, service, API or UI changes.
+```
+
+## 10. Roadmap Maintenance Rule
+
+After every planning acceptance, implementation confirmation or review/test outcome:
+
+1. update this current control first;
+2. update the root roadmap when lane status or cross-lane dependencies change;
+3. update the Commerce roadmap only when Commerce status/dependency statements change;
+4. verify that exactly one next candidate is named and that it is not falsely authorised;
+5. move superseded operational detail into Appendix A or another archive/triage record;
+6. ensure branch, commit, migration and deployment claims match repository evidence;
+7. run Markdown fence, path and `git diff --check` validation.
+
+## Appendix A. Historical Roadmap Ledger
+
+The remainder of this file is preserved for decision history only. It is non-authoritative
+for current branch state, current slice selection or implementation permission. Refer to
+sections 1 through 10 above for all current control decisions.
+
+### A.1 Historical Released Baseline
 
 The FUND Phase 1 baseline has moved beyond 1P-G-C-R1. The current released/live baseline is through the 1P-K2 Client dashboard route fix.
 
@@ -105,6 +345,44 @@ Release result:
   `03-slice-planning/2026-07-08-fund-phase-1-slice-1r-a-store-orders-commerce-core-planning.md`.
   This remains Phase 1 structural work rather than Phase 2 refinement because Store and
   Order data contracts must exist before later refinement/UAT polish can safely proceed.
+- 1R-A architecture and business decisions are accepted. 1R-B Commerce Core And FUND Store
+  Schema Options Planning is created at
+  `03-slice-planning/2026-07-13-fund-phase-1-slice-1r-b-commerce-core-and-fund-store-schema-options-planning.md`.
+  It keeps generic checkout/Order/payment ownership in a separate reusable Commerce Core
+  lane while FUND owns Project Store, Store Product and production context.
+- 1R-B planning is accepted. 1R-C FUND Store/Input Schema Foundation Planning is created at
+  `03-slice-planning/2026-07-13-fund-phase-1-slice-1r-c-fund-store-input-schema-foundation-planning.md`.
+- Separate platform planning for the proposed `commerce` database schema is created at
+  `docs/core/commerce/02-triage/2026-07-13-isostack-commerce-core-schema-foundation-planning.md`.
+- 1R-C and the separate Commerce Core schema-foundation plan are accepted as architecture
+  plans. Their first bounded implementation plans are created for review at
+  `03-slice-planning/2026-07-13-fund-phase-1-slice-1r-c1-product-media-input-tax-duplication-schema-implementation-planning.md`
+  and
+  `docs/core/commerce/03-slice-planning/2026-07-13-isostack-commerce-core-slice-commerce-a1-schema-seller-profile-enums-implementation-planning.md`.
+  Neither plan authorises schema or application implementation before its own acceptance.
+- COMMERCE-A1 planning is accepted and its bounded application-repository implementation is
+  completed and reviewed as passed: the `commerce` namespace, Seller Profile, four A1 enums,
+  migration and verification scripts are present. Static/generated-client review, fresh and
+  existing-schema disposable PostgreSQL migration, and rollback-only constraint smoke pass.
+  The dedicated Neon `TEST_DATABASE_URL` target is retained as disposable test
+  infrastructure for future accepted test plans; its URL remains local and uncommitted. No
+  shared development, staging or live deployment is claimed. Records are at
+  `docs/core/commerce/04-implementation-confirmations/2026-07-13-commerce-a1-schema-seller-profile-enums-implementation-confirmation.md`
+  and
+  `docs/core/commerce/05-review-and-test/2026-07-13-commerce-a1-schema-seller-profile-enums-review-and-test.md`.
+- FUND `1R-C1` is implemented and reviewed as passed. The Product media/input/tax/copy
+  provenance schema, migration and verifiers are complete; representative existing-data
+  upgrade, all-129-migration fresh reset, constraint/default smoke and zero-residue checks
+  passed on the retained disposable Neon test database. No shared deployment occurred.
+  Records are at
+  `04-implementation-confirmations/2026-07-13-phase-1-slice-1r-c1-product-media-input-tax-duplication-schema-implementation-confirmation.md`
+  and
+  `05-review-and-test/2026-07-13-phase-1-slice-1r-c1-r1-product-media-input-tax-duplication-schema-review-and-test.md`.
+- No next slice is currently authorised. `1R-C2` is the next candidate FUND planning slice;
+  `COMMERCE-A2` remains future work in its sibling lane.
+- Planning handoffs are recorded in `02-triage`, not implementation confirmations:
+  `02-triage/2026-07-13-phase-1-slice-1r-b-store-and-commerce-planning-handoff.md` and
+  `02-triage/2026-07-13-phase-1-slice-1r-c-and-commerce-a1-planning-handoff.md`.
 - Commission Ladder Planner input is captured at
   `01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md` and must be
   considered inside 1R-A because aggregate Project-sales commission calculation depends on
@@ -127,9 +405,9 @@ Release result:
   local `staging` and `origin/staging` are aligned at `ea4e619`.
 - Docs repo local `main` records the accepted 1Q-G-R1 browser PASS and staging promotion.
 
-## 2. Current Branch Landscape
+### A.2 Historical Branch Landscape
 
-### Release Branches
+#### Historical Release Branches
 
 ```text
 main
@@ -153,7 +431,7 @@ Use:
 - local `dev` is aligned with `origin/dev` at `7a7354a`.
 - If the app checkout is on `staging`, switch to `dev` before implementing 1Q-F.
 
-### Active FUND Working Branch
+#### Former FUND Working Branch
 
 ```text
 dev
@@ -163,10 +441,12 @@ Purpose:
 
 - FUND Product/Catalogue suitability 1Q work.
 - Local implementation and verification before staging/live promotion.
-- Current next slice: 1Q-F Catalogue-Centric Project Product Picker UI Remediation.
-- Follow-on readiness slice after 1Q-F passes: 1Q-G Availability Review And Store/Commerce Readiness Check.
+- At that historical point, the next slice was 1Q-F Catalogue-Centric Project Product
+  Picker UI Remediation.
+- Its historical follow-on was 1Q-G Availability Review And Store/Commerce Readiness
+  Check.
 
-### Historical FUND Feature Branch
+#### Historical FUND Feature Branch
 
 ```text
 feature/fund-phase-1-c2-project-access
@@ -179,7 +459,7 @@ Purpose:
 
 This branch should not absorb unrelated SeasonPro remediation unless intentionally cherry-picked.
 
-### Active SeasonPro Remediation Branch
+#### Former SeasonPro Remediation Branch
 
 ```text
 feature/seasonpro-remediation
@@ -191,7 +471,7 @@ Purpose:
 
 This branch exists so SeasonPro remediation can move independently of future FUND C2 development.
 
-### Retired / Historical FUND Feature Branch
+#### Retired / Historical FUND Feature Branch
 
 ```text
 feature/fund-phase-1-products-catalogues
@@ -208,7 +488,7 @@ Recommendation:
 Do not continue new work on this branch.
 ```
 
-## 3. Completed C1 Admin Foundation Slices
+### A.3 Completed C1 Admin Foundation Slices
 
 The completed C1 foundation is documented across planning and implementation confirmation files in:
 
@@ -217,7 +497,7 @@ isodocs/docs/modules/fund/Planning/
 isodocs/docs/modules/fund/implementation/
 ```
 
-### Completed Slice Summary
+#### Completed Slice Summary
 
 | Slice | Area | Status |
 | --- | --- | --- |
@@ -277,7 +557,7 @@ isodocs/docs/modules/fund/implementation/
 | 1P-I | C1 Production, Dispatch And Commission Workflow Planning | Planning note created |
 | 1P-J | SeasonPro Club To FUND Project Initiation Planning | Future planning placeholder created |
 
-### C1 Admin Surfaces Released
+#### C1 Admin Surfaces Released
 
 Released C1/admin routes include:
 
@@ -302,7 +582,7 @@ Released C1/admin domains include:
 - Activation readiness basics.
 - FUND module/product allocation foundation.
 
-## 4. Current Remediation Lane
+### A.4 Historical Remediation Lane
 
 Source triage document:
 
@@ -316,14 +596,14 @@ Source issue export:
 isodocs/docs/modules/fund/01-cr-inputs/change-request-cmqt61xmf000612xt5ifl1mdn-2026-06-25.md
 ```
 
-### Immediate Remediation
+#### Historical Immediate Remediation
 
 These have been handled at code/static-check level and should receive an authenticated browser spot-check before staging promotion:
 
 1. Issue #46 - Project close date after linked Event close date accepted.
 2. Issue #50 - Issue Manager module filtering/server render error.
 
-### Near-Term UI/UX Remediation
+#### Historical Near-Term UI/UX Remediation
 
 These were included because scope remained small:
 
@@ -331,7 +611,7 @@ These were included because scope remained small:
 2. Issue #44 - Product breadcrumb navigation.
 3. Issue #45 - Sidebar icons repeated; update UI guidance.
 
-### 1P-R1A UI Consistency Addendum
+#### 1P-R1A UI Consistency Addendum
 
 An iterative UI consistency addendum was documented retrospectively as:
 
@@ -361,7 +641,7 @@ Recommended remediation principle:
 Fix the C1 foundation in place before exposing dependent behaviour to C2 organisers.
 ```
 
-### C2 Access Lane Status
+#### C2 Access Lane Status
 
 Current branch state is controlled by section 2. Historical branch state at the earlier C2 planning point was:
 
@@ -395,7 +675,7 @@ Staging migration note:
 - 1P-D staging alignment has been pushed; confirm in Render/Neon that deployment completed and `20260625143000_add_fund_project_participants` has applied before authenticated smoke testing.
 - Lightweight staging health check after alignment returned HTTP 200 for `/api/health`.
 
-### Live Issue Status Register
+#### Historical Issue Status Register
 
 This table is the current compact issue-status view for planning. It should be updated after remediation, review or architecture-planning slices so future planning does not require rereading every triage note.
 
@@ -415,7 +695,7 @@ Planning rule:
 For every new FUND planning slice, read this status register first. Use the detailed triage documents only when the register points to an issue or decision needing background evidence.
 ```
 
-### CR Handling Rule
+#### CR Handling Rule
 
 Change requests are treated as development inputs, not direct implementation instructions.
 
@@ -440,7 +720,7 @@ For the current CR batch:
   -> 03-slice-planning/2026-06-25-fund-phase-1-slice-1p-r1-c1-admin-immediate-remediation.md
 ```
 
-## 5. Current C2 Access-Model Planning Lane
+### A.5 Historical C2 Access-Model Planning Lane
 
 Current C2 planning documents:
 
@@ -474,7 +754,7 @@ Current C2 recommendation:
 - Likely long-term direction to evaluate: C2 Client/account owns Projects, C2 users belong to that Client/account, and `FundProjectParticipant` remains for named contacts, overrides, exceptions and transition access.
 - 1P-F is the active architecture planning slice for the C2 Client/account organisation model.
 
-### C2 Organisation / Account Scope Clarification
+#### C2 Organisation / Account Scope Clarification
 
 Post-1P-D clarification:
 
@@ -550,7 +830,7 @@ Control rule:
 Further C2 dashboard expansion must pause before write-capable or commercially meaningful surfaces until this is resolved.
 ```
 
-### AMOW Founding-Tenant Priority
+#### AMOW Founding-Tenant Priority
 
 The immediate AMOW presentation priority is the C1 organisational dashboard, not expansion of the interim C2 read-only dashboard.
 
@@ -579,7 +859,7 @@ Control decision:
 - C1 Client management UI can proceed without Client user provisioning because organisation/account management and user/member management are separate concerns.
 - A future planning slice is required for Client organisation details, Client users/members, roles and notification boundaries.
 
-### Project Intake / Client Onboarding Clarification
+#### Project Intake / Client Onboarding Clarification
 
 Future FUND Project creation has three important lanes:
 
@@ -632,11 +912,11 @@ Control rules:
 - Notification/invitation sending is deferred and must follow a controlled SeasonPro-style communications pattern.
 - 1P-F-E Client UI remains C1 admin only and does not implement Project Intake forms, Client users, invitations or automatic Project creation.
 
-## 6. Architecture Planning Required Before Store / Commerce
+### A.6 Historical Architecture Planning Before Store / Commerce
 
 The first remediation CR surfaced two architecture questions that should be resolved before Store, Order, Commerce or production workflow work.
 
-### Event / Catalogue / Product Availability
+#### Event / Catalogue / Product Availability
 
 Source issue:
 
@@ -673,7 +953,7 @@ Accepted conceptual direction:
 - Store/Orders/Commerce must not be implemented until Product eligibility for a Project is explicit and auditable.
 - Rich Product media, image galleries, option definitions and option-image mapping are important but belong to Product/Catalogue refinement planning unless they become Store MVP blockers.
 
-### Product Workflow Suitability
+#### Product Workflow Suitability
 
 Source issue:
 
@@ -701,7 +981,7 @@ Planning needed before Store/Commerce/production:
 - Whether Project Product chooses final workflow.
 - How suitability affects production export and lifecycle.
 
-### C1 Production / Dispatch / Commission Workflow
+#### C1 Production / Dispatch / Commission Workflow
 
 Source clarification:
 
@@ -725,7 +1005,7 @@ Control rule:
 Store, Orders and Commerce must preserve the C1 production/admin workflow and future Client dashboard engagement surface. They must not be designed as isolated checkout/order features.
 ```
 
-## 7. Commerce Core As Separate Future IsoStack Lane
+### A.7 Commerce Core Separation Decision
 
 Commerce Core should be treated as a reusable IsoStack platform lane, not a FUND-only implementation detail.
 
@@ -741,7 +1021,7 @@ Future Commerce Core lane should cover:
 
 FUND Store planning should depend on, or at least align with, this future platform lane.
 
-## 8. SeasonPro Remediation As Separate Branch / Lane
+### A.8 SeasonPro Remediation Branch/Lane History
 
 SeasonPro/LMSPro fixes should use:
 
@@ -765,7 +1045,7 @@ Recommended rule:
 SeasonPro fixes start in the SeasonPro remediation lane unless the fix is genuinely FUND-dependent.
 ```
 
-## 9. Deferred Items
+### A.9 Historical Deferred Items
 
 Deferred until explicitly planned:
 
@@ -798,7 +1078,7 @@ Deferred until explicitly planned:
 - Lifecycle transition engine.
 - Lifecycle tables/templates.
 
-## 10. Current Do Not Build Yet List
+### A.10 Historical Do-Not-Build List
 
 Until explicit future slices are accepted, do not build:
 
@@ -822,9 +1102,9 @@ Until explicit future slices are accepted, do not build:
 - Product marketplace/sharing.
 - Any schema migration for the above without a planning slice first.
 
-## 11. Recommended Next 3-5 Slices
+### A.11 Superseded Slice Recommendations
 
-### Next 1 - C1 Admin Immediate Remediation
+#### Historical Next 1 - C1 Admin Immediate Remediation
 
 Suggested slice:
 
@@ -862,7 +1142,7 @@ Branch:
 feature/fund-phase-1-c2-project-access
 ```
 
-### Next 2 - C2 Read-Only Organiser Dashboard UI
+#### Historical Next 2 - C2 Read-Only Organiser Dashboard UI
 
 Suggested slice:
 
@@ -894,7 +1174,7 @@ Pre-implementation note:
 Confirm staging has applied 20260625143000_add_fund_project_participants before authenticated staging testing.
 ```
 
-### Next 3 - C1 Client Management Foundation For AMOW
+#### Historical Next 3 - C1 Client Management Foundation For AMOW
 
 Suggested slice:
 
@@ -923,7 +1203,7 @@ Planning document:
 isodocs/docs/modules/fund/03-slice-planning/2026-06-25-fund-phase-1-slice-1p-f-a-c1-client-management-foundation-planning.md
 ```
 
-### Next 4 - C1 Client / Account Schema Options
+#### Historical Next 4 - C1 Client / Account Schema Options
 
 Suggested slice:
 
@@ -970,7 +1250,7 @@ Confirmation document:
 isodocs/docs/modules/fund/04-implementation-confirmations/2026-06-25-phase-1-slice-1p-f-c-c1-client-management-schema-confirmation.md
 ```
 
-### Next 5 - C1 Client Management API/Services
+#### Historical Next 5 - C1 Client Management API/Services
 
 Suggested slice:
 
@@ -1005,7 +1285,7 @@ Confirmation document:
 isodocs/docs/modules/fund/04-implementation-confirmations/2026-06-25-phase-1-slice-1p-f-d-c1-client-management-api-services-confirmation.md
 ```
 
-### Next 6 - C1 Client Management UI
+#### Historical Next 6 - C1 Client Management UI
 
 Suggested slice:
 
@@ -1046,7 +1326,7 @@ Review document:
 isodocs/docs/modules/fund/05-review-and-test/2026-06-25-phase-1-slice-1p-f-e-r1-c1-client-management-ui-review.md
 ```
 
-### Next 7 - Project Client Selector And Linkage
+#### Historical Next 7 - Project Client Selector And Linkage
 
 Suggested slice:
 
@@ -1098,7 +1378,7 @@ Alignment recommendation:
 1P-H-A/1P-H-B are committed and aligned to dev/staging at `536c947`. Authenticated staging smoke testing passed.
 ```
 
-### Next 8 - Project Intake / Client Onboarding Planning
+#### Historical Next 8 - Project Intake / Client Onboarding Planning
 
 Suggested slice:
 
@@ -1186,7 +1466,7 @@ Deferred later lane:
 1P-K0 - Client-Owned Project Lifecycle And Dashboard Management Planning
 ```
 
-### Next 9 - SeasonPro Club To FUND Project Initiation Planning
+#### Historical Next 9 - SeasonPro Club To FUND Project Initiation Planning
 
 Suggested slice:
 
@@ -1218,7 +1498,7 @@ Planning document:
 isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-j-seasonpro-club-to-fund-project-initiation-planning.md
 ```
 
-### Next 10 - C1 Production / Dispatch / Commission Workflow Planning
+#### Historical Next 10 - C1 Production / Dispatch / Commission Workflow Planning
 
 Suggested slice:
 
@@ -1248,7 +1528,7 @@ Planning document:
 isodocs/docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-i-c1-production-dispatch-commission-workflow-planning.md
 ```
 
-### Next 11 - Event / Catalogue / Product Availability Planning
+#### Historical Next 11 - Event / Catalogue / Product Availability Planning
 
 Suggested slice:
 
@@ -1323,7 +1603,7 @@ Duplication/copy boundary:
 - Product/Catalogue duplication policy belongs to refinement planning unless Store readiness makes it a blocker.
 - per-Catalogue pricing, commission and display-copy override policy is future commercial-terms work tracked in the Phase 2 wishlist, not part of 1Q-F.
 
-### Next 12 - Store, Orders And Commerce Core Planning
+#### Historical Next 12 - Store, Orders And Commerce Core Planning
 
 Suggested slice:
 
@@ -1350,6 +1630,21 @@ Planning document:
 isodocs/docs/modules/fund/03-slice-planning/2026-07-08-fund-phase-1-slice-1r-a-store-orders-commerce-core-planning.md
 ```
 
+Schema-options follow-on created for review:
+
+```text
+isodocs/docs/modules/fund/03-slice-planning/2026-07-13-fund-phase-1-slice-1r-b-commerce-core-and-fund-store-schema-options-planning.md
+```
+
+Accepted follow-on planning created from 1R-B:
+
+```text
+isodocs/docs/modules/fund/03-slice-planning/2026-07-13-fund-phase-1-slice-1r-c-fund-store-input-schema-foundation-planning.md
+isodocs/docs/core/commerce/02-triage/2026-07-13-isostack-commerce-core-schema-foundation-planning.md
+isodocs/docs/modules/fund/03-slice-planning/2026-07-13-fund-phase-1-slice-1r-c1-product-media-input-tax-duplication-schema-implementation-planning.md
+isodocs/docs/core/commerce/03-slice-planning/2026-07-13-isostack-commerce-core-slice-commerce-a1-schema-seller-profile-enums-implementation-planning.md
+```
+
 Commission Ladder Planner context:
 
 ```text
@@ -1360,7 +1655,19 @@ The previous C2 dashboard foundation-expansion note remains conceptually useful,
 not the next active `1R` lane because K2 has already supplied the first authenticated C2
 Client dashboard foundation and Store/Orders/Commerce now blocks meaningful expansion.
 
-## 12. Prompt To Use In A Fresh Chat
+### A.12 Superseded 1R-C1 Completion Prompt
+
+```text
+FUND Phase 1 Slice 1R-C1 is complete through implementation confirmation and review/test.
+Do not rerun 1R-C1 and do not begin 1R-C2, COMMERCE-A2 or another slice without a separate
+explicit instruction. Read the FUND and root roadmaps before selecting the next bounded
+planning task.
+```
+
+### A.13 Superseded Historical Resume Prompt
+
+The prompt below predates completion of the 1Q sequence and Commerce A1. It is retained only
+as historical context and must not be used to select current work.
 
 ```text
 We are working on IsoStack FUND.
