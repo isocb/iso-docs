@@ -74,6 +74,22 @@ Cross-lane references remain generic from Commerce and typed from FUND.
 
 ## 5. Current Lane Status
 
+### 2026-07-14 Development Promotion Checkpoint
+
+Application `dev` is aligned with `origin/dev` at `fd7376b`; all 139 migrations are applied
+to the Neon development database. Disposable FUND test rows were cleared only after an
+R3-D empty-baseline guard stopped migration and the user explicitly authorised their
+removal. LMSPro/public row counts were unchanged, all Commerce A1-A4 and FUND C1-C6
+contract verifiers passed, and application staging/main remained at `ea4e619`.
+
+Authoritative deployment evidence:
+
+`docs/00-roadmap-control/2026-07-14-fund-commerce-dev-promotion-and-migration-confirmation.md`
+
+Any older statement below saying these slices remain unpushed or undeployed to the shared
+development database is superseded by this checkpoint. Staging and production remain
+undeployed.
+
 ### Commerce Core
 
 - Commerce schema foundation architecture: accepted.

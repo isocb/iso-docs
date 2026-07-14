@@ -143,6 +143,12 @@ Current result:
 
 ## 8. Current Next Step
 
+Development promotion checkpoint: application `dev` is aligned to `origin/dev` at
+`fd7376b`, and the Neon development database reports all 139 migrations applied. Commerce
+A1-A4 schema contracts and A5 service/static checks pass; staging and production remain
+untouched. See
+`docs/00-roadmap-control/2026-07-14-fund-commerce-dev-promotion-and-migration-confirmation.md`.
+
 `COMMERCE-A1` through `COMMERCE-A4` are complete through review/test. The accepted generic
 Order/line and same-tenant relation foundation supported FUND `1R-C6 - FUND Commerce
 Context Foundation`, which is implemented/reviewed at local application commit `9947669`.

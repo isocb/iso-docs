@@ -127,6 +127,16 @@ implementation is authorised merely because the preceding lifecycle completed.
 
 ## 4. Current Sequence And Dependency Control
 
+Development promotion checkpoint: application `dev` is aligned to `origin/dev` at
+`fd7376b`, and all 139 migrations are applied to Neon development. The user authorised
+removal of disposable FUND test rows after the R3-D empty-baseline guard stopped safely;
+no LMSPro/public data changed. Staging and production remain untouched. Authoritative
+evidence is recorded at
+`docs/00-roadmap-control/2026-07-14-fund-commerce-dev-promotion-and-migration-confirmation.md`.
+
+Older statements below describing C1-C6/R3-D as unpushed or undeployed to the development
+database are superseded by this checkpoint.
+
 ```text
 COMMERCE-A1 (complete on dev)
   -> COMMERCE-A2 (implementation/review complete on `origin/dev` at `3206199`)

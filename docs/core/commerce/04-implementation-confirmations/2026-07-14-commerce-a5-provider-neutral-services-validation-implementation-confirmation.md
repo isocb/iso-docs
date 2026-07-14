@@ -3,8 +3,9 @@
 Date: 2026-07-14  
 Status: Implemented
 
-Implemented in application commit `fd7376b` on local `dev` (not deployed to shared
-development, staging or production).
+Implemented in application commit `fd7376b`; application `dev` is aligned to `origin/dev`.
+A5 has no migration. The complete 139-migration foundation through A4 is applied to Neon
+development; staging and production remain untouched.
 
 ## Delivered
 
