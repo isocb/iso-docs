@@ -98,29 +98,81 @@ residual A4 fixture rows: 0
 it is distinct from `DATABASE_URL`. Prefer the direct Neon endpoint for migration resets so
 session advisory locks are not returned to a pool.
 
+## 2.1 Authoritative Neon Development Migration State — 2026-07-14
+
+This subsection is the current migration authority for FUND planning. It supersedes older
+entries elsewhere in this roadmap that describe C1-C6, R3-D or Commerce A1-A4 as
+undeployed to the shared Neon development database.
+
+```text
+Application dev/origin-dev: fd7376b
+Repository migration inventory: 139
+Neon development applied migrations: 139
+Unresolved/failed migration attempts: 0
+FUND schema tables: 37
+FUND business rows: 0
+Commerce schema tables: 9
+Commerce business rows: 0
+Staging/main application refs: ea4e619 (unchanged)
+```
+
+The development database began this promotion at 127 applied migrations. The following 12
+were pending and are now applied in repository timestamp order:
+
+1. `20260713120000_commerce_a1_schema_seller_profile_enums`
+2. `20260713150000_fund_1r_c1_product_configuration_foundation`
+3. `20260714100000_fund_1r_c2_client_branding_delivery_event_media`
+4. `20260714150000_fund_1r_c3_project_store_store_product`
+5. `20260714200000_fund_1r_c4_production_asset_version`
+6. `20260714230000_fund_1r_c5_commission_policy_assignment`
+7. `20260714233000_fund_1p_g_r3_a_intake_automation_schema_policy`
+8. `20260714234500_fund_1p_g_r3_d_project_creation_contract`
+9. `20260714235500_commerce_a2_checkout_order_line_foundation`
+10. `20260714235900_fund_1r_c6_commerce_context_foundation`
+11. `20260715001000_commerce_a3_payment_refund_pro_forma_foundation`
+12. `20260716001000_commerce_a4_audit_idempotency_foundation`
+
+The first deployment stopped at the intentional R3-D empty-FUND-baseline guard. Aggregate
+diagnosis found only disposable FUND test data: 3 Clients, 12 Projects, 1 Client Member and
+2 Intake Submissions. Following explicit user authorisation, a dependency check confirmed
+that no non-FUND table referenced a FUND table; all 33 then-existing FUND tables were
+truncated together without `CASCADE`, and an exact check confirmed zero FUND rows. No
+public, LMSPro, Commerce, Pulse or migration-ledger business data was removed.
+
+The failed R3-D attempt was marked rolled back, then reapplied successfully before A2, C6,
+A3 and A4. Final `prisma migrate status` reported the database up to date. Public/LMSPro
+counts were identical before and after migration: 6 Organizations, 15 Users, 2 Seasons, 3
+Clubs and 5 Teams. Commerce A1-A4 and FUND C1-C6 schema-contract verifiers, repository
+critical-file verification and TypeScript checking all passed.
+
+No staging or production branch/database was migrated. Full evidence is recorded in:
+
+`docs/00-roadmap-control/2026-07-14-fund-commerce-dev-promotion-and-migration-confirmation.md`
+
 ## 3. Current Slice Status
 
 | Slice | Lane | Status | Controlling outcome |
 | --- | --- | --- | --- |
 | `1R-A` | FUND architecture | Accepted | Store/Commerce ownership and business decisions established |
 | `1R-B` | FUND/Commerce boundary | Accepted | Generic Commerce and typed FUND ownership separated |
-| `COMMERCE-A1` | Commerce | Implemented/reviewed; committed on dev | Commerce namespace, Seller Profile and stable enums only |
+| `COMMERCE-A1` | Commerce | Implemented/reviewed; applied to Neon development | Commerce namespace, Seller Profile and stable enums only |
 | `1R-C` | FUND architecture | Accepted | FUND schema foundation split into `1R-C1` through `1R-C6` |
-| `1R-C1` | FUND | Implemented/reviewed; committed on dev | Product media/input/tax/copy-provenance schema foundation |
-| `1R-C2` | FUND | Implemented/reviewed; committed on dev | Client branding, Project delivery and Event media foundation; Project Intake alignment dependency preserved |
-| `1R-C3` | FUND | Implemented/reviewed; committed on dev | Project Store, Store Product, immutable configuration version and Store Product input-owner schema foundation |
-| `1R-C4` | FUND | Implemented/reviewed; committed on dev | Production Asset Version Foundation; runtime media/actor validation and production authority remain later work |
-| `1R-C5` | FUND | Implemented/reviewed at `8b5f208`; included on `origin/dev` | Event-default and C1 Project-specific Commission Policy And Assignment Foundation |
+| `1R-C1` | FUND | Implemented/reviewed; applied to Neon development | Product media/input/tax/copy-provenance schema foundation |
+| `1R-C2` | FUND | Implemented/reviewed; applied to Neon development | Client branding, Project delivery and Event media foundation; Project Intake alignment dependency preserved |
+| `1R-C3` | FUND | Implemented/reviewed; applied to Neon development | Project Store, Store Product, immutable configuration version and Store Product input-owner schema foundation |
+| `1R-C4` | FUND | Implemented/reviewed; applied to Neon development | Production Asset Version Foundation; runtime media/actor validation and production authority remain later work |
+| `1R-C5` | FUND | Implemented/reviewed; applied to Neon development | Event-default and C1 Project-specific Commission Policy And Assignment Foundation |
 | `1P-G-R3` | FUND Project Intake | Parent alignment accepted; non-executable | Automated Event/standalone Project provisioning for new/existing Clients with C1 exception review |
-| `1P-G-R3-A` | FUND Project Intake | Implemented/reviewed at `4bb7dd9`; included on `origin/dev` | Explicit aligned-form opt-in/version/revision, typed Intake evidence and exact provisioning-result keys only |
+| `1P-G-R3-A` | FUND Project Intake | Implemented/reviewed; migration applied to Neon development | Explicit aligned-form opt-in/version/revision, typed Intake evidence and exact provisioning-result keys only |
 | `1P-G-R3-B` | FUND Project Intake | Implemented/reviewed at `04da074`; included on `origin/dev`; shared databases undeployed | Form-policy/protection/atomic-provisioning engine; invoked only through R3-C |
 | `1P-G-R3-C` | FUND Project Intake | Implemented/reviewed; committed/promoted to `origin/dev` at `234f115`; shared databases undeployed | Form capture, atomic confirmation invocation and protected exception-review integration |
-| `1P-G-R3-D` | FUND Project creation | Implemented/reviewed at `e1c2d9f`, included on `origin/dev` at `3206199`; shared databases undeployed | Generic C1/K2 Project creation now requires Client, typed Project type, exact organiser and atomic delivery profile |
-| `COMMERCE-A2` | Commerce | Implemented/reviewed and published on `origin/dev` at `3206199`; shared databases undeployed | Generic checkout header, immutable Order/line and same-tenant schema foundation |
-| `1R-C6` | FUND | Implemented/reviewed at local application `9947669`; not pushed or deployed | Typed FUND context keyed to generic Commerce Order/line records; no runtime behavior |
-| `1R-D` | FUND Store | Implemented/reviewed at local application `db85fcc`; not pushed or deployed | Internal C1 Store preparation, readiness, immutable configuration, lifecycle and Product-copy services; no UI/public Store/Commerce payment behavior |
-| `COMMERCE-A3` | Commerce | Implemented/reviewed at local application `4a90be1`; not pushed or deployed | Provider-neutral Payment, Refund and Pro-forma schema evidence; no runtime behavior |
-| `COMMERCE-A4` | Commerce | Implemented/reviewed at local application `5b69920`; not pushed or deployed | Provider-neutral audit and idempotency evidence foundation; no runtime behavior |
+| `1P-G-R3-D` | FUND Project creation | Implemented/reviewed; migration applied to Neon development | Generic C1/K2 Project creation now requires Client, typed Project type, exact organiser and atomic delivery profile |
+| `COMMERCE-A2` | Commerce | Implemented/reviewed; applied to Neon development | Generic checkout header, immutable Order/line and same-tenant schema foundation |
+| `1R-C6` | FUND | Implemented/reviewed; application on `origin/dev` and migration applied to Neon development | Typed FUND context keyed to generic Commerce Order/line records; no runtime behavior |
+| `1R-D` | FUND Store | Implemented/reviewed; application on `origin/dev`; no migration | Internal C1 Store preparation, readiness, immutable configuration, lifecycle and Product-copy services; no UI/public Store/Commerce payment behavior |
+| `COMMERCE-A3` | Commerce | Implemented/reviewed; applied to Neon development | Provider-neutral Payment, Refund and Pro-forma schema evidence; no runtime behavior |
+| `COMMERCE-A4` | Commerce | Implemented/reviewed; applied to Neon development | Provider-neutral audit and idempotency evidence foundation; no runtime behavior |
+| `COMMERCE-A5` | Commerce | Implemented/reviewed; application on `origin/dev`; no migration | Provider-neutral validation, idempotency and audit service primitives |
 
 `1R-C1` through `1R-D` and `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D` must not be rerun as pending work. No next
 implementation is authorised merely because the preceding lifecycle completed.
