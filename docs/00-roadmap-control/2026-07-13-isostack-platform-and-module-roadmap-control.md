@@ -115,7 +115,7 @@ Cross-lane references remain generic from Commerce and typed from FUND.
   1R-C2, records the incomplete historic D1/D2 and K1-F-A/B review chain without inventing
   backdated evidence, and authorises no implementation by itself.
 - `1P-G-R3-A`: Project Intake Automation Schema And Form Policy Foundation planning is
-  created and awaiting separate review/acceptance; no schema or migration is authorised.
+  accepted for bounded implementation; no schema or migration implementation has started.
 - `1R-D`: remains reserved by accepted 1R-A architecture for Store Readiness And C1 Store
   Configuration API/Services; it is future and not authorised.
 - A separate all-source Project Creation Contract Alignment plan is still required because
@@ -133,7 +133,7 @@ COMMERCE-A2/A3 planning ───┘
 
 FUND 1R-C1 ─> 1R-C2 ─> 1R-C3 ─> 1R-C4 ─> 1R-C5 complete locally
 
-FUND 1P-G-R3 parent accepted ─> R3-A planning/review ─> separately controlled R3-A/B/C lifecycles
+FUND 1P-G-R3 parent accepted ─> R3-A accepted/not started ─> separately controlled R3-B/C lifecycles
 ```
 
 `1R-C1` and `COMMERCE-A1` are independent schema slices. Separate ownership does not permit
@@ -147,8 +147,8 @@ constraint suite passed on the retained disposable database with zero residue.
 
 The accepted parent family is `1P-G-R3 - Project Intake Automated Provisioning Alignment`.
 It is non-executable. The single active plan is now `1P-G-R3-A - Project Intake Automation
-Schema And Form Policy Foundation`, awaiting its own review/acceptance. R3-A, R3-B and R3-C
-each require their own complete lifecycle.
+Schema And Form Policy Foundation`, accepted for bounded implementation but not started.
+R3-A, R3-B and R3-C each require their own complete lifecycle.
 
 For clarity:
 

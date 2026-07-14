@@ -2,7 +2,7 @@
 
 Date: 2026-07-14
 
-Status: Parent alignment accepted / no implementation authorised / 1P-G-R3-A planning created
+Status: Parent alignment accepted / 1P-G-R3-A accepted for bounded implementation / no implementation started
 
 Parent controls:
 
@@ -72,8 +72,8 @@ Review outcome on 2026-07-14:
   exception reason separately distinguishes an automated exception from an intentionally
   manual form;
 - the first bounded child plan is `1P-G-R3-A - Project Intake Automation Schema And Form
-  Policy Foundation`; it remains awaiting separate review/acceptance and authorises no
-  implementation.
+  Policy Foundation`; it has completed separate review and is accepted for bounded
+  implementation, but no implementation has started.
 
 ## 2. Slice Name And Lifecycle
 
@@ -429,6 +429,7 @@ proposedClientLocality
 proposedClientRegion
 proposedClientPostalCode
 proposedClientCountryCode
+proposedProjectTypeCode
 ```
 
 Keep the existing `respondentName`, proposed Client contact fields and `rawPayload` for
@@ -437,7 +438,9 @@ or split historic names to invent typed values.
 
 For new public submissions, first name, last name, address line 1, locality, postal code and
 two-letter uppercase country code are required. Optional address lines and region remain
-nullable.
+nullable. `proposedProjectTypeCode` is the server-normalized trusted Project-type snapshot;
+it is derived from the fixed form policy or validated against the form's selectable set and
+is not read back from `rawPayload` during provisioning.
 
 ### 7.3 Provisioning and automated-decision evidence
 
@@ -520,6 +523,7 @@ Add only the supporting keys required to prove exact approved ownership:
 
 ```text
 FundClientMember(organizationId, id, clientId)
+FundProject(organizationId, id, clientId)
 FundProjectDeliveryProfile(organizationId, id, projectId)
 ```
 
@@ -527,6 +531,9 @@ Use them for exact same-tenant relations:
 
 ```text
 submission approved member
+  -> belongs to submission.approvedClientId
+
+submission approved Project
   -> belongs to submission.approvedClientId
 
 submission approved delivery profile
@@ -539,6 +546,10 @@ submission trusted initiating member
 Database checks should enforce the provisioning-version/completion shape and uppercase
 country-code shape when typed country data exists. Application validation remains
 responsible for complete address and email/phone semantics.
+
+The Project/Client pairing requirement applies to aligned provisioning contract version
+`1`. Historic clientless approval evidence keeps a null contract version and remains
+readable; the migration does not retrofit or invalidate it.
 
 No new Client-address model is included. The typed intake address is approval evidence and
 the delivery profile is the mutable live Project destination.
@@ -936,6 +947,7 @@ The plan is ready for implementation acceptance only when review confirms:
 - structured intake evidence is sufficient to create the initial delivery profile without
   parsing free text or JSON;
 - exact approved member/Client and delivery-profile/Project identities are tenant-safe;
+- the completed approved Project is proven to belong to the approved Client;
 - the provisioning result is atomic, idempotent and auditable;
 - existing Client-member User policy is reused rather than duplicated;
 - the later accepted Client/organiser/Project/delivery contract takes precedence over the
@@ -959,7 +971,7 @@ The initial safe rule is explicit: a new Client's confirmed organiser becomes it
 eligible submitting member and existing primary status is unchanged. Any alternative enters
 C1 exception review.
 
-## 17. Single Review Prompt
+## 17. Completed Parent Review Handoff
 
 ```text
 Review only FUND Phase 1 `1P-G-R3 - Project Intake Automated Provisioning Alignment` parent
@@ -988,7 +1000,8 @@ new onboarding/approval email, generic C1/K2 Project-creation remediation, Store
 production and commission behaviour. Record the separate all-source Project Creation
 Contract Alignment dependency without implementing it here.
 
-If acceptable, mark only the 1P-G-R3 parent accepted and create the bounded 1P-G-R3-A
+The completed parent review used the following final instruction: mark only the 1P-G-R3
+parent accepted and create the bounded 1P-G-R3-A
 Project Intake Automation Schema And Form Policy Foundation implementation plan. Leave
 R3-A awaiting separate review/acceptance. Make no Prisma, migration, service, API, route or
 UI changes.

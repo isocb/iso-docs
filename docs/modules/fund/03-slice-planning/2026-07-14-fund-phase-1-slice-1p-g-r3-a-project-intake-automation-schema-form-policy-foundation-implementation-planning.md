@@ -2,7 +2,7 @@
 
 Date: 2026-07-14
 
-Status: Planning created / awaiting explicit review and acceptance / no implementation authorised
+Status: Accepted for bounded implementation / no implementation started
 
 Parent alignment:
 
@@ -24,15 +24,29 @@ record one complete Client/member/Project/delivery provisioning result.
 This child does not automate confirmation or provision any operational record. It adds no
 service, API, route, form, email or UI behaviour.
 
+Review outcome on 2026-07-14:
+
+- accepted against the committed 133-migration C5 baseline at application commit `8b5f208`;
+- retained explicit aligned-form contract/scope/revision opt-in and zero legacy opt-in;
+- added a typed `proposedProjectTypeCode` submission snapshot so provisioning never has to
+  recover trusted Project type from `rawPayload`;
+- added the nullable `FundProject(organizationId, id, clientId)` supporting key so a
+  completed approved Project is proven to belong to its approved Client;
+- made approved member/Client, approved Project/Client and approved delivery/Project
+  identifier pairs explicit despite PostgreSQL `MATCH SIMPLE` nullable foreign-key rules;
+- resolved the incomplete-exception status contract rather than deferring it to
+  implementation;
+- no Prisma, migration, service, API, route, email or UI change was made by this review.
+
 ## 2. Entry Gate And Baseline
 
-The parent `1P-G-R3` alignment is accepted. This child remains unaccepted until its own
-review completes.
+The parent `1P-G-R3` alignment and this bounded R3-A plan are accepted. No implementation
+has started.
 
 Implementation must not start from an ambiguous working tree. The completed `1R-C5`
-schema/migration/review lifecycle must first be committed as the explicit application and
-documentation baseline. R3-A then follows the complete existing migration history and adds
-one migration after the current 133-migration C5 baseline.
+schema/migration/review lifecycle is committed as application baseline `8b5f208` and
+documentation baseline `8d98d65`. R3-A follows the complete existing migration history and
+adds one migration after the current 133-migration C5 baseline.
 
 Before implementation, confirm:
 
@@ -49,7 +63,7 @@ R3-A may change only:
 - bounded Fund-prefixed Project Intake enums;
 - additive fields and relations on `FundProjectIntakeForm` and
   `FundProjectIntakeSubmission`;
-- the two exact composite identity keys required on `FundClientMember` and
+- the three exact composite identity keys required on `FundClientMember`, `FundProject` and
   `FundProjectDeliveryProfile`;
 - reverse Prisma relations needed by those exact keys;
 - one bounded PostgreSQL migration;
@@ -147,14 +161,20 @@ proposedClientLocality
 proposedClientRegion
 proposedClientPostalCode
 proposedClientCountryCode @db.Char(2)
+proposedProjectTypeCode
 ```
 
 Existing `respondentName`, contact fields and `rawPayload` remain unchanged. The migration
 does not parse or split historic text/JSON.
 
-Checks enforce nonblank values when these text fields are present and an uppercase
-two-letter country code when country is present. Complete-address requirements for new
-aligned submissions remain application validation until a provisioning contract completes.
+Checks enforce nonblank values when these text fields are present, including Project type,
+and an uppercase two-letter country code when country is present. The typed Project type is
+server-normalized from a fixed form policy or validated against the selectable form policy;
+R3-B must not recover it from `rawPayload`.
+
+The fields remain nullable for historic submissions and for the additive migration. A
+completed version-1 provisioning result requires first name, last name, address line 1,
+locality, postal code, country code and Project type to be present and valid.
 
 ### 4.4 Submitted form-policy snapshot
 
@@ -197,18 +217,25 @@ Database checks enforce:
 - trusted initiating Client/member IDs are both null or both present;
 - provisioning contract version is null or `1`;
 - a completed version-1 result has `status = APPROVED`, approved Client, approved member,
-  approved Project, approved delivery profile, completion time and provisioning path;
+  approved Project, approved delivery profile, completion time, provisioning path, typed
+  required organiser/address/Project-type evidence and submitted form contract/revision;
+- a new approved member ID requires an approved Client ID, and a new approved delivery ID
+  requires an approved Project ID;
+- a version-1 result requires the approved Project/Client pair, while historic legacy
+  clientless approvals remain valid when `provisioningContractVersion` is null;
+- a version-1 Event result has `requestedEventId` and the same `approvedEventId`, while a
+  version-1 standalone result has `requestedStandalone = true` and no requested or approved
+  Event;
 - `AUTOMATED` completion has an automation policy version and evaluation time and no
   exception reason;
 - `C1_REVIEW` completion has C1 review actor/time evidence; it may retain an exception
   reason, while an intentionally manual review need not invent one;
-- an exception reason without completion cannot coexist with approved member/delivery
-  result or a completed provisioning contract;
+- an exception initially enters `IN_REVIEW`; without completion it may subsequently be
+  `IN_REVIEW`, `NEEDS_INFO`, `REJECTED`, `CANCELLED`, `SPAM` or `ARCHIVED`, retains its
+  reason, and cannot coexist with any approved Client/member/Project/Event/delivery result;
+- `SUBMITTED` remains available for an intentionally manual or legacy form awaiting C1
+  review, but is not the status of an automated exception;
 - automation versions, form versions and revisions are positive when present.
-
-The exact allowed pre-completion exception status is finalized in the migration review
-against the existing transition vocabulary. It must support the retained review queue
-without rewriting historic statuses and must not claim a completed operational result.
 
 ### 4.6 Exact tenant/owner relations
 
@@ -216,19 +243,31 @@ Add supporting unique keys:
 
 ```text
 FundClientMember(organizationId, id, clientId)
+FundProject(organizationId, id, clientId)
 FundProjectDeliveryProfile(organizationId, id, projectId)
 ```
 
 Add named exact relations so:
 
 - `approvedClientMemberId` belongs to `approvedClientId` in the same tenant;
+- `approvedProjectId` belongs to `approvedClientId` in the same tenant;
 - `approvedProjectDeliveryProfileId` belongs to `approvedProjectId` in the same tenant;
 - `trustedInitiatingClientMemberId` belongs to `trustedInitiatingClientId` in the same
   tenant.
 
-Use `onDelete: Restrict`/PostgreSQL `NO ACTION` for submission evidence pointing to Client,
-member, Project and delivery outcome records. Existing historic deletion contracts are not
-weakened. Add only the reverse Prisma relations necessary to validate/generate this schema.
+Replace the existing approved-Project relation fields with the exact nullable
+Project/Client composite relation; preserve its relation name and reverse evidence surface
+where feasible. Use `onDelete: Restrict`/PostgreSQL `NO ACTION` for submission evidence
+pointing to Client, member, Project and delivery outcome records. Existing historic deletion
+contracts are not weakened. Add only the reverse Prisma relations necessary to
+validate/generate this schema.
+
+Because PostgreSQL composite foreign keys use `MATCH SIMPLE`, checks must separately reject
+a new member without its Client, a new delivery profile without its Project, either half of
+the trusted initiating Client/member pair and a version-1 Project without its Client. The
+Project/Client pairing check is conditional on the new provisioning contract so historic
+clientless approvals remain valid. The foreign keys then prove exact ownership whenever the
+pair is present.
 
 R3-A cannot make `FundClientMember.userId` a same-tenant composite foreign key because the
 current User relation is platform-owned by ID. R3-B must retain explicit same-tenant User
@@ -258,7 +297,7 @@ Use one additive migration after the accepted C5 baseline:
 
 1. create the three Fund-prefixed enums;
 2. add nullable/defaulted form and submission columns;
-3. add the two supporting composite unique keys;
+3. add the three supporting composite unique keys;
 4. add named exact foreign keys;
 5. add conditional checks and indexes;
 6. verify preservation before committing.
@@ -287,18 +326,23 @@ Required evidence:
 - complete fresh replay through the new migration;
 - representative existing-data upgrade from the full 133-migration C5 baseline;
 - exact preservation of representative legacy ACTIVE/manual forms, confirmation-pending,
-  submitted, reviewed and historically approved submissions;
+  submitted, reviewed and historically approved submissions, including a historic
+  clientless approval;
 - zero aligned markers or provisioning inference after migration;
 - valid EVENT and STANDALONE aligned form shapes;
 - rejection of partial contract/revision/scope shapes, invalid scope/Event combinations,
   invalid fixed/selectable Project-type shapes and non-array type configuration;
 - valid typed evidence and rejection of lowercase/invalid country code and present-but-blank
-  typed fields;
-- valid exact same-tenant approved member/Client, delivery/Project and trusted member/Client
-  relations;
-- rejection of wrong-tenant, wrong-Client and wrong-Project exact relations;
+  typed fields, including Project type;
+- valid exact same-tenant approved member/Client, approved Project/Client, delivery/Project
+  and trusted member/Client relations;
+- rejection of new half-present pairs and wrong-tenant, wrong-Client or wrong-Project exact
+  relations, while preserving legacy clientless approval evidence outside contract version
+  `1`;
 - valid incomplete exception evidence, valid AUTOMATED completion and valid C1_REVIEW
   completion;
+- rejection of `SUBMITTED` as an automated exception, preservation of the exception reason
+  through accepted non-completion review statuses and rejection of partial approved results;
 - rejection of incomplete completion, invalid path/evaluation/review evidence and mixed
   trusted identity pairs;
 - restrictive deletion tests for referenced outcome rows;
@@ -335,38 +379,56 @@ Only after separate plan acceptance and successful implementation:
 No parent implementation-confirmation is created because `1P-G-R3` is a planning family,
 not an executable implementation unit.
 
-## 10. Acceptance Questions
+## 10. Acceptance Result
 
-No business question blocks review. Technical review must confirm:
+The review confirms:
 
-- explicit aligned contract/scope/revision markers are preferable to inferring automation
-  from legacy Boolean fields;
+- explicit aligned contract/scope/revision markers are required instead of inferring
+  automation from legacy Boolean fields;
 - the form revision snapshot is sufficient for R3-B to reject a changed offer at
-  confirmation;
+  confirmation, while typed requested Event/standalone and Project-type evidence records
+  the trusted outcome;
 - the two-path provisioning enum plus separate exception reason accurately represents
   automatic, intentional manual and exception-reviewed outcomes;
 - JSON Project-type configuration is acceptable as a form policy validated by services,
   with database shape checks but no invented Product/Project-type table;
-- the exact composite relations can be expressed by current Prisma multi-schema support;
-- no proposed check makes historic approved submissions falsely incomplete;
-- one additive zero-backfill migration is safe after C5.
+- current Prisma multi-schema relations can express the accepted exact composite keys,
+  supported by explicit pair-shape checks for nullable foreign keys;
+- all completion-only checks are conditional on version `1`, so historic approved
+  submissions remain valid and receive no inferred aligned evidence;
+- one additive zero-backfill migration is safe after the committed C5 baseline.
 
-## 11. Single Review Prompt
+No business or technical question blocks the bounded R3-A implementation.
+
+## 11. Single Bounded Implementation Prompt
 
 ```text
-Review only FUND Phase 1 Slice 1P-G-R3-A Project Intake Automation Schema And Form Policy
-Foundation Implementation Planning. Do not implement schema or application code and do not
-begin R3-B, R3-C, Store 1R-D, 1R-C6, COMMERCE-A2 or another slice.
+Continue only accepted FUND Phase 1 Slice 1P-G-R3-A. Do not begin R3-B, R3-C, Store 1R-D,
+1R-C6, COMMERCE-A2 or another slice.
 
-Verify the plan against the accepted 1P-G-R3 parent, current Prisma multi-schema model, the
-complete 133-migration C5 baseline and existing Project Intake historic data contracts.
-Resolve aligned form opt-in, EVENT/STANDALONE shape, Project-type configuration, form-policy
-revision snapshots, typed organiser/address evidence, automated/C1-review/exception
-evidence, exact member/Client and delivery/Project tenant keys, deletion, zero backfill,
-migration order, rollback and disposable-database validation.
+Starting from committed C5 application baseline 8b5f208 and its complete 133-migration
+history, implement only the accepted Project Intake Automation Schema And Form Policy
+Foundation in the current Prisma schema and one bounded migration. Add the three bounded
+Fund-prefixed enums; explicit aligned-form scope/contract/revision and Project-type policy;
+typed organiser/address/Project-type submission evidence; submitted form-policy snapshots;
+provisioning/review/exception evidence; the FundClientMember, FundProject and
+FundProjectDeliveryProfile exact composite keys; exact approved member/Client, approved
+Project/Client, approved delivery/Project and trusted initiating member/Client relations;
+and the accepted checks, indexes and deletion actions.
 
-Confirm that R3-A adds schema evidence only and creates or modifies no Client, User, member,
-Project, delivery profile, form behaviour, confirmation, moderation, service, API, route,
-email or UI. If acceptable, mark only R3-A accepted and give its single bounded
-implementation prompt. Make no Prisma, migration, service, API, route or UI changes.
+Preserve every existing form, submission, Client, User, member, Project and delivery-profile
+value. Opt no form into automation, infer no structured value from free text/rawPayload and
+create no operational row. Historic aligned/provisioning fields must remain null. Add no
+confirmation, moderation, provisioning, User/member, service, API, route, email or UI
+behaviour.
+
+Use only TEST_DATABASE_URL after proving it differs from DATABASE_URL. Complete a
+representative 133-to-134 existing-data migration, full fresh replay, every planned
+form/snapshot/typed-evidence/provisioning/exception/tenant/owner/deletion constraint,
+A1/C1/C2/C3/C4/C5 regressions and zero-residue cleanup. Do not modify shared development,
+staging or production databases.
+
+After successful validation, create separate R3-A implementation-confirmation and
+review/test records, update the FUND and root roadmaps and planning README, and stop. Do not
+start R3-B.
 ```

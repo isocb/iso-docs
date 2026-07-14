@@ -21,13 +21,13 @@ Current next slice:
 
 ```text
 1P-G-R3-A - Project Intake Automation Schema And Form Policy Foundation
-Planning awaiting explicit review/acceptance; no implementation authorised.
+Plan accepted for bounded implementation; no implementation started.
 ```
 
 `1R-C5` is implemented and reviewed as passed on the retained disposable database. Its
 application changes are committed locally at `8b5f208`, remain unpushed and are undeployed
 to shared databases. `1P-G-R3` is an accepted,
-non-executable parent. Its R3-A plan is created but not yet accepted; R3-B/R3-C, Store
+non-executable parent. Its R3-A plan is accepted but not yet implemented; R3-B/R3-C, Store
 `1R-D`, `1R-C6`, `COMMERCE-A2` and every other slice require a separate control decision.
 
 `1P-G-R3` uses the implemented `1P-G` intake workflow as its starting point, but the current
