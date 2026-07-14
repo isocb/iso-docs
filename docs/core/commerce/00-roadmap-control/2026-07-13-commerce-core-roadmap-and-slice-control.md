@@ -215,12 +215,15 @@ Review/test:
 
 `docs/core/commerce/05-review-and-test/2026-07-14-commerce-a5-provider-neutral-services-validation-review-and-test.md`
 
-`COMMERCE-A6 - Stripe Connect Tenant Payments` planning is created and awaiting explicit
-review/acceptance:
+`COMMERCE-A6 - Stripe Connect Tenant Payments` parent planning was reviewed and accepted on
+2026-07-14:
 
 `docs/core/commerce/03-slice-planning/2026-07-14-isostack-commerce-core-slice-commerce-a6-stripe-connect-tenant-payments-planning.md`
 
-The plan fixes tenant-owned connected accounts, direct charges, C1 merchant-of-record
-responsibility, tenant master-settings configuration, hosted onboarding and a four-child
-serial delivery. No A6 implementation is authorised. Review/acceptance of the parent plan
-is the single next action; only then may an A6-A implementation plan be created.
+The accepted plan fixes tenant-owned connected accounts, direct charges, C1
+merchant-of-record responsibility, tenant master-settings configuration, hosted onboarding
+and a four-child serial delivery. It also preserves subscription-billing isolation and
+requires tenants to enter no Stripe secret. No A6 implementation is authorised. Creation
+of the bounded `COMMERCE-A6-A - Stripe Connect Account And Event-Inbox Schema Foundation`
+implementation plan is the single next action; that plan must remain awaiting independent
+review before any schema change.

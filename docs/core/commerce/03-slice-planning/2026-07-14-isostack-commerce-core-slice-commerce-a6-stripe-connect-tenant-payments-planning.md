@@ -2,8 +2,9 @@
 
 Date: 2026-07-14
 
-Status: Awaiting explicit review and acceptance; no A6 schema, Stripe account, route,
-webhook or UI implementation is authorised by this document
+Status: Reviewed and accepted on 2026-07-14; authorises creation of the bounded A6-A
+implementation-planning document only; no A6 schema, Stripe account, route, webhook or UI
+implementation is authorised by this document
 
 Parent architecture:
 
@@ -33,6 +34,15 @@ Each selling `Organization` has at most one current Stripe connected-account con
 Historic disconnected/replaced connections remain retained because Payments may reference
 them. Connection evidence is tenant-owned and cannot be shared across Organizations.
 
+Provider-neutral `CommercePayment` remains the commercial evidence owner. For Stripe in
+the first pass, `providerCode = STRIPE`, `providerAccountReference` holds the retained
+`acct_...` connected-account reference, `externalCheckoutReference` holds the `cs_...`
+Checkout Session reference and `externalPaymentReference` holds the `pi_...` PaymentIntent
+reference. `externalSessionReference` remains unused/reserved. A6 must not make the generic
+Payment model dependent on a Stripe-only foreign key; exact tenant/account ownership is
+proved against the retained connection before every provider operation and recorded in A4
+audit evidence.
+
 ### 2.2 The C1 tenant is merchant of record
 
 The C1 tenant is already the accepted seller. A6 therefore uses Stripe Connect direct
@@ -48,6 +58,11 @@ Use Stripe-hosted Connect onboarding with a full Stripe Dashboard account config
 Stripe collecting requirements, Stripe collecting its fees and Stripe managing connected
 account loss risk where the tenant/country configuration supports it. This minimises KYC,
 PCI, dispute and payout functionality inside IsoStack.
+
+The intended account-controller contract is therefore full Dashboard access, Stripe as
+requirements collector, the connected account paying Stripe processing fees, Stripe
+responsible for connected-account losses and the card-payments capability requested. The
+chosen stable API representation must preserve that contract exactly.
 
 Do not start a new integration with Connect OAuth. Do not build custom KYC forms or store
 identity documents. Before A6-A implementation, confirm the stable Accounts API/controller
@@ -119,11 +134,16 @@ createdAt
 updatedAt
 ```
 
+The readiness snapshot also records the bounded card-payments capability state required by
+the pinned Stripe Accounts API, for example `UNREQUESTED | PENDING | ACTIVE | INACTIVE`.
+
 Contracts:
 
 - connected account ID is globally unique;
 - a partial unique index permits only one non-disconnected/current connection per tenant;
-- `READY` requires charges, payouts and details submitted;
+- `READY` requires active card payments, charges enabled, payouts enabled and details
+  submitted; the conservative payout requirement prevents new sales accumulating while a
+  tenant cannot receive funds;
 - checkout requires `READY` plus `enabledForCheckout=true`;
 - disable/disconnect never deletes a connection or commercial evidence;
 - safe requirement counts/codes may be stored, never Stripe KYC values/documents;
@@ -144,10 +164,10 @@ Core fields:
 
 ```text
 id
-organizationId?
-connectionId?
+organizationId
+connectionId
 providerEventId
-connectedAccountId?
+connectedAccountId
 eventType
 apiVersion?
 livemode
@@ -169,7 +189,9 @@ updatedAt
 Contracts:
 
 - provider event ID is unique;
-- connected-account events must resolve to the same exact tenant connection;
+- every persisted connected-account event must first resolve to the same exact retained
+  tenant connection; malformed or unknown-account deliveries create no unowned Commerce
+  inbox row;
 - no purchaser PII, card data or full webhook body is retained;
 - after signature verification, retain a payload hash and minimal safe envelope, then
   retrieve the canonical provider object under the connected account when processing;
@@ -187,7 +209,8 @@ API call, route or UI.
 ## 5. A6-B — tenant master payment settings and onboarding
 
 Add an Organisation settings tab at `/settings/payments`, visible to tenant OWNER and ADMIN
-for status. Only OWNER may connect, resume onboarding, enable/disable checkout or disconnect.
+for status. Only OWNER may connect, resume onboarding, enable/disable checkout or request a
+provider-supported disconnection.
 Platform administrators do not mutate a tenant connection unless using an existing,
 explicitly audited impersonation/support path.
 
@@ -201,7 +224,8 @@ The page shows:
 - Ready but disabled — `Enable online payments`;
 - Ready and enabled — charges/payouts ready, last synchronized time and Stripe Dashboard
   link;
-- Disconnected — retained-history explanation and new connection action.
+- Disconnected — retained-history explanation and a new connection action when the chosen
+  Stripe account contract permits it.
 
 Never render or accept secret keys, webhook secrets, access/refresh tokens, KYC fields or
 bank/card data. Payment methods, payouts, disputes, statement descriptors and bank accounts
@@ -216,7 +240,11 @@ remain managed in Stripe Dashboard in the first pass.
 - returning from Stripe triggers a server-side account sync; it does not itself prove
   readiness;
 - `account.updated` and deauthorization events remain authoritative for later state changes;
-- disconnect disables new checkout but never alters historic Payments or Orders;
+- local disable is always available and blocks new checkout immediately;
+- provider disconnection/removal must use only the operation supported by the chosen stable
+  full-Dashboard account contract; A6 must not call account deletion for a live account for
+  which Stripe is responsible for losses, and inability to disconnect never prevents local
+  checkout disablement;
 - every configuration transition emits an A4 Commerce audit event and core tenant audit
   evidence without secrets.
 
@@ -249,7 +277,9 @@ charges are created under the tenant connected account using the server-side
 - metadata contains opaque tenant, Order, Payment and Checkout IDs only;
 - success/cancel URLs are server-generated and allowlisted;
 - Stripe request idempotency derives from the A4 operation record;
-- store safe Checkout Session and PaymentIntent references on Commerce Payment;
+- store the connected account in `providerAccountReference`, Checkout Session in
+  `externalCheckoutReference` and PaymentIntent in `externalPaymentReference`; leave
+  `externalSessionReference` null/reserved in the first pass;
 - never store the Checkout URL, client secret, payment method or card details;
 - use no application fee, destination transfer or commission split.
 
@@ -282,7 +312,9 @@ connected-account context. Under row/advisory locks and A4 idempotency:
 - reconcile Checkout completion, expiry and asynchronous payment outcomes;
 - transition Commerce Payment using A5 rules;
 - synchronize refunds created either by an internal future service or directly in the
-  tenant Stripe Dashboard;
+  tenant Stripe Dashboard; a provider-originated refund creates tenant-scoped
+  `CommerceRefund` evidence and advances it through the accepted A5 lifecycle rather than
+  bypassing refund state constraints;
 - aggregate completed refunds and update Payment status atomically;
 - emit append-only audit events and retain provider request/event IDs;
 - retry transient failures with bounded attempts; quarantine permanent tenant/object/
@@ -350,34 +382,62 @@ No real payment, refund, payout or account disconnection is permitted in automat
 - Stripe idempotent requests:
   `https://docs.stripe.com/api/idempotent_requests`
 
-## 11. Review gate
+## 11. Review and acceptance outcome
 
-Review and accept only this COMMERCE-A6 parent plan. Confirm the Connect direct-charge
-seller model, tenant master-settings boundary, four-child delivery split, secrets policy,
-hosted onboarding, webhook authority and explicit exclusions. Do not implement schema,
-Stripe calls, routes, webhooks or UI during review. If accepted, create only the bounded
-COMMERCE-A6-A schema implementation plan and stop before implementation.
+Independent review on 2026-07-14 confirmed:
 
-## 12. Single review prompt
+- completed Commerce A1-A5 already owns the generic seller, Order, line, payment, refund,
+  Pro-Forma, idempotency and audit contracts required by A6;
+- completed FUND C1-C6 remains a typed consumer and gains no Stripe ownership or commission
+  split;
+- direct charges, full Stripe Dashboard access and Stripe-collected fees/requirements/loss
+  responsibility align with the accepted C1-as-seller model;
+- `Organization.stripeCustomerId` and the existing subscription webhook remain isolated
+  platform-subscription evidence;
+- no tenant secret key, webhook secret, OAuth token, KYC document, bank or card data enters
+  tenant configuration;
+- Checkout return navigation is advisory and verified connected-account webhook evidence
+  remains authoritative;
+- mandatory tenant/connection event ownership, explicit provider-reference mapping,
+  conservative card/payment/payout readiness and local checkout disablement resolve the
+  ambiguities found during review;
+- A6-A through A6-D remain the correct serial boundaries.
+
+The parent is accepted. This acceptance authorises creation and later independent review of
+the bounded A6-A implementation plan only. It authorises no Prisma, migration, Stripe API,
+route, webhook or UI change.
+
+## 12. Single bounded A6-A planning prompt
 
 ```text
-Review only IsoStack Commerce Core COMMERCE-A6 Stripe Connect Tenant Payments Planning.
-Do not implement schema or application code and do not begin A6-A, A7, FUND Store UI or
-another slice.
+Continue only accepted IsoStack Commerce Core Slice COMMERCE-A6-A planning. Do not
+implement schema or application code and do not begin A6-B, A6-C, A6-D, A7, FUND Store UI
+or another slice.
 
-Verify the plan against completed Commerce A1-A5, FUND C1-C6, the existing IsoStack Stripe
-subscription-billing integration and current tenant master settings. Resolve any conflict
-in tenant connected-account ownership, direct-charge merchant-of-record responsibility,
-full Stripe Dashboard/hosted onboarding, environment secrets, account readiness,
-Checkout amount/currency/idempotency, return-page versus webhook authority, connected-
-account event routing, duplicate/out-of-order processing, refund synchronization,
-retention, tenant isolation and the A6-A through A6-D delivery boundaries.
+Create one bounded Stripe Connect Account And Event-Inbox Schema Foundation implementation
+plan against the complete 139-migration Commerce A1-A4/FUND C1-C6 baseline and completed
+A5 provider-neutral services. Plan only the bounded Commerce-prefixed enums,
+CommerceStripeAccountConnection, CommerceStripeOnboardingAttempt and
+CommerceStripeEventInbox plus the minimum Organization/User reverse relations or exact
+same-tenant keys required by Prisma.
 
-Confirm that tenants never enter Stripe secret keys and that Organization.stripeCustomerId
-remains subscription-billing evidence only. Confirm A6 adds no FUND commission split,
-production authorization, dispute workflow, saved cards, delayed payment methods,
-application fee, destination charge or staging/production action.
+Resolve one current retained connection per tenant, globally unique connected-account
+identity, full-Dashboard/Stripe-fees/Stripe-losses/Stripe-requirements controller evidence,
+card-payment/charge/payout/details readiness, local checkout enablement, immutable
+livemode, exact tenant/connection event ownership, provider-event deduplication, bounded
+processing state, safe payload hash/envelope retention, hashed expiring single-use
+onboarding state, actor ownership, restrictive deletion and zero backfill. Preserve the
+accepted generic CommercePayment provider-reference mapping without adding a Stripe-only
+Payment foreign key. Preserve Organization.stripeCustomerId exclusively for IsoStack
+subscription billing.
 
-If acceptable, mark only the A6 parent plan accepted and provide the single bounded A6-A
-planning prompt. Make no Prisma, migration, Stripe API, route, webhook or UI changes.
+Define one migration, rollback and disposable PostgreSQL validation for representative
+139-to-140 and fresh replay, current-connection and provider-event uniqueness, every
+status/check/tenant/deletion constraint, A1-A5/C1-C6 regressions and zero residue. Add no
+Stripe API call, account creation, secret, route, webhook handler, settings UI, Checkout,
+payment/refund transition or FUND behavior.
+
+Leave the new A6-A implementation plan awaiting explicit review and acceptance and provide
+its single review prompt. Make no Prisma, migration, service, API, route, webhook or UI
+change.
 ```

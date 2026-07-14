@@ -177,7 +177,7 @@ COMMERCE-A1 complete
   -> COMMERCE-A3 payment/refund/pro-forma schema complete
   -> COMMERCE-A4 audit/idempotency complete
   -> COMMERCE-A5 provider-neutral services complete
-  -> COMMERCE-A6 Stripe Connect tenant-payments parent plan (awaiting review)
+  -> COMMERCE-A6 Stripe Connect tenant-payments parent plan (accepted)
      -> A6-A account/event-inbox schema
      -> A6-B tenant settings/hosted onboarding
      -> A6-C connected-account Checkout adapter
@@ -282,11 +282,11 @@ for explicit user input when a genuine business/product choice remains, authorit
 expand, destructive/shared-environment work would be required, or the accepted plan cannot
 be satisfied safely.
 
-Current single next control action: review and accept only the created `COMMERCE-A6 -
-Stripe Connect Tenant Payments` parent plan at
+Current single next control action: create only the bounded `COMMERCE-A6-A - Stripe Connect
+Account And Event-Inbox Schema Foundation` implementation plan under the accepted parent at
 `docs/core/commerce/03-slice-planning/2026-07-14-isostack-commerce-core-slice-commerce-a6-stripe-connect-tenant-payments-planning.md`.
-Do not implement A6-A or another slice during parent review. Store UI `1R-E` remains queued
-in the FUND lane and is not the global next slice.
+Leave A6-A awaiting independent review; do not implement it or begin another slice. Store UI
+`1R-E` remains queued in the FUND lane and is not the global next slice.
 
 ## 8. Child Roadmap Discipline
 

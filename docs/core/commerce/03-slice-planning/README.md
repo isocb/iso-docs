@@ -26,11 +26,11 @@ Commerce A5 is implemented/reviewed at application commit `fd7376b`.
 Its provider-neutral validators and idempotency/audit transaction helpers passed unit,
 static and disposable PostgreSQL smoke tests with zero residue and no migration.
 
-COMMERCE-A6 Stripe Connect Tenant Payments parent planning is created at:
+COMMERCE-A6 Stripe Connect Tenant Payments parent planning is reviewed and accepted at:
 
 `2026-07-14-isostack-commerce-core-slice-commerce-a6-stripe-connect-tenant-payments-planning.md`
 
-It is awaiting explicit review/acceptance. No A6 schema, Stripe call, route, webhook or UI
-work is authorised. The single next action is parent-plan review; accepted delivery then
-proceeds serially through A6-A account/event schema, A6-B tenant settings/onboarding, A6-C
-Checkout adapter and A6-D webhook/refund reconciliation.
+No A6 schema, Stripe call, route, webhook or UI is authorised by the parent acceptance. The
+single next action is creation of the bounded A6-A implementation plan, left awaiting its
+own review/acceptance. Delivery then proceeds serially through A6-B tenant
+settings/onboarding, A6-C Checkout adapter and A6-D webhook/refund reconciliation.
