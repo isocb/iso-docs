@@ -15,14 +15,14 @@ Historical slice plans may remain in `Planning/` until they are next touched. Ne
 
 Most recently completed planning/implementation lifecycle:
 
-`2026-07-14-fund-phase-1-slice-1p-g-r3-c-project-intake-form-confirmation-exception-review-alignment-implementation-planning.md`
+`2026-07-14-fund-phase-1-slice-1p-g-r3-d-project-creation-contract-alignment-implementation-planning.md`
 
 Current next planning candidate (plan not created and no implementation authorised):
 
 ```text
-1P-G-R3-D - Project Creation Contract Alignment
-Reconcile generic C1/K2 internal-dashboard Project creation with current Client/member,
-Project-type and delivery-profile authority before selecting Commerce A2.
+1R-D - Store Readiness And C1 Store Configuration API/Services
+Plan the bounded services that evaluate Store readiness and let C1 configure the accepted
+Project Store foundation without adding Commerce Orders, checkout or payments.
 ```
 
 `1P-G-R3-A` is implemented, reviewed and committed locally at application `4bb7dd9` and
@@ -32,7 +32,10 @@ and reviewed in the current worktrees and invokes R3-B only through aligned conf
 and protected C1 review. It adds no migration, is committed/promoted to application
 `origin/dev` at `234f115`, remains undeployed to staging/main and shared databases, and
 activates no real form.
-Store `1R-D`, `1R-C6`, `COMMERCE-A2` and every other slice remain outside this action.
+`1P-G-R3-D` is implemented/reviewed locally against the complete 135-migration disposable
+baseline. It requires structured Client addresses, Client ownership, typed Project type,
+an exact organiser member and atomic Project delivery. It is uncommitted and undeployed.
+`1R-C6`, `COMMERCE-A2` and every other slice remain outside the next planning action.
 
 `1P-G-R3` uses the implemented `1P-G` intake workflow as its starting point, but the current
 Client/organiser/Project/delivery contract takes precedence over preserving the earlier
@@ -50,6 +53,10 @@ Completed R3-B plan:
 Completed R3-C plan:
 
 `2026-07-14-fund-phase-1-slice-1p-g-r3-c-project-intake-form-confirmation-exception-review-alignment-implementation-planning.md`
+
+Completed R3-D plan:
+
+`2026-07-14-fund-phase-1-slice-1p-g-r3-d-project-creation-contract-alignment-implementation-planning.md`
 
 Accepted parent:
 
