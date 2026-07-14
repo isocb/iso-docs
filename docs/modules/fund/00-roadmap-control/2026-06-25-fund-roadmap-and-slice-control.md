@@ -197,7 +197,11 @@ COMMERCE-A1 (complete on dev)
   -> COMMERCE-A3 (implementation/review complete locally at `4a90be1`)
   -> COMMERCE-A4 (implementation/review complete locally at `5b69920`)
   -> COMMERCE-A5 (implemented/reviewed: provider-neutral services and validation)
-  -> COMMERCE-A6 (next Commerce planning candidate: Stripe adapter/webhooks)
+  -> COMMERCE-A6 parent plan (created; awaiting review/acceptance)
+     -> A6-A account/event-inbox schema
+     -> A6-B tenant settings/hosted onboarding
+     -> A6-C connected-account Checkout adapter
+     -> A6-D webhook/refund reconciliation
 
 FUND 1R-C1 (complete on dev)
   -> 1R-C2 (complete on dev)
@@ -378,8 +382,9 @@ Completed `1P-G-R3-A` lifecycle:
 
 Global next planning control:
 
-- `COMMERCE-A6 - Stripe Adapter And Webhook Handling` is the single next planning
-  candidate under the root roadmap. FUND does not implement Commerce-owned provider work.
+- `COMMERCE-A6 - Stripe Connect Tenant Payments` parent planning is created and awaiting
+  review/acceptance. The single next action is parent-plan review; FUND does not implement
+  Commerce-owned provider work. No A6-A implementation is authorised yet.
 
 Sibling Commerce controls:
 
