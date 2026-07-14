@@ -15,21 +15,23 @@ Historical slice plans may remain in `Planning/` until they are next touched. Ne
 
 Most recently completed planning/implementation lifecycle:
 
-`2026-07-14-fund-phase-1-slice-1p-g-r3-b-project-intake-automated-provisioning-and-protection-services-implementation-planning.md`
+`2026-07-14-fund-phase-1-slice-1p-g-r3-c-project-intake-form-confirmation-exception-review-alignment-implementation-planning.md`
 
-Current accepted next implementation candidate (not started):
+Current next planning candidate (plan not created and no implementation authorised):
 
 ```text
-1P-G-R3-C - Project Intake Form, Confirmation And Exception-Review Alignment
-Plan reviewed and accepted; implementation requires committed R3-B application and
-documentation baselines plus an explicit bounded instruction.
+1P-G-R3-D - Project Creation Contract Alignment
+Reconcile generic C1/K2 internal-dashboard Project creation with current Client/member,
+Project-type and delivery-profile authority before selecting Commerce A2.
 ```
 
 `1P-G-R3-A` is implemented, reviewed and committed locally at application `4bb7dd9` and
 documentation `65fc243`. `1P-G-R3-B` is implemented, reviewed and committed at application
-`04da074` against the retained 134-migration disposable database. It adds no migration and
-remains deliberately dormant: no route, confirmation handler, form or UI invokes it. The
-R3-C plan is reviewed and accepted, but implementation has not started.
+`04da074` against the retained 134-migration disposable database. `1P-G-R3-C` is implemented
+and reviewed in the current worktrees and invokes R3-B only through aligned confirmation
+and protected C1 review. It adds no migration, is committed/promoted to application
+`origin/dev` at `234f115`, remains undeployed to staging/main and shared databases, and
+activates no real form.
 Store `1R-D`, `1R-C6`, `COMMERCE-A2` and every other slice remain outside this action.
 
 `1P-G-R3` uses the implemented `1P-G` intake workflow as its starting point, but the current
@@ -45,7 +47,7 @@ Completed R3-B plan:
 
 `2026-07-14-fund-phase-1-slice-1p-g-r3-b-project-intake-automated-provisioning-and-protection-services-implementation-planning.md`
 
-Accepted R3-C plan:
+Completed R3-C plan:
 
 `2026-07-14-fund-phase-1-slice-1p-g-r3-c-project-intake-form-confirmation-exception-review-alignment-implementation-planning.md`
 

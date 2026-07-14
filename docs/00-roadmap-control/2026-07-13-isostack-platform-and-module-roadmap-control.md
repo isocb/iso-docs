@@ -84,8 +84,8 @@ Cross-lane references remain generic from Commerce and typed from FUND.
 - A1/C1/C2 application schema foundation: committed together at `4575d2d`;
 - C3/C4 application schema foundation: committed at `686229c`, with `dev` and `origin/dev`
   aligned; staging/main remain at `ea4e619`.
-- C5 application schema foundation: implemented/reviewed and committed locally at
-  `8b5f208`; not pushed or deployed to a shared database;
+- C5 application schema foundation: implemented/reviewed at `8b5f208`, now included on
+  `origin/dev`; not deployed to a shared database;
   staging/main and all shared databases remain unchanged.
 - Dedicated Neon `TEST_DATABASE_URL` target: retained as disposable test infrastructure;
   its connection string remains local and uncommitted.
@@ -107,7 +107,7 @@ Cross-lane references remain generic from Commerce and typed from FUND.
   authority, physical-artwork checks, explicit backup source selection and production
   authorisation remain later dependencies.
 - `1R-C5`: implemented and reviewed as passed on disposable PostgreSQL; application changes
-  are committed locally at `8b5f208`, remain unpushed and are undeployed to shared databases. It records
+  are committed at `8b5f208`, included on `origin/dev` and undeployed to shared databases. It records
   Event-default, standalone Project and flat-only Event-Project override configuration plus
   C2 acceptance/replacement/finalization evidence, but no calculation or Store behaviour.
 - `1P-G-R3`: Project Intake Automated Provisioning Alignment parent planning is accepted as
@@ -115,19 +115,22 @@ Cross-lane references remain generic from Commerce and typed from FUND.
   1R-C2, records the incomplete historic D1/D2 and K1-F-A/B review chain without inventing
   backdated evidence, and authorises no implementation by itself.
 - `1P-G-R3-A`: Project Intake Automation Schema And Form Policy Foundation is implemented,
-  reviewed and committed locally at application commit `4bb7dd9`; it remains undeployed.
+  reviewed at application `4bb7dd9`, included on `origin/dev` and undeployed to shared databases.
 - `1P-G-R3-B`: Project Intake Automated Provisioning And Protection Services is implemented,
-  reviewed and committed at application `04da074`; its documentation lifecycle is included
-  in the current IsoDocs baseline. The engine remains dormant and undeployed.
-- `1P-G-R3-C`: form, confirmation and exception-review alignment planning is reviewed and
-  accepted; implementation has not started and first requires committed R3-B application
-  and documentation baselines plus an explicit bounded instruction. It alone may connect
-  capture, confirmation invocation and exception-review UI to the dormant R3-B engine.
+  reviewed at application `04da074` and included on `origin/dev`; its documentation lifecycle
+  is included in the current IsoDocs baseline. It remains undeployed to shared databases.
+- `1P-G-R3-C`: form, confirmation and exception-review alignment is implemented/reviewed,
+  committed and promoted to application `origin/dev` at `234f115`; it remains undeployed to
+  staging/main and shared databases and adds no migration. It invokes
+  R3-B only through aligned atomic confirmation and protected C1 review, preserves historic
+  null-contract Intake, sends no invitation email and activates no real form.
+- `1P-G-R3-D`: Project Creation Contract Alignment is the single next planning candidate,
+  not an accepted plan or authorised implementation. It will reconcile generic C1/K2
+  internal-dashboard Project writers before Commerce A2 is selected.
 - `1R-D`: remains reserved by accepted 1R-A architecture for Store Readiness And C1 Store
   Configuration API/Services; it is future and not authorised.
-- A separate all-source Project Creation Contract Alignment plan is still required because
-  implemented K2 C2 creation and generic C1 creation predate Project delivery profiles; it
-  is a recorded dependency, not an authorised slice.
+- The separate all-source Project Creation Contract Alignment requirement is now named
+  `1P-G-R3-D`; it remains a planning candidate only.
 - `1R-C6`: blocked until the required Commerce Order/line schema and relation direction are
   accepted and implemented.
 
@@ -140,7 +143,7 @@ COMMERCE-A2/A3 planning ───┘
 
 FUND 1R-C1 ─> 1R-C2 ─> 1R-C3 ─> 1R-C4 ─> 1R-C5 complete locally
 
-FUND 1P-G-R3 parent accepted ─> R3-A complete/committed ─> R3-B complete/committed/dormant ─> R3-C accepted/not started
+FUND 1P-G-R3 ─> R3-A complete/committed ─> R3-B complete/committed ─> R3-C complete on origin/dev ─> R3-D planning candidate
 ```
 
 `1R-C1` and `COMMERCE-A1` are independent schema slices. Separate ownership does not permit
@@ -148,34 +151,35 @@ different documentation lifecycles.
 
 ## 7. Current Parent Control Decision
 
-`1R-C1` through `1R-C5` and `1P-G-R3-A`/`R3-B` are complete through implementation
+`1R-C1` through `1R-C5` and `1P-G-R3-A`/`R3-B`/`R3-C` are complete through implementation
 confirmation and review/test. The database remains at the complete 134-migration R3-A
 baseline. R3-B pure-policy, identity-protection, concurrency, rollback and
 A1/C1/C2/C3/C4/C5/R3-A regressions passed on the retained disposable database with zero
-R3-B residue.
+R3-B/R3-C residue.
 
 The accepted parent family is `1P-G-R3 - Project Intake Automated Provisioning Alignment`.
-It is non-executable. `1P-G-R3-A - Project Intake Automation Schema And Form Policy
-Foundation` is committed locally at `4bb7dd9`. R3-B has completed its separate dormant
-service lifecycle in the current worktrees. R3-A, R3-B and R3-C each retain separate
-lifecycles. The R3-C plan is reviewed and accepted; its implementation remains unstarted
-and requires an explicit bounded instruction from the committed R3-B baseline.
+Its A/B/C child lifecycles are complete locally. R3-A is committed at `4bb7dd9`, R3-B at
+`04da074`, and R3-C is implemented/reviewed and promoted to application `origin/dev` at
+`234f115`; shared staging/main and databases remain unchanged. R3-C passed its
+134-migration disposable integration lifecycle and the complete R3-B regression with zero
+residue and external email disabled.
 
 For clarity:
 
 - `1R-B` and the parent `1R-C` architecture planning are already accepted and are not to be
   repeated;
 - `COMMERCE-A2` remains future work and is not currently authorised;
-- FUND `1R-C1` through `1R-C5` and `1P-G-R3-A`/`R3-B` must not be rerun as pending work;
+- FUND `1R-C1` through `1R-C5` and `1P-G-R3-A`/`R3-B`/`R3-C` must not be rerun as pending work;
 - `1R-C3`/`1R-C4` application changes are committed at `686229c` on `origin/dev`, lifecycle
   documents are committed at `f230d14` on IsoDocs `origin/main`, and no shared database
   deployment is claimed;
-- `1R-C5` implementation/review is complete and committed locally at `8b5f208`; it remains
-  unpushed and undeployed;
-- `1P-G-R3-A` implementation/review is committed locally at application `4bb7dd9` and
-  documentation `65fc243`; it remains unpushed and undeployed;
-- `1P-G-R3-B` implementation/review is complete in the application and documentation
-  worktrees; it remains uncommitted, unconnected and undeployed;
+- `1R-C5` implementation/review is complete at `8b5f208`, included on `origin/dev` and
+  undeployed to shared databases;
+- `1P-G-R3-A` implementation/review is at application `4bb7dd9` and documentation
+  `65fc243`; the application commit is included on `origin/dev` and shared databases remain undeployed;
+- `1P-G-R3-B` implementation/review is committed at `04da074`; R3-C connects it only for
+  aligned Intake confirmation and protected review;
+- `1P-G-R3-D` is the single next planning candidate and is not authorised for implementation;
 - Event policies are defaults for linked Projects, while an active C1-managed flat-rate
   override wins only for its owning Event-linked Project; standalone Project policies may
   be flat or stepped;

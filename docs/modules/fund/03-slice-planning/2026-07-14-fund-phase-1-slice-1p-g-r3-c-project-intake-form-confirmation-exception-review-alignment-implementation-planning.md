@@ -2,7 +2,7 @@
 
 Date: 2026-07-14
 
-Status: Reviewed and accepted / implementation not started
+Status: Implemented and reviewed as passed / application committed and promoted to `origin/dev` at `234f115` / shared databases undeployed
 
 Parent alignment:
 
@@ -39,8 +39,11 @@ R3-B is not connected today. R3-C is the first and only child authorised, after 
 future implementation instruction and the baseline gate below, to add its
 route/procedure/form/UI callers.
 
-Review accepted this plan on 2026-07-14. The review created no application, schema,
-migration, route, email or UI change.
+Review accepted this plan on 2026-07-14. Implementation and independent review/test then
+completed the bounded contract without a Prisma schema or migration change. The lifecycle
+evidence is recorded in the linked `04-implementation-confirmations` and
+`05-review-and-test` folders. No real form was activated and no shared environment was
+changed.
 
 ## 2. Entry Gate And Baseline
 
