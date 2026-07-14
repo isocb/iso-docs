@@ -91,6 +91,21 @@ Before A2 implementation planning can close, decide:
 
 A2 must not absorb provider, Stripe, FUND production or commission work.
 
+The 2026-07-14 bounded A2 review resolved these gates as follows:
+
+- Commerce persists the checkout header/submission boundary, not mutable basket lines;
+- money uses bounded Prisma `Int` minor units;
+- seller profiles gain nullable standard/reduced basis-point rates while Orders/lines hold
+  immutable applied snapshots;
+- Order arithmetic uses explicit per-row integer reconciliation and later service-level
+  aggregate validation;
+- Order lines inherit the Order source-module boundary;
+- exact same-tenant composite relations are required throughout.
+
+Accepted implementation plan:
+
+`docs/core/commerce/03-slice-planning/2026-07-14-isostack-commerce-core-slice-commerce-a2-checkout-order-order-line-schema-implementation-planning.md`
+
 ## 7. Cross-Lane Dependency
 
 FUND may implement `1R-C1` through `1R-C5` inside its own schema lane without Commerce
@@ -101,9 +116,34 @@ The FUND roadmap is a sibling control, not the parent Commerce roadmap:
 
 `docs/modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md`
 
+## 7.1 `COMMERCE-A2` Status
+
+Planning:
+
+`docs/core/commerce/03-slice-planning/2026-07-14-isostack-commerce-core-slice-commerce-a2-checkout-order-order-line-schema-implementation-planning.md`
+
+Implementation confirmation:
+
+`docs/core/commerce/04-implementation-confirmations/2026-07-14-commerce-a2-checkout-order-order-line-schema-implementation-confirmation.md`
+
+Review/test:
+
+`docs/core/commerce/05-review-and-test/2026-07-14-commerce-a2-checkout-order-order-line-schema-review-and-test.md`
+
+Current result:
+
+- implemented and reviewed as passed at local application commit `3206199`;
+- representative 135-to-136 and fresh 136-migration disposable lifecycles passed;
+- A1 regression, same-tenant, state, arithmetic, tax and deletion suites passed;
+- final disposable inventory is 136 applied, zero failed and zero test rows;
+- no Commerce-owned database-to-Prisma drift was found;
+- no shared database deployment or remote push was performed.
+
 ## 8. Current Next Step
 
-`COMMERCE-A1` is complete through review/test. FUND `1R-C1` is also implemented and reviewed
-as passed without changing the Commerce A1 contract. `COMMERCE-A2` remains future work and
-is not started or authorised by either completion. The root roadmap currently authorises no
-next slice.
+`COMMERCE-A1` and `COMMERCE-A2` are complete through review/test. The accepted generic
+Order/line and same-tenant relation foundation now unblocks bounded planning of FUND
+`1R-C6 - FUND Commerce Context Foundation`.
+
+`1R-C6` is the single next critical-path slice. `COMMERCE-A3` and Store `1R-D` remain queued
+and are not authorised by A2 completion.

@@ -17,13 +17,15 @@ Most recently completed planning/implementation lifecycle:
 
 `2026-07-14-fund-phase-1-slice-1p-g-r3-d-project-creation-contract-alignment-implementation-planning.md`
 
-Current next planning candidate (plan not created and no implementation authorised):
+Current integrated critical-path action returns to FUND:
 
 ```text
-1R-D - Store Readiness And C1 Store Configuration API/Services
-Plan the bounded services that evaluate Store readiness and let C1 configure the accepted
-Project Store foundation without adding Commerce Orders, checkout or payments.
+1R-C6 - FUND Commerce Context Foundation
 ```
+
+Commerce A2 is implemented/reviewed at local application `3206199` and supplies the generic
+Order/line contract required by C6. Store `1R-D` remains the queued FUND service slice after
+the typed C6 schema handoff; it is not discarded or authorised by this queue change.
 
 `1P-G-R3-A` is implemented, reviewed and committed locally at application `4bb7dd9` and
 documentation `65fc243`. `1P-G-R3-B` is implemented, reviewed and committed at application
@@ -32,10 +34,10 @@ and reviewed in the current worktrees and invokes R3-B only through aligned conf
 and protected C1 review. It adds no migration, is committed/promoted to application
 `origin/dev` at `234f115`, remains undeployed to staging/main and shared databases, and
 activates no real form.
-`1P-G-R3-D` is implemented/reviewed locally against the complete 135-migration disposable
-baseline. It requires structured Client addresses, Client ownership, typed Project type,
-an exact organiser member and atomic Project delivery. It is uncommitted and undeployed.
-`1R-C6`, `COMMERCE-A2` and every other slice remain outside the next planning action.
+`1P-G-R3-D` is implemented/reviewed against the complete 135-migration disposable baseline.
+It requires structured Client addresses, Client ownership, typed Project type, an exact
+organiser member and atomic Project delivery. It is committed locally at application
+`e1c2d9f` and documentation `9d140fa`, unpushed and undeployed.
 
 `1P-G-R3` uses the implemented `1P-G` intake workflow as its starting point, but the current
 Client/organiser/Project/delivery contract takes precedence over preserving the earlier

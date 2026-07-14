@@ -90,7 +90,9 @@ Cross-lane references remain generic from Commerce and typed from FUND.
 - Dedicated Neon `TEST_DATABASE_URL` target: retained as disposable test infrastructure;
   its connection string remains local and uncommitted.
 - Shared development, staging and live database deployment: not performed.
-- `COMMERCE-A2`: not yet authorised for implementation.
+- `COMMERCE-A2`: implemented/reviewed at local application commit `3206199`; representative
+  135-to-136 and fresh 136-migration disposable lifecycles passed with zero residue and no
+  shared deployment.
 
 ### FUND
 
@@ -124,26 +126,31 @@ Cross-lane references remain generic from Commerce and typed from FUND.
   staging/main and shared databases and adds no migration. It invokes
   R3-B only through aligned atomic confirmation and protected C1 review, preserves historic
   null-contract Intake, sends no invitation email and activates no real form.
-- `1P-G-R3-D`: Project Creation Contract Alignment is implemented/reviewed locally against
-  migration 135. It aligns generic C1/K2 Project creation and remains uncommitted and
-  undeployed to shared databases.
-- `1R-D`: Store Readiness And C1 Store Configuration API/Services is the single next
-  planning candidate. It is not yet planned or authorised for implementation.
+- `1P-G-R3-D`: Project Creation Contract Alignment is implemented/reviewed against
+  migration 135 and committed locally at application `e1c2d9f`, with documentation at
+  `9d140fa`. It remains unpushed and undeployed to shared databases.
+- `1R-D`: Store Readiness And C1 Store Configuration API/Services remains queued after FUND
+  `1R-C6`. It is not yet planned or authorised for implementation.
 - The all-source Project Creation Contract Alignment requirement is closed locally by
   `1P-G-R3-D`; shared promotion remains separate.
-- `1R-C6`: blocked until the required Commerce Order/line schema and relation direction are
-  accepted and implemented.
+- `1R-C6`: unblocked by completed Commerce A2 and is the single next critical-path planning
+  slice; it is not yet planned or authorised for implementation.
 
 ## 6. Dependency Map
 
 ```text
-COMMERCE-A1 ───────────────┐
-                           ├─> later Commerce Order foundation ─> FUND 1R-C6
-COMMERCE-A2/A3 planning ───┘
+COMMERCE-A1 complete
+  -> COMMERCE-A2 Checkout/Order/Order-line foundation
+  -> FUND 1R-C6 typed Commerce context
+  -> FUND 1R-D Store readiness/configuration services
+  -> COMMERCE-A3 payment/refund/pro-forma schema
+  -> COMMERCE-A4 audit/idempotency
+  -> COMMERCE-A5 provider-neutral services
+  -> COMMERCE-A6 Stripe adapter/webhooks
+  -> COMMERCE-A7 FUND consumer integration
 
-FUND 1R-C1 ─> 1R-C2 ─> 1R-C3 ─> 1R-C4 ─> 1R-C5 complete locally
-
-FUND 1P-G-R3 ─> R3-A complete/committed ─> R3-B complete/committed ─> R3-C complete on origin/dev ─> R3-D complete locally ─> Store 1R-D planning candidate
+FUND 1R-C1 -> C2 -> C3 -> C4 -> C5 complete
+FUND 1P-G-R3-A -> R3-B -> R3-C -> R3-D complete
 ```
 
 `1R-C1` and `COMMERCE-A1` are independent schema slices. Separate ownership does not permit
@@ -151,10 +158,9 @@ different documentation lifecycles.
 
 ## 7. Current Parent Control Decision
 
-`1R-C1` through `1R-C5` and `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D` are complete through
-implementation confirmation and review/test. The disposable database is at the complete
-135-migration R3-D baseline. R3-D aggregate/idempotency constraints and the complete R3-B
-and R3-C regressions passed with zero test residue.
+`1R-C1` through `1R-C5`, `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D`, Commerce A1 and Commerce A2 are
+complete through implementation confirmation and review/test. The disposable database is
+at the complete 136-migration A2 baseline with zero test residue.
 
 The accepted parent family is `1P-G-R3 - Project Intake Automated Provisioning Alignment`.
 Its A/B/C child lifecycles are complete locally. R3-A is committed at `4bb7dd9`, R3-B at
@@ -167,7 +173,8 @@ For clarity:
 
 - `1R-B` and the parent `1R-C` architecture planning are already accepted and are not to be
   repeated;
-- `COMMERCE-A2` remains future work and is not currently authorised;
+- `COMMERCE-A2` is implemented/reviewed at local application `3206199` and must not be rerun
+  as pending work;
 - FUND `1R-C1` through `1R-C5` and `1P-G-R3-A`/`R3-B`/`R3-C` must not be rerun as pending work;
 - `1R-C3`/`1R-C4` application changes are committed at `686229c` on `origin/dev`, lifecycle
   documents are committed at `f230d14` on IsoDocs `origin/main`, and no shared database
@@ -178,8 +185,10 @@ For clarity:
   `65fc243`; the application commit is included on `origin/dev` and shared databases remain undeployed;
 - `1P-G-R3-B` implementation/review is committed at `04da074`; R3-C connects it only for
   aligned Intake confirmation and protected review;
-- `1P-G-R3-D` is implemented/reviewed locally and is not pending planning work;
-- Store `1R-D` is the single next planning candidate and is not authorised for implementation;
+- `1P-G-R3-D` is implemented/reviewed and committed locally at application `e1c2d9f` and
+  documentation `9d140fa`; it is not pending planning work and is not deployed;
+- FUND `1R-C6` is the single next critical-path planning slice;
+- Store `1R-D` remains queued behind `1R-C6` and is not authorised for implementation;
 - Event policies are defaults for linked Projects, while an active C1-managed flat-rate
   override wins only for its owning Event-linked Project; standalone Project policies may
   be flat or stepped;
@@ -193,13 +202,40 @@ For clarity:
 - the Project Intake alignment recorded by `1R-C2` is now separately planned as
   `1P-G-R3`; the provisional `1R-D` assignment was corrected because that identifier is
   already reserved for the accepted Store-readiness lane;
-- FUND `1R-C6` must not start until the Commerce Order/line foundations exist.
+- FUND `1R-C6` may now be planned because the Commerce Order/line foundation exists, but A2
+  completion does not itself authorise implementation without the bounded C6 plan/review.
 
 The controlled release sequence is also retained at parent level: promote and verify the
 schema-foundation baseline through C4 at `686229c` on staging before combining it with later
 LMSPro UI work; then stage and UI-smoke the LMSPro work separately before promotion to
 main/live. This is a deployment gate, not a claim that any shared database has been
 migrated.
+
+### 7.1 Integrated Serial Delivery Control
+
+The root roadmap owns the one serial critical-path queue across sibling lanes. Child
+roadmaps continue to own scope and evidence inside their lane, but they must not nominate a
+different global next slice.
+
+Default execution for an authorised slice is:
+
+```text
+create bounded plan
+-> review against accepted architecture/current implementation
+-> resolve non-business conflicts and mark accepted
+-> implement only accepted scope
+-> validate on safe disposable infrastructure
+-> create implementation confirmation
+-> create review/test record
+-> update child and root roadmaps/README
+-> stop at the next slice boundary
+```
+
+This lifecycle may proceed without repeated user prompts when decisions are already fixed
+by accepted architecture and safe local/disposable validation is available. Work must stop
+for explicit user input when a genuine business/product choice remains, authority would
+expand, destructive/shared-environment work would be required, or the accepted plan cannot
+be satisfied safely.
 
 ## 8. Child Roadmap Discipline
 
