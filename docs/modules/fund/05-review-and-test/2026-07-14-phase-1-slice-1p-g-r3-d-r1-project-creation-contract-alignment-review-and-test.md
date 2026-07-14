@@ -79,10 +79,10 @@ Commerce A2, FUND 1R-C6 or any LMSPro work.
 
 ## 6. Review Result
 
-`1P-G-R3-D-R1` passes. The all-source non-Intake Project-creation gap is closed in the local
-application worktree. Commit/push and shared-environment deployment remain separate release
-actions and are not claimed here.
+`1P-G-R3-D-R1` passes. The all-source non-Intake Project-creation gap is closed. Application
+commit `e1c2d9f` is included on `origin/dev` at `3206199`; shared-environment deployment
+remains a separate release action and is not claimed here.
 
-The one next planning candidate is `1R-D - Store Readiness And C1 Store Configuration
-API/Services`. Commerce A2 remains in the separate Core lane, and FUND 1R-C6 remains blocked
-until Commerce Order/line foundations exist.
+Commerce A2 is now complete on `origin/dev` at `3206199`. The created FUND `1R-C6 - FUND
+Commerce Context Foundation` plan is the single next review action; Store `1R-D - Store
+Readiness And C1 Store Configuration API/Services` remains queued behind it.

@@ -2,7 +2,7 @@
 
 Date: 2026-07-14
 
-Status: Implemented / bounded lifecycle complete in the application worktree
+Status: Implemented / bounded lifecycle complete and published on application `origin/dev`
 
 Planning source:
 
@@ -80,8 +80,7 @@ Primary files include:
 
 ## 6. Deployment State
 
-Implementation is complete in the local `dev` application worktree. It is not yet claimed
-as committed or pushed, and migration 135 has not been applied to shared development,
-staging or production databases. It was applied only to the retained disposable database
-identified by `TEST_DATABASE_URL`.
-
+Implementation commit `e1c2d9f` is included on application `origin/dev` at `3206199`.
+Documentation commit `9d140fa` is included on IsoDocs `origin/main`. Migration 135 has not
+been applied to shared development, staging or production databases; it was applied only
+to the retained disposable database identified by `TEST_DATABASE_URL`.

@@ -14,11 +14,11 @@ Parent architecture:
 
 Application baseline:
 
-`e1c2d9f` on local `dev`, containing the complete 135-migration R3-D baseline
+`e1c2d9f` on `dev` and included on `origin/dev`, containing the complete 135-migration R3-D baseline
 
 Implementation commit:
 
-`3206199` on local `dev`
+`3206199` on `dev` and `origin/dev`
 
 ## 1. Goal
 

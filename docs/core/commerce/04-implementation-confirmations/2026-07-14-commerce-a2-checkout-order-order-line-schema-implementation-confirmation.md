@@ -4,7 +4,7 @@ Date: 2026-07-14
 
 Status: Implemented and validated on disposable PostgreSQL / shared deployment not performed
 
-Application commit: `3206199` on local `dev`
+Application commit: `3206199` on `dev` and `origin/dev`
 
 Planning source:
 

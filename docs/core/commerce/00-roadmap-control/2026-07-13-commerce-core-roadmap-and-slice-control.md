@@ -132,12 +132,12 @@ Review/test:
 
 Current result:
 
-- implemented and reviewed as passed at local application commit `3206199`;
+- implemented and reviewed as passed at application commit `3206199` on `origin/dev`;
 - representative 135-to-136 and fresh 136-migration disposable lifecycles passed;
 - A1 regression, same-tenant, state, arithmetic, tax and deletion suites passed;
 - final disposable inventory is 136 applied, zero failed and zero test rows;
 - no Commerce-owned database-to-Prisma drift was found;
-- no shared database deployment or remote push was performed.
+- no shared database deployment was performed; staging/main remain unchanged.
 
 ## 8. Current Next Step
 
@@ -145,5 +145,6 @@ Current result:
 Order/line and same-tenant relation foundation now unblocks bounded planning of FUND
 `1R-C6 - FUND Commerce Context Foundation`.
 
-`1R-C6` is the single next critical-path slice. `COMMERCE-A3` and Store `1R-D` remain queued
-and are not authorised by A2 completion.
+The bounded FUND `1R-C6` plan is created and its explicit review is the single next
+critical-path action. `COMMERCE-A3` and Store `1R-D` remain queued and are not authorised by
+A2 completion.

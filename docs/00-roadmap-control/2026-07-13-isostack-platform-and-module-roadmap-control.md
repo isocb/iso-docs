@@ -90,7 +90,7 @@ Cross-lane references remain generic from Commerce and typed from FUND.
 - Dedicated Neon `TEST_DATABASE_URL` target: retained as disposable test infrastructure;
   its connection string remains local and uncommitted.
 - Shared development, staging and live database deployment: not performed.
-- `COMMERCE-A2`: implemented/reviewed at local application commit `3206199`; representative
+- `COMMERCE-A2`: implemented/reviewed at application commit `3206199` on `origin/dev`; representative
   135-to-136 and fresh 136-migration disposable lifecycles passed with zero residue and no
   shared deployment.
 
@@ -127,14 +127,15 @@ Cross-lane references remain generic from Commerce and typed from FUND.
   R3-B only through aligned atomic confirmation and protected C1 review, preserves historic
   null-contract Intake, sends no invitation email and activates no real form.
 - `1P-G-R3-D`: Project Creation Contract Alignment is implemented/reviewed against
-  migration 135 and committed locally at application `e1c2d9f`, with documentation at
-  `9d140fa`. It remains unpushed and undeployed to shared databases.
+  migration 135 at application `e1c2d9f`, now included on `origin/dev` at `3206199`; its
+  documentation commit `9d140fa` is included on IsoDocs `origin/main`. It remains
+  undeployed to shared databases.
 - `1R-D`: Store Readiness And C1 Store Configuration API/Services remains queued after FUND
   `1R-C6`. It is not yet planned or authorised for implementation.
-- The all-source Project Creation Contract Alignment requirement is closed locally by
-  `1P-G-R3-D`; shared promotion remains separate.
-- `1R-C6`: unblocked by completed Commerce A2 and is the single next critical-path planning
-  slice; it is not yet planned or authorised for implementation.
+- The all-source Project Creation Contract Alignment requirement is closed by
+  `1P-G-R3-D`; staging/main and shared-database promotion remain separate.
+- `1R-C6`: unblocked by completed Commerce A2; its bounded implementation plan is created
+  and awaits explicit review/acceptance. No implementation is authorised.
 
 ## 6. Dependency Map
 
@@ -163,7 +164,7 @@ complete through implementation confirmation and review/test. The disposable dat
 at the complete 136-migration A2 baseline with zero test residue.
 
 The accepted parent family is `1P-G-R3 - Project Intake Automated Provisioning Alignment`.
-Its A/B/C child lifecycles are complete locally. R3-A is committed at `4bb7dd9`, R3-B at
+Its A/B/C child lifecycles are complete and included on `origin/dev`. R3-A is committed at `4bb7dd9`, R3-B at
 `04da074`, and R3-C is implemented/reviewed and promoted to application `origin/dev` at
 `234f115`; shared staging/main and databases remain unchanged. R3-C passed its
 134-migration disposable integration lifecycle and the complete R3-B regression with zero
@@ -173,7 +174,7 @@ For clarity:
 
 - `1R-B` and the parent `1R-C` architecture planning are already accepted and are not to be
   repeated;
-- `COMMERCE-A2` is implemented/reviewed at local application `3206199` and must not be rerun
+- `COMMERCE-A2` is implemented/reviewed at application `3206199` on `origin/dev` and must not be rerun
   as pending work;
 - FUND `1R-C1` through `1R-C5` and `1P-G-R3-A`/`R3-B`/`R3-C` must not be rerun as pending work;
 - `1R-C3`/`1R-C4` application changes are committed at `686229c` on `origin/dev`, lifecycle
@@ -185,9 +186,10 @@ For clarity:
   `65fc243`; the application commit is included on `origin/dev` and shared databases remain undeployed;
 - `1P-G-R3-B` implementation/review is committed at `04da074`; R3-C connects it only for
   aligned Intake confirmation and protected review;
-- `1P-G-R3-D` is implemented/reviewed and committed locally at application `e1c2d9f` and
-  documentation `9d140fa`; it is not pending planning work and is not deployed;
-- FUND `1R-C6` is the single next critical-path planning slice;
+- `1P-G-R3-D` is implemented/reviewed at application `e1c2d9f`, included on `origin/dev`
+  at `3206199`, and documented by `9d140fa` on IsoDocs `origin/main`; it is not pending
+  planning work and is not deployed to shared databases;
+- FUND `1R-C6` plan review is the single next critical-path action;
 - Store `1R-D` remains queued behind `1R-C6` and is not authorised for implementation;
 - Event policies are defaults for linked Projects, while an active C1-managed flat-rate
   override wins only for its owning Event-linked Project; standalone Project policies may

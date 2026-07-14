@@ -17,27 +17,32 @@ Most recently completed planning/implementation lifecycle:
 
 `2026-07-14-fund-phase-1-slice-1p-g-r3-d-project-creation-contract-alignment-implementation-planning.md`
 
-Current integrated critical-path action returns to FUND:
+Current integrated critical-path action:
 
 ```text
-1R-C6 - FUND Commerce Context Foundation
+Review the created 1R-C6 - FUND Commerce Context Foundation plan
 ```
 
-Commerce A2 is implemented/reviewed at local application `3206199` and supplies the generic
+Commerce A2 is implemented/reviewed on application `origin/dev` at `3206199` and supplies the generic
 Order/line contract required by C6. Store `1R-D` remains the queued FUND service slice after
 the typed C6 schema handoff; it is not discarded or authorised by this queue change.
 
-`1P-G-R3-A` is implemented, reviewed and committed locally at application `4bb7dd9` and
-documentation `65fc243`. `1P-G-R3-B` is implemented, reviewed and committed at application
+Created C6 plan awaiting review:
+
+`2026-07-14-fund-phase-1-slice-1r-c6-fund-commerce-context-schema-implementation-planning.md`
+
+`1P-G-R3-A` is implemented and reviewed at application `4bb7dd9`, included on `origin/dev`,
+and documented at `65fc243`. `1P-G-R3-B` is implemented, reviewed and committed at application
 `04da074` against the retained 134-migration disposable database. `1P-G-R3-C` is implemented
 and reviewed in the current worktrees and invokes R3-B only through aligned confirmation
 and protected C1 review. It adds no migration, is committed/promoted to application
-`origin/dev` at `234f115`, remains undeployed to staging/main and shared databases, and
+`origin/dev` (now advanced to `3206199`), remains undeployed to staging/main and shared databases, and
 activates no real form.
 `1P-G-R3-D` is implemented/reviewed against the complete 135-migration disposable baseline.
 It requires structured Client addresses, Client ownership, typed Project type, an exact
-organiser member and atomic Project delivery. It is committed locally at application
-`e1c2d9f` and documentation `9d140fa`, unpushed and undeployed.
+organiser member and atomic Project delivery. Application commit `e1c2d9f` is included on
+`origin/dev` at `3206199`, documentation commit `9d140fa` is included on IsoDocs
+`origin/main`, and shared databases remain undeployed.
 
 `1P-G-R3` uses the implemented `1P-G` intake workflow as its starting point, but the current
 Client/organiser/Project/delivery contract takes precedence over preserving the earlier
