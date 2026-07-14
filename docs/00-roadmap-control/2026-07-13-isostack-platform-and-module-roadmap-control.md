@@ -81,17 +81,19 @@ Cross-lane references remain generic from Commerce and typed from FUND.
 - A1 static/generated-client and schema-contract review: passed.
 - A1 fresh/existing-schema disposable PostgreSQL migration: passed.
 - A1 rollback-only constraint/default smoke: passed with zero residual test rows.
+- A1/C1/C2 application schema foundation: committed together at `4575d2d` and aligned to
+  `origin/dev`; staging/main remain at `ea4e619`.
 - Dedicated Neon `TEST_DATABASE_URL` target: retained as disposable test infrastructure;
   its connection string remains local and uncommitted.
-- Shared development, staging and live deployment: not performed.
+- Shared development, staging and live database deployment: not performed.
 - `COMMERCE-A2`: not yet authorised for implementation.
 
 ### FUND
 
 - `1R-A`, `1R-B` and `1R-C` architecture planning: accepted.
-- `1R-C1`: implemented and reviewed as passed on disposable PostgreSQL; no shared
+- `1R-C1`: implemented and reviewed as passed on disposable PostgreSQL; no shared database
   deployment performed.
-- `1R-C2`: implemented and reviewed as passed on disposable PostgreSQL; no shared
+- `1R-C2`: implemented and reviewed as passed on disposable PostgreSQL; no shared database
   deployment performed. Its required later Project Intake alignment remains separate.
 - `1R-C3`: next candidate FUND planning slice; not started or authorised for
   implementation.

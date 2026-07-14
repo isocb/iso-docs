@@ -51,18 +51,20 @@ Current application repository state:
 
 ```text
 working branch: dev
-HEAD/local main/local dev/local staging: ea4e619
-origin/main/origin/dev/origin/staging: ea4e619
+HEAD/local dev/origin dev: 4575d2d
+local main/local staging/origin main/origin staging: ea4e619
 ```
 
-Local uncommitted schema work:
+Committed development schema foundation:
 
 - `COMMERCE-A1`: implemented and reviewed as passed;
 - FUND `1R-C1`: implemented and reviewed as passed;
 - FUND `1R-C2`: implemented and reviewed as passed;
 - all three have been validated on the retained disposable Neon test database;
-- none is claimed as committed, promoted or deployed to shared development, staging or
-  production by these records.
+- all three are committed together at application commit `4575d2d` and aligned to
+  `origin/dev`;
+- local/remote `staging` and `main` remain at `ea4e619`;
+- no shared development, staging or production database migration/deployment is claimed.
 
 Disposable test database state after `1R-C2` review:
 
@@ -82,10 +84,10 @@ session advisory locks are not returned to a pool.
 | --- | --- | --- | --- |
 | `1R-A` | FUND architecture | Accepted | Store/Commerce ownership and business decisions established |
 | `1R-B` | FUND/Commerce boundary | Accepted | Generic Commerce and typed FUND ownership separated |
-| `COMMERCE-A1` | Commerce | Implemented; review passed locally | Commerce namespace, Seller Profile and stable enums only |
+| `COMMERCE-A1` | Commerce | Implemented/reviewed; committed on dev | Commerce namespace, Seller Profile and stable enums only |
 | `1R-C` | FUND architecture | Accepted | FUND schema foundation split into `1R-C1` through `1R-C6` |
-| `1R-C1` | FUND | Implemented; review passed locally | Product media/input/tax/copy-provenance schema foundation |
-| `1R-C2` | FUND | Implemented; review passed locally | Client branding, Project delivery and Event media foundation; Project Intake alignment dependency preserved |
+| `1R-C1` | FUND | Implemented/reviewed; committed on dev | Product media/input/tax/copy-provenance schema foundation |
+| `1R-C2` | FUND | Implemented/reviewed; committed on dev | Client branding, Project delivery and Event media foundation; Project Intake alignment dependency preserved |
 | `1R-C3` | FUND | Next candidate; not started | Project Store and Store Product schema foundation planning |
 | `1R-C4`–`1R-C5` | FUND | Future | Production-asset and commission foundations |
 | `COMMERCE-A2` | Commerce | Future; not authorised | Checkout, Order and Order-line schema foundation |
@@ -97,10 +99,10 @@ because the preceding lifecycle completed.
 ## 4. Current Sequence And Dependency Control
 
 ```text
-COMMERCE-A1 (complete locally)
+COMMERCE-A1 (complete on dev)
 
-FUND 1R-C1 (complete locally)
-  -> 1R-C2 (complete locally)
+FUND 1R-C1 (complete on dev)
+  -> 1R-C2 (complete on dev)
   -> 1R-C3 (next candidate planning)
   -> 1R-C4
   -> 1R-C5
@@ -170,7 +172,7 @@ payment model.
 
 | Item | Status | Control |
 | --- | --- | --- |
-| A1/C1/C2 application changes | Local and uncommitted | Do not describe as promoted or shared-deployed |
+| A1/C1/C2 application changes | Committed at `4575d2d` on `origin/dev` | Staging/main and shared database deployment remain pending |
 | Shared database deployment | Not performed | Use normal reviewed promotion separately |
 | MediaFile tenant relation | Database limitation | Later write service must validate MediaFile ownership before enabling writes |
 | Legacy Prisma drift | Known, unrelated | LMSPro enum/default/name drift is outside `1R-C1`; do not repair incidentally |

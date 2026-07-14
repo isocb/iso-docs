@@ -74,7 +74,9 @@ Current result:
 - rollback-only constraint/default smoke passed with zero residual test rows;
 - the dedicated Neon database configured by local `TEST_DATABASE_URL` is retained as
   disposable test infrastructure for future accepted migration-test plans;
-- no shared development, staging or live deployment performed.
+- committed with FUND 1R-C1/1R-C2 at application commit `4575d2d` and aligned to
+  `origin/dev`;
+- no shared development, staging or live database migration/deployment performed.
 
 ## 6. `COMMERCE-A2` Entry Gates
 

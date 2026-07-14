@@ -2,7 +2,9 @@
 
 Date: 2026-07-14
 
-Status: Implemented and validated on disposable PostgreSQL / shared deployment not performed
+Status: Implemented and validated on disposable PostgreSQL / shared database deployment not performed
+
+Application commit: `4575d2d` (`dev` and `origin/dev`, committed with Commerce A1/FUND 1R-C1)
 
 Planning record:
 
