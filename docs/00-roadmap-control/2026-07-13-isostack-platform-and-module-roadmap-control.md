@@ -67,7 +67,7 @@ FUND owns:
 - Product inputs and media;
 - artwork and production context;
 - Project delivery context;
-- Event/standalone commission policies;
+- Event-default and Project-specific commission policies;
 - typed FUND extensions keyed to generic Commerce records.
 
 Cross-lane references remain generic from Commerce and typed from FUND.
@@ -81,8 +81,12 @@ Cross-lane references remain generic from Commerce and typed from FUND.
 - A1 static/generated-client and schema-contract review: passed.
 - A1 fresh/existing-schema disposable PostgreSQL migration: passed.
 - A1 rollback-only constraint/default smoke: passed with zero residual test rows.
-- A1/C1/C2 application schema foundation: committed together at `4575d2d` and aligned to
-  `origin/dev`; staging/main remain at `ea4e619`.
+- A1/C1/C2 application schema foundation: committed together at `4575d2d`;
+- C3/C4 application schema foundation: committed at `686229c`, with `dev` and `origin/dev`
+  aligned; staging/main remain at `ea4e619`.
+- C5 application schema foundation: implemented/reviewed and committed locally at
+  `8b5f208`; not pushed or deployed to a shared database;
+  staging/main and all shared databases remain unchanged.
 - Dedicated Neon `TEST_DATABASE_URL` target: retained as disposable test infrastructure;
   its connection string remains local and uncommitted.
 - Shared development, staging and live database deployment: not performed.
@@ -95,15 +99,28 @@ Cross-lane references remain generic from Commerce and typed from FUND.
   deployment performed.
 - `1R-C2`: implemented and reviewed as passed on disposable PostgreSQL; no shared database
   deployment performed. Its required later Project Intake alignment remains separate.
-- `1R-C3`: implemented and reviewed as passed on disposable PostgreSQL; application and
-  documentation changes remain uncommitted and undeployed to shared databases.
-- `1R-C4`: implemented and reviewed as passed on disposable PostgreSQL; application and
-  documentation changes remain uncommitted and undeployed to shared databases. It records
+- `1R-C3`: implemented and reviewed as passed on disposable PostgreSQL; committed on
+  application `dev` and documented on IsoDocs `main`; undeployed to shared databases.
+- `1R-C4`: implemented and reviewed as passed on disposable PostgreSQL; committed on
+  application `dev` and documented on IsoDocs `main`; undeployed to shared databases. It records
   asset/version evidence vocabulary only; media/actor runtime validation, Commerce payment
   authority, physical-artwork checks, explicit backup source selection and production
   authorisation remain later dependencies.
-- `1R-C5`: single next FUND planning candidate; planning not started and implementation not
-  authorised.
+- `1R-C5`: implemented and reviewed as passed on disposable PostgreSQL; application changes
+  are committed locally at `8b5f208`, remain unpushed and are undeployed to shared databases. It records
+  Event-default, standalone Project and flat-only Event-Project override configuration plus
+  C2 acceptance/replacement/finalization evidence, but no calculation or Store behaviour.
+- `1P-G-R3`: Project Intake Automated Provisioning Alignment parent planning is accepted as
+  a non-executable three-child family. It reconciles the complete implemented 1P-G lifecycle, K1-F and
+  1R-C2, records the incomplete historic D1/D2 and K1-F-A/B review chain without inventing
+  backdated evidence, and authorises no implementation by itself.
+- `1P-G-R3-A`: Project Intake Automation Schema And Form Policy Foundation planning is
+  created and awaiting separate review/acceptance; no schema or migration is authorised.
+- `1R-D`: remains reserved by accepted 1R-A architecture for Store Readiness And C1 Store
+  Configuration API/Services; it is future and not authorised.
+- A separate all-source Project Creation Contract Alignment plan is still required because
+  implemented K2 C2 creation and generic C1 creation predate Project delivery profiles; it
+  is a recorded dependency, not an authorised slice.
 - `1R-C6`: blocked until the required Commerce Order/line schema and relation direction are
   accepted and implemented.
 
@@ -114,7 +131,9 @@ COMMERCE-A1 ───────────────┐
                            ├─> later Commerce Order foundation ─> FUND 1R-C6
 COMMERCE-A2/A3 planning ───┘
 
-FUND 1R-C1 ─> 1R-C2 ─> 1R-C3 ─> 1R-C4 ─> 1R-C5 planning candidate
+FUND 1R-C1 ─> 1R-C2 ─> 1R-C3 ─> 1R-C4 ─> 1R-C5 complete locally
+
+FUND 1P-G-R3 parent accepted ─> R3-A planning/review ─> separately controlled R3-A/B/C lifecycles
 ```
 
 `1R-C1` and `COMMERCE-A1` are independent schema slices. Separate ownership does not permit
@@ -122,33 +141,46 @@ different documentation lifecycles.
 
 ## 7. Current Parent Control Decision
 
-`1R-C1` through `1R-C4` are complete through implementation confirmation and review/test.
-The latest representative 131-to-132 upgrade, complete 132-migration fresh reset and C4
+`1R-C1` through `1R-C5` are complete through implementation confirmation and review/test.
+The latest representative 132-to-133 upgrade, complete 133-migration fresh reset and C5
 constraint suite passed on the retained disposable database with zero residue.
 
-No next slice is currently authorised by this completion.
+The accepted parent family is `1P-G-R3 - Project Intake Automated Provisioning Alignment`.
+It is non-executable. The single active plan is now `1P-G-R3-A - Project Intake Automation
+Schema And Form Policy Foundation`, awaiting its own review/acceptance. R3-A, R3-B and R3-C
+each require their own complete lifecycle.
 
 For clarity:
 
 - `1R-B` and the parent `1R-C` architecture planning are already accepted and are not to be
   repeated;
 - `COMMERCE-A2` remains future work and is not currently authorised;
-- FUND `1R-C1` through `1R-C4` must not be rerun as pending work;
-- `1R-C3`/`1R-C4` application/documentation changes are uncommitted and no shared database
+- FUND `1R-C1` through `1R-C5` must not be rerun as pending work;
+- `1R-C3`/`1R-C4` application changes are committed at `686229c` on `origin/dev`, lifecycle
+  documents are committed at `f230d14` on IsoDocs `origin/main`, and no shared database
   deployment is claimed;
-- `1R-C5` is the single next planning candidate, but no plan or implementation has started;
+- `1R-C5` implementation/review is complete and committed locally at `8b5f208`; it remains
+  unpushed and undeployed;
+- Event policies are defaults for linked Projects, while an active C1-managed flat-rate
+  override wins only for its owning Event-linked Project; standalone Project policies may
+  be flat or stepped;
+- C2 organiser acceptance, not C1 acceptance or moderation, gates Store publication;
+  accepted replacement terms apply retrospectively to the Project sales window, provisional
+  figures recalculate and first sale does not lock the assignment;
 - public backup photographs are conditional production backstops that C1 may explicitly
   select if the physical original is lost or unavailable; their Order-line relation,
   Commerce payment gate, physical-original check and production-source authorisation are
   deferred until the required Commerce and typed FUND foundations exist;
-- the Project Intake alignment recorded by `1R-C2` must be separately planned/reviewed and
-  must not be folded silently into the schema-only implementation;
+- the Project Intake alignment recorded by `1R-C2` is now separately planned as
+  `1P-G-R3`; the provisional `1R-D` assignment was corrected because that identifier is
+  already reserved for the accepted Store-readiness lane;
 - FUND `1R-C6` must not start until the Commerce Order/line foundations exist.
 
 The controlled release sequence is also retained at parent level: promote and verify the
-unchanged A1/C1/C2 commit `4575d2d` on staging before combining it with later LMSPro UI
-work; then stage and UI-smoke the LMSPro work separately before promotion to main/live.
-This is a deployment gate, not a claim that any shared database has been migrated.
+schema-foundation baseline through C4 at `686229c` on staging before combining it with later
+LMSPro UI work; then stage and UI-smoke the LMSPro work separately before promotion to
+main/live. This is a deployment gate, not a claim that any shared database has been
+migrated.
 
 ## 8. Child Roadmap Discipline
 

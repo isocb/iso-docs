@@ -2,7 +2,7 @@
 
 Date: 2026-07-08
 
-Last reviewed: 2026-07-13
+Last reviewed: 2026-07-14
 
 Status: Accepted architecture / 1R-B schema-options planning created
 
@@ -654,13 +654,14 @@ snapshots even if the first implementation does not build the full C1 production
 
 Accepted commission-policy hierarchy:
 
-- An Event may define either a flat commission rate or a stepped Event commission ladder.
-- Every Project linked to that Event inherits the Event commission policy. The Event policy
-  wins; a linked Project does not replace it with a separate Project ladder or flat rate.
-- A standalone Project has no Event policy to inherit. C1 may assign it either a flat
-  Project commission rate or a C1-managed standalone Project commission ladder.
-- A standalone Project ladder may use the same rate-step capabilities as an Event ladder,
-  but it belongs to that standalone Project and does not become an Event policy.
+- An Event may define either a flat commission rate or a stepped Event commission ladder as
+  the default for its linked Projects.
+- A linked Project inherits that Event default unless C1 gives the individual Project an
+  explicit flat-rate override for an ad-hoc commercial agreement.
+- An active Project-specific policy wins only for its owning Project; it does not change the
+  Event default or another linked Project.
+- A standalone Project has no Event policy to inherit and therefore uses its own C1-managed
+  flat or stepped Project policy.
 
 Each stepped ladder must use exactly one timing method:
 
@@ -697,13 +698,19 @@ Accepted boundary:
   using its recognised payment timestamp. Sales are aggregated by Project and ladder band
   before commission is calculated, avoiding independently rounded per-line commission.
 - Offset-based bands use the Project closing date as their reference. Fixed-date bands use
-  the dates stored on the inherited Event ladder or standalone Project ladder.
+  the dates stored on the assigned Event-default or Project-specific ladder.
 - The final active band applies until Project close. After Project close the Store accepts
   no new Orders.
 - Aggregate Project commission calculation belongs to later accounting/reporting logic.
-- The effective ladder/policy version should be assigned when the Store is published and
-  locked no later than the first eligible paid sale. Project close fixes the sales window
-  and calculation period rather than looking up whichever policy is then current.
+- The effective ladder/policy version is resolved and offered before Store publication.
+  Publication requires explicit acceptance by an authorised C2 Project organiser; C1
+  configures and oversees the offer but does not moderate or approve publication.
+- C1 may later propose replacement terms, including after paid sales exist. The replacement
+  becomes effective only when C2 accepts it and then applies retrospectively to all eligible
+  sales in the Project window. The first eligible paid sale does not lock the assignment.
+- Project close fixes the sales window and later calculation period. Terms become final only
+  when the post-close commission evidence is finalized; until then displayed commission is
+  provisional and recalculates from the current accepted assignment.
 - The assignment, calculation basis and recognition event should be preserved through a
   Project commission assignment/period record. They should not be copied independently onto
   every Order line unless later audit design demonstrates that this is required.
@@ -750,7 +757,7 @@ boundary is required; it does not automatically authorise the full wishlist impl
 | `2R-PROD-01` | Use as constraint | Preserve production grouping and handoff evidence; defer full workflow. |
 | `2R-PROD-02` | Partially promote | Define minimum immutable asset/version, validation and review evidence before Store/Order schema. |
 | `2R-PROD-03` / `2R-PROD-04` | Use as constraints | Preserve dispatch and commission evidence; defer full workflows and surfaces. |
-| `2R-PROD-05` | Promote architecture only | Cover authoritative Event policies for linked Projects and C1-managed flat/ladder policies for standalone Projects. Decide version and aggregate-sales audit boundaries; defer ladder schema/UI/accounting. |
+| `2R-PROD-05` | Promote architecture only | Cover Event-default policies, C1 Project-specific overrides and standalone Project policies. Decide version and aggregate-sales audit boundaries; defer ladder UI/accounting. |
 | `2R-EVENT-03` / `2R-EVENT-04` | Use as constraints | Resolve the Store/Project/Event date hierarchy and later reuse it for reminders and commission timing. |
 | `2R-DASH-01` / `2R-DASH-02` | Park | Wait until accepted Store/Order states exist. |
 
@@ -872,8 +879,9 @@ totals, payment/refund state, purchaser/contact evidence and provider boundaries
   treated as operationally useful.
 - Orders preserve sales/refund/adjustment evidence for later aggregate commission; they do
   not calculate final payable commission.
-- Event-linked Projects use their Event's authoritative commission policy. Standalone
-  Projects use a C1-managed standalone flat rate or ladder.
+- Event-linked Projects use their Event's default commission policy unless C1 assigns an
+  explicit Project-specific flat-rate override. Standalone Projects use a C1-managed flat
+  rate or ladder.
 - File evidence must use immutable asset versions and an explicit retention/privacy policy.
 - Removing a Product after Orders exist must not corrupt historical Orders.
 - C1 admin/production workflow must remain visible in the design.
@@ -907,8 +915,8 @@ totals, payment/refund state, purchaser/contact evidence and provider boundaries
 | Fulfilment mode and delivery/contact snapshot boundary precede Order schema | Accepted |
 | Payment, Order, production and fulfilment states remain separate | Accepted |
 | Stripe is the first online provider; pro-forma invoice is a separate Commerce route | Accepted |
-| Event-linked Projects inherit the authoritative Event commission policy | Accepted |
-| Standalone Projects use a C1-managed standalone flat rate or ladder | Accepted |
+| Event-linked Projects inherit the Event default unless C1 assigns a Project-specific override | Accepted; revised 2026-07-14 from unoverrideable Event policy after client input |
+| Every standalone Project uses a C1-managed Project flat rate or ladder | Accepted |
 | Commission is calculated later from aggregate Project sales evidence | Accepted |
 
 ### 9.2 Accepted Business And Workflow Decisions
@@ -1198,16 +1206,19 @@ but it must preserve the separation between Order, payment and pro-forma lifecyc
 
 Commission policy resolves by Project context:
 
-- an Event-linked Project uses the commission policy configured on its Event;
-- the Event policy is authoritative for every linked Project and cannot be replaced by a
-  Project-specific policy;
-- a standalone Project uses a C1-managed standalone Project policy because there is no Event
-  policy to inherit;
-- either policy may be a flat rate or a stepped ladder;
+- an Event-linked Project uses the commission policy configured on its Event by default;
+- C1 may replace that default for one Project with an explicit Project-specific flat-rate
+  policy for an ad-hoc commercial agreement;
+- the Project-specific policy wins only for that Project and leaves the Event default
+  unchanged for other linked Projects;
+- a standalone Project uses a C1-managed Project policy because there is no Event policy to
+  inherit;
+- an Event default or standalone Project policy may be flat or stepped, while an
+  Event-linked Project override is flat only;
 - a stepped ladder uses either offset-based thresholds or fixed calendar dates, never both.
 
 For offset-based ladders, the Project closing date is the timing reference. For fixed-date
-ladders, the configured Event or standalone Project ladder dates apply directly.
+ladders, the configured assigned Event-default or Project-specific dates apply directly.
 
 Each eligible paid sale is assigned to the ladder band active at its recognised payment
 timestamp. Eligible sales are aggregated by Project and band, then commission is calculated
@@ -1217,10 +1228,17 @@ one rate for all aggregate eligible Project sales.
 The final active ladder step applies until the Project closes. Once the Project closing
 date/time passes, the Store no longer accepts new Orders.
 
-The effective inherited or standalone policy version is assigned when the Store is
-published and locked no later than the first eligible paid sale. Project close fixes the
-sales window and calculation period. Later payment reconciliation, refunds or adjustments
-must remain auditable without reopening or changing the historical Store window.
+The effective inherited, standalone or Project-override policy version is resolved and
+offered before Store publication. An authorised C2 Project organiser must explicitly
+accept the offer before publication; C1 has configuration and overview responsibility but
+does not moderate publication. A later C1 replacement offer, including one made after paid
+sales exist, becomes effective only when C2 accepts it and then applies retrospectively to
+all eligible sales in the Project window. The first eligible paid sale does not lock the
+assignment. Project close fixes the sales window and later calculation period; final terms
+are locked only when the post-close commission evidence is finalized. Until then any
+displayed earned commission is provisional and recalculates from the current accepted
+assignment. Later payment reconciliation, refunds or adjustments must remain auditable
+without changing the historical Store window.
 
 All section 9.2 decisions required to begin `1R-B` are now recorded. Schema-options planning
 may refine entity and enum names without reopening these business boundaries.

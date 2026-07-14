@@ -2,6 +2,8 @@
 
 Date: 2026-07-13
 
+Last amended: 2026-07-14 - Project-specific overrides and C2 commission acceptance refined
+
 Status: Accepted planning / no implementation
 
 ## 1. Slice Goal
@@ -29,7 +31,7 @@ FUND owns:
 - C2 Client Store logo/branding;
 - Project organiser delivery profile;
 - production artwork/assets and immutable versions;
-- Event and standalone Project commission policies;
+- Event-default and Project-specific commission policies;
 - later typed FUND extensions for Commerce Orders and Order lines.
 
 Commerce Core owns:
@@ -298,22 +300,27 @@ Clarification recorded in the bounded `1R-C2` plan on 2026-07-14:
   organisation/project-owning body and its main organiser; the body may be a school, club,
   Scout or Guide group, team, league, PTA, charity, community group or another organisation
   type;
-- completing approval of a new Project requires a primary `FundClientMember`/login-capable
+- completing automated or exception-reviewed provisioning of a new Project requires a
+  primary `FundClientMember`/login-capable
   organiser as well as the Client-owned Project;
 - the initial Project delivery profile is copied once from the structured organisation
-  address and organiser details explicitly confirmed during moderated onboarding, then is
-  Project-owned and editable by the organiser;
+  address and organiser details accepted through confirmed automated onboarding or C1
+  exception review, then is Project-owned and editable by the organiser;
 - the initial delivery recipient is the confirmed C2 Client organisation/body, with the
   main organiser recorded separately as the initial attention contact;
 - this is not live address inheritance and does not permit migration-time inference from
   legacy organiser fields or intake JSON;
 - the current Project Intake submission/approval workflow requires a separately reviewed
-  alignment amendment before it can claim to satisfy that initialization contract.
+  alignment amendment before it can claim to satisfy that initialization contract; that
+  amendment is now named and initiated as `1P-G-R3 - Project Intake Automated
+  Provisioning Alignment` and remains under parent traceability review.
 
 Controlling detail and references to `1P-G-C`, `1P-G-F`, `1P-G-D3-A` and `1P-K1-F-B` are
 recorded in:
 
 `docs/modules/fund/03-slice-planning/2026-07-14-fund-phase-1-slice-1r-c2-client-branding-project-delivery-event-media-schema-implementation-planning.md`
+
+`docs/modules/fund/03-slice-planning/2026-07-14-fund-phase-1-slice-1p-g-r3-project-intake-automated-provisioning-alignment-planning.md`
 
 ### 6.3 `FundEventMedia`
 
@@ -499,15 +506,17 @@ Accepted scopes:
 
 ```text
 EVENT
-STANDALONE_PROJECT
+PROJECT
 ```
 
-Exactly one Event or standalone Project owner is required.
+Exactly one Event or Project owner is required.
 
-- Event-linked Projects inherit the authoritative Event policy.
-- Event-linked Projects cannot replace it with a Project policy.
-- Standalone Projects may use a C1-managed standalone policy.
-- Either policy may be flat or stepped.
+- Event-linked Projects inherit the Event default policy when no active Project-specific
+  policy exists.
+- C1 may assign an Event-linked Project its own flat-rate Project policy for an ad-hoc
+  commercial override; that policy wins only for the owning Project.
+- Standalone Projects use a C1-managed flat or stepped Project policy.
+- Event defaults may be flat or stepped; Event-linked Project overrides are flat only.
 
 ### 9.3 Version And Step Enums
 
@@ -530,15 +539,23 @@ Version status:
 
 One stepped version uses only one timing method.
 
-### 9.4 Assignment Lock
+### 9.4 Assignment Acceptance And Finalization
 
 Assignment rules:
 
-- resolve the Event or standalone Project policy version when Store is published;
-- lock no later than the first eligible paid sale;
-- allow explicit audited reassignment only before that lock;
-- later policy edits create a new version;
-- Project close fixes the sales window/calculation period.
+- resolve a context-valid active Project policy first, otherwise the Event default, before
+  Store publication;
+- require explicit acceptance by an authorised C2 Project organiser before publication;
+- give C1 configuration and overview responsibility without making C1 acceptance or
+  moderation a publication gate;
+- allow C1 to propose audited replacement terms after sales, effective only when C2 accepts
+  the exact replacement;
+- apply the newest accepted assignment retrospectively to the whole Project sales window;
+- treat pre-finalization displayed commission as a provisional estimate that recalculates
+  from the current accepted assignment;
+- do not lock at the first eligible paid sale; finalize terms only with the later post-close
+  commission evidence;
+- let Project close fix the sales window/calculation period.
 
 No calculation or commission-payment fields belong on individual Order lines.
 
@@ -578,7 +595,8 @@ reverse relation field for client generation.
   implemented and reviewed.
 - Do not guess C2 logos or Project delivery addresses from unrelated free text.
 - Do not mark historic assets scanned/approved without evidence.
-- Do not assign commission policies to Projects without an explicit Event/standalone rule.
+- Do not assign commission policies without explicit Project-specific-first/Event-default
+  resolution.
 - Use short explicit constraint/index names where generated PostgreSQL names may collide.
 - Every new FUND relation follows the existing same-tenant composite relation pattern where
   the related model exposes `(organizationId, id)`.
@@ -652,7 +670,8 @@ Planning review should confirm:
 - Store Product/version history supports later checkout revalidation;
 - Client branding and Project delivery gaps are addressed;
 - production assets are versioned independently of mutable `MediaFile` metadata;
-- Event versus standalone commission scope and assignment lock are explicit;
+- Event-default versus Project-specific commission scope, precedence, C2 acceptance,
+  retrospective replacement and post-close finalization are explicit;
 - `1R-C6` waits for Commerce Core;
 - no implementation is performed by this document.
 
@@ -702,5 +721,6 @@ and has been accepted, implemented and reviewed as passed:
 
 `docs/modules/fund/05-review-and-test/2026-07-14-phase-1-slice-1r-c2-r1-client-branding-project-delivery-event-media-schema-review-and-test.md`
 
-No shared deployment is claimed. Do not rerun `1R-C2` or begin `1R-C3`, the Project Intake
-alignment, `COMMERCE-A2` or another slice without separate explicit instruction.
+No shared deployment is claimed. Do not rerun `1R-C2`. The Project Intake alignment has
+since been separately initiated as planning-only `1P-G-R3`; it does not authorise
+implementation, `1R-C6`, `COMMERCE-A2` or another slice.

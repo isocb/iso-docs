@@ -2,6 +2,8 @@
 
 Date: 2026-07-13
 
+Last amended: 2026-07-14 - C1 Project-specific commission overrides accepted
+
 Status: Accepted planning / no implementation
 
 ## 1. Slice Goal
@@ -51,8 +53,9 @@ The following decisions are inputs, not questions reopened by this slice:
 - Product Variants remain deferred unless a choice needs its own SKU, stock, weight, fixed
   price or fulfilment treatment.
 - Stripe is the first online provider; pro-forma invoice is a separate Commerce route.
-- Event-linked Projects inherit the Event commission policy.
-- Standalone Projects use a C1-managed standalone flat rate or ladder.
+- Event-linked Projects inherit the Event commission policy by default, but C1 may assign
+  one Project an explicit Project-specific flat-rate override.
+- Standalone Projects use a C1-managed Project flat rate or ladder.
 - Commission is calculated from aggregate eligible Project sales, not as a final payable
   amount independently rounded on each Order line.
 - Project-level production assets and purchaser Order-line assets remain separate.
@@ -91,7 +94,7 @@ The current schema does not provide:
 - immutable production asset versions, checksums, scan state or retention evidence;
 - Event Store banner/media roles;
 - C1 Commerce seller/tax profile;
-- Event or standalone Project commission-policy records.
+- Event-default or Project-specific commission-policy records.
 
 Important existing-field interpretation:
 
@@ -803,7 +806,7 @@ Candidate fields:
 - Project Store, Project, Client and optional Event identifiers;
 - Project type/workflow snapshot;
 - Project organiser delivery snapshot reference/data;
-- Event/standalone commission-policy assignment/version reference;
+- Event-default/Project-specific commission-policy assignment/version reference;
 - production/fulfilment state separate from Commerce Order/payment state;
 - timestamps/audit fields.
 
@@ -862,13 +865,19 @@ FundProjectCommissionPeriod
 
 ### Policy Scope
 
-One policy version has exactly one accepted scope:
+One policy has exactly one accepted owner scope:
 
-- Event policy, referenced by an Event and inherited by all linked Projects; or
-- standalone Project policy, referenced by one standalone Project.
+- Event-default policy, referenced by an Event and inherited by linked Projects without an
+  active Project-specific policy; or
+- Project-specific policy, referenced by one Project and usable as either an Event-linked
+  flat-rate override or a standalone flat/stepped policy.
 
-Event policy wins for Event-linked Projects. A linked Project cannot replace it with a
-Project-specific policy.
+An active Project-specific policy wins only for its owning Project. Otherwise an
+Event-linked Project resolves the Event default. The override does not mutate the Event
+policy or affect another Project.
+
+An Event-linked Project override is flat-rate only. Stepped Project policies are permitted
+only for standalone Projects.
 
 Policy method:
 
@@ -891,14 +900,21 @@ The two timing methods cannot be mixed in one policy version.
 Recommended conflict resolution:
 
 ```text
-Resolve and assign the effective policy version when the Store is published.
-Lock the assignment no later than the first eligible paid sale.
-Project close fixes the sales window and calculation period, not a mutable policy lookup.
+Resolve and offer the effective policy version before the Store is published.
+Require explicit acceptance by an authorised C2 Project organiser before publication.
+Do not make C1 acceptance or moderation a publication gate.
+Permit an audited C1 replacement offer after sales; make it effective only on C2 acceptance
+and apply it retrospectively to the whole Project sales window.
+Finalize the accepted assignment with the post-close commission evidence, not at first sale.
 ```
 
-This is safer than looking up whichever Event/Project policy happens to be active at Project
-close. Later C1 changes create a new policy version and do not rewrite existing assigned
-Projects. A pre-sale reassignment must be explicit and audited.
+The assignment preserves the exact offered and accepted policy versions instead of looking
+up whichever Event/Project policy happens to be active. Later C1 changes create a proposed
+replacement linked to the existing assignment and do not overwrite it. Only explicit C2
+acceptance makes the replacement effective. It then governs all eligible Project sales,
+including earlier sales, because final commission is calculated from aggregate Project
+evidence after close. Before finalization, displayed commission figures are provisional and
+must recalculate from the current accepted assignment.
 
 ### Steps And Calculation Evidence
 

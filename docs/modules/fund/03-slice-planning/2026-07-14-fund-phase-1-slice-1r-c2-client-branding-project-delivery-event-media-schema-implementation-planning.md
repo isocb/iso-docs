@@ -139,14 +139,14 @@ The business meaning is now explicit:
 
 - a new C2 relationship begins when a person submits the onboarding form for the first
   Project on behalf of a C2 Client organisation/project-owning body;
-- approval of that first Project must create or match the `FundClient`, create or match a
-  primary `FundClientMember` for the main organiser, link that member to the login-capable
-  platform `User` through the established Client-member onboarding policy, and create the
-  Client-owned Project;
+- confirmed automated or C1 exception-reviewed provisioning of that first Project must
+  create or match the `FundClient`, create or match a primary `FundClientMember` for the
+  main organiser, link that member to the login-capable platform `User` through the
+  established Client-member onboarding policy, and create the Client-owned Project;
 - a primary organiser profile is therefore a prerequisite of completing new Project
   creation, not optional descriptive text on the Project;
-- Event linkage remains optional and comes only from the trusted intake-form/default Event
-  or explicit C1 approval choice;
+- Event linkage comes only from the trusted C1-built Event form; a trusted standalone form
+  creates a Client-owned Project without an Event;
 - the organiser later reaches the Project through authenticated
   `User -> FundClientMember -> FundClient -> FundProject` scope and may manage the Project's
   delivery profile from the C2 dashboard.
@@ -171,12 +171,19 @@ Controlling source records:
 - `docs/modules/fund/04-implementation-confirmations/2026-06-30-phase-1-slice-1p-k1-f-b-client-member-user-link-create-service-confirmation.md`.
 
 Consequently, `1R-C2` may add the delivery-profile schema, but it must not claim that the
-current intake/approval workflow already satisfies this prerequisite. Before new intake
-approvals can be treated as Store-ready, a separately reviewed Project Intake alignment
+current intake/approval workflow already satisfies this prerequisite. Before newly
+provisioned intake Projects can be treated as Store-ready, a separately reviewed Project Intake alignment
 slice must add typed structured organisation/delivery-address capture and atomically
 coordinate Client, primary Client member/User, Project and initial delivery-profile
-creation. That amendment must preserve moderation, tenant scoping, explicit approval and
-idempotency. It is application workflow work and is not implemented by this schema slice.
+creation. That amendment must preserve confirmation security, tenant scoping, automated
+protection, bounded C1 exception review and idempotency. It is application workflow work
+and is not implemented by this schema slice.
+
+That separate lifecycle is now named and initiated as:
+
+`1P-G-R3 - Project Intake Automated Provisioning Alignment`
+
+`docs/modules/fund/03-slice-planning/2026-07-14-fund-phase-1-slice-1p-g-r3-project-intake-automated-provisioning-alignment-planning.md`
 
 #### 4.2.2 Planned delivery-profile record
 
@@ -373,10 +380,10 @@ Required pre/post evidence:
 - no duplicate owner keys before constraint creation;
 - enum/table/index/constraint inventory matches the accepted contract.
 
-The later Project Intake alignment must test new-workflow initialization separately. It
-must not be disguised as migration backfill and must define an explicit operator-reviewed
-remediation path for any existing Project that lacks a primary organiser or delivery
-profile.
+The separately initiated `1P-G-R3` Project Intake alignment must test new-workflow
+initialization separately. It must not be disguised as migration backfill and must define
+an explicit operator-reviewed remediation path for any existing Project that lacks a
+primary organiser or delivery profile.
 
 ## 6. Expected Implementation Files
 
