@@ -77,6 +77,8 @@ Committed development schema foundation:
   migration and has no shared deployment;
 - Commerce `A3` is implemented/reviewed at local application `4a90be1`, is three commits
   ahead of `origin/dev` with C6/1R-D, and has no shared deployment;
+- Commerce `A4` is implemented/reviewed at local application `5b69920`, is four commits
+  ahead of `origin/dev` with C6/1R-D/A3, and has no shared deployment;
 - local/remote `staging` and `main` remain at `ea4e619`;
 - no shared development, staging or production database migration/deployment is claimed.
 
@@ -87,9 +89,9 @@ migration. No shared database deployment is claimed.
 Disposable test database state after Commerce A3 review:
 
 ```text
-applied migrations: 138
+applied migrations: 139
 failed migrations: 0
-residual A3 fixture rows: 0
+residual A4 fixture rows: 0
 ```
 
 `TEST_DATABASE_URL` remains local and uncommitted. Every destructive test must first prove
@@ -118,6 +120,7 @@ session advisory locks are not returned to a pool.
 | `1R-C6` | FUND | Implemented/reviewed at local application `9947669`; not pushed or deployed | Typed FUND context keyed to generic Commerce Order/line records; no runtime behavior |
 | `1R-D` | FUND Store | Implemented/reviewed at local application `db85fcc`; not pushed or deployed | Internal C1 Store preparation, readiness, immutable configuration, lifecycle and Product-copy services; no UI/public Store/Commerce payment behavior |
 | `COMMERCE-A3` | Commerce | Implemented/reviewed at local application `4a90be1`; not pushed or deployed | Provider-neutral Payment, Refund and Pro-forma schema evidence; no runtime behavior |
+| `COMMERCE-A4` | Commerce | Implemented/reviewed at local application `5b69920`; not pushed or deployed | Provider-neutral audit and idempotency evidence foundation; no runtime behavior |
 
 `1R-C1` through `1R-D` and `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D` must not be rerun as pending work. No next
 implementation is authorised merely because the preceding lifecycle completed.
@@ -130,7 +133,8 @@ COMMERCE-A1 (complete on dev)
   -> FUND 1R-C6 (implementation/review complete locally at `9947669`)
   -> FUND 1R-D (implementation/review complete locally at `db85fcc`)
   -> COMMERCE-A3 (implementation/review complete locally at `4a90be1`)
-  -> COMMERCE-A4 (single next planning candidate: audit/idempotency foundation)
+  -> COMMERCE-A4 (implementation/review complete locally at `5b69920`)
+  -> COMMERCE-A5 (single next planning candidate: provider-neutral services and validation)
 
 FUND 1R-C1 (complete on dev)
   -> 1R-C2 (complete on dev)
@@ -159,8 +163,9 @@ Rules:
 - `1R-C6` is complete through review/test and must not be rerun as pending work;
 - Store `1R-D` is complete through review/test and must not be rerun as pending work;
 - `COMMERCE-A3` is complete through review/test and must not be rerun as pending work;
-- `COMMERCE-A4` is the single next planning candidate but is not authorised for
-  implementation merely by A3 completion;
+- `COMMERCE-A4` is complete through review/test and must not be rerun as pending work;
+- `COMMERCE-A5` is the single next planning candidate but is not authorised for
+  implementation merely by A4 completion;
 - never implement two slices merely because their planning can be discussed together;
 - finish one slice lifecycle before selecting another unless the user explicitly changes
   the control decision.
@@ -310,8 +315,8 @@ Completed `1P-G-R3-A` lifecycle:
 
 Global next planning control:
 
-- `COMMERCE-A4 - Audit And Idempotency Foundation` is the single next planning candidate
-  under the root roadmap; it has no accepted implementation plan yet.
+- `COMMERCE-A5 - Provider-neutral Services And Validation` is the single next planning
+  candidate under the root roadmap; it has no accepted implementation plan yet.
 
 Sibling Commerce controls:
 
@@ -388,8 +393,8 @@ deployed to a shared environment and adds no runtime payment behavior.
 Current next control action:
 
 ```text
-Return to the Core Commerce lane and create/review only the bounded `COMMERCE-A4 - Audit
-And Idempotency Foundation` planning slice. Do not implement it until accepted and do not
+Return to the Core Commerce lane and create/review only the bounded `COMMERCE-A5 - Provider-neutral
+Services And Validation` planning slice. Do not implement it until accepted and do not
 begin FUND `1R-E` or another slice.
 ```
 

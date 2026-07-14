@@ -102,6 +102,10 @@ Cross-lane references remain generic from Commerce and typed from FUND.
 - `COMMERCE-A3`: implemented/reviewed at local application commit `4a90be1`; representative
   137-to-138 and fresh 138-migration disposable lifecycles, A1/A2/C6 regressions and
   zero-residue checks passed. It is not pushed or deployed to a shared database.
+- `COMMERCE-A4`: implemented/reviewed at local application commit `5b69920`; representative
+  138-to-139 and fresh 139-migration disposable lifecycles, A1/A2/A3/C6 regressions,
+  immutable-audit checks and zero-residue checks passed. It is not pushed or deployed to a
+  shared database.
 
 ### FUND
 
@@ -155,8 +159,8 @@ COMMERCE-A1 complete
   -> FUND 1R-C6 typed Commerce context
   -> FUND 1R-D Store readiness/configuration services
   -> COMMERCE-A3 payment/refund/pro-forma schema complete
-  -> COMMERCE-A4 audit/idempotency (single next planning candidate)
-  -> COMMERCE-A5 provider-neutral services
+  -> COMMERCE-A4 audit/idempotency complete
+  -> COMMERCE-A5 provider-neutral services (single next planning candidate)
   -> COMMERCE-A6 Stripe adapter/webhooks
   -> COMMERCE-A7 FUND consumer integration
 
@@ -169,9 +173,9 @@ different documentation lifecycles.
 
 ## 7. Current Parent Control Decision
 
-`1R-C1` through `1R-D`, `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D`, and Commerce A1 through A3 are
+`1R-C1` through `1R-D`, `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D`, and Commerce A1 through A4 are
 complete through implementation confirmation and review/test. The disposable database is
-at the complete 138-migration A3 baseline with zero test residue.
+at the complete 139-migration A4 baseline with zero test residue.
 
 The accepted parent family is `1P-G-R3 - Project Intake Automated Provisioning Alignment`.
 Its A/B/C child lifecycles are complete and included on `origin/dev`. R3-A is committed at `4bb7dd9`, R3-B at
@@ -205,8 +209,10 @@ For clarity:
   has no shared deployment and must not be rerun as pending work;
 - `COMMERCE-A3 - Payment, Refund And Pro-forma Schema Foundation` is implemented/reviewed
   at local application `4a90be1`, is undeployed to shared databases and must not be rerun;
-- `COMMERCE-A4 - Audit And Idempotency Foundation` is the single next planning candidate.
-  It is not yet planned or authorised for implementation;
+- `COMMERCE-A4 - Audit And Idempotency Foundation` is implemented/reviewed at local
+  application `5b69920`, is undeployed to shared databases and must not be rerun;
+- `COMMERCE-A5 - Provider-neutral Services And Validation` is the single next planning
+  candidate. It is not yet planned or authorised for implementation;
 - Event policies are defaults for linked Projects, while an active C1-managed flat-rate
   override wins only for its owning Event-linked Project; standalone Project policies may
   be flat or stepped;
@@ -255,8 +261,8 @@ for explicit user input when a genuine business/product choice remains, authorit
 expand, destructive/shared-environment work would be required, or the accepted plan cannot
 be satisfied safely.
 
-Current single next control action: create and review only the bounded `COMMERCE-A4 -
-Audit And Idempotency Foundation` plan. Store UI `1R-E` remains queued in
+Current single next control action: create and review only the bounded `COMMERCE-A5 -
+Provider-neutral Services And Validation` plan. Store UI `1R-E` remains queued in
 the FUND lane and is not the global next slice.
 
 ## 8. Child Roadmap Discipline

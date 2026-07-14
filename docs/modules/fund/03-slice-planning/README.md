@@ -20,8 +20,8 @@ Most recently completed planning/implementation lifecycle:
 Current integrated critical-path action:
 
 ```text
-Return to Core Commerce and create/review only the bounded COMMERCE-A4 Audit And
-Idempotency Foundation plan
+Return to Core Commerce and create/review only the bounded COMMERCE-A5 Provider-neutral
+Services And Validation plan
 ```
 
 Commerce A2 is implemented/reviewed on application `origin/dev` at `3206199`. FUND C6 is
@@ -29,7 +29,9 @@ implemented/reviewed locally at application `9947669` and supplies typed FUND ev
 that generic Order/line contract. Store `1R-D` is implemented/reviewed locally at
 application `db85fcc` with no migration or shared deployment. Commerce A3 is
 implemented/reviewed locally at application `4a90be1` with a clean 138-migration disposable
-lifecycle and no shared deployment. `COMMERCE-A4` is the single global next planning
+lifecycle and no shared deployment. Commerce A4 is implemented/reviewed locally at
+application `5b69920` with a clean 139-migration disposable lifecycle and no shared
+deployment. `COMMERCE-A5` is the single global next planning
 candidate; FUND Store UI `1R-E` remains queued.
 
 Completed C6 plan:

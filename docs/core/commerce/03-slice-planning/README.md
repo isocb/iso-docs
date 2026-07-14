@@ -9,6 +9,7 @@ Completed through review/test:
 COMMERCE-A1 - Schema namespace, Seller Profile and stable enums
 COMMERCE-A2 - Checkout, Order and Order-line schema foundation
 COMMERCE-A3 - Payment, Refund and Pro-forma schema foundation
+COMMERCE-A4 - Audit and Idempotency foundation
 ```
 
 FUND `1R-C6` is implemented/reviewed at local application commit `9947669` against the
@@ -18,6 +19,9 @@ application commit `db85fcc` without adding Commerce behavior or another migrati
 Commerce A3 is implemented/reviewed at local application commit `4a90be1`; its complete
 138-migration disposable lifecycle passed with zero residue and no shared deployment.
 
-The integrated root critical path now names `COMMERCE-A4 - Audit And Idempotency
-Foundation` as the single next planning candidate. It is not yet planned or
+Commerce A4 is implemented/reviewed at local application commit `5b69920`; its complete
+139-migration disposable lifecycle passed with zero residue and no shared deployment.
+
+The integrated root critical path now names `COMMERCE-A5 - Provider-neutral Services And
+Validation` as the single next planning candidate. It is not yet planned or
 authorised for implementation by this README.

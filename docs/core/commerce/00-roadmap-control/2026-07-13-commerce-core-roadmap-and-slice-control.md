@@ -143,7 +143,7 @@ Current result:
 
 ## 8. Current Next Step
 
-`COMMERCE-A1`, `COMMERCE-A2` and `COMMERCE-A3` are complete through review/test. The accepted generic
+`COMMERCE-A1` through `COMMERCE-A4` are complete through review/test. The accepted generic
 Order/line and same-tenant relation foundation supported FUND `1R-C6 - FUND Commerce
 Context Foundation`, which is implemented/reviewed at local application commit `9947669`.
 Its representative 136-to-137 and fresh 137-migration disposable lifecycles passed with
@@ -171,5 +171,23 @@ Review/test:
 
 `docs/core/commerce/05-review-and-test/2026-07-14-commerce-a3-payment-refund-pro-forma-schema-review-and-test.md`
 
-`COMMERCE-A4 - Audit And Idempotency Foundation` is therefore the single next planning
-candidate under the root roadmap. It is not yet planned or authorised for implementation.
+`COMMERCE-A4 - Audit And Idempotency Foundation` is implemented/reviewed at local application
+commit `5b69920`. Its representative 138-to-139 and fresh 139-migration disposable
+lifecycles, A1/A2/A3/C6 regressions and zero-residue checks passed. No shared database or
+runtime service deployment occurred.
+
+Planning:
+
+`docs/core/commerce/03-slice-planning/2026-07-14-isostack-commerce-core-slice-commerce-a4-audit-idempotency-foundation-implementation-planning.md`
+
+Implementation confirmation:
+
+`docs/core/commerce/04-implementation-confirmations/2026-07-14-commerce-a4-audit-idempotency-foundation-implementation-confirmation.md`
+
+Review/test:
+
+`docs/core/commerce/05-review-and-test/2026-07-14-commerce-a4-audit-idempotency-foundation-review-and-test.md`
+
+`COMMERCE-A5 - Provider-neutral Services And Validation` is therefore the single next
+planning candidate under the root roadmap. It is not yet planned or authorised for
+implementation.
