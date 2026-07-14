@@ -2,7 +2,7 @@
 
 Date: 2026-07-14
 
-Status: Accepted for bounded implementation / no implementation started
+Status: Implemented and independently reviewed as passed / application changes uncommitted / no shared deployment
 
 Parent alignment:
 
@@ -40,8 +40,9 @@ Review outcome on 2026-07-14:
 
 ## 2. Entry Gate And Baseline
 
-The parent `1P-G-R3` alignment and this bounded R3-A plan are accepted. No implementation
-has started.
+The parent `1P-G-R3` alignment and this bounded R3-A plan were accepted before
+implementation. The entry gate below was satisfied from the committed C5 baseline; the
+implementation and review/test lifecycle is now complete locally.
 
 Implementation must not start from an ambiguous working tree. The completed `1R-C5`
 schema/migration/review lifecycle is committed as application baseline `8b5f208` and
@@ -255,12 +256,12 @@ Add named exact relations so:
 - `trustedInitiatingClientMemberId` belongs to `trustedInitiatingClientId` in the same
   tenant.
 
-Replace the existing approved-Project relation fields with the exact nullable
-Project/Client composite relation; preserve its relation name and reverse evidence surface
-where feasible. Use `onDelete: Restrict`/PostgreSQL `NO ACTION` for submission evidence
-pointing to Client, member, Project and delivery outcome records. Existing historic deletion
-contracts are not weakened. Add only the reverse Prisma relations necessary to
-validate/generate this schema.
+Preserve the existing approved-Project relation and add the exact nullable Project/Client
+composite relation alongside it. The original relation continues to protect historic
+clientless approval evidence; the new relation proves Client ownership for aligned results.
+Use `onDelete: Restrict`/PostgreSQL `NO ACTION` for submission evidence pointing to Client,
+member, Project and delivery outcome records. Existing historic deletion contracts are not
+weakened. Add only the reverse Prisma relations necessary to validate/generate this schema.
 
 Because PostgreSQL composite foreign keys use `MATCH SIMPLE`, checks must separately reject
 a new member without its Client, a new delivery profile without its Project, either half of

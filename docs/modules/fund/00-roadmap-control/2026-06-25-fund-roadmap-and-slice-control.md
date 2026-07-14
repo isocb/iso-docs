@@ -65,20 +65,22 @@ Committed development schema foundation:
 - all three are committed together at application commit `4575d2d`;
 - FUND `1R-C3` and `1R-C4` are implemented/reviewed and committed at `686229c`;
 - FUND `1R-C5` is implemented/reviewed and committed locally at `8b5f208`;
+- FUND `1P-G-R3-A` is implemented/reviewed in the application worktree and remains
+  uncommitted;
 - application `origin/dev` remains at `686229c`; the C5 commit has not been pushed;
 - local/remote `staging` and `main` remain at `ea4e619`;
 - no shared development, staging or production database migration/deployment is claimed.
 
-The application worktree is clean after the bounded C5 commit. The C5 migration advances
-the disposable test database from 132 to 133 migrations. No push or shared database
-deployment is claimed.
+The application worktree contains only the bounded, uncommitted R3-A implementation on top
+of committed C5 baseline `8b5f208`. The R3-A migration advances the disposable test database
+from 133 to 134 migrations. No push or shared database deployment is claimed.
 
-Disposable test database state after `1R-C5` review:
+Disposable test database state after `1P-G-R3-A` review:
 
 ```text
-applied migrations: 133
+applied migrations: 134
 failed migrations: 0
-residual 1R-C5 test rows: 0
+residual 1P-G-R3-A test rows: 0
 ```
 
 `TEST_DATABASE_URL` remains local and uncommitted. Every destructive test must first prove
@@ -99,13 +101,14 @@ session advisory locks are not returned to a pool.
 | `1R-C4` | FUND | Implemented/reviewed; committed on dev | Production Asset Version Foundation; runtime media/actor validation and production authority remain later work |
 | `1R-C5` | FUND | Implemented/reviewed; committed locally at `8b5f208`; not pushed | Event-default and C1 Project-specific Commission Policy And Assignment Foundation |
 | `1P-G-R3` | FUND Project Intake | Parent alignment accepted; non-executable | Automated Event/standalone Project provisioning for new/existing Clients with C1 exception review |
-| `1P-G-R3-A` | FUND Project Intake | Plan accepted; bounded implementation authorised but not started | Explicit aligned-form opt-in/version/revision, typed Intake evidence and exact provisioning-result keys only |
+| `1P-G-R3-A` | FUND Project Intake | Implemented/reviewed as passed; application changes uncommitted | Explicit aligned-form opt-in/version/revision, typed Intake evidence and exact provisioning-result keys only |
+| `1P-G-R3-B` | FUND Project Intake | Plan accepted; implementation not started; R3-A commit gate open | Dormant form-policy/protection/atomic-provisioning service engine only; R3-C retains route/UI activation |
 | `1R-D` | FUND Store | Future; reserved; not authorised | Store Readiness And C1 Store Configuration API/Services from accepted 1R-A architecture |
 | `COMMERCE-A2` | Commerce | Future; not authorised | Checkout, Order and Order-line schema foundation |
 | `1R-C6` | FUND | Blocked | Waits for accepted/implemented Commerce Order and line foundation |
 
-`1R-C1` through `1R-C5` must not be rerun as pending work. No next implementation is
-authorised merely because the preceding lifecycle completed.
+`1R-C1` through `1R-C5` and `1P-G-R3-A` must not be rerun as pending work. No next
+implementation is authorised merely because the preceding lifecycle completed.
 
 ## 4. Current Sequence And Dependency Control
 
@@ -119,8 +122,8 @@ FUND 1R-C1 (complete on dev)
   -> 1R-C5 (implementation/review complete; committed locally; not pushed)
 
 FUND 1P-G-R3 (parent accepted; non-executable)
-  -> 1P-G-R3-A (schema/form-policy plan accepted; implementation not started)
-  -> 1P-G-R3-B (future; blocked by R3-A lifecycle)
+  -> 1P-G-R3-A (schema/form-policy implementation/review complete; uncommitted)
+  -> 1P-G-R3-B (plan accepted; implementation waits for committed R3-A baseline)
   -> 1P-G-R3-C (future; blocked by R3-B lifecycle)
 
 COMMERCE-A2/A3 foundations
@@ -131,8 +134,10 @@ Rules:
 
 - FUND may proceed through `1R-C2` to `1R-C5` without Commerce Orders;
 - `1P-G-R3` parent alignment is accepted and is not an implementation unit;
-- `1P-G-R3-A` is the single authorised implementation slice; its accepted bounded prompt
-  must be followed without beginning R3-B or another slice;
+- `1P-G-R3-A` is complete through review/test and must not be rerun as pending work;
+- `1P-G-R3-B` is the single accepted next implementation candidate, but its application work
+  cannot begin until R3-A application/documentation changes are separately committed and
+  the user explicitly gives the bounded implementation instruction;
 - the accepted Store-lane identifier `1R-D` remains reserved and is not authorised;
 - `COMMERCE-A2` is not automatically next and remains controlled by the Commerce roadmap;
 - `1R-C6` cannot begin until Commerce Order/line ownership and cross-schema relations are
@@ -199,7 +204,8 @@ payment model.
 | Product tax classification | Safely `UNCLASSIFIED` | Store readiness must block until explicitly classified |
 | Project Product tax propagation | Not implemented | Later accepted service must copy reviewed Product classification |
 | FUND `1P-G-R3` Intake automation alignment | Parent accepted; non-executable | Preserve the accepted three-child boundary and complete one child lifecycle at a time |
-| FUND `1P-G-R3-A` schema/form policy | Plan accepted; implementation not started | Implement only the explicit legacy-safe opt-in, form revision snapshots, typed evidence, exact tenant keys and zero-backfill migration |
+| FUND `1P-G-R3-A` schema/form policy | Implemented/reviewed; uncommitted and undeployed | Commit/promotion is a separate explicit action; runtime automation remains R3-B work |
+| FUND `1P-G-R3-B` service/protection engine | Plan accepted; implementation not started | Commit the completed R3-A lifecycle first, then use only the bounded R3-B prompt; R3-C retains confirmation and UI activation |
 | Historical 1P-G/K1-F review evidence | Incomplete slice-by-slice chain | D1/D2 and K1-F-A/B lack separate review/test records; close coverage prospectively in R3 children and do not invent backdated evidence |
 | All-source Project creation alignment | Planning gap identified | K2 C2 and generic C1 Project creation predate delivery profiles; plan separately before treating every created Project as delivery-ready/Store-ready |
 | FUND Store `1R-D` | Reserved / not authorised | Preserve accepted 1R-A meaning: Store Readiness And C1 Store Configuration API/Services |
@@ -264,6 +270,16 @@ Completed `1R-C5` lifecycle:
 - `docs/modules/fund/04-implementation-confirmations/2026-07-14-phase-1-slice-1r-c5-commission-policy-assignment-schema-implementation-confirmation.md`
 - `docs/modules/fund/05-review-and-test/2026-07-14-phase-1-slice-1r-c5-r1-commission-policy-assignment-schema-review-and-test.md`
 
+Completed `1P-G-R3-A` lifecycle:
+
+- `docs/modules/fund/03-slice-planning/2026-07-14-fund-phase-1-slice-1p-g-r3-a-project-intake-automation-schema-form-policy-foundation-implementation-planning.md`
+- `docs/modules/fund/04-implementation-confirmations/2026-07-14-phase-1-slice-1p-g-r3-a-project-intake-automation-schema-form-policy-foundation-implementation-confirmation.md`
+- `docs/modules/fund/05-review-and-test/2026-07-14-phase-1-slice-1p-g-r3-a-r1-project-intake-automation-schema-form-policy-foundation-review-and-test.md`
+
+Accepted next implementation plan:
+
+- `docs/modules/fund/03-slice-planning/2026-07-14-fund-phase-1-slice-1p-g-r3-b-project-intake-automated-provisioning-and-protection-services-implementation-planning.md`
+
 Sibling Commerce controls:
 
 - `docs/core/commerce/00-roadmap-control/2026-07-13-commerce-core-roadmap-and-slice-control.md`
@@ -271,15 +287,15 @@ Sibling Commerce controls:
 
 ## 9. Current Planning Handoff
 
-No implementation is currently underway. `1R-C5` is complete through implementation
+No implementation is currently underway. `1P-G-R3-A` is complete through implementation
 confirmation and review/test on the retained disposable database. The representative
-132-to-133 migration, complete 133-migration fresh replay, C5 constraints and A1/C1/C2/C3/C4
-regressions passed with zero C5 residue. The C5 application changes are committed locally
-at `8b5f208`, remain unpushed, and no shared database deployment is claimed.
+133-to-134 migration, complete 134-migration fresh replay, R3-A constraints and
+A1/C1/C2/C3/C4/C5 regressions passed with zero R3-A residue. Its application changes remain
+uncommitted on top of C5 baseline `8b5f208`, and no shared database deployment is claimed.
 
-The implementation records Event-default, standalone Project and flat-only Event-Project
-override configuration plus C2 acceptance/replacement/finalization evidence. It calculates
-no commission, creates no Commerce relation and adds no Store service or UI.
+The preceding C5 implementation records Event-default, standalone Project and flat-only
+Event-Project override configuration plus C2 acceptance/replacement/finalization evidence.
+It calculates no commission, creates no Commerce relation and adds no Store service or UI.
 
 The Project Intake alignment exposed by `1R-C2` is now correctly named and initiated as
 `1P-G-R3 - Project Intake Automated Provisioning Alignment`. The earlier provisional use of
@@ -290,8 +306,9 @@ Store Readiness And C1 Store Configuration API/Services.
 K1-F identity/auth contracts and 1R-C2 delivery foundation, and divides future work into
 `1P-G-R3-A` schema/form policy, `1P-G-R3-B` automated protection/provisioning services and
 `1P-G-R3-C` form/confirmation/exception-review integration. Each child requires its own
-full lifecycle. The bounded `1P-G-R3-A` schema/form-policy plan has completed separate review
-and is accepted for implementation. No implementation has started.
+full lifecycle. The bounded `1P-G-R3-A` schema/form-policy implementation and independent
+review/test are complete. It adds schema evidence only; no form is opted in and no runtime
+automation, provisioning, confirmation, moderation, email or UI behaviour was added.
 
 Parent review added three legacy-safety controls to the accepted contract: aligned forms
 require an explicit contract/scope/revision marker rather than inference from
@@ -312,10 +329,10 @@ Order/line foundations.
 Current next action:
 
 ```text
-Continue only accepted FUND Phase 1 Slice `1P-G-R3-A - Project Intake Automation Schema And
-Form Policy Foundation`. Implement its bounded schema/migration foundation and validation,
-then complete its lifecycle records and stop. Do not begin 1P-G-R3-B, 1P-G-R3-C, Store
-`1R-D`, 1R-C6, COMMERCE-A2 or another slice.
+Commit the completed R3-A application and documentation lifecycle as separate baselines.
+Then, only after an explicit user implementation instruction, execute the accepted bounded
+`1P-G-R3-B - Project Intake Automated Provisioning And Protection Services` prompt. Do not
+begin R3-C or another slice.
 ```
 
 ## 10. Roadmap Maintenance Rule

@@ -2,7 +2,7 @@
 
 Date: 2026-07-14
 
-Status: Parent alignment accepted / 1P-G-R3-A accepted for bounded implementation / no implementation started
+Status: Parent alignment accepted / 1P-G-R3-A implemented and reviewed / R3-B accepted but not started
 
 Parent controls:
 
@@ -71,9 +71,10 @@ Review outcome on 2026-07-14:
 - the provisioning path distinguishes automatic provisioning from C1 review, while the
   exception reason separately distinguishes an automated exception from an intentionally
   manual form;
-- the first bounded child plan is `1P-G-R3-A - Project Intake Automation Schema And Form
-  Policy Foundation`; it has completed separate review and is accepted for bounded
-  implementation, but no implementation has started.
+- `1P-G-R3-A - Project Intake Automation Schema And Form Policy Foundation` has completed
+  implementation and independent review/test locally;
+- the bounded `1P-G-R3-B - Project Intake Automated Provisioning And Protection Services`
+  plan completed separate review and is accepted; no R3-B implementation has started.
 
 ## 2. Slice Name And Lifecycle
 
