@@ -66,12 +66,19 @@ Committed development schema foundation:
 - local/remote `staging` and `main` remain at `ea4e619`;
 - no shared development, staging or production database migration/deployment is claimed.
 
-Disposable test database state after `1R-C2` review:
+Current uncommitted application worktree:
+
+- FUND `1R-C3` and `1R-C4`: implemented and reviewed as passed;
+- the two bounded migrations advance the disposable test database from 130 to 132
+  migrations;
+- no application commit or shared database deployment is claimed.
+
+Disposable test database state after `1R-C4` review:
 
 ```text
-applied migrations: 130
+applied migrations: 132
 failed migrations: 0
-residual 1R-C2 test rows: 0
+residual 1R-C4 test rows: 0
 ```
 
 `TEST_DATABASE_URL` remains local and uncommitted. Every destructive test must first prove
@@ -88,13 +95,14 @@ session advisory locks are not returned to a pool.
 | `1R-C` | FUND architecture | Accepted | FUND schema foundation split into `1R-C1` through `1R-C6` |
 | `1R-C1` | FUND | Implemented/reviewed; committed on dev | Product media/input/tax/copy-provenance schema foundation |
 | `1R-C2` | FUND | Implemented/reviewed; committed on dev | Client branding, Project delivery and Event media foundation; Project Intake alignment dependency preserved |
-| `1R-C3` | FUND | Next candidate; not started | Project Store and Store Product schema foundation planning |
-| `1R-C4`–`1R-C5` | FUND | Future | Production-asset and commission foundations |
+| `1R-C3` | FUND | Implemented/reviewed; uncommitted | Project Store, Store Product, immutable configuration version and Store Product input-owner schema foundation |
+| `1R-C4` | FUND | Implemented/reviewed; uncommitted | Production Asset Version Foundation; runtime media/actor validation and production authority remain later work |
+| `1R-C5` | FUND | Next planning candidate; not started | Commission Policy And Assignment Foundation |
 | `COMMERCE-A2` | Commerce | Future; not authorised | Checkout, Order and Order-line schema foundation |
 | `1R-C6` | FUND | Blocked | Waits for accepted/implemented Commerce Order and line foundation |
 
-`1R-C1` and `1R-C2` must not be rerun as pending work. No next slice is authorised merely
-because the preceding lifecycle completed.
+`1R-C1` through `1R-C4` must not be rerun as pending work. No next implementation is
+authorised merely because the preceding lifecycle completed.
 
 ## 4. Current Sequence And Dependency Control
 
@@ -103,9 +111,9 @@ COMMERCE-A1 (complete on dev)
 
 FUND 1R-C1 (complete on dev)
   -> 1R-C2 (complete on dev)
-  -> 1R-C3 (next candidate planning)
-  -> 1R-C4
-  -> 1R-C5
+  -> 1R-C3 (implementation/review complete locally; uncommitted)
+  -> 1R-C4 (implementation/review complete locally; uncommitted)
+  -> 1R-C5 (next planning candidate only)
 
 COMMERCE-A2/A3 foundations
   -> FUND 1R-C6 typed Commerce context
@@ -181,6 +189,24 @@ payment model.
 | First-Project onboarding alignment | Required before Store-ready intake approval | Add typed organisation address and atomic Client/member/User/Project/delivery-profile initialization in a separate reviewed slice |
 | `COMMERCE-A2` decisions | Open | Resolve checkout persistence, money type, tax rules and immutable arithmetic first |
 | FUND `1R-C6` | Blocked | Wait for Commerce Order/line foundation |
+| FUND `1R-C3`/`1R-C4` application changes | Implemented/reviewed; uncommitted | Commit/promotion remains a separate explicit action; shared databases unchanged |
+
+### 7.1 Controlled Promotion Sequence Before LMSPro UI Work
+
+The retained sequence for application commit `4575d2d` is a first-class release gate:
+
+1. promote the unchanged A1/C1/C2 application commit from `dev` to `staging` before mixing
+   it with later LMSPro UI changes;
+2. apply and verify its three bounded migrations against the staging database through the
+   normal reviewed deployment path;
+3. confirm migration inventory, application health and no unrelated LMSPro regression;
+4. begin or rebase the LMSPro UI work from the then-current `dev` baseline;
+5. promote the LMSPro changes separately to staging, perform their UI smoke testing, and
+   only then promote the reviewed commits/migrations to `main`/live.
+
+This ordering does not claim that staging or live deployment has happened. The committed
+FUND/Commerce schema additions are additive and module-bounded, but that is not permission
+to bypass staging migration and application-health checks.
 
 ## 8. Current Authoritative Evidence
 
@@ -191,6 +217,8 @@ Architecture and planning:
 - `docs/modules/fund/03-slice-planning/2026-07-13-fund-phase-1-slice-1r-c-fund-store-input-schema-foundation-planning.md`
 - `docs/modules/fund/03-slice-planning/2026-07-13-fund-phase-1-slice-1r-c1-product-media-input-tax-duplication-schema-implementation-planning.md`
 - `docs/modules/fund/03-slice-planning/2026-07-14-fund-phase-1-slice-1r-c2-client-branding-project-delivery-event-media-schema-implementation-planning.md`
+- `docs/modules/fund/03-slice-planning/2026-07-14-fund-phase-1-slice-1r-c3-project-store-store-product-schema-implementation-planning.md`
+- `docs/modules/fund/03-slice-planning/2026-07-14-fund-phase-1-slice-1r-c4-production-asset-version-schema-implementation-planning.md`
 
 Completed `1R-C1` lifecycle:
 
@@ -202,6 +230,16 @@ Completed `1R-C2` lifecycle:
 - `docs/modules/fund/04-implementation-confirmations/2026-07-14-phase-1-slice-1r-c2-client-branding-project-delivery-event-media-schema-implementation-confirmation.md`
 - `docs/modules/fund/05-review-and-test/2026-07-14-phase-1-slice-1r-c2-r1-client-branding-project-delivery-event-media-schema-review-and-test.md`
 
+Completed `1R-C3` lifecycle:
+
+- `docs/modules/fund/04-implementation-confirmations/2026-07-14-phase-1-slice-1r-c3-project-store-store-product-schema-implementation-confirmation.md`
+- `docs/modules/fund/05-review-and-test/2026-07-14-phase-1-slice-1r-c3-r1-project-store-store-product-schema-review-and-test.md`
+
+Completed `1R-C4` lifecycle:
+
+- `docs/modules/fund/04-implementation-confirmations/2026-07-14-phase-1-slice-1r-c4-production-asset-version-schema-implementation-confirmation.md`
+- `docs/modules/fund/05-review-and-test/2026-07-14-phase-1-slice-1r-c4-r1-production-asset-version-schema-review-and-test.md`
+
 Sibling Commerce controls:
 
 - `docs/core/commerce/00-roadmap-control/2026-07-13-commerce-core-roadmap-and-slice-control.md`
@@ -209,30 +247,47 @@ Sibling Commerce controls:
 
 ## 9. Current Planning Handoff
 
-No implementation slice is currently authorised. `1R-C2` is complete through review/test.
-The next recommended FUND action, only after separate explicit instruction, is bounded
-`1R-C3` Project Store schema implementation planning. Planning does not authorise
-implementation.
+No implementation is currently underway. `1R-C4` is complete through implementation
+confirmation and review/test on the retained disposable database. The representative
+131-to-132 migration, complete 132-migration fresh replay, C4 constraints and A1/C1/C2/C3
+regressions passed with zero C4 residue. The C3/C4 application and documentation changes
+remain uncommitted, and no shared database deployment is claimed.
 
-The Project Intake alignment exposed by `1R-C2` remains a separate required workflow slice
-before intake-created Projects may be treated as Store-ready. It must not be silently
-included in `1R-C3`.
+The single next candidate is planning-only `1R-C5` Commission Policy And Assignment
+Foundation. It must reconcile the accepted Event-versus-standalone policy rule, immutable
+policy versions, flat/stepped methods, offset/fixed-date steps, Project assignment and lock
+timing against the implemented C1-C4 schema. It must not calculate, accrue, account for or
+pay commission.
+
+The Project Intake alignment exposed by `1R-C2` remains separate required workflow work
+before intake-created Projects may be treated as Store-ready. `COMMERCE-A2` remains in its
+own Core lane. Neither is included in `1R-C5` planning.
 
 Current single prompt:
 
 ```text
-Continue only FUND Phase 1 Slice 1R-C3 planning. Do not implement schema or application
-code and do not begin the Project Intake alignment, COMMERCE-A2 or another slice.
+Continue only FUND Phase 1 Slice 1R-C5 planning. Do not implement schema or application
+code and do not begin Project Intake alignment, 1R-C6, COMMERCE-A2 or another slice.
 
-Review the accepted 1R-C Project Store foundation against the implemented 1R-C1 and 1R-C2
-schema and the current Prisma schema. Create one bounded 1R-C3 schema implementation plan
-for FundProjectStore and FundProjectStoreProduct, including status/readiness separation,
-public identity, Project-date authority, Project Product ownership, media/configuration
-references, tenant relations, migration/backfill, deletion and disposable database tests.
-Preserve the generic Commerce boundary and exclude checkout, Orders, payments, uploads,
-production assets, commission and Project Intake alignment implementation.
+Review the accepted 1R-C Commission Policy And Assignment foundation against the
+implemented 1R-C1 through 1R-C4 schema and current Event, Project, Store and tenant
+contracts. Create one bounded 1R-C5 schema implementation plan for FundCommissionPolicy,
+FundCommissionPolicyVersion, FundCommissionStep and FundProjectCommissionAssignment.
 
-If acceptable, leave the new plan awaiting explicit review/acceptance and provide its
+Resolve tenant ownership, exactly-one EVENT versus STANDALONE_PROJECT policy scope, the
+rule that an Event policy is authoritative for linked Projects, C1-managed standalone
+Project policies, flat versus stepped versions, offset-based versus fixed-date steps,
+ordered/non-overlapping rates and dates, version activation, assignment/reassignment and
+the lock no later than first eligible paid sale. Preserve Project close date as the sales
+window/calculation-period authority and define what schema can record before Commerce paid
+sale evidence exists.
+
+Exclude commission calculation, recognition execution, accrual, accounting, statements,
+payment, Commerce checkout/Orders/payments, Store services/UI, Project Intake alignment and
+production workflow behaviour. Do not introduce commission fields on Commerce Order lines.
+
+Define migration order, zero-backfill policy, deletion/retention, rollback and disposable-
+database validation. Leave the new plan awaiting explicit review/acceptance and provide its
 single review prompt. Make no Prisma, migration, service, API or UI changes.
 ```
 

@@ -95,9 +95,15 @@ Cross-lane references remain generic from Commerce and typed from FUND.
   deployment performed.
 - `1R-C2`: implemented and reviewed as passed on disposable PostgreSQL; no shared database
   deployment performed. Its required later Project Intake alignment remains separate.
-- `1R-C3`: next candidate FUND planning slice; not started or authorised for
-  implementation.
-- `1R-C4` through `1R-C5`: planned future FUND slices.
+- `1R-C3`: implemented and reviewed as passed on disposable PostgreSQL; application and
+  documentation changes remain uncommitted and undeployed to shared databases.
+- `1R-C4`: implemented and reviewed as passed on disposable PostgreSQL; application and
+  documentation changes remain uncommitted and undeployed to shared databases. It records
+  asset/version evidence vocabulary only; media/actor runtime validation, Commerce payment
+  authority, physical-artwork checks, explicit backup source selection and production
+  authorisation remain later dependencies.
+- `1R-C5`: single next FUND planning candidate; planning not started and implementation not
+  authorised.
 - `1R-C6`: blocked until the required Commerce Order/line schema and relation direction are
   accepted and implemented.
 
@@ -108,7 +114,7 @@ COMMERCE-A1 ───────────────┐
                            ├─> later Commerce Order foundation ─> FUND 1R-C6
 COMMERCE-A2/A3 planning ───┘
 
-FUND 1R-C1 ─> 1R-C2 ─> 1R-C3 ─> Store configuration foundation
+FUND 1R-C1 ─> 1R-C2 ─> 1R-C3 ─> 1R-C4 ─> 1R-C5 planning candidate
 ```
 
 `1R-C1` and `COMMERCE-A1` are independent schema slices. Separate ownership does not permit
@@ -116,8 +122,8 @@ different documentation lifecycles.
 
 ## 7. Current Parent Control Decision
 
-`1R-C1` and `1R-C2` are complete through implementation confirmation and review/test. The
-latest representative existing-data upgrade, complete 130-migration fresh reset and 1R-C2
+`1R-C1` through `1R-C4` are complete through implementation confirmation and review/test.
+The latest representative 131-to-132 upgrade, complete 132-migration fresh reset and C4
 constraint suite passed on the retained disposable database with zero residue.
 
 No next slice is currently authorised by this completion.
@@ -127,12 +133,22 @@ For clarity:
 - `1R-B` and the parent `1R-C` architecture planning are already accepted and are not to be
   repeated;
 - `COMMERCE-A2` remains future work and is not currently authorised;
-- FUND `1R-C1` and `1R-C2` must not be rerun as pending work;
-- `1R-C3` planning is the next FUND candidate but requires separate explicit instruction;
-  no `1R-C3` implementation is authorised;
+- FUND `1R-C1` through `1R-C4` must not be rerun as pending work;
+- `1R-C3`/`1R-C4` application/documentation changes are uncommitted and no shared database
+  deployment is claimed;
+- `1R-C5` is the single next planning candidate, but no plan or implementation has started;
+- public backup photographs are conditional production backstops that C1 may explicitly
+  select if the physical original is lost or unavailable; their Order-line relation,
+  Commerce payment gate, physical-original check and production-source authorisation are
+  deferred until the required Commerce and typed FUND foundations exist;
 - the Project Intake alignment recorded by `1R-C2` must be separately planned/reviewed and
   must not be folded silently into the schema-only implementation;
 - FUND `1R-C6` must not start until the Commerce Order/line foundations exist.
+
+The controlled release sequence is also retained at parent level: promote and verify the
+unchanged A1/C1/C2 commit `4575d2d` on staging before combining it with later LMSPro UI
+work; then stage and UI-smoke the LMSPro work separately before promotion to main/live.
+This is a deployment gate, not a claim that any shared database has been migrated.
 
 ## 8. Child Roadmap Discipline
 
