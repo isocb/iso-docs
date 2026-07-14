@@ -108,9 +108,9 @@ Accepted implementation plan:
 
 ## 7. Cross-Lane Dependency
 
-FUND may implement `1R-C1` through `1R-C5` inside its own schema lane without Commerce
-Orders. FUND `1R-C6` waits for the accepted Commerce Order/line foundation and cross-schema
-relation direction.
+FUND implemented `1R-C1` through `1R-C5` inside its own schema lane without Commerce
+Orders. FUND `1R-C6` then consumed the completed Commerce A2 Order/line foundation through
+typed FUND-owned evidence and exact cross-schema relations.
 
 The FUND roadmap is a sibling control, not the parent Commerce roadmap:
 
@@ -142,9 +142,11 @@ Current result:
 ## 8. Current Next Step
 
 `COMMERCE-A1` and `COMMERCE-A2` are complete through review/test. The accepted generic
-Order/line and same-tenant relation foundation now unblocks bounded planning of FUND
-`1R-C6 - FUND Commerce Context Foundation`.
+Order/line and same-tenant relation foundation supported FUND `1R-C6 - FUND Commerce
+Context Foundation`, which is implemented/reviewed at local application commit `9947669`.
+Its representative 136-to-137 and fresh 137-migration disposable lifecycles passed with
+zero residue and no shared deployment.
 
-The bounded FUND `1R-C6` plan is created and its explicit review is the single next
-critical-path action. `COMMERCE-A3` and Store `1R-D` remain queued and are not authorised by
-A2 completion.
+Store `1R-D - Store Readiness And C1 Store Configuration API/Services` is the single next
+planning candidate under the root roadmap. `COMMERCE-A3` remains queued and neither slice
+is authorised for implementation by C6 completion.

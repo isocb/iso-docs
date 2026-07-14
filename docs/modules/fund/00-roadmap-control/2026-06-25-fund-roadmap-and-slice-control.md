@@ -51,7 +51,7 @@ Current application repository state:
 
 ```text
 working branch: dev
-HEAD/local dev: 3206199
+HEAD/local dev: 9947669
 origin dev: 3206199
 local main/local staging/origin main/origin staging: ea4e619
 ```
@@ -71,6 +71,8 @@ Committed development schema foundation:
   `origin/dev` at `234f115`; staging/main and shared databases remain unchanged;
 - FUND `1P-G-R3-D` is implemented/reviewed at `e1c2d9f`, included on `origin/dev` at `3206199`;
 - `COMMERCE-A2` is implemented/reviewed and published on `origin/dev` at `3206199`;
+- FUND `1R-C6` is implemented/reviewed at local application `9947669`; it is one commit
+  ahead of `origin/dev` and has no shared deployment;
 - local/remote `staging` and `main` remain at `ea4e619`;
 - no shared development, staging or production database migration/deployment is claimed.
 
@@ -78,12 +80,12 @@ The R3-B service engine is committed at application `04da074` on top of R3-A bas
 `4bb7dd9`; both are now ancestors of `origin/dev` at `3206199`. R3-B adds no schema or
 migration. No shared database deployment is claimed.
 
-Disposable test database state after `COMMERCE-A2` review:
+Disposable test database state after FUND `1R-C6` review:
 
 ```text
-applied migrations: 136
+applied migrations: 137
 failed migrations: 0
-residual A2/R3-D test rows: 0
+residual C6/source fixture rows: 0
 ```
 
 `TEST_DATABASE_URL` remains local and uncommitted. Every destructive test must first prove
@@ -109,10 +111,10 @@ session advisory locks are not returned to a pool.
 | `1P-G-R3-C` | FUND Project Intake | Implemented/reviewed; committed/promoted to `origin/dev` at `234f115`; shared databases undeployed | Form capture, atomic confirmation invocation and protected exception-review integration |
 | `1P-G-R3-D` | FUND Project creation | Implemented/reviewed at `e1c2d9f`, included on `origin/dev` at `3206199`; shared databases undeployed | Generic C1/K2 Project creation now requires Client, typed Project type, exact organiser and atomic delivery profile |
 | `COMMERCE-A2` | Commerce | Implemented/reviewed and published on `origin/dev` at `3206199`; shared databases undeployed | Generic checkout header, immutable Order/line and same-tenant schema foundation |
-| `1R-C6` | FUND | Plan created; awaiting explicit review/acceptance | Add typed FUND context keyed to completed generic Commerce Order/line records |
-| `1R-D` | FUND Store | Queued after `1R-C6`; plan not created or authorised | Store Readiness And C1 Store Configuration API/Services from accepted 1R-A architecture |
+| `1R-C6` | FUND | Implemented/reviewed at local application `9947669`; not pushed or deployed | Typed FUND context keyed to generic Commerce Order/line records; no runtime behavior |
+| `1R-D` | FUND Store | Single next planning candidate; plan not created or authorised | Store Readiness And C1 Store Configuration API/Services from accepted 1R-A architecture |
 
-`1R-C1` through `1R-C5` and `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D` must not be rerun as pending work. No next
+`1R-C1` through `1R-C6` and `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D` must not be rerun as pending work. No next
 implementation is authorised merely because the preceding lifecycle completed.
 
 ## 4. Current Sequence And Dependency Control
@@ -120,8 +122,8 @@ implementation is authorised merely because the preceding lifecycle completed.
 ```text
 COMMERCE-A1 (complete on dev)
   -> COMMERCE-A2 (implementation/review complete on `origin/dev` at `3206199`)
-  -> FUND 1R-C6 (plan created; review is the single next action)
-  -> FUND 1R-D (queued Store readiness/configuration services)
+  -> FUND 1R-C6 (implementation/review complete locally at `9947669`)
+  -> FUND 1R-D (single next planning candidate)
   -> COMMERCE-A3 (queued payment/refund/pro-forma schema)
 
 FUND 1R-C1 (complete on dev)
@@ -129,6 +131,7 @@ FUND 1R-C1 (complete on dev)
   -> 1R-C3 (complete on dev)
   -> 1R-C4 (complete on dev)
   -> 1R-C5 (implementation/review complete; included on origin/dev)
+  -> 1R-C6 (implementation/review complete locally at `9947669`)
 
 FUND 1P-G-R3 (parent accepted; non-executable)
   -> 1P-G-R3-A (schema/form-policy implementation/review complete; included on origin/dev)
@@ -147,8 +150,9 @@ Rules:
   paths; historic null-contract Intake remains review-only;
 - `1P-G-R3-D` closes the direct C1/K2 Project-creation contract gap; staging/main and shared deployment remain separate;
 - `COMMERCE-A2` has completed the generic Order/line ownership and exact same-tenant keys;
-- `1R-C6` plan is created and must pass its explicit review before implementation;
-- Store `1R-D` and `COMMERCE-A3` remain queued and are not authorised by A2 completion;
+- `1R-C6` is complete through review/test and must not be rerun as pending work;
+- Store `1R-D` is the single next planning candidate; it and queued `COMMERCE-A3` are not
+  authorised for implementation by C6 completion;
 - never implement two slices merely because their planning can be discussed together;
 - finish one slice lifecycle before selecting another unless the user explicitly changes
   the control decision.
@@ -217,8 +221,8 @@ payment model.
 | Historical 1P-G/K1-F review evidence | Incomplete slice-by-slice chain | D1/D2 and K1-F-A/B lack separate review/test records; close coverage prospectively in R3 children and do not invent backdated evidence |
 | `1P-G-R3-D` all-source Project creation alignment | Implemented/reviewed at `e1c2d9f`, included on `origin/dev` at `3206199`; shared databases undeployed | Migration 135 refuses non-empty FUND data and changes no LMSPro object; staging/main/shared deployment need explicit promotion |
 | `COMMERCE-A2` | Implemented/reviewed on `origin/dev` at `3206199`; shared databases undeployed | Migration 136 adds only generic checkout/Order/line schema and passed A1/tenant/arithmetic/deletion tests |
-| FUND `1R-C6` | Plan created / awaiting review / not authorised | Validate typed FUND context and consumer-to-Commerce relations against A2 |
-| FUND Store `1R-D` | Queued after `1R-C6` / not authorised | Preserve accepted 1R-A meaning: Store Readiness And C1 Store Configuration API/Services |
+| FUND `1R-C6` | Implemented/reviewed at local application `9947669`; not pushed/deployed | Migration 137 adds typed FUND evidence and exact supporting relations; zero runtime behavior |
+| FUND Store `1R-D` | Single next planning candidate / not authorised | Preserve accepted 1R-A meaning: Store Readiness And C1 Store Configuration API/Services |
 | FUND `1R-C3`/`1R-C4` application changes | Committed at `686229c` on `origin/dev` | Staging/main and shared database deployment remain pending |
 | FUND `1R-C5` application changes | Committed at `8b5f208`; included on `origin/dev` | Staging/main promotion remains separate; shared databases unchanged |
 
@@ -343,17 +347,19 @@ included on `origin/dev` at `3206199`, and documentation commit `9d140fa` is inc
 IsoDocs `origin/main`. Shared databases remain undeployed.
 
 `COMMERCE-A2` is implemented/reviewed in its Core lane on `origin/dev` at `3206199`.
-Its generic Order/line models and exact same-tenant keys unblock bounded `1R-C6` planning.
+Its generic Order/line models and exact same-tenant keys supported completed FUND `1R-C6`.
 
-The integrated root critical path now selects review of the created `1R-C6 - FUND Commerce
-Context Foundation` plan. Store `1R-D` remains queued after the typed schema handoff.
+FUND `1R-C6 - FUND Commerce Context Foundation` is implemented/reviewed at local
+application commit `9947669`. Its 136-to-137, refusal and fresh 137-migration disposable
+lifecycles passed with zero residue; it is not pushed or deployed to a shared database.
+Store `1R-D` is now the single next planning candidate.
 
 Current next control action:
 
 ```text
-Review only the created FUND `1R-C6 - FUND Commerce Context Foundation` implementation
-plan against completed Commerce A2 and FUND C1-C5/R3-D. Do not implement it until review
-acceptance and do not begin Store 1R-D, COMMERCE-A3 or another slice.
+Create only the bounded FUND `1R-D - Store Readiness And C1 Store Configuration
+API/Services` planning slice against accepted 1R-A architecture and completed C1-C6.
+Do not implement it and do not begin COMMERCE-A3 or another slice.
 ```
 
 ## 10. Roadmap Maintenance Rule

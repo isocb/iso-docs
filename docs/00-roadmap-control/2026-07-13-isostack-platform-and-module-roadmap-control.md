@@ -93,6 +93,9 @@ Cross-lane references remain generic from Commerce and typed from FUND.
 - `COMMERCE-A2`: implemented/reviewed at application commit `3206199` on `origin/dev`; representative
   135-to-136 and fresh 136-migration disposable lifecycles passed with zero residue and no
   shared deployment.
+- FUND `1R-C6`: implemented/reviewed at local application commit `9947669`; representative
+  136-to-137, refusal and fresh 137-migration disposable lifecycles passed with zero residue
+  and no shared deployment. The commit is not yet pushed.
 
 ### FUND
 
@@ -130,12 +133,14 @@ Cross-lane references remain generic from Commerce and typed from FUND.
   migration 135 at application `e1c2d9f`, now included on `origin/dev` at `3206199`; its
   documentation commit `9d140fa` is included on IsoDocs `origin/main`. It remains
   undeployed to shared databases.
-- `1R-D`: Store Readiness And C1 Store Configuration API/Services remains queued after FUND
-  `1R-C6`. It is not yet planned or authorised for implementation.
+- `1R-D`: Store Readiness And C1 Store Configuration API/Services is the single next
+  planning candidate after completed FUND `1R-C6`. It is not yet planned or authorised for
+  implementation.
 - The all-source Project Creation Contract Alignment requirement is closed by
   `1P-G-R3-D`; staging/main and shared-database promotion remain separate.
-- `1R-C6`: unblocked by completed Commerce A2; its bounded implementation plan is created
-  and awaits explicit review/acceptance. No implementation is authorised.
+- `1R-C6`: implemented and reviewed as passed at local application commit `9947669`. It
+  stores typed FUND Commerce evidence only; no runtime Store, checkout, payment,
+  production or commission behavior was added.
 
 ## 6. Dependency Map
 
@@ -150,7 +155,7 @@ COMMERCE-A1 complete
   -> COMMERCE-A6 Stripe adapter/webhooks
   -> COMMERCE-A7 FUND consumer integration
 
-FUND 1R-C1 -> C2 -> C3 -> C4 -> C5 complete
+FUND 1R-C1 -> C2 -> C3 -> C4 -> C5 -> C6 complete
 FUND 1P-G-R3-A -> R3-B -> R3-C -> R3-D complete
 ```
 
@@ -159,9 +164,9 @@ different documentation lifecycles.
 
 ## 7. Current Parent Control Decision
 
-`1R-C1` through `1R-C5`, `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D`, Commerce A1 and Commerce A2 are
+`1R-C1` through `1R-C6`, `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D`, Commerce A1 and Commerce A2 are
 complete through implementation confirmation and review/test. The disposable database is
-at the complete 136-migration A2 baseline with zero test residue.
+at the complete 137-migration C6 baseline with zero test residue.
 
 The accepted parent family is `1P-G-R3 - Project Intake Automated Provisioning Alignment`.
 Its A/B/C child lifecycles are complete and included on `origin/dev`. R3-A is committed at `4bb7dd9`, R3-B at
@@ -176,7 +181,7 @@ For clarity:
   repeated;
 - `COMMERCE-A2` is implemented/reviewed at application `3206199` on `origin/dev` and must not be rerun
   as pending work;
-- FUND `1R-C1` through `1R-C5` and `1P-G-R3-A`/`R3-B`/`R3-C` must not be rerun as pending work;
+- FUND `1R-C1` through `1R-C6` and `1P-G-R3-A`/`R3-B`/`R3-C` must not be rerun as pending work;
 - `1R-C3`/`1R-C4` application changes are committed at `686229c` on `origin/dev`, lifecycle
   documents are committed at `f230d14` on IsoDocs `origin/main`, and no shared database
   deployment is claimed;
@@ -189,8 +194,10 @@ For clarity:
 - `1P-G-R3-D` is implemented/reviewed at application `e1c2d9f`, included on `origin/dev`
   at `3206199`, and documented by `9d140fa` on IsoDocs `origin/main`; it is not pending
   planning work and is not deployed to shared databases;
-- FUND `1R-C6` plan review is the single next critical-path action;
-- Store `1R-D` remains queued behind `1R-C6` and is not authorised for implementation;
+- FUND `1R-C6` is implemented/reviewed at local application `9947669`, has no shared
+  deployment and must not be rerun as pending work;
+- Store `1R-D` is the single next planning candidate and is not authorised for
+  implementation;
 - Event policies are defaults for linked Projects, while an active C1-managed flat-rate
   override wins only for its owning Event-linked Project; standalone Project policies may
   be flat or stepped;
@@ -198,14 +205,14 @@ For clarity:
   accepted replacement terms apply retrospectively to the Project sales window, provisional
   figures recalculate and first sale does not lock the assignment;
 - public backup photographs are conditional production backstops that C1 may explicitly
-  select if the physical original is lost or unavailable; their Order-line relation,
-  Commerce payment gate, physical-original check and production-source authorisation are
-  deferred until the required Commerce and typed FUND foundations exist;
+  select if the physical original is lost or unavailable; C6 now stores their immutable
+  typed Order-line evidence, while Commerce payment, physical-original checks and
+  production-source authorisation remain deferred;
 - the Project Intake alignment recorded by `1R-C2` is now separately planned as
   `1P-G-R3`; the provisional `1R-D` assignment was corrected because that identifier is
   already reserved for the accepted Store-readiness lane;
-- FUND `1R-C6` may now be planned because the Commerce Order/line foundation exists, but A2
-  completion does not itself authorise implementation without the bounded C6 plan/review.
+- FUND `1R-C6` used the Commerce Order/line foundation only for typed evidence relations;
+  its completion does not authorise Store `1R-D` or Commerce A3 implementation.
 
 The controlled release sequence is also retained at parent level: promote and verify the
 schema-foundation baseline through C4 at `686229c` on staging before combining it with later

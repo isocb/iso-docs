@@ -2,7 +2,7 @@
 
 Date: 2026-07-14
 
-Status: Draft awaiting explicit review/acceptance
+Status: Accepted, implemented and reviewed as passed on disposable PostgreSQL / application `9947669` / no shared deployment
 
 Roadmap control:
 
@@ -546,43 +546,64 @@ Roadmaps and planning README must close the lifecycle recursively.
 - dispatch workflow;
 - shared database deployment.
 
-## 18. Review Gate
+## 18. Accepted Review Resolution
 
-Review must resolve:
+The independent 2026-07-14 review resolved the gate as follows:
 
-1. whether the one generic Commerce Order-line supporting key may be included in the C6
-   migration or requires a preceding Commerce addendum;
-2. the exact composite Store Product and Order-context keys;
-3. whether the bounded production/fulfilment/readiness enums are sufficient without
-   implying runtime behavior;
-4. provisional commission-observation semantics under retrospective C5 replacement;
-5. delivery snapshot audit versus later Project-level operational authority;
-6. signed input price-modifier snapshot behavior;
-7. asset backup role/purpose and multi-file constraints;
-8. migration refusal for any pre-existing FUND-source Commerce Order;
-9. deletion, retention and disposable validation coverage.
+- the generic `(organizationId, id, orderId)` Commerce Order-line supporting key belongs in
+  the same C6 migration because it is atomic relation plumbing, not Commerce behaviour;
+- exact parent and Store Product composite keys retain tenant, Commerce Order, Store,
+  Project, Project Product and Product identity without scalar-only fallbacks;
+- the bounded production, fulfilment, artwork and projection enums are schema vocabulary
+  only and imply no transition service;
+- submission-time commission assignment is optional observation evidence; C5 replacement
+  and post-close finalization remain authoritative for the whole Project sales window;
+- typed delivery snapshots are immutable submission evidence while the live Project
+  delivery profile remains operational until a later dispatch/production slice;
+- signed input modifiers are preserved exactly. A later checkout service must map negative
+  option value into Commerce discount evidence because A2's unit-modifier field is
+  deliberately non-negative;
+- one asset-version row per role preserves multi-file evidence, and purchaser backup
+  role/purpose is enforced in both directions without implying payment, physical-original
+  receipt or production authorization;
+- migration refusal applies to case-normalized pre-existing FUND-source Commerce Orders;
+  generic non-FUND Orders remain untouched;
+- every source/evidence deletion is restrictive, the migration creates no C6 row and all
+  destructive validation remains confined to `TEST_DATABASE_URL`.
 
-No schema or application implementation is authorised until this review marks C6 accepted.
+No business or technical blocker remained after these resolutions. Acceptance authorised
+only the bounded schema, migration and verification files described in this plan.
 
-## 19. Single Review Prompt
+## 19. Accepted Bounded Implementation Prompt
 
 ```text
-Review only FUND Phase 1 Slice 1R-C6 FUND Commerce Context Schema Implementation Planning.
-Do not implement schema or application code and do not begin Store 1R-D, COMMERCE-A3 or
-another slice.
+Continue only accepted FUND Phase 1 Slice 1R-C6. Implement the four typed FUND Order,
+Order-line, input and immutable asset-version evidence models, their bounded Fund-prefixed
+enums, the exact supporting Commerce Order-line and FUND Store Product keys, and one
+additive migration. Create no context/snapshot row and refuse pre-existing FUND-source
+Commerce Orders rather than infer typed ownership.
 
-Verify the plan against completed Commerce A2, FUND C1-C5/R3-D and the current Prisma
-multi-schema contract. Resolve the generic Commerce Order-line supporting key and reverse
-relation ownership; exact tenant/Order/line/Store/Project/Product/configuration identity;
-typed delivery and provisional commission evidence; production/fulfilment/readiness enum
-scope; multi-select and signed input snapshots; multi-file immutable asset-version links;
-public artwork-backup semantics; deletion/retention; zero backfill; pre-existing FUND-source
-Order refusal; migration order, rollback and disposable-database validation.
-
-Confirm C6 stores typed FUND evidence only. It must add no checkout/Order service, Store
-readiness/publication, payment/refund/pro-forma/provider/Stripe behavior, upload/scanning,
-production authorization/projection, commission calculation or UI.
-
-If acceptable, mark only C6 accepted and provide its single bounded implementation prompt.
-Make no Prisma, migration, service, API, route, storage or UI changes during review.
+Add no checkout/Order service, Store readiness/publication, payment/refund/pro-forma,
+provider/Stripe, upload/scanning, production authorization/projection, commission
+calculation, API, route or UI. Use only TEST_DATABASE_URL after proving it differs from
+DATABASE_URL. Complete representative 136-to-137 migration, refusal, fresh replay,
+constraint, deletion, regression, drift and zero-residue checks. Then create separate
+implementation-confirmation and review/test records and update controlling roadmaps.
+Stop without starting Store 1R-D, COMMERCE-A3 or another slice.
 ```
+
+## 20. Completed Lifecycle Outcome
+
+The bounded implementation is committed locally on application `dev` at `9947669`. The
+representative migration refusal, successful 136-to-137 application, complete fresh
+137-migration replay, constraint/deletion suites and C6-owned drift inspection passed on
+the retained disposable database with zero failed migrations and zero test residue.
+
+Authoritative lifecycle evidence:
+
+- `docs/modules/fund/04-implementation-confirmations/2026-07-14-phase-1-slice-1r-c6-fund-commerce-context-schema-implementation-confirmation.md`
+- `docs/modules/fund/05-review-and-test/2026-07-14-phase-1-slice-1r-c6-r1-fund-commerce-context-schema-review-and-test.md`
+
+No shared development, staging or production database was contacted or modified. The
+application commit is not yet pushed. Store `1R-D` is the single next planning candidate,
+but this completed lifecycle does not start or authorise it.
