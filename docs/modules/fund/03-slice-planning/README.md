@@ -15,22 +15,28 @@ Historical slice plans may remain in `Planning/` until they are next touched. Ne
 
 Most recently completed planning/implementation lifecycle:
 
-`2026-07-14-fund-phase-1-slice-1r-c6-fund-commerce-context-schema-implementation-planning.md`
+`2026-07-14-fund-phase-1-slice-1r-d-store-readiness-c1-configuration-api-services-implementation-planning.md`
 
 Current integrated critical-path action:
 
 ```text
-Create only the bounded 1R-D - Store Readiness And C1 Store Configuration API/Services plan
+Return to Core Commerce and create/review only the bounded COMMERCE-A3 Payment, Refund And
+Pro-forma Schema Foundation plan
 ```
 
 Commerce A2 is implemented/reviewed on application `origin/dev` at `3206199`. FUND C6 is
 implemented/reviewed locally at application `9947669` and supplies typed FUND evidence over
-that generic Order/line contract. Store `1R-D` is the single next planning candidate, but
-is not yet planned or authorised for implementation.
+that generic Order/line contract. Store `1R-D` is implemented/reviewed locally at
+application `db85fcc` with no migration or shared deployment. `COMMERCE-A3` is the single
+global next planning candidate; FUND Store UI `1R-E` remains queued.
 
 Completed C6 plan:
 
 `2026-07-14-fund-phase-1-slice-1r-c6-fund-commerce-context-schema-implementation-planning.md`
+
+Completed 1R-D plan:
+
+`2026-07-14-fund-phase-1-slice-1r-d-store-readiness-c1-configuration-api-services-implementation-planning.md`
 
 `1P-G-R3-A` is implemented and reviewed at application `4bb7dd9`, included on `origin/dev`,
 and documented at `65fc243`. `1P-G-R3-B` is implemented, reviewed and committed at application

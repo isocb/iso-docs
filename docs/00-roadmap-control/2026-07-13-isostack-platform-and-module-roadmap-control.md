@@ -96,6 +96,9 @@ Cross-lane references remain generic from Commerce and typed from FUND.
 - FUND `1R-C6`: implemented/reviewed at local application commit `9947669`; representative
   136-to-137, refusal and fresh 137-migration disposable lifecycles passed with zero residue
   and no shared deployment. The commit is not yet pushed.
+- FUND Store `1R-D`: implemented/reviewed at local application commit `db85fcc`; its
+  service/transaction lifecycle passed against the unchanged 137-migration disposable
+  baseline with zero `fund-1rd-*` residue. The commit is not yet pushed or deployed.
 
 ### FUND
 
@@ -133,9 +136,8 @@ Cross-lane references remain generic from Commerce and typed from FUND.
   migration 135 at application `e1c2d9f`, now included on `origin/dev` at `3206199`; its
   documentation commit `9d140fa` is included on IsoDocs `origin/main`. It remains
   undeployed to shared databases.
-- `1R-D`: Store Readiness And C1 Store Configuration API/Services is the single next
-  planning candidate after completed FUND `1R-C6`. It is not yet planned or authorised for
-  implementation.
+- `1R-D`: Store Readiness And C1 Store Configuration API/Services is implemented/reviewed
+  at local application commit `db85fcc`, with no migration or shared deployment.
 - The all-source Project Creation Contract Alignment requirement is closed by
   `1P-G-R3-D`; staging/main and shared-database promotion remain separate.
 - `1R-C6`: implemented and reviewed as passed at local application commit `9947669`. It
@@ -164,7 +166,7 @@ different documentation lifecycles.
 
 ## 7. Current Parent Control Decision
 
-`1R-C1` through `1R-C6`, `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D`, Commerce A1 and Commerce A2 are
+`1R-C1` through `1R-D`, `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D`, Commerce A1 and Commerce A2 are
 complete through implementation confirmation and review/test. The disposable database is
 at the complete 137-migration C6 baseline with zero test residue.
 
@@ -196,8 +198,10 @@ For clarity:
   planning work and is not deployed to shared databases;
 - FUND `1R-C6` is implemented/reviewed at local application `9947669`, has no shared
   deployment and must not be rerun as pending work;
-- Store `1R-D` is the single next planning candidate and is not authorised for
-  implementation;
+- Store `1R-D` is implemented/reviewed at local application `db85fcc`, adds no migration,
+  has no shared deployment and must not be rerun as pending work;
+- `COMMERCE-A3 - Payment, Refund And Pro-forma Schema Foundation` is the single next
+  planning candidate. It is not yet planned or authorised for implementation;
 - Event policies are defaults for linked Projects, while an active C1-managed flat-rate
   override wins only for its owning Event-linked Project; standalone Project policies may
   be flat or stepped;
@@ -212,7 +216,7 @@ For clarity:
   `1P-G-R3`; the provisional `1R-D` assignment was corrected because that identifier is
   already reserved for the accepted Store-readiness lane;
 - FUND `1R-C6` used the Commerce Order/line foundation only for typed evidence relations;
-  its completion does not authorise Store `1R-D` or Commerce A3 implementation.
+  Store `1R-D` now consumes that completed foundation without creating Orders or payments.
 
 The controlled release sequence is also retained at parent level: promote and verify the
 schema-foundation baseline through C4 at `686229c` on staging before combining it with later
@@ -245,6 +249,10 @@ by accepted architecture and safe local/disposable validation is available. Work
 for explicit user input when a genuine business/product choice remains, authority would
 expand, destructive/shared-environment work would be required, or the accepted plan cannot
 be satisfied safely.
+
+Current single next control action: create and review only the bounded `COMMERCE-A3 -
+Payment, Refund And Pro-forma Schema Foundation` plan. Store UI `1R-E` remains queued in
+the FUND lane and is not the global next slice.
 
 ## 8. Child Roadmap Discipline
 

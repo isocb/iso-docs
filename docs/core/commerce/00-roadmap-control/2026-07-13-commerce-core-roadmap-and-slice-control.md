@@ -1,6 +1,6 @@
 # IsoStack Commerce Core Roadmap And Slice Control
 
-Date: 2026-07-13
+Date: 2026-07-14
 
 Status: Active Commerce Core roadmap
 
@@ -110,7 +110,9 @@ Accepted implementation plan:
 
 FUND implemented `1R-C1` through `1R-C5` inside its own schema lane without Commerce
 Orders. FUND `1R-C6` then consumed the completed Commerce A2 Order/line foundation through
-typed FUND-owned evidence and exact cross-schema relations.
+typed FUND-owned evidence and exact cross-schema relations. FUND Store `1R-D` subsequently
+implemented internal Store readiness/configuration services against that evidence without
+creating Commerce Orders, payments or another migration.
 
 The FUND roadmap is a sibling control, not the parent Commerce roadmap:
 
@@ -147,6 +149,11 @@ Context Foundation`, which is implemented/reviewed at local application commit `
 Its representative 136-to-137 and fresh 137-migration disposable lifecycles passed with
 zero residue and no shared deployment.
 
-Store `1R-D - Store Readiness And C1 Store Configuration API/Services` is the single next
-planning candidate under the root roadmap. `COMMERCE-A3` remains queued and neither slice
-is authorised for implementation by C6 completion.
+Store `1R-D - Store Readiness And C1 Store Configuration API/Services` is now
+implemented/reviewed at local application commit `db85fcc`. Its service/transaction suite
+passed against the unchanged 137-migration disposable baseline with zero prefixed residue
+and no shared deployment.
+
+`COMMERCE-A3 - Payment, Refund And Pro-forma Schema Foundation` is therefore the single
+next planning candidate under the root roadmap. It is not yet planned or authorised for
+implementation.
