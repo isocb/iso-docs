@@ -15,21 +15,22 @@ Historical slice plans may remain in `Planning/` until they are next touched. Ne
 
 Most recently completed planning/implementation lifecycle:
 
-`2026-07-14-fund-phase-1-slice-1p-g-r3-a-project-intake-automation-schema-form-policy-foundation-implementation-planning.md`
+`2026-07-14-fund-phase-1-slice-1p-g-r3-b-project-intake-automated-provisioning-and-protection-services-implementation-planning.md`
 
-Current accepted next plan (implementation not started):
+Current accepted next implementation candidate (not started):
 
 ```text
-1P-G-R3-B - Project Intake Automated Provisioning And Protection Services
-Plan accepted; implementation requires a separately committed R3-A baseline and explicit instruction.
+1P-G-R3-C - Project Intake Form, Confirmation And Exception-Review Alignment
+Plan reviewed and accepted; implementation requires committed R3-B application and
+documentation baselines plus an explicit bounded instruction.
 ```
 
-`1P-G-R3-A` is implemented and reviewed as passed on the retained disposable database. Its
-application changes remain uncommitted on top of C5 baseline `8b5f208` and are undeployed
-to shared databases. `1P-G-R3` is an accepted, non-executable parent. The R3-B plan is
-accepted but implementation has not started; R3-A application/documentation changes must
-be committed first. R3-C, Store `1R-D`, `1R-C6`, `COMMERCE-A2` and every other slice
-require a separate control decision.
+`1P-G-R3-A` is implemented, reviewed and committed locally at application `4bb7dd9` and
+documentation `65fc243`. `1P-G-R3-B` is implemented, reviewed and committed at application
+`04da074` against the retained 134-migration disposable database. It adds no migration and
+remains deliberately dormant: no route, confirmation handler, form or UI invokes it. The
+R3-C plan is reviewed and accepted, but implementation has not started.
+Store `1R-D`, `1R-C6`, `COMMERCE-A2` and every other slice remain outside this action.
 
 `1P-G-R3` uses the implemented `1P-G` intake workflow as its starting point, but the current
 Client/organiser/Project/delivery contract takes precedence over preserving the earlier
@@ -40,9 +41,13 @@ Completed R3-A plan:
 
 `2026-07-14-fund-phase-1-slice-1p-g-r3-a-project-intake-automation-schema-form-policy-foundation-implementation-planning.md`
 
-Active R3-B plan:
+Completed R3-B plan:
 
 `2026-07-14-fund-phase-1-slice-1p-g-r3-b-project-intake-automated-provisioning-and-protection-services-implementation-planning.md`
+
+Accepted R3-C plan:
+
+`2026-07-14-fund-phase-1-slice-1p-g-r3-c-project-intake-form-confirmation-exception-review-alignment-implementation-planning.md`
 
 Accepted parent:
 

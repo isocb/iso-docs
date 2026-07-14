@@ -114,10 +114,15 @@ Cross-lane references remain generic from Commerce and typed from FUND.
   a non-executable three-child family. It reconciles the complete implemented 1P-G lifecycle, K1-F and
   1R-C2, records the incomplete historic D1/D2 and K1-F-A/B review chain without inventing
   backdated evidence, and authorises no implementation by itself.
-- `1P-G-R3-A`: Project Intake Automation Schema And Form Policy Foundation is implemented
-  and reviewed as passed; application changes remain uncommitted and undeployed.
-- `1P-G-R3-B`: Project Intake Automated Provisioning And Protection Services planning is
-  accepted; implementation has not started and first requires a committed R3-A baseline.
+- `1P-G-R3-A`: Project Intake Automation Schema And Form Policy Foundation is implemented,
+  reviewed and committed locally at application commit `4bb7dd9`; it remains undeployed.
+- `1P-G-R3-B`: Project Intake Automated Provisioning And Protection Services is implemented,
+  reviewed and committed at application `04da074`; its documentation lifecycle is included
+  in the current IsoDocs baseline. The engine remains dormant and undeployed.
+- `1P-G-R3-C`: form, confirmation and exception-review alignment planning is reviewed and
+  accepted; implementation has not started and first requires committed R3-B application
+  and documentation baselines plus an explicit bounded instruction. It alone may connect
+  capture, confirmation invocation and exception-review UI to the dormant R3-B engine.
 - `1R-D`: remains reserved by accepted 1R-A architecture for Store Readiness And C1 Store
   Configuration API/Services; it is future and not authorised.
 - A separate all-source Project Creation Contract Alignment plan is still required because
@@ -135,7 +140,7 @@ COMMERCE-A2/A3 planning ───┘
 
 FUND 1R-C1 ─> 1R-C2 ─> 1R-C3 ─> 1R-C4 ─> 1R-C5 complete locally
 
-FUND 1P-G-R3 parent accepted ─> R3-A complete/uncommitted ─> R3-B accepted/not started ─> R3-C future
+FUND 1P-G-R3 parent accepted ─> R3-A complete/committed ─> R3-B complete/committed/dormant ─> R3-C accepted/not started
 ```
 
 `1R-C1` and `COMMERCE-A1` are independent schema slices. Separate ownership does not permit
@@ -143,32 +148,34 @@ different documentation lifecycles.
 
 ## 7. Current Parent Control Decision
 
-`1R-C1` through `1R-C5` and `1P-G-R3-A` are complete through implementation confirmation
-and review/test. The latest representative 133-to-134 upgrade, complete 134-migration fresh
-reset, R3-A constraint suite and A1/C1/C2/C3/C4/C5 regressions passed on the retained
-disposable database with zero R3-A residue.
+`1R-C1` through `1R-C5` and `1P-G-R3-A`/`R3-B` are complete through implementation
+confirmation and review/test. The database remains at the complete 134-migration R3-A
+baseline. R3-B pure-policy, identity-protection, concurrency, rollback and
+A1/C1/C2/C3/C4/C5/R3-A regressions passed on the retained disposable database with zero
+R3-B residue.
 
 The accepted parent family is `1P-G-R3 - Project Intake Automated Provisioning Alignment`.
 It is non-executable. `1P-G-R3-A - Project Intake Automation Schema And Form Policy
-Foundation` is implemented and reviewed, with its application changes uncommitted. R3-A,
-R3-B and R3-C each require their own complete lifecycle. R3-B is the single accepted next
-implementation candidate, but its entry gate requires separate committed R3-A application
-and documentation baselines plus an explicit implementation instruction. R3-C remains
-unstarted and unauthorised.
+Foundation` is committed locally at `4bb7dd9`. R3-B has completed its separate dormant
+service lifecycle in the current worktrees. R3-A, R3-B and R3-C each retain separate
+lifecycles. The R3-C plan is reviewed and accepted; its implementation remains unstarted
+and requires an explicit bounded instruction from the committed R3-B baseline.
 
 For clarity:
 
 - `1R-B` and the parent `1R-C` architecture planning are already accepted and are not to be
   repeated;
 - `COMMERCE-A2` remains future work and is not currently authorised;
-- FUND `1R-C1` through `1R-C5` and `1P-G-R3-A` must not be rerun as pending work;
+- FUND `1R-C1` through `1R-C5` and `1P-G-R3-A`/`R3-B` must not be rerun as pending work;
 - `1R-C3`/`1R-C4` application changes are committed at `686229c` on `origin/dev`, lifecycle
   documents are committed at `f230d14` on IsoDocs `origin/main`, and no shared database
   deployment is claimed;
 - `1R-C5` implementation/review is complete and committed locally at `8b5f208`; it remains
   unpushed and undeployed;
-- `1P-G-R3-A` implementation/review is complete in the application and documentation
-  worktrees; those changes remain uncommitted and undeployed;
+- `1P-G-R3-A` implementation/review is committed locally at application `4bb7dd9` and
+  documentation `65fc243`; it remains unpushed and undeployed;
+- `1P-G-R3-B` implementation/review is complete in the application and documentation
+  worktrees; it remains uncommitted, unconnected and undeployed;
 - Event policies are defaults for linked Projects, while an active C1-managed flat-rate
   override wins only for its owning Event-linked Project; standalone Project policies may
   be flat or stepped;

@@ -2,7 +2,7 @@
 
 Date: 2026-07-14
 
-Status: Parent alignment accepted / 1P-G-R3-A implemented and reviewed / R3-B accepted but not started
+Status: Parent alignment accepted / R3-A and R3-B implemented and reviewed / R3-C accepted but not started
 
 Parent controls:
 
@@ -73,8 +73,12 @@ Review outcome on 2026-07-14:
   manual form;
 - `1P-G-R3-A - Project Intake Automation Schema And Form Policy Foundation` has completed
   implementation and independent review/test locally;
-- the bounded `1P-G-R3-B - Project Intake Automated Provisioning And Protection Services`
-  plan completed separate review and is accepted; no R3-B implementation has started.
+- `1P-G-R3-B - Project Intake Automated Provisioning And Protection Services` has completed
+  its dormant internal-engine implementation and independent review/test locally;
+- no router, confirmation, form or UI connects the engine;
+- the separate R3-C form, confirmation and exception-review alignment plan is reviewed and
+  accepted; implementation has not started and still requires the committed R3-B baseline
+  plus an explicit bounded implementation instruction.
 
 ## 2. Slice Name And Lifecycle
 

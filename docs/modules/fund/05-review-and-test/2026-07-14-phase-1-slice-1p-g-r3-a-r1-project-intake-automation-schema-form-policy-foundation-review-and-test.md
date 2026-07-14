@@ -144,8 +144,9 @@ login-capable User proof and the atomic provisioning transaction remain R3-B run
 
 ## 9. Review Result
 
-`1P-G-R3-A-R1` passes. The bounded R3-A lifecycle is complete locally, uncommitted and
-undeployed to shared databases.
+`1P-G-R3-A-R1` passes. The bounded R3-A application is committed at `4bb7dd9`, its
+documentation lifecycle is committed at `65fc243`, and it remains undeployed to shared
+databases.
 
 Stop here. R3-B, R3-C, Store `1R-D`, `1R-C6`, `COMMERCE-A2` and every other slice remain
 unstarted and unauthorised.

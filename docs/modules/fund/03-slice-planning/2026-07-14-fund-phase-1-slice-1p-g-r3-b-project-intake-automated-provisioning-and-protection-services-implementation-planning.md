@@ -2,7 +2,7 @@
 
 Date: 2026-07-14
 
-Status: Accepted after review / implementation not started / awaiting explicit implementation instruction
+Status: Implemented and reviewed as passed / dormant / application committed at `04da074`
 
 Parent alignment:
 
@@ -677,8 +677,10 @@ R3-C captures aligned public/authenticated inputs, consumes confirmation tokens,
 the engine, and presents C1 exception review.
 ```
 
-R3-B is accepted but remains unimplemented. Its implementation entry gate requires the
-completed R3-A application and documentation lifecycle to be committed first.
+The entry gate was satisfied by application R3-A commit `4bb7dd9` and IsoDocs baseline
+`65fc243`. R3-B subsequently completed its dormant implementation and independent
+review/test lifecycle. The bounded implementation prompt below is retained as execution
+history and must not be rerun as pending work.
 
 ## 18. Single Bounded Implementation Prompt
 

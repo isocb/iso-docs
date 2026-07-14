@@ -2,7 +2,7 @@
 
 Date: 2026-07-14
 
-Status: Implemented and validated on disposable PostgreSQL / application changes uncommitted / no shared database deployment
+Status: Implemented and validated on disposable PostgreSQL / application committed at `4bb7dd9` / no shared database deployment
 
 Planning record:
 
@@ -161,8 +161,9 @@ contract.
 
 ## 9. Handoff
 
-R3-A is complete through implementation and independent review/test. Application and
-documentation changes are uncommitted and no shared deployment is claimed.
+R3-A is complete through implementation and independent review/test. Application changes
+are committed at `4bb7dd9` and the documentation lifecycle is committed at `65fc243`. No
+shared deployment is claimed.
 
 Stop here. R3-B is the future service child but has not been planned or authorised by this
 lifecycle.
