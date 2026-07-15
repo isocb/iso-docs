@@ -2,7 +2,7 @@
 
 Date: 2026-07-15
 
-Status: Implemented and independently reviewed as passed on disposable PostgreSQL; no shared deployment
+Status: Implemented/reviewed as passed and committed to application `dev`/`origin/dev` at `daafc349`; no shared database deployment
 
 Implementation confirmation:
 

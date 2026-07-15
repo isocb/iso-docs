@@ -60,7 +60,7 @@ Current application repository state:
 
 ```text
 working branch: dev
-local dev/origin dev: 91e8751c
+local dev/origin dev: daafc349
 local staging/origin staging: 91e8751c
 local main/origin main: ea4e6193 (unchanged)
 IsoDocs main/origin main: 9cf27a5
@@ -82,15 +82,16 @@ Current consolidated delivery state:
 Local completion beyond that shared checkpoint:
 
 - FUND `1R-E-A - Store Authority, Exceptional Intervention And Lifecycle Service
-  Alignment` is implemented and independently reviewed as passed in the uncommitted local
-  application worktree;
+  Alignment` is implemented and independently reviewed as passed at application
+  `dev`/`origin/dev` commit `daafc349`;
 - its one bounded migration passed representative 140-to-141 and full fresh 141-migration
   disposable lifecycles with zero failed migrations and zero test residue;
 - preflight refusal, constraints, intervention/service authority, Event envelope,
   effective-state, concurrency, rollback, 1R-D/A7 regressions and production build passed;
 - shared development and staging remain at `91e8751c` with 140 migrations; and
-- `1R-E-B - C1 Store Portfolio Oversight And Exceptional Intervention Surface` is the
-  single next planning candidate and has not been started.
+- the bounded `1R-E-B - C1 Store Portfolio Oversight And Exceptional Intervention
+  Surface` plan is created and awaiting explicit review; reviewing only E-B is the single
+  next action.
 
 Authoritative promotion evidence:
 
@@ -239,8 +240,8 @@ Full evidence is recorded in:
 | `COMMERCE-A6-A` through `A6-D` | Commerce | Implemented/reviewed; included in dev/staging promotion `91e8751c` | Stripe Connect evidence, onboarding, Checkout adapter and verified webhook/payment/refund reconciliation boundaries |
 | `COMMERCE-A7` | Commerce/FUND integration | Implemented/reviewed; dev/staging promotion and smoke gate complete at `91e8751c` | Dormant internal STRIPE_ONLINE integration from an authoritative FUND offer to generic Commerce and typed FUND context |
 | `1R-E` | FUND Store | Parent reviewed/accepted; non-executable | C1 Store oversight, C2 normal Project Store control, exceptional C1 intervention and service-authority alignment split into bounded E-A/E-B/E-C lifecycles |
-| `1R-E-A` | FUND Store | Implemented/reviewed locally; uncommitted and undeployed; disposable database 141/0 | Typed C1 intervention evidence, C2 Project/Store authority, Event envelope guards and one effective Store-state/A7 availability policy; no UI |
-| `1R-E-B` | FUND Store | Single next planning candidate; not started | C1 Store portfolio oversight and exceptional intervention surface consuming E-A authority |
+| `1R-E-A` | FUND Store | Implemented/reviewed at application `dev`/`origin/dev` `daafc349`; shared database/staging undeployed; disposable database 141/0 | Typed C1 intervention evidence, C2 Project/Store authority, Event envelope guards and one effective Store-state/A7 availability policy; no UI |
+| `1R-E-B` | FUND Store | Implementation plan created; awaiting explicit review/acceptance | C1 Store portfolio oversight and exceptional intervention surface consuming E-A authority; no implementation started |
 
 `1R-C1` through `1R-D` and `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D` must not be rerun as pending work. No next
 implementation is authorised merely because the preceding lifecycle completed.
@@ -274,7 +275,7 @@ COMMERCE-A1 (complete on dev)
   -> FUND 1R-E C1 Store Oversight And C2 Project Store Control Alignment parent accepted
   -> FUND 1R-E-A Store authority/intervention service implemented/reviewed locally
      -> FUND 1R-E-B C1 Store Portfolio Oversight And Exceptional Intervention Surface
-        planning only (single next candidate; not started)
+        plan created; review only (single next action)
 
 FUND 1R-C1 (complete on dev)
   -> 1R-C2 (complete on dev)
@@ -628,9 +629,10 @@ and accepted at
 The bounded E-A plan is created at
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-a-store-authority-exceptional-intervention-lifecycle-service-alignment-implementation-planning.md`
 and its local implementation/review lifecycle has passed against the 141-migration
-disposable baseline with zero residue. `1R-E-B - C1 Store Portfolio Oversight And
-Exceptional Intervention Surface` is the single next planning candidate. It is not
-started, and no E-B/E-C implementation is authorised.
+disposable baseline with zero residue. The bounded `1R-E-B - C1 Store Portfolio Oversight
+And Exceptional Intervention Surface` plan is created at
+`docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-b-c1-store-portfolio-oversight-exceptional-intervention-surface-implementation-planning.md`.
+Reviewing only E-B is the single next action; no E-B/E-C implementation is authorised.
 ```
 
 ## 10. Roadmap Maintenance Rule

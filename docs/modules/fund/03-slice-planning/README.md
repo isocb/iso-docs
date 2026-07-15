@@ -20,18 +20,20 @@ Most recently completed planning/implementation lifecycle:
 Current integrated critical-path action:
 
 ```text
-Plan only FUND 1R-E-B C1 Store Portfolio Oversight And Exceptional Intervention Surface.
-Do not implement it and do not begin 1R-E-C, 1R-F or another slice.
+Review only FUND 1R-E-B C1 Store Portfolio Oversight And Exceptional Intervention Surface
+Implementation Planning. Do not implement it and do not begin 1R-E-C, 1R-F or another
+slice.
 ```
 
 Commerce A1-A7 and the retained FUND C1-C6/1R-D/R3 foundations are implemented/reviewed.
 The application bundle is promoted through dev/staging at `91e8751c`; development has all
 140 migrations applied, automated dev/staging gates passed, staging is healthy and human
 FUND-admin login plus pre-existing UI smoke verification passed. Production remains
-unchanged. The `1R-E` parent is accepted and E-A is implemented/reviewed locally against
-the complete 141-migration disposable baseline with zero residue. Shared dev/staging
-remain at the promoted 140-migration boundary. Planning only E-B is the single next
-action.
+unchanged. The `1R-E` parent is accepted and E-A is implemented/reviewed at application
+`dev`/`origin/dev` commit `daafc349` against the complete 141-migration disposable baseline
+with zero residue. The shared development database/staging remain at the promoted
+140-migration boundary. The E-B plan is created and awaiting explicit review; reviewing
+only E-B is the single next action.
 
 This current status supersedes older per-slice deployment wording retained below for
 historical context.
@@ -51,6 +53,10 @@ Accepted non-executable 1R-E parent plan:
 Completed E-A implementation plan:
 
 `2026-07-15-fund-phase-1-slice-1r-e-a-store-authority-exceptional-intervention-lifecycle-service-alignment-implementation-planning.md`
+
+E-B plan awaiting review:
+
+`2026-07-15-fund-phase-1-slice-1r-e-b-c1-store-portfolio-oversight-exceptional-intervention-surface-implementation-planning.md`
 
 `1P-G-R3-A` is implemented and reviewed at application `4bb7dd9`, included on `origin/dev`,
 and documented at `65fc243`. `1P-G-R3-B` is implemented, reviewed and committed at application

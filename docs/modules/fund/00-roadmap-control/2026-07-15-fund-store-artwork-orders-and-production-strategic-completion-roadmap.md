@@ -194,9 +194,10 @@ The authoritative controls currently establish:
   login and pre-existing UI smoke verification;
 - application `main`, live deployment and real Stripe configuration remain separate; and
 - FUND `1R-E - C1 Store Oversight And C2 Project Store Control Alignment` is an accepted
-  non-executable parent; its bounded E-A lifecycle is implemented/reviewed locally on the
-  141-migration disposable baseline, while shared dev/staging remain at 140 migrations;
-  E-B portfolio-oversight planning is the single next candidate and is not started.
+  non-executable parent; its bounded E-A lifecycle is implemented/reviewed at application
+  `dev`/`origin/dev` commit `daafc349` on the 141-migration disposable baseline, while the
+  shared development database/staging remain at 140 migrations;
+  the bounded E-B portfolio-oversight plan is created and awaiting explicit review.
 
 This baseline is a summary only. Commit, migration, deployment and current-next-action
 claims must be read from the authoritative controls.
@@ -689,7 +690,7 @@ A6-D lifecycle complete
    (parent accepted)
 -> 1R-E-A Store authority/intervention service implemented/reviewed locally
 -> 1R-E-B C1 Store portfolio oversight and exceptional intervention surface
-   planning only (single next candidate; not started)
+   plan created; review only (single next action)
 -> workflow-conditional Project Offer And Artwork Readiness branches
 -> 1R-F public Store presentation
 -> consumer Order completion and Order Code
@@ -805,9 +806,11 @@ The E-A implementation plan is created at:
 
 Its local implementation and review/test lifecycle passed against the complete
 141-migration disposable baseline with zero residue. Shared dev/staging remain at their
-promoted 140-migration boundary. `1R-E-B - C1 Store Portfolio Oversight And Exceptional
-Intervention Surface` is the single next planning candidate; it is not started, and this
-document does not authorise E-B or E-C implementation.
+promoted 140-migration boundary. The bounded `1R-E-B - C1 Store Portfolio Oversight And
+Exceptional Intervention Surface` plan is created and awaiting explicit review. This
+document authorises no E-B or E-C implementation.
+
+`docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-b-c1-store-portfolio-oversight-exceptional-intervention-surface-implementation-planning.md`
 
 A7 planning must read the three CRs but remain a thin consumer boundary. It may preserve
 typed workflow, immutable Store/configuration and input/asset references needed by the

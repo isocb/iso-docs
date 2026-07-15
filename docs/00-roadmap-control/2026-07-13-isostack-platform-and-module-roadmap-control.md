@@ -109,17 +109,20 @@ Authoritative evidence:
 ### 2026-07-15 FUND 1R-E-A Local Completion Checkpoint
 
 FUND `1R-E-A - Store Authority, Exceptional Intervention And Lifecycle Service Alignment`
-is implemented and independently reviewed as passed in the local application worktree.
+is implemented and independently reviewed as passed at application `dev`/`origin/dev`
+commit `daafc349`.
 Its bounded migration advances only the retained disposable test database from 140 to 141
 applied migrations with zero failures and zero test residue. Representative upgrade, full
 fresh replay, preflight refusal, schema/constraint/service/concurrency/rollback, retained
 1R-D/A7 regressions, Prisma validation/generation, type-check and production build passed.
 
-This checkpoint is local and uncommitted. Shared development and staging remain at the
-previously promoted `91e8751c`/140-migration boundary; production remains unchanged. It
+The application code is backed up on `origin/dev`, but the shared Neon development
+database and staging remain at the previously promoted `91e8751c`/140-migration boundary;
+production remains unchanged. It
 supersedes older current-action statements below that say E-A implementation has not
-started. `1R-E-B - C1 Store Portfolio Oversight And Exceptional Intervention Surface` is
-the single next planning candidate and has not been started.
+started. The bounded `1R-E-B - C1 Store Portfolio Oversight And Exceptional Intervention
+Surface` plan is now created and awaiting explicit review; reviewing only E-B is the
+single next action.
 
 ### Commerce Core
 
@@ -239,7 +242,7 @@ COMMERCE-A1 complete
   -> FUND 1R-E C1 Store Oversight And C2 Project Store Control Alignment parent accepted
   -> FUND 1R-E-A Store authority/intervention service implemented/reviewed locally
      -> FUND 1R-E-B C1 Store Portfolio Oversight And Exceptional Intervention Surface
-        planning only (single next candidate; not started)
+        plan created; review only (single next action)
 
 FUND 1R-C1 -> C2 -> C3 -> C4 -> C5 -> C6 complete
 FUND 1P-G-R3-A -> R3-B -> R3-C -> R3-D complete
@@ -364,9 +367,12 @@ staging health and human smoke gates passed. The FUND
 `1R-E - C1 Store Oversight And C2 Project Store Control Alignment` parent plan is reviewed
 and accepted. The bounded `1R-E-A - Store Authority, Exceptional Intervention And
 Lifecycle Service Alignment` lifecycle is implemented/reviewed as passed locally against
-the new 141-migration disposable baseline. `1R-E-B - C1 Store Portfolio Oversight And
-Exceptional Intervention Surface` is the single next planning candidate; it is not
-started and no E-B/E-C implementation is authorised.
+the new 141-migration disposable baseline. The bounded `1R-E-B - C1 Store Portfolio
+Oversight And Exceptional Intervention Surface` plan is created and awaiting explicit
+review. Reviewing only E-B is the single next action; no E-B/E-C implementation is
+authorised.
+
+`docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-b-c1-store-portfolio-oversight-exceptional-intervention-surface-implementation-planning.md`
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-c1-store-oversight-c2-project-store-control-alignment-planning.md`
 

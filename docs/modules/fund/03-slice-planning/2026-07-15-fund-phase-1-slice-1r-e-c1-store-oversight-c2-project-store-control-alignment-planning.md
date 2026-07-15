@@ -124,7 +124,7 @@ must not use exceptional closure.
 
 The current implementation is safe for its accepted `1R-D` boundary but does not express
 the revised operating authority:
-1. `fund.storeManagement.*` currently accepts only C1 `OWNER`/`ADMIN` actors. 
+1. `fund.storeManagement.*` currently accepts only C1 `OWNER`/`ADMIN` actors.
 2. Store publish, pause, resume, close and archive are therefore C1-only.
 3. C2 `PROJECT_MANAGER`/`ADMIN` members can edit Project basics and dates but cannot use
    the current Project activate/pause/close procedures.

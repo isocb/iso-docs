@@ -10,9 +10,10 @@ Implementation confirmation:
 
 ## 1. Review Scope
 
-Reviewed the uncommitted E-A application worktree against the accepted 1R-E parent and
-E-A plan, completed 1Q-E/1Q-F, C1-C6, 1R-D, K1-F/K2, R3-D, Commerce A1-A7 and committed
-application baseline `91e8751c` with 140 migrations.
+Reviewed the E-A application worktree, subsequently committed to `dev`/`origin/dev` at
+`daafc349`, against the accepted 1R-E parent and E-A plan, completed 1Q-E/1Q-F, C1-C6,
+1R-D, K1-F/K2, R3-D, Commerce A1-A7 and starting application baseline `91e8751c` with 140
+migrations.
 
 The review covered schema scope, migration safety, C1/C2 authority, same-tenant identity,
 intervention precedence and evidence, Event/Project dates, effective state, readiness and
@@ -117,6 +118,7 @@ Product/Catalogue commercial editor, artwork/template implementation, upload, Or
 operation, production, fulfilment or commission behaviour. It does not use
 `FundProject.lifecycleState` or mutable metadata as authority.
 
-`1R-E-A-R1` passes. The changes remain uncommitted and undeployed. `1R-E-B - C1 Store
-Portfolio Oversight And Exceptional Intervention Surface` is the single next planning
-candidate; it has not been started.
+`1R-E-A-R1` passes. Application `dev` and `origin/dev` contain E-A at `daafc349`; shared
+database migration and staging remain separate. The bounded `1R-E-B - C1 Store Portfolio
+Oversight And Exceptional Intervention Surface` plan is created and awaiting explicit
+review; no implementation has started.

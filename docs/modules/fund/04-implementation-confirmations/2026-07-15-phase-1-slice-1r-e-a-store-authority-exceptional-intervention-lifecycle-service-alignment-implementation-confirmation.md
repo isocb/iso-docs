@@ -2,7 +2,7 @@
 
 Date: 2026-07-15
 
-Status: Implemented and validated locally on disposable PostgreSQL / uncommitted / no shared deployment
+Status: Implemented and validated on disposable PostgreSQL / application `dev` and `origin/dev` at `daafc349` / no shared database deployment
 
 Planning record:
 
@@ -134,12 +134,14 @@ The test runners proved `TEST_DATABASE_URL` differed from `DATABASE_URL` before 
 access. Only the retained disposable test database was migrated and tested. It finished at
 141 applied migrations, zero failed migrations and zero E-A/A7/1R-D reserved test residue.
 
-The shared Neon development database and staging remain at the previously promoted
-140-migration application boundary. Production remains unchanged. These application and
-documentation changes are not committed, pushed or deployed by this lifecycle.
+Application `dev` and `origin/dev` contain E-A at `daafc349`. The shared Neon development
+database and application/database staging remain at the previously promoted
+`91e8751c`/140-migration boundary. Production remains unchanged. Applying migration 141 to
+a shared database requires a separate controlled database promotion.
 
 ## 8. Handoff
 
-E-A is complete through local implementation confirmation and review/test. `1R-E-B - C1
-Store Portfolio Oversight And Exceptional Intervention Surface` is the single next
-planning candidate. It is not started or authorised for implementation by this record.
+E-A is complete through implementation confirmation and review/test. The bounded `1R-E-B
+- C1 Store Portfolio Oversight And Exceptional Intervention Surface` plan is created and
+awaiting explicit review. It is not accepted or authorised for implementation by this
+record.
