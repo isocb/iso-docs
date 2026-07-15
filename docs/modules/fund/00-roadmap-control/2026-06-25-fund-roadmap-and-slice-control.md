@@ -198,7 +198,7 @@ COMMERCE-A1 (complete on dev)
   -> COMMERCE-A4 (implementation/review complete locally at `5b69920`)
   -> COMMERCE-A5 (implemented/reviewed: provider-neutral services and validation)
   -> COMMERCE-A6 parent plan (reviewed/accepted)
-     -> A6-A account/event-inbox schema
+     -> A6-A account/event-inbox schema (planning created; awaiting review)
      -> A6-B tenant settings/hosted onboarding
      -> A6-C connected-account Checkout adapter
      -> A6-D webhook/refund reconciliation
@@ -382,10 +382,10 @@ Completed `1P-G-R3-A` lifecycle:
 
 Global next planning control:
 
-- `COMMERCE-A6 - Stripe Connect Tenant Payments` parent planning is reviewed and accepted.
-  The single next action is creation of the bounded A6-A implementation plan, left awaiting
-  its own review. FUND does not implement Commerce-owned provider work and no A6-A
-  implementation is authorised yet.
+- `COMMERCE-A6 - Stripe Connect Tenant Payments` parent planning is reviewed and accepted,
+  and the bounded A6-A implementation plan is created awaiting review. The single next
+  action is A6-A plan review. FUND does not implement Commerce-owned provider work and no
+  A6-A implementation is authorised yet.
 
 Sibling Commerce controls:
 
@@ -462,9 +462,9 @@ deployed to a shared environment and adds no runtime payment behavior.
 Current next control action:
 
 ```text
-Return to the Core Commerce lane and create only the bounded `COMMERCE-A6-A - Stripe
-Connect Account And Event-Inbox Schema Foundation` implementation plan. Leave it awaiting
-independent review; do not implement it and do not begin FUND `1R-E` or another slice.
+Return to the Core Commerce lane and review only the created `COMMERCE-A6-A - Stripe
+Connect Account And Event-Inbox Schema Foundation` implementation plan. Do not implement
+it and do not begin FUND `1R-E` or another slice.
 ```
 
 ## 10. Roadmap Maintenance Rule

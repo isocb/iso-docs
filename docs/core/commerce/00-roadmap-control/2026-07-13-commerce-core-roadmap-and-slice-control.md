@@ -47,7 +47,7 @@ COMMERCE-A3 - Payment, refund and pro-forma schema foundation
 COMMERCE-A4 - Audit and idempotency foundation
 COMMERCE-A5 - Provider-neutral services and validation
 COMMERCE-A6 - Stripe Connect tenant payments parent plan
-  COMMERCE-A6-A - Account and event-inbox schema foundation
+  COMMERCE-A6-A - Account and event-inbox schema foundation (planning created; awaiting review)
   COMMERCE-A6-B - Tenant payment settings and hosted onboarding
   COMMERCE-A6-C - Connected-account Checkout adapter
   COMMERCE-A6-D - Webhook, refund sync and reconciliation
@@ -223,7 +223,12 @@ Review/test:
 The accepted plan fixes tenant-owned connected accounts, direct charges, C1
 merchant-of-record responsibility, tenant master-settings configuration, hosted onboarding
 and a four-child serial delivery. It also preserves subscription-billing isolation and
-requires tenants to enter no Stripe secret. No A6 implementation is authorised. Creation
-of the bounded `COMMERCE-A6-A - Stripe Connect Account And Event-Inbox Schema Foundation`
-implementation plan is the single next action; that plan must remain awaiting independent
-review before any schema change.
+requires tenants to enter no Stripe secret. No A6 implementation is authorised.
+
+The bounded `COMMERCE-A6-A - Stripe Connect Account And Event-Inbox Schema Foundation`
+implementation plan is created and awaiting independent review:
+
+`docs/core/commerce/03-slice-planning/2026-07-15-isostack-commerce-core-slice-commerce-a6-a-stripe-connect-account-event-inbox-schema-foundation-implementation-planning.md`
+
+Review/acceptance of A6-A is the single next action. Do not implement its Prisma/migration
+scope or begin A6-B before that review closes.

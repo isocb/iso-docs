@@ -30,7 +30,11 @@ COMMERCE-A6 Stripe Connect Tenant Payments parent planning is reviewed and accep
 
 `2026-07-14-isostack-commerce-core-slice-commerce-a6-stripe-connect-tenant-payments-planning.md`
 
-No A6 schema, Stripe call, route, webhook or UI is authorised by the parent acceptance. The
-single next action is creation of the bounded A6-A implementation plan, left awaiting its
-own review/acceptance. Delivery then proceeds serially through A6-B tenant
+The bounded A6-A Stripe Connect Account And Event-Inbox Schema Foundation implementation
+plan is created and awaiting explicit review/acceptance at:
+
+`2026-07-15-isostack-commerce-core-slice-commerce-a6-a-stripe-connect-account-event-inbox-schema-foundation-implementation-planning.md`
+
+No A6 schema, Stripe call, route, webhook or UI is authorised. A6-A review is the single
+next action. Accepted delivery later proceeds serially through A6-B tenant
 settings/onboarding, A6-C Checkout adapter and A6-D webhook/refund reconciliation.
