@@ -15,6 +15,7 @@ COMMERCE-A6-A - Stripe Connect account and event-inbox schema foundation
 COMMERCE-A6-B - Tenant payment settings and hosted onboarding
 COMMERCE-A6-C - Connected-account Checkout adapter
 COMMERCE-A6-D - Connected-account webhook, Payment/Refund synchronization and reconciliation
+COMMERCE-A7 - FUND consumer integration
 ```
 
 FUND `1R-C6` is implemented/reviewed at local application commit `9947669` against the
@@ -92,4 +93,17 @@ A6-D added no migration and passed signed-fixture, fake-provider, disposable Pos
 Payment/Refund reconciliation, retry/quarantine, shared-job isolation, build and
 zero-residue validation without a real Stripe call or shared configuration.
 
-The next controlled candidate is A7 FUND Consumer Integration planning. A7 has not begun.
+The A7 FUND Consumer Integration lifecycle is implemented/reviewed as passed. It defines
+one dormant internal/no-migration `STRIPE_ONLINE` transaction boundary:
+
+`2026-07-15-isostack-commerce-core-slice-commerce-a7-fund-consumer-integration-implementation-planning.md`
+
+Implementation confirmation:
+
+`../04-implementation-confirmations/2026-07-15-commerce-a7-fund-consumer-integration-implementation-confirmation.md`
+
+Review/test:
+
+`../05-review-and-test/2026-07-15-commerce-a7-fund-consumer-integration-review-and-test.md`
+
+The next candidate is FUND 1R-E planning. Do not begin it from this Commerce lifecycle.

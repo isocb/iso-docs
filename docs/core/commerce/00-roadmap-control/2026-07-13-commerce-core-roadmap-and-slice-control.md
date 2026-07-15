@@ -51,7 +51,7 @@ COMMERCE-A6 - Stripe Connect tenant payments parent plan
   COMMERCE-A6-B - Tenant payment settings and hosted onboarding (implemented/reviewed)
   COMMERCE-A6-C - Connected-account Checkout adapter (implemented/reviewed)
   COMMERCE-A6-D - Webhook, refund sync and reconciliation (implemented/reviewed)
-COMMERCE-A7 - FUND consumer integration
+COMMERCE-A7 - FUND consumer integration (implemented/reviewed; dormant internal boundary)
 ```
 
 Each slice requires its own `03 -> implementation -> 04 -> 05` lifecycle.
@@ -307,8 +307,17 @@ A6-B/A6-C regressions, production build and zero-residue validation. No real Str
 shared secret/Event destination, deployment, schema, UI, FUND or production behavior was
 added.
 
-The one next Commerce candidate is bounded `COMMERCE-A7 - FUND Consumer Integration`
-planning. A7 is not started or authorised for implementation by completion of A6-D.
+The bounded `COMMERCE-A7 - FUND Consumer Integration` lifecycle is implemented/reviewed:
+
+`docs/core/commerce/03-slice-planning/2026-07-15-isostack-commerce-core-slice-commerce-a7-fund-consumer-integration-implementation-planning.md`
+
+A7 passed type/static/build, disposable atomic/replay and retained A6-C/A6-D regression
+validation on the unchanged 140-migration baseline with zero A7 residue.
+
+Application implementation is local at `598305ce`; no origin branch or shared environment
+was changed. The Commerce lane is complete through A7's dormant transaction boundary. The
+next cross-lane candidate is FUND `1R-E` Store UI planning, which is not started or
+authorised by this update.
 
 A7 planning must also read the subordinate FUND Store/artwork strategic completion
 overview and its three registered 2026-07-15 CR inputs through the authoritative FUND
@@ -317,3 +326,11 @@ expand A7 into Template Manager/Artwork Template, collective artwork approval, S
 production, fulfilment or commission work. Generic Commerce retains Order, Checkout,
 Payment and refund ownership, while later bounded FUND slices retain those business
 capabilities and their unresolved decisions.
+
+The plan proposes an internal/no-migration `STRIPE_ONLINE` boundary: FUND revalidates one
+published/open immutable Store offer, generic Commerce creates Checkout/Order/lines/PENDING
+Payment, FUND creates typed contexts in the same transaction and A6-C is invoked only after
+commit. Public Store/UI, pro-forma, upload, Order Code/email, production, fulfilment and
+commission remain excluded. Review also fixes FUND ownership of FUND idempotency scopes,
+tenant-scoped guest eligibility without a fabricated User, exact file/asset-version
+evidence and immutable-Order payment retry without repricing.

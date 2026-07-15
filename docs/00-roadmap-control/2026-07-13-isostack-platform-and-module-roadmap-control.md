@@ -318,10 +318,13 @@ be satisfied safely.
 Reconciliation` is implemented/reviewed at `fa670e3c` against completed A6-A/A6-B/A6-C and
 the unchanged 140-migration baseline.
 
-Current single next control candidate: create and review only the bounded `COMMERCE-A7 -
-FUND Consumer Integration` plan when explicitly authorised. A7 implementation has not
-begun. Store UI `1R-E` remains queued in the FUND lane behind the generic Commerce consumer
-boundary.
+`COMMERCE-A7 - FUND Consumer Integration` is implemented/reviewed as passed locally at
+application commit `598305ce` on the unchanged 140-migration baseline:
+
+`docs/core/commerce/03-slice-planning/2026-07-15-isostack-commerce-core-slice-commerce-a7-fund-consumer-integration-implementation-planning.md`
+
+A7 is a dormant internal boundary with no route, UI, real Stripe action or shared
+deployment. The single next candidate is FUND `1R-E` planning; it is not started.
 
 The subordinate FUND strategic completion overview and its three 2026-07-15 CR inputs are
 now registered through the authoritative FUND roadmap. A7 planning must read them so the

@@ -273,6 +273,10 @@ and reconcile a paid Commerce Order through the tenant's connected Stripe accoun
   database evidence; and
 - FUND Store/configuration and typed Commerce context foundations exist.
 
+A7 implemented/reviewed as a dormant internal transaction spine:
+
+`docs/core/commerce/03-slice-planning/2026-07-15-isostack-commerce-core-slice-commerce-a7-fund-consumer-integration-implementation-planning.md`
+
 ### Required proof
 
 A7 and its retained A6-D dependency must prove at least:
@@ -750,8 +754,13 @@ this overview. They should not duplicate its full strategic content.
 
 The current executable action remains whatever the root, Commerce and FUND controls state.
 At the current consolidation point, A6-D is implemented/reviewed locally at `fa670e3c` and
-the single next candidate is bounded `COMMERCE-A7 - FUND Consumer Integration` planning.
-A7 has not begun and this document does not authorise its implementation.
+the bounded `COMMERCE-A7 - FUND Consumer Integration` implementation plan is created at:
+
+`docs/core/commerce/03-slice-planning/2026-07-15-isostack-commerce-core-slice-commerce-a7-fund-consumer-integration-implementation-planning.md`
+
+A7 is implemented/reviewed locally at application commit `598305ce`, with no public surface,
+real provider action or shared deployment. The next candidate is FUND 1R-E planning; this
+document does not authorise it.
 
 A7 planning must read the three CRs but remain a thin consumer boundary. It may preserve
 typed workflow, immutable Store/configuration and input/asset references needed by the

@@ -527,11 +527,12 @@ deployed to a shared environment and adds no runtime payment behavior.
 Current next control candidate:
 
 ```text
-Remain in the Core Commerce lane and create/review only bounded `COMMERCE-A7 - FUND
-Consumer Integration` planning when explicitly authorised. A7 implementation has not
-begun. Its planning must read the governed strategic overview and three CRs under section
-8.1 while retaining the thin boundary stated there. FUND `1R-E` Store UI remains queued
-behind that generic consumer boundary.
+`COMMERCE-A7 - FUND Consumer Integration` is implemented/reviewed as a dormant internal
+boundary on the unchanged 140-migration baseline. Its accepted plan is at
+`docs/core/commerce/03-slice-planning/2026-07-15-isostack-commerce-core-slice-commerce-a7-fund-consumer-integration-implementation-planning.md`
+and retains the thin boundary governed by section 8.1. Application implementation is local
+at `598305ce`; the single next candidate is FUND `1R-E` planning, which is not started or
+authorised by this update.
 ```
 
 ## 10. Roadmap Maintenance Rule
