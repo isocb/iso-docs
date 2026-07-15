@@ -110,6 +110,9 @@ A7 implementation `598305ce` is included in the completed dev/staging promotion 
 `91e8751c`. Automated dev/staging gates, staging health and human FUND-admin/pre-existing-UI
 smoke verification passed; production remains unchanged.
 
-The single next candidate is FUND
-`1R-E - C1 Store Oversight And C2 Project Store Control Alignment` planning. Do not begin
-it from this completed Commerce lifecycle.
+The FUND `1R-E - C1 Store Oversight And C2 Project Store Control Alignment` parent plan is
+reviewed and accepted. Its bounded E-A lifecycle is implemented/reviewed locally against
+the complete 141-migration disposable baseline. Planning only E-B is the next cross-lane
+candidate; do not implement or begin E-B/E-C from this completed Commerce lifecycle.
+
+`../../../modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-a-store-authority-exceptional-intervention-lifecycle-service-alignment-implementation-planning.md`

@@ -15,20 +15,23 @@ Historical slice plans may remain in `Planning/` until they are next touched. Ne
 
 Most recently completed planning/implementation lifecycle:
 
-`2026-07-14-fund-phase-1-slice-1r-d-store-readiness-c1-configuration-api-services-implementation-planning.md`
+`2026-07-15-fund-phase-1-slice-1r-e-a-store-authority-exceptional-intervention-lifecycle-service-alignment-implementation-planning.md`
 
 Current integrated critical-path action:
 
 ```text
-Create and review only FUND 1R-E - C1 Store Oversight And C2 Project Store Control
-Alignment planning. Do not begin implementation until its bounded plan is accepted.
+Plan only FUND 1R-E-B C1 Store Portfolio Oversight And Exceptional Intervention Surface.
+Do not implement it and do not begin 1R-E-C, 1R-F or another slice.
 ```
 
 Commerce A1-A7 and the retained FUND C1-C6/1R-D/R3 foundations are implemented/reviewed.
 The application bundle is promoted through dev/staging at `91e8751c`; development has all
 140 migrations applied, automated dev/staging gates passed, staging is healthy and human
 FUND-admin login plus pre-existing UI smoke verification passed. Production remains
-unchanged. `1R-E` is the single next planning candidate.
+unchanged. The `1R-E` parent is accepted and E-A is implemented/reviewed locally against
+the complete 141-migration disposable baseline with zero residue. Shared dev/staging
+remain at the promoted 140-migration boundary. Planning only E-B is the single next
+action.
 
 This current status supersedes older per-slice deployment wording retained below for
 historical context.
@@ -40,6 +43,14 @@ Completed C6 plan:
 Completed 1R-D plan:
 
 `2026-07-14-fund-phase-1-slice-1r-d-store-readiness-c1-configuration-api-services-implementation-planning.md`
+
+Accepted non-executable 1R-E parent plan:
+
+`2026-07-15-fund-phase-1-slice-1r-e-c1-store-oversight-c2-project-store-control-alignment-planning.md`
+
+Completed E-A implementation plan:
+
+`2026-07-15-fund-phase-1-slice-1r-e-a-store-authority-exceptional-intervention-lifecycle-service-alignment-implementation-planning.md`
 
 `1P-G-R3-A` is implemented and reviewed at application `4bb7dd9`, included on `origin/dev`,
 and documented at `65fc243`. `1P-G-R3-B` is implemented, reviewed and committed at application

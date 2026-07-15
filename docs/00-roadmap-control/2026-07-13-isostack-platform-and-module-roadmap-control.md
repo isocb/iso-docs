@@ -106,6 +106,21 @@ Authoritative evidence:
 
 `docs/00-roadmap-control/2026-07-15-commerce-a7-dev-staging-promotion-confirmation.md`
 
+### 2026-07-15 FUND 1R-E-A Local Completion Checkpoint
+
+FUND `1R-E-A - Store Authority, Exceptional Intervention And Lifecycle Service Alignment`
+is implemented and independently reviewed as passed in the local application worktree.
+Its bounded migration advances only the retained disposable test database from 140 to 141
+applied migrations with zero failures and zero test residue. Representative upgrade, full
+fresh replay, preflight refusal, schema/constraint/service/concurrency/rollback, retained
+1R-D/A7 regressions, Prisma validation/generation, type-check and production build passed.
+
+This checkpoint is local and uncommitted. Shared development and staging remain at the
+previously promoted `91e8751c`/140-migration boundary; production remains unchanged. It
+supersedes older current-action statements below that say E-A implementation has not
+started. `1R-E-B - C1 Store Portfolio Oversight And Exceptional Intervention Surface` is
+the single next planning candidate and has not been started.
+
 ### Commerce Core
 
 - Commerce schema foundation architecture: accepted.
@@ -221,8 +236,10 @@ COMMERCE-A1 complete
      -> A6-C connected-account Checkout adapter complete at `34ef64bb`
      -> A6-D webhook/refund reconciliation complete at `fa670e3c`
   -> COMMERCE-A7 FUND consumer integration complete and promoted through staging
-  -> FUND 1R-E C1 Store Oversight And C2 Project Store Control Alignment planning
-     (single next candidate)
+  -> FUND 1R-E C1 Store Oversight And C2 Project Store Control Alignment parent accepted
+  -> FUND 1R-E-A Store authority/intervention service implemented/reviewed locally
+     -> FUND 1R-E-B C1 Store Portfolio Oversight And Exceptional Intervention Surface
+        planning only (single next candidate; not started)
 
 FUND 1R-C1 -> C2 -> C3 -> C4 -> C5 -> C6 complete
 FUND 1P-G-R3-A -> R3-B -> R3-C -> R3-D complete
@@ -233,9 +250,9 @@ different documentation lifecycles.
 
 ## 7. Current Parent Control Decision
 
-`1R-C1` through `1R-D`, `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D`, Commerce A1 through A5 and
-Commerce A6-A/A6-B/A6-C/A6-D are complete through implementation confirmation and review/test. The
-disposable database is at the complete 140-migration A6-A baseline with zero test residue.
+`1R-C1` through `1R-D`, `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D`, Commerce A1 through A7 and
+FUND 1R-E-A are complete through implementation confirmation and review/test. The retained
+disposable database is at the complete 141-migration E-A baseline with zero test residue.
 
 The accepted parent family is `1P-G-R3 - Project Intake Automated Provisioning Alignment`.
 Its A/B/C child lifecycles are complete and included on `origin/dev`. R3-A is committed at `4bb7dd9`, R3-B at
@@ -343,10 +360,17 @@ dev/staging promotion at `91e8751c`:
 `docs/core/commerce/03-slice-planning/2026-07-15-isostack-commerce-core-slice-commerce-a7-fund-consumer-integration-implementation-planning.md`
 
 A7 remains a dormant internal boundary with no route, UI or real Stripe action. Its
-staging health and human smoke gates passed. The single next candidate is FUND
-`1R-E - C1 Store Oversight And C2 Project Store Control Alignment` planning; it is not
-started or authorised for
-implementation by this update.
+staging health and human smoke gates passed. The FUND
+`1R-E - C1 Store Oversight And C2 Project Store Control Alignment` parent plan is reviewed
+and accepted. The bounded `1R-E-A - Store Authority, Exceptional Intervention And
+Lifecycle Service Alignment` lifecycle is implemented/reviewed as passed locally against
+the new 141-migration disposable baseline. `1R-E-B - C1 Store Portfolio Oversight And
+Exceptional Intervention Surface` is the single next planning candidate; it is not
+started and no E-B/E-C implementation is authorised.
+
+`docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-c1-store-oversight-c2-project-store-control-alignment-planning.md`
+
+`docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-a-store-authority-exceptional-intervention-lifecycle-service-alignment-implementation-planning.md`
 
 The subordinate FUND strategic completion overview and its three 2026-07-15 CR inputs are
 now registered through the authoritative FUND roadmap. A7 planning must read them so the

@@ -79,6 +79,19 @@ Current consolidated delivery state:
 - human FUND administrator login and pre-existing UI smoke testing passed; and
 - application `main`, live deployment and the live database remain unchanged.
 
+Local completion beyond that shared checkpoint:
+
+- FUND `1R-E-A - Store Authority, Exceptional Intervention And Lifecycle Service
+  Alignment` is implemented and independently reviewed as passed in the uncommitted local
+  application worktree;
+- its one bounded migration passed representative 140-to-141 and full fresh 141-migration
+  disposable lifecycles with zero failed migrations and zero test residue;
+- preflight refusal, constraints, intervention/service authority, Event envelope,
+  effective-state, concurrency, rollback, 1R-D/A7 regressions and production build passed;
+- shared development and staging remain at `91e8751c` with 140 migrations; and
+- `1R-E-B - C1 Store Portfolio Oversight And Exceptional Intervention Surface` is the
+  single next planning candidate and has not been started.
+
 Authoritative promotion evidence:
 
 `docs/00-roadmap-control/2026-07-15-commerce-a7-dev-staging-promotion-confirmation.md`
@@ -225,6 +238,9 @@ Full evidence is recorded in:
 | `COMMERCE-A5` | Commerce | Implemented/reviewed; application on `origin/dev`; no migration | Provider-neutral validation, idempotency and audit service primitives |
 | `COMMERCE-A6-A` through `A6-D` | Commerce | Implemented/reviewed; included in dev/staging promotion `91e8751c` | Stripe Connect evidence, onboarding, Checkout adapter and verified webhook/payment/refund reconciliation boundaries |
 | `COMMERCE-A7` | Commerce/FUND integration | Implemented/reviewed; dev/staging promotion and smoke gate complete at `91e8751c` | Dormant internal STRIPE_ONLINE integration from an authoritative FUND offer to generic Commerce and typed FUND context |
+| `1R-E` | FUND Store | Parent reviewed/accepted; non-executable | C1 Store oversight, C2 normal Project Store control, exceptional C1 intervention and service-authority alignment split into bounded E-A/E-B/E-C lifecycles |
+| `1R-E-A` | FUND Store | Implemented/reviewed locally; uncommitted and undeployed; disposable database 141/0 | Typed C1 intervention evidence, C2 Project/Store authority, Event envelope guards and one effective Store-state/A7 availability policy; no UI |
+| `1R-E-B` | FUND Store | Single next planning candidate; not started | C1 Store portfolio oversight and exceptional intervention surface consuming E-A authority |
 
 `1R-C1` through `1R-D` and `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D` must not be rerun as pending work. No next
 implementation is authorised merely because the preceding lifecycle completed.
@@ -255,8 +271,10 @@ COMMERCE-A1 (complete on dev)
      -> A6-D webhook/refund reconciliation implemented/reviewed at `fa670e3c`
   -> COMMERCE-A7 FUND consumer integration implemented/reviewed at `598305ce`
      and promoted through dev/staging at `91e8751c`
-  -> FUND 1R-E C1 Store Oversight And C2 Project Store Control Alignment planning
-     (single next candidate)
+  -> FUND 1R-E C1 Store Oversight And C2 Project Store Control Alignment parent accepted
+  -> FUND 1R-E-A Store authority/intervention service implemented/reviewed locally
+     -> FUND 1R-E-B C1 Store Portfolio Oversight And Exceptional Intervention Surface
+        planning only (single next candidate; not started)
 
 FUND 1R-C1 (complete on dev)
   -> 1R-C2 (complete on dev)
@@ -290,9 +308,10 @@ Rules:
   `fd7376b`; no migration or shared deployment was performed;
 - `COMMERCE-A6-A` through `COMMERCE-A7` are implemented/reviewed and included in the
   completed dev/staging promotion at `91e8751c`;
-- FUND `1R-E - C1 Store Oversight And C2 Project Store Control Alignment` is the single
-  next planning candidate and is not authorised for implementation merely by this roadmap
-  update;
+- FUND `1R-E - C1 Store Oversight And C2 Project Store Control Alignment` is an accepted
+  non-executable parent; bounded E-A is implemented/reviewed locally on the 141-migration
+  disposable baseline; E-B planning is the single next candidate and no E-B/E-C
+  implementation is authorised;
 - never implement two slices merely because their planning can be discussed together;
 - finish one slice lifecycle before selecting another unless the user explicitly changes
   the control decision.
@@ -303,15 +322,15 @@ The accepted business authority for the next slice is:
 
 - the Store belongs to its Project and has no independent trading dates;
 - the Project's explicit opening and closing date-times are the Store trading window;
-- a linked Event supplies the outer permissible date envelope only, so Project dates may
-  be narrower and later Event-date changes do not cascade automatically into existing
-  Project dates;
+- a linked Event supplies default Project opening/closing instants at Project creation and
+  the outer permissible date envelope; the copied Project dates remain C2-editable within
+  that envelope, and later Event-date changes do not cascade automatically;
 - authorised C2 Client members perform normal Project Store control, including enable or
   publish, pause and resume within server-enforced commercial, Project and readiness rules;
 - C1 has tenant-wide Store overview, supplier-side Product/commercial/readiness and
   presentation-release authority, but is not the routine Store moderator;
-- C1 retains exceptional, audited pause, resume and closure authority for legal, payment,
-  safety or seller-of-record intervention; and
+- C1 retains exceptional, audited pause, resume, closure and C1-only reopen authority for
+  legal, payment, safety or seller-of-record intervention; and
 - the current C1-only `1R-D` Store-management service and any dependent Project-lifecycle
   authority must be aligned before either C1 or C2 UI is treated as operational.
 
@@ -602,9 +621,16 @@ Current next control candidate:
 `COMMERCE-A7 - FUND Consumer Integration` is implemented/reviewed as a dormant internal
 boundary on the unchanged 140-migration baseline. Its implementation at `598305ce` is
 included in application dev/staging commit `91e8751c`; automated gates, staging health,
-FUND-admin login and pre-existing UI smoke verification passed. The single next candidate
-is FUND `1R-E - C1 Store Oversight And C2 Project Store Control Alignment` planning, which
-is not started or authorised for implementation by this update.
+FUND-admin login and pre-existing UI smoke verification passed. The FUND
+`1R-E - C1 Store Oversight And C2 Project Store Control Alignment` parent plan is reviewed
+and accepted at
+`docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-c1-store-oversight-c2-project-store-control-alignment-planning.md`.
+The bounded E-A plan is created at
+`docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-a-store-authority-exceptional-intervention-lifecycle-service-alignment-implementation-planning.md`
+and its local implementation/review lifecycle has passed against the 141-migration
+disposable baseline with zero residue. `1R-E-B - C1 Store Portfolio Oversight And
+Exceptional Intervention Surface` is the single next planning candidate. It is not
+started, and no E-B/E-C implementation is authorised.
 ```
 
 ## 10. Roadmap Maintenance Rule

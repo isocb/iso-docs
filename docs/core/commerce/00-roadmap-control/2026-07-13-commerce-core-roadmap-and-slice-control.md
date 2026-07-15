@@ -318,9 +318,15 @@ validation on the unchanged 140-migration baseline with zero A7 residue.
 
 Application implementation `598305ce` is included in the completed dev/staging promotion
 at `91e8751c`. The Commerce lane is complete through A7's dormant transaction boundary.
-The single next cross-lane candidate is FUND
-`1R-E - C1 Store Oversight And C2 Project Store Control Alignment` planning, which is not
-started or authorised for implementation by this update.
+The FUND `1R-E - C1 Store Oversight And C2 Project Store Control Alignment` parent plan is
+reviewed and accepted. The bounded E-A Store authority/intervention service lifecycle is
+implemented/reviewed locally against a complete 141-migration disposable baseline; it
+changes no generic Commerce ownership. `1R-E-B` portfolio-oversight planning is the single
+next cross-lane candidate. It is not started and no E-B/E-C implementation is authorised.
+
+`docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-c1-store-oversight-c2-project-store-control-alignment-planning.md`
+
+`docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-a-store-authority-exceptional-intervention-lifecycle-service-alignment-implementation-planning.md`
 
 A7 planning must also read the subordinate FUND Store/artwork strategic completion
 overview and its three registered 2026-07-15 CR inputs through the authoritative FUND
