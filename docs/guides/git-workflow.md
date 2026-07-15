@@ -32,6 +32,11 @@ This model is intentionally simple. It keeps branch discussion grounded in the p
 
 Use this flow unless a specific release plan says otherwise:
 
+Before proposing or executing any promotion, the operator or agent must read this document,
+the application `DEPLOY_VERIFY_CHECKLIST.md` and `SAFE_DATABASE_WORKFLOW.md` in the current
+promotion turn. The preflight must reconcile the complete commit/migration bundle and must
+not replace the controlled local target-branch merge with a direct remote ref push.
+
 1. Create a local work branch from `dev`.
 2. Implement and test the change on the local work branch.
 3. Commit the local work branch.
