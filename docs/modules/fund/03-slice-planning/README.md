@@ -20,19 +20,18 @@ Most recently completed planning/implementation lifecycle:
 Current integrated critical-path action:
 
 ```text
-Return to Core Commerce and create/review only the bounded COMMERCE-A5 Provider-neutral
-Services And Validation plan
+Create and review only FUND 1R-E - C1 Store Oversight And C2 Project Store Control
+Alignment planning. Do not begin implementation until its bounded plan is accepted.
 ```
 
-Commerce A2 is implemented/reviewed on application `origin/dev` at `3206199`. FUND C6 is
-implemented/reviewed locally at application `9947669` and supplies typed FUND evidence over
-that generic Order/line contract. Store `1R-D` is implemented/reviewed locally at
-application `db85fcc` with no migration or shared deployment. Commerce A3 is
-implemented/reviewed locally at application `4a90be1` with a clean 138-migration disposable
-lifecycle and no shared deployment. Commerce A4 is implemented/reviewed locally at
-application `5b69920` with a clean 139-migration disposable lifecycle and no shared
-deployment. `COMMERCE-A5` is the single global next planning
-candidate; FUND Store UI `1R-E` remains queued.
+Commerce A1-A7 and the retained FUND C1-C6/1R-D/R3 foundations are implemented/reviewed.
+The application bundle is promoted through dev/staging at `91e8751c`; development has all
+140 migrations applied, automated dev/staging gates passed, staging is healthy and human
+FUND-admin login plus pre-existing UI smoke verification passed. Production remains
+unchanged. `1R-E` is the single next planning candidate.
+
+This current status supersedes older per-slice deployment wording retained below for
+historical context.
 
 Completed C6 plan:
 

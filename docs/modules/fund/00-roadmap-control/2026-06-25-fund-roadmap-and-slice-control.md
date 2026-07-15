@@ -60,10 +60,28 @@ Current application repository state:
 
 ```text
 working branch: dev
-HEAD/local dev: db85fcc
-origin dev: 3206199
-local main/local staging/origin main/origin staging: ea4e619
+local dev/origin dev: 91e8751c
+local staging/origin staging: 91e8751c
+local main/origin main: ea4e6193 (unchanged)
+IsoDocs main/origin main: 9cf27a5
 ```
+
+Current consolidated delivery state:
+
+- Commerce `A1` through `A7`, FUND `1R-C1` through `1R-D` and Project Intake/creation
+  `1P-G-R3-A` through `R3-D` are included in the promoted application ancestry;
+- application `dev` and `staging` are aligned at `91e8751c`;
+- the Neon development database is current at 140 applied migrations with no failed
+  migration;
+- dev and staging security/type/schema gates passed;
+- the staging application health check passed with its database connected and RLS enabled
+  on all 11 expected tables;
+- human FUND administrator login and pre-existing UI smoke testing passed; and
+- application `main`, live deployment and the live database remain unchanged.
+
+Authoritative promotion evidence:
+
+`docs/00-roadmap-control/2026-07-15-commerce-a7-dev-staging-promotion-confirmation.md`
 
 Committed development schema foundation:
 
@@ -158,6 +176,29 @@ No staging or production branch/database was migrated. Full evidence is recorded
 
 `docs/00-roadmap-control/2026-07-14-fund-commerce-dev-promotion-and-migration-confirmation.md`
 
+## 2.2 Controlled A7 Development And Staging Promotion — 2026-07-15
+
+This subsection is the current application promotion authority and supersedes older
+sections that describe Commerce A6-A through A7 or their retained FUND dependencies as
+local, unpushed or undeployed.
+
+```text
+Application dev/origin-dev:         91e8751c
+Application staging/origin-staging: 91e8751c
+Application main/origin-main:       ea4e6193 (unchanged)
+Neon development migrations:        140 applied, 0 failed
+Staging health:                      healthy; database connected; RLS 11/11
+Human staging verification:         FUND admin login PASS; existing UI smoke PASS
+```
+
+The staging deployment used the normal Render build contract, which runs Prisma migration
+deployment before the application build. A direct staging migration-inventory query was
+not performed locally, so this record does not invent one. Production remains untouched.
+
+Full evidence is recorded in:
+
+`docs/00-roadmap-control/2026-07-15-commerce-a7-dev-staging-promotion-confirmation.md`
+
 ## 3. Current Slice Status
 
 | Slice | Lane | Status | Controlling outcome |
@@ -182,6 +223,8 @@ No staging or production branch/database was migrated. Full evidence is recorded
 | `COMMERCE-A3` | Commerce | Implemented/reviewed; applied to Neon development | Provider-neutral Payment, Refund and Pro-forma schema evidence; no runtime behavior |
 | `COMMERCE-A4` | Commerce | Implemented/reviewed; applied to Neon development | Provider-neutral audit and idempotency evidence foundation; no runtime behavior |
 | `COMMERCE-A5` | Commerce | Implemented/reviewed; application on `origin/dev`; no migration | Provider-neutral validation, idempotency and audit service primitives |
+| `COMMERCE-A6-A` through `A6-D` | Commerce | Implemented/reviewed; included in dev/staging promotion `91e8751c` | Stripe Connect evidence, onboarding, Checkout adapter and verified webhook/payment/refund reconciliation boundaries |
+| `COMMERCE-A7` | Commerce/FUND integration | Implemented/reviewed; dev/staging promotion and smoke gate complete at `91e8751c` | Dormant internal STRIPE_ONLINE integration from an authoritative FUND offer to generic Commerce and typed FUND context |
 
 `1R-C1` through `1R-D` and `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D` must not be rerun as pending work. No next
 implementation is authorised merely because the preceding lifecycle completed.
@@ -189,11 +232,10 @@ implementation is authorised merely because the preceding lifecycle completed.
 ## 4. Current Sequence And Dependency Control
 
 Development promotion checkpoint: application `dev` is aligned to `origin/dev` at
-`fd7376b`, and all 139 migrations are applied to Neon development. The user authorised
-removal of disposable FUND test rows after the R3-D empty-baseline guard stopped safely;
-no LMSPro/public data changed. Staging and production remain untouched. Authoritative
-evidence is recorded at
-`docs/00-roadmap-control/2026-07-14-fund-commerce-dev-promotion-and-migration-confirmation.md`.
+`91e8751c`, `staging` is aligned to the same commit and all 140 migrations are applied to
+Neon development. Staging health and human FUND-admin/pre-existing-UI smoke verification
+passed. Production remains untouched. Authoritative evidence is recorded at
+`docs/00-roadmap-control/2026-07-15-commerce-a7-dev-staging-promotion-confirmation.md`.
 
 Older statements below describing C1-C6/R3-D as unpushed or undeployed to the development
 database are superseded by this checkpoint.
@@ -211,6 +253,10 @@ COMMERCE-A1 (complete on dev)
      -> A6-B tenant settings/hosted onboarding (implemented/reviewed at `e8aecea`)
      -> A6-C connected-account Checkout adapter implemented/reviewed at `34ef64bb`
      -> A6-D webhook/refund reconciliation implemented/reviewed at `fa670e3c`
+  -> COMMERCE-A7 FUND consumer integration implemented/reviewed at `598305ce`
+     and promoted through dev/staging at `91e8751c`
+  -> FUND 1R-E C1 Store Oversight And C2 Project Store Control Alignment planning
+     (single next candidate)
 
 FUND 1R-C1 (complete on dev)
   -> 1R-C2 (complete on dev)
@@ -242,9 +288,35 @@ Rules:
 - `COMMERCE-A4` is complete through review/test and must not be rerun as pending work;
 - `COMMERCE-A5` is implemented and reviewed at application commit
   `fd7376b`; no migration or shared deployment was performed;
+- `COMMERCE-A6-A` through `COMMERCE-A7` are implemented/reviewed and included in the
+  completed dev/staging promotion at `91e8751c`;
+- FUND `1R-E - C1 Store Oversight And C2 Project Store Control Alignment` is the single
+  next planning candidate and is not authorised for implementation merely by this roadmap
+  update;
 - never implement two slices merely because their planning can be discussed together;
 - finish one slice lifecycle before selecting another unless the user explicitly changes
   the control decision.
+
+### 4.1 Accepted 1R-E Store Authority Correction — 2026-07-15
+
+The accepted business authority for the next slice is:
+
+- the Store belongs to its Project and has no independent trading dates;
+- the Project's explicit opening and closing date-times are the Store trading window;
+- a linked Event supplies the outer permissible date envelope only, so Project dates may
+  be narrower and later Event-date changes do not cascade automatically into existing
+  Project dates;
+- authorised C2 Client members perform normal Project Store control, including enable or
+  publish, pause and resume within server-enforced commercial, Project and readiness rules;
+- C1 has tenant-wide Store overview, supplier-side Product/commercial/readiness and
+  presentation-release authority, but is not the routine Store moderator;
+- C1 retains exceptional, audited pause, resume and closure authority for legal, payment,
+  safety or seller-of-record intervention; and
+- the current C1-only `1R-D` Store-management service and any dependent Project-lifecycle
+  authority must be aligned before either C1 or C2 UI is treated as operational.
+
+This correction supersedes older planning language that assigns ordinary Store publication,
+pause or closure to C1. It does not itself authorise implementation.
 
 ## 5. Mandatory Slice Lifecycle
 
@@ -528,11 +600,11 @@ Current next control candidate:
 
 ```text
 `COMMERCE-A7 - FUND Consumer Integration` is implemented/reviewed as a dormant internal
-boundary on the unchanged 140-migration baseline. Its accepted plan is at
-`docs/core/commerce/03-slice-planning/2026-07-15-isostack-commerce-core-slice-commerce-a7-fund-consumer-integration-implementation-planning.md`
-and retains the thin boundary governed by section 8.1. Application implementation is local
-at `598305ce`; the single next candidate is FUND `1R-E` planning, which is not started or
-authorised by this update.
+boundary on the unchanged 140-migration baseline. Its implementation at `598305ce` is
+included in application dev/staging commit `91e8751c`; automated gates, staging health,
+FUND-admin login and pre-existing UI smoke verification passed. The single next candidate
+is FUND `1R-E - C1 Store Oversight And C2 Project Store Control Alignment` planning, which
+is not started or authorised for implementation by this update.
 ```
 
 ## 10. Roadmap Maintenance Rule

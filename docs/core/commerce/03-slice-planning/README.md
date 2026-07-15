@@ -106,4 +106,10 @@ Review/test:
 
 `../05-review-and-test/2026-07-15-commerce-a7-fund-consumer-integration-review-and-test.md`
 
-The next candidate is FUND 1R-E planning. Do not begin it from this Commerce lifecycle.
+A7 implementation `598305ce` is included in the completed dev/staging promotion at
+`91e8751c`. Automated dev/staging gates, staging health and human FUND-admin/pre-existing-UI
+smoke verification passed; production remains unchanged.
+
+The single next candidate is FUND
+`1R-E - C1 Store Oversight And C2 Project Store Control Alignment` planning. Do not begin
+it from this completed Commerce lifecycle.

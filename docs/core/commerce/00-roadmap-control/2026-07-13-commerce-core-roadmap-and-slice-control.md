@@ -51,7 +51,8 @@ COMMERCE-A6 - Stripe Connect tenant payments parent plan
   COMMERCE-A6-B - Tenant payment settings and hosted onboarding (implemented/reviewed)
   COMMERCE-A6-C - Connected-account Checkout adapter (implemented/reviewed)
   COMMERCE-A6-D - Webhook, refund sync and reconciliation (implemented/reviewed)
-COMMERCE-A7 - FUND consumer integration (implemented/reviewed; dormant internal boundary)
+COMMERCE-A7 - FUND consumer integration (implemented/reviewed; dormant internal boundary;
+promoted through staging)
 ```
 
 Each slice requires its own `03 -> implementation -> 04 -> 05` lifecycle.
@@ -147,11 +148,12 @@ Current result:
 
 ## 8. Current Next Step
 
-Development promotion checkpoint: application `dev` is aligned to `origin/dev` at
-`fd7376b`, and the Neon development database reports all 139 migrations applied. Commerce
-A1-A4 schema contracts and A5 service/static checks pass; staging and production remain
-untouched. See
-`docs/00-roadmap-control/2026-07-14-fund-commerce-dev-promotion-and-migration-confirmation.md`.
+Controlled A7 promotion checkpoint: application `dev`/`origin-dev` and
+`staging`/`origin-staging` are aligned at `91e8751c`; the Neon development database reports
+all 140 migrations applied with none failed. Dev and staging security/type/schema gates,
+staging health/database/RLS checks, FUND administrator login and pre-existing UI smoke
+verification passed. Application `main` and live remain unchanged at `ea4e6193`. See
+`docs/00-roadmap-control/2026-07-15-commerce-a7-dev-staging-promotion-confirmation.md`.
 
 `COMMERCE-A1` through `COMMERCE-A4` are complete through review/test. The accepted generic
 Order/line and same-tenant relation foundation supported FUND `1R-C6 - FUND Commerce
@@ -314,10 +316,11 @@ The bounded `COMMERCE-A7 - FUND Consumer Integration` lifecycle is implemented/r
 A7 passed type/static/build, disposable atomic/replay and retained A6-C/A6-D regression
 validation on the unchanged 140-migration baseline with zero A7 residue.
 
-Application implementation is local at `598305ce`; no origin branch or shared environment
-was changed. The Commerce lane is complete through A7's dormant transaction boundary. The
-next cross-lane candidate is FUND `1R-E` Store UI planning, which is not started or
-authorised by this update.
+Application implementation `598305ce` is included in the completed dev/staging promotion
+at `91e8751c`. The Commerce lane is complete through A7's dormant transaction boundary.
+The single next cross-lane candidate is FUND
+`1R-E - C1 Store Oversight And C2 Project Store Control Alignment` planning, which is not
+started or authorised for implementation by this update.
 
 A7 planning must also read the subordinate FUND Store/artwork strategic completion
 overview and its three registered 2026-07-15 CR inputs through the authoritative FUND

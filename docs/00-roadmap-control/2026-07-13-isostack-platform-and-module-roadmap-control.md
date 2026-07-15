@@ -90,6 +90,22 @@ Any older statement below saying these slices remain unpushed or undeployed to t
 development database is superseded by this checkpoint. Staging and production remain
 undeployed.
 
+### 2026-07-15 Commerce A7 Development And Staging Promotion Checkpoint
+
+Application `dev`/`origin-dev` and `staging`/`origin-staging` are aligned at `91e8751c`.
+The Neon development database is current at 140 applied migrations with no failed
+migration. Dev and staging security/type/schema gates passed; staging reported healthy
+with its database connected and RLS enabled on all 11 expected tables; and human FUND
+administrator login plus pre-existing UI smoke verification passed.
+
+Application `main`, live deployment and the live database remain unchanged at their prior
+boundary. This checkpoint supersedes older statements below that describe A6-A through A7
+or retained FUND dependencies as local, unpushed or undeployed to staging.
+
+Authoritative evidence:
+
+`docs/00-roadmap-control/2026-07-15-commerce-a7-dev-staging-promotion-confirmation.md`
+
 ### Commerce Core
 
 - Commerce schema foundation architecture: accepted.
@@ -204,7 +220,9 @@ COMMERCE-A1 complete
      -> A6-B tenant settings/hosted onboarding complete at `e8aecea`
      -> A6-C connected-account Checkout adapter complete at `34ef64bb`
      -> A6-D webhook/refund reconciliation complete at `fa670e3c`
-  -> COMMERCE-A7 FUND consumer integration
+  -> COMMERCE-A7 FUND consumer integration complete and promoted through staging
+  -> FUND 1R-E C1 Store Oversight And C2 Project Store Control Alignment planning
+     (single next candidate)
 
 FUND 1R-C1 -> C2 -> C3 -> C4 -> C5 -> C6 complete
 FUND 1P-G-R3-A -> R3-B -> R3-C -> R3-D complete
@@ -318,13 +336,17 @@ be satisfied safely.
 Reconciliation` is implemented/reviewed at `fa670e3c` against completed A6-A/A6-B/A6-C and
 the unchanged 140-migration baseline.
 
-`COMMERCE-A7 - FUND Consumer Integration` is implemented/reviewed as passed locally at
-application commit `598305ce` on the unchanged 140-migration baseline:
+`COMMERCE-A7 - FUND Consumer Integration` is implemented/reviewed as passed at application
+commit `598305ce` on the unchanged 140-migration baseline and is included in the completed
+dev/staging promotion at `91e8751c`:
 
 `docs/core/commerce/03-slice-planning/2026-07-15-isostack-commerce-core-slice-commerce-a7-fund-consumer-integration-implementation-planning.md`
 
-A7 is a dormant internal boundary with no route, UI, real Stripe action or shared
-deployment. The single next candidate is FUND `1R-E` planning; it is not started.
+A7 remains a dormant internal boundary with no route, UI or real Stripe action. Its
+staging health and human smoke gates passed. The single next candidate is FUND
+`1R-E - C1 Store Oversight And C2 Project Store Control Alignment` planning; it is not
+started or authorised for
+implementation by this update.
 
 The subordinate FUND strategic completion overview and its three 2026-07-15 CR inputs are
 now registered through the authoritative FUND roadmap. A7 planning must read them so the

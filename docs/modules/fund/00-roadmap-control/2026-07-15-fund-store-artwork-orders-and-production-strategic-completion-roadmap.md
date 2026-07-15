@@ -187,10 +187,14 @@ The authoritative controls currently establish:
 - `1R-D` provides internal Store preparation, readiness, configuration and lifecycle
   services but no C1 UI or public Store;
 - Commerce A1 through A5 are complete through their accepted lifecycles;
-- Commerce A6-A, A6-B, A6-C and A6-D are implemented/reviewed through local application
-  commit `fa670e3c` on the unchanged 140-migration baseline, with no shared deployment or
-  real Stripe configuration; and
-- `COMMERCE-A7` FUND consumer integration remains future work.
+- Commerce A6-A through A6-D and A7 are implemented/reviewed on the unchanged
+  140-migration baseline;
+- the complete application bundle is promoted through dev/staging at `91e8751c`, with
+  green automated gates, healthy staging/database/RLS evidence and passed human FUND-admin
+  login and pre-existing UI smoke verification;
+- application `main`, live deployment and real Stripe configuration remain separate; and
+- FUND `1R-E - C1 Store Oversight And C2 Project Store Control Alignment` is the single
+  next planning candidate.
 
 This baseline is a summary only. Commit, migration, deployment and current-next-action
 claims must be read from the authoritative controls.
@@ -203,7 +207,7 @@ The programme should not use `complete` without identifying the level meant.
 | --- | --- |
 | **Commerce complete** | Generic checkout, Order, money, connected-account payment, verified webhook, refund and reconciliation services are reliable and reviewed |
 | **Transactionally integrated** | A7 can turn an authoritative ready FUND Store offer into a correctly paid Commerce Order with typed FUND Order/line context |
-| **Store operational** | C1 can configure, diagnose, publish, pause and close a Store and a public purchaser can safely browse the currently released offer |
+| **Store operational** | C2 can control its Project Store within C1-defined commercial and readiness rules; C1 can oversee all Stores, perform its supplier-side release duties and use only audited exceptional pause/resume/closure authority; a public purchaser can safely browse the currently released offer |
 | **Artwork ready** | The applicable Individual Artwork, collective artwork or unmodified Standard Product branch passes its exact readiness contract |
 | **Consumer journey complete** | A purchaser can order, pay, receive confirmation/Order Code and safely understand pending, paid, failed and refunded states |
 | **AMOW operationally complete** | Artwork intake, scanning, returned-artwork/Order matching and explicit C1 production authorisation work |
@@ -233,7 +237,7 @@ FUND 1Q eligibility/selection + 1R-C3/C4/C5/C6 + 1R-D foundations
           +-----------------+--------------------+
                             |
                             v
-              C1 Store control and publication
+              C2 Project Store control + C1 Store oversight
               -> public Store presentation
               -> checkout and Order confirmation
               -> C1/C2 Order operations
@@ -277,6 +281,9 @@ A7 implemented/reviewed as a dormant internal transaction spine:
 
 `docs/core/commerce/03-slice-planning/2026-07-15-isostack-commerce-core-slice-commerce-a7-fund-consumer-integration-implementation-planning.md`
 
+Its application ancestry is promoted through dev/staging at `91e8751c`; A7 remains dormant
+because no public Store/Checkout route or UI invokes it yet.
+
 ### Required proof
 
 A7 and its retained A6-D dependency must prove at least:
@@ -301,19 +308,29 @@ authoritative ready FUND offer
 
 ### Still incomplete afterward
 
-C1 Store UI, workflow-specific artwork readiness, finished public Store UX, operational
-Order surfaces, production, fulfilment and commission remain separate.
+C1 oversight/C2 Project Store surfaces, workflow-specific artwork readiness, finished
+public Store UX, operational Order surfaces, production, fulfilment and commission remain
+separate.
 
-## 10. Strategic Stage 1 — C1 Store Control Surface (`1R-E`)
+## 10. Strategic Stage 1 — C1 Store Oversight And C2 Project Store Control Alignment (`1R-E`)
 
 ### Outcome
 
-Expose completed `1R-D` Store preparation/readiness/lifecycle services through an
-operator-usable C1 Project Store experience.
+Correct the completed `1R-D` C1-only service authority before exposing Store operations.
+Normal Project Store control belongs to authorised C2 Client members. C1 receives a
+tenant-wide Store overview, supplier-side readiness/release actions and audited exceptional
+pause, resume and closure authority.
+
+The Store has no independent opening or closing dates. Its trading window is derived from
+the Project's explicit dates and lifecycle. A linked Event supplies only the outer
+permissible date envelope: a Project may use narrower dates, and a later Event-date change
+does not cascade automatically into existing Project dates.
 
 ### Candidate workstreams
 
-- Project detail Store tab;
+- service/permission alignment before either UI consumes the lifecycle contract;
+- C2 Project detail Store tab for normal Store control;
+- C1 tenant-wide Store overview and Project Store drill-down;
 - Store Product configuration and immutable version inspection;
 - Product tax, price, copy, media and input blockers;
 - connected-account payment readiness;
@@ -321,18 +338,28 @@ operator-usable C1 Project Store experience.
 - Individual Artwork selected/minimum/maximum Product counts;
 - Group/Bulk instruction, collective artwork, approval and Product-release status;
 - canonical Store URL;
-- publish, pause, resume and close actions; and
+- C2 enable/publish, pause and resume actions within server-enforced Project, Event and
+  readiness rules;
+- derived non-trading state outside the Project window, without duplicating Store dates;
+- audited C1 exceptional pause, resume and closure actions for legal, payment, safety or
+  seller-of-record intervention, rather than routine C1 moderation; and
 - operational exception explanations and remediation links.
 
 ### CR implications
 
-All three CRs contribute C1-visible readiness, but `1R-E` must not implement the complete
-editor/generator/composition workflows merely to show their status and actions.
+All three CRs contribute C1- and C2-visible readiness, but `1R-E` must not implement the
+complete editor/generator/composition workflows merely to show their status and actions.
+C1 remains authoritative for Product, price, tax, Catalogue eligibility, collective
+artwork composition and Store Product presentation release. C2 remains authoritative for
+its eligible Project Product selection, commission acceptance, required organiser artwork
+approval and normal Project Store operation.
 
 ### Completion gate
 
-C1 can identify every blocking readiness reason and perform only authorised Store lifecycle
-transitions through one server-enforced contract.
+C2 can identify and resolve the blockers within its authority and perform normal Project
+Store transitions; C1 can see every Store and blocker, perform only supplier-side actions
+or exceptional audited intervention, and neither surface can bypass the same server-
+enforced contract.
 
 ### Still incomplete afterward
 
@@ -654,9 +681,10 @@ setup through payment, production, dispatch and commission.
 The strategic dependency order is:
 
 ```text
-A6-D lifecycle complete locally at `fa670e3c`
--> A7 thin FUND consumer integration
--> 1R-E C1 Store control surface
+A6-D lifecycle complete
+-> A7 thin FUND consumer integration complete and promoted through staging
+-> 1R-E C1 Store oversight and C2 Project Store control alignment
+   (single next planning candidate)
 -> workflow-conditional Project Offer And Artwork Readiness branches
 -> 1R-F public Store presentation
 -> consumer Order completion and Order Code
@@ -753,14 +781,17 @@ this overview. They should not duplicate its full strategic content.
 ## 25. Strategic Handoff
 
 The current executable action remains whatever the root, Commerce and FUND controls state.
-At the current consolidation point, A6-D is implemented/reviewed locally at `fa670e3c` and
-the bounded `COMMERCE-A7 - FUND Consumer Integration` implementation plan is created at:
+At the current consolidation point, A6-D and the bounded `COMMERCE-A7 - FUND Consumer
+Integration` are implemented/reviewed, and their application ancestry is promoted through
+dev/staging at `91e8751c`. The A7 plan is retained at:
 
 `docs/core/commerce/03-slice-planning/2026-07-15-isostack-commerce-core-slice-commerce-a7-fund-consumer-integration-implementation-planning.md`
 
-A7 is implemented/reviewed locally at application commit `598305ce`, with no public surface,
-real provider action or shared deployment. The next candidate is FUND 1R-E planning; this
-document does not authorise it.
+A7 implementation commit `598305ce` remains a dormant internal boundary with no public
+surface or real provider action. Staging health and human smoke gates passed. The single
+next candidate is FUND
+`1R-E - C1 Store Oversight And C2 Project Store Control Alignment` planning; this document
+does not authorise implementation.
 
 A7 planning must read the three CRs but remain a thin consumer boundary. It may preserve
 typed workflow, immutable Store/configuration and input/asset references needed by the
@@ -772,7 +803,7 @@ authoritative roadmap.
 When the authoritative roadmap later opens FUND strategic refinement after A7, the first
 planning task should reconcile:
 
-- `1R-E` C1 Store Management UI;
+- `1R-E` C1 Store oversight, C2 Project Store control and service-authority alignment;
 - the three named CRs;
 - workflow-aware `1R-D` readiness extensions;
 - `1R-F` public Store boundaries; and
