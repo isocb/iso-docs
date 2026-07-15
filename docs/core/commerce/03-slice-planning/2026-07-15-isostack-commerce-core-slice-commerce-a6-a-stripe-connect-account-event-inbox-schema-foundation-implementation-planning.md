@@ -2,8 +2,9 @@
 
 Date: 2026-07-15
 
-Status: Awaiting explicit review and acceptance; no Prisma, migration, Stripe API, route,
-webhook, service or UI implementation is authorised by this document
+Status: Reviewed and accepted on 2026-07-15 for bounded A6-A implementation only; no
+Stripe API, route, webhook, service, settings UI, Checkout, payment/refund or FUND behavior
+is authorised by this document
 
 Accepted parent:
 
@@ -28,7 +29,10 @@ The implementation baseline is the valid current Prisma multi-schema model and i
 - FUND C1-C6 typed context is implemented;
 - `Organization.stripeCustomerId` remains the platform-subscription `cus_...` reference;
 - the existing `/api/webhooks/stripe` route remains the subscription-billing webhook;
-- the installed Stripe SDK is pinned independently of this schema slice.
+- the installed Stripe SDK is `22.2.0`, and `src/lib/stripe.ts` pins API version
+  `2026-05-27.dahlia`;
+- A6-A changes neither that SDK/API pin nor the subscription webhook's existing
+  `STRIPE_WEBHOOK_SECRET` contract.
 
 The next migration must sort after
 `20260716001000_commerce_a4_audit_idempotency_foundation`; the proposed bounded name is:
@@ -194,6 +198,13 @@ binding the schema to preview Accounts v2 property paths.
 
 ### 5.2 Exact keys and relations
 
+- `livemode` is immutable server-derived evidence of the deployment credential/mode under
+  which IsoStack established and manages this connection; it is not tenant input and is not
+  read from an untrusted Account payload;
+- each deployment/database supports only its configured mode and keeps its sandbox/test and
+  live connected accounts separate; a production Connect endpoint may receive both Stripe
+  live and test events, but an event whose `livemode` does not match the retained
+  connection/deployment mode creates no inbox row;
 - `connectedAccountId` is globally unique and must have the `acct_` shape;
 - `(organizationId, id)` is unique for tenant ownership;
 - `(organizationId, id, connectedAccountId, livemode)` is unique for exact Event Inbox
@@ -238,8 +249,9 @@ transition sequence; A6-A does not create those events.
 ### 5.4 Identity immutability
 
 A bounded PostgreSQL trigger prevents update of organization, connected-account identity,
-livemode, connected time and creator. Readiness/controller snapshots and their timestamps
-remain mutable for A6-B/A6-D synchronization. No hard-delete path is added.
+livemode, connected time and creator and rejects deletion of the retained connection row.
+Readiness/controller snapshots and their timestamps remain mutable for A6-B/A6-D
+synchronization.
 
 ## 6. `CommerceStripeOnboardingAttempt`
 
@@ -346,7 +358,8 @@ delivery order; A6-D must retrieve the canonical provider object before business
 
 A bounded trigger makes tenant, connection, provider-event identity, event type/API version,
 livemode, provider-created/object evidence, payload hash, received time and creation time
-immutable. Processing status/counters/error/timestamps remain mutable.
+immutable and rejects deletion of the retained Event Inbox row. Processing
+status/counters/error/timestamps remain mutable.
 
 ## 8. Prisma Relation Additions
 
@@ -483,34 +496,77 @@ A6-A adds no:
 - FUND, Store, commission, production or fulfilment behavior;
 - staging/production action or shared-database migration.
 
-## 15. Review Gate
+## 15. Review And Acceptance Outcome
 
-Review this plan independently against the accepted A6 parent, current Prisma schema,
-complete 139-migration history and stable Stripe account/capability/event contracts. Resolve
-all enum, key, check, trigger, deletion, rollback and validation conflicts before marking
-A6-A accepted. Acceptance authorises only its bounded schema/migration implementation; it
-does not authorize A6-B or any Stripe call.
+Independent review on 2026-07-15 confirmed:
 
-## 16. Single Review Prompt
+- the current Prisma schema validates and the complete baseline contains 139 migrations at
+  application commit `fd7376b`;
+- the three Commerce-prefixed enums cover the bounded connection, card-capability and inbox
+  lifecycles without introducing provider vocabulary into generic Payment;
+- fixed normalized controller evidence maps to the stable Account contract: full Dashboard,
+  account-paid fees and Stripe-owned loss/requirements responsibility;
+- card capability plus charges, payouts and submitted details form a conservative and
+  internally consistent checkout-readiness snapshot;
+- the new User `(organizationId, id)` candidate key is non-destructive and is required for
+  exact same-tenant creator/updater/initiator foreign keys;
+- global account identity, one-current partial uniqueness and retained same-row reconnection
+  prevent both cross-tenant reuse and duplicate current configuration;
+- connection `livemode` is server-derived deployment/credential evidence. Connect events
+  carry their own mode, and production endpoints can receive both live and test events, so
+  a mode mismatch is rejected before inbox persistence;
+- exact connection/event composites, globally unique provider event IDs, safe hashes and
+  immutable envelope triggers provide tenant ownership and deduplication without storing a
+  webhook body;
+- connection and Event Inbox deletion guards preserve provider evidence while onboarding
+  attempt pruning remains explicitly deferred;
+- the ordered 139-to-140 migration, zero-backfill policy, pre-runtime rollback and
+  disposable validation are complete and implementable;
+- installed Stripe SDK `22.2.0`, API pin `2026-05-27.dahlia`, subscription webhook and
+  `Organization.stripeCustomerId` remain unchanged.
+
+The plan is accepted for its bounded Prisma/migration implementation. Acceptance does not
+authorize A6-B, any Stripe network call, account/onboarding action, webhook handler, route,
+service, settings UI, Checkout, payment/refund mutation or FUND behavior.
+
+## 16. Single Bounded Implementation Prompt
 
 ```text
-Review only IsoStack Commerce Core Slice COMMERCE-A6-A Stripe Connect Account And
-Event-Inbox Schema Foundation Implementation Planning. Do not implement schema or
-application code and do not begin A6-B, A6-C, A6-D, A7, FUND Store UI or another slice.
+Continue only accepted IsoStack Commerce Core Slice COMMERCE-A6-A. Do not begin A6-B,
+A6-C, A6-D, A7, FUND Store UI or another slice.
 
-Verify the plan against the accepted A6 parent, current Prisma multi-schema model, complete
-139-migration A1-A4/C1-C6 baseline, completed A5 services, existing subscription Stripe
-integration and the pinned stable Stripe account/capability/event contract. Resolve any
-conflict in the three bounded enums, full-Dashboard/fee/loss/requirements evidence,
-card/charge/payout/details readiness, one-current/global account identity, supporting User
-tenant key, exact actor/connection/event ownership, immutable livemode, onboarding-state
-hash/expiry/single use, event deduplication/status/retry/safe envelope, partial uniqueness,
-triggers, deletion, zero backfill, migration order, rollback and disposable validation.
+Starting from committed application baseline `fd7376b` and its complete 139-migration
+history, implement only the accepted Stripe Connect Account And Event-Inbox Schema
+Foundation in the current Prisma schema and one migration ordered as
+`20260716002000_commerce_a6_a_stripe_connect_account_event_inbox_foundation`.
 
-Confirm generic CommercePayment gains no Stripe foreign key, Organization.stripeCustomerId
-remains subscription-billing evidence only and A6-A creates no Stripe call, account, route,
-webhook, settings UI, Checkout, payment/refund mutation or FUND behavior.
+Add only CommerceStripeAccountConnectionStatus, CommerceStripeCapabilityStatus and
+CommerceStripeEventInboxStatus; CommerceStripeAccountConnection,
+CommerceStripeOnboardingAttempt and CommerceStripeEventInbox; the exact Organization/User
+reverse relations; and the one supporting User `(organizationId, id)` unique key. Apply the
+accepted controller/readiness/status shapes, server-derived immutable livemode, global and
+same-tenant identities, one-current/open-attempt partial uniqueness, hashes, chronology,
+retention/deletion guards, immutable identity/envelope triggers, checks and indexes exactly
+as planned.
 
-If acceptable, mark only A6-A accepted and provide its single bounded implementation
-prompt. Make no Prisma, migration, service, API, route, webhook or UI change during review.
+Preserve every existing Organization, User, Commerce and FUND value. Create no connection,
+attempt or event row and infer nothing from Organization.stripeCustomerId, settings JSON,
+provider references or free text. Add no Stripe foreign key to CommercePayment and do not
+change the installed Stripe SDK/API pin, STRIPE_SECRET_KEY, subscription
+STRIPE_WEBHOOK_SECRET or existing subscription webhook.
+
+Add no Stripe API call, account or Account Link creation, state service, webhook route or
+processor, Connect webhook secret, settings procedure/UI, Checkout Session, PaymentIntent,
+payment/refund transition, email or FUND behavior.
+
+Use only TEST_DATABASE_URL after proving it differs from DATABASE_URL. Complete the
+representative 139-to-140 migration, full fresh replay, every planned enum/status/controller/
+readiness/tenant/actor/account/mode/onboarding/event/retry/hash/partial-unique/trigger/
+deletion constraint, A1-A5/C1-C6 and subscription-billing static regressions, Prisma
+validation/generation, migration review and zero-residue cleanup. Do not modify shared
+development, staging or production databases.
+
+After successful validation, create separate A6-A implementation-confirmation and
+review/test records, update Commerce, FUND and root roadmaps and the Commerce planning
+README, and stop. Do not start A6-B.
 ```
