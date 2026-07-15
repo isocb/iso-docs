@@ -49,7 +49,7 @@ COMMERCE-A5 - Provider-neutral services and validation
 COMMERCE-A6 - Stripe Connect tenant payments parent plan
   COMMERCE-A6-A - Account and event-inbox schema foundation (implemented/reviewed)
   COMMERCE-A6-B - Tenant payment settings and hosted onboarding (implemented/reviewed)
-  COMMERCE-A6-C - Connected-account Checkout adapter
+  COMMERCE-A6-C - Connected-account Checkout adapter (planning awaiting review)
   COMMERCE-A6-D - Webhook, refund sync and reconciliation
 COMMERCE-A7 - FUND consumer integration
 ```
@@ -265,5 +265,13 @@ Review/test:
 A6-B retained the complete 140-migration baseline, used no real Stripe network action and
 passed fake-provider lifecycle, tenant/actor, idempotency/concurrency, state, readiness,
 audit-redaction, production-build and zero-residue validation. It is not pushed or deployed
-to a shared environment. The single next candidate is bounded `COMMERCE-A6-C -
-Connected-account Checkout Adapter` planning; A6-C implementation is not authorised.
+to a shared environment.
+
+The bounded `COMMERCE-A6-C - Connected-account Checkout Adapter` implementation plan now
+exists and awaits explicit review/acceptance:
+
+`docs/core/commerce/03-slice-planning/2026-07-15-isostack-commerce-core-slice-commerce-a6-c-connected-account-checkout-adapter-implementation-planning.md`
+
+It resolves Payment-key idempotency, direct connected-account context, two-transaction
+remote-call safety, nullable creation-time PaymentIntent evidence and the A6-D/A7 boundary.
+A6-C implementation is not authorised.
