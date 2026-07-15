@@ -50,7 +50,7 @@ COMMERCE-A6 - Stripe Connect tenant payments parent plan
   COMMERCE-A6-A - Account and event-inbox schema foundation (implemented/reviewed)
   COMMERCE-A6-B - Tenant payment settings and hosted onboarding (implemented/reviewed)
   COMMERCE-A6-C - Connected-account Checkout adapter (implemented/reviewed)
-  COMMERCE-A6-D - Webhook, refund sync and reconciliation (planning awaiting review)
+  COMMERCE-A6-D - Webhook, refund sync and reconciliation (planning accepted)
 COMMERCE-A7 - FUND consumer integration
 ```
 
@@ -287,7 +287,7 @@ validation. No real Stripe call, migration, route, UI, webhook, payment transiti
 shared deployment occurred.
 
 The bounded `COMMERCE-A6-D - Connected-account Webhook, Payment/Refund Synchronization And
-Reconciliation` implementation plan is created and awaiting explicit review/acceptance:
+Reconciliation` implementation plan is reviewed and accepted:
 
 `docs/core/commerce/03-slice-planning/2026-07-15-isostack-commerce-core-slice-commerce-a6-d-connected-account-webhook-payment-refund-reconciliation-implementation-planning.md`
 
@@ -295,5 +295,6 @@ It resolves dedicated Connect raw-body receipt, current/previous-secret verifica
 tenant/account/mode routing, durable inbox deduplication, separate shared-job processing,
 canonical provider retrieval, non-terminal failed attempts, expiry/cancellation,
 provider-originated Refund progression, completed-refund aggregation, bounded retries and
-A4/A5 evidence. It adds no migration or implementation authority. Reviewing A6-D is the
-single next action; A7 remains unauthorised.
+A4/A5 evidence. Review additionally aligned the inbox/A4 lease lifecycle, unknown-account
+retry and shared-job isolation. Implementing only accepted A6-D is the single next action;
+A7 remains unauthorised.

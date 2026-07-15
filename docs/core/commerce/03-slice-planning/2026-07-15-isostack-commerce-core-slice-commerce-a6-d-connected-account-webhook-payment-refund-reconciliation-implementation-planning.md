@@ -2,7 +2,8 @@
 
 Date: 2026-07-15
 
-Status: Planning complete; awaiting explicit review and acceptance before implementation
+Status: Reviewed and accepted for bounded implementation; A7, FUND Store UI, schema changes
+and shared-environment configuration remain unauthorised
 
 Parent:
 
@@ -103,7 +104,10 @@ Every owned Event must contain:
 Resolve the globally unique connected account to one retained
 `CommerceStripeAccountConnection`, then persist its exact Organization, connection,
 account and mode. Unknown accounts create no unowned inbox row and receive a bounded
-non-disclosing `2xx`; they may be recorded only in redacted operational logs.
+non-disclosing `500`, allowing Stripe retry if receipt raced local connection persistence.
+They may be recorded only in redacted operational logs. This retry behavior is safe because
+only a successfully signed Stripe delivery reaches account resolution; a permanently
+unknown account remains an endpoint/configuration fault rather than acknowledged evidence.
 
 Insert `CommerceStripeEventInbox` as `RECEIVED` in one short transaction. The full body,
 Event data object, metadata, purchaser details, card/payment method and error message are
@@ -161,7 +165,16 @@ provider creation/receipt time. Eligible rows are:
 
 Claiming changes the row to `PROCESSING`, increments `attemptCount`, sets `processingAt`
 and clears prior failure/retry fields exactly as required by the A6-A status-shape check.
-Only one worker may own an inbox row at a time.
+Only one worker may own an inbox row at a time. In the same claim transaction, claim A4
+scope `STRIPE_CONNECT.EVENT_PROCESS` with the provider Event ID, canonical envelope hash
+and the same five-minute processing lease. A completed A4 replay must correspond to an
+already terminal inbox row; any impossible completed/nonterminal mismatch is quarantined
+instead of repeating a business transition.
+
+The claimed `attemptCount`, `processingAt` and A4 `processingAt` form the lease token. Every
+finalization or failure update must conditionally revalidate that exact token. If a stale
+worker returns after another worker reclaimed the row, it abandons its provider result and
+may mutate neither inbox, A4 nor business evidence.
 
 Provider retrieval occurs outside the claim transaction. A second SERIALIZABLE transaction
 re-locks the inbox and exact tenant business records, revalidates canonical results, applies
@@ -177,9 +190,21 @@ Failure classification:
 - no provider response body, decline text, purchaser information or secret enters
   `lastErrorCode`, audit or logs.
 
+Every handled transient failure updates A4 to `FAILED` and the inbox to `RETRY_PENDING` in
+one transaction. Retry reclaims the expired/failed A4 record, relying on the A6-C correction
+to clear its terminal fields before `PROCESSING`. Permanent/max-attempt failure updates A4
+and the inbox to `FAILED` together. Ignored and unsupported-version Events complete A4 with
+a bounded result and atomically enter `IGNORED` or `FAILED` respectively.
+
 Use bounded delays of approximately 1 minute, 5 minutes, 15 minutes, 1 hour, 6 hours and
 24 hours, capped at 24 hours. A stale processing lease is five minutes. These are service
 constants, not tenant settings.
+
+The Commerce processor isolates each claimed row. A successfully scheduled retry or a
+durably quarantined permanent conflict counts as handled work and must not increment the
+shared job runner's fatal `errors` count. Only an unhandled processor-level failure that
+prevents safe inbox state persistence may fail `jobs:tick`; Commerce processing therefore
+cannot suppress or falsely fail the existing LMSPro sequence processors.
 
 ## 7. Provider Adapter And Canonical Retrieval
 
@@ -349,7 +374,7 @@ unique Event ID is receipt deduplication; A4 is business-transition idempotency.
 Acquire ordered advisory/row locks for:
 
 ```text
-tenant -> inbox -> Payment -> provider Refund IDs
+tenant -> inbox -> A4 idempotency -> Payment -> provider Refund IDs
 ```
 
 All Payment/Refund mutations, A4 completion, append-only audit and inbox completion occur
@@ -381,6 +406,9 @@ Disposable service coverage:
 - prompt receipt without provider retrieval/business mutation;
 - claim concurrency, `SKIP LOCKED`, stale lease recovery, bounded retry/backoff and
   permanent/max-attempt quarantine;
+- stale-worker lease-token rejection after a concurrent reclaim;
+- same-transaction A4/inbox claim, failure, retry, ignore and completion shapes;
+- handled retry/quarantine isolation from the existing shared job-runner fatal error count;
 - account/capability readiness loss and out-of-order timestamp handling;
 - Checkout/PaymentIntent tenant, account, Session, amount, currency and reference checks;
 - null-to-proved PaymentIntent fill;
@@ -428,33 +456,87 @@ A6-D adds no:
 
 A7 remains responsible for consumer/public checkout invocation and FUND integration.
 
-## 16. Review Outcome
+## 16. Review And Acceptance Outcome
 
-The plan is deliberately left awaiting explicit review and acceptance. No schema,
-application, route, webhook, worker or Stripe change is authorised by this document.
+Review against the accepted A6 parent, current 140-migration database contract, implemented
+A6-B/A6-C services, existing subscription webhook, shared job runner and pinned Stripe
+types resolved:
 
-## 17. Single Bounded Review Prompt
+- the existing A3/A4/A6-A schema is sufficient; no migration or backfill is justified;
+- raw Connect receipt, secret rotation and subscription-billing isolation are explicit;
+- a signed but unknown account is not acknowledged without durable ownership evidence and
+  instead receives a non-disclosing retryable response;
+- inbox and A4 operation leases now share one claim/failure/retry lifecycle;
+- handled retry and quarantine outcomes cannot fail unrelated LMSPro job processors;
+- canonical same-account retrieval prevents Event body state and delivery order from
+  controlling Payment or Refund transitions;
+- a failed card attempt remains non-terminal while Checkout can retry;
+- canonical terminal expiry distinguishes attempted failure from abandonment;
+- provider-originated Refunds advance through A5 states before completed aggregates update
+  Payment;
+- ignored OAuth, delayed-method, dispute, payout and subscription events preserve the
+  accepted first-pass boundary;
+- tests use signed fixtures, fake adapters and only the retained disposable database.
+
+The plan is accepted for bounded implementation. This acceptance authorises only the A6-D
+application work and validation described here. It authorises no schema migration, real
+Stripe action, secret/event-destination configuration, shared deployment, A7 or FUND/UI
+work.
+
+## 17. Single Bounded Implementation Prompt
 
 ```text
-Review only IsoStack Commerce Core Slice COMMERCE-A6-D Connected-account Webhook,
-Payment/Refund Synchronization And Reconciliation Implementation Planning. Do not implement
-schema or application code and do not begin A7, FUND Store UI or another slice.
+Continue only accepted IsoStack Commerce Core Slice COMMERCE-A6-D. Do not begin A7, FUND
+Store UI or another slice.
 
-Verify the plan against the accepted A6 parent, completed A1-A5 and A6-A through A6-C,
-current 140-migration Prisma/PostgreSQL contracts, existing subscription webhook, shared
-job runner and pinned Stripe SDK/API. Resolve any conflict in raw-body signature and secret
-rotation isolation, account/livemode routing, immutable inbox deduplication, receipt versus
-worker authority, event allowlist, claim/retry/quarantine lifecycle, canonical same-account
-retrieval, Payment reference/amount/currency transitions, non-terminal failed attempts,
-expiry/cancellation, provider-originated Refund lifecycle and completed-refund aggregation,
-A4 idempotency/audit, out-of-order delivery, redaction, rollback and disposable validation.
+Starting from committed A6-C application baseline `34ef64bb` and the complete unchanged
+140-migration history, implement only the accepted connected-account webhook receipt,
+Payment/Refund synchronization and reconciliation boundary. Add no Prisma schema or
+migration.
 
-Confirm A6-D adds no migration, Order/Payment creation, refund initiation/UI, public
-checkout/return UI, fulfilment/production authorization, FUND commission, disputes, saved
-cards, delayed methods, application fees/transfers/payouts, email, real Stripe action or
-shared-environment configuration.
+Add the dedicated `/api/webhooks/commerce/stripe-connect` raw-body route; isolated current
+and optional previous Connect-secret verification; exact signed account/livemode routing;
+minimal immutable inbox insertion/deduplication; explicit event allowlist; fakeable
+signature/Account/Checkout Session/PaymentIntent/Refund adapter; and the bounded Commerce
+Event Inbox processor registered after existing processors in `jobs:tick`.
 
-If acceptable, mark only A6-D accepted and provide its single bounded implementation
-prompt. Make no Prisma, migration, Stripe API, service, job, route, webhook or UI change
-during review.
+Implement exact 25-row `SKIP LOCKED` claiming, five-minute stale lease recovery, eight-
+attempt bounded retry/quarantine, and one atomic inbox/A4 operation lifecycle. Handled retry
+or quarantine must not fail unrelated LMSPro job processors. Retrieve every canonical
+object under the retained connected account outside the claim transaction, then apply all
+business mutation, provider audit, A4 completion and inbox completion in one SERIALIZABLE
+final transaction.
+
+Apply exact tenant/Order/Payment/Checkout/Seller/connection, Session/PaymentIntent,
+amount/currency/mode/reference and A5 arithmetic authority. Reconcile succeeded Payments,
+non-terminal failed attempts, attempted versus unattempted terminal expiry and canceled
+PaymentIntents exactly as accepted. Never reverse a terminal Payment; quarantine canonical
+conflicts.
+
+For `refund.created`, `refund.updated` and `refund.failed`, retrieve the exact Refund and up
+to 100 canonical Refunds for its PaymentIntent. Create provider-originated CommerceRefund
+evidence as REQUESTED and advance it only through accepted A5 transitions. Atomically sum
+COMPLETED refunds and update Payment to PAID, PARTIALLY_REFUNDED or REFUNDED as applicable.
+Initiate no refund and retain no provider description/failure text.
+
+Keep `/api/webhooks/stripe`, `STRIPE_WEBHOOK_SECRET`, `Organization.stripeCustomerId`,
+subscription billing and subscription email unchanged. Never persist/log/audit raw payload,
+signature, secret, Checkout URL, purchaser email, client secret, payment method, card or
+provider body. Add no public checkout/return UI, Order/Payment creation, refund API/UI,
+fulfilment/production authorization, FUND commission, dispute, saved-card, delayed-method,
+fee/transfer/payout, email or settings behavior. Configure no real secret or Stripe event
+destination and make no real Stripe network call.
+
+Use only TEST_DATABASE_URL after proving it differs from DATABASE_URL. Verify unchanged
+140 migrations; signed current/previous/tampered/stale fixtures; subscription-secret and
+route isolation; unknown-account retry; duplicate/collision receipt; allowlist/ignore/API-
+version quarantine; claim/concurrency/stale lease/retry/job isolation; canonical account,
+Payment success/failure/expiry/cancel and out-of-order paths; provider-originated pending/
+succeeded/failed/canceled partial/multiple refunds; refund-before-payment convergence;
+rollback at every boundary; A1-A6-C/C1-C6/subscription regressions; production build and
+zero residue. Use fake providers only.
+
+After successful validation, create separate A6-D implementation-confirmation and
+review/test records, update Commerce, FUND and root roadmaps and the Commerce planning
+README, and stop. Do not start A7.
 ```
