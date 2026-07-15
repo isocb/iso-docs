@@ -74,5 +74,12 @@ Implementation confirmation and review/test:
 `../05-review-and-test/2026-07-15-commerce-a6-c-connected-account-checkout-adapter-review-and-test.md`
 
 A6-C added no migration and passed fake-provider, PostgreSQL service, concurrency,
-compensation, redaction, build and zero-residue validation without a real Stripe call. The
-single next candidate is bounded A6-D planning; A6-D implementation remains unauthorised.
+compensation, redaction, build and zero-residue validation without a real Stripe call.
+
+A6-D Connected-account Webhook, Payment/Refund Synchronization And Reconciliation planning
+is created and awaits explicit review/acceptance:
+
+`2026-07-15-isostack-commerce-core-slice-commerce-a6-d-connected-account-webhook-payment-refund-reconciliation-implementation-planning.md`
+
+The plan uses the existing 140-migration inbox/payment/refund schema and authorises no
+implementation. A6-D review is the single next action; A7 remains unauthorised.

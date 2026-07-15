@@ -201,7 +201,7 @@ COMMERCE-A1 (complete on dev)
      -> A6-A account/event-inbox schema (implemented/reviewed at `513cf3a`)
      -> A6-B tenant settings/hosted onboarding (implemented/reviewed at `e8aecea`)
      -> A6-C connected-account Checkout adapter implemented/reviewed at `34ef64bb`
-     -> A6-D webhook/refund reconciliation
+     -> A6-D webhook/refund reconciliation plan awaiting review
 
 FUND 1R-C1 (complete on dev)
   -> 1R-C2 (complete on dev)
@@ -471,9 +471,10 @@ deployed to a shared environment and adds no runtime payment behavior.
 Current next control action:
 
 ```text
-Remain in the Core Commerce lane and create/review only bounded `COMMERCE-A6-D -
-Connected-account Webhook, Payment/Refund Synchronization And Reconciliation` planning.
-Do not implement A6-D or begin A7, FUND `1R-E` or another slice.
+Remain in the Core Commerce lane and review only the created bounded `COMMERCE-A6-D -
+Connected-account Webhook, Payment/Refund Synchronization And Reconciliation` plan. It
+awaits explicit acceptance and authorises no implementation. Do not implement A6-D or
+begin A7, FUND `1R-E` or another slice.
 ```
 
 ## 10. Roadmap Maintenance Rule

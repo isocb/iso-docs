@@ -197,7 +197,7 @@ COMMERCE-A1 complete
      -> A6-A account/event-inbox schema complete
      -> A6-B tenant settings/hosted onboarding complete at `e8aecea`
      -> A6-C connected-account Checkout adapter complete at `34ef64bb`
-     -> A6-D webhook/refund reconciliation
+     -> A6-D webhook/refund reconciliation plan awaiting review
   -> COMMERCE-A7 FUND consumer integration
 
 FUND 1R-C1 -> C2 -> C3 -> C4 -> C5 -> C6 complete
@@ -305,10 +305,13 @@ for explicit user input when a genuine business/product choice remains, authorit
 expand, destructive/shared-environment work would be required, or the accepted plan cannot
 be satisfied safely.
 
-Current single next control action: create and review only bounded `COMMERCE-A6-D -
-Connected-account Webhook, Payment/Refund Synchronization And Reconciliation` planning
-against completed A6-A/A6-B/A6-C. Do not implement A6-D or begin A7. Store UI `1R-E`
-remains queued in the FUND lane and is not the global next slice.
+`COMMERCE-A6-D - Connected-account Webhook, Payment/Refund Synchronization And
+Reconciliation` planning is created against completed A6-A/A6-B/A6-C and the unchanged
+140-migration baseline. It is awaiting explicit review/acceptance and authorises no code.
+
+Current single next control action: review only the bounded A6-D plan. Do not implement
+A6-D or begin A7. Store UI `1R-E` remains queued in the FUND lane and is not the global
+next slice.
 
 ## 8. Child Roadmap Discipline
 
