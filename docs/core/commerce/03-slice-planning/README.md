@@ -14,6 +14,7 @@ COMMERCE-A5 - Provider-neutral services and validation
 COMMERCE-A6-A - Stripe Connect account and event-inbox schema foundation
 COMMERCE-A6-B - Tenant payment settings and hosted onboarding
 COMMERCE-A6-C - Connected-account Checkout adapter
+COMMERCE-A6-D - Connected-account webhook, Payment/Refund synchronization and reconciliation
 ```
 
 FUND `1R-C6` is implemented/reviewed at local application commit `9947669` against the
@@ -76,11 +77,19 @@ Implementation confirmation and review/test:
 A6-C added no migration and passed fake-provider, PostgreSQL service, concurrency,
 compensation, redaction, build and zero-residue validation without a real Stripe call.
 
-A6-D Connected-account Webhook, Payment/Refund Synchronization And Reconciliation planning
-is reviewed and accepted:
+A6-D Connected-account Webhook, Payment/Refund Synchronization And Reconciliation is
+implemented/reviewed at application commit `fa670e3c`:
 
 `2026-07-15-isostack-commerce-core-slice-commerce-a6-d-connected-account-webhook-payment-refund-reconciliation-implementation-planning.md`
 
-The accepted plan uses the existing 140-migration inbox/payment/refund schema and requires
-no migration. Bounded A6-D implementation is the single next action; A7 remains
-unauthorised.
+Implementation confirmation and review/test:
+
+`../04-implementation-confirmations/2026-07-15-commerce-a6-d-connected-account-webhook-payment-refund-reconciliation-implementation-confirmation.md`
+
+`../05-review-and-test/2026-07-15-commerce-a6-d-connected-account-webhook-payment-refund-reconciliation-review-and-test.md`
+
+A6-D added no migration and passed signed-fixture, fake-provider, disposable PostgreSQL,
+Payment/Refund reconciliation, retry/quarantine, shared-job isolation, build and
+zero-residue validation without a real Stripe call or shared configuration.
+
+The next controlled candidate is A7 FUND Consumer Integration planning. A7 has not begun.

@@ -201,7 +201,7 @@ COMMERCE-A1 (complete on dev)
      -> A6-A account/event-inbox schema (implemented/reviewed at `513cf3a`)
      -> A6-B tenant settings/hosted onboarding (implemented/reviewed at `e8aecea`)
      -> A6-C connected-account Checkout adapter implemented/reviewed at `34ef64bb`
-     -> A6-D webhook/refund reconciliation plan accepted
+     -> A6-D webhook/refund reconciliation implemented/reviewed at `fa670e3c`
 
 FUND 1R-C1 (complete on dev)
   -> 1R-C2 (complete on dev)
@@ -308,6 +308,7 @@ payment model.
 | Commerce `A6-A` | Implemented/reviewed at local application `513cf3a`; not pushed/deployed | Migration 140 adds only Commerce-owned connection/onboarding/event evidence; FUND waits for later accepted Commerce integration |
 | Commerce `A6-B` | Implemented/reviewed at local application `e8aecea`; not pushed/deployed | Tenant settings and hosted onboarding only; no migration, Checkout, webhook or FUND behavior |
 | Commerce `A6-C` | Implemented/reviewed at local application `34ef64bb`; not pushed/deployed | Dormant connected-account Checkout adapter only; no migration, route, UI, webhook, payment transition or FUND behavior |
+| Commerce `A6-D` | Implemented/reviewed at local application `fa670e3c`; not pushed/deployed/configured | Dedicated Connect receipt and canonical Payment/Refund reconciliation; no migration, real Stripe action, shared secret/Event destination, FUND or production behavior |
 
 ### 7.1 Controlled Promotion Sequence Before LMSPro UI Work
 
@@ -395,6 +396,10 @@ Global next planning control:
 - Core Commerce `A6-C - Connected-account Checkout Adapter` is implemented/reviewed at
   local application commit `34ef64bb` on the unchanged 140-migration baseline. FUND does
   not duplicate this provider work.
+- Core Commerce `A6-D - Connected-account Webhook, Payment/Refund Synchronization And
+  Reconciliation` is implemented/reviewed at local application commit `fa670e3c` on the
+  unchanged 140-migration baseline. FUND consumes later generic Commerce outcomes through
+  A7 and does not duplicate Connect receipt or refund synchronization.
 
 Sibling Commerce controls:
 
@@ -468,12 +473,12 @@ local application commit `4a90be1`. Its representative 137-to-138 and fresh 138-
 disposable lifecycles passed with A1/A2/C6 regressions and zero residue. It is not pushed or
 deployed to a shared environment and adds no runtime payment behavior.
 
-Current next control action:
+Current next control candidate:
 
 ```text
-Remain in the Core Commerce lane and implement only the accepted bounded `COMMERCE-A6-D -
-Connected-account Webhook, Payment/Refund Synchronization And Reconciliation` plan, then
-complete its 04/05 lifecycle. Do not begin A7, FUND `1R-E` or another slice.
+Remain in the Core Commerce lane and create/review only bounded `COMMERCE-A7 - FUND
+Consumer Integration` planning when explicitly authorised. A7 implementation has not
+begun. FUND `1R-E` Store UI remains queued behind that generic consumer boundary.
 ```
 
 ## 10. Roadmap Maintenance Rule

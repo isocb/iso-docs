@@ -50,7 +50,7 @@ COMMERCE-A6 - Stripe Connect tenant payments parent plan
   COMMERCE-A6-A - Account and event-inbox schema foundation (implemented/reviewed)
   COMMERCE-A6-B - Tenant payment settings and hosted onboarding (implemented/reviewed)
   COMMERCE-A6-C - Connected-account Checkout adapter (implemented/reviewed)
-  COMMERCE-A6-D - Webhook, refund sync and reconciliation (planning accepted)
+  COMMERCE-A6-D - Webhook, refund sync and reconciliation (implemented/reviewed)
 COMMERCE-A7 - FUND consumer integration
 ```
 
@@ -286,15 +286,26 @@ rollback/compensation, nullable/later PaymentIntent, audit-redaction, build and 
 validation. No real Stripe call, migration, route, UI, webhook, payment transition or
 shared deployment occurred.
 
-The bounded `COMMERCE-A6-D - Connected-account Webhook, Payment/Refund Synchronization And
-Reconciliation` implementation plan is reviewed and accepted:
+`COMMERCE-A6-D - Connected-account Webhook, Payment/Refund Synchronization And
+Reconciliation` is implemented and reviewed as passed at local application commit
+`fa670e3c`:
 
 `docs/core/commerce/03-slice-planning/2026-07-15-isostack-commerce-core-slice-commerce-a6-d-connected-account-webhook-payment-refund-reconciliation-implementation-planning.md`
 
-It resolves dedicated Connect raw-body receipt, current/previous-secret verification,
-tenant/account/mode routing, durable inbox deduplication, separate shared-job processing,
-canonical provider retrieval, non-terminal failed attempts, expiry/cancellation,
-provider-originated Refund progression, completed-refund aggregation, bounded retries and
-A4/A5 evidence. Review additionally aligned the inbox/A4 lease lifecycle, unknown-account
-retry and shared-job isolation. Implementing only accepted A6-D is the single next action;
-A7 remains unauthorised.
+Implementation confirmation:
+
+`docs/core/commerce/04-implementation-confirmations/2026-07-15-commerce-a6-d-connected-account-webhook-payment-refund-reconciliation-implementation-confirmation.md`
+
+Review/test:
+
+`docs/core/commerce/05-review-and-test/2026-07-15-commerce-a6-d-connected-account-webhook-payment-refund-reconciliation-review-and-test.md`
+
+A6-D retained the complete 140-migration baseline and passed signed current/previous/
+tampered/stale fixtures, immutable receipt/deduplication, canonical Payment and
+provider-originated Refund reconciliation, bounded retry/quarantine, shared-job isolation,
+A6-B/A6-C regressions, production build and zero-residue validation. No real Stripe call,
+shared secret/Event destination, deployment, schema, UI, FUND or production behavior was
+added.
+
+The one next Commerce candidate is bounded `COMMERCE-A7 - FUND Consumer Integration`
+planning. A7 is not started or authorised for implementation by completion of A6-D.

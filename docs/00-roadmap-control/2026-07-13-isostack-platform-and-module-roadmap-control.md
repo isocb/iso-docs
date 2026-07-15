@@ -138,6 +138,12 @@ undeployed.
   direct-charge, ownership, readiness, idempotency/concurrency, compensation, redaction,
   build and zero-residue checks passed. It is not pushed or deployed and adds no route,
   UI, webhook or payment transition.
+- `COMMERCE-A6-D`: connected-account webhook, Payment/Refund synchronization and
+  reconciliation is implemented/reviewed at local application commit `fa670e3c`. The
+  unchanged 140-migration baseline, signed fixtures, durable receipt, canonical Payment
+  and provider-originated Refund reconciliation, retry/job isolation, A6-B/A6-C
+  regressions, build and zero-residue checks passed. It is not pushed or deployed, and no
+  shared Connect secret or Event destination was configured.
 
 ### FUND
 
@@ -197,7 +203,7 @@ COMMERCE-A1 complete
      -> A6-A account/event-inbox schema complete
      -> A6-B tenant settings/hosted onboarding complete at `e8aecea`
      -> A6-C connected-account Checkout adapter complete at `34ef64bb`
-     -> A6-D webhook/refund reconciliation plan accepted
+     -> A6-D webhook/refund reconciliation complete at `fa670e3c`
   -> COMMERCE-A7 FUND consumer integration
 
 FUND 1R-C1 -> C2 -> C3 -> C4 -> C5 -> C6 complete
@@ -210,7 +216,7 @@ different documentation lifecycles.
 ## 7. Current Parent Control Decision
 
 `1R-C1` through `1R-D`, `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D`, Commerce A1 through A5 and
-Commerce A6-A/A6-B/A6-C are complete through implementation confirmation and review/test. The
+Commerce A6-A/A6-B/A6-C/A6-D are complete through implementation confirmation and review/test. The
 disposable database is at the complete 140-migration A6-A baseline with zero test residue.
 
 The accepted parent family is `1P-G-R3 - Project Intake Automated Provisioning Alignment`.
@@ -257,6 +263,9 @@ For clarity:
   at local application commit `e8aecea` and is not pushed or deployed;
 - `COMMERCE-A6-C - Connected-account Checkout Adapter` is implemented/reviewed at local
   application `34ef64bb`; it added no migration, route, UI, webhook or payment transition;
+- `COMMERCE-A6-D - Connected-account Webhook, Payment/Refund Synchronization And
+  Reconciliation` is implemented/reviewed at local application `fa670e3c`; it added no
+  migration, real Stripe action, shared configuration, UI, FUND or production behavior;
 - Event policies are defaults for linked Projects, while an active C1-managed flat-rate
   override wins only for its owning Event-linked Project; standalone Project policies may
   be flat or stepped;
@@ -306,12 +315,13 @@ expand, destructive/shared-environment work would be required, or the accepted p
 be satisfied safely.
 
 `COMMERCE-A6-D - Connected-account Webhook, Payment/Refund Synchronization And
-Reconciliation` planning is reviewed/accepted against completed A6-A/A6-B/A6-C and the
-unchanged 140-migration baseline.
+Reconciliation` is implemented/reviewed at `fa670e3c` against completed A6-A/A6-B/A6-C and
+the unchanged 140-migration baseline.
 
-Current single next control action: implement only the accepted bounded A6-D plan and
-complete its 04/05 lifecycle. Do not begin A7. Store UI `1R-E` remains queued in the FUND
-lane and is not the global next slice.
+Current single next control candidate: create and review only the bounded `COMMERCE-A7 -
+FUND Consumer Integration` plan when explicitly authorised. A7 implementation has not
+begun. Store UI `1R-E` remains queued in the FUND lane behind the generic Commerce consumer
+boundary.
 
 ## 8. Child Roadmap Discipline
 
