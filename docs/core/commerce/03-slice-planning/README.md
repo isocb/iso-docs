@@ -10,6 +10,8 @@ COMMERCE-A1 - Schema namespace, Seller Profile and stable enums
 COMMERCE-A2 - Checkout, Order and Order-line schema foundation
 COMMERCE-A3 - Payment, Refund and Pro-forma schema foundation
 COMMERCE-A4 - Audit and Idempotency foundation
+COMMERCE-A5 - Provider-neutral services and validation
+COMMERCE-A6-A - Stripe Connect account and event-inbox schema foundation
 ```
 
 FUND `1R-C6` is implemented/reviewed at local application commit `9947669` against the
@@ -30,12 +32,17 @@ COMMERCE-A6 Stripe Connect Tenant Payments parent planning is reviewed and accep
 
 `2026-07-14-isostack-commerce-core-slice-commerce-a6-stripe-connect-tenant-payments-planning.md`
 
-The bounded A6-A Stripe Connect Account And Event-Inbox Schema Foundation implementation
-plan is reviewed and accepted at:
+The bounded A6-A Stripe Connect Account And Event-Inbox Schema Foundation plan is
+implemented/reviewed at application commit `513cf3a`:
 
 `2026-07-15-isostack-commerce-core-slice-commerce-a6-a-stripe-connect-account-event-inbox-schema-foundation-implementation-planning.md`
 
-Only bounded A6-A schema/migration implementation and disposable validation are now
-authorised. No Stripe call, route, webhook or UI is authorised. Delivery later proceeds
-serially through A6-B tenant settings/onboarding, A6-C Checkout adapter and A6-D
-webhook/refund reconciliation.
+Implementation confirmation and review/test:
+
+`../04-implementation-confirmations/2026-07-15-commerce-a6-a-stripe-connect-account-event-inbox-schema-foundation-implementation-confirmation.md`
+
+`../05-review-and-test/2026-07-15-commerce-a6-a-stripe-connect-account-event-inbox-schema-foundation-review-and-test.md`
+
+The representative 139-to-140 and fresh 140-migration disposable lifecycles passed with
+zero residue. The single next candidate is A6-B tenant settings/hosted-onboarding planning;
+no A6-B implementation, Stripe call, route, webhook or UI is yet authorised.

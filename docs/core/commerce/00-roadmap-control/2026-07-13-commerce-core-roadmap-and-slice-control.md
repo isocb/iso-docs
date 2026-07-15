@@ -1,6 +1,6 @@
 # IsoStack Commerce Core Roadmap And Slice Control
 
-Date: 2026-07-14
+Date: 2026-07-15
 
 Status: Active Commerce Core roadmap
 
@@ -47,7 +47,7 @@ COMMERCE-A3 - Payment, refund and pro-forma schema foundation
 COMMERCE-A4 - Audit and idempotency foundation
 COMMERCE-A5 - Provider-neutral services and validation
 COMMERCE-A6 - Stripe Connect tenant payments parent plan
-  COMMERCE-A6-A - Account and event-inbox schema foundation (accepted for implementation)
+  COMMERCE-A6-A - Account and event-inbox schema foundation (implemented/reviewed)
   COMMERCE-A6-B - Tenant payment settings and hosted onboarding
   COMMERCE-A6-C - Connected-account Checkout adapter
   COMMERCE-A6-D - Webhook, refund sync and reconciliation
@@ -230,5 +230,22 @@ implementation plan was reviewed and accepted on 2026-07-15:
 
 `docs/core/commerce/03-slice-planning/2026-07-15-isostack-commerce-core-slice-commerce-a6-a-stripe-connect-account-event-inbox-schema-foundation-implementation-planning.md`
 
-Bounded A6-A Prisma/migration implementation and disposable validation are the single next
-action. Do not begin A6-B or any Stripe runtime integration.
+`COMMERCE-A6-A - Stripe Connect Account And Event-Inbox Schema Foundation` is implemented
+and reviewed as passed at application commit `513cf3a`.
+
+Implementation confirmation:
+
+`docs/core/commerce/04-implementation-confirmations/2026-07-15-commerce-a6-a-stripe-connect-account-event-inbox-schema-foundation-implementation-confirmation.md`
+
+Review/test:
+
+`docs/core/commerce/05-review-and-test/2026-07-15-commerce-a6-a-stripe-connect-account-event-inbox-schema-foundation-review-and-test.md`
+
+Its representative 139-to-140 and full fresh 140-migration disposable lifecycles passed,
+including connection/onboarding/event tenant, identity, status, readiness, immutability,
+retention and deletion checks plus A1-A5/C1-C6 regressions. Final disposable inventory is
+140 applied, zero failed and zero A6-A rows. No shared database or Stripe runtime behavior
+was deployed.
+
+The single next candidate is bounded `COMMERCE-A6-B - Tenant Payment Settings And Hosted
+Onboarding` planning. A6-B implementation is not authorised by this roadmap update.

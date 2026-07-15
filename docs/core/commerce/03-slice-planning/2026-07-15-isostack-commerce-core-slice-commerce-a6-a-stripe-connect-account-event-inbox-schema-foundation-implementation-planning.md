@@ -2,9 +2,9 @@
 
 Date: 2026-07-15
 
-Status: Reviewed and accepted on 2026-07-15 for bounded A6-A implementation only; no
-Stripe API, route, webhook, service, settings UI, Checkout, payment/refund or FUND behavior
-is authorised by this document
+Status: Implemented and reviewed as passed on 2026-07-15 at application commit `513cf3a`;
+no Stripe API, route, webhook, service, settings UI, Checkout, payment/refund or FUND
+behavior was added
 
 Accepted parent:
 

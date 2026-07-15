@@ -2,7 +2,7 @@
 
 Created: 2026-06-25
 
-Last consolidated: 2026-07-14
+Last consolidated: 2026-07-15
 
 Status: Active authoritative control for the FUND lane
 
@@ -198,7 +198,7 @@ COMMERCE-A1 (complete on dev)
   -> COMMERCE-A4 (implementation/review complete locally at `5b69920`)
   -> COMMERCE-A5 (implemented/reviewed: provider-neutral services and validation)
   -> COMMERCE-A6 parent plan (reviewed/accepted)
-     -> A6-A account/event-inbox schema (accepted for implementation)
+     -> A6-A account/event-inbox schema (implemented/reviewed at `513cf3a`)
      -> A6-B tenant settings/hosted onboarding
      -> A6-C connected-account Checkout adapter
      -> A6-D webhook/refund reconciliation
@@ -305,6 +305,7 @@ payment model.
 | FUND Store `1R-D` | Implemented/reviewed at local application `db85fcc`; not pushed/deployed | Internal Store services consume C1-C6 evidence; no schema, UI, public Store or Commerce payment behavior |
 | FUND `1R-C3`/`1R-C4` application changes | Committed at `686229c` on `origin/dev` | Staging/main and shared database deployment remain pending |
 | FUND `1R-C5` application changes | Committed at `8b5f208`; included on `origin/dev` | Staging/main promotion remains separate; shared databases unchanged |
+| Commerce `A6-A` | Implemented/reviewed at local application `513cf3a`; not pushed/deployed | Migration 140 adds only Commerce-owned connection/onboarding/event evidence; FUND waits for later accepted Commerce integration |
 
 ### 7.1 Controlled Promotion Sequence Before LMSPro UI Work
 
@@ -382,10 +383,13 @@ Completed `1P-G-R3-A` lifecycle:
 
 Global next planning control:
 
-- `COMMERCE-A6 - Stripe Connect Tenant Payments` parent planning and the bounded A6-A
-  implementation plan are reviewed and accepted. The single next action is bounded A6-A
-  schema/migration implementation and disposable validation. FUND does not implement
-  Commerce-owned provider work, and A6-B remains unauthorised.
+- `COMMERCE-A6-A - Stripe Connect Account And Event-Inbox Schema Foundation` is
+  implemented/reviewed at local application commit `513cf3a`. Its representative and
+  fresh 140-migration disposable lifecycles passed with zero residue and no shared
+  deployment or runtime Stripe behavior.
+- The single next candidate is Core Commerce `A6-B - Tenant Payment Settings And Hosted
+  Onboarding` planning. FUND does not implement Commerce-owned provider work, and A6-B
+  implementation remains unauthorised.
 
 Sibling Commerce controls:
 
@@ -462,9 +466,9 @@ deployed to a shared environment and adds no runtime payment behavior.
 Current next control action:
 
 ```text
-Return to the Core Commerce lane and implement/validate only accepted `COMMERCE-A6-A -
-Stripe Connect Account And Event-Inbox Schema Foundation`. Do not begin A6-B, FUND `1R-E`
-or another slice.
+Return to the Core Commerce lane and create/review only bounded `COMMERCE-A6-B - Tenant
+Payment Settings And Hosted Onboarding` planning. Do not implement A6-B, begin A6-C, FUND
+`1R-E` or another slice without its accepted plan.
 ```
 
 ## 10. Roadmap Maintenance Rule

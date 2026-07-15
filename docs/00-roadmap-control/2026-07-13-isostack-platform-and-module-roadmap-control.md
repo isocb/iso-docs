@@ -1,6 +1,6 @@
 # IsoStack Platform And Module Roadmap Control
 
-Date: 2026-07-14
+Date: 2026-07-15
 
 Status: Active parent roadmap
 
@@ -122,6 +122,12 @@ undeployed.
   138-to-139 and fresh 139-migration disposable lifecycles, A1/A2/A3/C6 regressions,
   immutable-audit checks and zero-residue checks passed. It is not pushed or deployed to a
   shared database.
+- `COMMERCE-A5`: implemented/reviewed at application commit `fd7376b`, included on
+  `origin/dev`; no migration or shared-database deployment was required.
+- `COMMERCE-A6-A`: account/onboarding/event-inbox schema foundation is implemented/reviewed
+  at local application commit `513cf3a`. Representative 139-to-140 and fresh 140-migration
+  disposable lifecycles plus A1-A5/C1-C6 regressions passed with zero residue. It is not
+  pushed or deployed to a shared database and adds no Stripe runtime behavior.
 
 ### FUND
 
@@ -178,7 +184,7 @@ COMMERCE-A1 complete
   -> COMMERCE-A4 audit/idempotency complete
   -> COMMERCE-A5 provider-neutral services complete
   -> COMMERCE-A6 Stripe Connect tenant-payments parent plan (accepted)
-     -> A6-A account/event-inbox schema (accepted for implementation)
+     -> A6-A account/event-inbox schema complete
      -> A6-B tenant settings/hosted onboarding
      -> A6-C connected-account Checkout adapter
      -> A6-D webhook/refund reconciliation
@@ -193,9 +199,9 @@ different documentation lifecycles.
 
 ## 7. Current Parent Control Decision
 
-`1R-C1` through `1R-D`, `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D`, and Commerce A1 through A4 are
-complete through implementation confirmation and review/test. The disposable database is
-at the complete 139-migration A4 baseline with zero test residue.
+`1R-C1` through `1R-D`, `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D`, Commerce A1 through A5 and
+Commerce A6-A are complete through implementation confirmation and review/test. The
+disposable database is at the complete 140-migration A6-A baseline with zero test residue.
 
 The accepted parent family is `1P-G-R3 - Project Intake Automated Provisioning Alignment`.
 Its A/B/C child lifecycles are complete and included on `origin/dev`. R3-A is committed at `4bb7dd9`, R3-B at
@@ -234,6 +240,11 @@ For clarity:
 - `COMMERCE-A5 - Provider-neutral Services And Validation` is implemented and reviewed at
   application commit `fd7376b`; its provider-neutral validators and
   idempotency/audit helpers passed disposable tests with zero residue and no migration;
+- `COMMERCE-A6-A - Stripe Connect Account And Event-Inbox Schema Foundation` is
+  implemented/reviewed at local application commit `513cf3a`; its 140-migration disposable
+  lifecycle passed with zero residue, no shared deployment and no Stripe runtime behavior;
+- the single next candidate is `COMMERCE-A6-B - Tenant Payment Settings And Hosted
+  Onboarding` planning; no A6-B implementation is authorised;
 - Event policies are defaults for linked Projects, while an active C1-managed flat-rate
   override wins only for its owning Event-linked Project; standalone Project policies may
   be flat or stepped;
@@ -282,11 +293,10 @@ for explicit user input when a genuine business/product choice remains, authorit
 expand, destructive/shared-environment work would be required, or the accepted plan cannot
 be satisfied safely.
 
-Current single next control action: implement and validate only accepted `COMMERCE-A6-A -
-Stripe Connect Account And Event-Inbox Schema Foundation` at
-`docs/core/commerce/03-slice-planning/2026-07-15-isostack-commerce-core-slice-commerce-a6-a-stripe-connect-account-event-inbox-schema-foundation-implementation-planning.md`.
-Do not begin A6-B or another slice. Store UI `1R-E` remains queued in the FUND lane and is
-not the global next slice.
+Current single next control action: create and review only bounded `COMMERCE-A6-B - Tenant
+Payment Settings And Hosted Onboarding` planning against completed A6-A. Do not implement
+A6-B or begin A6-C or another slice without acceptance. Store UI `1R-E` remains queued in
+the FUND lane and is not the global next slice.
 
 ## 8. Child Roadmap Discipline
 
