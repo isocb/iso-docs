@@ -2,7 +2,8 @@
 
 Date: 2026-07-15
 
-Status: Planning complete; awaiting explicit review and acceptance before implementation
+Status: Reviewed and accepted for bounded implementation; A6-D, A7, routes, UI and schema
+changes remain unauthorised
 
 Parent:
 
@@ -32,6 +33,8 @@ Expected application work is limited to:
 - a narrow injectable connected-account Checkout provider adapter;
 - pure Checkout request/result normalization and URL validation helpers;
 - one internal tenant-scoped Checkout creation/replay service;
+- the minimum correction to A5 idempotency failure/retry helpers required by the existing
+  A4 status-shape constraint;
 - fake-provider unit and disposable-database service tests.
 
 A6-C adds no Prisma model, enum, relation, constraint or migration. It adds no public or C1
@@ -97,6 +100,7 @@ general untyped Stripe wrapper.
 ```text
 createPaymentCheckoutSession(request, connectedAccountId, idempotencyKey)
 retrievePaymentCheckoutSession(checkoutSessionId, connectedAccountId)
+expirePaymentCheckoutSession(checkoutSessionId, connectedAccountId)
 ```
 
 Every provider request carries the connected account through Stripe's server-side request
@@ -107,6 +111,9 @@ Production continues to use the pinned Stripe SDK `22.2.0` and API
 `2026-05-27.dahlia`. Tests use an injected deterministic fake and make no network call.
 The service also injects/reuses A6-B's narrow Account-retrieval and normalization boundary
 for the immediate readiness refresh; it does not duplicate controller/readiness rules.
+Extract the safe connection-synchronization primitive so A6-B can continue supplying its
+User actor while A6-C can record a provider/system refresh with nullable `updatedById`.
+Never attach a guest/customer identifier to the User foreign key.
 
 ## 6. Checkout Request Contract
 
@@ -239,6 +246,21 @@ finalization fails, retry uses the same Stripe idempotency key and converges on 
 Session. Provider failure records only a bounded safe failure code; no provider body is
 retained.
 
+The existing A5 `failCommerceIdempotency` helper conflicts with the A4 database contract:
+`FAILED` requires non-null `completedAt`, and retrying a failed/expired record must clear
+terminal response/resource/error/completion fields before returning to `PROCESSING`.
+A6-C implementation must correct only those generic helper assignments and add direct
+FAILED -> PROCESSING constraint tests. This is prerequisite remediation, not a new
+payment/provider state.
+
+If the provider creates a Session but second-transaction authority has permanently changed
+(for example the Order was cancelled or connection disabled), do not return its URL. Make
+a bounded best-effort `expire` call under the same connected-account context. A transient
+database failure remains retryable against the same provider idempotency key rather than
+prematurely expiring the convergent Session. Expiry failure returns a redacted operational
+error and never authorizes local persistence or payment; later provider evidence remains
+A6-D responsibility.
+
 Completed local replay retrieves the recorded Session under its recorded connected account
 and returns its safe current hosted URL only while Stripe reports it redirectable. It never
 creates a replacement Session. Expired/completed Sessions return a bounded non-redirectable
@@ -281,6 +303,8 @@ Disposable service coverage:
 - persisted Order/line arithmetic, positive amount and exact currency reconciliation;
 - Payment-key idempotent replay, different-request conflict and concurrent convergence;
 - provider failure, post-provider injected rollback and stable retry convergence;
+- valid A4 FAILED shape, FAILED/expired retry-field clearing and constraint compliance;
+- permanent post-create authority loss, no URL return and best-effort Session expiry;
 - provider-account/Checkout/PaymentIntent partial and conflicting-reference refusal;
 - PaymentIntent-null creation and later safe fill on replay;
 - Payment status and money values remain unchanged;
@@ -325,38 +349,70 @@ and audit evidence and must not be deleted or hidden by application rollback.
 - Stripe idempotent requests:
   `https://docs.stripe.com/api/idempotent_requests`
 
-## 16. Review Gate
+## 16. Review And Acceptance Outcome
 
-This plan is not accepted for implementation yet. Review must confirm:
+Review against the accepted A6 parent, current Prisma/PostgreSQL constraints, A5 helpers,
+A6-A/A6-B implementation and pinned Stripe types resolved:
 
-- Payment-key idempotency is the correct one-Session-per-Payment boundary;
-- nullable creation-time PaymentIntent handling agrees with A3 and A6-D;
+- Payment ID is the correct one-Session-per-Payment idempotency boundary; caller operation
+  UUIDs alone cannot prevent competing Session creation;
+- two short local transactions around the provider call avoid holding database locks while
+  the A4 record ID supplies one stable Stripe idempotency key;
+- provider Session retrieval/replay always uses the Payment's retained connected account;
+- canonical Account refresh reuses A6-B normalization, with a nullable system updater for
+  guest checkout rather than a false User relation;
+- the A4 constraint requires a bounded correction to A5 failure/retry assignments before
+  A6-C can safely record and retry provider failures;
+- provider Session expiry is required as best-effort compensation for permanent authority
+  loss after remote creation and before local finalization;
+- creation-time `payment_intent` is nullable in the pinned Stripe contract, so A3's
+  nullable field is preserved and A6-D remains authoritative for later discovery;
+- one gross card-only Session, fixed URLs, opaque metadata and transient URL response meet
+  the minimisation boundary;
 - no route/UI is required until A7 activates the dormant service;
-- exact retained-account replay and provider-reference semantics are sufficient;
-- no A6-D payment authority or FUND responsibility has leaked into A6-C.
+- no paid/failed/expired Payment transition, webhook/refund authority or FUND responsibility
+  enters A6-C.
 
-## 17. Single Review Prompt
+The plan is accepted for bounded implementation.
+
+## 17. Single Bounded Implementation Prompt
 
 ```text
-Review only IsoStack Commerce Core Slice COMMERCE-A6-C Connected-account Checkout Adapter
-Implementation Planning. Do not implement application code and do not begin A6-D, A7,
+Continue only accepted IsoStack Commerce Core Slice COMMERCE-A6-C. Do not begin A6-D, A7,
 FUND Store UI or another slice.
 
-Verify the plan against the accepted A6 parent, completed A1-A5, A6-A schema, A6-B
-settings/onboarding service, current Prisma/PostgreSQL constraints, pinned Stripe SDK/API
-and stable direct-charge Checkout contract. Resolve exact tenant Checkout/Order/Payment/
-Seller/connection ownership; READY-and-enabled authority; Order arithmetic, amount and
-currency reconciliation; Payment-key A4 idempotency; two-transaction remote-call safety;
-concurrency/replay; one gross card-only Session; metadata/email/URL minimisation; retained
-account context; provider-reference conflicts; nullable creation-time PaymentIntent;
-rollback and disposable validation.
+Starting from committed A6-B application baseline e8aecea and the complete unchanged
+140-migration history, implement only the dormant internal connected-account Checkout
+adapter/service and tests exactly as accepted. Add the narrow fakeable create/retrieve/
+expire Session adapter; fixed server URL builder; safe direct-charge request/result
+normalization; exact tenant Checkout/Order/Payment/Seller/connection locking and validation;
+fresh A6-B Account readiness synchronization; Payment-key A4 idempotency; provider-call-
+outside-transaction flow; stable retry/replay; atomic safe reference persistence; A4 audit;
+and best-effort compensation for permanent post-create authority loss.
 
-Confirm A6-C remains a dormant internal adapter/service with no schema migration, public
-or C1 route, return page, UI, Order/Payment creation, paid/failed/expired transition,
-webhook, refund, application fee/transfer, production, commission or FUND behavior. A6-D
-remains authoritative for provider-event reconciliation and A7 for consumer invocation.
+Apply only the required provider-neutral A5 helper correction: FAILED must set completedAt,
+and FAILED/expired retry must clear terminal completion/response/resource/error fields
+before PROCESSING. Add direct PostgreSQL constraint tests for both paths. Add no schema or
+migration.
 
-If acceptable, mark only A6-C accepted and provide its single bounded implementation
-prompt. Make no Prisma, migration, Stripe API, service, route, webhook or UI change during
-review.
+Create one gross card-only payment-mode Session as a direct charge under the exact retained
+connected account. Derive amount, currency, email, metadata and expiry only from persisted
+authority. Persist providerAccountReference and externalCheckoutReference; persist
+externalPaymentReference only when Stripe supplies a valid PaymentIntent; keep
+externalSessionReference and safe-payload fields null. Never persist/log/audit the Checkout
+URL, email, secret, client secret, payment method or provider body.
+
+Add no public/C1 procedure, router, route, return page, UI, Order/Payment creation,
+Payment status/money transition, webhook, refund, application fee/transfer, Store,
+production, commission or FUND behavior. Make no real Stripe network call or charge.
+
+Use only TEST_DATABASE_URL after proving it differs from DATABASE_URL. Verify unchanged
+140 migrations, fake-provider direct-account context, ownership/readiness/arithmetic/
+amount/currency/URL/reference checks, Payment-key idempotency and concurrency, FAILED retry
+constraints, null/later PaymentIntent, rollback/compensation/replay, audit redaction,
+A1-A6-B/C1-C6 and subscription regressions and zero residue.
+
+After successful validation, create separate A6-C implementation-confirmation and
+review/test records, update Commerce, FUND and root roadmaps and Commerce planning README,
+and stop. Do not start A6-D.
 ```

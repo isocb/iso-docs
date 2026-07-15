@@ -191,7 +191,7 @@ COMMERCE-A1 complete
   -> COMMERCE-A6 Stripe Connect tenant-payments parent plan (accepted)
      -> A6-A account/event-inbox schema complete
      -> A6-B tenant settings/hosted onboarding complete at `e8aecea`
-     -> A6-C connected-account Checkout adapter plan awaiting review
+     -> A6-C connected-account Checkout adapter plan accepted
      -> A6-D webhook/refund reconciliation
   -> COMMERCE-A7 FUND consumer integration
 
@@ -250,8 +250,8 @@ For clarity:
   lifecycle passed with zero residue, no shared deployment and no Stripe runtime behavior;
 - `COMMERCE-A6-B - Tenant Payment Settings And Hosted Onboarding` is implemented/reviewed
   at local application commit `e8aecea` and is not pushed or deployed;
-- the `COMMERCE-A6-C - Connected-account Checkout Adapter` plan exists and awaits explicit
-  review/acceptance; no A6-C implementation is authorised;
+- the `COMMERCE-A6-C - Connected-account Checkout Adapter` plan is reviewed/accepted; its
+  bounded implementation is the single next action and A6-D remains unauthorised;
 - Event policies are defaults for linked Projects, while an active C1-managed flat-rate
   override wins only for its owning Event-linked Project; standalone Project policies may
   be flat or stepped;
@@ -300,9 +300,9 @@ for explicit user input when a genuine business/product choice remains, authorit
 expand, destructive/shared-environment work would be required, or the accepted plan cannot
 be satisfied safely.
 
-Current single next control action: review only the created bounded `COMMERCE-A6-C -
-Connected-account Checkout Adapter` plan against completed A6-A/A6-B. Do not implement A6-C
-or begin A6-D or another slice without acceptance. Store UI `1R-E` remains queued in
+Current single next control action: implement only the accepted bounded `COMMERCE-A6-C -
+Connected-account Checkout Adapter` plan against completed A6-A/A6-B, then complete its
+04/05 lifecycle. Do not begin A6-D or another slice. Store UI `1R-E` remains queued in
 the FUND lane and is not the global next slice.
 
 ## 8. Child Roadmap Discipline

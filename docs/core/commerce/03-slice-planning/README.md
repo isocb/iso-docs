@@ -60,9 +60,8 @@ Implementation confirmation and review/test:
 
 A6-B added no migration and passed fake-provider, authorization, state, readiness, audit,
 build and zero-residue validation without a real Stripe call. The single next candidate is
-A6-C connected-account Checkout-adapter planning. The bounded plan now exists and awaits
-explicit review:
+A6-C connected-account Checkout-adapter planning is reviewed and accepted:
 
 `2026-07-15-isostack-commerce-core-slice-commerce-a6-c-connected-account-checkout-adapter-implementation-planning.md`
 
-A6-C implementation is not authorised.
+A6-C implementation is the single next bounded action; A6-D remains unauthorised.

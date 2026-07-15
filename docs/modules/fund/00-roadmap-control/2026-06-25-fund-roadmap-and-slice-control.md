@@ -200,7 +200,7 @@ COMMERCE-A1 (complete on dev)
   -> COMMERCE-A6 parent plan (reviewed/accepted)
      -> A6-A account/event-inbox schema (implemented/reviewed at `513cf3a`)
      -> A6-B tenant settings/hosted onboarding (implemented/reviewed at `e8aecea`)
-     -> A6-C connected-account Checkout adapter plan awaiting review
+     -> A6-C connected-account Checkout adapter plan accepted
      -> A6-D webhook/refund reconciliation
 
 FUND 1R-C1 (complete on dev)
@@ -391,8 +391,9 @@ Global next planning control:
 - Core Commerce `A6-B - Tenant Payment Settings And Hosted Onboarding` is
   implemented/reviewed at local application commit `e8aecea` on the unchanged 140-migration
   baseline. FUND does not own or duplicate this provider work.
-- The Core Commerce `A6-C - Connected-account Checkout Adapter` plan exists and awaits
-  explicit review/acceptance. A6-C implementation remains unauthorised.
+- The Core Commerce `A6-C - Connected-account Checkout Adapter` plan is reviewed and
+  accepted. Its bounded implementation is the single next action; FUND does not duplicate
+  this provider work and A6-D remains unauthorised.
 
 Sibling Commerce controls:
 
@@ -469,9 +470,9 @@ deployed to a shared environment and adds no runtime payment behavior.
 Current next control action:
 
 ```text
-Remain in the Core Commerce lane and review only the created bounded `COMMERCE-A6-C -
-Connected-account Checkout Adapter` plan. Do not implement A6-C, begin A6-D, FUND
-`1R-E` or another slice without its accepted plan.
+Remain in the Core Commerce lane and implement only the accepted bounded `COMMERCE-A6-C -
+Connected-account Checkout Adapter` plan, then complete its 04/05 lifecycle. Do not begin
+A6-D, FUND `1R-E` or another slice.
 ```
 
 ## 10. Roadmap Maintenance Rule
