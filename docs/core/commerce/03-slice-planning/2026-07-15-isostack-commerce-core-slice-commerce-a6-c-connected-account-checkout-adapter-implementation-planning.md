@@ -2,8 +2,8 @@
 
 Date: 2026-07-15
 
-Status: Reviewed and accepted for bounded implementation; A6-D, A7, routes, UI and schema
-changes remain unauthorised
+Status: Implemented and reviewed as passed at application commit `34ef64bb`; A6-D, A7,
+routes, UI and schema changes remain unauthorised
 
 Parent:
 
@@ -374,6 +374,11 @@ A6-A/A6-B implementation and pinned Stripe types resolved:
   enters A6-C.
 
 The plan is accepted for bounded implementation.
+
+Implementation and review completed on 2026-07-15. The dormant adapter, A5 idempotency
+correction and fake-provider/disposable-database evidence are recorded in the matching
+`04-implementation-confirmations` and `05-review-and-test` documents. No migration,
+shared-database change or real Stripe action occurred.
 
 ## 17. Single Bounded Implementation Prompt
 

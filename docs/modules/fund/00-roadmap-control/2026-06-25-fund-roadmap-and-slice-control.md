@@ -200,7 +200,7 @@ COMMERCE-A1 (complete on dev)
   -> COMMERCE-A6 parent plan (reviewed/accepted)
      -> A6-A account/event-inbox schema (implemented/reviewed at `513cf3a`)
      -> A6-B tenant settings/hosted onboarding (implemented/reviewed at `e8aecea`)
-     -> A6-C connected-account Checkout adapter plan accepted
+     -> A6-C connected-account Checkout adapter implemented/reviewed at `34ef64bb`
      -> A6-D webhook/refund reconciliation
 
 FUND 1R-C1 (complete on dev)
@@ -307,6 +307,7 @@ payment model.
 | FUND `1R-C5` application changes | Committed at `8b5f208`; included on `origin/dev` | Staging/main promotion remains separate; shared databases unchanged |
 | Commerce `A6-A` | Implemented/reviewed at local application `513cf3a`; not pushed/deployed | Migration 140 adds only Commerce-owned connection/onboarding/event evidence; FUND waits for later accepted Commerce integration |
 | Commerce `A6-B` | Implemented/reviewed at local application `e8aecea`; not pushed/deployed | Tenant settings and hosted onboarding only; no migration, Checkout, webhook or FUND behavior |
+| Commerce `A6-C` | Implemented/reviewed at local application `34ef64bb`; not pushed/deployed | Dormant connected-account Checkout adapter only; no migration, route, UI, webhook, payment transition or FUND behavior |
 
 ### 7.1 Controlled Promotion Sequence Before LMSPro UI Work
 
@@ -391,9 +392,9 @@ Global next planning control:
 - Core Commerce `A6-B - Tenant Payment Settings And Hosted Onboarding` is
   implemented/reviewed at local application commit `e8aecea` on the unchanged 140-migration
   baseline. FUND does not own or duplicate this provider work.
-- The Core Commerce `A6-C - Connected-account Checkout Adapter` plan is reviewed and
-  accepted. Its bounded implementation is the single next action; FUND does not duplicate
-  this provider work and A6-D remains unauthorised.
+- Core Commerce `A6-C - Connected-account Checkout Adapter` is implemented/reviewed at
+  local application commit `34ef64bb` on the unchanged 140-migration baseline. FUND does
+  not duplicate this provider work.
 
 Sibling Commerce controls:
 
@@ -470,9 +471,9 @@ deployed to a shared environment and adds no runtime payment behavior.
 Current next control action:
 
 ```text
-Remain in the Core Commerce lane and implement only the accepted bounded `COMMERCE-A6-C -
-Connected-account Checkout Adapter` plan, then complete its 04/05 lifecycle. Do not begin
-A6-D, FUND `1R-E` or another slice.
+Remain in the Core Commerce lane and create/review only bounded `COMMERCE-A6-D -
+Connected-account Webhook, Payment/Refund Synchronization And Reconciliation` planning.
+Do not implement A6-D or begin A7, FUND `1R-E` or another slice.
 ```
 
 ## 10. Roadmap Maintenance Rule

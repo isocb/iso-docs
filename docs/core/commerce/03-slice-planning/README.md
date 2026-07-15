@@ -13,6 +13,7 @@ COMMERCE-A4 - Audit and Idempotency foundation
 COMMERCE-A5 - Provider-neutral services and validation
 COMMERCE-A6-A - Stripe Connect account and event-inbox schema foundation
 COMMERCE-A6-B - Tenant payment settings and hosted onboarding
+COMMERCE-A6-C - Connected-account Checkout adapter
 ```
 
 FUND `1R-C6` is implemented/reviewed at local application commit `9947669` against the
@@ -59,9 +60,19 @@ Implementation confirmation and review/test:
 `../05-review-and-test/2026-07-15-commerce-a6-b-tenant-payment-settings-hosted-onboarding-review-and-test.md`
 
 A6-B added no migration and passed fake-provider, authorization, state, readiness, audit,
-build and zero-residue validation without a real Stripe call. The single next candidate is
-A6-C connected-account Checkout-adapter planning is reviewed and accepted:
+build and zero-residue validation without a real Stripe call.
+
+A6-C Connected-account Checkout Adapter is implemented/reviewed at application commit
+`34ef64bb`:
 
 `2026-07-15-isostack-commerce-core-slice-commerce-a6-c-connected-account-checkout-adapter-implementation-planning.md`
 
-A6-C implementation is the single next bounded action; A6-D remains unauthorised.
+Implementation confirmation and review/test:
+
+`../04-implementation-confirmations/2026-07-15-commerce-a6-c-connected-account-checkout-adapter-implementation-confirmation.md`
+
+`../05-review-and-test/2026-07-15-commerce-a6-c-connected-account-checkout-adapter-review-and-test.md`
+
+A6-C added no migration and passed fake-provider, PostgreSQL service, concurrency,
+compensation, redaction, build and zero-residue validation without a real Stripe call. The
+single next candidate is bounded A6-D planning; A6-D implementation remains unauthorised.

@@ -133,6 +133,11 @@ undeployed.
   lifecycle, tenant/actor boundaries, state, idempotency/concurrency, readiness,
   audit-redaction, build and zero-residue checks passed. It is not pushed or deployed and
   adds no Checkout or Connect webhook behavior.
+- `COMMERCE-A6-C`: connected-account Checkout adapter is implemented/reviewed at local
+  application commit `34ef64bb`. The unchanged 140-migration baseline, fake-provider
+  direct-charge, ownership, readiness, idempotency/concurrency, compensation, redaction,
+  build and zero-residue checks passed. It is not pushed or deployed and adds no route,
+  UI, webhook or payment transition.
 
 ### FUND
 
@@ -191,7 +196,7 @@ COMMERCE-A1 complete
   -> COMMERCE-A6 Stripe Connect tenant-payments parent plan (accepted)
      -> A6-A account/event-inbox schema complete
      -> A6-B tenant settings/hosted onboarding complete at `e8aecea`
-     -> A6-C connected-account Checkout adapter plan accepted
+     -> A6-C connected-account Checkout adapter complete at `34ef64bb`
      -> A6-D webhook/refund reconciliation
   -> COMMERCE-A7 FUND consumer integration
 
@@ -205,7 +210,7 @@ different documentation lifecycles.
 ## 7. Current Parent Control Decision
 
 `1R-C1` through `1R-D`, `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D`, Commerce A1 through A5 and
-Commerce A6-A/A6-B are complete through implementation confirmation and review/test. The
+Commerce A6-A/A6-B/A6-C are complete through implementation confirmation and review/test. The
 disposable database is at the complete 140-migration A6-A baseline with zero test residue.
 
 The accepted parent family is `1P-G-R3 - Project Intake Automated Provisioning Alignment`.
@@ -250,8 +255,8 @@ For clarity:
   lifecycle passed with zero residue, no shared deployment and no Stripe runtime behavior;
 - `COMMERCE-A6-B - Tenant Payment Settings And Hosted Onboarding` is implemented/reviewed
   at local application commit `e8aecea` and is not pushed or deployed;
-- the `COMMERCE-A6-C - Connected-account Checkout Adapter` plan is reviewed/accepted; its
-  bounded implementation is the single next action and A6-D remains unauthorised;
+- `COMMERCE-A6-C - Connected-account Checkout Adapter` is implemented/reviewed at local
+  application `34ef64bb`; it added no migration, route, UI, webhook or payment transition;
 - Event policies are defaults for linked Projects, while an active C1-managed flat-rate
   override wins only for its owning Event-linked Project; standalone Project policies may
   be flat or stepped;
@@ -300,10 +305,10 @@ for explicit user input when a genuine business/product choice remains, authorit
 expand, destructive/shared-environment work would be required, or the accepted plan cannot
 be satisfied safely.
 
-Current single next control action: implement only the accepted bounded `COMMERCE-A6-C -
-Connected-account Checkout Adapter` plan against completed A6-A/A6-B, then complete its
-04/05 lifecycle. Do not begin A6-D or another slice. Store UI `1R-E` remains queued in
-the FUND lane and is not the global next slice.
+Current single next control action: create and review only bounded `COMMERCE-A6-D -
+Connected-account Webhook, Payment/Refund Synchronization And Reconciliation` planning
+against completed A6-A/A6-B/A6-C. Do not implement A6-D or begin A7. Store UI `1R-E`
+remains queued in the FUND lane and is not the global next slice.
 
 ## 8. Child Roadmap Discipline
 

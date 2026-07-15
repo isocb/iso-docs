@@ -49,7 +49,7 @@ COMMERCE-A5 - Provider-neutral services and validation
 COMMERCE-A6 - Stripe Connect tenant payments parent plan
   COMMERCE-A6-A - Account and event-inbox schema foundation (implemented/reviewed)
   COMMERCE-A6-B - Tenant payment settings and hosted onboarding (implemented/reviewed)
-  COMMERCE-A6-C - Connected-account Checkout adapter (planning accepted)
+  COMMERCE-A6-C - Connected-account Checkout adapter (implemented/reviewed)
   COMMERCE-A6-D - Webhook, refund sync and reconciliation
 COMMERCE-A7 - FUND consumer integration
 ```
@@ -267,12 +267,21 @@ passed fake-provider lifecycle, tenant/actor, idempotency/concurrency, state, re
 audit-redaction, production-build and zero-residue validation. It is not pushed or deployed
 to a shared environment.
 
-The bounded `COMMERCE-A6-C - Connected-account Checkout Adapter` implementation plan is
-reviewed and accepted:
+`COMMERCE-A6-C - Connected-account Checkout Adapter` is implemented and reviewed as passed
+at local application commit `34ef64bb`:
 
 `docs/core/commerce/03-slice-planning/2026-07-15-isostack-commerce-core-slice-commerce-a6-c-connected-account-checkout-adapter-implementation-planning.md`
 
-It resolves Payment-key idempotency, direct connected-account context, two-transaction
-remote-call safety, the required A5 FAILED/retry helper correction, post-create expiry
-compensation, nullable creation-time PaymentIntent evidence and the A6-D/A7 boundary. The
-single next action is bounded A6-C implementation; A6-D remains unauthorised.
+Implementation confirmation:
+
+`docs/core/commerce/04-implementation-confirmations/2026-07-15-commerce-a6-c-connected-account-checkout-adapter-implementation-confirmation.md`
+
+Review/test:
+
+`docs/core/commerce/05-review-and-test/2026-07-15-commerce-a6-c-connected-account-checkout-adapter-review-and-test.md`
+
+A6-C retained the complete 140-migration baseline and passed fake-provider direct-charge,
+readiness, ownership, arithmetic, Payment-key idempotency/concurrency, FAILED retry,
+rollback/compensation, nullable/later PaymentIntent, audit-redaction, build and zero-residue
+validation. No real Stripe call, migration, route, UI, webhook, payment transition or
+shared deployment occurred. The single next candidate is bounded A6-D planning.
