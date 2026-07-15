@@ -48,7 +48,7 @@ COMMERCE-A4 - Audit and idempotency foundation
 COMMERCE-A5 - Provider-neutral services and validation
 COMMERCE-A6 - Stripe Connect tenant payments parent plan
   COMMERCE-A6-A - Account and event-inbox schema foundation (implemented/reviewed)
-  COMMERCE-A6-B - Tenant payment settings and hosted onboarding
+  COMMERCE-A6-B - Tenant payment settings and hosted onboarding (implemented/reviewed)
   COMMERCE-A6-C - Connected-account Checkout adapter
   COMMERCE-A6-D - Webhook, refund sync and reconciliation
 COMMERCE-A7 - FUND consumer integration
@@ -247,5 +247,23 @@ retention and deletion checks plus A1-A5/C1-C6 regressions. Final disposable inv
 140 applied, zero failed and zero A6-A rows. No shared database or Stripe runtime behavior
 was deployed.
 
-The single next candidate is bounded `COMMERCE-A6-B - Tenant Payment Settings And Hosted
-Onboarding` planning. A6-B implementation is not authorised by this roadmap update.
+`COMMERCE-A6-B - Tenant Payment Settings And Hosted Onboarding` is implemented and reviewed
+as passed at local application commit `e8aecea`.
+
+Planning:
+
+`docs/core/commerce/03-slice-planning/2026-07-15-isostack-commerce-core-slice-commerce-a6-b-tenant-payment-settings-hosted-onboarding-implementation-planning.md`
+
+Implementation confirmation:
+
+`docs/core/commerce/04-implementation-confirmations/2026-07-15-commerce-a6-b-tenant-payment-settings-hosted-onboarding-implementation-confirmation.md`
+
+Review/test:
+
+`docs/core/commerce/05-review-and-test/2026-07-15-commerce-a6-b-tenant-payment-settings-hosted-onboarding-review-and-test.md`
+
+A6-B retained the complete 140-migration baseline, used no real Stripe network action and
+passed fake-provider lifecycle, tenant/actor, idempotency/concurrency, state, readiness,
+audit-redaction, production-build and zero-residue validation. It is not pushed or deployed
+to a shared environment. The single next candidate is bounded `COMMERCE-A6-C -
+Connected-account Checkout Adapter` planning; A6-C implementation is not authorised.

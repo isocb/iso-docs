@@ -12,6 +12,7 @@ COMMERCE-A3 - Payment, Refund and Pro-forma schema foundation
 COMMERCE-A4 - Audit and Idempotency foundation
 COMMERCE-A5 - Provider-neutral services and validation
 COMMERCE-A6-A - Stripe Connect account and event-inbox schema foundation
+COMMERCE-A6-B - Tenant payment settings and hosted onboarding
 ```
 
 FUND `1R-C6` is implemented/reviewed at local application commit `9947669` against the
@@ -44,5 +45,19 @@ Implementation confirmation and review/test:
 `../05-review-and-test/2026-07-15-commerce-a6-a-stripe-connect-account-event-inbox-schema-foundation-review-and-test.md`
 
 The representative 139-to-140 and fresh 140-migration disposable lifecycles passed with
-zero residue. The single next candidate is A6-B tenant settings/hosted-onboarding planning;
-no A6-B implementation, Stripe call, route, webhook or UI is yet authorised.
+zero residue.
+
+The bounded A6-B Tenant Payment Settings And Hosted Onboarding plan is implemented/reviewed
+at application commit `e8aecea`:
+
+`2026-07-15-isostack-commerce-core-slice-commerce-a6-b-tenant-payment-settings-hosted-onboarding-implementation-planning.md`
+
+Implementation confirmation and review/test:
+
+`../04-implementation-confirmations/2026-07-15-commerce-a6-b-tenant-payment-settings-hosted-onboarding-implementation-confirmation.md`
+
+`../05-review-and-test/2026-07-15-commerce-a6-b-tenant-payment-settings-hosted-onboarding-review-and-test.md`
+
+A6-B added no migration and passed fake-provider, authorization, state, readiness, audit,
+build and zero-residue validation without a real Stripe call. The single next candidate is
+A6-C connected-account Checkout-adapter planning; A6-C implementation is not authorised.

@@ -128,6 +128,11 @@ undeployed.
   at local application commit `513cf3a`. Representative 139-to-140 and fresh 140-migration
   disposable lifecycles plus A1-A5/C1-C6 regressions passed with zero residue. It is not
   pushed or deployed to a shared database and adds no Stripe runtime behavior.
+- `COMMERCE-A6-B`: tenant payment settings and hosted onboarding is implemented/reviewed at
+  local application commit `e8aecea`. The unchanged 140-migration baseline, fake-provider
+  lifecycle, tenant/actor boundaries, state, idempotency/concurrency, readiness,
+  audit-redaction, build and zero-residue checks passed. It is not pushed or deployed and
+  adds no Checkout or Connect webhook behavior.
 
 ### FUND
 
@@ -185,7 +190,7 @@ COMMERCE-A1 complete
   -> COMMERCE-A5 provider-neutral services complete
   -> COMMERCE-A6 Stripe Connect tenant-payments parent plan (accepted)
      -> A6-A account/event-inbox schema complete
-     -> A6-B tenant settings/hosted onboarding
+     -> A6-B tenant settings/hosted onboarding complete at `e8aecea`
      -> A6-C connected-account Checkout adapter
      -> A6-D webhook/refund reconciliation
   -> COMMERCE-A7 FUND consumer integration
@@ -200,7 +205,7 @@ different documentation lifecycles.
 ## 7. Current Parent Control Decision
 
 `1R-C1` through `1R-D`, `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D`, Commerce A1 through A5 and
-Commerce A6-A are complete through implementation confirmation and review/test. The
+Commerce A6-A/A6-B are complete through implementation confirmation and review/test. The
 disposable database is at the complete 140-migration A6-A baseline with zero test residue.
 
 The accepted parent family is `1P-G-R3 - Project Intake Automated Provisioning Alignment`.
@@ -243,8 +248,10 @@ For clarity:
 - `COMMERCE-A6-A - Stripe Connect Account And Event-Inbox Schema Foundation` is
   implemented/reviewed at local application commit `513cf3a`; its 140-migration disposable
   lifecycle passed with zero residue, no shared deployment and no Stripe runtime behavior;
-- the single next candidate is `COMMERCE-A6-B - Tenant Payment Settings And Hosted
-  Onboarding` planning; no A6-B implementation is authorised;
+- `COMMERCE-A6-B - Tenant Payment Settings And Hosted Onboarding` is implemented/reviewed
+  at local application commit `e8aecea` and is not pushed or deployed;
+- the single next candidate is `COMMERCE-A6-C - Connected-account Checkout Adapter`
+  planning; no A6-C implementation is authorised;
 - Event policies are defaults for linked Projects, while an active C1-managed flat-rate
   override wins only for its owning Event-linked Project; standalone Project policies may
   be flat or stepped;
@@ -293,9 +300,9 @@ for explicit user input when a genuine business/product choice remains, authorit
 expand, destructive/shared-environment work would be required, or the accepted plan cannot
 be satisfied safely.
 
-Current single next control action: create and review only bounded `COMMERCE-A6-B - Tenant
-Payment Settings And Hosted Onboarding` planning against completed A6-A. Do not implement
-A6-B or begin A6-C or another slice without acceptance. Store UI `1R-E` remains queued in
+Current single next control action: create and review only bounded `COMMERCE-A6-C -
+Connected-account Checkout Adapter` planning against completed A6-A/A6-B. Do not implement
+A6-C or begin A6-D or another slice without acceptance. Store UI `1R-E` remains queued in
 the FUND lane and is not the global next slice.
 
 ## 8. Child Roadmap Discipline
