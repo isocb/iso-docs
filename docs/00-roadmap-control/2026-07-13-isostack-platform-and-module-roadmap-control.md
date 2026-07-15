@@ -118,7 +118,8 @@ fresh replay, preflight refusal, schema/constraint/service/concurrency/rollback,
 
 The application code is backed up on `origin/dev`, but the shared Neon development
 database and staging remain at the previously promoted `91e8751c`/140-migration boundary;
-production remains unchanged. It
+production remains unchanged. GitHub `Security Scan` run `29417617533` passed for exact
+application commit `daafc349`. This checkpoint
 supersedes older current-action statements below that say E-A implementation has not
 started. The bounded `1R-E-B - C1 Store Portfolio Oversight And Exceptional Intervention
 Surface` plan is now created and awaiting explicit review; reviewing only E-B is the

@@ -119,6 +119,7 @@ operation, production, fulfilment or commission behaviour. It does not use
 `FundProject.lifecycleState` or mutable metadata as authority.
 
 `1R-E-A-R1` passes. Application `dev` and `origin/dev` contain E-A at `daafc349`; shared
-database migration and staging remain separate. The bounded `1R-E-B - C1 Store Portfolio
+database migration and staging remain separate. GitHub `Security Scan` run `29417617533`
+passed for the exact application commit. The bounded `1R-E-B - C1 Store Portfolio
 Oversight And Exceptional Intervention Surface` plan is created and awaiting explicit
 review; no implementation has started.

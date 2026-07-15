@@ -63,7 +63,7 @@ working branch: dev
 local dev/origin dev: daafc349
 local staging/origin staging: 91e8751c
 local main/origin main: ea4e6193 (unchanged)
-IsoDocs main/origin main: 9cf27a5
+IsoDocs main/origin main: aligned through the E-B planning handoff
 ```
 
 Current consolidated delivery state:
@@ -88,6 +88,7 @@ Local completion beyond that shared checkpoint:
   disposable lifecycles with zero failed migrations and zero test residue;
 - preflight refusal, constraints, intervention/service authority, Event envelope,
   effective-state, concurrency, rollback, 1R-D/A7 regressions and production build passed;
+- GitHub `Security Scan` run `29417617533` passed for exact application commit `daafc349`;
 - shared development and staging remain at `91e8751c` with 140 migrations; and
 - the bounded `1R-E-B - C1 Store Portfolio Oversight And Exceptional Intervention
   Surface` plan is created and awaiting explicit review; reviewing only E-B is the single
