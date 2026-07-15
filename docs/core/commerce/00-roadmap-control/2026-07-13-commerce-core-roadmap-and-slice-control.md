@@ -309,3 +309,11 @@ added.
 
 The one next Commerce candidate is bounded `COMMERCE-A7 - FUND Consumer Integration`
 planning. A7 is not started or authorised for implementation by completion of A6-D.
+
+A7 planning must also read the subordinate FUND Store/artwork strategic completion
+overview and its three registered 2026-07-15 CR inputs through the authoritative FUND
+roadmap. They inform exact workflow and immutable offer-evidence preservation; they do not
+expand A7 into Template Manager/Artwork Template, collective artwork approval, Store UI,
+production, fulfilment or commission work. Generic Commerce retains Order, Checkout,
+Payment and refund ownership, while later bounded FUND slices retain those business
+capabilities and their unresolved decisions.

@@ -323,6 +323,14 @@ FUND Consumer Integration` plan when explicitly authorised. A7 implementation ha
 begun. Store UI `1R-E` remains queued in the FUND lane behind the generic Commerce consumer
 boundary.
 
+The subordinate FUND strategic completion overview and its three 2026-07-15 CR inputs are
+now registered through the authoritative FUND roadmap. A7 planning must read them so the
+integration preserves exact workflow and immutable FUND offer evidence, but A7 remains a
+thin cross-lane consumer boundary. It must not absorb Template Manager/Artwork Template,
+collective artwork approval, C1/public Store UI, production, fulfilment or commission
+implementation. CR open questions remain with their later bounded FUND workstreams unless
+an answer is strictly required to define the A7 contract.
+
 ## 8. Child Roadmap Discipline
 
 Child roadmaps own detailed slice ordering inside their lanes. This parent roadmap records

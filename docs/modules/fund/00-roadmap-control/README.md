@@ -8,9 +8,24 @@ The authoritative FUND control is:
 
 `2026-06-25-fund-roadmap-and-slice-control.md`
 
-Read only its numbered current-control sections to select work. Its Appendix A is a
-preserved historical ledger and must not override the current slice table, dependency
-control, live gates or planning handoff.
+The subordinate strategic completion overview is:
+
+`2026-07-15-fund-store-artwork-orders-and-production-strategic-completion-roadmap.md`
+
+Use the strategic overview to understand how Store, artwork, Orders, production,
+fulfilment and commission capabilities fit together and how the related change requests
+trace into that route. It does not select or authorise work and must not override the
+authoritative FUND control, root roadmap or Commerce Core roadmap.
+
+The three CRs registered by that overview are governed inputs rather than executable
+plans. Later slice planning must preserve their resolved decisions, surface only the open
+questions needed by the bounded work and allocate implementation through the authoritative
+roadmap. The supporting Template Manager brief is provenance; its provisional `T` labels
+do not reserve FUND slice identifiers.
+
+Read only the authoritative FUND control's numbered current-control sections to select
+work. Its Appendix A is a preserved historical ledger and must not override the current
+slice table, dependency control, live gates or planning handoff.
 
 Roadmap/control documents answer:
 

@@ -14,6 +14,15 @@ Sibling Commerce Core roadmap:
 
 `docs/core/commerce/00-roadmap-control/2026-07-13-commerce-core-roadmap-and-slice-control.md`
 
+Subordinate strategic completion overview:
+
+`docs/modules/fund/00-roadmap-control/2026-07-15-fund-store-artwork-orders-and-production-strategic-completion-roadmap.md`
+
+The subordinate overview coordinates the longer Store, artwork, Order, production,
+fulfilment and commission route and traces the related 2026-07-15 change requests. It does
+not replace this document's current slice status, dependency control, live gates or
+next-slice authority.
+
 Purpose:
 
 ```text
@@ -406,6 +415,48 @@ Sibling Commerce controls:
 - `docs/core/commerce/00-roadmap-control/2026-07-13-commerce-core-roadmap-and-slice-control.md`
 - `docs/core/commerce/02-triage/2026-07-13-isostack-commerce-core-schema-foundation-planning.md`
 
+### 8.1 Governed Strategic Completion Inputs — 2026-07-15
+
+The following subordinate strategic view is now registered in this document-control
+process:
+
+- `docs/modules/fund/00-roadmap-control/2026-07-15-fund-store-artwork-orders-and-production-strategic-completion-roadmap.md`
+
+It coordinates the route from completed Commerce A6-D through thin A7 integration and the
+later Store, artwork, Order operations, production, fulfilment, commission and release
+workstreams. It does not select a slice, authorise implementation or supersede this
+roadmap.
+
+The strategic view traces these three governed CR inputs:
+
+1. `docs/modules/fund/01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md`
+2. `docs/modules/fund/01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`
+3. `docs/modules/fund/01-cr-inputs/2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md`
+
+The supporting source brief is retained at:
+
+- `docs/modules/fund/01-cr-inputs/2026-07-15-fund-template-manager-brief.md`
+
+Control treatment:
+
+- the three CRs are planning evidence, not accepted implementation slices;
+- their recorded resolved decisions must be preserved by later planning unless explicitly
+  superseded through review;
+- their open questions remain business-decision gates and must be raised only when a
+  bounded slice depends on the answer;
+- the source brief's provisional `T1`-`T5` sequence is provenance only and creates no
+  executable slice identifiers;
+- none of these inputs reopens completed C1-C6, 1R-D or Commerce A1-A6 work; and
+- later work must allocate the relevant capability into bounded FUND lifecycles through
+  this roadmap rather than implement directly from a CR or the strategic overview.
+
+The immediate A7 planning boundary is deliberately narrow. A7 may consume an authoritative
+ready/locked FUND Store offer and preserve exact typed FUND source, workflow,
+configuration, input and asset evidence through generic Commerce Order creation and
+Checkout invocation. It must not implement the Template Manager, Artwork Template
+generation, collective artwork approval, C1/public Store UI, production, fulfilment or
+commission capabilities described by the strategic inputs.
+
 ## 9. Current Planning Handoff
 
 No implementation is currently underway. `1P-G-R3-A` is committed at application baseline
@@ -478,7 +529,9 @@ Current next control candidate:
 ```text
 Remain in the Core Commerce lane and create/review only bounded `COMMERCE-A7 - FUND
 Consumer Integration` planning when explicitly authorised. A7 implementation has not
-begun. FUND `1R-E` Store UI remains queued behind that generic consumer boundary.
+begun. Its planning must read the governed strategic overview and three CRs under section
+8.1 while retaining the thin boundary stated there. FUND `1R-E` Store UI remains queued
+behind that generic consumer boundary.
 ```
 
 ## 10. Roadmap Maintenance Rule
@@ -491,7 +544,11 @@ After every planning acceptance, implementation confirmation or review/test outc
 4. verify that exactly one next candidate is named and that it is not falsely authorised;
 5. move superseded operational detail into Appendix A or another archive/triage record;
 6. ensure branch, commit, migration and deployment claims match repository evidence;
-7. run Markdown fence, path and `git diff --check` validation.
+7. reconcile any new strategic overview, CR or supporting brief into the governed-input
+   register before it can influence a bounded plan;
+8. carry only the decisions relevant to the selected slice and preserve unrelated open
+   questions for their owning future workstream; and
+9. run Markdown fence, path and `git diff --check` validation.
 
 The root roadmap is authoritative when the single next candidate crosses from FUND to a
 sibling Core lane. This FUND roadmap must record the resulting wait state rather than name
