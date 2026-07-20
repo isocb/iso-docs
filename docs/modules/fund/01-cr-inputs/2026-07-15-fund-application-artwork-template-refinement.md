@@ -20,6 +20,16 @@ Authoritative roadmap:
 
 `docs/modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md`
 
+Accepted reconciliation successor:
+
+`docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`
+
+The successor preserves this CR as governed source evidence, resolves its cross-CR
+questions at parent level where safe and routes proof-dependent questions to bounded
+`1R-F` children. The reconciliation moves the previously reserved public Store slice from
+`1R-F` to `1R-G` so alphabetical identifiers continue to express delivery order. This
+input still does not itself authorise implementation.
+
 Related accepted foundations:
 
 - `1Q-E` Project Product eligibility services;
@@ -1083,7 +1093,7 @@ FUND slice identifiers.
 The current roadmap already reserves:
 
 - `1R-E` for C1 Store Management UI;
-- `1R-F` for public/C2 Store display; and
+- `1R-G` for public/C2 Store display; and
 - `1P-K6` for the narrower Project template/resource access outcome.
 
 This capability is larger than `1P-K6` and must not consume or rename `1R-E`. The future

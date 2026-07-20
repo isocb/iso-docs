@@ -1,6 +1,6 @@
 # IsoStack Commerce Core Roadmap And Slice Control
 
-Date: 2026-07-15
+Date: 2026-07-16
 
 Status: Active Commerce Core roadmap
 
@@ -322,13 +322,22 @@ The FUND `1R-E - C1 Store Oversight And C2 Project Store Control Alignment` pare
 reviewed and accepted. The bounded E-A Store authority/intervention service lifecycle is
 implemented/reviewed at application `dev`/`origin/dev` commit `daafc349` against a complete
 141-migration disposable baseline; it
-changes no generic Commerce ownership. The bounded `1R-E-B` portfolio-oversight plan is
-created and awaiting explicit review. Reviewing only E-B is the single next cross-lane
-action and no E-B/E-C implementation is authorised.
+changes no generic Commerce ownership. The bounded `1R-E-B` portfolio-oversight
+implementation/review lifecycle is complete locally with no Commerce schema or migration
+change. `1R-E-C - C2 Project Store Control Surface` is implemented/reviewed locally with
+no Commerce schema/migration or shared deployment; its human UI schedule remains pending.
+The non-executable FUND `1R-F - Project Offer And Artwork Readiness Reconciliation`
+parent is reviewed/accepted at
+`docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`.
+`1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single next
+cross-lane planning candidate; no proof, `1R-G` or artwork/template production
+implementation is authorised.
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-c1-store-oversight-c2-project-store-control-alignment-planning.md`
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-a-store-authority-exceptional-intervention-lifecycle-service-alignment-implementation-planning.md`
+
+`docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-c-c2-project-store-control-surface-implementation-planning.md`
 
 A7 planning must also read the subordinate FUND Store/artwork strategic completion
 overview and its three registered 2026-07-15 CR inputs through the authoritative FUND

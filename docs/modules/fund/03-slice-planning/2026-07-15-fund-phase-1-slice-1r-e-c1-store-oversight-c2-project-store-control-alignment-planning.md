@@ -4,6 +4,10 @@ Date: 2026-07-15
 
 Status: Parent reviewed and accepted; no child planning or implementation authorised
 
+Roadmap renumbering notice: references in this accepted historical record to `1R-F` as
+the public Store/C2 display slice now mean `1R-G`. Current `1R-F` is the later accepted
+Project Offer And Artwork Readiness parent. The original wording is retained for audit.
+
 Authoritative controls:
 
 - `docs/00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md`

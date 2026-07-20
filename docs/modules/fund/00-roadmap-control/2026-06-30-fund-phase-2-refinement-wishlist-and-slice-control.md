@@ -2,7 +2,16 @@
 
 Date: 2026-06-30
 
-Status: Active refinement wishlist
+Status: Superseded historical refinement ledger; not active control
+
+Superseded by:
+
+`docs/modules/fund/00-roadmap-control/2026-07-20-fund-refinement-wishlist-and-slice-control.md`
+
+This document is retained for provenance only. Do not use its historical priority labels,
+candidate ordering or “active” wording to select work. The 2026-07-20 reconciled register
+contains the current absent-refinement inventory, while the authoritative FUND roadmap
+alone selects the next bounded slice.
 
 Parent roadmap:
 

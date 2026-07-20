@@ -2,7 +2,7 @@
 
 Created: 2026-07-15
 
-Last consolidated: 2026-07-15
+Last consolidated: 2026-07-20
 
 Status: Subordinate strategic capability overview; planning coordination only
 
@@ -17,6 +17,10 @@ Parent cross-lane roadmap:
 Sibling Commerce Core roadmap:
 
 `docs/core/commerce/00-roadmap-control/2026-07-13-commerce-core-roadmap-and-slice-control.md`
+
+Subordinate refinement and pilot-placement register:
+
+`docs/modules/fund/00-roadmap-control/2026-07-20-fund-refinement-wishlist-and-slice-control.md`
 
 ## 1. Purpose
 
@@ -87,6 +91,12 @@ the current authoritative control wins.
   `docs/modules/fund/03-slice-planning/2026-07-08-fund-phase-1-slice-1q-g-a-project-context-and-suitability-testability-remediation-planning.md`
 - **C1 Production, Dispatch And Commission Workflow Planning** —
   `docs/modules/fund/03-slice-planning/2026-06-29-fund-phase-1-slice-1p-i-c1-production-dispatch-commission-workflow-planning.md`
+- **FUND Refinement Wishlist And Pilot Placement Control** —
+  `docs/modules/fund/00-roadmap-control/2026-07-20-fund-refinement-wishlist-and-slice-control.md`
+
+The refinement register is a subordinate absent-work and placement record. It can add a
+proven prerequisite to a strategic stage, but it cannot select or authorise an executable
+slice.
 
 ### 3.2 Named Change Requests
 
@@ -197,7 +207,14 @@ The authoritative controls currently establish:
   non-executable parent; its bounded E-A lifecycle is implemented/reviewed at application
   `dev`/`origin/dev` commit `daafc349` on the 141-migration disposable baseline, while the
   shared development database/staging remain at 140 migrations;
-  the bounded E-B portfolio-oversight plan is created and awaiting explicit review.
+  the bounded E-B portfolio-oversight implementation/review lifecycle is complete locally
+  with no schema/migration or shared deployment; and
+- `1R-E-C - C2 Project Store Control Surface` is implemented/reviewed locally without a
+  migration or shared deployment; its human UI schedule remains pending.
+- `1R-F - Project Offer And Artwork Readiness Reconciliation` is reviewed/accepted as the
+  non-executable parent; and
+- `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single next
+  planning candidate.
 
 This baseline is a summary only. Commit, migration, deployment and current-next-action
 claims must be read from the authoritative controls.
@@ -459,7 +476,28 @@ suitable selected unmodified Product
 A Store may contain only Products valid for the Project's one Project type. Every displayed
 Store Product must pass its applicable operational branch. `NOT_SURE` cannot publish.
 
-## 12. Strategic Stage 3 — Public Store Presentation (`1R-F`)
+### 11.5 Pilot And Refinement Gate Before Public Store
+
+The 2026-07-20 reconciliation must inform the real AMOW proof and be applied before work is
+accepted beyond `1R-F-A`. It does not create another executable stage.
+
+Before the public Store pilot, planning must distinguish:
+
+- essential purchaser-facing option-to-media authority and Product configuration needed
+  for correct choice and immutable Order evidence; from
+- rich multi-image gallery merchandising, which follows pilot evidence unless the actual
+  AMOW pilot Product set proves it necessary.
+
+Before pilot Intake, confirmation polish and indispensable organiser notifications are
+required. Embed/CSP is required only if AMOW confirms embedded Intake. Configurable Event
+or Client type options are required only if a pilot option-fit assessment proves the
+current bounded choices unsuitable.
+
+Product duplication is a pre-UAT operational accelerator only where repeated AMOW setup
+would otherwise be materially slow or error-prone. Public Store correctness must not
+depend on duplication.
+
+## 12. Strategic Stage 3 — Public Store Presentation (`1R-G`)
 
 ### Outcome
 
@@ -472,7 +510,8 @@ duplicating A7 Checkout orchestration.
 - Client/Project/Event branding and context;
 - current released Store Product list;
 - exact locked display copy, images and consumer prices;
-- Product option and purchaser-input controls;
+- Product option, option-to-media and purchaser-input controls required by the authoritative
+  pilot offer;
 - unavailable, unpublished, not-yet-open, paused and closed states;
 - basket/selection behaviour;
 - mobile and accessibility support; and
@@ -502,6 +541,7 @@ Complete the purchaser journey around the A7 payment invocation.
 - pending-payment, paid, failed, cancelled and expired experiences;
 - confirmation/receipt and Order summary;
 - transactional confirmation email containing the Order Code;
+- indispensable Project-organiser notifications required by the pilot workflow;
 - safe retry and duplicate-submission protection;
 - refund communication; and
 - workflow-appropriate artwork backup-upload prompt.
@@ -511,6 +551,16 @@ Complete the purchaser journey around the A7 payment invocation.
 Browser return is advisory. Only verified Commerce provider evidence controls Payment
 state. Checkout performs no C2 collective-artwork approval and no C1 production
 authorisation.
+
+Transactional and bounded pilot-lifecycle messages must reuse the existing LMSPro sequence
+engine, Resend delivery and shared rendering/scheduling/retry methods. FUND adds only its
+domain triggers, recipient authority, templates and bounded management surfaces; it does
+not create a parallel communications engine.
+
+The general Event/Project campaign editor is intentionally separate from transactional
+completion. It is a required pre-wider-rollout sales-promotion capability for configurable
+sequences and timely nudges that help Project owners complete setup, promote Stores and
+improve sales.
 
 ### Completion gate
 
@@ -674,6 +724,18 @@ Prove the complete operational chain in target environments and make it supporta
 - staging promotion and business UAT; and
 - controlled live rollout/rollback.
 
+Before wider rollout, the programme must also schedule the accepted refinement set:
+
+- general Event/Project campaign editor and promotional nudge sequences;
+- aligned email content editor experience;
+- Client dashboard announcements;
+- richer Catalogue merchandising;
+- Catalogue duplication built on the proven Product-duplication primitive; and
+- reusable Product type/option templates.
+
+Tenant terminology, dashboard widget standardisation and workflow grouping remain
+post-pilot evidence-led refinements unless the authoritative roadmap promotes them earlier.
+
 ### Completion gate
 
 The complete path is secure, observable, recoverable and operationally owned from Project
@@ -690,15 +752,24 @@ A6-D lifecycle complete
    (parent accepted)
 -> 1R-E-A Store authority/intervention service implemented/reviewed locally
 -> 1R-E-B C1 Store portfolio oversight and exceptional intervention surface
-   plan created; review only (single next action)
--> workflow-conditional Project Offer And Artwork Readiness branches
--> 1R-F public Store presentation
+   implemented/reviewed as passed locally; no shared deployment
+-> 1R-E-C C2 Project Store control surface
+   implemented/reviewed locally; human UI schedule pending
+-> 1R-F workflow-conditional Project Offer And Artwork Readiness parent accepted
+-> 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
+   single next action is bounded planning; proof implementation not authorised
+-> apply confirmed pilot gates: Intake confirmation/conditional embed and type fit,
+   essential purchaser option/media authority, required messages and evidence-led
+   Product duplication
+-> 1R-G public Store presentation
 -> consumer Order completion and Order Code
 -> C1/C2 Order operations
 -> upload/scanning and typed artwork intake
 -> production matching and authorisation
 -> production batching and dispatch
 -> commission calculation and statements
+-> wider-rollout campaign editor, promotional sequences and accepted merchandising/setup
+   refinements
 -> full release hardening
 ```
 
@@ -727,6 +798,9 @@ and authoritative roadmap explicitly authorise otherwise.
 12. Generated documents and production assets use secure managed storage and typed access.
 13. Commission is based on accepted aggregate Project sales evidence, not an incidental
     per-payment calculation.
+14. FUND communications reuse the existing LMSPro sequence and Resend delivery
+    infrastructure; owning workflows define transactional events, while the general
+    Event/Project campaign editor remains a bounded wider-rollout capability.
 
 ## 22. Converting Strategic Workstreams Into Slices
 
@@ -778,6 +852,7 @@ implemented or reviewed slice:
 - keep commit, migration, deployment and current-next-action detail in the authoritative
   controls rather than duplicating it here;
 - update the CR traceability table when scope changes;
+- reconcile promoted pilot/refinement decisions with the 2026-07-20 register;
 - preserve resolved terminology; and
 - verify that the overview still does not compete with current slice authority.
 
@@ -807,8 +882,19 @@ The E-A implementation plan is created at:
 Its local implementation and review/test lifecycle passed against the complete
 141-migration disposable baseline with zero residue. Shared dev/staging remain at their
 promoted 140-migration boundary. The bounded `1R-E-B - C1 Store Portfolio Oversight And
-Exceptional Intervention Surface` plan is created and awaiting explicit review. This
-document authorises no E-B or E-C implementation.
+Exceptional Intervention Surface` implementation/review lifecycle passed and is committed
+on application `dev` at `e3f44b4b` without a schema or migration change; it remains
+unpushed/undeployed. `1R-E-C - C2 Project Store Control Surface` is included in the same
+application commit without a migration or shared deployment; its human UI schedule is
+recorded in the E-C R1 review. The reconciled
+`1R-F - Project Offer And Artwork Readiness` parent is reviewed/accepted at:
+
+`docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`
+
+It allocates separate Individual, collective and Standard Product readiness branches
+after `1R-E`; the formerly reserved Public Store slice moves to `1R-G`. `1R-F-A - Real AMOW Template, Pricing And
+Deployed Renderer Proof` is the single next planning candidate; this document authorises
+no proof implementation, `1R-G` or artwork/template production implementation.
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-b-c1-store-portfolio-oversight-exceptional-intervention-surface-implementation-planning.md`
 
@@ -824,9 +910,9 @@ The created 1R-E parent performs the first reconciliation of:
 - `1R-E` C1 Store oversight, C2 Project Store control and service-authority alignment;
 - the three named CRs;
 - workflow-aware `1R-D` readiness extensions;
-- `1R-F` public Store boundaries; and
+- `1R-G` public Store boundaries; and
 - the exact parent/child split for Individual Artwork and collective Project artwork.
 
 The parent allocates bounded E-A, E-B and E-C lifecycle candidates without consuming
-`1R-F` or unrelated roadmap reservations. Those children require separate planning,
+`1R-G` or unrelated roadmap reservations. Those children require separate planning,
 acceptance, implementation and review/test records.

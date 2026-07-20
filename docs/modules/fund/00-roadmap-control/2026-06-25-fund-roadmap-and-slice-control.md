@@ -2,7 +2,7 @@
 
 Created: 2026-06-25
 
-Last consolidated: 2026-07-15
+Last consolidated: 2026-07-20
 
 Status: Active authoritative control for the FUND lane
 
@@ -18,10 +18,18 @@ Subordinate strategic completion overview:
 
 `docs/modules/fund/00-roadmap-control/2026-07-15-fund-store-artwork-orders-and-production-strategic-completion-roadmap.md`
 
+Subordinate refinement and pilot-placement register:
+
+`docs/modules/fund/00-roadmap-control/2026-07-20-fund-refinement-wishlist-and-slice-control.md`
+
 The subordinate overview coordinates the longer Store, artwork, Order, production,
 fulfilment and commission route and traces the related 2026-07-15 change requests. It does
 not replace this document's current slice status, dependency control, live gates or
 next-slice authority.
+
+The refinement register reconciles the superseded 2026-06-30 Wishlist, classifies genuinely
+absent work and records conditional pilot/wider-rollout placement. It is not an additional
+roadmap and cannot authorise or select a slice.
 
 Purpose:
 
@@ -63,7 +71,7 @@ working branch: dev
 local dev/origin dev: daafc349
 local staging/origin staging: 91e8751c
 local main/origin main: ea4e6193 (unchanged)
-IsoDocs main/origin main: aligned through the E-B planning handoff
+IsoDocs main: E-B/E-C lifecycle and 1R-F/refinement reconciliation included in this documentation baseline
 ```
 
 Current consolidated delivery state:
@@ -90,9 +98,20 @@ Local completion beyond that shared checkpoint:
   effective-state, concurrency, rollback, 1R-D/A7 regressions and production build passed;
 - GitHub `Security Scan` run `29417617533` passed for exact application commit `daafc349`;
 - shared development and staging remain at `91e8751c` with 140 migrations; and
-- the bounded `1R-E-B - C1 Store Portfolio Oversight And Exceptional Intervention
-  Surface` plan is created and awaiting explicit review; reviewing only E-B is the single
-  next action.
+- bounded `1R-E-B - C1 Store Portfolio Oversight And Exceptional Intervention Surface`
+  implementation, disposable validation and lifecycle records are complete locally with
+  no schema/migration or shared deployment;
+- bounded `1R-E-C - C2 Project Store Control Surface` planning, implementation, automated
+  review and lifecycle records are complete locally with no schema/migration or shared
+  deployment; human UI stages remain scheduled in its R1 record; and
+- `1R-F - Project Offer And Artwork Readiness Reconciliation` is reviewed and accepted as
+  the non-executable successor to the three governed CRs; and
+- `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single next
+  planning candidate. No renderer proof implementation, `1R-F-B` through `1R-F-I`,
+  `1R-G` or artwork/template production implementation is authorised.
+- the 2026-07-20 refinement reconciliation is accepted as subordinate placement control:
+  it must inform `1R-F-A` and be applied before accepting work beyond it, but it does not
+  replace `1R-F-A` as the single next candidate or authorise a refinement implementation.
 
 Authoritative promotion evidence:
 
@@ -242,7 +261,8 @@ Full evidence is recorded in:
 | `COMMERCE-A7` | Commerce/FUND integration | Implemented/reviewed; dev/staging promotion and smoke gate complete at `91e8751c` | Dormant internal STRIPE_ONLINE integration from an authoritative FUND offer to generic Commerce and typed FUND context |
 | `1R-E` | FUND Store | Parent reviewed/accepted; non-executable | C1 Store oversight, C2 normal Project Store control, exceptional C1 intervention and service-authority alignment split into bounded E-A/E-B/E-C lifecycles |
 | `1R-E-A` | FUND Store | Implemented/reviewed at application `dev`/`origin/dev` `daafc349`; shared database/staging undeployed; disposable database 141/0 | Typed C1 intervention evidence, C2 Project/Store authority, Event envelope guards and one effective Store-state/A7 availability policy; no UI |
-| `1R-E-B` | FUND Store | Implementation plan created; awaiting explicit review/acceptance | C1 Store portfolio oversight and exceptional intervention surface consuming E-A authority; no implementation started |
+| `1R-E-B` | FUND Store | Implemented/reviewed and committed on application `dev` at `e3f44b4b`; unpushed/undeployed; no migration | C1 Store portfolio oversight and exceptional intervention surface consuming E-A authority |
+| `1R-E-C` | FUND Store | Implemented/reviewed and committed on application `dev` at `e3f44b4b`; unpushed/undeployed; no migration; human UI schedule pending | C2 Project Store control surface consuming E-A authority, bounded C2 commission acceptance and normal Project/Store control |
 
 `1R-C1` through `1R-D` and `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D` must not be rerun as pending work. No next
 implementation is authorised merely because the preceding lifecycle completed.
@@ -276,7 +296,14 @@ COMMERCE-A1 (complete on dev)
   -> FUND 1R-E C1 Store Oversight And C2 Project Store Control Alignment parent accepted
   -> FUND 1R-E-A Store authority/intervention service implemented/reviewed locally
      -> FUND 1R-E-B C1 Store Portfolio Oversight And Exceptional Intervention Surface
-        plan created; review only (single next action)
+        implemented/reviewed as passed locally; no shared deployment
+     -> FUND 1R-E-C C2 Project Store Control Surface
+        implemented/reviewed as passed locally; human UI schedule pending
+  -> FUND 1R-F Project Offer And Artwork Readiness Reconciliation parent accepted
+     -> FUND 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
+        single next planning candidate; planning only
+        -> apply the accepted pilot/refinement placement before accepting later F/G work;
+           this is a control gate, not an executable slice
 
 FUND 1R-C1 (complete on dev)
   -> 1R-C2 (complete on dev)
@@ -312,8 +339,15 @@ Rules:
   completed dev/staging promotion at `91e8751c`;
 - FUND `1R-E - C1 Store Oversight And C2 Project Store Control Alignment` is an accepted
   non-executable parent; bounded E-A is implemented/reviewed locally on the 141-migration
-  disposable baseline; E-B planning is the single next candidate and no E-B/E-C
-  implementation is authorised;
+  disposable baseline; E-B and E-C implementation/review are complete locally without a
+  migration; E-C human UI stages remain pending;
+- `1R-F - Project Offer And Artwork Readiness Reconciliation` is an accepted
+  non-executable parent at
+  `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`;
+- `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single next
+  planning candidate and does not authorise proof or production implementation;
+- the subordinate 2026-07-20 refinement register must inform the AMOW proof and later
+  pilot gates, but cannot start work or displace the single next candidate;
 - never implement two slices merely because their planning can be discussed together;
 - finish one slice lifecycle before selecting another unless the user explicitly changes
   the control decision.
@@ -338,6 +372,42 @@ The accepted business authority for the next slice is:
 
 This correction supersedes older planning language that assigns ordinary Store publication,
 pause or closure to C1. It does not itself authorise implementation.
+
+### 4.2 Pilot Scope And Refinement Placement Control — 2026-07-20
+
+The reconciled placement authority is recorded in:
+
+`docs/modules/fund/00-roadmap-control/2026-07-20-fund-refinement-wishlist-and-slice-control.md`
+
+It preserves the current `1R-F-A` next action while preventing later template, Store and
+communications decisions from hardening around known pilot gaps:
+
+- before pilot Intake, complete confirmation polish and indispensable organiser
+  notifications; add embed/CSP only if AMOW confirms embedded Intake, and add configurable
+  Event/Client types only if a pilot option-fit assessment proves current choices
+  unsuitable;
+- before the public Store pilot, provide only the purchaser-visible option/media authority
+  required by the actual pilot Products and immutable Order evidence; rich gallery
+  merchandising remains evidence-led;
+- before operational UAT, promote Product duplication only if repeated AMOW setup would
+  otherwise be materially slow or error-prone;
+- before live pilot communications, deliver the bounded transactional and pilot-lifecycle
+  messages required by the owning workflows by reusing the existing LMSPro sequence engine,
+  Resend delivery and shared communications methods;
+- before wider rollout, deliver the general Event/Project campaign editor, promotional
+  nudge sequences, aligned editor experience, announcements, richer Catalogue
+  merchandising, Catalogue duplication and reusable Product/option templates; and
+- schedule tenant terminology and dashboard presentation refinements from pilot evidence.
+
+The general Event/Project campaign editor is a required wider-rollout capability and the
+primary planned sales-promotion surface for timely Project-owner nudges. Pilot-critical
+Order receipts, confirmations and necessary organiser notifications must not wait for that
+general editor.
+
+Every promoted item still requires one bounded lifecycle. Conditional items become pilot
+blockers only after the pilot decision record fixes the actual tenant/Client/Event/Project
+scenarios, hosted-versus-embedded Intake, Product/media needs, message inventory, roles,
+environment/data policy and measurable entry/exit criteria.
 
 ## 5. Mandatory Slice Lifecycle
 
@@ -631,9 +701,18 @@ The bounded E-A plan is created at
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-a-store-authority-exceptional-intervention-lifecycle-service-alignment-implementation-planning.md`
 and its local implementation/review lifecycle has passed against the 141-migration
 disposable baseline with zero residue. The bounded `1R-E-B - C1 Store Portfolio Oversight
-And Exceptional Intervention Surface` plan is created at
+And Exceptional Intervention Surface` implementation/review lifecycle passed locally at
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-b-c1-store-portfolio-oversight-exceptional-intervention-surface-implementation-planning.md`.
-Reviewing only E-B is the single next action; no E-B/E-C implementation is authorised.
+It adds no migration and is included in application `dev` commit `e3f44b4b`; it has not
+been pushed or deployed. The bounded `1R-E-C - C2 Project Store Control Surface` plan and
+implementation/review lifecycle are included in the same application commit
+at `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-c-c2-project-store-control-surface-implementation-planning.md`.
+E-C adds no migration or shared deployment; its human UI schedule remains pending. The
+non-executable `1R-F - Project Offer And Artwork Readiness Reconciliation` parent is
+reviewed/accepted and records the separate Individual, collective and Standard readiness
+branches. `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the
+single next planning candidate; no proof implementation, `1R-G` or artwork/template
+production implementation is authorised.
 ```
 
 ## 10. Roadmap Maintenance Rule
@@ -648,9 +727,11 @@ After every planning acceptance, implementation confirmation or review/test outc
 6. ensure branch, commit, migration and deployment claims match repository evidence;
 7. reconcile any new strategic overview, CR or supporting brief into the governed-input
    register before it can influence a bounded plan;
-8. carry only the decisions relevant to the selected slice and preserve unrelated open
+8. reconcile every promoted, deferred or completed refinement with the subordinate
+   2026-07-20 register without allowing that register to select the next slice;
+9. carry only the decisions relevant to the selected slice and preserve unrelated open
    questions for their owning future workstream; and
-9. run Markdown fence, path and `git diff --check` validation.
+10. run Markdown fence, path and `git diff --check` validation.
 
 The root roadmap is authoritative when the single next candidate crosses from FUND to a
 sibling Core lane. This FUND roadmap must record the resulting wait state rather than name

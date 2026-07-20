@@ -1,6 +1,6 @@
 # IsoStack Platform And Module Roadmap Control
 
-Date: 2026-07-15
+Date: 2026-07-16
 
 Status: Active parent roadmap
 
@@ -122,8 +122,14 @@ production remains unchanged. GitHub `Security Scan` run `29417617533` passed fo
 application commit `daafc349`. This checkpoint
 supersedes older current-action statements below that say E-A implementation has not
 started. The bounded `1R-E-B - C1 Store Portfolio Oversight And Exceptional Intervention
-Surface` plan is now created and awaiting explicit review; reviewing only E-B is the
-single next action.
+Surface` implementation/review lifecycle is complete locally without a migration and is
+not yet committed/deployed. `1R-E-C - C2 Project Store Control Surface` is also
+implemented/reviewed locally without a migration or shared deployment; its human UI
+schedule remains pending. `1R-F - Project Offer And Artwork Readiness Reconciliation` is
+reviewed/accepted at
+`docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`.
+Its bounded `1R-F-A` real-template/renderer proof is the single next planning candidate;
+proof implementation and `1R-G` remain unauthorised.
 
 ### Commerce Core
 
@@ -243,7 +249,12 @@ COMMERCE-A1 complete
   -> FUND 1R-E C1 Store Oversight And C2 Project Store Control Alignment parent accepted
   -> FUND 1R-E-A Store authority/intervention service implemented/reviewed locally
      -> FUND 1R-E-B C1 Store Portfolio Oversight And Exceptional Intervention Surface
-        plan created; review only (single next action)
+        implemented/reviewed as passed locally; no shared deployment
+     -> FUND 1R-E-C C2 Project Store Control Surface
+        implemented/reviewed locally; human UI schedule pending
+  -> FUND 1R-F Project Offer And Artwork Readiness Reconciliation parent accepted
+     -> FUND 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
+        single next planning candidate; planning only
 
 FUND 1R-C1 -> C2 -> C3 -> C4 -> C5 -> C6 complete
 FUND 1P-G-R3-A -> R3-B -> R3-C -> R3-D complete
@@ -369,11 +380,19 @@ staging health and human smoke gates passed. The FUND
 and accepted. The bounded `1R-E-A - Store Authority, Exceptional Intervention And
 Lifecycle Service Alignment` lifecycle is implemented/reviewed as passed locally against
 the new 141-migration disposable baseline. The bounded `1R-E-B - C1 Store Portfolio
-Oversight And Exceptional Intervention Surface` plan is created and awaiting explicit
-review. Reviewing only E-B is the single next action; no E-B/E-C implementation is
-authorised.
+Oversight And Exceptional Intervention Surface` implementation/review lifecycle is
+complete and committed on application `dev` at `e3f44b4b` without schema/migration change;
+it remains unpushed/undeployed. `1R-E-C - C2 Project Store Control Surface` is included in
+the same application commit without a migration or shared deployment; its human UI schedule
+remains pending. The non-executable
+`1R-F - Project Offer And Artwork Readiness Reconciliation` parent is reviewed/accepted.
+`1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single next
+planning candidate; no proof implementation, `1R-G` or artwork/template production
+implementation is authorised.
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-b-c1-store-portfolio-oversight-exceptional-intervention-surface-implementation-planning.md`
+
+`docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-c-c2-project-store-control-surface-implementation-planning.md`
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-c1-store-oversight-c2-project-store-control-alignment-planning.md`
 

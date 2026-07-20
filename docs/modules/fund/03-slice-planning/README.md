@@ -13,16 +13,20 @@ Slice planning documents define:
 
 Historical slice plans may remain in `Planning/` until they are next touched. New active slice plans should go here.
 
-Most recently completed planning/implementation lifecycle:
+Most recently accepted parent planning lifecycle:
 
-`2026-07-15-fund-phase-1-slice-1r-e-a-store-authority-exceptional-intervention-lifecycle-service-alignment-implementation-planning.md`
+`2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`
+
+Most recently completed implementation lifecycle:
+
+`2026-07-15-fund-phase-1-slice-1r-e-c-c2-project-store-control-surface-implementation-planning.md`
 
 Current integrated critical-path action:
 
 ```text
-Review only FUND 1R-E-B C1 Store Portfolio Oversight And Exceptional Intervention Surface
-Implementation Planning. Do not implement it and do not begin 1R-E-C, 1R-F or another
-slice.
+Create and review only `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof`
+planning. Do not implement the proof, production schema or artwork/template behaviour and
+do not begin `1R-F-B` through `1R-F-I`, `1R-G` or another slice.
 ```
 
 Commerce A1-A7 and the retained FUND C1-C6/1R-D/R3 foundations are implemented/reviewed.
@@ -32,8 +36,11 @@ FUND-admin login plus pre-existing UI smoke verification passed. Production rema
 unchanged. The `1R-E` parent is accepted and E-A is implemented/reviewed at application
 `dev`/`origin/dev` commit `daafc349` against the complete 141-migration disposable baseline
 with zero residue. The shared development database/staging remain at the promoted
-140-migration boundary. The E-B plan is created and awaiting explicit review; reviewing
-only E-B is the single next action.
+140-migration boundary. E-B and E-C implementation/review passed without a migration and
+are committed on application `dev` at `e3f44b4b`; they remain unpushed/undeployed. E-C
+human UI stages are scheduled in its R1 record. The non-executable `1R-F` parent is
+reviewed/accepted and `1R-F-A` proof planning
+is the single next candidate.
 
 This current status supersedes older per-slice deployment wording retained below for
 historical context.
@@ -54,9 +61,13 @@ Completed E-A implementation plan:
 
 `2026-07-15-fund-phase-1-slice-1r-e-a-store-authority-exceptional-intervention-lifecycle-service-alignment-implementation-planning.md`
 
-E-B plan awaiting review:
+Completed E-B implementation plan:
 
 `2026-07-15-fund-phase-1-slice-1r-e-b-c1-store-portfolio-oversight-exceptional-intervention-surface-implementation-planning.md`
+
+Completed E-C implementation plan:
+
+`2026-07-15-fund-phase-1-slice-1r-e-c-c2-project-store-control-surface-implementation-planning.md`
 
 `1P-G-R3-A` is implemented and reviewed at application `4bb7dd9`, included on `origin/dev`,
 and documented at `65fc243`. `1P-G-R3-B` is implemented, reviewed and committed at application

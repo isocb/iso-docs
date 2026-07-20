@@ -2,7 +2,11 @@
 
 Date: 2026-07-15
 
-Status: Planning complete; awaiting explicit review and acceptance
+Status: Implemented and reviewed/tested as passed locally; not yet committed or deployed
+
+Roadmap renumbering notice: references in this accepted historical record to `1R-F` as
+the public Store/C2 display slice now mean `1R-G`. Current `1R-F` is the later accepted
+Project Offer And Artwork Readiness parent. The original wording is retained for audit.
 
 Authoritative controls:
 
@@ -21,7 +25,8 @@ Application baseline:
   140-migration boundary until a separate controlled database promotion;
 - E-A schema, Store-authority policy and internal C1/C2 service alignment implemented and
   reviewed as passed; and
-- no E-B application or UI implementation has started.
+- E-B implementation, disposable validation and lifecycle documentation completed locally;
+  no shared database or deployment action has occurred.
 
 ## 1. Goal
 
@@ -65,7 +70,7 @@ E-B may expose:
 
 - read-only tenant-wide Store oversight;
 - read-only Store, Store Product, current configuration and bounded version history;
-- server-authorised Store preparation/configuration refresh already accepted in 1R-D/E-A;
+- server-authorised configuration/readiness refresh already accepted in 1R-D/E-A;
 - E-A `EXCEPTIONAL_PAUSE` and `EXCEPTIONAL_CLOSE` actions;
 - E-A `RELEASE_EXCEPTIONAL_PAUSE` and `REOPEN_EXCEPTIONAL_CLOSURE` actions; and
 - links to an existing authoritative remediation surface.
@@ -78,6 +83,7 @@ E-B must not expose:
 - Product price, tax, Catalogue, source-media or workflow editing inside the Store page;
 - a Store Product release/hold action before a separately accepted service owns that
   evidence; or
+- Store creation/preparation for a Project that has no Store; or
 - archive, destructive deletion or metadata-based override controls.
 
 The UI renders an exceptional action only when the freshly returned E-A
@@ -115,11 +121,11 @@ projectStatus[]
 interventionState: ALL | ACTIVE | NONE
 eventScope: ALL | EVENT | STANDALONE
 paymentReadiness: ALL | READY | BLOCKED
+storeScope: CURRENT | ARCHIVED | ALL
 sort: PROJECT | CLIENT | EVENT | EFFECTIVE_STATE | OPENS_AT | CLOSES_AT | UPDATED_AT
 direction: ASC | DESC
 cursor
-limit: maximum 100
-evaluationAt: test-only/server-normalized optional input already used by E-A
+limit: default 25, maximum 100
 ```
 
 The query must always constrain by the session-derived tenant. Search is limited to Store
@@ -149,6 +155,22 @@ database loading, but it must not create a second precedence or blocker implemen
 Pagination, filter and sort results must be deterministic with Store ID as the final
 tie-breaker. A page must not leak a count or identity from another tenant.
 
+The router accepts no `evaluationAt`. It captures one server time for each request and
+passes it to the service. A test clock may be injected directly into service tests only.
+No browser value may select a past/future authority result or mutation time.
+
+Because effective state and blocker responsibility are derived, the service must not fetch
+one SQL page and then filter it in memory. It must load the tenant's bounded projection in
+batched queries, evaluate every candidate at the single request time through the shared
+E-A/1R-D composition, apply all filters and sorting, and only then return the requested
+page. It must avoid per-Store Seller, connection, assignment or Product queries.
+
+The opaque cursor contains only the normalized query fingerprint, last sort tuple and
+Store ID. It is validated on reuse and cannot alter tenant scope or authority. Derived
+state may legitimately change between page requests; the portfolio is a current
+operational view, not a historical snapshot. Every mutation independently revalidates at
+current server time.
+
 ### 4.2 Store oversight detail
 
 Add one C1-only detail query keyed by Store ID. It returns:
@@ -173,7 +195,7 @@ The configuration view displays bounded fields rather than raw JSON:
 ```text
 version
 createdAt
-configurationHash shortened for display but retained whole only in the response object
+server-derived short configuration fingerprint for display
 source Product revision
 Product code/name snapshot
 display title/subtitle snapshot
@@ -182,6 +204,8 @@ readiness status/reason snapshot
 ```
 
 No version is editable, deletable or selectable as a new current version from E-B.
+The service does not return the full configuration hash or raw configuration/input/media
+JSON because the UI does not require them.
 
 ### 4.3 Remediation destinations
 
@@ -250,8 +274,11 @@ The detail surface contains:
 Store title/introduction/fundraising objective are read-only for C1 in E-B. Their ordinary
 owner remains C2.
 
-Refreshing readiness/configuration is visibly a server recalculation. The UI never sends
-price, tax, revision, hash, readiness code, effective state or configuration content.
+Refreshing readiness/configuration is visibly a server recalculation. It is a separate
+C1 diagnostic capability, not an E-A trading `allowedActions[]` value. The detail query
+returns `canRefreshConfiguration`, and the refresh service revalidates C1 role, tenant,
+Project and Store state at current server time. The UI never sends price, tax, revision,
+hash, readiness code, effective state, configuration content or `evaluationAt`.
 
 ## 6. Exceptional Intervention Experience
 
@@ -280,6 +307,10 @@ Store or bypass C2 intent, Project lifecycle, Project dates or readiness.
 The browser creates one opaque idempotency key when an action dialog opens and retains it
 for every retry of that exact request. A new intent creates a new key. Resolution uses its
 separate E-A resolution key.
+
+The E-B router uses UI-safe intervention and refresh input schemas that do not accept
+`evaluationAt`. Existing service test-clock parameters remain internal and are never
+forwarded from a production browser request.
 
 After success, invalidate and refetch both portfolio and detail queries. On conflict or
 stale authority, close no dialog automatically: show a safe error, refetch, and render the
@@ -336,9 +367,10 @@ same. E-B adds no Prisma model, migration, API route, provider adapter or storag
 - Prisma schema has no E-B change;
 - type-check and production build;
 - route/component static verification;
-- effective-state label and blocker-responsibility mapping tests;
+- pure view-model effective-state label and blocker-responsibility mapping tests;
 - filter/sort/query normalization tests;
-- exceptional-dialog idempotency lifecycle tests; and
+- exceptional-dialog/idempotency pure-state tests without introducing a new browser-test
+  framework; and
 - no routine C1 publish/pause/resume control in the component/router contract.
 
 ### 9.2 Disposable PostgreSQL service checks
@@ -349,10 +381,13 @@ Use only `TEST_DATABASE_URL` after proving it differs from `DATABASE_URL`:
 - C1 OWNER/ADMIN sees all and only its tenant Stores;
 - C1 non-admin, C2-only and cross-tenant callers are rejected safely;
 - deterministic search/filter/sort/pagination;
+- server-owned evaluation time and refusal of browser `evaluationAt`;
+- batched derived-state composition without per-Store Seller/connection/readiness queries;
 - standalone and Event-linked Project projection;
 - every E-A effective state and blocker-responsibility group;
 - exact Product/readiness/payment/configuration counts;
 - current and historical configuration inspection;
+- no full configuration hash or raw snapshot JSON in UI responses;
 - C1-only internal intervention notes and no C2/public leakage;
 - exceptional pause/release and closure/reopen through existing E-A services;
 - truthful pause supersession by closure;
@@ -423,8 +458,8 @@ Review must confirm:
    behaviour has leaked into E-B; and
 10. disposable and browser validation are sufficient for the new surface.
 
-If accepted, only the bounded E-B implementation may begin. E-C, 1R-F and later work
-remain unauthorised.
+This review is now complete and recorded in section 15. Only the bounded E-B
+implementation may begin. E-C, 1R-F and later work remain unauthorised.
 
 ## 13. Review Prompt
 
@@ -455,5 +490,84 @@ during review.
 
 ## 14. Handoff
 
-The E-B plan is awaiting explicit review and acceptance. No application, Prisma,
-migration, service, router, route, provider, storage or UI change has been made for E-B.
+The E-B plan was reviewed and accepted before implementation. Its bounded application,
+validation and lifecycle records are now complete locally. Review itself made no change.
+
+Implementation confirmation:
+
+`docs/modules/fund/04-implementation-confirmations/2026-07-15-phase-1-slice-1r-e-b-c1-store-portfolio-oversight-exceptional-intervention-surface-implementation-confirmation.md`
+
+Review/test record:
+
+`docs/modules/fund/05-review-and-test/2026-07-15-phase-1-slice-1r-e-b-r1-c1-store-portfolio-oversight-exceptional-intervention-surface-review-and-test.md`
+
+## 15. Review And Acceptance Outcome
+
+Review result: accepted on 2026-07-15.
+
+The review reconciled E-B against the accepted 1R-E parent, completed E-A implementation
+at `daafc349`, current Store router/service, existing FUND C1 routes, tenant payment
+settings and the complete 141-migration application contract. It resolved:
+
+- production routers use server time; browser inputs cannot supply `evaluationAt`;
+- portfolio scope explicitly distinguishes current, archived and all Stores;
+- derived-state filtering/sorting occurs after tenant-wide batched composition and before
+  pagination, not after an arbitrary SQL page;
+- cursors are opaque, query-bound and non-authoritative;
+- every mutation revalidates exact current authority regardless of displayed state;
+- E-B exposes existing configuration/readiness refresh but does not create/prepare a
+  missing Store;
+- refresh capability remains separate from E-A lifecycle/intervention allowed actions;
+- the UI receives a short configuration fingerprint, never full hashes or raw snapshot
+  JSON; and
+- validation uses existing Vitest/pure-helper and manual browser methods rather than
+  introducing a new browser-test framework.
+
+No unresolved business or technical decision blocks bounded E-B implementation. Review
+made no application, Prisma, migration, service, router, route, provider, storage or UI
+change.
+
+## 16. Accepted Implementation Prompt
+
+```text
+Continue only accepted FUND Phase 1 Slice 1R-E-B. Do not begin 1R-E-C, 1R-F,
+artwork/template implementation, production, commission or another slice.
+
+Starting from committed application `dev`/`origin/dev` baseline `daafc349` and the complete
+141-migration application history, implement only the accepted C1 Store Portfolio
+Oversight And Exceptional Intervention Surface. Add no Prisma schema or migration.
+
+Add the authenticated C1 `/app/fund/stores` portfolio and `/app/fund/stores/[id]`
+diagnostic routes, FUND landing-page Stores card, bounded C1-only portfolio/detail/version/
+intervention queries, tenant-batched E-A/1R-D authority composition, deterministic
+search/filter/sort/cursor behavior, existing-route remediation links, read-only Store copy
+and Product/configuration evidence, server-authorised configuration/readiness refresh and
+accessible exceptional pause/release/closure/reopen dialogs exactly as accepted.
+
+Derive tenant, effective actor and current time only on the server. Production router
+inputs must accept no `organizationId`, actor, `evaluationAt`, effective state, blocker,
+readiness, price, tax, hash, version or configuration payload. Return only a short
+configuration fingerprint and bounded display evidence; never return raw snapshot JSON or
+full hashes. Keep C1 intervention notes on the C1 detail response only and out of URLs,
+analytics, logs and every C2/public response.
+
+Render exceptional actions only from freshly returned E-A allowed actions and revalidate
+them inside the existing serializable service. Preserve one start/resolution idempotency
+key per dialog intent and safe stale-state refetch. Keep configuration refresh separate
+from trading actions. Add no missing-Store preparation, routine C1 Project activation or
+Store publish/pause/resume, archive/delete, C2 Store UI, public Store/Checkout, Product
+commercial editor, speculative artwork/release writer, real Stripe action, Order,
+production, fulfilment or commission behavior.
+
+Use only TEST_DATABASE_URL after proving it differs from DATABASE_URL. Verify the complete
+141-migration disposable baseline, exact C1 tenant/role isolation, batched derived-state
+pagination, every effective state/blocker/action, payment/Product/configuration summaries,
+C1-only notes, refresh, exceptional intervention/idempotency/concurrency/rollback, A7/1R-D/
+E-A/K1-F/K2 regressions, pure view-model tests, responsive/accessibility/browser states,
+type-check, production build and zero test residue. Do not apply migration 141 or modify
+shared development, staging or production databases.
+
+After successful validation, create separate E-B implementation-confirmation and
+review/test records, update the FUND, strategic, Commerce and root roadmaps plus planning
+README, and stop. Do not start E-C or 1R-F.
+```

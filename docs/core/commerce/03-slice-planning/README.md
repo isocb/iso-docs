@@ -113,8 +113,14 @@ smoke verification passed; production remains unchanged.
 The FUND `1R-E - C1 Store Oversight And C2 Project Store Control Alignment` parent plan is
 reviewed and accepted. Its bounded E-A lifecycle is implemented/reviewed at application
 `dev`/`origin/dev` commit `daafc349` against the complete 141-migration disposable
-baseline. The E-B plan is created and awaiting
-explicit review; reviewing only E-B is the next cross-lane action. Do not implement or
-begin E-B/E-C from this completed Commerce lifecycle.
+baseline. E-B implementation/review is complete locally without a Commerce schema or
+migration change. E-C implementation/review is also complete locally without a Commerce
+schema/migration or shared deployment; its human UI schedule remains pending. The
+non-executable `1R-F - Project Offer And Artwork Readiness Reconciliation` parent is
+reviewed/accepted, and `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof`
+is the next cross-lane planning candidate. Do not begin proof implementation, `1R-G` or
+artwork/template production implementation from this completed Commerce lifecycle.
+
+`../../../modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`
 
 `../../../modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-a-store-authority-exceptional-intervention-lifecycle-service-alignment-implementation-planning.md`

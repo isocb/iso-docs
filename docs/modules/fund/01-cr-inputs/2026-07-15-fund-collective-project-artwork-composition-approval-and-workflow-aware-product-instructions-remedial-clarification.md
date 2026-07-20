@@ -16,6 +16,16 @@ Authoritative roadmap:
 
 `docs/modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md`
 
+Accepted reconciliation successor:
+
+`docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`
+
+The successor preserves this CR as governed source evidence, confirms the separate
+collective/Standard branches and routes their typed evidence and service/UI work to
+bounded `1R-F-F` through `1R-F-I`. The formerly reserved public Store slice moves to
+`1R-G` so alphabetical identifiers continue to express delivery order. This input still
+does not itself authorise implementation.
+
 Controlling availability and suitability planning:
 
 - `docs/modules/fund/03-slice-planning/2026-06-30-fund-phase-1-slice-1q-event-catalogue-product-availability-and-workflow-suitability-planning.md`
@@ -478,7 +488,7 @@ configuration, approval, release, publication or resume transition.
 ## 15. Roadmap And Planning Impact
 
 This CR requires a named remedial parent/capability in the future roadmap. It must not
-consume or rename reserved `1R-E` C1 Store Management UI, `1R-F` public/C2 Store display or
+consume or rename completed `1R-E` Store control work or `1R-G` public/C2 Store display or
 the Individual Artwork Template lane.
 
 Candidate workstreams, not executable slice identifiers, are:
@@ -497,7 +507,7 @@ required before:
 
 - A7 assumes one FUND workflow can represent every Store Product;
 - `1R-E` finalises C1 readiness/approval controls;
-- `1R-F` finalises public Product presentation;
+- `1R-G` finalises public Product presentation;
 - the Individual Artwork Template implementation relies on a broad `requiresTemplate`
   inference; or
 - production authorisation consumes collective artwork.

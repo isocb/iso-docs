@@ -16,6 +16,16 @@ Authoritative roadmap:
 
 `docs/modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md`
 
+Accepted reconciliation successor:
+
+`docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`
+
+The successor preserves this CR as governed source evidence, accepts the shared
+Individual Artwork selection/capacity contract and routes renderer-dependent capacity
+values to bounded `1R-F-A`. The formerly reserved public Store slice moves to `1R-G` so
+alphabetical identifiers continue to express delivery order. This input still does not
+itself authorise implementation.
+
 Related accepted foundations:
 
 - `1Q-E` Project Product eligibility services;

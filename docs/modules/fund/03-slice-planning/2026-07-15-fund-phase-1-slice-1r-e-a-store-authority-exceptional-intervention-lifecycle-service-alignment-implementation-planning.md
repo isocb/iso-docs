@@ -4,6 +4,10 @@ Date: 2026-07-15
 
 Status: Implemented/reviewed as passed and committed to application `dev`/`origin/dev` at `daafc349`; no shared database deployment
 
+Roadmap renumbering notice: references in this accepted historical record to `1R-F` as
+the public Store/C2 display slice now mean `1R-G`. Current `1R-F` is the later accepted
+Project Offer And Artwork Readiness parent. The original wording is retained for audit.
+
 Implementation confirmation:
 
 `docs/modules/fund/04-implementation-confirmations/2026-07-15-phase-1-slice-1r-e-a-store-authority-exceptional-intervention-lifecycle-service-alignment-implementation-confirmation.md`
