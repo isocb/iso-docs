@@ -1,6 +1,6 @@
 # IsoStack Platform And Module Roadmap Control
 
-Date: 2026-07-16
+Date: 2026-07-20
 
 Status: Active parent roadmap
 
@@ -105,6 +105,26 @@ or retained FUND dependencies as local, unpushed or undeployed to staging.
 Authoritative evidence:
 
 `docs/00-roadmap-control/2026-07-15-commerce-a7-dev-staging-promotion-confirmation.md`
+
+### 2026-07-20 FUND 1R-E Development And Staging Promotion Checkpoint
+
+Application `dev`/`origin-dev` and `staging`/`origin-staging` are aligned at `e3f44b4b`.
+This promotes completed E-A intervention authority and the E-B/E-C C1/C2 Store surfaces.
+Exact dev and staging Security Scans passed, and online staging reported healthy database
+connectivity with RLS enabled on all 11 expected tables. The new C1 Store and retained C2
+application boundaries returned the expected unauthenticated sign-in redirects.
+
+The Render build contract applies committed migrations through `prisma migrate deploy`
+before building. No direct staging migration inventory was queried locally, and the Neon
+development database was not migrated in this turn. Authenticated E-B/E-C human UI testing
+remains scheduled. Application `main`, live deployment and the live database are unchanged.
+
+Authoritative evidence:
+
+`docs/00-roadmap-control/2026-07-20-fund-1r-e-dev-staging-promotion-confirmation.md`
+
+This checkpoint supersedes the E-A local-only and E-B/E-C unpushed deployment wording in
+the older checkpoint and status detail below.
 
 ### 2026-07-15 FUND 1R-E-A Local Completion Checkpoint
 
@@ -381,10 +401,10 @@ and accepted. The bounded `1R-E-A - Store Authority, Exceptional Intervention An
 Lifecycle Service Alignment` lifecycle is implemented/reviewed as passed locally against
 the new 141-migration disposable baseline. The bounded `1R-E-B - C1 Store Portfolio
 Oversight And Exceptional Intervention Surface` implementation/review lifecycle is
-complete and committed on application `dev` at `e3f44b4b` without schema/migration change;
-it remains unpushed/undeployed. `1R-E-C - C2 Project Store Control Surface` is included in
-the same application commit without a migration or shared deployment; its human UI schedule
-remains pending. The non-executable
+complete and promoted through application dev/staging at `e3f44b4b` without an E-B
+schema/migration change. `1R-E-C - C2 Project Store Control Surface` is included in the
+same promoted application commit without an E-C migration; its authenticated human UI
+schedule remains pending. The non-executable
 `1R-F - Project Offer And Artwork Readiness Reconciliation` parent is reviewed/accepted.
 `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single next
 planning candidate; no proof implementation, `1R-G` or artwork/template production

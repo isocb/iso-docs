@@ -2,7 +2,7 @@
 
 Date: 2026-07-15
 
-Status: Implemented, validated and committed on application `dev` at `e3f44b4b` / no shared database or deployment action
+Status: Implemented, validated and promoted through application dev/staging at `e3f44b4b`
 
 Roadmap renumbering notice: this historical record's `1R-F` public Store reference now
 means `1R-G`; current `1R-F` is Project Offer And Artwork Readiness.
@@ -114,8 +114,12 @@ zero failed migrations and was cleaned to zero E-B/E-A/1R-D/A7 reserved residue.
 
 E-B adds no migration. Shared development, staging and production databases were not
 contacted or modified. The implementation was subsequently committed with E-C on local
-application `dev` at `e3f44b4b`. Application `origin/dev` remains at `daafc349` until a
-separately requested push.
+application `dev` at `e3f44b4b`. At that intermediate point, application `origin/dev`
+remained at `daafc349` pending the later requested promotion.
+
+Subsequent controlled promotion on 2026-07-20 aligned application dev/origin-dev and
+staging/origin-staging at `e3f44b4b`. Automated staging and online health gates passed;
+authenticated C1 browser testing remains scheduled rather than claimed.
 
 ## 7. Handoff
 

@@ -199,18 +199,21 @@ The authoritative controls currently establish:
 - Commerce A1 through A5 are complete through their accepted lifecycles;
 - Commerce A6-A through A6-D and A7 are implemented/reviewed on the unchanged
   140-migration baseline;
-- the complete application bundle is promoted through dev/staging at `91e8751c`, with
-  green automated gates, healthy staging/database/RLS evidence and passed human FUND-admin
-  login and pre-existing UI smoke verification;
+- the complete Commerce/A7 foundation bundle was promoted through dev/staging at
+  `91e8751c`, and completed E-A/E-B/E-C is now promoted through dev/staging at `e3f44b4b`,
+  with green automated gates and healthy staging/database/RLS evidence; prior FUND-admin
+  login and pre-existing UI smoke passed, while authenticated E-B/E-C UI testing remains
+  scheduled;
 - application `main`, live deployment and real Stripe configuration remain separate; and
 - FUND `1R-E - C1 Store Oversight And C2 Project Store Control Alignment` is an accepted
   non-executable parent; its bounded E-A lifecycle is implemented/reviewed at application
-  `dev`/`origin/dev` commit `daafc349` on the 141-migration disposable baseline, while the
-  shared development database/staging remain at 140 migrations;
-  the bounded E-B portfolio-oversight implementation/review lifecycle is complete locally
-  with no schema/migration or shared deployment; and
-- `1R-E-C - C2 Project Store Control Surface` is implemented/reviewed locally without a
-  migration or shared deployment; its human UI schedule remains pending.
+  commit `daafc349` on the 141-migration disposable baseline and included in promoted
+  application `e3f44b4b`; the configured development database was not migrated in the
+  promotion turn, and no direct staging migration inventory was queried locally;
+  the bounded E-B portfolio-oversight implementation/review lifecycle is promoted at
+  `e3f44b4b` with no E-B schema/migration; and
+- `1R-E-C - C2 Project Store Control Surface` is promoted at `e3f44b4b` without an E-C
+  migration; its authenticated human UI schedule remains pending.
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is reviewed/accepted as the
   non-executable parent; and
 - `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single next
@@ -880,13 +883,12 @@ The E-A implementation plan is created at:
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-a-store-authority-exceptional-intervention-lifecycle-service-alignment-implementation-planning.md`
 
 Its local implementation and review/test lifecycle passed against the complete
-141-migration disposable baseline with zero residue. Shared dev/staging remain at their
-promoted 140-migration boundary. The bounded `1R-E-B - C1 Store Portfolio Oversight And
+141-migration disposable baseline with zero residue. E-A/E-B/E-C are now promoted through
+dev/staging at `e3f44b4b`. The bounded `1R-E-B - C1 Store Portfolio Oversight And
 Exceptional Intervention Surface` implementation/review lifecycle passed and is committed
-on application `dev` at `e3f44b4b` without a schema or migration change; it remains
-unpushed/undeployed. `1R-E-C - C2 Project Store Control Surface` is included in the same
-application commit without a migration or shared deployment; its human UI schedule is
-recorded in the E-C R1 review. The reconciled
+without an E-B schema or migration change. `1R-E-C - C2 Project Store Control Surface` is
+included in the same promoted application commit without an E-C migration; its
+authenticated human UI schedule is recorded in the E-C R1 review. The reconciled
 `1R-F - Project Offer And Artwork Readiness` parent is reviewed/accepted at:
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`

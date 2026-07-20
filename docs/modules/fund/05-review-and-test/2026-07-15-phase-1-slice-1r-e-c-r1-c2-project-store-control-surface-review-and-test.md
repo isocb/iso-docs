@@ -191,9 +191,9 @@ Stop promotion and record a failure if:
 ## Remaining Manual Status
 
 Human UI stages 1-4 remain pending. E-B/E-C are now committed on local application `dev` at
-`e3f44b4b`, but have not been pushed, promoted or applied to the shared development or
-staging application/database. This is an explicit test obligation, not an implementation
-failure.
+`e3f44b4b` and promoted through dev/staging. Exact staging automated gates, online health,
+database connectivity, RLS and unauthenticated route protection passed. Authenticated
+stages 1-4 remain an explicit test obligation, not an implementation failure.
 
 ## Final Boundary
 

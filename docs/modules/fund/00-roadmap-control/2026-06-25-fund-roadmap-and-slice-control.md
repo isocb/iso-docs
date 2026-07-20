@@ -68,8 +68,8 @@ Current application repository state:
 
 ```text
 working branch: dev
-local dev/origin dev: daafc349
-local staging/origin staging: 91e8751c
+local dev/origin dev: e3f44b4b
+local staging/origin staging: e3f44b4b
 local main/origin main: ea4e6193 (unchanged)
 IsoDocs main: E-B/E-C lifecycle and 1R-F/refinement reconciliation included in this documentation baseline
 ```
@@ -78,32 +78,35 @@ Current consolidated delivery state:
 
 - Commerce `A1` through `A7`, FUND `1R-C1` through `1R-D` and Project Intake/creation
   `1P-G-R3-A` through `R3-D` are included in the promoted application ancestry;
-- application `dev` and `staging` are aligned at `91e8751c`;
+- application `dev` and `staging` are aligned at `e3f44b4b`;
 - the Neon development database is current at 140 applied migrations with no failed
   migration;
 - dev and staging security/type/schema gates passed;
 - the staging application health check passed with its database connected and RLS enabled
   on all 11 expected tables;
-- human FUND administrator login and pre-existing UI smoke testing passed; and
+- prior human FUND administrator login and pre-existing UI smoke testing passed; E-B/E-C
+  authenticated human UI testing remains scheduled; and
 - application `main`, live deployment and the live database remain unchanged.
 
-Local completion beyond that shared checkpoint:
+Current E-A/E-B/E-C promotion state:
 
 - FUND `1R-E-A - Store Authority, Exceptional Intervention And Lifecycle Service
-  Alignment` is implemented and independently reviewed as passed at application
-  `dev`/`origin/dev` commit `daafc349`;
+  Alignment` is implemented and independently reviewed as passed at application commit
+  `daafc349`, now included in promoted application `e3f44b4b`;
 - its one bounded migration passed representative 140-to-141 and full fresh 141-migration
   disposable lifecycles with zero failed migrations and zero test residue;
 - preflight refusal, constraints, intervention/service authority, Event envelope,
   effective-state, concurrency, rollback, 1R-D/A7 regressions and production build passed;
-- GitHub `Security Scan` run `29417617533` passed for exact application commit `daafc349`;
-- shared development and staging remain at `91e8751c` with 140 migrations; and
+- exact dev/staging Security Scan runs `29729448020` and `29729620299` passed for
+  application `e3f44b4b`;
+- online staging is healthy with its database connected and RLS enabled on 11/11 expected
+  tables; no direct staging migration inventory was queried locally;
 - bounded `1R-E-B - C1 Store Portfolio Oversight And Exceptional Intervention Surface`
-  implementation, disposable validation and lifecycle records are complete locally with
-  no schema/migration or shared deployment;
+  implementation, disposable validation and lifecycle records are promoted at `e3f44b4b`
+  with no E-B schema/migration;
 - bounded `1R-E-C - C2 Project Store Control Surface` planning, implementation, automated
-  review and lifecycle records are complete locally with no schema/migration or shared
-  deployment; human UI stages remain scheduled in its R1 record; and
+  review and lifecycle records are promoted at `e3f44b4b` with no E-C schema/migration;
+  human UI stages remain scheduled in its R1 record; and
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is reviewed and accepted as
   the non-executable successor to the three governed CRs; and
 - `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single next
@@ -115,7 +118,7 @@ Local completion beyond that shared checkpoint:
 
 Authoritative promotion evidence:
 
-`docs/00-roadmap-control/2026-07-15-commerce-a7-dev-staging-promotion-confirmation.md`
+`docs/00-roadmap-control/2026-07-20-fund-1r-e-dev-staging-promotion-confirmation.md`
 
 Committed development schema foundation:
 
@@ -233,6 +236,28 @@ Full evidence is recorded in:
 
 `docs/00-roadmap-control/2026-07-15-commerce-a7-dev-staging-promotion-confirmation.md`
 
+## 2.3 Controlled FUND 1R-E Development And Staging Promotion — 2026-07-20
+
+This subsection supersedes 2.2 for current application dev/staging branch state.
+
+```text
+Application dev/origin-dev:         e3f44b4b
+Application staging/origin-staging: e3f44b4b
+Application main/origin-main:       ea4e6193 (unchanged)
+Neon development migrations:        140 previously recorded; not changed this turn
+Staging health:                      healthy; database connected; RLS 11/11
+E-B/E-C authenticated human UI:      pending scheduled review
+```
+
+Exact dev and staging Security Scans passed. The Render build contract runs committed
+Prisma migrations before application build; no direct staging migration inventory was
+queried locally. Online health and unauthenticated C1/C2 route-protection checks passed.
+Production remains untouched.
+
+Full evidence is recorded in:
+
+`docs/00-roadmap-control/2026-07-20-fund-1r-e-dev-staging-promotion-confirmation.md`
+
 ## 3. Current Slice Status
 
 | Slice | Lane | Status | Controlling outcome |
@@ -260,20 +285,23 @@ Full evidence is recorded in:
 | `COMMERCE-A6-A` through `A6-D` | Commerce | Implemented/reviewed; included in dev/staging promotion `91e8751c` | Stripe Connect evidence, onboarding, Checkout adapter and verified webhook/payment/refund reconciliation boundaries |
 | `COMMERCE-A7` | Commerce/FUND integration | Implemented/reviewed; dev/staging promotion and smoke gate complete at `91e8751c` | Dormant internal STRIPE_ONLINE integration from an authoritative FUND offer to generic Commerce and typed FUND context |
 | `1R-E` | FUND Store | Parent reviewed/accepted; non-executable | C1 Store oversight, C2 normal Project Store control, exceptional C1 intervention and service-authority alignment split into bounded E-A/E-B/E-C lifecycles |
-| `1R-E-A` | FUND Store | Implemented/reviewed at application `dev`/`origin/dev` `daafc349`; shared database/staging undeployed; disposable database 141/0 | Typed C1 intervention evidence, C2 Project/Store authority, Event envelope guards and one effective Store-state/A7 availability policy; no UI |
-| `1R-E-B` | FUND Store | Implemented/reviewed and committed on application `dev` at `e3f44b4b`; unpushed/undeployed; no migration | C1 Store portfolio oversight and exceptional intervention surface consuming E-A authority |
-| `1R-E-C` | FUND Store | Implemented/reviewed and committed on application `dev` at `e3f44b4b`; unpushed/undeployed; no migration; human UI schedule pending | C2 Project Store control surface consuming E-A authority, bounded C2 commission acceptance and normal Project/Store control |
+| `1R-E-A` | FUND Store | Implemented/reviewed; included in dev/staging promotion `e3f44b4b`; disposable database 141/0 | Typed C1 intervention evidence, C2 Project/Store authority, Event envelope guards and one effective Store-state/A7 availability policy; no UI |
+| `1R-E-B` | FUND Store | Implemented/reviewed; promoted through dev/staging at `e3f44b4b`; no migration; authenticated UI gate pending | C1 Store portfolio oversight and exceptional intervention surface consuming E-A authority |
+| `1R-E-C` | FUND Store | Implemented/reviewed; promoted through dev/staging at `e3f44b4b`; no migration; authenticated UI schedule pending | C2 Project Store control surface consuming E-A authority, bounded C2 commission acceptance and normal Project/Store control |
 
 `1R-C1` through `1R-D` and `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D` must not be rerun as pending work. No next
 implementation is authorised merely because the preceding lifecycle completed.
 
 ## 4. Current Sequence And Dependency Control
 
-Development promotion checkpoint: application `dev` is aligned to `origin/dev` at
-`91e8751c`, `staging` is aligned to the same commit and all 140 migrations are applied to
-Neon development. Staging health and human FUND-admin/pre-existing-UI smoke verification
-passed. Production remains untouched. Authoritative evidence is recorded at
-`docs/00-roadmap-control/2026-07-15-commerce-a7-dev-staging-promotion-confirmation.md`.
+Current promotion checkpoint: application `dev`/`origin/dev` and
+`staging`/`origin/staging` are aligned at `e3f44b4b`. The configured Neon development
+database remains at its separately recorded 140-migration boundary. The Render staging
+build contract ran committed migrations before build; no direct staging migration inventory
+was queried locally. Exact dev/staging automated gates and online staging
+health/database/RLS checks passed. E-B/E-C authenticated human UI testing remains
+scheduled. Production remains untouched. Authoritative evidence is recorded at
+`docs/00-roadmap-control/2026-07-20-fund-1r-e-dev-staging-promotion-confirmation.md`.
 
 Older statements below describing C1-C6/R3-D as unpushed or undeployed to the development
 database are superseded by this checkpoint.
@@ -294,11 +322,11 @@ COMMERCE-A1 (complete on dev)
   -> COMMERCE-A7 FUND consumer integration implemented/reviewed at `598305ce`
      and promoted through dev/staging at `91e8751c`
   -> FUND 1R-E C1 Store Oversight And C2 Project Store Control Alignment parent accepted
-  -> FUND 1R-E-A Store authority/intervention service implemented/reviewed locally
+  -> FUND 1R-E-A Store authority/intervention service implemented/reviewed and promoted
      -> FUND 1R-E-B C1 Store Portfolio Oversight And Exceptional Intervention Surface
-        implemented/reviewed as passed locally; no shared deployment
+        implemented/reviewed and promoted at e3f44b4b; authenticated UI gate pending
      -> FUND 1R-E-C C2 Project Store Control Surface
-        implemented/reviewed as passed locally; human UI schedule pending
+        implemented/reviewed and promoted at e3f44b4b; human UI schedule pending
   -> FUND 1R-F Project Offer And Artwork Readiness Reconciliation parent accepted
      -> FUND 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
         single next planning candidate; planning only
@@ -338,9 +366,9 @@ Rules:
 - `COMMERCE-A6-A` through `COMMERCE-A7` are implemented/reviewed and included in the
   completed dev/staging promotion at `91e8751c`;
 - FUND `1R-E - C1 Store Oversight And C2 Project Store Control Alignment` is an accepted
-  non-executable parent; bounded E-A is implemented/reviewed locally on the 141-migration
-  disposable baseline; E-B and E-C implementation/review are complete locally without a
-  migration; E-C human UI stages remain pending;
+  non-executable parent; E-A/E-B/E-C are implemented/reviewed and promoted through
+  dev/staging at `e3f44b4b`; E-B/E-C add no migration and their authenticated human UI
+  stages remain pending;
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is an accepted
   non-executable parent at
   `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`;
@@ -703,11 +731,11 @@ and its local implementation/review lifecycle has passed against the 141-migrati
 disposable baseline with zero residue. The bounded `1R-E-B - C1 Store Portfolio Oversight
 And Exceptional Intervention Surface` implementation/review lifecycle passed locally at
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-b-c1-store-portfolio-oversight-exceptional-intervention-surface-implementation-planning.md`.
-It adds no migration and is included in application `dev` commit `e3f44b4b`; it has not
-been pushed or deployed. The bounded `1R-E-C - C2 Project Store Control Surface` plan and
-implementation/review lifecycle are included in the same application commit
+It adds no migration and is promoted through dev/staging in application commit `e3f44b4b`.
+The bounded `1R-E-C - C2 Project Store Control Surface` plan and implementation/review
+lifecycle are promoted in the same application commit
 at `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-c-c2-project-store-control-surface-implementation-planning.md`.
-E-C adds no migration or shared deployment; its human UI schedule remains pending. The
+E-C adds no migration; its authenticated human UI schedule remains pending. The
 non-executable `1R-F - Project Offer And Artwork Readiness Reconciliation` parent is
 reviewed/accepted and records the separate Individual, collective and Standard readiness
 branches. `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the

@@ -30,15 +30,13 @@ do not begin `1R-F-B` through `1R-F-I`, `1R-G` or another slice.
 ```
 
 Commerce A1-A7 and the retained FUND C1-C6/1R-D/R3 foundations are implemented/reviewed.
-The application bundle is promoted through dev/staging at `91e8751c`; development has all
-140 migrations applied, automated dev/staging gates passed, staging is healthy and human
-FUND-admin login plus pre-existing UI smoke verification passed. Production remains
-unchanged. The `1R-E` parent is accepted and E-A is implemented/reviewed at application
-`dev`/`origin/dev` commit `daafc349` against the complete 141-migration disposable baseline
-with zero residue. The shared development database/staging remain at the promoted
-140-migration boundary. E-B and E-C implementation/review passed without a migration and
-are committed on application `dev` at `e3f44b4b`; they remain unpushed/undeployed. E-C
-human UI stages are scheduled in its R1 record. The non-executable `1R-F` parent is
+The application bundle through E-A/E-B/E-C is promoted through dev/staging at `e3f44b4b`.
+Exact dev/staging automated gates passed and online staging is healthy with its database
+connected and RLS enabled on 11/11 expected tables. Production remains unchanged. E-A was
+validated against the complete 141-migration disposable baseline with zero residue; the
+Render staging build contract runs committed migrations through `migrate deploy`, but no
+direct staging migration inventory was queried locally. E-B and E-C add no migration. E-C
+authenticated human UI stages are scheduled in its R1 record. The non-executable `1R-F` parent is
 reviewed/accepted and `1R-F-A` proof planning
 is the single next candidate.
 

@@ -1,7 +1,7 @@
 # FUND Phase 1 Slice 1R-E-C - C2 Project Store Control Surface Implementation Confirmation
 
 Date: 2026-07-15
-Status: Implemented and committed on application `dev` at `e3f44b4b`; automated review passed; human UI schedule remains pending
+Status: Implemented and promoted through application dev/staging at `e3f44b4b`; automated review passed; human UI schedule remains pending
 Application baseline: committed E-A baseline `daafc349`; E-B/E-C application commit `e3f44b4b`
 Migration baseline: unchanged complete 141-migration history
 
@@ -90,6 +90,10 @@ The later requested commit records E-B/E-C on local application `dev` at `e3f44b
 push or deployment was performed. The 141st E-A migration must exist on a target environment
 before this UI is promoted there. Human UI testing remains explicitly scheduled in the E-C
 review/test record rather than being claimed as complete.
+
+Subsequent controlled promotion on 2026-07-20 aligned application dev/origin-dev and
+staging/origin-staging at `e3f44b4b`. Exact staging automated and online health gates
+passed. Authenticated C2 interaction testing remains scheduled in the R1 record.
 
 ## Stop Boundary
 
