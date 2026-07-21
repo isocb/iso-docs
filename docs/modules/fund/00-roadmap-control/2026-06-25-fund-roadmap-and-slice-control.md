@@ -110,10 +110,12 @@ Current E-A/E-B/E-C promotion state:
   instantiate the Store/default eligible Product set, so E-B/E-C human acceptance is blocked
   rather than failed;
 - governed `1R-E-D - Default Project Store Instantiation And Eligible Product
-  Reconciliation` planning is created and awaiting explicit review/acceptance; and
+  Reconciliation` planning is reviewed/accepted; implementation has not started and requires
+  no schema migration; and
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is reviewed and accepted as
   the non-executable successor to the three governed CRs; and
-- `1R-E-D` is the single next review candidate and must complete before `1R-F-A`. No E-D,
+- `1R-E-D` is the single next implementation candidate and must complete before `1R-F-A`. No
+  E-D implementation has started, and no
   renderer proof, `1R-F-B` through `1R-F-I`, `1R-G` or artwork/template production
   implementation is authorised.
 - the 2026-07-20 refinement reconciliation is accepted as subordinate placement control:
@@ -292,7 +294,7 @@ Full evidence is recorded in:
 | `1R-E-A` | FUND Store | Implemented/reviewed; included in dev/staging promotion `e3f44b4b`; disposable database 141/0 | Typed C1 intervention evidence, C2 Project/Store authority, Event envelope guards and one effective Store-state/A7 availability policy; no UI |
 | `1R-E-B` | FUND Store | Implemented/reviewed; promoted through dev/staging at `e3f44b4b`; automated evidence passed; human acceptance blocked pending E-D | C1 Store portfolio oversight and exceptional intervention surface consuming E-A authority |
 | `1R-E-C` | FUND Store | Implemented/reviewed; promoted through dev/staging at `e3f44b4b`; automated evidence passed; human acceptance blocked pending E-D | C2 Project Store control surface consuming E-A authority, bounded C2 commission acceptance and normal Project/Store control |
-| `1R-E-D` | FUND Store | Planning created; awaiting explicit review/acceptance; no implementation authorised | Mandatory one DRAFT Store per Project, all-eligible-minus-C2-exclusions defaults and real-workflow human testability |
+| `1R-E-D` | FUND Store | Planning reviewed/accepted 2026-07-21; implementation not started; no migration planned | Mandatory one DRAFT Store per Project, all-eligible-minus-C2-exclusions defaults, atomic C2 activation/publication intent and real-workflow human testability |
 
 `1R-C1` through `1R-D` and `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D` must not be rerun as pending work. No next
 implementation is authorised merely because the preceding lifecycle completed.
@@ -334,7 +336,7 @@ COMMERCE-A1 (complete on dev)
      -> FUND 1R-E-C C2 Project Store Control Surface
         implemented/reviewed and promoted at e3f44b4b; human acceptance blocked pending E-D
      -> FUND 1R-E-D Default Project Store Instantiation And Eligible Product Reconciliation
-        planning created; single next review candidate; implementation not authorised
+        planning reviewed/accepted; single next implementation candidate; not started
   -> FUND 1R-F Project Offer And Artwork Readiness Reconciliation parent accepted
      -> FUND 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
         follows accepted/completed E-D; not currently authorised
@@ -378,7 +380,7 @@ Rules:
   dev/staging at `e3f44b4b`; E-B/E-C automated evidence passes but human acceptance is
   blocked pending corrective E-D;
 - `1R-E-D - Default Project Store Instantiation And Eligible Product Reconciliation` is
-  planned and awaiting explicit review/acceptance; no implementation is authorised;
+  reviewed/accepted; implementation has not started and it is the single next candidate;
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is an accepted
   non-executable parent at
   `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`;
@@ -751,12 +753,12 @@ set. E-B/E-C human acceptance is therefore blocked, not failed. The governed E-D
 `docs/modules/fund/01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md`
 and the bounded E-D plan is at
 `docs/modules/fund/03-slice-planning/2026-07-21-fund-phase-1-slice-1r-e-d-default-project-store-instantiation-eligible-product-reconciliation-implementation-planning.md`.
-E-D is the single next review candidate. The
+E-D is reviewed/accepted and is the single next implementation candidate. The
 non-executable `1R-F - Project Offer And Artwork Readiness Reconciliation` parent is
 reviewed/accepted and records the separate Individual, collective and Standard readiness
 branches. `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` follows E-D;
-no E-D implementation, proof implementation, `1R-G` or artwork/template production
-implementation is authorised.
+no E-D implementation has started, and no proof implementation, `1R-G` or artwork/template
+production implementation is authorised.
 ```
 
 ## 10. Roadmap Maintenance Rule

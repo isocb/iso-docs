@@ -24,9 +24,10 @@ Most recently completed implementation lifecycle:
 Current integrated critical-path action:
 
 ```text
-Review only `1R-E-D - Default Project Store Instantiation And Eligible Product
-Reconciliation` planning. Do not implement schema/application code and do not begin
-`1R-F-A`, `1R-G` or another slice.
+Implement only accepted `1R-E-D - Default Project Store Instantiation And Eligible Product
+Reconciliation` from isolated FUND application/documentation worktrees. Add no Prisma
+migration, shared-environment change or unrelated LMSPro work, and do not begin `1R-F-A`,
+`1R-G` or another slice.
 ```
 
 Commerce A1-A7 and the retained FUND C1-C6/1R-D/R3 foundations are implemented/reviewed.
@@ -38,8 +39,8 @@ Render staging build contract runs committed migrations through `migrate deploy`
 direct staging migration inventory was queried locally. E-B and E-C add no migration.
 Post-promotion review found their human acceptance blocked because canonical Project creation
 does not create the mandatory Store/default eligible Product set. The corrective E-D plan is
-created and awaiting explicit review/acceptance. The non-executable `1R-F` parent remains
-accepted; `1R-F-A` follows E-D.
+reviewed/accepted and is the single next implementation candidate. The non-executable `1R-F`
+parent remains accepted; `1R-F-A` follows E-D.
 
 This current status supersedes older per-slice deployment wording retained below for
 historical context.
@@ -68,7 +69,7 @@ Completed E-C implementation plan:
 
 `2026-07-15-fund-phase-1-slice-1r-e-c-c2-project-store-control-surface-implementation-planning.md`
 
-Current E-D review candidate:
+Current accepted E-D implementation candidate:
 
 `2026-07-21-fund-phase-1-slice-1r-e-d-default-project-store-instantiation-eligible-product-reconciliation-implementation-planning.md`
 

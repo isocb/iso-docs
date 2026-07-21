@@ -115,8 +115,10 @@ the Store/default eligible Product set.
 
 The E-A/B/C technical and automated evidence remains passed. Human acceptance is blocked,
 not failed. Governed `1R-E-D - Default Project Store Instantiation And Eligible Product
-Reconciliation` planning is created and awaiting explicit review/acceptance as the single
-next candidate before `1R-F-A`. No E-D implementation is authorised.
+Reconciliation` planning was reviewed and accepted on 2026-07-21 as the single next
+implementation candidate before `1R-F-A`. Review confirmed that the existing one-Store-per-
+Project key is sufficient and E-D adds no Prisma migration. E-D implementation has not
+started.
 
 Authoritative records:
 
@@ -291,7 +293,7 @@ COMMERCE-A1 complete
      -> FUND 1R-E-C C2 Project Store Control Surface
         implemented/reviewed/promoted; human acceptance blocked pending E-D
      -> FUND 1R-E-D Default Project Store Instantiation And Eligible Product Reconciliation
-        planning created; single next review candidate; implementation not authorised
+        planning reviewed/accepted; single next implementation candidate; not started
   -> FUND 1R-F Project Offer And Artwork Readiness Reconciliation parent accepted
      -> FUND 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
         follows E-D; planning/implementation not currently authorised
@@ -426,7 +428,7 @@ schema/migration change. `1R-E-C - C2 Project Store Control Surface` is included
 same promoted application commit without an E-C migration; its authenticated human UI
 acceptance is blocked by the missing Project-to-Store/default-Product workflow. The bounded
 `1R-E-D - Default Project Store Instantiation And Eligible Product Reconciliation` plan is
-created and awaiting explicit review/acceptance as the single next candidate. The non-executable
+reviewed/accepted as the single next implementation candidate. The non-executable
 `1R-F - Project Offer And Artwork Readiness Reconciliation` parent is reviewed/accepted.
 `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` follows E-D; no E-D,
 proof, `1R-G` or artwork/template production implementation is authorised.

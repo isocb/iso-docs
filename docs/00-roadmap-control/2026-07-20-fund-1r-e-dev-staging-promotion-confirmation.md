@@ -132,5 +132,6 @@ Application `dev` and `origin/dev` match, and the exact same commit is promoted 
 `staging`/`origin/staging`. Automated staging acceptance and online health checks pass.
 
 Application `main`, live deployment and the live database remain unchanged. The subsequent
-E-D plan is now the single next review candidate before `1R-F-A`; this promotion authorises
-neither implementation.
+E-D plan was separately reviewed/accepted on 2026-07-21 and is now the single next
+implementation candidate before `1R-F-A`; this earlier promotion itself authorised no E-D
+implementation.

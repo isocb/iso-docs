@@ -215,8 +215,10 @@ The authoritative controls currently establish:
 - `1R-E-C - C2 Project Store Control Surface` is promoted at `e3f44b4b` without an E-C
   migration; its automated evidence passes but human acceptance is blocked pending E-D.
 - `1R-E-D - Default Project Store Instantiation And Eligible Product Reconciliation` is
-  planned and awaiting explicit review/acceptance as the mandatory bridge from Project
-  creation to the E-B/E-C surfaces.
+  reviewed/accepted as the mandatory bridge from Project creation to the E-B/E-C surfaces.
+  It uses the existing 141-migration schema, retains default-all rather than silently
+  truncating future Individual Artwork selections and is the single next implementation
+  candidate.
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is reviewed/accepted as the
   non-executable parent; and
 - `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` follows E-D.
@@ -761,7 +763,7 @@ A6-D lifecycle complete
 -> 1R-E-C C2 Project Store control surface
    implemented/reviewed/promoted; human acceptance blocked pending E-D
 -> 1R-E-D Default Project Store instantiation and eligible Product reconciliation
-   single next review candidate; implementation not authorised
+   reviewed/accepted; single next implementation candidate; implementation not started
 -> 1R-F workflow-conditional Project Offer And Artwork Readiness parent accepted
 -> 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
    follows E-D; proof implementation not authorised
