@@ -2,9 +2,9 @@
 
 Date: 2026-07-21
 Module: LMSPro / SeasonPro shared communications
-Technical review status: PASS
-Deployed human UI smoke status: PENDING
-Promotion status: Not recommended; R8-A3 planning remains closed
+Technical review status: Historical PASS for the superseded implementation
+Deployed human UI smoke status: WITHDRAWN; replaced by R8-A2R gate
+Promotion status: Superseded before promotion; R8-A3 planning remains closed
 
 Planning source:
 
@@ -13,6 +13,10 @@ Planning source:
 Implementation confirmation:
 
 `docs/modules/lmspro/04-implementation-confirmations/2026-07-21-lmspro-remediation-slice-r8-a2-attachment-persistence-drafts-and-fail-closed-preflight-confirmation.md`
+
+> Correction: do not perform this record's ClamAV, EICAR, Office or ZIP smoke steps. The
+> R8-A2R review/test record supplies the controlling revised gate after mandatory scanning
+> was withdrawn and the file allowlist narrowed before promotion.
 
 ## Technical Review Findings
 

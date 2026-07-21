@@ -97,10 +97,11 @@ Current posture:
 
 ```text
 R8-A is the active accepted LMSPro remediation lane.
-R8-A1 is complete on the remediation branch. R8-A2 is implemented and technically verified
-on that branch with the accepted broad file/malware/shared-link policy, private
-Render-hosted ClamAV direction and independent limits of three uploaded attachments and
-three external links. R8-A2 is paused at its required deployed human UI smoke-test gate.
+R8-A1 is complete on the remediation branch. The technically verified R8-A2 broad-file and
+ClamAV implementation was superseded before promotion after cost/benefit and risk/benefit
+review. R8-A2R is technically complete on the remediation branch: three PDF/image/text
+uploads in private R2, 10 MB cumulative, three separate HTTPS links and no malware-scanning
+service. R8-A3 remains closed until the revised deployed human UI smoke is accepted.
 ```
 
 An urgent communications-integrity candidate now precedes optional feature implementation:
@@ -146,7 +147,7 @@ Accepted controlling plan:
 Status:
 
 ```text
-Accepted 2026-07-21; R8-A1 completed; R8-A2 technically complete on the remediation branch and awaiting deployed human UI smoke confirmation.
+Accepted 2026-07-21; R8-A1 completed; R8-A2 superseded before promotion in its broad-file/ClamAV portions; R8-A2R is technically complete and awaiting revised human smoke.
 ```
 
 Implementation baselines:
@@ -181,16 +182,13 @@ one or more persisted attachments
 -> short-lived signed path to each validated private object
 ```
 
-R8-A2 also retains broad Office/image/ZIP support subject to actual-type validation and a
-mandatory `CLEAN` malware result. C1 may provide a controlled HTTPS shared-document link,
-which is rendered as an externally hosted link and is not fetched, copied, scanned or
-permission-tested by SeasonPro. The compose UI must explicitly state and record that the C1
-SeasonPro Administrator is responsible for the integrity, suitability and sharing
-permissions of supplied files and links. This notice does not replace malware scanning for
-SeasonPro-managed uploads. Links alone do not select the attachment job: a communication
-with no managed binary attachment continues to use the proven batch route. Malware scanning
-will use a dedicated private ClamAV service on Render. The three uploaded attachments and
-external-link allowance are independent; three external links is the accepted initial cap.
+R8-A2R narrows managed uploads to PDF, JPEG/JPG, PNG, GIF, WebP, UTF-8 TXT and CSV. Office,
+ZIP/archive, executable and script formats are refused. SeasonPro validates type, size,
+private R2 readability and checksum but does not malware-scan uploaded files. C1 may also
+provide up to three labelled HTTPS shared-document links, which SeasonPro does not fetch,
+copy, scan or permission-test. The UI must state and record that the C1 SeasonPro
+Administrator is responsible for file/link integrity, suitability and sharing permissions.
+Links alone do not select the attachment job and continue through the proven batch route.
 
 R8-A must support approximately 300 attachment recipients through a rate-controlled,
 resumable worker. It must not hold the C1 browser request open while sending all messages.
@@ -212,8 +210,8 @@ accepted.
 Next action:
 
 ```text
-Deploy the R8-A2 branch and record the required human UI, private R2 and private ClamAV smoke
-results. Do not create R8-A3 planning until that evidence is reported and accepted.
+Complete R8-A2R technical evidence, then deploy and record its revised human UI/private-R2
+smoke results. Do not create R8-A3 planning until that evidence is reported and accepted.
 ```
 
 R8-A2 planning:
@@ -222,12 +220,26 @@ R8-A2 planning:
 03-slice-planning/2026-07-21-lmspro-remediation-slice-r8-a2-attachment-persistence-drafts-and-fail-closed-preflight-planning.md
 ```
 
-The dedicated private ClamAV service on Render is accepted so potentially sensitive Club
-documents remain inside the controlled environment. Its paid-service and operational
-resource/signature-health ownership are therefore accepted R8-A2 implications. The
-three-link cap is accepted and implemented independently from the three-upload/10 MB
-allowance. R8-A2 is now paused for its deployed human UI smoke-test result before R8-A3
-planning may be created.
+The prior dedicated private ClamAV direction is withdrawn and must not be configured. The
+three-link cap remains independent from the three-upload/10 MB allowance. R8-A2R preserves
+private R2 and fail-closed evidence while narrowing file types and explicitly disclosing
+that uploaded files are not malware-scanned.
+
+R8-A2R corrective planning:
+
+```text
+03-slice-planning/2026-07-21-lmspro-remediation-slice-r8-a2r-bounded-unscanned-attachment-policy-correction-planning.md
+```
+
+R8-A2R completion evidence:
+
+```text
+implementation:
+04-implementation-confirmations/2026-07-21-lmspro-remediation-slice-r8-a2r-bounded-unscanned-attachment-policy-correction-confirmation.md
+
+review/test:
+05-review-and-test/2026-07-21-lmspro-remediation-slice-r8-a2r-bounded-unscanned-attachment-policy-correction-review-and-test.md
+```
 
 R8-A2 completion evidence:
 
@@ -412,14 +424,14 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Slice
 
 ```text
-R8-A2 - Attachment Persistence, Drafts And Fail-Closed Preflight (deployed human smoke gate)
+R8-A2R - Bounded Unscanned Attachment Policy Correction (revised deployed human smoke gate)
 ```
 
 Goal:
 
-Run and report the accepted R8-A2 deployed human UI smoke script against the configured
-private R2 bucket and private ClamAV service. Keep R8-A3 planning closed until the result is
-recorded and accepted.
+Deploy the technically complete R8-A2R correction and run its revised human UI smoke script
+against the configured private R2 bucket. No ClamAV service is required. Keep R8-A3 planning
+closed until the result is recorded and accepted.
 
 ## Fresh Chat Prompt
 
@@ -428,17 +440,16 @@ Proceed with LMSPro / SeasonPro remediation planning from:
 isodocs/docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
 
 Next step:
-Review the bounded R8-A2 planning slice:
-isodocs/docs/modules/lmspro/03-slice-planning/2026-07-21-lmspro-remediation-slice-r8-a2-attachment-persistence-drafts-and-fail-closed-preflight-planning.md
+Review the bounded R8-A2R corrective planning slice:
+isodocs/docs/modules/lmspro/03-slice-planning/2026-07-21-lmspro-remediation-slice-r8-a2r-bounded-unscanned-attachment-policy-correction-planning.md
 
 Goal:
-Deploy and smoke-test the technically complete R8-A2 implementation. Confirm exact draft
-resource persistence, independent three-upload/10 MB and three-link limits, private R2
-readability, private ClamAV clean/infected/unavailable behaviour, explicit C1 responsibility
-acknowledgement and the interim attachment-send refusal.
+Complete, deploy and smoke-test R8-A2R. Confirm exact draft persistence, PDF/image/text-only
+validation, independent three-upload/10 MB and three-link limits, private R2 readability,
+explicit unscanned-file C1 responsibility acknowledgement and the interim send refusal.
 
-Do not create R8-A3 planning until R8-A2 implementation and technical review are complete and
-the business/testing team has reported the required human UI smoke result. Do not broaden the
+Do not create R8-A3 planning until R8-A2R implementation and technical review are complete
+and the business/testing team has reported the required human UI smoke result. Do not broaden the
 batch sender, add key-date sequence attachments, change recipient/cohort rules, automatically
 resend historic messages, alter season automation or change FUND logic.
 ```

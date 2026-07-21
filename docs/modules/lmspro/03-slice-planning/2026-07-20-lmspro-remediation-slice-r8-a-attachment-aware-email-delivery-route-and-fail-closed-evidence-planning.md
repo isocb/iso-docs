@@ -8,6 +8,15 @@ Type: High-priority communications integrity remediation
 Related CR input: `docs/modules/lmspro/01-cr-inputs/2026-07-20-lmspro-cr-attachment-aware-email-delivery-and-fail-closed-evidence-remediation-input.md`
 Prior foundation: LMSPro remediation slice R4-B communications email and announcements workflow
 
+Corrective policy amendment:
+
+`docs/modules/lmspro/03-slice-planning/2026-07-21-lmspro-remediation-slice-r8-a2r-bounded-unscanned-attachment-policy-correction-planning.md`
+
+> R8-A2R supersedes the broad Office/ZIP and mandatory ClamAV decisions in this parent plan.
+> The original wording remains historical decision evidence. The controlling current policy
+> is three uploaded PDF/image/text files in private R2, 10 MB cumulative, three separate
+> HTTPS links and explicit disclosure that SeasonPro does not malware-scan the resources.
+
 ## 1. Purpose
 
 R8-A controls the remediation of a live silent failure in which a C1 League Administrator
@@ -372,6 +381,8 @@ These are settled application limits for R8-A. Provider and worker testing must 
 that the accepted envelope remains safely below the complete-email provider limit.
 
 Accepted security and supporting-link amendment, 2026-07-21:
+
+> Superseded before promotion by R8-A2R. Retained below as historical context only.
 
 - retain a broad, explicit allowlist covering ordinary Office documents, approved images,
   PDF, text/CSV and ZIP;
@@ -775,8 +786,8 @@ one or more attachments can only select ATTACHMENT_JOB/ordinary sender
 
 ### R8-A2 - Attachment Persistence, Drafts And Fail-Closed Preflight
 
-Status: Implemented and technically verified on the dedicated remediation branch; awaiting
-the required deployed human UI smoke-test result before R8-A3 planning.
+Status: Implemented and technically verified, then superseded before promotion in its
+broad-file and ClamAV portions by R8-A2R.
 
 - make upload failure visible and blocking;
 - return/hydrate durable attachments;
@@ -789,6 +800,24 @@ Exit gate:
 
 ```text
 intended = persisted = validated = readable
+```
+
+### R8-A2R - Bounded Unscanned Attachment Policy Correction
+
+Status: Technically complete on the dedicated remediation branch; revised deployed human UI
+smoke pending before R8-A3 planning.
+
+- narrow files to PDF, JPEG/JPG, PNG, GIF, WebP, UTF-8 TXT and CSV;
+- remove Office, ZIP/archive and malware-scanner support;
+- retain private R2, readback, SHA-256 and exact draft evidence;
+- revise C1 disclosure and acknowledgement under a new notice version;
+- retain three uploaded files/10 MB and three separate HTTPS links; and
+- repeat technical verification and the revised human UI smoke gate.
+
+Exit gate:
+
+```text
+current-policy uploads are private, type/size/checksum validated and explicitly unscanned
 ```
 
 ### R8-A3 - Durable Job, Rate Limiter And Retry
@@ -1125,16 +1154,16 @@ Accepted on 2026-07-21:
 4. Cumulative attachment size may not exceed 10 MB.
 5. The initial worker throttle is three ordinary provider requests per second, while runtime
    handling must respect stricter provider headers or account limits.
-6. Broad Office/image/ZIP support is retained and every managed upload requires a successful
-   malware result of `CLEAN`.
+6. Superseded by R8-A2R: managed uploads are limited to PDF, JPEG/JPG, PNG, GIF, WebP,
+   UTF-8 TXT and CSV and are explicitly not malware-scanned.
 7. Controlled HTTPS shared-document links are supported as externally hosted links, not as
    provider attachments or SeasonPro-fetched content.
 8. Links alone do not select the attachment job; a communication with no managed binary
    attachment continues to use the no-attachment batch route.
 9. The UI must require the explicit C1 SeasonPro Administrator responsibility
    acknowledgement for supplied files and links.
-10. Malware scanning uses a dedicated private ClamAV service on Render; an external scanning
-    provider is not the initial direction.
+10. Superseded by R8-A2R: no ClamAV or external scanning service is required for this route;
+    the narrower allowlist and explicit C1 responsibility notice control the accepted risk.
 11. The three uploaded attachments and external-link allowance are independent limits.
 
 The following decisions should be resolved technically inside the relevant bounded slice

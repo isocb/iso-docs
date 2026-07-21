@@ -3,7 +3,7 @@
 Date: 2026-07-20
 Module: LMSPro / SeasonPro
 Source: Live C1 League Administrator ad-hoc email incident and follow-on code/Resend contract review
-Status: Accepted as input to controlling remediation plan R8-A on 2026-07-21
+Status: Accepted as input to controlling remediation plan R8-A on 2026-07-21; attachment security policy corrected by R8-A2R before promotion
 Priority: High - silent communication-integrity failure
 
 ## Purpose
@@ -210,6 +210,11 @@ multi-recipient operating limit.
 
 ### Accepted File, Malware And Shared-Link Clarification
 
+> Supersession notice, 2026-07-21: the broad Office/ZIP and mandatory ClamAV decisions in
+> this subsection are preserved as historical decision evidence but were withdrawn before
+> promotion. The later **R8-A2R Bounded Unscanned Attachment Policy Correction** below is
+> controlling.
+
 Accepted on 2026-07-21:
 
 - retain broad, explicit support for ordinary Office documents, approved images, PDF,
@@ -235,6 +240,31 @@ for managed uploads. Accepted on 2026-07-21, R8-A2 will use a dedicated private 
 service on Render and must prove its availability, definition health and fail-closed
 behaviour before broad files can be marked validated. A message may contain up to three
 uploaded attachments plus up to three external links.
+
+### Accepted R8-A2R Bounded Unscanned Attachment Correction
+
+Accepted on 2026-07-21 after cost/benefit and risk/benefit re-evaluation:
+
+- do not deploy or require ClamAV for LMSPro email attachments;
+- allow up to three uploaded files and 10 MB cumulative content;
+- allow only PDF, JPEG/JPG, PNG, GIF, WebP, UTF-8 TXT and CSV;
+- refuse Office documents, ZIP/archives, executables and scripts;
+- retain strict actual-type, filename-extension and browser MIME agreement;
+- retain private R2 storage, authenticated metadata/byte readback and SHA-256 evidence;
+- retain up to three separate labelled HTTPS external links;
+- do not fetch, copy, scan or permission-test external resources;
+- explicitly tell C1 that SeasonPro does not malware-scan uploaded files or verify external
+  resources; and
+- require the C1 SeasonPro Administrator to acknowledge responsibility for integrity,
+  suitability and sharing permissions under a new notice version.
+
+This correction accepts residual recipient risk in exchange for a materially narrower file
+allowlist and removal of a disproportionate paid service and operational dependency. Type
+validation must not be described as proving that a file is safe or malware-free.
+
+Controlling corrective plan:
+
+`docs/modules/lmspro/03-slice-planning/2026-07-21-lmspro-remediation-slice-r8-a2r-bounded-unscanned-attachment-policy-correction-planning.md`
 
 ## Persistence And Fail-Closed Evidence
 

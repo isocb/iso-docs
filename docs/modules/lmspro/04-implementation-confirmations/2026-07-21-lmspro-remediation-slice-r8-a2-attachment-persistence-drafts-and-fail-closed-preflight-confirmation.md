@@ -2,7 +2,7 @@
 
 Date: 2026-07-21
 Module: LMSPro / SeasonPro shared communications
-Status: Implemented and technically verified on dedicated remediation branch; deployed human UI smoke pending
+Status: Superseded before promotion in its broad-file and ClamAV portions by R8-A2R; retained as historical technical evidence
 
 Planning source:
 
@@ -11,6 +11,11 @@ Planning source:
 Controlling parent:
 
 `docs/modules/lmspro/03-slice-planning/2026-07-20-lmspro-remediation-slice-r8-a-attachment-aware-email-delivery-route-and-fail-closed-evidence-planning.md`
+
+> Correction: the business analyst withdrew the broad Office/ZIP and mandatory ClamAV
+> policy before promotion. The R8-A2R records supersede this document for current behaviour.
+> Private R2, exact persistence, checksum, link and fail-closed evidence remain applicable
+> foundations.
 
 ## Repository And Commit Evidence
 

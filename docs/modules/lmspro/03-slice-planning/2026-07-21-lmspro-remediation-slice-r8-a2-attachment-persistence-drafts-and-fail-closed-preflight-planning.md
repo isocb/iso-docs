@@ -2,7 +2,7 @@
 
 Date: 2026-07-21
 Module: LMSPro / SeasonPro shared communications
-Status: Implemented and technically verified on the dedicated remediation branch; awaiting deployed human UI smoke confirmation
+Status: Superseded before promotion in its broad-file and ClamAV portions by R8-A2R; retained as historical implementation evidence
 Type: Durable attachment lifecycle and visible fail-closed remediation
 
 Controlling parent:
@@ -24,6 +24,16 @@ Implementation confirmation:
 Review and test record:
 
 `docs/modules/lmspro/05-review-and-test/2026-07-21-lmspro-remediation-slice-r8-a2-attachment-persistence-drafts-and-fail-closed-preflight-review-and-test.md`
+
+Corrective successor:
+
+`docs/modules/lmspro/03-slice-planning/2026-07-21-lmspro-remediation-slice-r8-a2r-bounded-unscanned-attachment-policy-correction-planning.md`
+
+> R8-A2's broad Office/ZIP and mandatory ClamAV policy was withdrawn after cost/benefit and
+> risk/benefit re-evaluation and before deployment promotion or human acceptance. R8-A2R is
+> controlling for allowed file types, security evidence, UI wording, infrastructure and the
+> revised smoke gate. The remaining private R2, exact persistence, checksum, link and
+> fail-closed outcomes continue as foundations.
 
 ## 1. Purpose
 
