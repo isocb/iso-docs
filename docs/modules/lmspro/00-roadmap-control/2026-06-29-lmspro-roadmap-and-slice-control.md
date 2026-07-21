@@ -97,7 +97,8 @@ Current posture:
 
 ```text
 R8-A is the active accepted LMSPro remediation lane.
-R8-A1 is complete on the remediation branch. R8-A2 is the next bounded implementation slice.
+R8-A1 is complete on the remediation branch. R8-A2 planning is complete and paused for its
+explicit attachment file-type/malware security-policy decision before implementation.
 ```
 
 An urgent communications-integrity candidate now precedes optional feature implementation:
@@ -143,7 +144,7 @@ Accepted controlling plan:
 Status:
 
 ```text
-Accepted 2026-07-21; R8-A1 completed and technically reviewed; R8-A2 planning is next.
+Accepted 2026-07-21; R8-A1 completed; R8-A2 planning created and awaiting business security-policy decision.
 ```
 
 Implementation baselines:
@@ -198,9 +199,19 @@ accepted.
 Next action:
 
 ```text
-Create R8-A2 - Attachment Persistence, Drafts And Fail-Closed Preflight. Implement and
-technically test it, then pause for the documented human UI smoke result before R8-A3 planning.
+Resolve R8-A2 section 16: select the restricted PDF/JPEG/PNG initial allowlist, require broad
+malware-scanned support, or explicitly accept the risk of a broad unscanned allowlist.
 ```
+
+R8-A2 planning:
+
+```text
+03-slice-planning/2026-07-21-lmspro-remediation-slice-r8-a2-attachment-persistence-drafts-and-fail-closed-preflight-planning.md
+```
+
+The recommended business decision is the restricted PDF/JPEG/PNG initial allowlist without
+a new malware-scanning service. After the decision, implement R8-A2 and pause for its human UI
+smoke-test result before creating R8-A3 planning.
 
 R8-A1 completion evidence:
 
@@ -372,7 +383,7 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Slice
 
 ```text
-R8-A2 - Attachment Persistence, Drafts And Fail-Closed Preflight
+R8-A2 - Attachment Persistence, Drafts And Fail-Closed Preflight (business decision gate)
 ```
 
 Goal:
@@ -388,14 +399,13 @@ Proceed with LMSPro / SeasonPro remediation planning from:
 isodocs/docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
 
 Next step:
-Create and execute the bounded R8-A2 planning slice under the accepted controlling plan:
-isodocs/docs/modules/lmspro/03-slice-planning/2026-07-20-lmspro-remediation-slice-r8-a-attachment-aware-email-delivery-route-and-fail-closed-evidence-planning.md
+Review the bounded R8-A2 planning slice:
+isodocs/docs/modules/lmspro/03-slice-planning/2026-07-21-lmspro-remediation-slice-r8-a2-attachment-persistence-drafts-and-fail-closed-preflight-planning.md
 
 Goal:
-Implement R8-A2 only. Preserve the completed R8-A1 sender contract. Make intended, persisted,
-validated and readable attachment evidence agree, including reopened/duplicated drafts.
-Enforce no more than three attachments and 10 MB cumulative size, and add accurate visible
-failure handling.
+Resolve section 16's file-type/malware policy. Option A, PDF/JPEG/PNG with actual signature
+validation and no new scanner, is recommended. Do not implement until that business decision
+is recorded.
 
 Do not create R8-A3 planning until R8-A2 implementation and technical review are complete and
 the business/testing team has reported the required human UI smoke result. Do not broaden the
