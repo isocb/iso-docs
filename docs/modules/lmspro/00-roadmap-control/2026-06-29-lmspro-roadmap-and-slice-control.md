@@ -1,7 +1,7 @@
 # LMSPro / SeasonPro Roadmap And Slice Control
 
 Date: 2026-06-29
-Last updated: 2026-07-08
+Last updated: 2026-07-21
 Module: LMSPro / SeasonPro
 Control status: Active roadmap and delivery-cycle control
 
@@ -96,10 +96,113 @@ Recent LMSPro lanes completed and documented:
 Current posture:
 
 ```text
-No active LMSPro implementation slice is open.
+R8-A is the active accepted LMSPro remediation lane.
+R8-A1 is the first bounded implementation slice.
 ```
 
-## Current Candidate Lane
+An urgent communications-integrity candidate now precedes optional feature implementation:
+
+```text
+R8-A - Attachment-Aware Email Delivery Route And Fail-Closed Evidence
+```
+
+R8-A has a captured CR input and accepted controlling slice plan. Sequential implementation
+of R8-A1 through R8-A5 is authorised, subject to the plan's business-decision and human UI
+smoke-test pause gates.
+
+## Immediate Remedial Candidate Lane
+
+### R8-A - Attachment-Aware Email Delivery Route And Fail-Closed Evidence
+
+Priority:
+
+```text
+High - live silent communication-integrity failure
+```
+
+Source incident:
+
+- a C1 League Administrator composed an ad-hoc email;
+- the compose UI showed an added attachment;
+- the email body was delivered;
+- the attachment was absent; and
+- the UI gave no warning that the communication was incomplete.
+
+CR input:
+
+```text
+01-cr-inputs/2026-07-20-lmspro-cr-attachment-aware-email-delivery-and-fail-closed-evidence-remediation-input.md
+```
+
+Accepted controlling plan:
+
+```text
+03-slice-planning/2026-07-20-lmspro-remediation-slice-r8-a-attachment-aware-email-delivery-route-and-fail-closed-evidence-planning.md
+```
+
+Status:
+
+```text
+Accepted 2026-07-21; R8-A1 is authorised as the first implementation slice.
+```
+
+Implementation baselines:
+
+```text
+application: fix/lmspro-r8-a-attachment-delivery from origin/dev at e3f44b4b
+documentation: fix/lmspro-r8-a-attachment-delivery from origin/main at 6190751
+```
+
+The documentation repository has no `origin/dev`; `origin/main` is its controlling remote
+baseline.
+
+Confirmed provider boundary:
+
+- Resend batch supports up to 100 emails per request;
+- Resend batch does not support attachments;
+- the current shared sender nevertheless passes attachment payloads to the batch endpoint;
+- attachment-bearing sends therefore do not have a supported delivery contract.
+
+Controlling delivery decision:
+
+```text
+zero persisted attachments
+-> preserve existing Resend batch path, including solitary recipients
+
+one or more persisted attachments
+-> fail-closed attachment finalisation
+-> asynchronous delivery job
+-> ordinary Resend /emails endpoint
+-> one recipient per provider request
+-> up to 3 attachments and 10 MB cumulative
+-> short-lived signed path to each validated private object
+```
+
+R8-A must support approximately 300 attachment recipients through a rate-controlled,
+resumable worker. It must not hold the C1 browser request open while sending all messages.
+
+Required protection:
+
+- do not broadly refactor the proven no-attachment batch sender;
+- select delivery mode from durable server-side attachment evidence;
+- block queueing when intended, persisted, validated and readable attachment counts differ;
+- preserve exact attachment evidence across new, reopened and duplicated drafts;
+- expose queued, sending, partial, failed and completed state to C1;
+- prevent successful recipients being duplicated during retry/restart; and
+- prove no-attachment batch regression alongside attachment delivery.
+
+Key-date sequence attachment authoring remains outside R8-A. The new ordinary attachment
+sender should be reusable by a later bounded sequence-attachment slice if that outcome is
+accepted.
+
+Next action:
+
+```text
+Create and execute R8-A1 - Provider Contract And Sender Dispatcher, then record its
+implementation confirmation and technical review/test evidence before opening R8-A2.
+```
+
+## Existing Feature Candidate Lane
 
 ### Club Operational Player Management / Team Manager Access
 
@@ -233,6 +336,8 @@ This promotion also carries the SVG branding upload fix to live.
 - C1 dashboard countdown display beyond basic season-admin visibility.
 - General key-date automation changes unless explicitly scoped.
 - Notification sending or communication automation.
+- Attachment authoring for key-date email sequences; reconsider only after R8-A proves the
+  reusable ordinary-endpoint attachment sender.
 
 ## Do Not Build Yet
 
@@ -242,17 +347,23 @@ Do not implement these until slice planning accepts them:
 - countdown timers on Club dashboards;
 - offset-triggered communications;
 - season automation rules beyond date storage/display/progress calculation;
-- broad key-date architecture changes.
+- broad key-date architecture changes;
+- do not send any attachment-bearing email through Resend batch;
+- do not replace or broadly refactor the live no-attachment batch route inside R8-A;
+- do not add key-date sequence attachments as an unplanned expansion of R8-A;
+- do not represent an attachment job as sent merely because it has been queued.
 
 ## Recommended Next Slice
 
 ```text
-Live smoke test after Render deployment
+R8-A1 - Provider Contract And Sender Dispatcher
 ```
 
 Goal:
 
-Confirm the live deployment at `682ddb4` works as expected, including LMSPro seasons, LMSPro communication fixes, SVG branding upload support and existing FUND admin surfaces.
+Codify the batch-versus-attachment delivery contract, preserve the no-attachment batch path,
+add the ordinary single-recipient attachment adapter and prove the dispatcher with automated
+provider-contract tests.
 
 ## Fresh Chat Prompt
 
@@ -261,10 +372,16 @@ Proceed with LMSPro / SeasonPro remediation planning from:
 isodocs/docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
 
 Next step:
-Live smoke test after Render deployment.
+Create and execute the bounded R8-A1 planning slice under the accepted controlling plan:
+isodocs/docs/modules/lmspro/03-slice-planning/2026-07-20-lmspro-remediation-slice-r8-a-attachment-aware-email-delivery-route-and-fail-closed-evidence-planning.md
 
 Goal:
-Confirm the live deployment at `682ddb4` works as expected. Check LMSPro seasons, playing-season date display, LMSPro communication changes, SVG branding upload support and existing FUND admin surfaces. Dashboard announcements and offset automation remain deferred.
+Implement R8-A1 only. Keep every zero-attachment email on the existing Resend batch route,
+including solitary recipients. Ensure attachment-bearing email can only select the ordinary
+attachment route. Record technical tests, implementation confirmation and review evidence.
 
-Do not implement dashboard announcement automation, notification sending, C2 Club dashboard countdown widgets, broader key-date architecture, season rollover changes or FUND logic.
+Do not broaden the proven no-attachment batch sender, add key-date sequence attachments,
+change recipient/cohort rules, automatically resend historic messages, alter season
+automation or change FUND logic. Pause before the next slice when human UI smoke confirmation
+is required.
 ```
