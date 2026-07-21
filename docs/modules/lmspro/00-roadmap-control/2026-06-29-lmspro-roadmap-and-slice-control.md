@@ -407,6 +407,62 @@ This promotion also carries the SVG branding upload fix to live.
 - Attachment authoring for key-date email sequences; reconsider only after R8-A proves the
   reusable ordinary-endpoint attachment sender.
 
+### Communications Wishlist - Links-First, Opt-In Uploaded Attachments
+
+Wishlist identifier:
+
+```text
+LMS-W-COMMS-01
+```
+
+Future refinement should make external HTTPS document links the default supporting-document
+mode while uploaded email attachments are disabled and hidden by default.
+
+The intended future policy is:
+
+```text
+default C1 organisation policy
+-> up to three labelled HTTPS external links remain available
+-> uploaded-attachment control is hidden and server-side upload/send authority is disabled
+
+authorised C1 Owner/Administrator explicitly enables uploaded attachments
+-> display the current formal risk and responsibility notice
+-> require affirmative organisation-level acceptance
+-> record organisation, actor, timestamp and policy version
+-> expose the uploaded-attachment control for authorised communications users
+
+each attachment-bearing email
+-> retain the separate per-email acknowledgement
+-> record actor, timestamp, notice version and exact attachment-set fingerprint
+```
+
+This is an organisation policy, not merely an individual user-interface preference. The
+server must enforce it independently of whether the control is visible in the browser.
+
+The later bounded planning slice should preserve:
+
+- the R8-A2R narrow PDF/image/text allowlist;
+- strict extension, claimed MIME and detected-content agreement;
+- private R2 storage and no public object URL;
+- maximum three uploaded files and 10 MB cumulative content;
+- maximum three separate HTTPS links;
+- no server-side preview, rendering, extraction or parsing beyond bounded type validation;
+- immutable checksum and audit evidence; and
+- explicit wording that SeasonPro does not malware-scan uploads or verify external content.
+
+It should also define:
+
+- the exact C1 role authorised to enable or revoke uploaded attachments;
+- whether enablement applies to the whole C1 organisation or may be further scoped;
+- reacceptance when the formal notice or security policy materially changes;
+- revocation behaviour for existing editable drafts containing attachments;
+- immutable treatment of historic sent-email evidence;
+- independent enable/disable controls for external links if later required; and
+- audit and operator visibility for enablement, reacceptance and revocation.
+
+This wishlist item is not part of R8-A2R or R8-A3 and must not delay the current silent-loss
+remediation. It requires a future CR/triage/bounded planning cycle before implementation.
+
 ## Do Not Build Yet
 
 Do not implement these until slice planning accepts them:
