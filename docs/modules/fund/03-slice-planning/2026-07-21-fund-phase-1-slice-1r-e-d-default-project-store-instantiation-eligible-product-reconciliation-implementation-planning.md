@@ -2,8 +2,9 @@
 
 Date: 2026-07-21
 
-Status: Implemented and independently reviewed as passed on isolated branches on 2026-07-21;
-not promoted; human E-B/E-C workflow acceptance remains pending controlled promotion
+Status: Implemented and independently reviewed as passed on 2026-07-21; consolidated into
+application `dev` and aligned with `origin/dev` at `174dc8ac`; human E-B/E-C workflow
+acceptance remains pending controlled staging promotion
 
 Parent: `1R-E - C1 Store Oversight And C2 Project Store Control Alignment`
 
@@ -265,7 +266,8 @@ begin `1R-F-A`, public Store, artwork/template production or another slice.
 
 Implementation outcome:
 
-- isolated application commit: `c45a41d9` on `feature/fund-1r-e-d-default-store`;
+- implementation commit: `c45a41d9` on `feature/fund-1r-e-d-default-store`, integrated and
+  revalidated on application `dev`/`origin/dev` at `174dc8ac`;
 - no Prisma schema or migration change; retained inventory remains 141;
 - automatic/reviewed Intake and direct C1/C2 Project aggregates now share the default Store
   initializer;

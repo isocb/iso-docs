@@ -216,10 +216,12 @@ The authoritative controls currently establish:
   migration; its automated evidence passes and human acceptance now awaits controlled
   promotion of E-D plus the recorded real-workflow schedule.
 - `1R-E-D - Default Project Store Instantiation And Eligible Product Reconciliation` is
-  implemented/reviewed as passed at isolated application `c45a41d9` as the mandatory bridge
+  implemented/reviewed at `c45a41d9` and integrated/revalidated on application
+  `dev`/`origin/dev` at `174dc8ac` as the mandatory bridge
   from Project creation to the E-B/E-C surfaces. It uses the existing 141-migration schema,
   retains default-all rather than silently truncating future Individual Artwork selections,
-  is not promoted and leaves human workflow acceptance pending controlled promotion.
+  is not promoted to staging and leaves human workflow acceptance pending controlled staging
+  promotion.
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is reviewed/accepted as the
   non-executable parent; and
 - `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single next
@@ -765,7 +767,8 @@ A6-D lifecycle complete
 -> 1R-E-C C2 Project Store control surface
    implemented/reviewed/promoted; human acceptance pending promoted E-D workflow
 -> 1R-E-D Default Project Store instantiation and eligible Product reconciliation
-   implemented/reviewed at isolated application c45a41d9; no migration; not promoted
+   implemented/reviewed at c45a41d9; integrated on dev/origin-dev at 174dc8ac;
+   no E-D migration; not promoted to staging
 -> 1R-F workflow-conditional Project Offer And Artwork Readiness parent accepted
 -> 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
    single next planning candidate; proof implementation not authorised
@@ -897,8 +900,9 @@ Exceptional Intervention Surface` implementation/review lifecycle passed and is 
 without an E-B schema or migration change. `1R-E-C - C2 Project Store Control Surface` is
 included in the same promoted application commit without an E-C migration. Human-smoke
 preparation then exposed the missing mandatory Project-to-Store/default-Product workflow.
-E-D has now implemented that correction locally; E-B/E-C human acceptance awaits controlled
-promotion and the schedule recorded in the E-D review at
+E-D has now implemented that correction and is aligned on application `dev`/`origin/dev` at
+`174dc8ac`; E-B/E-C human acceptance awaits controlled staging promotion and the schedule
+recorded in the E-D review at
 `docs/modules/fund/03-slice-planning/2026-07-21-fund-phase-1-slice-1r-e-d-default-project-store-instantiation-eligible-product-reconciliation-implementation-planning.md`.
 The reconciled
 `1R-F - Project Offer And Artwork Readiness` parent is reviewed/accepted at:
@@ -907,7 +911,7 @@ The reconciled
 
 It allocates separate Individual, collective and Standard Product readiness branches
 after `1R-E`; the formerly reserved Public Store slice moves to `1R-G`. E-D is
-implemented/reviewed locally at `c45a41d9`. `1R-F-A - Real AMOW Template, Pricing And
+implemented/reviewed at `c45a41d9` and integrated at `174dc8ac`. `1R-F-A - Real AMOW Template, Pricing And
 Deployed Renderer Proof` is the single next planning candidate. This document authorises no
 proof implementation, `1R-G` or artwork/template production implementation.
 

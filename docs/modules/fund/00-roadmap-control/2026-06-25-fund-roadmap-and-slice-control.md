@@ -78,15 +78,18 @@ Current consolidated delivery state:
 
 - Commerce `A1` through `A7`, FUND `1R-C1` through `1R-D` and Project Intake/creation
   `1P-G-R3-A` through `R3-D` are included in the promoted application ancestry;
-- application `dev` and `staging` are aligned at `e3f44b4b`;
-- the Neon development database is current at 140 applied migrations with no failed
-  migration;
-- dev and staging security/type/schema gates passed;
+- application `dev`/`origin/dev` are aligned at `174dc8ac`; application
+  `staging`/`origin/staging` remain at `e850c47b`, so E-D is not yet promoted to staging;
+- E-D adds no migration and performed no shared database action; shared database state
+  remains governed by the preceding promotion records;
+- E-D secret detection, schema security and TypeScript CI gates passed. The overall dev
+  Security Scan remains red only on the same two high dependency advisories already present
+  on the preceding `e850c47b` baseline; dependency manifests are unchanged by E-D;
 - the staging application health check passed with its database connected and RLS enabled
   on all 11 expected tables;
 - prior human FUND administrator login and pre-existing UI smoke testing passed; E-B/E-C
-  authenticated human acceptance is now technically unblocked by local E-D but remains
-  pending controlled promotion and the recorded real-workflow schedule; and
+  authenticated human acceptance is now technically unblocked by E-D but remains pending
+  controlled staging promotion and the recorded real-workflow schedule; and
 - application `main`, live deployment and the live database remain unchanged.
 
 Current E-A/E-B/E-C promotion state:
@@ -111,9 +114,9 @@ Current E-A/E-B/E-C promotion state:
   instantiate the Store/default eligible Product set, so E-B/E-C human acceptance was blocked
   rather than failed;
 - governed `1R-E-D - Default Project Store Instantiation And Eligible Product
-  Reconciliation` is implemented/reviewed as passed at isolated application commit
-  `c45a41d9`; it requires no schema migration and has not been promoted or run against a
-  shared database; and
+  Reconciliation` is implemented/reviewed at `c45a41d9`, integrated/revalidated and aligned
+  on application `dev`/`origin/dev` at `174dc8ac`; it requires no E-D schema migration, has
+  not been promoted to staging and has not been run against a shared database; and
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is reviewed and accepted as
   the non-executable successor to the three governed CRs; and
 - `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single next
@@ -295,7 +298,7 @@ Full evidence is recorded in:
 | `1R-E-A` | FUND Store | Implemented/reviewed; included in dev/staging promotion `e3f44b4b`; disposable database 141/0 | Typed C1 intervention evidence, C2 Project/Store authority, Event envelope guards and one effective Store-state/A7 availability policy; no UI |
 | `1R-E-B` | FUND Store | Implemented/reviewed; promoted through dev/staging at `e3f44b4b`; automated evidence passed; human acceptance pending controlled E-D promotion | C1 Store portfolio oversight and exceptional intervention surface consuming E-A authority |
 | `1R-E-C` | FUND Store | Implemented/reviewed; promoted through dev/staging at `e3f44b4b`; automated evidence passed; human acceptance pending controlled E-D promotion | C2 Project Store control surface consuming E-A authority, bounded C2 commission acceptance and normal Project/Store control |
-| `1R-E-D` | FUND Store | Implemented/reviewed 2026-07-21 at isolated application `c45a41d9`; no migration; not promoted; human schedule pending | Mandatory one DRAFT Store per Project, all-eligible-minus-C2-exclusions defaults, atomic C2 activation/publication intent and real-workflow human testability |
+| `1R-E-D` | FUND Store | Implemented/reviewed at `c45a41d9`; integrated/revalidated on `dev`/`origin/dev` at `174dc8ac`; no E-D migration; not promoted to staging; human schedule pending | Mandatory one DRAFT Store per Project, all-eligible-minus-C2-exclusions defaults, atomic C2 activation/publication intent and real-workflow human testability |
 
 `1R-C1` through `1R-D` and `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D` must not be rerun as pending work. No next
 implementation is authorised merely because the preceding lifecycle completed.
@@ -335,9 +338,10 @@ COMMERCE-A1 (complete on dev)
      -> FUND 1R-E-B C1 Store Portfolio Oversight And Exceptional Intervention Surface
         implemented/reviewed and promoted at e3f44b4b; authenticated UI gate pending
      -> FUND 1R-E-C C2 Project Store Control Surface
-        implemented/reviewed and promoted at e3f44b4b; human acceptance pending promoted E-D
+        implemented/reviewed and promoted at e3f44b4b; human acceptance pending E-D staging
      -> FUND 1R-E-D Default Project Store Instantiation And Eligible Product Reconciliation
-        implemented/reviewed at isolated application c45a41d9; no migration; not promoted
+        implemented/reviewed at c45a41d9; integrated on dev/origin-dev at 174dc8ac;
+        no E-D migration; not promoted to staging
   -> FUND 1R-F Project Offer And Artwork Readiness Reconciliation parent accepted
      -> FUND 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
         single next planning candidate; implementation not authorised
@@ -381,7 +385,8 @@ Rules:
   dev/staging at `e3f44b4b`; E-B/E-C automated evidence passes but human acceptance is
   blocked pending corrective E-D;
 - `1R-E-D - Default Project Store Instantiation And Eligible Product Reconciliation` is
-  reviewed/accepted; implementation has not started and it is the single next candidate;
+  implemented/reviewed and aligned on application `dev`/`origin/dev` at `174dc8ac`; human
+  acceptance remains pending controlled staging promotion;
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is an accepted
   non-executable parent at
   `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`;
@@ -754,8 +759,9 @@ set. E-B/E-C human acceptance is therefore blocked, not failed. The governed E-D
 `docs/modules/fund/01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md`
 and the bounded E-D plan is at
 `docs/modules/fund/03-slice-planning/2026-07-21-fund-phase-1-slice-1r-e-d-default-project-store-instantiation-eligible-product-reconciliation-implementation-planning.md`.
-E-D is implemented/reviewed as passed at isolated application `c45a41d9`, with no migration,
-promotion or shared reconciliation. Its human schedule is recorded in the E-D review. The
+E-D is implemented/reviewed at `c45a41d9` and integrated/revalidated on application
+`dev`/`origin/dev` at `174dc8ac`, with no E-D migration or shared reconciliation. It is not
+promoted to staging. Its human schedule is recorded in the E-D review. The
 non-executable `1R-F - Project Offer And Artwork Readiness Reconciliation` parent is
 reviewed/accepted and records the separate Individual, collective and Standard readiness
 branches. `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single

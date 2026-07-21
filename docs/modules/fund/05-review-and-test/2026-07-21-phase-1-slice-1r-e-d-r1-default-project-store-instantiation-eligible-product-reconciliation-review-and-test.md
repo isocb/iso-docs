@@ -2,9 +2,12 @@
 
 Date: 2026-07-21
 
-Status: Automated review passed; human workflow acceptance pending controlled promotion
+Status: Automated review and integrated current-dev revalidation passed; human workflow
+acceptance pending controlled staging promotion
 
-Application commit reviewed: `c45a41d9`
+Application implementation reviewed: `c45a41d9`
+
+Integrated application commit revalidated: `174dc8ac` on `dev`/`origin/dev`
 
 ## Review Result
 
@@ -20,6 +23,12 @@ clientless legacy path was introduced.
 - Prisma schema and migration directories have no diff from `origin/dev`.
 - No shared database, reconciliation command, Stripe action or deployment was used.
 - Every test fixture was removed; zero E-D residue remained.
+
+Before dev consolidation, E-D was merged with the current `e850c47b` application bundle and
+revalidated against the resulting complete 143-migration TEST-only inventory. The E-D suite,
+expanded R3-B suite, full test run, type-check, verification and production build passed. E-D
+changed neither Prisma schema/migrations nor dependency manifests. No shared database or
+reconciliation command was used during consolidation.
 
 ## Automated Evidence
 
@@ -86,6 +95,6 @@ does not authorize manual database repair.
 
 ## Conclusion
 
-Automated E-D implementation review passes. E-B/E-C human acceptance is now testable but remains
-pending because this isolated branch was deliberately not promoted. `1R-F-A` is the single next
-planning candidate only; no implementation has begun.
+Automated E-D implementation review and integrated current-dev revalidation pass. E-B/E-C
+human acceptance is now testable but remains pending because E-D has not been promoted to
+staging. `1R-F-A` is the single next planning candidate only; no implementation has begun.

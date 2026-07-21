@@ -118,8 +118,10 @@ not failed. Governed `1R-E-D - Default Project Store Instantiation And Eligible 
 Reconciliation` planning was reviewed and accepted on 2026-07-21 as the single next
 implementation candidate before `1R-F-A`. Review confirmed that the existing one-Store-per-
 Project key is sufficient and E-D adds no Prisma migration. E-D is now implemented/reviewed
-as passed at isolated application commit `c45a41d9`, without promotion or shared database
-change. Its real-workflow E-B/E-C human schedule remains pending controlled promotion.
+as passed at implementation commit `c45a41d9`, integrated/revalidated and aligned on
+application `dev`/`origin/dev` at `174dc8ac`, without an E-D migration or shared database
+change. Its real-workflow E-B/E-C human schedule remains pending controlled staging
+promotion.
 
 Authoritative records:
 
@@ -294,7 +296,8 @@ COMMERCE-A1 complete
      -> FUND 1R-E-C C2 Project Store Control Surface
         implemented/reviewed/promoted; human acceptance pending promoted E-D workflow
      -> FUND 1R-E-D Default Project Store Instantiation And Eligible Product Reconciliation
-        implemented/reviewed at isolated application c45a41d9; not promoted
+        implemented/reviewed at c45a41d9; integrated on dev/origin-dev at 174dc8ac;
+        not promoted to staging
   -> FUND 1R-F Project Offer And Artwork Readiness Reconciliation parent accepted
      -> FUND 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
         single next planning candidate; implementation not authorised
@@ -429,8 +432,9 @@ schema/migration change. `1R-E-C - C2 Project Store Control Surface` is included
 same promoted application commit without an E-C migration; its authenticated human UI
 acceptance awaits controlled promotion of the now-implemented Project-to-Store/default-
 Product workflow. Bounded `1R-E-D - Default Project Store Instantiation And Eligible Product
-Reconciliation` is implemented/reviewed at isolated application `c45a41d9` without a
-migration or shared change. The non-executable
+Reconciliation` is implemented/reviewed at `c45a41d9` and integrated/revalidated on
+application `dev`/`origin/dev` at `174dc8ac` without an E-D migration or shared database
+change. It is not promoted to staging. The non-executable
 `1R-F - Project Offer And Artwork Readiness Reconciliation` parent is reviewed/accepted.
 `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single next
 planning candidate; no proof, `1R-G` or artwork/template production implementation is

@@ -38,8 +38,9 @@ Render staging build contract runs committed migrations through `migrate deploy`
 direct staging migration inventory was queried locally. E-B and E-C add no migration.
 Post-promotion review found their human acceptance blocked because canonical Project creation
 did not create the mandatory Store/default eligible Product set. Corrective E-D is now
-implemented/reviewed as passed at isolated application commit `c45a41d9`, with no migration or
-shared promotion. The real-workflow human schedule is recorded in its review. The
+implemented/reviewed at `c45a41d9`, integrated/revalidated and aligned on application
+`dev`/`origin/dev` at `174dc8ac`, with no E-D migration or shared database action. It is not
+promoted to staging. The real-workflow human schedule is recorded in its review. The
 non-executable `1R-F` parent remains accepted and `1R-F-A` is the single next planning
 candidate.
 

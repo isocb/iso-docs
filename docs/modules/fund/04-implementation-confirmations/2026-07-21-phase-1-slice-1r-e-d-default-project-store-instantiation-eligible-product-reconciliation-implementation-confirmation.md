@@ -2,13 +2,17 @@
 
 Date: 2026-07-21
 
-Status: Implemented on isolated application branch; not promoted
+Status: Implemented/reviewed; consolidated into application `dev`; `dev` and `origin/dev`
+match at `174dc8ac`; not promoted to staging
 
 Application baseline: `origin/dev` `e3f44b4b`
 
 Application implementation: `c45a41d9` on `feature/fund-1r-e-d-default-store`
 
-Migration baseline: 141 applied migrations; no schema or migration added
+Integrated application verification: `174dc8ac` on `dev`/`origin/dev`
+
+Migration baseline: original E-D validation at 141 applied migrations; integrated current-dev
+revalidation at 143 applied migrations; no E-D schema or migration added
 
 ## Outcome
 
@@ -56,6 +60,8 @@ No public Store, checkout, Stripe action, Order, Payment, commercial Product edi
 Template/artwork, production, fulfilment, commission calculation or LMSPro behavior was added.
 The active LMSPro remediation worktree was not switched, staged, edited or committed.
 
-## Stop Boundary
+## Promotion And Stop Boundary
 
-E-D is complete locally. No promotion, shared reconciliation or `1R-F-A` work was started.
+E-D is consolidated into application `dev`, and `dev`/`origin/dev` match at `174dc8ac`.
+No staging promotion, shared database migration, shared reconciliation or `1R-F-A` work was
+performed. Human E-B/E-C workflow acceptance remains pending controlled staging promotion.

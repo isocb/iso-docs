@@ -3,8 +3,9 @@
 Original document: 2026-06-30
 Reconciled: 2026-07-20
 
-Current dependency note: 2026-07-21 - corrective `1R-E-D` completed locally; `1R-F-A` is
-the single next planning candidate
+Current dependency note: 2026-07-21 - corrective `1R-E-D` completed and aligned on
+application `dev`/`origin/dev` at `174dc8ac`; staging human acceptance remains pending;
+`1R-F-A` is the single next planning candidate
 
 Status: Active subordinate register of genuinely absent refinements; no next-slice authority
 
