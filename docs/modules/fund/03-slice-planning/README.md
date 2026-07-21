@@ -19,15 +19,14 @@ Most recently accepted parent planning lifecycle:
 
 Most recently completed implementation lifecycle:
 
-`2026-07-15-fund-phase-1-slice-1r-e-c-c2-project-store-control-surface-implementation-planning.md`
+`2026-07-21-fund-phase-1-slice-1r-e-d-default-project-store-instantiation-eligible-product-reconciliation-implementation-planning.md`
 
 Current integrated critical-path action:
 
 ```text
-Implement only accepted `1R-E-D - Default Project Store Instantiation And Eligible Product
-Reconciliation` from isolated FUND application/documentation worktrees. Add no Prisma
-migration, shared-environment change or unrelated LMSPro work, and do not begin `1R-F-A`,
-`1R-G` or another slice.
+Plan only bounded `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` from
+the accepted non-executable 1R-F parent. Do not implement proof, public Store, artwork/
+template production or another slice without its own review/acceptance.
 ```
 
 Commerce A1-A7 and the retained FUND C1-C6/1R-D/R3 foundations are implemented/reviewed.
@@ -38,9 +37,11 @@ validated against the complete 141-migration disposable baseline with zero resid
 Render staging build contract runs committed migrations through `migrate deploy`, but no
 direct staging migration inventory was queried locally. E-B and E-C add no migration.
 Post-promotion review found their human acceptance blocked because canonical Project creation
-does not create the mandatory Store/default eligible Product set. The corrective E-D plan is
-reviewed/accepted and is the single next implementation candidate. The non-executable `1R-F`
-parent remains accepted; `1R-F-A` follows E-D.
+did not create the mandatory Store/default eligible Product set. Corrective E-D is now
+implemented/reviewed as passed at isolated application commit `c45a41d9`, with no migration or
+shared promotion. The real-workflow human schedule is recorded in its review. The
+non-executable `1R-F` parent remains accepted and `1R-F-A` is the single next planning
+candidate.
 
 This current status supersedes older per-slice deployment wording retained below for
 historical context.
@@ -69,9 +70,17 @@ Completed E-C implementation plan:
 
 `2026-07-15-fund-phase-1-slice-1r-e-c-c2-project-store-control-surface-implementation-planning.md`
 
-Current accepted E-D implementation candidate:
+Completed E-D implementation plan:
 
 `2026-07-21-fund-phase-1-slice-1r-e-d-default-project-store-instantiation-eligible-product-reconciliation-implementation-planning.md`
+
+E-D implementation confirmation:
+
+`../04-implementation-confirmations/2026-07-21-phase-1-slice-1r-e-d-default-project-store-instantiation-eligible-product-reconciliation-implementation-confirmation.md`
+
+E-D review/test and pending human schedule:
+
+`../05-review-and-test/2026-07-21-phase-1-slice-1r-e-d-r1-default-project-store-instantiation-eligible-product-reconciliation-review-and-test.md`
 
 `1P-G-R3-A` is implemented and reviewed at application `4bb7dd9`, included on `origin/dev`,
 and documented at `65fc243`. `1P-G-R3-B` is implemented, reviewed and committed at application

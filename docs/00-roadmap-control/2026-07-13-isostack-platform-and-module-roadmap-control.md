@@ -117,8 +117,9 @@ The E-A/B/C technical and automated evidence remains passed. Human acceptance is
 not failed. Governed `1R-E-D - Default Project Store Instantiation And Eligible Product
 Reconciliation` planning was reviewed and accepted on 2026-07-21 as the single next
 implementation candidate before `1R-F-A`. Review confirmed that the existing one-Store-per-
-Project key is sufficient and E-D adds no Prisma migration. E-D implementation has not
-started.
+Project key is sufficient and E-D adds no Prisma migration. E-D is now implemented/reviewed
+as passed at isolated application commit `c45a41d9`, without promotion or shared database
+change. Its real-workflow E-B/E-C human schedule remains pending controlled promotion.
 
 Authoritative records:
 
@@ -291,12 +292,12 @@ COMMERCE-A1 complete
      -> FUND 1R-E-B C1 Store Portfolio Oversight And Exceptional Intervention Surface
         implemented/reviewed as passed locally; no shared deployment
      -> FUND 1R-E-C C2 Project Store Control Surface
-        implemented/reviewed/promoted; human acceptance blocked pending E-D
+        implemented/reviewed/promoted; human acceptance pending promoted E-D workflow
      -> FUND 1R-E-D Default Project Store Instantiation And Eligible Product Reconciliation
-        planning reviewed/accepted; single next implementation candidate; not started
+        implemented/reviewed at isolated application c45a41d9; not promoted
   -> FUND 1R-F Project Offer And Artwork Readiness Reconciliation parent accepted
      -> FUND 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
-        follows E-D; planning/implementation not currently authorised
+        single next planning candidate; implementation not authorised
 
 FUND 1R-C1 -> C2 -> C3 -> C4 -> C5 -> C6 complete
 FUND 1P-G-R3-A -> R3-B -> R3-C -> R3-D complete
@@ -426,12 +427,14 @@ Oversight And Exceptional Intervention Surface` implementation/review lifecycle 
 complete and promoted through application dev/staging at `e3f44b4b` without an E-B
 schema/migration change. `1R-E-C - C2 Project Store Control Surface` is included in the
 same promoted application commit without an E-C migration; its authenticated human UI
-acceptance is blocked by the missing Project-to-Store/default-Product workflow. The bounded
-`1R-E-D - Default Project Store Instantiation And Eligible Product Reconciliation` plan is
-reviewed/accepted as the single next implementation candidate. The non-executable
+acceptance awaits controlled promotion of the now-implemented Project-to-Store/default-
+Product workflow. Bounded `1R-E-D - Default Project Store Instantiation And Eligible Product
+Reconciliation` is implemented/reviewed at isolated application `c45a41d9` without a
+migration or shared change. The non-executable
 `1R-F - Project Offer And Artwork Readiness Reconciliation` parent is reviewed/accepted.
-`1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` follows E-D; no E-D,
-proof, `1R-G` or artwork/template production implementation is authorised.
+`1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single next
+planning candidate; no proof, `1R-G` or artwork/template production implementation is
+authorised.
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-b-c1-store-portfolio-oversight-exceptional-intervention-surface-implementation-planning.md`
 

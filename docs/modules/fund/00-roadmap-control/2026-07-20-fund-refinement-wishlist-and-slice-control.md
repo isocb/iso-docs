@@ -3,7 +3,8 @@
 Original document: 2026-06-30
 Reconciled: 2026-07-20
 
-Current dependency note: 2026-07-21 - corrective `1R-E-D` precedes `1R-F-A`
+Current dependency note: 2026-07-21 - corrective `1R-E-D` completed locally; `1R-F-A` is
+the single next planning candidate
 
 Status: Active subordinate register of genuinely absent refinements; no next-slice authority
 
@@ -119,9 +120,10 @@ existing delivery chain as one of:
 3. an explicitly parked post-pilot refinement.
 
 This reconciliation does not authorise any implementation and does not replace the single
-next candidate in the authoritative roadmap. Corrective `1R-E-D` now precedes `1R-F-A`;
-this refinement register must be applied before accepting work beyond `1R-F-A`, so template
-and public Store contracts do not harden around avoidable pilot gaps.
+next candidate in the authoritative roadmap. Corrective `1R-E-D` is implemented/reviewed
+locally and `1R-F-A` is now the single next planning candidate; this refinement register
+must be applied before accepting work beyond `1R-F-A`, so template and public Store contracts
+do not harden around avoidable pilot gaps.
 
 ### 5.1 Timing Classification
 

@@ -2,7 +2,8 @@
 
 Date: 2026-07-21
 
-Status: Accepted for implementation on 2026-07-21; implementation not started
+Status: Implemented and independently reviewed as passed on isolated branches on 2026-07-21;
+not promoted; human E-B/E-C workflow acceptance remains pending controlled promotion
 
 Parent: `1R-E - C1 Store Oversight And C2 Project Store Control Alignment`
 
@@ -261,6 +262,19 @@ rollback; disable the new creation path and retain/audit the evidence pending a 
 
 Stop after E-D implementation/review/documentation and the revised E-B/E-C human gate. Do not
 begin `1R-F-A`, public Store, artwork/template production or another slice.
+
+Implementation outcome:
+
+- isolated application commit: `c45a41d9` on `feature/fund-1r-e-d-default-store`;
+- no Prisma schema or migration change; retained inventory remains 141;
+- automatic/reviewed Intake and direct C1/C2 Project aggregates now share the default Store
+  initializer;
+- routine C2 Prepare/Publish routes are retired and first publication intent is owned by atomic
+  C2 activation;
+- the dry-run-first reconciliation command was implemented but not run against a shared
+  environment; and
+- automated review passed with zero disposable residue. Human workflow acceptance is scheduled
+  in the separate E-D review record after an explicitly authorised promotion.
 
 ## 11. Review Prompt
 
