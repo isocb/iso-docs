@@ -97,7 +97,7 @@ Current posture:
 
 ```text
 R8-A is the active accepted LMSPro remediation lane.
-R8-A1 is the first bounded implementation slice.
+R8-A1 is complete on the remediation branch. R8-A2 is the next bounded implementation slice.
 ```
 
 An urgent communications-integrity candidate now precedes optional feature implementation:
@@ -143,7 +143,7 @@ Accepted controlling plan:
 Status:
 
 ```text
-Accepted 2026-07-21; R8-A1 is authorised as the first implementation slice.
+Accepted 2026-07-21; R8-A1 completed and technically reviewed; R8-A2 planning is next.
 ```
 
 Implementation baselines:
@@ -198,8 +198,24 @@ accepted.
 Next action:
 
 ```text
-Create and execute R8-A1 - Provider Contract And Sender Dispatcher, then record its
-implementation confirmation and technical review/test evidence before opening R8-A2.
+Create R8-A2 - Attachment Persistence, Drafts And Fail-Closed Preflight. Implement and
+technically test it, then pause for the documented human UI smoke result before R8-A3 planning.
+```
+
+R8-A1 completion evidence:
+
+```text
+planning:
+03-slice-planning/2026-07-21-lmspro-remediation-slice-r8-a1-provider-contract-and-sender-dispatcher-planning.md
+
+implementation:
+04-implementation-confirmations/2026-07-21-lmspro-remediation-slice-r8-a1-provider-contract-and-sender-dispatcher-confirmation.md
+
+review/test:
+05-review-and-test/2026-07-21-lmspro-remediation-slice-r8-a1-provider-contract-and-sender-dispatcher-review-and-test.md
+
+application commits:
+5ca66f28, 135f6c79
 ```
 
 ## Existing Feature Candidate Lane
@@ -356,14 +372,14 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Slice
 
 ```text
-R8-A1 - Provider Contract And Sender Dispatcher
+R8-A2 - Attachment Persistence, Drafts And Fail-Closed Preflight
 ```
 
 Goal:
 
-Codify the batch-versus-attachment delivery contract, preserve the no-attachment batch path,
-add the ordinary single-recipient attachment adapter and prove the dispatcher with automated
-provider-contract tests.
+Make attachment persistence and draft editing exact, enforce the accepted three-file/10 MB
+limits, validate durable readability and fingerprint the immutable attachment set. Correct
+visible failure handling and define the required human UI smoke script.
 
 ## Fresh Chat Prompt
 
@@ -372,16 +388,17 @@ Proceed with LMSPro / SeasonPro remediation planning from:
 isodocs/docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
 
 Next step:
-Create and execute the bounded R8-A1 planning slice under the accepted controlling plan:
+Create and execute the bounded R8-A2 planning slice under the accepted controlling plan:
 isodocs/docs/modules/lmspro/03-slice-planning/2026-07-20-lmspro-remediation-slice-r8-a-attachment-aware-email-delivery-route-and-fail-closed-evidence-planning.md
 
 Goal:
-Implement R8-A1 only. Keep every zero-attachment email on the existing Resend batch route,
-including solitary recipients. Ensure attachment-bearing email can only select the ordinary
-attachment route. Record technical tests, implementation confirmation and review evidence.
+Implement R8-A2 only. Preserve the completed R8-A1 sender contract. Make intended, persisted,
+validated and readable attachment evidence agree, including reopened/duplicated drafts.
+Enforce no more than three attachments and 10 MB cumulative size, and add accurate visible
+failure handling.
 
-Do not broaden the proven no-attachment batch sender, add key-date sequence attachments,
-change recipient/cohort rules, automatically resend historic messages, alter season
-automation or change FUND logic. Pause before the next slice when human UI smoke confirmation
-is required.
+Do not create R8-A3 planning until R8-A2 implementation and technical review are complete and
+the business/testing team has reported the required human UI smoke result. Do not broaden the
+batch sender, add key-date sequence attachments, change recipient/cohort rules, automatically
+resend historic messages, alter season automation or change FUND logic.
 ```
