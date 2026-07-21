@@ -1,6 +1,6 @@
 # IsoStack Platform And Module Roadmap Control
 
-Date: 2026-07-20
+Date: 2026-07-21
 
 Status: Active parent roadmap
 
@@ -106,6 +106,23 @@ Authoritative evidence:
 
 `docs/00-roadmap-control/2026-07-15-commerce-a7-dev-staging-promotion-confirmation.md`
 
+### 2026-07-21 FUND Default Project Store Testability Correction
+
+Post-promotion preparation established that E-B/E-C human acceptance cannot begin from the
+real empty FUND state. C1 correctly has oversight/exceptional intervention only, the C2 UI
+can manually `Prepare Store`, but none of the retained Project creation/intake paths creates
+the Store/default eligible Product set.
+
+The E-A/B/C technical and automated evidence remains passed. Human acceptance is blocked,
+not failed. Governed `1R-E-D - Default Project Store Instantiation And Eligible Product
+Reconciliation` planning is created and awaiting explicit review/acceptance as the single
+next candidate before `1R-F-A`. No E-D implementation is authorised.
+
+Authoritative records:
+
+- `docs/modules/fund/01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md`
+- `docs/modules/fund/03-slice-planning/2026-07-21-fund-phase-1-slice-1r-e-d-default-project-store-instantiation-eligible-product-reconciliation-implementation-planning.md`
+
 ### 2026-07-20 FUND 1R-E Development And Staging Promotion Checkpoint
 
 Application `dev`/`origin-dev` and `staging`/`origin-staging` are aligned at `e3f44b4b`.
@@ -116,8 +133,9 @@ application boundaries returned the expected unauthenticated sign-in redirects.
 
 The Render build contract applies committed migrations through `prisma migrate deploy`
 before building. No direct staging migration inventory was queried locally, and the Neon
-development database was not migrated in this turn. Authenticated E-B/E-C human UI testing
-remains scheduled. Application `main`, live deployment and the live database are unchanged.
+development database was not migrated in this turn. Post-promotion preparation subsequently
+found E-B/E-C human acceptance blocked by missing default Project Store instantiation.
+Application `main`, live deployment and the live database are unchanged.
 
 Authoritative evidence:
 
@@ -271,10 +289,12 @@ COMMERCE-A1 complete
      -> FUND 1R-E-B C1 Store Portfolio Oversight And Exceptional Intervention Surface
         implemented/reviewed as passed locally; no shared deployment
      -> FUND 1R-E-C C2 Project Store Control Surface
-        implemented/reviewed locally; human UI schedule pending
+        implemented/reviewed/promoted; human acceptance blocked pending E-D
+     -> FUND 1R-E-D Default Project Store Instantiation And Eligible Product Reconciliation
+        planning created; single next review candidate; implementation not authorised
   -> FUND 1R-F Project Offer And Artwork Readiness Reconciliation parent accepted
      -> FUND 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
-        single next planning candidate; planning only
+        follows E-D; planning/implementation not currently authorised
 
 FUND 1R-C1 -> C2 -> C3 -> C4 -> C5 -> C6 complete
 FUND 1P-G-R3-A -> R3-B -> R3-C -> R3-D complete
@@ -404,11 +424,12 @@ Oversight And Exceptional Intervention Surface` implementation/review lifecycle 
 complete and promoted through application dev/staging at `e3f44b4b` without an E-B
 schema/migration change. `1R-E-C - C2 Project Store Control Surface` is included in the
 same promoted application commit without an E-C migration; its authenticated human UI
-schedule remains pending. The non-executable
+acceptance is blocked by the missing Project-to-Store/default-Product workflow. The bounded
+`1R-E-D - Default Project Store Instantiation And Eligible Product Reconciliation` plan is
+created and awaiting explicit review/acceptance as the single next candidate. The non-executable
 `1R-F - Project Offer And Artwork Readiness Reconciliation` parent is reviewed/accepted.
-`1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single next
-planning candidate; no proof implementation, `1R-G` or artwork/template production
-implementation is authorised.
+`1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` follows E-D; no E-D,
+proof, `1R-G` or artwork/template production implementation is authorised.
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-b-c1-store-portfolio-oversight-exceptional-intervention-surface-implementation-planning.md`
 

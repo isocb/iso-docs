@@ -2,7 +2,7 @@
 
 Date: 2026-07-15
 Automated review result: PASS
-Human UI result: NOT YET RUN - scheduled below
+Human UI result: BLOCKED - Project workflow does not yet instantiate the mandatory Store/default Product set
 Migration inventory: 141 applied / 0 failed on retained disposable PostgreSQL after full replay
 
 Roadmap renumbering notice: this historical record's `1R-F` public Store reference now
@@ -16,8 +16,10 @@ C2 now has the normal Project Store control surface. C1 remains the supplier/ove
 retains exceptional pause/release and closure/reopen through E-B. The UI does not create a second
 state machine: server E-A evidence controls every displayed blocker and allowed Store action.
 
-No blocker remains in automated implementation review. Human interaction and visual proof is
-still required before staging acceptance or public Store work.
+No blocker remains in automated implementation review. Post-promotion preparation found a
+separate workflow blocker: the Project creation/intake paths do not create the Store that this
+surface controls. Human interaction and visual proof remains required after E-D closes that
+testability gap.
 
 ## Automated Evidence
 
@@ -99,101 +101,40 @@ deferred.
 
 ## Human UI Testing Schedule
 
-The following is the required human schedule. A stage is not passed until its evidence is recorded
-in this document or a labelled follow-up review record.
+The earlier fixture-led schedule is superseded. Human testing is suspended until accepted
+E-D implementation is promoted. A hand-created Store fixture cannot prove the missing
+business workflow.
 
-### Prerequisites
+After E-D, the consolidated schedule must:
 
-- application changes committed to `dev` and pushed through the controlled promotion process;
-- target database confirmed at all 141 migrations before the application bundle is released;
-- one C2 `VIEWER`, one `PROJECT_MANAGER` and one `ADMIN` test login for the same Client;
-- a second Client membership/Project for isolation checks;
-- one standalone Project and one Event-linked Project with narrower explicit dates;
-- one prepared Store with eligible Products, one unprepared Project and one Store blocked by C1;
-- proposed commission evidence supplied by C1 test setup; and
-- no real Stripe charge or public checkout activation.
+1. create one standalone and one Event-linked Project through real retained creation paths;
+2. prove each transaction immediately creates one DRAFT Store and all canonically eligible
+   Products without a separate `Prepare Store` action;
+3. prove C1 immediately sees both Stores in `/app/fund/stores` without gaining routine create
+   or publication authority;
+4. prove C2 `PROJECT_MANAGER`/`ADMIN` sees the default Product set, can deselect/restore and
+   cannot edit commercial/readiness authority;
+5. refresh eligibility and prove explicit deselections persist while newly eligible Products
+   with no history are selected by default;
+6. accept commission and activate the Project, then prove SCHEDULED before `opensAt` and OPEN
+   only inside the Project window while every gate passes;
+7. repeat read paths as `VIEWER`, cross-Client refusal, desktop/mobile, keyboard, focus,
+   loading, empty and error states;
+8. apply C1 exceptional pause/release and closure/reopen, proving C2 cannot bypass or see C1
+   notes; and
+9. make no real Stripe charge or public checkout activation.
 
-### Stage 1 - local dev workflow smoke (30-45 minutes)
-
-Run immediately after the 141-migration dev database and dev application baseline are aligned.
-
-1. Sign in as C2 `PROJECT_MANAGER`.
-2. Open `/app/fund/client/projects/[id]` and select Store.
-3. Prepare an unprepared Store; confirm it remains unpublished.
-4. edit and save Store title, introduction and objective;
-5. select/remove an eligible Product, toggle visibility and change order;
-6. refresh readiness and verify blockers/responsible actor;
-7. accept a proposed commission offer once, then refresh/revisit to prove stable state;
-8. activate/pause/resume the Project where allowed;
-9. publish/pause/resume the Store where allowed; and
-10. confirm Orders remains a non-operational placeholder.
-
-Expected: every mutation returns the latest server state, duplicate clicks are contained, no
-commercial/readiness field is editable and no public route is activated.
-
-### Stage 2 - role, date and accessibility pass (30 minutes)
-
-1. Repeat read paths as `VIEWER`; verify every mutation control is absent or disabled.
-2. Verify `ADMIN` has the same bounded normal authority as Project manager.
-3. Attempt a cross-Client Project URL; expect not-found/safe refusal.
-4. Check standalone and Event-linked date copy, including narrower Project dates.
-5. Check scheduled, open, Project-paused and Project-window-ended states.
-6. Test at desktop and mobile widths.
-7. Navigate tabs, forms, confirmation and action controls by keyboard only.
-8. Check focus return after commission modal, visible labels, loading, empty and error states.
-
-Expected: no horizontal trap, inaccessible unlabeled control, browser-derived date authority or
-cross-Client information.
-
-### Stage 3 - cross-role exceptional intervention pass (20 minutes)
-
-Use C1 E-B and C2 E-C in sequence:
-
-1. C1 applies an exceptional pause with an internal note.
-2. C2 refreshes the Store and sees only the bounded supplier-pause explanation.
-3. Confirm C2 cannot publish/resume or see the C1 note.
-4. C1 releases the pause; confirm C2 state recalculates without forced publication.
-5. Repeat with exceptional closure and C1 reopen.
-
-Expected: C1 notes stay C1-only and C2 never bypasses exceptional intervention.
-
-### Stage 4 - controlled dev/origin-dev and staging smoke (20-30 minutes each)
-
-After the documented controlled promotion procedure:
-
-- repeat login, Project detail, Store read, one reversible copy edit and one readiness refresh;
-- repeat viewer refusal and C1-pause/C2-observation;
-- verify no LMSPro navigation or existing UI regression; and
-- make no real Stripe charge.
-
-### Evidence to capture
-
-- environment/commit and migration count;
-- tester, role and test Client/Project identifiers;
-- desktop/mobile screenshots for Store summary, blockers, viewer state and confirmation;
-- exact pass/fail notes for each stage;
-- any browser console/server error reference without secrets or personal data; and
-- final human acceptance date.
-
-### Stop conditions
-
-Stop promotion and record a failure if:
-
-- migration count is not 141;
-- a role or Client isolation check fails;
-- C2 sees C1 notes, raw snapshot/hash or commercial writers;
-- browser time changes authoritative state;
-- C2 bypasses an exceptional intervention;
-- commission acceptance duplicates or accepts stale terms;
-- Project/Event boundary copy or enforcement disagrees with the server; or
-- an existing LMSPro path regresses.
+Capture environment/commit/migration evidence, tester roles, test identifiers, screenshots,
+exact pass/fail notes and safe error references. Stop if Store/default Product creation is not
+atomic, a deselection is silently reversed, tenant/role isolation fails, date/readiness gates
+are bypassed or C2 sees C1/private commercial evidence.
 
 ## Remaining Manual Status
 
-Human UI stages 1-4 remain pending. E-B/E-C are now committed on local application `dev` at
-`e3f44b4b` and promoted through dev/staging. Exact staging automated gates, online health,
-database connectivity, RLS and unauthenticated route protection passed. Authenticated
-stages 1-4 remain an explicit test obligation, not an implementation failure.
+E-B/E-C are promoted at application `e3f44b4b`; their automated gates, online health,
+database connectivity, RLS and unauthenticated route protection passed. Human acceptance is
+blocked, not failed, by the missing mandatory Project-to-Store/default-Product workflow.
+`1R-E-D` is the single corrective next candidate before `1R-F-A`.
 
 ## Final Boundary
 

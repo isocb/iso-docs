@@ -119,10 +119,13 @@ remained at `daafc349` pending the later requested promotion.
 
 Subsequent controlled promotion on 2026-07-20 aligned application dev/origin-dev and
 staging/origin-staging at `e3f44b4b`. Automated staging and online health gates passed;
-authenticated C1 browser testing remains scheduled rather than claimed.
+authenticated C1 browser testing was not claimed. Preparation on 2026-07-21 established
+that C1 cannot exercise oversight/intervention from the empty FUND state because canonical
+Project creation creates no Store. Human acceptance is blocked pending corrective E-D;
+ordinary C1 Store creation remains intentionally out of scope.
 
 ## 7. Handoff
 
-E-B is complete through implementation, confirmation and review/test. `1R-E-C - C2
-Project Store Control Surface` is the single next planning candidate. This record does not
-authorise E-C, 1R-F or later implementation.
+E-B automated implementation/review remains complete. E-C subsequently completed, and E-D
+is now the corrective next review candidate before `1R-F-A`. This record authorises no E-D,
+1R-F or later implementation.

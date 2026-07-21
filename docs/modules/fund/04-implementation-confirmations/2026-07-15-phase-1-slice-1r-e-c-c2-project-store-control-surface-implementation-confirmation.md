@@ -1,7 +1,7 @@
 # FUND Phase 1 Slice 1R-E-C - C2 Project Store Control Surface Implementation Confirmation
 
 Date: 2026-07-15
-Status: Implemented and promoted through application dev/staging at `e3f44b4b`; automated review passed; human UI schedule remains pending
+Status: Implemented and promoted through application dev/staging at `e3f44b4b`; automated review passed; human acceptance blocked pending E-D
 Application baseline: committed E-A baseline `daafc349`; E-B/E-C application commit `e3f44b4b`
 Migration baseline: unchanged complete 141-migration history
 
@@ -95,7 +95,14 @@ Subsequent controlled promotion on 2026-07-20 aligned application dev/origin-dev
 staging/origin-staging at `e3f44b4b`. Exact staging automated and online health gates
 passed. Authenticated C2 interaction testing remains scheduled in the R1 record.
 
+Post-promotion preparation on 2026-07-21 found the schedule non-executable from the real
+empty FUND workflow: canonical Project creation creates no Store/default eligible Product
+set, and the only current Store-instantiation UI is the optional C2 `Prepare Store` action.
+This does not invalidate E-C authority/UI automation, but blocks human acceptance pending
+corrective `1R-E-D`.
+
 ## Stop Boundary
 
-Implementation stopped after the E-C lifecycle. `1R-F`, public Store/checkout, artwork/template,
-production, fulfilment and commission calculation were not started.
+Implementation stopped after the E-C lifecycle. E-D is now the corrective next review
+candidate. `1R-F`, public Store/checkout, artwork/template, production, fulfilment and
+commission calculation were not started.

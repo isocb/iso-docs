@@ -2,7 +2,7 @@
 
 Created: 2026-06-25
 
-Last consolidated: 2026-07-20
+Last consolidated: 2026-07-21
 
 Status: Active authoritative control for the FUND lane
 
@@ -85,7 +85,7 @@ Current consolidated delivery state:
 - the staging application health check passed with its database connected and RLS enabled
   on all 11 expected tables;
 - prior human FUND administrator login and pre-existing UI smoke testing passed; E-B/E-C
-  authenticated human UI testing remains scheduled; and
+  authenticated human acceptance is blocked pending E-D Project-to-Store instantiation; and
 - application `main`, live deployment and the live database remain unchanged.
 
 Current E-A/E-B/E-C promotion state:
@@ -106,15 +106,19 @@ Current E-A/E-B/E-C promotion state:
   with no E-B schema/migration;
 - bounded `1R-E-C - C2 Project Store Control Surface` planning, implementation, automated
   review and lifecycle records are promoted at `e3f44b4b` with no E-C schema/migration;
-  human UI stages remain scheduled in its R1 record; and
+- post-promotion human-smoke preparation found that canonical Project creation does not
+  instantiate the Store/default eligible Product set, so E-B/E-C human acceptance is blocked
+  rather than failed;
+- governed `1R-E-D - Default Project Store Instantiation And Eligible Product
+  Reconciliation` planning is created and awaiting explicit review/acceptance; and
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is reviewed and accepted as
   the non-executable successor to the three governed CRs; and
-- `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single next
-  planning candidate. No renderer proof implementation, `1R-F-B` through `1R-F-I`,
-  `1R-G` or artwork/template production implementation is authorised.
+- `1R-E-D` is the single next review candidate and must complete before `1R-F-A`. No E-D,
+  renderer proof, `1R-F-B` through `1R-F-I`, `1R-G` or artwork/template production
+  implementation is authorised.
 - the 2026-07-20 refinement reconciliation is accepted as subordinate placement control:
   it must inform `1R-F-A` and be applied before accepting work beyond it, but it does not
-  replace `1R-F-A` as the single next candidate or authorise a refinement implementation.
+  replace the authoritative next-candidate decision or authorise a refinement implementation.
 
 Authoritative promotion evidence:
 
@@ -246,7 +250,7 @@ Application staging/origin-staging: e3f44b4b
 Application main/origin-main:       ea4e6193 (unchanged)
 Neon development migrations:        140 previously recorded; not changed this turn
 Staging health:                      healthy; database connected; RLS 11/11
-E-B/E-C authenticated human UI:      pending scheduled review
+E-B/E-C authenticated human UI:      blocked pending E-D workflow remediation
 ```
 
 Exact dev and staging Security Scans passed. The Render build contract runs committed
@@ -284,10 +288,11 @@ Full evidence is recorded in:
 | `COMMERCE-A5` | Commerce | Implemented/reviewed; application on `origin/dev`; no migration | Provider-neutral validation, idempotency and audit service primitives |
 | `COMMERCE-A6-A` through `A6-D` | Commerce | Implemented/reviewed; included in dev/staging promotion `91e8751c` | Stripe Connect evidence, onboarding, Checkout adapter and verified webhook/payment/refund reconciliation boundaries |
 | `COMMERCE-A7` | Commerce/FUND integration | Implemented/reviewed; dev/staging promotion and smoke gate complete at `91e8751c` | Dormant internal STRIPE_ONLINE integration from an authoritative FUND offer to generic Commerce and typed FUND context |
-| `1R-E` | FUND Store | Parent reviewed/accepted; non-executable | C1 Store oversight, C2 normal Project Store control, exceptional C1 intervention and service-authority alignment split into bounded E-A/E-B/E-C lifecycles |
+| `1R-E` | FUND Store | Parent reviewed/accepted; non-executable; corrective E-D appended | C1 Store oversight, C2 normal Project Store control, exceptional C1 intervention and mandatory default Project Store initiation split into bounded E-A/E-B/E-C/E-D lifecycles |
 | `1R-E-A` | FUND Store | Implemented/reviewed; included in dev/staging promotion `e3f44b4b`; disposable database 141/0 | Typed C1 intervention evidence, C2 Project/Store authority, Event envelope guards and one effective Store-state/A7 availability policy; no UI |
-| `1R-E-B` | FUND Store | Implemented/reviewed; promoted through dev/staging at `e3f44b4b`; no migration; authenticated UI gate pending | C1 Store portfolio oversight and exceptional intervention surface consuming E-A authority |
-| `1R-E-C` | FUND Store | Implemented/reviewed; promoted through dev/staging at `e3f44b4b`; no migration; authenticated UI schedule pending | C2 Project Store control surface consuming E-A authority, bounded C2 commission acceptance and normal Project/Store control |
+| `1R-E-B` | FUND Store | Implemented/reviewed; promoted through dev/staging at `e3f44b4b`; automated evidence passed; human acceptance blocked pending E-D | C1 Store portfolio oversight and exceptional intervention surface consuming E-A authority |
+| `1R-E-C` | FUND Store | Implemented/reviewed; promoted through dev/staging at `e3f44b4b`; automated evidence passed; human acceptance blocked pending E-D | C2 Project Store control surface consuming E-A authority, bounded C2 commission acceptance and normal Project/Store control |
+| `1R-E-D` | FUND Store | Planning created; awaiting explicit review/acceptance; no implementation authorised | Mandatory one DRAFT Store per Project, all-eligible-minus-C2-exclusions defaults and real-workflow human testability |
 
 `1R-C1` through `1R-D` and `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D` must not be rerun as pending work. No next
 implementation is authorised merely because the preceding lifecycle completed.
@@ -299,8 +304,9 @@ Current promotion checkpoint: application `dev`/`origin/dev` and
 database remains at its separately recorded 140-migration boundary. The Render staging
 build contract ran committed migrations before build; no direct staging migration inventory
 was queried locally. Exact dev/staging automated gates and online staging
-health/database/RLS checks passed. E-B/E-C authenticated human UI testing remains
-scheduled. Production remains untouched. Authoritative evidence is recorded at
+health/database/RLS checks passed. E-B/E-C human acceptance is blocked by the subsequently
+identified Project-to-Store instantiation gap. Production remains untouched. Authoritative
+promotion evidence is recorded at
 `docs/00-roadmap-control/2026-07-20-fund-1r-e-dev-staging-promotion-confirmation.md`.
 
 Older statements below describing C1-C6/R3-D as unpushed or undeployed to the development
@@ -326,10 +332,12 @@ COMMERCE-A1 (complete on dev)
      -> FUND 1R-E-B C1 Store Portfolio Oversight And Exceptional Intervention Surface
         implemented/reviewed and promoted at e3f44b4b; authenticated UI gate pending
      -> FUND 1R-E-C C2 Project Store Control Surface
-        implemented/reviewed and promoted at e3f44b4b; human UI schedule pending
+        implemented/reviewed and promoted at e3f44b4b; human acceptance blocked pending E-D
+     -> FUND 1R-E-D Default Project Store Instantiation And Eligible Product Reconciliation
+        planning created; single next review candidate; implementation not authorised
   -> FUND 1R-F Project Offer And Artwork Readiness Reconciliation parent accepted
      -> FUND 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
-        single next planning candidate; planning only
+        follows accepted/completed E-D; not currently authorised
         -> apply the accepted pilot/refinement placement before accepting later F/G work;
            this is a control gate, not an executable slice
 
@@ -367,13 +375,15 @@ Rules:
   completed dev/staging promotion at `91e8751c`;
 - FUND `1R-E - C1 Store Oversight And C2 Project Store Control Alignment` is an accepted
   non-executable parent; E-A/E-B/E-C are implemented/reviewed and promoted through
-  dev/staging at `e3f44b4b`; E-B/E-C add no migration and their authenticated human UI
-  stages remain pending;
+  dev/staging at `e3f44b4b`; E-B/E-C automated evidence passes but human acceptance is
+  blocked pending corrective E-D;
+- `1R-E-D - Default Project Store Instantiation And Eligible Product Reconciliation` is
+  planned and awaiting explicit review/acceptance; no implementation is authorised;
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is an accepted
   non-executable parent at
   `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`;
-- `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single next
-  planning candidate and does not authorise proof or production implementation;
+- `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` follows E-D and does
+  not authorise proof or production implementation;
 - the subordinate 2026-07-20 refinement register must inform the AMOW proof and later
   pilot gates, but cannot start work or displace the single next candidate;
 - never implement two slices merely because their planning can be discussed together;
@@ -735,12 +745,18 @@ It adds no migration and is promoted through dev/staging in application commit `
 The bounded `1R-E-C - C2 Project Store Control Surface` plan and implementation/review
 lifecycle are promoted in the same application commit
 at `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-c-c2-project-store-control-surface-implementation-planning.md`.
-E-C adds no migration; its authenticated human UI schedule remains pending. The
+E-C adds no migration. Post-promotion review found that its human schedule cannot start from
+the real empty FUND state because Project creation creates no Store/default eligible Product
+set. E-B/E-C human acceptance is therefore blocked, not failed. The governed E-D input is at
+`docs/modules/fund/01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md`
+and the bounded E-D plan is at
+`docs/modules/fund/03-slice-planning/2026-07-21-fund-phase-1-slice-1r-e-d-default-project-store-instantiation-eligible-product-reconciliation-implementation-planning.md`.
+E-D is the single next review candidate. The
 non-executable `1R-F - Project Offer And Artwork Readiness Reconciliation` parent is
 reviewed/accepted and records the separate Individual, collective and Standard readiness
-branches. `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the
-single next planning candidate; no proof implementation, `1R-G` or artwork/template
-production implementation is authorised.
+branches. `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` follows E-D;
+no E-D implementation, proof implementation, `1R-G` or artwork/template production
+implementation is authorised.
 ```
 
 ## 10. Roadmap Maintenance Rule

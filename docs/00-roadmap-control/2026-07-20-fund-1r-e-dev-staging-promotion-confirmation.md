@@ -108,9 +108,9 @@ Unauthenticated boundary checks returned the expected sign-in redirects:
 These checks prove online boot, database/RLS health and protected route boundaries. They do
 not replace the authenticated C1/C2 interaction schedule in the E-C R1 review.
 
-## 7. Remaining Human Gate
+## 7. Remaining Human Gate And Post-Promotion Finding
 
-The following remain scheduled rather than claimed:
+The following were scheduled rather than claimed:
 
 - C1 Store portfolio/detail, filtering, readiness refresh and exceptional intervention;
 - C2 VIEWER versus PROJECT_MANAGER/ADMIN Store permissions;
@@ -118,12 +118,19 @@ The following remain scheduled rather than claimed:
 - Event-envelope and blocker presentation; and
 - responsive/accessibility/keyboard review.
 
-Human results should be appended to the existing E-B/E-C review records after testing.
+Preparation on 2026-07-21 established that the schedule cannot begin from the real empty FUND
+state: canonical Project creation creates no Store/default eligible Product set, C1 correctly
+has no routine Store-create authority and the only creation UI is the optional C2 `Prepare
+Store` action. Human acceptance is therefore blocked, not failed, pending corrective E-D.
+
+Human results should be appended to the existing E-B/E-C review records only after E-D makes
+the real Project workflow testable.
 
 ## 8. Result And Boundary
 
 Application `dev` and `origin/dev` match, and the exact same commit is promoted to online
 `staging`/`origin/staging`. Automated staging acceptance and online health checks pass.
 
-Application `main`, live deployment and the live database remain unchanged. `1R-F-A` stays
-the single next planning candidate; this promotion does not authorise its implementation.
+Application `main`, live deployment and the live database remain unchanged. The subsequent
+E-D plan is now the single next review candidate before `1R-F-A`; this promotion authorises
+neither implementation.

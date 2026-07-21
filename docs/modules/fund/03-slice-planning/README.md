@@ -24,9 +24,9 @@ Most recently completed implementation lifecycle:
 Current integrated critical-path action:
 
 ```text
-Create and review only `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof`
-planning. Do not implement the proof, production schema or artwork/template behaviour and
-do not begin `1R-F-B` through `1R-F-I`, `1R-G` or another slice.
+Review only `1R-E-D - Default Project Store Instantiation And Eligible Product
+Reconciliation` planning. Do not implement schema/application code and do not begin
+`1R-F-A`, `1R-G` or another slice.
 ```
 
 Commerce A1-A7 and the retained FUND C1-C6/1R-D/R3 foundations are implemented/reviewed.
@@ -35,10 +35,11 @@ Exact dev/staging automated gates passed and online staging is healthy with its 
 connected and RLS enabled on 11/11 expected tables. Production remains unchanged. E-A was
 validated against the complete 141-migration disposable baseline with zero residue; the
 Render staging build contract runs committed migrations through `migrate deploy`, but no
-direct staging migration inventory was queried locally. E-B and E-C add no migration. E-C
-authenticated human UI stages are scheduled in its R1 record. The non-executable `1R-F` parent is
-reviewed/accepted and `1R-F-A` proof planning
-is the single next candidate.
+direct staging migration inventory was queried locally. E-B and E-C add no migration.
+Post-promotion review found their human acceptance blocked because canonical Project creation
+does not create the mandatory Store/default eligible Product set. The corrective E-D plan is
+created and awaiting explicit review/acceptance. The non-executable `1R-F` parent remains
+accepted; `1R-F-A` follows E-D.
 
 This current status supersedes older per-slice deployment wording retained below for
 historical context.
@@ -66,6 +67,10 @@ Completed E-B implementation plan:
 Completed E-C implementation plan:
 
 `2026-07-15-fund-phase-1-slice-1r-e-c-c2-project-store-control-surface-implementation-planning.md`
+
+Current E-D review candidate:
+
+`2026-07-21-fund-phase-1-slice-1r-e-d-default-project-store-instantiation-eligible-product-reconciliation-implementation-planning.md`
 
 `1P-G-R3-A` is implemented and reviewed at application `4bb7dd9`, included on `origin/dev`,
 and documented at `65fc243`. `1P-G-R3-B` is implemented, reviewed and committed at application
