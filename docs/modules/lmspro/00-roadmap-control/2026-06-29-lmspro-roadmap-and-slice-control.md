@@ -97,9 +97,10 @@ Current posture:
 
 ```text
 R8-A is the active accepted LMSPro remediation lane.
-R8-A1 is complete on the remediation branch. R8-A2 planning records the accepted broad
-file/malware/shared-link policy and private Render-hosted ClamAV direction. It is paused only
-for confirmation of the exact separate external-link cap before implementation.
+R8-A1 is complete on the remediation branch. R8-A2 is implemented and technically verified
+on that branch with the accepted broad file/malware/shared-link policy, private
+Render-hosted ClamAV direction and independent limits of three uploaded attachments and
+three external links. R8-A2 is paused at its required deployed human UI smoke-test gate.
 ```
 
 An urgent communications-integrity candidate now precedes optional feature implementation:
@@ -145,7 +146,7 @@ Accepted controlling plan:
 Status:
 
 ```text
-Accepted 2026-07-21; R8-A1 completed; R8-A2 scanner and separate-link policy accepted; exact link cap awaiting confirmation.
+Accepted 2026-07-21; R8-A1 completed; R8-A2 technically complete on the remediation branch and awaiting deployed human UI smoke confirmation.
 ```
 
 Implementation baselines:
@@ -189,8 +190,7 @@ permissions of supplied files and links. This notice does not replace malware sc
 SeasonPro-managed uploads. Links alone do not select the attachment job: a communication
 with no managed binary attachment continues to use the proven batch route. Malware scanning
 will use a dedicated private ClamAV service on Render. The three uploaded attachments and
-external-link allowance are independent; three external links is the recommended initial
-cap and remains to be confirmed.
+external-link allowance are independent; three external links is the accepted initial cap.
 
 R8-A must support approximately 300 attachment recipients through a rate-controlled,
 resumable worker. It must not hold the C1 browser request open while sending all messages.
@@ -212,8 +212,8 @@ accepted.
 Next action:
 
 ```text
-Resolve R8-A2 section 17's final bounded value: confirm the recommended maximum of three
-external shared-document links per email.
+Deploy the R8-A2 branch and record the required human UI, private R2 and private ClamAV smoke
+results. Do not create R8-A3 planning until that evidence is reported and accepted.
 ```
 
 R8-A2 planning:
@@ -224,9 +224,23 @@ R8-A2 planning:
 
 The dedicated private ClamAV service on Render is accepted so potentially sensitive Club
 documents remain inside the controlled environment. Its paid-service and operational
-resource/signature-health ownership are therefore accepted R8-A2 implications. After the
-external-link cap is confirmed, implement R8-A2 and pause for its human UI smoke-test result
-before creating R8-A3 planning.
+resource/signature-health ownership are therefore accepted R8-A2 implications. The
+three-link cap is accepted and implemented independently from the three-upload/10 MB
+allowance. R8-A2 is now paused for its deployed human UI smoke-test result before R8-A3
+planning may be created.
+
+R8-A2 completion evidence:
+
+```text
+planning:
+03-slice-planning/2026-07-21-lmspro-remediation-slice-r8-a2-attachment-persistence-drafts-and-fail-closed-preflight-planning.md
+
+implementation:
+04-implementation-confirmations/2026-07-21-lmspro-remediation-slice-r8-a2-attachment-persistence-drafts-and-fail-closed-preflight-confirmation.md
+
+review/test:
+05-review-and-test/2026-07-21-lmspro-remediation-slice-r8-a2-attachment-persistence-drafts-and-fail-closed-preflight-review-and-test.md
+```
 
 R8-A1 completion evidence:
 
@@ -398,14 +412,14 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Slice
 
 ```text
-R8-A2 - Attachment Persistence, Drafts And Fail-Closed Preflight (external-link cap gate)
+R8-A2 - Attachment Persistence, Drafts And Fail-Closed Preflight (deployed human smoke gate)
 ```
 
 Goal:
 
-Make attachment persistence and draft editing exact, enforce the accepted three-file/10 MB
-limits, validate durable readability and fingerprint the immutable attachment set. Correct
-visible failure handling and define the required human UI smoke script.
+Run and report the accepted R8-A2 deployed human UI smoke script against the configured
+private R2 bucket and private ClamAV service. Keep R8-A3 planning closed until the result is
+recorded and accepted.
 
 ## Fresh Chat Prompt
 
@@ -418,11 +432,10 @@ Review the bounded R8-A2 planning slice:
 isodocs/docs/modules/lmspro/03-slice-planning/2026-07-21-lmspro-remediation-slice-r8-a2-attachment-persistence-drafts-and-fail-closed-preflight-planning.md
 
 Goal:
-Record the accepted section 16 broad Office/image/ZIP, malware-scanning, external shared-link
-and C1 responsibility policy. Record the accepted dedicated private ClamAV service on
-Render. Confirm section 17's recommended maximum of three external links per email. The
-three uploaded attachments and external-link allowance are independent. Do not implement
-until the exact link cap is recorded.
+Deploy and smoke-test the technically complete R8-A2 implementation. Confirm exact draft
+resource persistence, independent three-upload/10 MB and three-link limits, private R2
+readability, private ClamAV clean/infected/unavailable behaviour, explicit C1 responsibility
+acknowledgement and the interim attachment-send refusal.
 
 Do not create R8-A3 planning until R8-A2 implementation and technical review are complete and
 the business/testing team has reported the required human UI smoke result. Do not broaden the

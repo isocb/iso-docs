@@ -393,8 +393,7 @@ Accepted security and supporting-link amendment, 2026-07-21:
 
 Accepted on 2026-07-21, a message may contain up to three uploaded attachments plus a
 separate bounded allowance for external links, with 10 MB applying only to uploaded files.
-The recommended initial external-link allowance is three; its exact value remains the only
-business value to confirm before R8-A2 implementation.
+The accepted initial external-link allowance is three.
 
 ## 12. Job And Recipient Model
 
@@ -776,6 +775,9 @@ one or more attachments can only select ATTACHMENT_JOB/ordinary sender
 
 ### R8-A2 - Attachment Persistence, Drafts And Fail-Closed Preflight
 
+Status: Implemented and technically verified on the dedicated remediation branch; awaiting
+the required deployed human UI smoke-test result before R8-A3 planning.
+
 - make upload failure visible and blocking;
 - return/hydrate durable attachments;
 - support editable draft attachment changes;
@@ -1144,8 +1146,7 @@ would change user authority, retention, security posture or external operating c
 3. Confirm whether a dedicated `EmailDeliveryJob` and recipient-attempt model are required.
 4. Decide authority for retry and any pre-send cancellation.
 5. Define sent attachment/job retention.
-6. Confirm the maximum external shared-document links per email; three is recommended.
-7. Decide whether a later R8-B should add attachment support to key-date sequences.
+6. Decide whether a later R8-B should add attachment support to key-date sequences.
 
 ## 31. Suggested Control-Window Handoff Prompt
 

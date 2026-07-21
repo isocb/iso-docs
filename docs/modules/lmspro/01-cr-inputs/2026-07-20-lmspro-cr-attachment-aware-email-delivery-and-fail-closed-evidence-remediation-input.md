@@ -234,8 +234,7 @@ The acknowledgement must not weaken SeasonPro's validation and malware-scanning 
 for managed uploads. Accepted on 2026-07-21, R8-A2 will use a dedicated private ClamAV
 service on Render and must prove its availability, definition health and fail-closed
 behaviour before broad files can be marked validated. A message may contain up to three
-uploaded attachments plus a separate bounded allowance for external links. The exact link
-cap remains to be confirmed; three is recommended.
+uploaded attachments plus up to three external links.
 
 ## Persistence And Fail-Closed Evidence
 
@@ -425,11 +424,10 @@ LMSPro delivery cycle.
 1. What is the current Resend team rate limit and paid-plan quota in the target environment?
 2. Should the initial worker rate be three requests per second, or lower to reserve more
    transactional capacity?
-3. Confirm the maximum external shared-document links per email; three is recommended.
-4. Should one immutable attachment object be referenced by duplicated drafts, or should the
+3. Should one immutable attachment object be referenced by duplicated drafts, or should the
    association create a separately retained object version?
-5. What retention period applies to sent-email attachments and delivery-attempt evidence?
-6. Which C1 roles may retry a partially failed attachment job?
-7. Is explicit cancellation required after queueing but before the first recipient send?
-8. Should key-date sequence attachment authoring become a later R8-B candidate after R8-A is
+4. What retention period applies to sent-email attachments and delivery-attempt evidence?
+5. Which C1 roles may retry a partially failed attachment job?
+6. Is explicit cancellation required after queueing but before the first recipient send?
+7. Should key-date sequence attachment authoring become a later R8-B candidate after R8-A is
    proven?

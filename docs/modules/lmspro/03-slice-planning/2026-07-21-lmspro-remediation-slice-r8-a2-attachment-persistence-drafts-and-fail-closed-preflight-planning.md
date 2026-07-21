@@ -2,7 +2,7 @@
 
 Date: 2026-07-21
 Module: LMSPro / SeasonPro shared communications
-Status: Planning complete; private ClamAV deployment and separate link allowance accepted; implementation paused only for the exact shared-link cap in section 17
+Status: Implemented and technically verified on the dedicated remediation branch; awaiting deployed human UI smoke confirmation
 Type: Durable attachment lifecycle and visible fail-closed remediation
 
 Controlling parent:
@@ -16,6 +16,14 @@ Completed prerequisite:
 Related CR input:
 
 `docs/modules/lmspro/01-cr-inputs/2026-07-20-lmspro-cr-attachment-aware-email-delivery-and-fail-closed-evidence-remediation-input.md`
+
+Implementation confirmation:
+
+`docs/modules/lmspro/04-implementation-confirmations/2026-07-21-lmspro-remediation-slice-r8-a2-attachment-persistence-drafts-and-fail-closed-preflight-confirmation.md`
+
+Review and test record:
+
+`docs/modules/lmspro/05-review-and-test/2026-07-21-lmspro-remediation-slice-r8-a2-attachment-persistence-drafts-and-fail-closed-preflight-review-and-test.md`
 
 ## 1. Purpose
 
@@ -442,11 +450,10 @@ Accepted by the business analyst on 2026-07-21:
 8. The compose experience includes the explicit C1 SeasonPro Administrator responsibility
    acknowledgement defined in section 14. That acknowledgement supplements rather than
    replaces platform validation and malware scanning of uploaded files.
-9. A message may contain up to three uploaded attachments plus a separate bounded allowance
-   for external shared-document links. The 10 MB cumulative limit applies only to uploaded
-   files. The exact link cap remains the one unresolved business value in section 17.
+9. A message may contain up to three uploaded attachments plus up to three external
+   shared-document links. The 10 MB cumulative limit applies only to uploaded files.
 
-## 17. Accepted Malware-Scanner Deployment And Remaining Link Cap
+## 17. Accepted Malware-Scanner Deployment And Link Cap
 
 Accepted by the business analyst on 2026-07-21:
 
@@ -469,14 +476,13 @@ availability and cost decision.
 Broad unscanned support is no longer an acceptable R8-A2 outcome. The C1 responsibility
 notice does not transfer away SeasonPro's accepted obligation to scan managed uploads.
 
-One bounded business value remains:
+The remaining bounded value was accepted by the business analyst on 2026-07-21:
 
 ```text
-maximum external shared-document links per email: not yet confirmed
-recommended initial value: 3
+maximum external shared-document links per email: 3
 ```
 
-Three links is recommended because it is simple to explain alongside the independent
+Three links is accepted because it is simple to explain alongside the independent
 three-attachment limit, prevents the supporting-document block becoming an unbounded link
 list and remains sufficient for the expected administrative communication use case.
 
@@ -490,8 +496,7 @@ Relevant platform references:
 
 ## 18. Technical Exit Gate
 
-Subject to confirmation of section 17's external-link cap, R8-A2 is technically complete
-when:
+R8-A2 is technically complete when:
 
 ```text
 intended = persisted = validated = readable
@@ -535,3 +540,21 @@ environment:
 
 The reported result must be recorded in `05-review-and-test`. Do not create R8-A3 planning
 until that human result is confirmed.
+
+## 20. Implementation Position
+
+R8-A2 was implemented and technically verified on 2026-07-21 in application commit:
+
+```text
+23e87473 feat(communications): persist scanned email resources
+```
+
+The implementation provides private attachment storage evidence, strict content/type and
+archive validation, private ClamAV scanning, exact draft resource reconciliation and
+duplication, independent three-upload/10 MB and three-link controls, C1 responsibility
+acknowledgement, attachment-set fingerprinting and fail-closed send/resend preflight.
+
+Local automated and build evidence passes. The local environment does not provide Docker or
+the deployed Render/R2 configuration, so ClamAV service health, signature updates, private
+object round trips and the compose UI remain subject to section 19's deployed human gate.
+R8-A3 planning remains prohibited until that result is reported and accepted.
