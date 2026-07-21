@@ -97,8 +97,9 @@ Current posture:
 
 ```text
 R8-A is the active accepted LMSPro remediation lane.
-R8-A1 is complete on the remediation branch. R8-A2 planning is complete and paused for its
-explicit attachment file-type/malware security-policy decision before implementation.
+R8-A1 is complete on the remediation branch. R8-A2 planning records the accepted broad
+file/malware/shared-link policy and is paused for the malware-scanner deployment decision
+before implementation.
 ```
 
 An urgent communications-integrity candidate now precedes optional feature implementation:
@@ -144,7 +145,7 @@ Accepted controlling plan:
 Status:
 
 ```text
-Accepted 2026-07-21; R8-A1 completed; R8-A2 planning created and awaiting business security-policy decision.
+Accepted 2026-07-21; R8-A1 completed; R8-A2 policy clarified and awaiting malware-scanner deployment decision.
 ```
 
 Implementation baselines:
@@ -179,6 +180,15 @@ one or more persisted attachments
 -> short-lived signed path to each validated private object
 ```
 
+R8-A2 also retains broad Office/image/ZIP support subject to actual-type validation and a
+mandatory `CLEAN` malware result. C1 may provide a controlled HTTPS shared-document link,
+which is rendered as an externally hosted link and is not fetched, copied, scanned or
+permission-tested by SeasonPro. The compose UI must explicitly state and record that the C1
+SeasonPro Administrator is responsible for the integrity, suitability and sharing
+permissions of supplied files and links. This notice does not replace malware scanning for
+SeasonPro-managed uploads. Links alone do not select the attachment job: a communication
+with no managed binary attachment continues to use the proven batch route.
+
 R8-A must support approximately 300 attachment recipients through a rate-controlled,
 resumable worker. It must not hold the C1 browser request open while sending all messages.
 
@@ -199,8 +209,9 @@ accepted.
 Next action:
 
 ```text
-Resolve R8-A2 section 16: select the restricted PDF/JPEG/PNG initial allowlist, require broad
-malware-scanned support, or explicitly accept the risk of a broad unscanned allowlist.
+Resolve R8-A2 section 17: choose the malware-scanner deployment authority for the accepted
+broad file policy: a dedicated private ClamAV service on Render or a contracted external
+scanning API after privacy/cost review.
 ```
 
 R8-A2 planning:
@@ -209,8 +220,10 @@ R8-A2 planning:
 03-slice-planning/2026-07-21-lmspro-remediation-slice-r8-a2-attachment-persistence-drafts-and-fail-closed-preflight-planning.md
 ```
 
-The recommended business decision is the restricted PDF/JPEG/PNG initial allowlist without
-a new malware-scanning service. After the decision, implement R8-A2 and pause for its human UI
+The recommended deployment direction is a dedicated private ClamAV service on Render so
+potentially sensitive Club documents remain inside the controlled environment. This adds a
+paid service and operational resource/signature-health ownership. After the deployment and
+three-item-count decisions are recorded, implement R8-A2 and pause for its human UI
 smoke-test result before creating R8-A3 planning.
 
 R8-A1 completion evidence:
@@ -383,7 +396,7 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Slice
 
 ```text
-R8-A2 - Attachment Persistence, Drafts And Fail-Closed Preflight (business decision gate)
+R8-A2 - Attachment Persistence, Drafts And Fail-Closed Preflight (scanner deployment gate)
 ```
 
 Goal:
@@ -403,9 +416,12 @@ Review the bounded R8-A2 planning slice:
 isodocs/docs/modules/lmspro/03-slice-planning/2026-07-21-lmspro-remediation-slice-r8-a2-attachment-persistence-drafts-and-fail-closed-preflight-planning.md
 
 Goal:
-Resolve section 16's file-type/malware policy. Option A, PDF/JPEG/PNG with actual signature
-validation and no new scanner, is recommended. Do not implement until that business decision
-is recorded.
+Record the accepted section 16 broad Office/image/ZIP, malware-scanning, external shared-link
+and C1 responsibility policy. Resolve section 17's scanner deployment choice. A dedicated
+private ClamAV service on Render is recommended for document confidentiality, subject to
+acceptance of its infrastructure cost and operating ownership. Confirm whether the
+three-supporting-item cap combines files and links. Do not implement until those decisions
+are recorded.
 
 Do not create R8-A3 planning until R8-A2 implementation and technical review are complete and
 the business/testing team has reported the required human UI smoke result. Do not broaden the

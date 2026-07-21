@@ -371,6 +371,31 @@ no more than 10 MB cumulative for a multi-recipient attachment send
 These are settled application limits for R8-A. Provider and worker testing must still prove
 that the accepted envelope remains safely below the complete-email provider limit.
 
+Accepted security and supporting-link amendment, 2026-07-21:
+
+- retain a broad, explicit allowlist covering ordinary Office documents, approved images,
+  PDF, text/CSV and ZIP;
+- require actual-type validation and a successful malware result of `CLEAN` for every
+  SeasonPro-managed uploaded file;
+- fail closed for infected, scanner-error, encrypted/password-protected or otherwise
+  unscannable content;
+- allow C1 to add a controlled HTTPS shared-document link, including a suitably shared
+  Google Docs destination;
+- treat the URL as an externally hosted supporting link, not an attachment path: SeasonPro
+  does not fetch, copy, malware-scan, permission-test or guarantee the linked resource;
+- keep a communication with links but no managed binary attachment on the proven batch route,
+  with controlled links rendered in the body;
+- show and require an explicit C1 SeasonPro Administrator acknowledgement that they are
+  responsible for the integrity, suitability and sharing permissions of every supplied file
+  or link; and
+- keep platform malware scanning and validation obligations intact: the acknowledgement is
+  not a substitute for safety controls on managed uploads.
+
+The initial R8-A2 working rule is at most three supporting items combined across uploaded
+files and external links, with 10 MB applying only to uploaded files. This interpretation
+remains subject to explicit correction before implementation if three file attachments plus
+a separate bounded link allowance was intended.
+
 ## 12. Job And Recipient Model
 
 ### 12.1 Separate Document State From Processing State
@@ -1098,6 +1123,14 @@ Accepted on 2026-07-21:
 4. Cumulative attachment size may not exceed 10 MB.
 5. The initial worker throttle is three ordinary provider requests per second, while runtime
    handling must respect stricter provider headers or account limits.
+6. Broad Office/image/ZIP support is retained and every managed upload requires a successful
+   malware result of `CLEAN`.
+7. Controlled HTTPS shared-document links are supported as externally hosted links, not as
+   provider attachments or SeasonPro-fetched content.
+8. Links alone do not select the attachment job; a communication with no managed binary
+   attachment continues to use the no-attachment batch route.
+9. The UI must require the explicit C1 SeasonPro Administrator responsibility
+   acknowledgement for supplied files and links.
 
 The following decisions should be resolved technically inside the relevant bounded slice
 where existing IsoStack patterns provide a safe answer. Pause for business input if they
@@ -1108,9 +1141,11 @@ would change user authority, retention, security posture or external operating c
 3. Confirm whether a dedicated `EmailDeliveryJob` and recipient-attempt model are required.
 4. Decide authority for retry and any pre-send cancellation.
 5. Define sent attachment/job retention.
-6. Decide whether malware scanning is required now or explicitly deferred with accepted file
-   restrictions.
-7. Decide whether a later R8-B should add attachment support to key-date sequences.
+6. Select the malware-scanner deployment authority: a private self-hosted ClamAV service or
+   a contracted external scanning API with an accepted privacy/cost contract.
+7. Confirm or correct the R8-A2 working interpretation that the three-item cap is combined
+   across uploaded files and external links.
+8. Decide whether a later R8-B should add attachment support to key-date sequences.
 
 ## 31. Suggested Control-Window Handoff Prompt
 

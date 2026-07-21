@@ -2,7 +2,7 @@
 
 Date: 2026-07-21
 Module: LMSPro / SeasonPro shared communications
-Status: Planning complete; implementation paused for the explicit attachment security-policy decision in section 16
+Status: Planning complete; broad file/link policy accepted; implementation paused for the malware-scanner deployment decision in section 17
 Type: Durable attachment lifecycle and visible fail-closed remediation
 
 Controlling parent:
@@ -43,6 +43,13 @@ The following are already settled and must not be reopened in R8-A2:
 - permanent public R2 URLs are not the attachment security contract;
 - delivery mode derives from durable server-side attachment evidence;
 - attachment-bearing sends fail closed;
+- broad approved Office/image/ZIP support requires a successful malware scan;
+- an external shared-document URL is a supporting link, not an email attachment or remote
+  object for SeasonPro to fetch;
+- a communication containing external links but no managed binary attachment continues to
+  use the proven no-attachment batch route;
+- C1 must explicitly accept responsibility for the integrity, suitability and sharing
+  permissions of uploaded files and external links;
 - no-attachment batch behaviour remains unchanged; and
 - key-date sequence attachment authoring remains outside R8-A.
 
@@ -107,6 +114,11 @@ object-reference model.
 - strictly decode Base64 and verify decoded byte counts;
 - validate filename length/characters and normalise provider-facing names safely;
 - inspect actual file signatures/content type under the accepted section 16 policy;
+- malware-scan every uploaded file and require `CLEAN` evidence before finalisation;
+- reject infected, scan-failed, encrypted or otherwise unscannable content;
+- support bounded HTTPS shared-document links without fetching the remote document;
+- persist and fingerprint the exact shared-link label and destination;
+- show and require the explicit C1 Administrator responsibility notice;
 - reject extension, claimed MIME and detected-type disagreement;
 - use a genuinely private R2 bucket/configuration for new email attachments;
 - persist durable key, size, SHA-256 checksum, detected type and validation evidence;
@@ -132,6 +144,8 @@ object-reference model.
 - key-date sequence attachment authoring;
 - automatic migration or deletion of historic public attachment objects;
 - automatic resend of any historic message; and
+- downloading, mirroring, malware-scanning or guaranteeing the availability of external
+  shared-document URLs;
 - unrelated media/R2 redesign.
 
 ## 7. Private Storage Direction
@@ -175,6 +189,23 @@ Add or refine durable evidence for:
 
 The existing public `fileUrl` remains nullable legacy evidence only.
 
+### EmailSharedDocumentLink
+
+Persist external supporting links separately from binary attachments, including:
+
+- email and tenant ownership;
+- C1-authored display label;
+- exact normalised HTTPS destination;
+- deterministic display order;
+- created/updated actor and timestamp evidence; and
+- validation/fingerprint policy version.
+
+SeasonPro must not fetch the destination, infer that a Google or Microsoft sharing setting
+is correct, copy the remote document into R2 or pass the link to Resend as an attachment
+path. The controlled email composition should render it as a normal supporting-document
+link. This preserves the distinction between a SeasonPro-managed scanned attachment and an
+externally managed resource.
+
 ### Email
 
 Add nullable draft/finalisation evidence for:
@@ -196,8 +227,14 @@ normalised filename
 byte size
 detected MIME type
 SHA-256 checksum
+malware scanner/policy version
+malware scan result and completed timestamp
 validation policy version
 ```
+
+The final communication fingerprint also includes the ordered shared-link IDs, labels and
+normalised HTTPS destinations. A linked document can later change outside SeasonPro; the
+fingerprint proves the exact URL that C1 supplied, not the remote content at that URL.
 
 The list is ordered deterministically by attachment ID or an explicit stable order and then
 hashed. R8-A3 records the exact fingerprint on its delivery job and refuses changed inputs.
@@ -209,6 +246,8 @@ The update payload must distinguish existing durable records from new browser fi
 ```text
 retainedAttachmentIds: [existing attachment IDs]
 newAttachments: [new Base64 upload inputs]
+retainedSharedLinkIds: [existing shared-link IDs]
+sharedLinks: [{ label, httpsUrl }]
 ```
 
 Server rules:
@@ -217,11 +256,13 @@ Server rules:
 2. verify every retained ID belongs to that email;
 3. reject duplicate IDs and over-three combined count;
 4. validate all new bytes and the 10 MB combined total;
-5. upload every new object to private storage;
-6. verify each uploaded object through authenticated storage access;
-7. commit retained/new associations and checksum evidence;
-8. compensate newly uploaded objects if database persistence fails; and
-9. remove superseded draft objects only after the durable replacement commits safely.
+5. validate bounded shared links without requesting their destinations;
+6. upload every new object to private storage;
+7. malware-scan every new object and require `CLEAN` evidence;
+8. verify each uploaded object through authenticated storage access;
+9. commit retained/new associations, links, checksum and scan evidence;
+10. compensate newly uploaded objects if database persistence fails; and
+11. remove superseded draft objects only after the durable replacement commits safely.
 
 No partial attachment replacement may produce a successful draft response.
 
@@ -234,8 +275,9 @@ atomicity:
 validate every input in memory
 -> create draft identity/recipient state
 -> upload every private object
+-> require a CLEAN malware result for every object
 -> verify every private object
--> persist every attachment record/fingerprint
+-> persist every attachment/link record and fingerprint
 -> return success
 
 any failure
@@ -289,11 +331,29 @@ The compose modal should distinguish:
 - validation/upload failure; and
 - removal pending save.
 
+It should also provide a separate `Add shared document link` control with a display label and
+HTTPS URL. A link must be visibly identified as externally hosted and must never be described
+as malware-scanned or attached to the email.
+
 Visible rules:
 
-- show `n/3 files` and cumulative `x/10 MB`;
+- show uploaded-file count, total supporting-item count and cumulative `x/10 MB` clearly;
 - reject extra files rather than silently slicing a drop selection;
 - explain the accepted file types from section 16;
+- show `Scanning`, `Clean`, `Blocked` or `Scan unavailable` for uploaded files;
+- block save/finalisation while a required scan is pending or unavailable;
+- reject non-HTTPS, credential-bearing or malformed shared URLs;
+- apply the initial working limit of three supporting items in total across uploaded files
+  and external links, subject to explicit correction before implementation;
+- place the following acknowledgement immediately beside the file/link controls and require
+  affirmative acceptance before the communication can be finalised:
+
+  > As the C1 SeasonPro Administrator, you are responsible for the integrity, suitability
+  > and sharing permissions of every file or link you provide. SeasonPro scans uploaded
+  > files for known malware, but cannot verify the content, availability or access
+  > permissions of externally hosted links.
+
+- record acknowledgement actor, timestamp and notice version;
 - disable save/send while browser conversion is active;
 - on save, replace local items with returned durable attachment identities;
 - reopen the saved draft with the same exact file list;
@@ -312,6 +372,20 @@ Visible rules:
 - extension/claimed MIME/detected signature mismatch rejected;
 - unsafe filename normalised without losing the displayed original;
 - accepted signature matrix follows section 16 decision.
+- each allowed Office/image/ZIP fixture requires a `CLEAN` result;
+- infected, scan-error, encrypted and unscannable fixtures fail closed;
+- archive expansion/recursion limits prevent decompression-bomb behaviour.
+
+### Shared Links And Acknowledgement
+
+- valid HTTPS Google Docs and equivalent shared links persist and render as links;
+- SeasonPro makes no request to the shared URL during validation or delivery;
+- HTTP, malformed and credential-bearing URLs are refused;
+- link label and URL changes alter the final fingerprint;
+- the C1 notice is visible beside both upload and link controls;
+- finalisation fails until the current notice version is acknowledged; and
+- audit evidence records the C1 actor, timestamp and notice version without claiming that
+  the external resource was scanned or accessible.
 
 ### Storage
 
@@ -346,62 +420,75 @@ Visible rules:
 - R8-A1 batch guard and ordinary adapter tests remain green;
 - recipient/cohort resolution remains unchanged.
 
-## 16. Required Business Security Decision
+## 16. Accepted File, Link And Responsibility Policy
 
-R8-A2 cannot honestly mark an attachment `validated` until the accepted file-type and malware
-policy is explicit. The current broad allowlist includes Office documents and ZIP archives,
-which can carry active or concealed malicious content.
+Accepted by the business analyst on 2026-07-21:
 
-Choose one of these policies:
+1. R8-A retains a broad but explicit Office/image/ZIP upload policy rather than restricting
+   the first release to PDF/JPEG/PNG.
+2. The initial candidate allowlist is PDF, DOC/DOCX, XLS/XLSX, PPT/PPTX, TXT/CSV,
+   JPEG/PNG/GIF/WebP and ZIP. Exact signature detection and browser/service parity must be
+   proven before implementation; executable/script formats are not implied by broad support.
+3. Every uploaded file requires actual-type validation and a successful malware result of
+   `CLEAN` before it can become durable finalisation evidence.
+4. Infected, scanner-error, encrypted/password-protected or otherwise unscannable files fail
+   closed. ZIP inspection must have recursion, entry-count and expanded-size protections.
+5. C1 may add an HTTPS link to a suitably shared cloud document, including Google Docs.
+6. A shared URL is a separate externally hosted supporting link. SeasonPro does not fetch,
+   copy, scan, validate access permissions for or guarantee the continued content of that
+   resource.
+7. A message containing external links but no managed file attachment remains eligible for
+   the existing batch route because the controlled links are rendered in the email body.
+8. The compose experience includes the explicit C1 SeasonPro Administrator responsibility
+   acknowledgement defined in section 14. That acknowledgement supplements rather than
+   replaces platform validation and malware scanning of uploaded files.
+9. The initial working rule is no more than three supporting items combined across uploaded
+   files and external links. The 10 MB cumulative limit applies only to uploaded files. This
+   combined-count interpretation must be corrected before implementation if the intended
+   business rule is instead three attachments plus a separate link allowance.
 
-### Option A - Restricted Initial Allowlist Without Malware Scanner (Recommended)
+## 17. Remaining Malware-Scanner Deployment Decision
 
-```text
-PDF
-JPEG
-PNG
-maximum 3 files
-maximum 10 MB cumulative
-actual signature and extension/type agreement required
-```
+The business security policy is settled, but its operating authority is not. Implementation
+must pause until one of these deployment models is accepted:
 
-Benefits:
+### Option A - Dedicated Private ClamAV Service On Render (Recommended)
 
-- smallest safe remediation boundary;
-- no new scanning service or operational dependency;
-- covers the most common supporting-document/image use case; and
-- can ship before broader file support is planned.
+- deploy a pinned, hardened ClamAV service through a Docker-based Render private service;
+- expose it only on Render's private network to the SeasonPro application/worker;
+- keep virus definitions current and surface signature age/health;
+- stream bounded files for scanning without making private R2 objects public;
+- fail closed on timeout, scanner unavailability or stale/unhealthy definitions; and
+- provision and monitor the material memory/disk footprint required by ClamAV.
 
-Trade-off:
+This keeps document bytes within the controlled Render environment, but adds a paid service,
+resource cost, signature updates, health monitoring and incident ownership.
 
-- Word, Excel, PowerPoint, text/CSV, GIF/WebP and ZIP are refused initially.
+### Option B - Contracted External Malware-Scanning API
 
-### Option B - Broad Office/Archive Support With Malware Scanning
+- select a named provider and complete security/privacy, data-location, retention, DPA,
+  availability and cost review;
+- send only the minimum required file content/metadata;
+- pin the provider/policy version into validation evidence; and
+- fail closed on timeout, indeterminate response or provider unavailability.
 
-Preserve a broader approved allowlist only after a malware-scanning service is selected and
-integrated. `CLEAN` becomes a precondition for durable validation/finalisation.
+This may reduce infrastructure ownership but shares potentially sensitive Club documents
+with another processor and introduces vendor limits and cost.
 
-Benefits:
+Broad unscanned support is no longer an acceptable R8-A2 outcome. The C1 responsibility
+notice does not transfer away SeasonPro's accepted obligation to scan managed uploads.
 
-- retains current broad business formats.
+Relevant platform references:
 
-Trade-offs:
+- ClamAV introduction and resource guidance: <https://docs.clamav.net/>
+- ClamAV daemon protocol: <https://docs.clamav.net/manual/Usage/ClamdProtocol.html>
+- Render private services: <https://render.com/docs/private-services>
+- Render Docker deployment: <https://render.com/docs/docker>
+- Render private networking: <https://render.com/docs/private-network>
 
-- new scanner/service, infrastructure, failure states and operational cost;
-- encrypted/password-protected archives require a refusal policy; and
-- slice scope and deployed proof increase materially.
+## 18. Technical Exit Gate
 
-### Option C - Broad Allowlist Without Scanning
-
-Not recommended. This would require explicit business risk acceptance and would weaken the
-meaning of `validated`.
-
-Implementation must pause here until the business analyst selects A, B or explicitly accepts
-C.
-
-## 17. Technical Exit Gate
-
-Subject to the section 16 decision, R8-A2 is technically complete when:
+Subject to the section 17 deployment decision, R8-A2 is technically complete when:
 
 ```text
 intended = persisted = validated = readable
@@ -411,13 +498,16 @@ and:
 
 - draft add/remove/reopen/duplicate evidence is exact;
 - three-file and 10 MB limits are enforced at service authority;
+- every managed upload has current `CLEAN` evidence and every external link is represented
+  accurately as unscanned externally hosted content;
+- the C1 responsibility acknowledgement is visible, required and auditable;
 - new objects are private and checksum-addressable;
 - no partial upload can produce successful feedback;
 - invalid legacy evidence blocks rather than silently degrades;
 - automated checks pass; and
 - implementation confirmation and technical review/test documents exist.
 
-## 18. Required Human UI Smoke Gate
+## 19. Required Human UI Smoke Gate
 
 After technical completion, the business/testing team must test in the deployed target
 environment:
@@ -431,7 +521,14 @@ environment:
 7. confirm a disallowed/mismatched file is refused clearly;
 8. simulate or observe an upload failure and confirm no success message;
 9. duplicate a valid draft/email and confirm independent exact attachments; and
-10. attempt send and confirm the interim fail-closed message states that no email was sent.
+10. add a suitably shared Google Docs HTTPS link and confirm it is shown as an external link,
+    not an attachment;
+11. confirm SeasonPro does not claim to scan or verify the linked document;
+12. confirm the C1 responsibility acknowledgement is explicit and required;
+13. confirm clean Office and ZIP samples complete scanning and persist;
+14. confirm infected, encrypted/unscannable and scanner-unavailable cases fail closed with
+    no success message; and
+15. attempt send and confirm the interim fail-closed message states that no email was sent.
 
 The reported result must be recorded in `05-review-and-test`. Do not create R8-A3 planning
 until that human result is confirmed.

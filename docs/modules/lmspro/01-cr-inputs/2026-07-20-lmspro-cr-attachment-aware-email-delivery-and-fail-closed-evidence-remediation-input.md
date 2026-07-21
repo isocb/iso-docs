@@ -208,6 +208,33 @@ The later slice must define:
 The current 25 MB browser/storage limit must not automatically be accepted as the final
 multi-recipient operating limit.
 
+### Accepted File, Malware And Shared-Link Clarification
+
+Accepted on 2026-07-21:
+
+- retain broad, explicit support for ordinary Office documents, approved images, PDF,
+  text/CSV and ZIP within the later accepted three-item/10 MB operating envelope;
+- inspect actual content/type and require a successful malware result of `CLEAN` before any
+  SeasonPro-managed upload can be finalised or sent;
+- fail closed for infected, scanner-error, encrypted/password-protected or otherwise
+  unscannable content;
+- allow a C1 SeasonPro Administrator to add a labelled HTTPS link to a suitably shared cloud
+  document, including Google Docs;
+- model that destination as an externally hosted supporting link rather than a provider
+  attachment or SeasonPro-managed binary;
+- do not fetch, copy, scan, permission-test or guarantee the availability/content of the
+  external resource; and
+- keep an email containing links but no managed binary attachment on the proven batch route,
+  with the controlled links rendered into the email body; and
+- place an explicit acknowledgement beside the file/link controls stating that the C1
+  SeasonPro Administrator is responsible for the integrity, suitability and sharing
+  permissions of every supplied file or link.
+
+The acknowledgement must not weaken SeasonPro's validation and malware-scanning obligations
+for managed uploads. R8-A2 must still select the scanner deployment authority and prove its
+availability, definition health and fail-closed behaviour before broad files can be marked
+validated.
+
 ## Persistence And Fail-Closed Evidence
 
 Before an attachment email can enter `QUEUED`, the server must prove:
@@ -396,8 +423,10 @@ LMSPro delivery cycle.
 1. What is the current Resend team rate limit and paid-plan quota in the target environment?
 2. Should the initial worker rate be three requests per second, or lower to reserve more
    transactional capacity?
-3. What maximum attachment size is acceptable for a multi-recipient League communication?
-4. Should the provider receive Base64 content or a short-lived signed R2 path?
+3. Which malware-scanner deployment authority is accepted: a private self-hosted ClamAV
+   service or a contracted external scanning API after privacy/cost review?
+4. Does the three-item limit apply across uploaded files and external links together, or are
+   links governed by a separate bounded limit?
 5. Should one immutable attachment object be referenced by duplicated drafts, or should the
    association create a separately retained object version?
 6. What retention period applies to sent-email attachments and delivery-attempt evidence?
