@@ -391,10 +391,10 @@ Accepted security and supporting-link amendment, 2026-07-21:
 - keep platform malware scanning and validation obligations intact: the acknowledgement is
   not a substitute for safety controls on managed uploads.
 
-The initial R8-A2 working rule is at most three supporting items combined across uploaded
-files and external links, with 10 MB applying only to uploaded files. This interpretation
-remains subject to explicit correction before implementation if three file attachments plus
-a separate bounded link allowance was intended.
+Accepted on 2026-07-21, a message may contain up to three uploaded attachments plus a
+separate bounded allowance for external links, with 10 MB applying only to uploaded files.
+The recommended initial external-link allowance is three; its exact value remains the only
+business value to confirm before R8-A2 implementation.
 
 ## 12. Job And Recipient Model
 
@@ -1131,6 +1131,9 @@ Accepted on 2026-07-21:
    attachment continues to use the no-attachment batch route.
 9. The UI must require the explicit C1 SeasonPro Administrator responsibility
    acknowledgement for supplied files and links.
+10. Malware scanning uses a dedicated private ClamAV service on Render; an external scanning
+    provider is not the initial direction.
+11. The three uploaded attachments and external-link allowance are independent limits.
 
 The following decisions should be resolved technically inside the relevant bounded slice
 where existing IsoStack patterns provide a safe answer. Pause for business input if they
@@ -1141,11 +1144,8 @@ would change user authority, retention, security posture or external operating c
 3. Confirm whether a dedicated `EmailDeliveryJob` and recipient-attempt model are required.
 4. Decide authority for retry and any pre-send cancellation.
 5. Define sent attachment/job retention.
-6. Select the malware-scanner deployment authority: a private self-hosted ClamAV service or
-   a contracted external scanning API with an accepted privacy/cost contract.
-7. Confirm or correct the R8-A2 working interpretation that the three-item cap is combined
-   across uploaded files and external links.
-8. Decide whether a later R8-B should add attachment support to key-date sequences.
+6. Confirm the maximum external shared-document links per email; three is recommended.
+7. Decide whether a later R8-B should add attachment support to key-date sequences.
 
 ## 31. Suggested Control-Window Handoff Prompt
 

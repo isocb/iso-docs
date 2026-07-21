@@ -2,7 +2,7 @@
 
 Date: 2026-07-21
 Module: LMSPro / SeasonPro shared communications
-Status: Planning complete; broad file/link policy accepted; implementation paused for the malware-scanner deployment decision in section 17
+Status: Planning complete; private ClamAV deployment and separate link allowance accepted; implementation paused only for the exact shared-link cap in section 17
 Type: Durable attachment lifecycle and visible fail-closed remediation
 
 Controlling parent:
@@ -343,8 +343,8 @@ Visible rules:
 - show `Scanning`, `Clean`, `Blocked` or `Scan unavailable` for uploaded files;
 - block save/finalisation while a required scan is pending or unavailable;
 - reject non-HTTPS, credential-bearing or malformed shared URLs;
-- apply the initial working limit of three supporting items in total across uploaded files
-  and external links, subject to explicit correction before implementation;
+- allow up to three uploaded attachments plus a separate bounded external-link allowance;
+- show the independent file and link counts clearly;
 - place the following acknowledgement immediately beside the file/link controls and require
   affirmative acceptance before the communication can be finalised:
 
@@ -442,17 +442,15 @@ Accepted by the business analyst on 2026-07-21:
 8. The compose experience includes the explicit C1 SeasonPro Administrator responsibility
    acknowledgement defined in section 14. That acknowledgement supplements rather than
    replaces platform validation and malware scanning of uploaded files.
-9. The initial working rule is no more than three supporting items combined across uploaded
-   files and external links. The 10 MB cumulative limit applies only to uploaded files. This
-   combined-count interpretation must be corrected before implementation if the intended
-   business rule is instead three attachments plus a separate link allowance.
+9. A message may contain up to three uploaded attachments plus a separate bounded allowance
+   for external shared-document links. The 10 MB cumulative limit applies only to uploaded
+   files. The exact link cap remains the one unresolved business value in section 17.
 
-## 17. Remaining Malware-Scanner Deployment Decision
+## 17. Accepted Malware-Scanner Deployment And Remaining Link Cap
 
-The business security policy is settled, but its operating authority is not. Implementation
-must pause until one of these deployment models is accepted:
+Accepted by the business analyst on 2026-07-21:
 
-### Option A - Dedicated Private ClamAV Service On Render (Recommended)
+### Dedicated Private ClamAV Service On Render
 
 - deploy a pinned, hardened ClamAV service through a Docker-based Render private service;
 - expose it only on Render's private network to the SeasonPro application/worker;
@@ -464,19 +462,23 @@ must pause until one of these deployment models is accepted:
 This keeps document bytes within the controlled Render environment, but adds a paid service,
 resource cost, signature updates, health monitoring and incident ownership.
 
-### Option B - Contracted External Malware-Scanning API
-
-- select a named provider and complete security/privacy, data-location, retention, DPA,
-  availability and cost review;
-- send only the minimum required file content/metadata;
-- pin the provider/policy version into validation evidence; and
-- fail closed on timeout, indeterminate response or provider unavailability.
-
-This may reduce infrastructure ownership but shares potentially sensitive Club documents
-with another processor and introduces vendor limits and cost.
+An external malware-scanning API is not the initial R8-A2 direction. Introducing one later
+would require a separate named-provider security/privacy, data-location, retention, DPA,
+availability and cost decision.
 
 Broad unscanned support is no longer an acceptable R8-A2 outcome. The C1 responsibility
 notice does not transfer away SeasonPro's accepted obligation to scan managed uploads.
+
+One bounded business value remains:
+
+```text
+maximum external shared-document links per email: not yet confirmed
+recommended initial value: 3
+```
+
+Three links is recommended because it is simple to explain alongside the independent
+three-attachment limit, prevents the supporting-document block becoming an unbounded link
+list and remains sufficient for the expected administrative communication use case.
 
 Relevant platform references:
 
@@ -488,7 +490,8 @@ Relevant platform references:
 
 ## 18. Technical Exit Gate
 
-Subject to the section 17 deployment decision, R8-A2 is technically complete when:
+Subject to confirmation of section 17's external-link cap, R8-A2 is technically complete
+when:
 
 ```text
 intended = persisted = validated = readable

@@ -98,8 +98,8 @@ Current posture:
 ```text
 R8-A is the active accepted LMSPro remediation lane.
 R8-A1 is complete on the remediation branch. R8-A2 planning records the accepted broad
-file/malware/shared-link policy and is paused for the malware-scanner deployment decision
-before implementation.
+file/malware/shared-link policy and private Render-hosted ClamAV direction. It is paused only
+for confirmation of the exact separate external-link cap before implementation.
 ```
 
 An urgent communications-integrity candidate now precedes optional feature implementation:
@@ -145,7 +145,7 @@ Accepted controlling plan:
 Status:
 
 ```text
-Accepted 2026-07-21; R8-A1 completed; R8-A2 policy clarified and awaiting malware-scanner deployment decision.
+Accepted 2026-07-21; R8-A1 completed; R8-A2 scanner and separate-link policy accepted; exact link cap awaiting confirmation.
 ```
 
 Implementation baselines:
@@ -187,7 +187,10 @@ permission-tested by SeasonPro. The compose UI must explicitly state and record 
 SeasonPro Administrator is responsible for the integrity, suitability and sharing
 permissions of supplied files and links. This notice does not replace malware scanning for
 SeasonPro-managed uploads. Links alone do not select the attachment job: a communication
-with no managed binary attachment continues to use the proven batch route.
+with no managed binary attachment continues to use the proven batch route. Malware scanning
+will use a dedicated private ClamAV service on Render. The three uploaded attachments and
+external-link allowance are independent; three external links is the recommended initial
+cap and remains to be confirmed.
 
 R8-A must support approximately 300 attachment recipients through a rate-controlled,
 resumable worker. It must not hold the C1 browser request open while sending all messages.
@@ -209,9 +212,8 @@ accepted.
 Next action:
 
 ```text
-Resolve R8-A2 section 17: choose the malware-scanner deployment authority for the accepted
-broad file policy: a dedicated private ClamAV service on Render or a contracted external
-scanning API after privacy/cost review.
+Resolve R8-A2 section 17's final bounded value: confirm the recommended maximum of three
+external shared-document links per email.
 ```
 
 R8-A2 planning:
@@ -220,11 +222,11 @@ R8-A2 planning:
 03-slice-planning/2026-07-21-lmspro-remediation-slice-r8-a2-attachment-persistence-drafts-and-fail-closed-preflight-planning.md
 ```
 
-The recommended deployment direction is a dedicated private ClamAV service on Render so
-potentially sensitive Club documents remain inside the controlled environment. This adds a
-paid service and operational resource/signature-health ownership. After the deployment and
-three-item-count decisions are recorded, implement R8-A2 and pause for its human UI
-smoke-test result before creating R8-A3 planning.
+The dedicated private ClamAV service on Render is accepted so potentially sensitive Club
+documents remain inside the controlled environment. Its paid-service and operational
+resource/signature-health ownership are therefore accepted R8-A2 implications. After the
+external-link cap is confirmed, implement R8-A2 and pause for its human UI smoke-test result
+before creating R8-A3 planning.
 
 R8-A1 completion evidence:
 
@@ -396,7 +398,7 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Slice
 
 ```text
-R8-A2 - Attachment Persistence, Drafts And Fail-Closed Preflight (scanner deployment gate)
+R8-A2 - Attachment Persistence, Drafts And Fail-Closed Preflight (external-link cap gate)
 ```
 
 Goal:
@@ -417,11 +419,10 @@ isodocs/docs/modules/lmspro/03-slice-planning/2026-07-21-lmspro-remediation-slic
 
 Goal:
 Record the accepted section 16 broad Office/image/ZIP, malware-scanning, external shared-link
-and C1 responsibility policy. Resolve section 17's scanner deployment choice. A dedicated
-private ClamAV service on Render is recommended for document confidentiality, subject to
-acceptance of its infrastructure cost and operating ownership. Confirm whether the
-three-supporting-item cap combines files and links. Do not implement until those decisions
-are recorded.
+and C1 responsibility policy. Record the accepted dedicated private ClamAV service on
+Render. Confirm section 17's recommended maximum of three external links per email. The
+three uploaded attachments and external-link allowance are independent. Do not implement
+until the exact link cap is recorded.
 
 Do not create R8-A3 planning until R8-A2 implementation and technical review are complete and
 the business/testing team has reported the required human UI smoke result. Do not broaden the
