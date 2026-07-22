@@ -27,6 +27,10 @@ The target fingerprint cannot reveal the database password, username, URL parame
 It is correlation evidence only. Job and Email UUIDs plus bounded queue counts are already accepted
 operational identifiers; attachment bytes, signed URLs and provider bodies remain prohibited.
 
+The business tester confirms that the failed pre-correction send did show the green `Email queued`
+notification. The retest still requires a new Email so the newly added web job ID/fingerprint can
+be correlated with the cron evidence.
+
 ## 2. Regression Review
 
 PASS. Focused and full tests, type-check, critical verification and the production build completed.

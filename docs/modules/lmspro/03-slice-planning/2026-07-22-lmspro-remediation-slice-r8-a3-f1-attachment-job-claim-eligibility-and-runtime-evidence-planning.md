@@ -28,9 +28,16 @@ returns ownership to the LMSPro/shared-communications delivery boundary.
 
 The attachment queue transaction is atomic: a successful `ATTACHMENT_JOB` response commits the
 Email `SENDING` state, one delivery job, exact delivery recipients and queue audit evidence
-together. The supplied cron evidence proves only that no recipient attempt was processed; it does
-not prove whether the job row was absent, not yet due, already in a non-claimable state, or stored
-in a different database from the cron target.
+together. The business tester confirms that the fresh pre-correction send displayed:
+
+```text
+Email queued
+Your attachment email is queued. Delivery normally completes within 2–3 minutes.
+```
+
+This proves that the web queue transaction returned successfully. The supplied cron evidence
+therefore narrows the remaining fault to cron not seeing that job as claimable: initial due-time
+eligibility, another persisted job state, or a different database target from the web runtime.
 
 R2 or Resend failure is not the leading explanation. When either cron dependency is missing and
 queued work is visible, the existing processor returns an error rather than the observed green

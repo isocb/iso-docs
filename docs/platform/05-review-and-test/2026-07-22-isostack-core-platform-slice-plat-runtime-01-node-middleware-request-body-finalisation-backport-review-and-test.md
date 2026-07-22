@@ -157,9 +157,10 @@ After confirming the staging deployment completed at `6b822e45`, record each res
 10. **PASS** — a no-attachment Email continued to use the immediate batch route;
 11. **FAIL** — an attachment Email submitted at approximately 17:12 BST remained `SENDING` with
     the refresh icon and was not delivered. Three subsequent healthy cron ticks reported
-    `email-attachment-delivery: 0 processed, 0 errors`. The existence and persisted state of the
-    corresponding job row have not yet been inspected, so this evidence must not be recorded as
-    proof that no job was persisted;
+    `email-attachment-delivery: 0 processed, 0 errors`. The business tester confirms the compose
+    flow first displayed the green `Email queued` response. Under the atomic queue contract, the
+    web runtime therefore committed the job; the remaining failure is that cron did not see it as
+    claimable;
 12. **PASS** — the supplied cron interval and reviewed staging evidence contained no unexpected
     Prisma connection-close error, and each cron tick completed successfully; and
 13. **PASS** — post-test `/api/health` remained healthy.
@@ -179,11 +180,10 @@ email-attachment-delivery: 0 processed, 0 errors
 
 This is materially different from the corrected Platform request-body failure. The request no
 longer returned an HTML HTTP 500, attachment drafts persisted and the cron itself remained green.
-The current blocker is that the attachment Email was not delivered and the worker claimed no
-attachment job during the observed interval. Whether a job row exists, and if so why it was not
-claimable, remains unproven. Do not retry repeatedly or promote to live. Inspect queue persistence,
-job state and web/cron database/environment alignment before resuming the R8-A3 transport
-checklist.
+The current blocker is that the web runtime confirmed queue creation, but the worker claimed no
+attachment job during the observed interval. Initial due-time, persisted job state and web/cron
+database alignment are the bounded remaining causes. Do not retry repeatedly or promote to live.
+Use the R8-A3-F1 correlation evidence before resuming the R8-A3 transport checklist.
 
 Corrective follow-on:
 

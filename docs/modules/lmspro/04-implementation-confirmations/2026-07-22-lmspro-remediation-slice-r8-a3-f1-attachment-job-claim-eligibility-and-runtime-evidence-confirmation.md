@@ -23,10 +23,11 @@ The failed staging send did not reproduce the corrected Platform request-body de
 draft persistence and the accepted payload boundary passed, while the Email remained `SENDING`
 and the healthy cron reported zero attachment recipients processed.
 
-Queue creation is atomic in the existing R8-A3 service. A successful fresh `ATTACHMENT_JOB`
-response commits the Email status, job, exact recipient rows and audit record together. The
-historic cron summary was not sufficient to distinguish an absent job, non-due job, other job
-state or a web/cron database mismatch.
+Queue creation is atomic in the existing R8-A3 service. The business tester confirms that the
+fresh pre-correction send displayed the green `Email queued` response. That response commits the
+Email status, job, exact recipient rows and audit record together. The job therefore existed in
+the web runtime's database, while the historic cron summary was insufficient to distinguish a
+non-due job, other non-claimable state or a web/cron database mismatch.
 
 ## 2. Implemented Correction
 
