@@ -92,6 +92,7 @@ accepted noise and cannot reliably prevent regressions.
 | --- | --- | --- | --- | --- |
 | `PLAT-ASSURE-01` | Repository-wide Lint, Typed-Test Coverage And CI Gate Remediation | Assurance/control weakness with code-quality and toolchain components | High | First-class finding; bounded remediation not yet authorised |
 | `PLAT-ASSURE-02` | High-Severity Dependency Advisory And Staging Security-Gate Remediation | Security/dependency and recurring-monitoring correction | High operational follow-through | Dependency gate cleared on dev/staging; scheduled matrix awaits main activation |
+| `PLAT-REFINE-01` | Dedicated Authenticated Private Binary Upload Transport | Runtime resilience/efficiency architecture refinement | Medium | Wishlist only; no implementation authority |
 
 ## 5. PLAT-ASSURE-01 — Repository-wide Lint, Typed-Test Coverage And CI Gate Remediation
 
@@ -220,6 +221,22 @@ Lifecycle evidence:
    limitation until this finding is closed.
 5. Remediation must not weaken rules or silently exclude source merely to make CI green.
 6. This roadmap registers and sequences the finding but does not authorise implementation.
+
+## 7A. PLAT-REFINE-01 — Dedicated Authenticated Private Binary Upload Transport
+
+LMSPro attachment remediation currently carries accepted binary content as Base64 inside a tRPC
+JSON mutation before private R2 persistence. The immediate Node middleware race is controlled by
+Platform slice PLAT-RUNTIME-01 and must not be conflated with this wider design option.
+
+A later appraisal should consider an authenticated, tenant-scoped upload path that writes
+accepted content directly to private object storage and lets tRPC carry durable object metadata
+and associations only. The appraisal must preserve the existing narrow type/content checks,
+size/count limits, private storage, acknowledgement/audit evidence and prohibition on server-side
+preview/parsing.
+
+This is wishlist/refinement scope only. It does not authorise a new endpoint, direct browser
+credential exposure, presigned upload, schema change or migration, and it does not block the
+bounded upstream runtime correction.
 
 ## 8. Open Planning Questions
 

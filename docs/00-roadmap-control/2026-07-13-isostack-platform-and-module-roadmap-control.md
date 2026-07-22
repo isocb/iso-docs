@@ -182,6 +182,19 @@ the older checkpoint and status detail below.
   and status evidence for this finding.
 - No platform remediation implementation is authorised by registration, and the finding
   does not invalidate focused passing evidence from a bounded module slice.
+- `PLAT-RUNTIME-01 - Node Middleware Request-Body Finalisation Backport And
+  Production-Runtime Assurance` is the current authorised Platform corrective slice at exact
+  application baseline `90974123`. It owns the shared Next.js Node middleware defect exposed by
+  LMSPro R8-A3 staging testing.
+- PLAT-RUNTIME-01 implementation and automated review pass at dedicated-branch application commit
+  `6b822e45`; the commit is not pushed, merged or deployed. Clean Node 22 installation, exact
+  fail-closed patch verification, full tests, ordinary/standalone builds and repeated payload
+  runtime probes passed.
+- LMSPro R8-A3 human attachment testing is explicitly blocked until PLAT-RUNTIME-01 passes its
+  automated review and separately controlled staging smoke. Database connection-close messages
+  remain observation/regression scope and do not authorise speculative database changes.
+- `PLAT-REFINE-01 - Dedicated Authenticated Private Binary Upload Transport` is registered as a
+  non-executable wishlist item and does not expand the current corrective slice.
 
 ### 2026-07-22 LMSPro R8-A2R-F1 Development Promotion And Staging Blocker
 

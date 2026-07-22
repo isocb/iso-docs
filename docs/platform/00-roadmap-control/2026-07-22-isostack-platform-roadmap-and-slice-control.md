@@ -225,7 +225,7 @@ From 2026-07-22 onward:
 - a later material change to historic behaviour enters as a new CR/remediation slice; and
 - discovered cross-cutting debt enters the refinement/assurance register until promoted.
 
-## 10. Current Registered Candidate
+## 10. Current Registered And Executable Work
 
 `PLAT-ASSURE-01 - Repository-wide Lint, Typed-Test Coverage And CI Gate Remediation` is the
 first registered platform assurance finding. It is controlled by:
@@ -235,19 +235,39 @@ first registered platform assurance finding. It is controlled by:
 It is high priority but is not an executable slice and does not displace the root roadmap's
 current next candidate unless the root control explicitly promotes it.
 
+`PLAT-RUNTIME-01 - Node Middleware Request-Body Finalisation Backport And
+Production-Runtime Assurance` is the current executable Platform corrective slice. It was
+discovered through LMSPro R8-A3 staging testing but is Platform-owned because the defect sits
+in shared Node middleware before tRPC/domain execution.
+
+Lifecycle control:
+
+- `docs/platform/01-cr-inputs/2026-07-22-isostack-platform-node-middleware-request-body-finalisation-defect-cr.md`;
+- `docs/platform/02-triage/2026-07-22-isostack-platform-node-middleware-request-body-finalisation-defect-triage.md`; and
+- `docs/platform/03-slice-planning/2026-07-22-isostack-core-platform-slice-plat-runtime-01-node-middleware-request-body-finalisation-backport-planning.md`.
+
+LMSPro R8-A3 human attachment testing remains explicitly blocked until PLAT-RUNTIME-01 passes
+its automated review and separately controlled staging smoke.
+
+Implementation and automated review now pass at exact dedicated-branch application commit
+`6b822e45`. Clean Node 22 installation, fail-closed patch verification, full Vitest, type-check,
+ordinary/standalone builds and repeated small/representative/10 MiB runtime probes passed. The
+commit is not pushed, merged or deployed. PLAT-RUNTIME-01 and LMSPro R8-A3 remain blocked on the
+separately controlled staging promotion and human/operational smoke.
+
 ## 11. Current Control Decision
 
 The Platform lifecycle hierarchy is active for future work. No application code,
 schema, migration, infrastructure, deployment or promotion is authorised by establishing
 this control.
 
-The next Platform action, when selected by the root roadmap, is:
+The current Platform action is:
 
 ```text
-accepted CR/finding
--> recorded triage and ownership
--> bounded planning document in 03-slice-planning
--> stop for plan acceptance or genuine open decisions before implementation
+review exact PLAT-RUNTIME-01 commit 6b822e45 for controlled branch/dev/staging promotion
+-> stop before staging deployment without explicit authority
+-> run separately authorised staging smoke
+-> hand control back to LMSPro R8-A3 only after PASS
 ```
 
 ## 12. Reconciliation Rule

@@ -4,10 +4,14 @@ Date: 2026-07-22
 
 Technical review status: PASS
 
-Deployed human UI/transport status: BLOCKED — staging cron configuration/database alignment
-fails before attachment delivery
+Deployed human UI/transport status: BLOCKED — shared Platform Node middleware request-body
+finalisation defect prevents reliable attachment draft persistence/queue creation
 
 Promotion status: STAGING ONLY at application `90974123`; `main`/live not authorised
+
+Blocking Platform slice:
+
+`docs/platform/03-slice-planning/2026-07-22-isostack-core-platform-slice-plat-runtime-01-node-middleware-request-body-finalisation-backport-planning.md`
 
 Planning source:
 
@@ -79,7 +83,7 @@ Use controlled recipients and fresh drafts. Record each result independently:
 
 1. **PASS** — a no-attachment ad-hoc Email was delivered immediately through the existing
    batch route.
-2. **BLOCKED/PARTIAL** — a one-recipient Email with one accepted attachment entered
+2. **FAIL** — a one-recipient Email with one accepted attachment entered
    `SENDING` rather than displaying a clear queued state. It remained there with a refresh
    icon. Selecting that icon returned the safely refused message:
 
@@ -88,6 +92,8 @@ Use controlled recipients and fresh drafts. Record each result independently:
    Attachment retry is temporarily unavailable while the supported queued route is
    completed. No recipients have been retried.
    ```
+
+   RENDER reports the cron job completed successfully:
 
 3. **FAIL** — the cron did not reach or claim the attachment job. The shared cron failed in
    the earlier Commerce Stripe processor because its database target did not contain the
@@ -156,6 +162,32 @@ environment until all mandatory items pass or a specifically bounded defect slic
 Minor unrelated UI observations may be deferred, but missing attachments, duplicate
 recipients, incorrect CC/BCC copies, premature `SENT` state, public object exposure or leaked
 signed URLs are blocking failures.
+
+## 6A. Platform Runtime Blocker
+
+Subsequent staging evidence established that a PDF-bearing draft request can fail before the
+tRPC procedure with an HTML HTTP 500 and:
+
+```text
+TypeError: Response body object should not be disturbed or locked
+at fromNodeNextRequest
+at app/api/trpc/[trpc]/route
+```
+
+The installed `next@15.5.21` runtime contains the upstream unawaited Node middleware
+request-body finalisation defect. Because all `/api/` requests traverse the shared middleware
+boundary, ownership has moved to Platform corrective slice `PLAT-RUNTIME-01`. The cron reports
+zero attachment jobs for this attempt because no draft/job was persisted; this is not evidence
+that the R8-A3 worker rejected a queued job.
+
+Pause items 2 through 12. Do not record further R8-A3 attachment smoke evidence until the
+Platform slice passes its automated review, is separately promoted to staging and passes its
+required human/operational smoke. After that PASS, resume this checklist without reopening the
+accepted R8-A3 delivery contract.
+
+Platform implementation and automated review pass at dedicated-branch application commit
+`6b822e45`. That commit is not yet pushed, merged or deployed. This R8-A3 block therefore remains
+in force pending the Platform review record's separately controlled staging smoke.
 
 ## 7. Required Staging-To-Live Environment Gate
 
