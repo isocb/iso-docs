@@ -4,8 +4,8 @@ Date: 2026-07-22
 
 Automated technical disposition: PASS
 
-Human/deployed disposition: PENDING — source promoted to staging; deployment verification and
-human smoke remain outstanding
+Human/deployed disposition: PASS for the Platform request-body correction; dependent LMSPro
+attachment-delivery item 11 remains FAIL
 
 Promotion disposition: STAGING SOURCE PROMOTED; `main`/live remain BLOCKED
 
@@ -154,17 +154,15 @@ After confirming the staging deployment completed at `6b822e45`, record each res
 9. **PASS** — no HTML HTTP 500 or disturbed/locked-body signature appeared while saving and
    reopening the accepted small, representative and boundary attachment drafts. The original
    shared Platform request-body defect did not recur;
-10. **PENDING / NOT YET TESTED** — confirm a no-attachment Email still uses the immediate batch
-    route;
+10. **PASS** — a no-attachment Email continued to use the immediate batch route;
 11. **FAIL** — an attachment Email submitted at approximately 17:12 BST remained `SENDING` with
     the refresh icon and was not delivered. Three subsequent healthy cron ticks reported
     `email-attachment-delivery: 0 processed, 0 errors`. The existence and persisted state of the
     corresponding job row have not yet been inspected, so this evidence must not be recorded as
     proof that no job was persisted;
-12. **PARTIAL** — the supplied cron interval contained no Prisma connection-close error and each
-    tick completed successfully. The corresponding staging web-service logs and database/job
-    evidence still require inspection; and
-13. **PENDING** — repeat `/api/health` after testing.
+12. **PASS** — the supplied cron interval and reviewed staging evidence contained no unexpected
+    Prisma connection-close error, and each cron tick completed successfully; and
+13. **PASS** — post-test `/api/health` remained healthy.
 
 Use controlled recipients and disposable drafts. Do not continue the remaining LMSPro R8-A3
 attachment-delivery checklist until items 1 through 13 pass.
@@ -187,13 +185,21 @@ claimable, remains unproven. Do not retry repeatedly or promote to live. Inspect
 job state and web/cron database/environment alignment before resuming the R8-A3 transport
 checklist.
 
+Corrective follow-on:
+
+`docs/modules/lmspro/03-slice-planning/2026-07-22-lmspro-remediation-slice-r8-a3-f1-attachment-job-claim-eligibility-and-runtime-evidence-planning.md`
+
+R8-A3-F1 technical implementation and automated review pass at local dedicated-branch commit
+`d14a652f`. It has not been pushed or deployed. The failed item remains open pending its fresh,
+separately authorised staging retest.
+
 ## 5. Gate Decision
 
-Automated technical review is PASS for exact application commit `6b822e45`, and that commit is now
-the source head of both `origin/dev` and `origin/staging`. The slice is not deployment-complete
-until the staging deployment is verified and the mandatory human smoke passes. No live promotion
-is authorised.
+Automated and deployed human review PASS for the Platform request-body correction at exact
+application commit `6b822e45`. The dependent LMSPro attachment-delivery handoff remains failed at
+item 11 and is owned by R8-A3-F1. No live promotion is authorised while that corrective follow-on
+remains undeployed and unproven.
 
-LMSPro R8-A3 remains explicitly blocked by this Platform slice until the staging smoke is recorded
-as PASS. If body-stream failure or a reproducible database failure appears, stop testing and open a
-separately evidenced corrective/triage record rather than expanding this implementation silently.
+LMSPro R8-A3 remains explicitly blocked by R8-A3-F1. If the body-stream failure recurs or a
+reproducible database failure appears, stop testing and open a separately evidenced Platform
+corrective/triage record rather than expanding the LMSPro implementation silently.

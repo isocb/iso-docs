@@ -190,6 +190,15 @@ Platform implementation and automated review pass at dedicated-branch applicatio
 `origin/staging`. This R8-A3 block remains in force until the staging deployment is verified and
 the Platform review record's mandatory human smoke passes.
 
+The Platform request-body retest subsequently passed, but attachment delivery item 11 remained
+failed: a fresh Email stayed `SENDING` while healthy cron ticks processed no attachment recipient.
+Bounded corrective follow-on R8-A3-F1 is controlled by:
+
+`docs/modules/lmspro/03-slice-planning/2026-07-22-lmspro-remediation-slice-r8-a3-f1-attachment-job-claim-eligibility-and-runtime-evidence-planning.md`
+
+Its technical implementation passes locally at application commit `d14a652f`; it is not pushed or
+deployed, and R8-A3 remains blocked pending a fresh staging retest.
+
 ## 7. Required Staging-To-Live Environment Gate
 
 Render environment values are not migrated by Git or Prisma. R8-A3 therefore requires a
