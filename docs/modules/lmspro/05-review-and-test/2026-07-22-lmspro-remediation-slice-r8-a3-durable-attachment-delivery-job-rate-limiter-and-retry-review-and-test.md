@@ -4,9 +4,9 @@ Date: 2026-07-22
 
 Technical review status: PASS
 
-Deployed human UI/transport status: PENDING
+Deployed human UI/transport status: READY FOR STAGING HUMAN TEST; results PENDING
 
-Promotion status: Not authorised
+Promotion status: STAGING ONLY at application `90974123`; `main`/live not authorised
 
 Planning source:
 
@@ -15,6 +15,10 @@ Planning source:
 Implementation source:
 
 `docs/modules/lmspro/04-implementation-confirmations/2026-07-22-lmspro-remediation-slice-r8-a3-durable-attachment-delivery-job-rate-limiter-and-retry-confirmation.md`
+
+Staging promotion source:
+
+`docs/00-roadmap-control/2026-07-22-lmspro-r8-a3-dev-staging-promotion-and-migration-confirmation.md`
 
 ## 1. Technical Review Result
 

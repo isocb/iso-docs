@@ -235,9 +235,10 @@ accepted.
 Next action:
 
 ```text
-Review application commit `90974123`, align it with current `origin/dev` if required, then
-use the controlled migration/deployment sequence and complete the R8-A3 human UI/transport
-smoke. Stop before any production promotion.
+Application commit `90974123` is aligned through `origin/dev` and `origin/staging`; its exact
+dev/staging Security Scans passed and the Render staging build completed the accepted
+migration-before-code sequence. Complete the R8-A3 staging human UI/transport smoke and
+existing-cron environment/log confirmation. Stop before any production promotion.
 
 R8-A3 planning:
 
@@ -517,14 +518,14 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-R8-A3 - Controlled migration, deployment and human UI/transport smoke
+R8-A3 - Staging human UI/transport smoke and cron confirmation
 ```
 
 Goal:
 
-Review application commit `90974123`, apply the R8-A3 migration before the web/cron code in
-the controlled environment, confirm the existing cron/private-R2 configuration and complete
-the linked human smoke. Stop before production promotion.
+Use deployed staging application commit `90974123`, confirm the existing cron/private-R2
+configuration and complete the linked human smoke. The controlled staging
+migration-before-code deployment is complete. Stop before production promotion.
 
 ## Fresh Chat Prompt
 
@@ -537,9 +538,9 @@ Review the R8-A3 technical and human-test handoff:
 isodocs/docs/modules/lmspro/05-review-and-test/2026-07-22-lmspro-remediation-slice-r8-a3-durable-attachment-delivery-job-rate-limiter-and-retry-review-and-test.md
 
 Goal:
-Deploy the migration and application commit in the accepted order, then confirm immediate
-no-attachment batch delivery, queued attachment delivery, one-recipient CC/BCC, multi-recipient
-CC/BCC refusal, exact attachment/link receipt and one-minute cron processing.
+Using deployed staging commit `90974123`, confirm immediate no-attachment batch delivery,
+queued attachment delivery, one-recipient CC/BCC, multi-recipient CC/BCC refusal, exact
+attachment/link receipt and one-minute cron processing.
 
 Do not promote R8-A3 until technical evidence is complete and its deployed human UI smoke is
 reported PASS. Do not broaden the batch sender, add key-date sequence attachments, change
