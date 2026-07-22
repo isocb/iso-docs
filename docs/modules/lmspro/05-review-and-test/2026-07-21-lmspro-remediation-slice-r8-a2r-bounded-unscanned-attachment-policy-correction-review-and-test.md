@@ -3,8 +3,8 @@
 Date: 2026-07-21
 Module: LMSPro / SeasonPro shared communications
 Technical review status: PASS
-Deployed human UI smoke status: PENDING
-Promotion status: Not yet recommended; R8-A3 planning remains closed
+Deployed human UI smoke status: FAIL - corrective slice required
+Promotion status: Blocked at this boundary; superseded for retest by `R8-A2R-F1`
 
 Planning source:
 
@@ -77,28 +77,36 @@ regression.
 
 The business/testing team must report:
 
-1. confirm `R2_EMAIL_ATTACHMENT_BUCKET_NAME` points to the dedicated private environment
-   bucket and that no `r2.dev` or custom public domain is enabled for it;
-2. save and reopen a valid PDF, accepted image, TXT and CSV;
-3. add, remove and duplicate files and confirm the exact expected set remains;
-4. confirm a fourth file and cumulative content above 10 MB are clearly refused;
-5. confirm DOC/DOCX, XLS/XLSX, PPT/PPTX, ZIP/archive, executable/script and mismatched content
-   are clearly refused;
-6. confirm three HTTPS links are accepted and a fourth is refused;
-7. send a links-only message and confirm it uses the working batch route and its received
-   links are clickable;
-8. confirm the UI explicitly states that uploads are not malware-scanned and external
-   resources are not verified;
-9. confirm the C1 responsibility acknowledgement is required;
-10. attempt an attachment send and confirm the interim message clearly states that no email
-    was sent; and
-11. repeat a no-attachment batch send as a live regression smoke.
+1. **PASS** — `R2_EMAIL_ATTACHMENT_BUCKET_NAME` pointed to the dedicated private
+   environment bucket, with no `r2.dev` or custom public domain enabled.
+2. **FAIL** — saving and reopening the expected PDF, image, TXT and CSV set was not
+   reliable. A CSV attempt returned `Unexpected token '<', "<!DOCTYPE "... is not valid
+   JSON` rather than a controlled JSON error.
+3. **PARTIAL / FAIL** — individual add, remove and duplicate interactions could succeed,
+   but the exact expected multi-file set was not retained reliably. Additional files could
+   appear accepted and then fail to display or disappear. Rejected/failed attempts appeared
+   capable of affecting the effective count.
+4. **NOT COMPLETED** — fourth-file and cumulative-size refusal could not be assessed
+   meaningfully until the retained-set defect was corrected.
+5. **NOT COMPLETED** — the full refused-type and mismatched-content matrix was paused at
+   the blocking multi-file/transport failure.
+6. **FAIL** — up to three HTTPS links were accepted initially but were not rehydrated after
+   saving and reopening the draft.
+7. **NOT COMPLETED** — links-only delivery regression remained pending correction.
+8. **PASS** — the UI stated that uploads are not malware-scanned and external resources
+   are not verified.
+9. **PASS** — C1 responsibility acknowledgement was required.
+10. **PASS** — attachment send remained fail-closed and no email could be sent without the
+    required acknowledgement; attachment-bearing delivery remained an interim refusal.
+11. **NOT COMPLETED** — the no-attachment live batch regression was deferred until the
+    blocking draft/resource defects were corrected.
 
 Do not perform ClamAV health, EICAR, scanner-unavailable, Office-clean or ZIP-clean tests.
 Those belonged to the withdrawn policy.
 
 ## Current Conclusion
 
-R8-A2R passes bounded technical review at application commit `e850c47b`. It is paused at the
-revised deployed human UI/private-R2 gate. Do not create or implement R8-A3 until the
-business/testing team reports and accepts that result.
+R8-A2R passed bounded technical review at application commit `e850c47b`, but deployed human
+UI/private-R2 testing failed at the draft resource and transport boundary. Those findings
+triggered the bounded `R8-A2R-F1 - Draft Resource State Rehydration And Attachment Transport
+Correction` lifecycle. R8-A3 remains closed until the F1 human UI retest is accepted.
