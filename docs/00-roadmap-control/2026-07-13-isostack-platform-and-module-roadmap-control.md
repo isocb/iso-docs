@@ -183,6 +183,23 @@ the older checkpoint and status detail below.
 - No platform remediation implementation is authorised by registration, and the finding
   does not invalidate focused passing evidence from a bounded module slice.
 
+### 2026-07-22 LMSPro R8-A2R-F1 Development Promotion And Staging Blocker
+
+Application `origin/dev` and the dedicated F1 branch are aligned at verified commit
+`68b92361`. Full Vitest, critical-file verification, type-check and production build passed.
+Canonical IsoDocs includes the F1 lifecycle and Platform hierarchy at `558b000`.
+
+GitHub Security Scan run `29912591540` then failed its dependency job with zero critical
+and four high-severity vulnerabilities. Schema security, secret detection and TypeScript
+jobs passed. `origin/staging` therefore remains unchanged at `3b148a65`; application main,
+production and all databases remain unchanged. The dependency finding is registered as
+`PLAT-ASSURE-02`; staging promotion requires a safely remediated exact dev commit and a
+passing Security Scan.
+
+Authoritative evidence:
+
+`docs/00-roadmap-control/2026-07-22-lmspro-r8-a2r-f1-dev-promotion-and-staging-security-gate-blocker-confirmation.md`
+
 ### 2026-07-15 FUND 1R-E-A Local Completion Checkpoint
 
 FUND `1R-E-A - Store Authority, Exceptional Intervention And Lifecycle Service Alignment`

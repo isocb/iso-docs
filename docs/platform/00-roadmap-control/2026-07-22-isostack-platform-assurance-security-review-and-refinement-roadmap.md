@@ -91,6 +91,7 @@ accepted noise and cannot reliably prevent regressions.
 | Refinement ID | Name | Classification | Priority | Status |
 | --- | --- | --- | --- | --- |
 | `PLAT-ASSURE-01` | Repository-wide Lint, Typed-Test Coverage And CI Gate Remediation | Assurance/control weakness with code-quality and toolchain components | High | First-class finding; bounded remediation not yet authorised |
+| `PLAT-ASSURE-02` | High-Severity Dependency Advisory And Staging Security-Gate Remediation | Active security/dependency promotion blocker | Critical promotion gate | Confirmed on dev; staging blocked |
 
 ## 5. PLAT-ASSURE-01 — Repository-wide Lint, Typed-Test Coverage And CI Gate Remediation
 
@@ -176,7 +177,30 @@ The platform outcome is complete only when:
 - module slices no longer need to qualify lint evidence because of unrelated historical
   failures.
 
-## 6. Settled Planning Decisions
+## 6. PLAT-ASSURE-02 — High-Severity Dependency Advisory And Staging Security-Gate Remediation
+
+GitHub Security Scan run `29912591540` failed on 2026-07-22 against exact application dev
+commit `68b92361`, reporting zero critical and four high-severity dependency
+vulnerabilities. Schema security, secret detection and TypeScript jobs passed.
+
+The affected audit chains include `fast-uri`, `linkify-it` and `sharp`, with `esbuild` and
+`postcss` advisories also reported. The forced audit proposal for the Next.js/`sharp` chain
+is not an accepted remediation because it proposes a breaking framework downgrade.
+
+Settled control decisions:
+
+1. staging remains at `3b148a65` and must not bypass the failed gate;
+2. application dev remains at the backed-up F1 commit `68b92361` while remediation is
+   assessed;
+3. no forced audit fix, unsafe dependency override or workflow threshold weakening is
+   authorised; and
+4. a later exact dev commit must pass the complete Security Scan before staging advances.
+
+Authoritative promotion evidence:
+
+`docs/00-roadmap-control/2026-07-22-lmspro-r8-a2r-f1-dev-promotion-and-staging-security-gate-blocker-confirmation.md`
+
+## 7. Settled Planning Decisions
 
 1. This is a platform assurance finding, not an LMSPro implementation defect.
 2. It is high-priority platform remediation because it affects the trustworthiness of a
@@ -187,7 +211,7 @@ The platform outcome is complete only when:
 5. Remediation must not weaken rules or silently exclude source merely to make CI green.
 6. This roadmap registers and sequences the finding but does not authorise implementation.
 
-## 7. Open Planning Questions
+## 8. Open Planning Questions
 
 The bounded slice plan must determine:
 
@@ -202,7 +226,7 @@ The bounded slice plan must determine:
 5. which CI workflow becomes the authoritative lint gate and how branch protection will
    consume it.
 
-## 8. Promotion And Monthly Reconciliation Rule
+## 9. Promotion And Monthly Reconciliation Rule
 
 At each monthly review:
 
