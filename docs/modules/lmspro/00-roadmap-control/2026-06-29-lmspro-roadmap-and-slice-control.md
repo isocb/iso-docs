@@ -103,7 +103,9 @@ superseded before promotion after cost/benefit and risk/benefit review. R8-A2R a
 transport correction are deployed to staging and have passed the revised human UI smoke:
 three PDF/image/text uploads in private R2, 10 MB cumulative, three separate HTTPS links and
 no malware-scanning service. R8-A3 planning is accepted and implementation is authorised on
-a dedicated branch from the exact current `origin/dev` baseline.
+a dedicated branch from the exact current `origin/dev` baseline. R8-A3 is technically
+complete at application commit `90974123`; deployment, migration and human smoke remain
+pending and production promotion is not authorised.
 ```
 
 An urgent communications-integrity candidate now precedes optional feature implementation:
@@ -149,7 +151,7 @@ Accepted controlling plan:
 Status:
 
 ```text
-Accepted 2026-07-21; R8-A1 completed; R8-A2 superseded before promotion in its broad-file/ClamAV portions; R8-A2R-F1 technical and deployed human smoke complete; R8-A3 implementation authorised.
+Accepted 2026-07-21; R8-A1 completed; R8-A2 superseded before promotion in its broad-file/ClamAV portions; R8-A2R-F1 technical and deployed human smoke complete; R8-A3 technically complete and awaiting controlled migration/deployment/human smoke.
 ```
 
 Implementation baselines:
@@ -233,13 +235,20 @@ accepted.
 Next action:
 
 ```text
-Implement R8-A3 on a new dedicated application branch from exact `origin/dev`. Reuse the
-existing Render cron on a one-minute schedule, preserve the immediate no-attachment batch
-route, and stop for deployed human smoke evidence before any production promotion.
+Review application commit `90974123`, align it with current `origin/dev` if required, then
+use the controlled migration/deployment sequence and complete the R8-A3 human UI/transport
+smoke. Stop before any production promotion.
 
 R8-A3 planning:
 
 `docs/modules/lmspro/03-slice-planning/2026-07-22-lmspro-remediation-slice-r8-a3-durable-attachment-delivery-job-rate-limiter-and-retry-planning.md`
+
+R8-A3 implementation and review evidence:
+
+```text
+04-implementation-confirmations/2026-07-22-lmspro-remediation-slice-r8-a3-durable-attachment-delivery-job-rate-limiter-and-retry-confirmation.md
+05-review-and-test/2026-07-22-lmspro-remediation-slice-r8-a3-durable-attachment-delivery-job-rate-limiter-and-retry-review-and-test.md
+```
 ```
 
 R8-A2 planning:
@@ -505,17 +514,17 @@ Do not implement these until slice planning accepts them:
 - do not add key-date sequence attachments as an unplanned expansion of R8-A;
 - do not represent an attachment job as sent merely because it has been queued.
 
-## Recommended Next Slice
+## Recommended Next Controlled Action
 
 ```text
-R8-A3 - Durable Attachment Delivery Job, Rate Limiter And Retry
+R8-A3 - Controlled migration, deployment and human UI/transport smoke
 ```
 
 Goal:
 
-Replace the intentional attachment-send refusal with a durable, idempotent attachment job
-processed by the existing one-minute Render cron. Preserve immediate no-attachment batch
-delivery, reuse private R2 evidence, and stop for deployed human smoke before promotion.
+Review application commit `90974123`, apply the R8-A3 migration before the web/cron code in
+the controlled environment, confirm the existing cron/private-R2 configuration and complete
+the linked human smoke. Stop before production promotion.
 
 ## Fresh Chat Prompt
 
@@ -524,13 +533,13 @@ Proceed with LMSPro / SeasonPro remediation planning from:
 isodocs/docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
 
 Next step:
-Review the accepted R8-A3 planning slice:
-isodocs/docs/modules/lmspro/03-slice-planning/2026-07-22-lmspro-remediation-slice-r8-a3-durable-attachment-delivery-job-rate-limiter-and-retry-planning.md
+Review the R8-A3 technical and human-test handoff:
+isodocs/docs/modules/lmspro/05-review-and-test/2026-07-22-lmspro-remediation-slice-r8-a3-durable-attachment-delivery-job-rate-limiter-and-retry-review-and-test.md
 
 Goal:
-Implement R8-A3 from exact `origin/dev`. Confirm atomic queueing, one-recipient ordinary
-provider calls, bounded three-per-second cron processing, durable retry/idempotency evidence,
-the one-primary-recipient CC/BCC rule and no-attachment batch regression.
+Deploy the migration and application commit in the accepted order, then confirm immediate
+no-attachment batch delivery, queued attachment delivery, one-recipient CC/BCC, multi-recipient
+CC/BCC refusal, exact attachment/link receipt and one-minute cron processing.
 
 Do not promote R8-A3 until technical evidence is complete and its deployed human UI smoke is
 reported PASS. Do not broaden the batch sender, add key-date sequence attachments, change
