@@ -1,7 +1,7 @@
 # LMSPro / SeasonPro Roadmap And Slice Control
 
 Date: 2026-06-29
-Last updated: 2026-07-21
+Last updated: 2026-07-22
 Module: LMSPro / SeasonPro
 Control status: Active roadmap and delivery-cycle control
 
@@ -76,7 +76,8 @@ Current work should remain on dev/remediation branches until reviewed and explic
 Latest known app alignment from prior cycle:
 
 ```text
-origin/main = origin/staging = origin/dev = ea4e619
+origin/dev = origin/staging = 6c5aaa56ffa33ab3bcc2102ff7da6cdc84fda4a4
+origin/main = ea4e6193
 ```
 
 This alignment included the completed LMSPro remediation and FUND availability baseline
@@ -97,11 +98,12 @@ Current posture:
 
 ```text
 R8-A is the active accepted LMSPro remediation lane.
-R8-A1 is complete on the remediation branch. The technically verified R8-A2 broad-file and
-ClamAV implementation was superseded before promotion after cost/benefit and risk/benefit
-review. R8-A2R is technically complete on the remediation branch: three PDF/image/text
-uploads in private R2, 10 MB cumulative, three separate HTTPS links and no malware-scanning
-service. R8-A3 remains closed until the revised deployed human UI smoke is accepted.
+R8-A1 is complete. The technically verified R8-A2 broad-file and ClamAV implementation was
+superseded before promotion after cost/benefit and risk/benefit review. R8-A2R and its F1
+transport correction are deployed to staging and have passed the revised human UI smoke:
+three PDF/image/text uploads in private R2, 10 MB cumulative, three separate HTTPS links and
+no malware-scanning service. R8-A3 planning is accepted and implementation is authorised on
+a dedicated branch from the exact current `origin/dev` baseline.
 ```
 
 An urgent communications-integrity candidate now precedes optional feature implementation:
@@ -147,14 +149,14 @@ Accepted controlling plan:
 Status:
 
 ```text
-Accepted 2026-07-21; R8-A1 completed; R8-A2 superseded before promotion in its broad-file/ClamAV portions; R8-A2R is technically complete and awaiting revised human smoke.
+Accepted 2026-07-21; R8-A1 completed; R8-A2 superseded before promotion in its broad-file/ClamAV portions; R8-A2R-F1 technical and deployed human smoke complete; R8-A3 implementation authorised.
 ```
 
 Implementation baselines:
 
 ```text
-application: fix/lmspro-r8-a-attachment-delivery from origin/dev at e3f44b4b
-documentation: fix/lmspro-r8-a-attachment-delivery from origin/main at 6190751
+application: new dedicated R8-A3 branch from origin/dev at 6c5aaa56ffa33ab3bcc2102ff7da6cdc84fda4a4
+documentation: origin/main at 62aca8057d3f0560a8764613e644a247fb2ccba4 before this gate update
 ```
 
 The documentation repository has no `origin/dev`; `origin/main` is its controlling remote
@@ -191,7 +193,28 @@ Administrator is responsible for file/link integrity, suitability and sharing pe
 Links alone do not select the attachment job and continue through the proven batch route.
 
 R8-A must support approximately 300 attachment recipients through a rate-controlled,
-resumable worker. It must not hold the C1 browser request open while sending all messages.
+resumable processor in the existing Render cron. It must not hold the C1 browser request
+open while sending all messages or require a new paid background-worker service.
+
+The accepted runtime contract is:
+
+```text
+ad-hoc email without attachments
+-> existing immediate Resend batch route
+
+scheduled/key-date work
+-> existing cron processors, checked on a nominal one-minute schedule
+
+attachment-bearing ad-hoc email
+-> durable delivery job
+-> existing cron, after current processors
+-> at most 150 recipients per run at three ordinary requests per second
+-> approximately two to three minutes for a representative 300-recipient job
+```
+
+CC/BCC is permitted only when the attachment job has one primary recipient. An attachment
+job with multiple primary recipients and any CC/BCC address fails closed before queueing so
+each copied address cannot receive hundreds of duplicate messages.
 
 Required protection:
 
@@ -210,8 +233,13 @@ accepted.
 Next action:
 
 ```text
-Complete R8-A2R technical evidence, then deploy and record its revised human UI/private-R2
-smoke results. Do not create R8-A3 planning until that evidence is reported and accepted.
+Implement R8-A3 on a new dedicated application branch from exact `origin/dev`. Reuse the
+existing Render cron on a one-minute schedule, preserve the immediate no-attachment batch
+route, and stop for deployed human smoke evidence before any production promotion.
+
+R8-A3 planning:
+
+`docs/modules/lmspro/03-slice-planning/2026-07-22-lmspro-remediation-slice-r8-a3-durable-attachment-delivery-job-rate-limiter-and-retry-planning.md`
 ```
 
 R8-A2 planning:
@@ -480,14 +508,14 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Slice
 
 ```text
-R8-A2R - Bounded Unscanned Attachment Policy Correction (revised deployed human smoke gate)
+R8-A3 - Durable Attachment Delivery Job, Rate Limiter And Retry
 ```
 
 Goal:
 
-Deploy the technically complete R8-A2R correction and run its revised human UI smoke script
-against the configured private R2 bucket. No ClamAV service is required. Keep R8-A3 planning
-closed until the result is recorded and accepted.
+Replace the intentional attachment-send refusal with a durable, idempotent attachment job
+processed by the existing one-minute Render cron. Preserve immediate no-attachment batch
+delivery, reuse private R2 evidence, and stop for deployed human smoke before promotion.
 
 ## Fresh Chat Prompt
 
@@ -496,16 +524,16 @@ Proceed with LMSPro / SeasonPro remediation planning from:
 isodocs/docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
 
 Next step:
-Review the bounded R8-A2R corrective planning slice:
-isodocs/docs/modules/lmspro/03-slice-planning/2026-07-21-lmspro-remediation-slice-r8-a2r-bounded-unscanned-attachment-policy-correction-planning.md
+Review the accepted R8-A3 planning slice:
+isodocs/docs/modules/lmspro/03-slice-planning/2026-07-22-lmspro-remediation-slice-r8-a3-durable-attachment-delivery-job-rate-limiter-and-retry-planning.md
 
 Goal:
-Complete, deploy and smoke-test R8-A2R. Confirm exact draft persistence, PDF/image/text-only
-validation, independent three-upload/10 MB and three-link limits, private R2 readability,
-explicit unscanned-file C1 responsibility acknowledgement and the interim send refusal.
+Implement R8-A3 from exact `origin/dev`. Confirm atomic queueing, one-recipient ordinary
+provider calls, bounded three-per-second cron processing, durable retry/idempotency evidence,
+the one-primary-recipient CC/BCC rule and no-attachment batch regression.
 
-Do not create R8-A3 planning until R8-A2R implementation and technical review are complete
-and the business/testing team has reported the required human UI smoke result. Do not broaden the
-batch sender, add key-date sequence attachments, change recipient/cohort rules, automatically
-resend historic messages, alter season automation or change FUND logic.
+Do not promote R8-A3 until technical evidence is complete and its deployed human UI smoke is
+reported PASS. Do not broaden the batch sender, add key-date sequence attachments, change
+recipient/cohort rules, automatically resend historic messages, alter season automation or
+change FUND logic.
 ```

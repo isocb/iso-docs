@@ -3,9 +3,9 @@
 Date: 2026-07-22
 Module: LMSPro / SeasonPro shared communications
 Technical review status: PASS on dedicated corrective branch
-Human UI smoke status: PENDING
-Transport upper-bound status: PENDING deployed evidence
-Promotion status: Not authorised
+Human UI smoke status: PASS on deployed staging
+Transport upper-bound status: PASS on deployed staging
+Promotion status: R8-A3 planning gate open; production promotion remains separately controlled
 
 Planning source:
 
@@ -93,24 +93,29 @@ The resulting cross-cutting platform finding is registered as `PLAT-ASSURE-01` i
 
 Use fresh drafts and existing drafts. Record each result independently:
 
-1. save/reopen one small PDF, one accepted image, one TXT and one small UTF-8 CSV;
-2. save/reopen a UTF-8-BOM CSV exported by the representative business tool;
-3. add files one at a time and as one mixed selection, confirming every accepted file stays
+1. PASS — save/reopen one small PDF, one accepted image, one TXT and one small UTF-8 CSV;
+2. PASS — save/reopen a UTF-8-BOM CSV exported by the representative business tool;
+3. PASS — add files one at a time and as one mixed selection, confirming every accepted file stays
    visible and every refused file names its reason;
-4. remove a persisted file, add a replacement, save, close and reopen, confirming the exact
+4. PASS — remove a persisted file, add a replacement, save, close and reopen, confirming the exact
    expected set;
-5. select four permitted small files and confirm the first three are retained and the
+5. PASS — select four permitted small files and confirm the first three are retained and the
    fourth is explicitly refused;
-6. test exactly 10 MB cumulative decoded content and content one byte/one small file above
+6. PASS — test exactly 10 MB cumulative decoded content and content one byte/one small file above
    the boundary;
-7. confirm prohibited Office/archive/executable/script and mismatched files name their
+7. PASS — confirm prohibited Office/archive/executable/script and mismatched files name their
    refusal rather than disappearing;
-8. add three HTTPS links, save, close and reopen, confirming all three exact labels/URLs;
-9. confirm a fourth link is refused;
-10. send a links-only message and confirm clickable links and batch-route evidence;
-11. reconfirm disclosure and C1 acknowledgement;
-12. reconfirm attachment send states that no email was sent; and
-13. repeat a no-attachment live batch smoke.
+8. PASS — add three HTTPS links, save, close and reopen, confirming all three exact labels/URLs;
+9. PASS — confirm a fourth link is refused;
+10. PASS — send a links-only message and confirm clickable links and batch-route evidence;
+11. PASS — reconfirm disclosure and C1 acknowledgement;
+12. PASS — reconfirm attachment send states that no email was sent; and
+13. PASS — repeat a no-attachment live batch smoke.
+
+The business/testing team reported the complete human smoke as passed on 2026-07-22. Very
+minor UI observations remain but do not affect attachment persistence, validation,
+rehydration, fail-closed sending or the no-attachment regression contract. They are deferred
+to a separately bounded refinement slice and do not block R8-A3 planning.
 
 For any save failure, record from browser Network evidence:
 
@@ -125,7 +130,7 @@ review record.
 
 ## Current Conclusion
 
-The bounded code correction passes technical review. Human acceptance and the deployed
-10 MB transport boundary remain open. Do not merge, deploy, promote, close R8-A2R, commence
-R8-A3 or implement staged/raw upload unless the business/testing result is recorded and any
-required architectural expansion is separately accepted.
+The bounded correction passes technical and deployed human review, including the 10 MB
+transport boundary. The R8-A3 planning gate is open. This result does not itself authorise
+production promotion, R8-A3 schema migration or creation of a paid worker service; those
+remain governed by their own accepted planning and promotion evidence.
