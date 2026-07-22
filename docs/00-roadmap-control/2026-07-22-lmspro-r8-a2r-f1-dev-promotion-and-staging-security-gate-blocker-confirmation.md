@@ -2,7 +2,8 @@
 
 Date: 2026-07-22
 
-Status: Development promoted; staging promotion blocked by required Security Scan
+Status: Security blocker resolved; exact corrected dev/staging commit passed; human staging
+test pending
 
 ## 1. Scope
 
@@ -98,3 +99,20 @@ Before staging promotion:
 4. commit and promote the remediation through `dev`;
 5. require a passing GitHub Security Scan for the resulting exact commit; and
 6. only then align `staging` to that commit for human F1 testing.
+
+## 7. Resolution
+
+The required follow-on completed on 2026-07-22 through bounded Platform slice
+`PLAT-ASSURE-02`.
+
+- remediation commit `6c5aaa56` safely resolved the high-severity dependency graph;
+- remediation-branch Security Scan `29915521121` passed;
+- exact `origin/dev` Security Scan `29915698746` passed;
+- `origin/staging` was then fast-forwarded from `3b148a65` to exact commit `6c5aaa56`;
+- exact staging Security Scan `29915869540` passed; and
+- application `main`, production and every database remain unchanged.
+
+The staging security blocker is therefore closed. LMSPro F1 remains pending the human
+staging smoke already defined by its review-and-test evidence. The separately implemented
+three-branch scheduled dependency matrix awaits default-branch activation and first-run
+evidence before recurring Platform monitoring can be described as fully operational.

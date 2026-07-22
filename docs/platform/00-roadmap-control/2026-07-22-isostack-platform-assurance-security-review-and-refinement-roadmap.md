@@ -91,7 +91,7 @@ accepted noise and cannot reliably prevent regressions.
 | Refinement ID | Name | Classification | Priority | Status |
 | --- | --- | --- | --- | --- |
 | `PLAT-ASSURE-01` | Repository-wide Lint, Typed-Test Coverage And CI Gate Remediation | Assurance/control weakness with code-quality and toolchain components | High | First-class finding; bounded remediation not yet authorised |
-| `PLAT-ASSURE-02` | High-Severity Dependency Advisory And Staging Security-Gate Remediation | Active security/dependency promotion blocker | Critical promotion gate | Confirmed on dev; staging blocked |
+| `PLAT-ASSURE-02` | High-Severity Dependency Advisory And Staging Security-Gate Remediation | Security/dependency and recurring-monitoring correction | High operational follow-through | Dependency gate cleared on dev/staging; scheduled matrix awaits main activation |
 
 ## 5. PLAT-ASSURE-01 — Repository-wide Lint, Typed-Test Coverage And CI Gate Remediation
 
@@ -187,18 +187,28 @@ The affected audit chains include `fast-uri`, `linkify-it` and `sharp`, with `es
 `postcss` advisories also reported. The forced audit proposal for the Next.js/`sharp` chain
 is not an accepted remediation because it proposes a breaking framework downgrade.
 
-Settled control decisions:
+Resolution evidence:
 
-1. staging remains at `3b148a65` and must not bypass the failed gate;
-2. application dev remains at the backed-up F1 commit `68b92361` while remediation is
-   assessed;
-3. no forced audit fix, unsafe dependency override or workflow threshold weakening is
-   authorised; and
-4. a later exact dev commit must pass the complete Security Scan before staging advances.
+1. bounded application commit `6c5aaa56` resolves the high-severity dependency graph;
+2. local Node 22 install, audit, dependency-tree, Sharp runtime, test, type and production
+   build evidence passed;
+3. remediation-branch run `29915521121`, dev run `29915698746` and staging run
+   `29915869540` passed;
+4. `origin/dev` and `origin/staging` now align at `6c5aaa56`;
+5. no forced audit fix, framework downgrade, canary adoption or threshold weakening was
+   used; and
+6. the three-protected-branch scheduled dependency matrix is implemented but awaits
+   default-branch activation and its first scheduled evidence.
 
 Authoritative promotion evidence:
 
 `docs/00-roadmap-control/2026-07-22-lmspro-r8-a2r-f1-dev-promotion-and-staging-security-gate-blocker-confirmation.md`
+
+Lifecycle evidence:
+
+- `docs/platform/03-slice-planning/2026-07-22-isostack-platform-plat-assure-02-dependency-and-security-monitoring-remediation-planning.md`;
+- `docs/platform/04-implementation-confirmations/2026-07-22-isostack-platform-plat-assure-02-dependency-and-security-monitoring-remediation-confirmation.md`; and
+- `docs/platform/05-review-and-test/2026-07-22-isostack-platform-plat-assure-02-dependency-and-security-monitoring-remediation-review-and-test.md`.
 
 ## 7. Settled Planning Decisions
 

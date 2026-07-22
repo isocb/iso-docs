@@ -191,10 +191,13 @@ Canonical IsoDocs includes the F1 lifecycle and Platform hierarchy at `558b000`.
 
 GitHub Security Scan run `29912591540` then failed its dependency job with zero critical
 and four high-severity vulnerabilities. Schema security, secret detection and TypeScript
-jobs passed. `origin/staging` therefore remains unchanged at `3b148a65`; application main,
-production and all databases remain unchanged. The dependency finding is registered as
-`PLAT-ASSURE-02`; staging promotion requires a safely remediated exact dev commit and a
-passing Security Scan.
+jobs passed. This historic result blocked staging until Platform slice `PLAT-ASSURE-02`
+remediated the graph at exact commit `6c5aaa56` without a forced framework downgrade or
+weakened gate. Remediation-branch run `29915521121`, dev run `29915698746` and staging run
+`29915869540` passed. `origin/dev` and `origin/staging` now align at `6c5aaa56`; application
+main, production and all databases remain unchanged. LMSPro F1 is ready for its human
+staging smoke. The scheduled three-protected-branch dependency matrix is implemented but
+awaits default-branch activation and first scheduled evidence.
 
 Authoritative evidence:
 
