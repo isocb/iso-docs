@@ -1,12 +1,12 @@
 # IsoStack Platform And Module Roadmap Control
 
-Date: 2026-07-20
+Date: 2026-07-22
 
 Status: Active parent roadmap
 
 ## 1. Purpose
 
-Provide the missing parent control above platform Core and product-module roadmaps.
+Provide the parent control above Platform, bounded Core-domain and product-module roadmaps.
 
 The root roadmap coordinates sibling lanes without moving platform ownership into a module
 or making a module roadmap authoritative for reusable Core infrastructure.
@@ -15,6 +15,10 @@ or making a module roadmap authoritative for reusable Core infrastructure.
 
 ```text
 IsoStack Root Roadmap
+├── Platform roadmap
+│   ├── shared application, tenancy, administration and platform services
+│   └── Platform assurance, security review and refinement roadmap
+│       └── cross-cutting quality/security gates, toolchain debt and monthly findings
 ├── Core Commerce roadmap
 │   └── reusable checkout, Order, money and payment infrastructure
 └── FUND roadmap
@@ -24,12 +28,17 @@ IsoStack Root Roadmap
 Authoritative child controls:
 
 ```text
+docs/platform/00-roadmap-control/2026-07-22-isostack-platform-roadmap-and-slice-control.md
 docs/core/commerce/00-roadmap-control/2026-07-13-commerce-core-roadmap-and-slice-control.md
 docs/modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md
 ```
 
-Other IsoStack Core and module roadmaps may be added as siblings when their work requires
-cross-lane coordination.
+Subordinate Platform assurance/refinement control:
+
+`docs/platform/00-roadmap-control/2026-07-22-isostack-platform-assurance-security-review-and-refinement-roadmap.md`
+
+Other Platform, bounded Core-domain and module roadmaps may be added as siblings when their
+work requires cross-lane coordination.
 
 ## 3. Mandatory Slice Lifecycle
 
@@ -71,6 +80,12 @@ FUND owns:
 - typed FUND extensions keyed to generic Commerce records.
 
 Cross-lane references remain generic from Commerce and typed from FUND.
+
+Platform owns reusable application, tenancy, authentication, administration, shared
+service and platform-engineering contracts. Its subordinate Platform Assurance control
+owns cross-cutting engineering and security-assurance findings, including repository-wide
+static analysis, typed-test lint coverage, CI gate integrity, toolchain deprecation and the
+monthly security/assurance review register. Neither boundary absorbs module behaviour.
 
 ## 5. Current Lane Status
 
@@ -125,6 +140,25 @@ Authoritative evidence:
 
 This checkpoint supersedes the E-A local-only and E-B/E-C unpushed deployment wording in
 the older checkpoint and status detail below.
+
+### Platform And Platform Assurance
+
+- The Platform now has the same controlled `00` through `05` documentation lifecycle
+  used by Commerce Core, FUND and LMSPro:
+  `docs/platform/00-roadmap-control/2026-07-22-isostack-platform-roadmap-and-slice-control.md`.
+- The hierarchy applies prospectively from 2026-07-22 and does not invent retrospective
+  lifecycle evidence for the initial IsoStack build.
+- The first-class Platform Assurance, Security Review And Refinement Roadmap is active:
+  `docs/platform/00-roadmap-control/2026-07-22-isostack-platform-assurance-security-review-and-refinement-roadmap.md`.
+- `PLAT-ASSURE-01 - Repository-wide Lint, Typed-Test Coverage And CI Gate Remediation` is
+  registered as a high-priority platform assurance finding.
+- The finding records 27 pre-existing production-source lint errors and seven test parser
+  errors at discovery, plus the retained deprecated `next lint` package contract. These
+  counts are evidence to reproduce, not a permanent accepted baseline.
+- The monthly platform security and assurance review now owns recurrence, classification
+  and status evidence for this finding.
+- No platform remediation implementation is authorised by registration, and the finding
+  does not invalidate focused passing evidence from a bounded module slice.
 
 ### 2026-07-15 FUND 1R-E-A Local Completion Checkpoint
 
@@ -278,6 +312,13 @@ COMMERCE-A1 complete
 
 FUND 1R-C1 -> C2 -> C3 -> C4 -> C5 -> C6 complete
 FUND 1P-G-R3-A -> R3-B -> R3-C -> R3-D complete
+
+Platform Assurance monthly review
+  -> classify cross-cutting finding
+  -> register in the platform refinement roadmap
+  -> parent roadmap explicitly promotes a bounded platform slice when selected
+  -> implementation confirmation and independent review/test
+  -> restore and monitor the accepted platform gate
 ```
 
 `1R-C1` and `COMMERCE-A1` are independent schema slices. Separate ownership does not permit
@@ -358,6 +399,14 @@ LMSPro UI work; then stage and UI-smoke the LMSPro work separately before promot
 main/live. This is a deployment gate, not a claim that any shared database has been
 migrated.
 
+The Platform lane is now a first-class sibling control, with Platform Assurance as
+its subordinate finding/refinement register. Its active `PLAT-ASSURE-01` finding is
+registered but not selected as the global next executable slice. It therefore does not
+displace the current authorised FUND/Commerce sequence.
+Until the parent roadmap promotes its bounded remediation, module reviews must disclose
+the known repository-wide lint limitation and may provide focused changed-scope lint
+evidence without claiming a clean global gate.
+
 ### 7.1 Integrated Serial Delivery Control
 
 The root roadmap owns the one serial critical-path queue across sibling lanes. Child
@@ -435,5 +484,10 @@ only:
 - cross-lane dependencies;
 - shared gates;
 - the currently authorised handoff between lanes.
+
+The Platform roadmap owns shared-platform slice lifecycle and its subordinate Platform
+Assurance roadmap owns the recurring monthly security and assurance finding register.
+Their entries follow the same promotion and evidence discipline as module refinements and
+cannot nominate themselves as the global next slice.
 
 When a child status changes, update the child roadmap first and then this root summary.

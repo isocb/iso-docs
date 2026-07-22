@@ -85,6 +85,10 @@ attachment-bearing delivery remains fail-closed pending R8-A3.
 Repository-wide lint is not an F1 acceptance result because it remains blocked by unrelated
 pre-existing application errors. No such errors occur in the changed production files.
 
+The resulting cross-cutting platform finding is registered as `PLAT-ASSURE-01` in:
+
+`docs/platform/00-roadmap-control/2026-07-22-isostack-platform-assurance-security-review-and-refinement-roadmap.md`
+
 ## Required Human UI Retest
 
 Use fresh drafts and existing drafts. Record each result independently:

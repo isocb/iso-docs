@@ -21,6 +21,11 @@
 - Commit and verification checklists: `docs/00-overview/` and `../isostack-bedrock/docs/00-READ_THIS/DEPLOY_VERIFY_CHECKLIST.md`
 - Database workflow: `SAFE_DATABASE_WORKFLOW.md` (canonical) and `docs/guides/deployment/deployment-guide.md`
 
+### Roadmap Control / Platform Assurance
+- Root platform and module roadmap: `docs/00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md`
+- Platform lifecycle and roadmap: `docs/platform/00-roadmap-control/2026-07-22-isostack-platform-roadmap-and-slice-control.md`
+- Platform assurance, monthly security review and refinement roadmap: `docs/platform/00-roadmap-control/2026-07-22-isostack-platform-assurance-security-review-and-refinement-roadmap.md`
+
 ### Database & Migrations
 - Safe migration policy: `SAFE_DATABASE_WORKFLOW.md`
 - Module-specific migration examples: `docs/modules/*/migrations/*` (where present)
@@ -43,4 +48,3 @@ If a file contains legacy workflow steps (`techtest`, `db:push`, `db:seed` in de
 - `SAFE_DATABASE_WORKFLOW.md`
 - `docs/guides/deployment/deployment-guide.md`
 - `../isostack-bedrock/docs/00-READ_THIS/SAFE_DATABASE_DEPLOYMENT.md`
-

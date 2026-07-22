@@ -49,8 +49,10 @@ The documentation follows a clear, scalable hierarchy:
 
 ```
 /docs
-  /00-overview     → high-level company and platform summaries
-  /core            → IsoStack core platform documentation
+  /00-overview     → non-executable principles, architecture summaries and orientation
+  /00-roadmap-control → root sequencing and cross-lane coordination authority
+  /platform        → first-class IsoStack Platform CR-to-review delivery lifecycle
+  /core            → reusable technical references and bounded Core domains such as Commerce
   /modules         → official IsoStack modules
   /connectors      → third-party integrations
   /apps            → SaaS apps built using IsoStack
@@ -66,19 +68,39 @@ Global, high-level information applicable to everything:
 
 * architecture overview
 * glossary
-* roadmap
 * conventions
+
+This folder provides principles and orientation. It does not select executable work or
+record slice lifecycle status.
+
+### **`00-roadmap-control/`**
+
+Root sequencing and coordination across Platform, Core and module lanes. It identifies the
+single cross-lane next-slice authority without replacing each lane's own roadmap.
+
+### **`platform/`**
+
+The first-class management and delivery home for continued shared IsoStack Platform
+development, including:
+
+* roadmap control
+* CR inputs
+* triage
+* bounded slice planning
+* implementation confirmations
+* review and test
+* platform assurance and monthly security-review findings
 
 ### **`core/`**
 
-Documentation specific to the **IsoStack platform**, including:
+Reusable technical references and bounded Core domains, including:
 
 * server architecture
 * tenancy model
 * settings engine
 * security policies
 * database schemas
-* release governance
+* Commerce Core
 
 ### **`modules/`**
 
@@ -255,4 +277,3 @@ This documentation hub exists to:
 * maintain long-term consistency and architectural integrity
 
 Everything you build in IsoStack or Isoblue should be reflected somewhere in this repository.
-
