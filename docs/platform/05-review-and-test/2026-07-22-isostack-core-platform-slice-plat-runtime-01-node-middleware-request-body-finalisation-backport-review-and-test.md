@@ -142,25 +142,50 @@ Platform checks below pass and the deployed commit is confirmed as `6b822e45`.
 
 After confirming the staging deployment completed at `6b822e45`, record each result:
 
-1. **PENDING** — confirm `/api/health` is HTTP 200, database connected and expected RLS checks
-   pass before testing;
-2. **PENDING** — confirm ordinary login/session continuity;
-3. **PENDING** — perform one safe Platform body-bearing mutation and confirm structured success;
-4. **PENDING** — perform one safe LMSPro non-attachment mutation;
-5. **PENDING** — perform one safe FUND mutation where an authorised fixture exists;
-6. **PENDING** — save and reopen an Email draft containing a small PDF;
-7. **PENDING** — repeat with a representative PDF;
-8. **PENDING** — exercise the accepted three-file cumulative 10 MB boundary;
-9. **PENDING** — confirm no HTML HTTP 500 or disturbed/locked-body signature appears;
-10. **PENDING** — confirm a no-attachment Email still uses the immediate batch route;
-11. **PENDING** — confirm a valid attachment send persists exactly one job and the existing cron
-    claims it;
-12. **PENDING** — inspect web/cron logs for unexpected Prisma connection-close errors during the
-    smoke; and
+1. **PASS** — `/api/health` returned HTTP 200 with database `connected` and RLS `11/11`
+   before testing at `2026-07-22T15:56:28.058Z`;
+2. **PASS** — ordinary login/session continuity was confirmed;
+3. **PASS** — a safe Platform body-bearing mutation returned structured success;
+4. **PASS** — a safe LMSPro non-attachment mutation succeeded;
+5. **PASS** — a safe FUND mutation succeeded against an authorised fixture;
+6. **PASS** — an Email draft containing a small PDF saved and reopened;
+7. **PASS** — the draft save/reopen check passed with a representative PDF;
+8. **PASS** — the accepted three-file cumulative 10 MB boundary passed;
+9. **PASS** — no HTML HTTP 500 or disturbed/locked-body signature appeared while saving and
+   reopening the accepted small, representative and boundary attachment drafts. The original
+   shared Platform request-body defect did not recur;
+10. **PENDING / NOT YET TESTED** — confirm a no-attachment Email still uses the immediate batch
+    route;
+11. **FAIL** — an attachment Email submitted at approximately 17:12 BST remained `SENDING` with
+    the refresh icon and was not delivered. Three subsequent healthy cron ticks reported
+    `email-attachment-delivery: 0 processed, 0 errors`. The existence and persisted state of the
+    corresponding job row have not yet been inspected, so this evidence must not be recorded as
+    proof that no job was persisted;
+12. **PARTIAL** — the supplied cron interval contained no Prisma connection-close error and each
+    tick completed successfully. The corresponding staging web-service logs and database/job
+    evidence still require inspection; and
 13. **PENDING** — repeat `/api/health` after testing.
 
 Use controlled recipients and disposable drafts. Do not continue the remaining LMSPro R8-A3
 attachment-delivery checklist until items 1 through 13 pass.
+
+### 4.3 Attachment Queue Failure Evidence
+
+The cron ran after the approximately 17:12 BST send and again during the following four minutes.
+Its earlier processors completed normally on every supplied tick, but the attachment processor
+consistently returned:
+
+```text
+email-attachment-delivery: 0 processed, 0 errors
+```
+
+This is materially different from the corrected Platform request-body failure. The request no
+longer returned an HTML HTTP 500, attachment drafts persisted and the cron itself remained green.
+The current blocker is that the attachment Email was not delivered and the worker claimed no
+attachment job during the observed interval. Whether a job row exists, and if so why it was not
+claimable, remains unproven. Do not retry repeatedly or promote to live. Inspect queue persistence,
+job state and web/cron database/environment alignment before resuming the R8-A3 transport
+checklist.
 
 ## 5. Gate Decision
 
