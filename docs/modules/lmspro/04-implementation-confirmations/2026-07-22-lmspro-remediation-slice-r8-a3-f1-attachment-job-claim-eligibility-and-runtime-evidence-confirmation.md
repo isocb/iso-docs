@@ -2,8 +2,8 @@
 
 Date: 2026-07-22
 
-Implementation status: Technically complete on a dedicated corrective branch; not pushed,
-merged or deployed
+Implementation status: Technically complete and subsequently fast-forwarded through `origin/dev`
+to `origin/staging`; staging deployment verification and human retest pending
 
 Planning source:
 
@@ -85,6 +85,6 @@ failure.
 
 ## 5. Stop Boundary
 
-Commit `d14a652f` is local on its dedicated branch. It has not been pushed or promoted. A
-separately authorised dev/staging promotion and fresh human retest are required. Live remains
-blocked.
+Commit `d14a652f` was published on its dedicated branch and fast-forwarded on 2026-07-22 from
+`6b822e45` first to `origin/dev` and then to `origin/staging`. Source promotion does not prove the
+Render deployment or fresh human retest. Live remains blocked.

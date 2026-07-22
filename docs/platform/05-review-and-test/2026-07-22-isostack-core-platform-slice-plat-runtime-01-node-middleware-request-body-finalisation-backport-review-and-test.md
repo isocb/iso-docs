@@ -190,8 +190,9 @@ Corrective follow-on:
 `docs/modules/lmspro/03-slice-planning/2026-07-22-lmspro-remediation-slice-r8-a3-f1-attachment-job-claim-eligibility-and-runtime-evidence-planning.md`
 
 R8-A3-F1 technical implementation and automated review pass at local dedicated-branch commit
-`d14a652f`. It has not been pushed or deployed. The failed item remains open pending its fresh,
-separately authorised staging retest.
+`d14a652f`. That exact commit was subsequently fast-forwarded through `origin/dev` to
+`origin/staging`. The failed item remains open pending Render deployment verification and its
+fresh staging retest.
 
 ## 5. Gate Decision
 

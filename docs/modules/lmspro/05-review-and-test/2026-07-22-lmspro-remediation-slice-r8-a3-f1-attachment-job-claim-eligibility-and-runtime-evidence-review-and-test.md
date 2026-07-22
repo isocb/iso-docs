@@ -4,9 +4,10 @@ Date: 2026-07-22
 
 Automated technical disposition: PASS
 
-Human/deployed disposition: PENDING - not deployed
+Human/deployed disposition: PENDING - source promoted to staging; deployment verification and
+fresh retest outstanding
 
-Promotion disposition: BLOCKED pending separately authorised staging retest
+Promotion disposition: STAGING SOURCE PROMOTED; `main`/live remain BLOCKED
 
 Planning source:
 
@@ -39,7 +40,16 @@ Platform request-body backport remain unchanged.
 
 ## 3. Mandatory Fresh Staging Retest
 
-Do not reuse or click retry on the stranded Email. After separately authorised promotion:
+Promotion evidence:
+
+```text
+origin/dev:     6b822e45 -> d14a652f
+origin/staging: 6b822e45 -> d14a652f
+```
+
+The remote refs were fetched and verified between pushes. There is no migration or new
+environment value. Do not reuse or click retry on the stranded Email. After Render confirms the
+staging deployment is exact commit `d14a652f`:
 
 1. **PENDING** - create a fresh one-recipient Email with one accepted small attachment;
 2. **PENDING** - confirm the compose UI reports `Email queued` rather than merely observing the
@@ -62,6 +72,6 @@ Do not reuse or click retry on the stranded Email. After separately authorised p
 
 ## 4. Gate Decision
 
-Technical review passes for exact commit `d14a652f`. This is not a deployed fix and does not
-authorise live promotion. R8-A3 item 11 and the Platform handoff remain blocked until all fresh
-staging checks pass.
+Technical review passes for exact commit `d14a652f`, now the source head of both `origin/dev` and
+`origin/staging`. Source promotion is not a deployed PASS and does not authorise live promotion.
+R8-A3 item 11 remains blocked until all fresh staging checks pass.
