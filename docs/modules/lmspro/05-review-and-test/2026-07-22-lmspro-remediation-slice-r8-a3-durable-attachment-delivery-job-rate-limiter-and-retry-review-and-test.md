@@ -4,7 +4,8 @@ Date: 2026-07-22
 
 Technical review status: PASS
 
-Deployed human UI/transport status: READY FOR STAGING HUMAN TEST; results PENDING
+Deployed human UI/transport status: BLOCKED — staging cron configuration/database alignment
+fails before attachment delivery
 
 Promotion status: STAGING ONLY at application `90974123`; `main`/live not authorised
 
@@ -76,27 +77,58 @@ bucket while testing staging.
 
 Use controlled recipients and fresh drafts. Record each result independently:
 
-1. send a no-attachment ad-hoc Email and confirm it is delivered immediately through the
-   existing batch route;
-2. send a one-recipient Email with one accepted attachment and confirm the UI says
-   `Email queued`, not `Email Sent`;
-3. confirm the cron claims the job on its one-minute schedule and the received Email contains
-   the exact attachment;
-4. repeat with three accepted attachments totalling no more than 10 MB and three HTTPS links;
-5. confirm all attachments are present and all links are clickable;
-6. send one primary recipient with controlled CC and BCC addresses and confirm each receives
-   exactly one copy;
-7. prepare multiple primary recipients with CC or BCC and confirm queueing fails closed with
-   the explicit copy-recipient guidance and no Email is sent;
-8. repeat the send action for an already queued attachment Email and confirm no second job or
-   duplicate recipient delivery is created;
-9. confirm the Email remains `SENDING` while queued and becomes `SENT` only after terminal
-   recipient reconciliation;
-10. confirm cron/application/audit evidence contains job/count/status identifiers but no API
-    key, attachment bytes, signed URL or raw provider body;
-11. observe a representative bounded multi-recipient test and confirm provider starts do not
-    exceed three per second; and
-12. repeat the no-attachment batch smoke after all attachment checks.
+1. **PASS** — a no-attachment ad-hoc Email was delivered immediately through the existing
+   batch route.
+2. **BLOCKED/PARTIAL** — a one-recipient Email with one accepted attachment entered
+   `SENDING` rather than displaying a clear queued state. It remained there with a refresh
+   icon. Selecting that icon returned the safely refused message:
+
+   ```text
+   Retry failed
+   Attachment retry is temporarily unavailable while the supported queued route is
+   completed. No recipients have been retried.
+   ```
+
+3. **FAIL** — the cron did not reach or claim the attachment job. The shared cron failed in
+   the earlier Commerce Stripe processor because its database target did not contain the
+   expected Commerce inbox relation:
+
+   ```text
+   ==> Cron job run started
+   ==> Running 'npm run jobs:tick'
+   > isostack-v2@2.0.1 jobs:tick
+   > tsx scripts/jobs/run.ts
+   [2026-07-22T14:21:32.793Z] Job tick started (worker-75-1784730092793)
+   Processing email sequences...
+     Claimed 0 enrollments for processing
+   Processing key date sequences... (worker: worker-75-1784730092793)
+     Found 1 active key-date sequences
+     Key date sequences done: 0 fired, 0 errors
+   Job tick failed with unhandled error: PrismaClientKnownRequestError
+   Invalid prisma.$queryRaw() invocation
+   Raw query failed. Code: 42P01.
+   relation "commerce.commerce_stripe_event_inbox" does not exist
+   at processStripeConnectEvents
+   at main (scripts/jobs/run.ts:86:35)
+   Cron job exited with status 1
+   ```
+
+4. **PENDING** — repeat with three accepted attachments totalling no more than 10 MB and
+   three HTTPS links;
+5. **PENDING** — confirm all attachments are present and all links are clickable;
+6. **PENDING** — send one primary recipient with controlled CC and BCC addresses and confirm
+   each receives exactly one copy;
+7. **PENDING** — prepare multiple primary recipients with CC or BCC and confirm queueing fails
+   closed with the explicit copy-recipient guidance and no Email is sent;
+8. **PENDING** — repeat the send action for an already queued attachment Email and confirm no
+   second job or duplicate recipient delivery is created;
+9. **PENDING** — confirm the Email remains `SENDING` while queued and becomes `SENT` only after
+   terminal recipient reconciliation;
+10. **PENDING** — confirm cron/application/audit evidence contains job/count/status identifiers
+    but no API key, attachment bytes, signed URL or raw provider body;
+11. **PENDING** — observe a representative bounded multi-recipient test and confirm provider
+    starts do not exceed three per second; and
+12. **PENDING** — repeat the no-attachment batch smoke after all attachment checks.
 
 The full 300-recipient case may use an approved controlled load fixture rather than real
 business recipients. It should demonstrate two 150-recipient cron chunks and the accepted
@@ -124,3 +156,52 @@ environment until all mandatory items pass or a specifically bounded defect slic
 Minor unrelated UI observations may be deferred, but missing attachments, duplicate
 recipients, incorrect CC/BCC copies, premature `SENT` state, public object exposure or leaked
 signed URLs are blocking failures.
+
+## 7. Required Staging-To-Live Environment Gate
+
+Render environment values are not migrated by Git or Prisma. R8-A3 therefore requires a
+separate configuration check for the actual cron services:
+
+```text
+staging cron: isostack-bedrock-1
+live cron:    isostack-bedrock
+```
+
+Before continuing staging testing, confirm the Render service named
+`isostack-bedrock-1` is of type **Cron Job** and has, directly or through an explicitly
+identified Environment Group:
+
+```text
+DATABASE_URL
+RESEND_API_KEY
+EMAIL_FROM
+R2_ACCOUNT_ID
+R2_ACCESS_KEY_ID
+R2_SECRET_ACCESS_KEY
+R2_EMAIL_ATTACHMENT_BUCKET_NAME
+```
+
+The staging cron must use the same staging database target as the web service serving
+`staging.seasonpro.co.uk` and the exact dedicated private staging attachment bucket. `PORT`
+is not attachment-delivery configuration. Do not add `R2_PUBLIC_URL` or the general public
+`R2_BUCKET_NAME` for this private route.
+
+Do not configure or change the live cron merely to complete staging testing. After every
+mandatory staging test passes and live promotion is explicitly authorised, repeat the same
+variable-name inventory on the live **Cron Job** `isostack-bedrock`, using only:
+
+- the live database target;
+- the exact private live attachment bucket name;
+- the accepted live sender/provider values; and
+- the accepted R2 credential, which may be shared only under the recorded business decision
+  while the staging and live bucket names remain distinct.
+
+The live environment gate must be completed immediately before the authorised `main`
+promotion and followed by migration-before-code deployment, one controlled cron invocation,
+live log review and a bounded delivery smoke. Documentation records variable names and
+PASS/FAIL evidence only; it must never record secret values or complete database URLs.
+
+The checked-in `render.yaml` currently calls the declared cron `isostack-jobs`, which does
+not match the two actual Render service names above. Do not blindly synchronise that
+Blueprint because it may create a second cron. Reconcile this naming/configuration drift in
+a separate controlled infrastructure refinement.

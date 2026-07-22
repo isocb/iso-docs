@@ -4,7 +4,7 @@ Purpose: define the plain-English branch and promotion model used for day-to-day
 
 Scope: applies to collaborative development, AI-assisted work, staging promotion, and live release discussion.
 
-Last updated: 2026-07-01
+Last updated: 2026-07-22
 
 ---
 
@@ -51,6 +51,43 @@ Database/schema changes must also follow the safe database workflow:
 ```text
 SAFE_DATABASE_WORKFLOW.md
 ```
+
+### Environment Configuration Promotion Gate
+
+Git and Prisma promotion carry application code and committed migrations. They do not carry
+Render environment-variable values, linked Environment Groups, private bucket configuration
+or third-party credentials between services. Any slice that adds or changes runtime
+configuration must therefore include a separate environment gate in its staging-to-live
+promotion record.
+
+Before staging testing:
+
+1. identify the exact staging web, worker and cron services by both name and Render service
+   type;
+2. derive the required variable-name inventory from the reviewed application contract;
+3. confirm each background service uses the same staging database target as the staging web
+   service unless a separately documented architecture requires otherwise;
+4. configure staging-only storage, sender and provider values;
+5. verify private resources have no unintended public domain or public object path; and
+6. record runtime/log proof without copying secret values into documentation.
+
+Before live promotion:
+
+1. require completed staging acceptance and explicit live-promotion authority;
+2. repeat the variable-name inventory for every affected live service;
+3. configure live-only database, storage, sender and provider values immediately before the
+   authorised promotion window;
+4. never copy a staging database URL or staging bucket name into a live service;
+5. share a credential between environments only where that risk has been explicitly accepted,
+   while retaining separate environment-specific resource names;
+6. verify the target service configuration before pushing `main`;
+7. allow the accepted deployment contract to run committed migrations before replacement
+   application code; and
+8. perform a bounded live service/worker smoke and record the result.
+
+Environment records must contain variable names, service names, environment ownership and
+PASS/FAIL evidence only. They must never contain passwords, access keys, complete database
+URLs, signed object URLs or provider secrets.
 
 ---
 
@@ -104,3 +141,5 @@ Before promotion, answer these questions:
 4. Does local `dev` match `origin/dev`?
 5. Is staging promotion explicitly wanted now?
 6. Is any database change covered by the safe database workflow?
+7. Does the change introduce or alter environment variables for any web, worker or cron
+   service, and is the separate staging/live environment gate documented?

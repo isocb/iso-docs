@@ -3,7 +3,7 @@
 Date: 2026-07-22
 
 Status: Controlled development/staging promotion and migration deployment complete; human
-UI/transport testing pending
+UI/transport testing blocked by staging cron configuration/database alignment failure
 
 ## 1. Scope
 
@@ -131,9 +131,16 @@ an independently observed migration inventory.
 
 The local environment has no Render API credential, so this record will not invent a
 Render build identifier, migration inventory or cron log result that was not independently
-observed. The human/testing team must additionally confirm in the Render dashboard that the
-existing staging `isostack-jobs` cron has its staging-only database and private attachment
-bucket variables and runs on the accepted one-minute schedule.
+observed. The actual staging Cron Job is named `isostack-bedrock-1`; the live Cron Job is
+named `isostack-bedrock`. This differs from the checked-in `render.yaml` name
+`isostack-jobs`, so Blueprint synchronisation must not be used casually.
+
+Human testing subsequently proved that the staging cron did not contain the complete
+private-R2 environment inventory and failed before attachment processing because its
+database target returned `42P01` for the expected
+`commerce.commerce_stripe_event_inbox` relation. Staging transport acceptance is therefore
+blocked pending safe cron/database alignment; this does not alter the completed web
+deployment evidence above.
 
 ## 7. Remaining Human Gate
 
@@ -145,9 +152,14 @@ That schedule remains the authority for no-attachment regression, queued attachm
 delivery, exact attachment/link receipt, CC/BCC constraints, idempotency, status
 reconciliation, rate limiting, retry and audit/log evidence.
 
-No result in this promotion record substitutes for those authenticated checks. Staging is
-ready for that schedule, subject to the Render cron environment/log confirmation described
-above.
+No result in this promotion record substitutes for those authenticated checks. The web
+deployment is available, but the transport schedule remains blocked until the staging cron
+environment/database failure described above is corrected and evidenced.
+
+Before any later live promotion, apply the environment gate recorded in the R8-A3 review:
+configure the live Cron Job only after explicit authority, use live-only database and private
+bucket targets, record variable-name/PASS evidence without secret values, then run the
+accepted migration-before-code deployment and bounded live smoke.
 
 ## 8. Promotion Boundary
 
