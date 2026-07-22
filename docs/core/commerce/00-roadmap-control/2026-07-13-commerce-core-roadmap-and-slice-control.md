@@ -326,11 +326,14 @@ changes no generic Commerce ownership. The bounded `1R-E-B` portfolio-oversight
 implementation/review lifecycle is complete locally with no Commerce schema or migration
 change. `1R-E-C - C2 Project Store Control Surface` is implemented/reviewed locally with
 no Commerce schema/migration or shared deployment; its human UI schedule remains pending.
-The non-executable FUND `1R-F - Project Offer And Artwork Readiness Reconciliation`
-parent is reviewed/accepted at
+FUND E-D is implemented/reviewed at `c45a41d9` and integrated/revalidated on application
+`dev`/`origin/dev` at `174dc8ac`, with no Commerce schema/migration change and no shared
+reconciliation. It is not promoted to staging. Its human Store workflow schedule remains
+pending controlled staging promotion. The non-executable FUND `1R-F - Project Offer
+And Artwork Readiness Reconciliation` parent is reviewed/accepted at
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`.
-`1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single next
-cross-lane planning candidate; no proof, `1R-G` or artwork/template production
+`1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` remains the single next
+cross-lane planning candidate; no proof implementation, `1R-G` or artwork/template production
 implementation is authorised.
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-c1-store-oversight-c2-project-store-control-alignment-planning.md`

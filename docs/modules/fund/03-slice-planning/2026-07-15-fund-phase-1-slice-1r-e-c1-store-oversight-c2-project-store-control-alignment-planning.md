@@ -2,7 +2,9 @@
 
 Date: 2026-07-15
 
-Status: Parent reviewed and accepted; no child planning or implementation authorised
+Amended: 2026-07-21 - corrective E-D added after post-promotion workflow review
+
+Status: Parent reviewed and accepted; E-A/B/C complete; corrective E-D awaiting explicit review
 
 Roadmap renumbering notice: references in this accepted historical record to `1R-F` as
 the public Store/C2 display slice now mean `1R-G`. Current `1R-F` is the later accepted
@@ -310,6 +312,38 @@ Candidate scope:
 Each child requires its own `03 -> implementation -> 04 -> 05 -> roadmap` lifecycle. Parent
 acceptance does not authorise any child implementation.
 
+### 6.4 1R-E-D — Default Project Store Instantiation And Eligible Product Reconciliation
+
+Post-promotion human-smoke preparation found one missing operational contract without
+invalidating E-A/B/C: none of the canonical Project creation paths instantiates the Store that
+E-B oversees and E-C controls. E-C's manual `Prepare Store` action makes Store existence an
+optional organiser task, contrary to the clarified business rule that the Store is the purpose
+and presumed consequence of Project creation.
+
+E-D is therefore a corrective child and precedes `1R-F-A`.
+
+Governed input:
+
+`docs/modules/fund/01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md`
+
+Candidate scope:
+
+- atomically create one DRAFT Store from every retained canonical Project creation path;
+- default active Project/Store Products to the canonical `1Q-E` eligible set;
+- treat inactive Project Product membership as persistent C2 deselection evidence;
+- add newly eligible Products only where no prior membership/exclusion exists;
+- align Project activation to default scheduled Store publication intent, with effective
+  opening still derived from Project dates and every readiness/intervention gate;
+- preserve C1 oversight/exceptional authority and C2 normal copy, deselection, ordering,
+  pause/resume and Project control;
+- reconcile missing Stores in disposable FUND development/staging data only through an
+  explicit idempotent operation; and
+- revise E-B/E-C human proof to start from real Project creation rather than hand-prepared
+  Store fixtures.
+
+E-D requires its own review and acceptance. No E-D implementation is authorised by this
+parent amendment.
+
 ## 7. Access And Security Contract
 
 All children must preserve:
@@ -389,6 +423,11 @@ identify whether C1, C2, time or a later governed workflow can resolve it.
 - no public Store/Checkout UI activation; and
 - human C1 and C2 staging smoke before later promotion.
 
+The browser proof is currently blocked, rather than failed, until E-D supplies the missing
+Project-to-Store/default-Product workflow. After E-D, proof must begin with a real Project
+creation path and confirm immediate C1 Store visibility plus C2 default selection before the
+remaining authority/accessibility checks.
+
 All database-writing tests use only `TEST_DATABASE_URL` after proving it differs from
 `DATABASE_URL`. No shared development, staging or production database is modified during
 slice implementation/testing unless a later separately controlled promotion explicitly
@@ -440,7 +479,7 @@ Review must confirm:
 6. ordinary Project-window ending is not written as exceptional Store closure;
 7. the current C1-only 1R-D and Project lifecycle boundaries are remediated before UI;
 8. configuration, artwork, release and commission authorities remain separate;
-9. E-A, E-B and E-C are individually bounded lifecycle units; and
+9. E-A, E-B, E-C and the corrective E-D are individually bounded lifecycle units; and
 10. no public Store, checkout UI, artwork workflow, production or commission behavior has
     leaked into the parent.
 

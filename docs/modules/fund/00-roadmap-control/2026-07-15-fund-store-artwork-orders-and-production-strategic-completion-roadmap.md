@@ -2,7 +2,7 @@
 
 Created: 2026-07-15
 
-Last consolidated: 2026-07-20
+Last consolidated: 2026-07-21
 
 Status: Subordinate strategic capability overview; planning coordination only
 
@@ -202,8 +202,8 @@ The authoritative controls currently establish:
 - the complete Commerce/A7 foundation bundle was promoted through dev/staging at
   `91e8751c`, and completed E-A/E-B/E-C is now promoted through dev/staging at `e3f44b4b`,
   with green automated gates and healthy staging/database/RLS evidence; prior FUND-admin
-  login and pre-existing UI smoke passed, while authenticated E-B/E-C UI testing remains
-  scheduled;
+  login and pre-existing UI smoke passed, while E-B/E-C human acceptance is blocked by the
+  missing default Project Store initiation workflow;
 - application `main`, live deployment and real Stripe configuration remain separate; and
 - FUND `1R-E - C1 Store Oversight And C2 Project Store Control Alignment` is an accepted
   non-executable parent; its bounded E-A lifecycle is implemented/reviewed at application
@@ -213,11 +213,19 @@ The authoritative controls currently establish:
   the bounded E-B portfolio-oversight implementation/review lifecycle is promoted at
   `e3f44b4b` with no E-B schema/migration; and
 - `1R-E-C - C2 Project Store Control Surface` is promoted at `e3f44b4b` without an E-C
-  migration; its authenticated human UI schedule remains pending.
+  migration; its automated evidence passes and human acceptance now awaits controlled
+  promotion of E-D plus the recorded real-workflow schedule.
+- `1R-E-D - Default Project Store Instantiation And Eligible Product Reconciliation` is
+  implemented/reviewed at `c45a41d9` and integrated/revalidated on application
+  `dev`/`origin/dev` at `174dc8ac` as the mandatory bridge
+  from Project creation to the E-B/E-C surfaces. It uses the existing 141-migration schema,
+  retains default-all rather than silently truncating future Individual Artwork selections,
+  is not promoted to staging and leaves human workflow acceptance pending controlled staging
+  promotion.
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is reviewed/accepted as the
   non-executable parent; and
 - `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single next
-  planning candidate.
+  planning candidate; implementation is not authorised.
 
 This baseline is a summary only. Commit, migration, deployment and current-next-action
 claims must be read from the authoritative controls.
@@ -757,10 +765,13 @@ A6-D lifecycle complete
 -> 1R-E-B C1 Store portfolio oversight and exceptional intervention surface
    implemented/reviewed as passed locally; no shared deployment
 -> 1R-E-C C2 Project Store control surface
-   implemented/reviewed locally; human UI schedule pending
+   implemented/reviewed/promoted; human acceptance pending promoted E-D workflow
+-> 1R-E-D Default Project Store instantiation and eligible Product reconciliation
+   implemented/reviewed at c45a41d9; integrated on dev/origin-dev at 174dc8ac;
+   no E-D migration; not promoted to staging
 -> 1R-F workflow-conditional Project Offer And Artwork Readiness parent accepted
 -> 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
-   single next action is bounded planning; proof implementation not authorised
+   single next planning candidate; proof implementation not authorised
 -> apply confirmed pilot gates: Intake confirmation/conditional embed and type fit,
    essential purchaser option/media authority, required messages and evidence-led
    Product duplication
@@ -887,16 +898,22 @@ Its local implementation and review/test lifecycle passed against the complete
 dev/staging at `e3f44b4b`. The bounded `1R-E-B - C1 Store Portfolio Oversight And
 Exceptional Intervention Surface` implementation/review lifecycle passed and is committed
 without an E-B schema or migration change. `1R-E-C - C2 Project Store Control Surface` is
-included in the same promoted application commit without an E-C migration; its
-authenticated human UI schedule is recorded in the E-C R1 review. The reconciled
+included in the same promoted application commit without an E-C migration. Human-smoke
+preparation then exposed the missing mandatory Project-to-Store/default-Product workflow.
+E-D has now implemented that correction and is aligned on application `dev`/`origin/dev` at
+`174dc8ac`; E-B/E-C human acceptance awaits controlled staging promotion and the schedule
+recorded in the E-D review at
+`docs/modules/fund/03-slice-planning/2026-07-21-fund-phase-1-slice-1r-e-d-default-project-store-instantiation-eligible-product-reconciliation-implementation-planning.md`.
+The reconciled
 `1R-F - Project Offer And Artwork Readiness` parent is reviewed/accepted at:
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`
 
 It allocates separate Individual, collective and Standard Product readiness branches
-after `1R-E`; the formerly reserved Public Store slice moves to `1R-G`. `1R-F-A - Real AMOW Template, Pricing And
-Deployed Renderer Proof` is the single next planning candidate; this document authorises
-no proof implementation, `1R-G` or artwork/template production implementation.
+after `1R-E`; the formerly reserved Public Store slice moves to `1R-G`. E-D is
+implemented/reviewed at `c45a41d9` and integrated at `174dc8ac`. `1R-F-A - Real AMOW Template, Pricing And
+Deployed Renderer Proof` is the single next planning candidate. This document authorises no
+proof implementation, `1R-G` or artwork/template production implementation.
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-b-c1-store-portfolio-oversight-exceptional-intervention-surface-implementation-planning.md`
 
@@ -915,6 +932,7 @@ The created 1R-E parent performs the first reconciliation of:
 - `1R-G` public Store boundaries; and
 - the exact parent/child split for Individual Artwork and collective Project artwork.
 
-The parent allocates bounded E-A, E-B and E-C lifecycle candidates without consuming
-`1R-G` or unrelated roadmap reservations. Those children require separate planning,
-acceptance, implementation and review/test records.
+The parent originally allocated bounded E-A, E-B and E-C lifecycle candidates without
+consuming `1R-G` or unrelated roadmap reservations. Post-promotion testability review adds
+corrective E-D for mandatory default Project Store/Product initiation. Every child requires
+separate planning, acceptance, implementation and review/test records.

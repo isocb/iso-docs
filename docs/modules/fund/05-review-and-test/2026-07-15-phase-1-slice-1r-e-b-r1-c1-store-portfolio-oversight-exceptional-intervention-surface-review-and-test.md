@@ -2,7 +2,7 @@
 
 Date: 2026-07-15
 
-Status: Passed / local application, disposable PostgreSQL, regression and documentation lifecycle complete
+Status: Automated/local lifecycle passed; human acceptance blocked pending 1R-E-D
 
 Roadmap renumbering notice: this historical record's `1R-F` public Store reference now
 means `1R-G`; current `1R-F` is Project Offer And Artwork Readiness.
@@ -99,6 +99,12 @@ Static/component review confirmed:
 A human C1 browser smoke on deployed development/staging data remains a later controlled
 promotion gate; the accepted E-B implementation did not authorise shared deployment.
 
+Post-promotion preparation on 2026-07-21 established that this gate is not executable from
+the real empty FUND state. C1 correctly lists and intervenes on existing Stores but has no
+routine creation authority, while canonical Project creation currently creates no Store.
+E-B human acceptance is therefore blocked—not failed—until E-D creates the mandatory DRAFT
+Store/default eligible Product set through the Project workflow.
+
 ## 6. Database Safety
 
 Every database test compared connection identities and refused to continue unless
@@ -111,6 +117,7 @@ E-B adds no schema/migration, missing-Store preparation, routine C1 lifecycle wr
 Store UI, public Store/Checkout, commercial Product editor, artwork/release writer, real
 Stripe action, Order, production, fulfilment or commission behaviour.
 
-`1R-E-B-R1` passes. The implementation is complete locally but is not yet committed or
-deployed. `1R-E-C - C2 Project Store Control Surface` is the single next planning
-candidate; no E-C or 1R-F implementation has started.
+`1R-E-B-R1` automated/local review passes and the implementation was subsequently promoted
+at application `e3f44b4b`. Human acceptance remains blocked by the separate Project-to-Store
+instantiation gap. `1R-E-D - Default Project Store Instantiation And Eligible Product
+Reconciliation` is the corrective next candidate before `1R-F-A`.

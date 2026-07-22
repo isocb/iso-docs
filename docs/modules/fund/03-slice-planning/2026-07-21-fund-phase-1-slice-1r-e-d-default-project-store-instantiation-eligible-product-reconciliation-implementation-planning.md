@@ -1,0 +1,368 @@
+# FUND Phase 1 Slice 1R-E-D - Default Project Store Instantiation And Eligible Product Reconciliation Implementation Planning
+
+Date: 2026-07-21
+
+Status: Implemented and independently reviewed as passed on 2026-07-21; consolidated into
+application `dev` and aligned with `origin/dev` at `174dc8ac`; human E-B/E-C workflow
+acceptance remains pending controlled staging promotion
+
+Parent: `1R-E - C1 Store Oversight And C2 Project Store Control Alignment`
+
+Depends on: completed/promoted `1R-E-A` through `1R-E-C`; completed `R3-B` through `R3-D`,
+`1Q-E/1Q-F`, `1R-D`, `C1-C6`, K1-F/K2 and Commerce A1-A7
+
+Governed input:
+
+`docs/modules/fund/01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md`
+
+Compatibility inputs inherited through the accepted parent and successor controls:
+
+- `docs/modules/fund/01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`
+- `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`
+
+## 0. Review Resolution
+
+Review against the promoted application contract and the complete 141-migration baseline is
+accepted with the following resolved implementation boundaries:
+
+1. No Prisma schema or migration is required. The existing
+   `FundProjectStore(organizationId, projectId)` unique key already enforces at most one Store
+   per Project, and the retained Project/Product/Store/configuration models carry the required
+   evidence.
+2. The retained creation writers are the shared direct C1/C2 `createProject` aggregate and the
+   R3-B Intake provisioning aggregate used by automatic and reviewed outcomes. Retired
+   clientless/legacy writers must not be restored.
+3. Automated Intake may have no human actor. The initializer therefore accepts exact nullable
+   actor provenance, writes nullable `createdById`/`userId` evidence truthfully and never invents
+   a User. Interactive C1/C2 paths retain their exact same-tenant User/member authority.
+4. `FundProjectProduct.isActive` is the durable selected/excluded authority. The existence of a
+   retained `FundProjectStoreProduct` row is not proof that its Product remains selected.
+5. Product eligibility is evaluated once using a server-owned timestamp inside the owning
+   transaction and deduplicated by Product identity. Browser Product lists, prices, snapshots or
+   evaluation times are never authoritative.
+6. Default-all does not mean silent truncation. A future Individual Artwork maximum may expose
+   an over-maximum blocking state, but E-D still selects the complete eligible set. E-D does not
+   implement Template limits or rewrite a future finalised/locked offer.
+7. C2 Project activation, readiness refresh and the first `PUBLISHED` Store intent must be one
+   serializable operation. If an implemented gate is not satisfied, activation/publication
+   intent fails atomically. A separate routine C2 Publish action is retired; voluntary
+   pause/resume remains.
+
+These resolutions amend the detail below and are controlling where earlier wording was less
+specific.
+
+## 1. Objective
+
+Close the operational gap discovered during post-promotion human-smoke preparation: a FUND
+Project currently has no Store until an authorised C2 member manually selects `Prepare Store`.
+
+Implement the invariant that each canonical new FUND Project atomically receives one DRAFT
+Store and the complete default eligible Product set at the transaction's server-owned
+evaluation time. Preserve E-A authority, E-B C1 oversight and E-C C2 control. Do not redesign
+Product commerce, public Store or checkout behaviour.
+
+## 2. Accepted Business Contract To Implement
+
+For every retained canonical Project creation path:
+
+```text
+Project
++ delivery profile
++ one DRAFT Store
++ all canonically eligible active Project Products
++ corresponding Store Product/configuration evidence that can be derived safely, with any
+  incomplete source authority retained as an explicit readiness blocker
+= one atomic, idempotent provisioning outcome
+```
+
+The default Store is the purpose and presumed consequence of Project creation. The organiser
+does not opt in to having a Store and does not build the normal Product set one item at a time.
+
+## 3. Canonical Eligibility And Default-Minus-Exclusions
+
+Use the existing `1Q-E` server eligibility service as the only authority for the possible
+Product universe. Do not duplicate Project-type, effective organisation-type, Event,
+Catalogue or suitability rules.
+
+The initializer supplies one server-owned `evaluationAt` to eligibility, membership creation,
+Store configuration and audit. Event-Catalogue availability is therefore evaluated consistently
+for the complete transaction. A zero-eligible result still creates the DRAFT Store and records
+the resulting blocker; it does not fail or invent Products.
+
+Reconciliation must distinguish:
+
+| Evidence | Required result |
+| --- | --- |
+| eligible Product; no membership exists | create active `FundProjectProduct` and derived Store Product evidence |
+| eligible Product; active membership exists | retain; refresh accepted source snapshots/readiness |
+| eligible Product; inactive membership exists | preserve explicit C2 deselection; do not reactivate |
+| active membership becomes ineligible | prevent offering through existing eligibility/readiness evidence; retain history |
+| active membership becomes eligible again | permit normal readiness reconciliation |
+| new eligible Product appears later; no membership history | add by default on controlled refresh |
+
+Selection serializers and UI must derive selected state from the active Project Product
+membership. An inactive membership and its retained Store Product/configuration history must be
+shown as excluded and restorable, never as still selected merely because a Store Product row
+exists.
+
+For the future Individual Artwork offer lock, automatic addition is permitted only before the
+offer is finalised/locked. E-D adds no lock itself; its reconciler must expose a narrow guard so
+`1R-F` can refuse automatic selection changes once lock evidence exists. When a future effective
+maximum is lower than the eligible count, retain the complete default-all selection and expose a
+blocking over-maximum state through `1R-F`; never choose a subset by ordering.
+
+Existing Store-owned copy, Product ordering/visibility choices and immutable configuration
+versions must not be overwritten except where the accepted refresh contract already creates a
+new version from changed source authority.
+
+## 4. Atomic Creation Paths
+
+Review and align the two retained Project aggregate writers and their authorised callers:
+
+1. shared direct `createProject`, used by C1/internal and C2 dashboard creation; and
+2. R3-B Intake provisioning, used by automated and C1-reviewed correction/exception outcomes.
+
+Do not create a third aggregate writer and do not revive the retired clientless legacy approval
+path.
+
+Refactor one transaction-safe internal initializer/reconciler rather than duplicating Store or
+eligibility logic in each writer. It must accept the exact transaction, tenant, Project,
+server-owned evaluation time, source path and truthful nullable actor evidence supplied by the
+owning creation path. Interactive calls require the exact same-tenant User; automatic Intake
+uses its submission/form/path evidence with a null User rather than impersonating C1 or C2.
+
+Required chronology inside the owning transaction:
+
+1. create/replay the exact Project;
+2. create/replay its delivery profile;
+3. resolve canonical eligibility from the persisted Project context;
+4. create/replay active default Project Product memberships without reactivating exclusions;
+5. create/replay the unique DRAFT Store;
+6. derive Store Products and initial readiness/configuration evidence through the accepted
+   1R-D service boundary; and
+7. write bounded source, count and actor audit evidence before commit without prices, snapshots,
+   raw Intake payload or personal delivery data.
+
+Any failure rolls back the entire new-Project outcome. Same-request retry and concurrent paths
+must converge on one Project and the schema's one Store per Project.
+
+## 5. Lifecycle Alignment
+
+Store creation never means that the Store is trading.
+
+- while the Project remains DRAFT, the Store remains setup/DRAFT;
+- C2 commission acceptance and Project activation remain explicit gates;
+- authorised C2 Project activation refreshes the Store, revalidates commission, payment,
+  Product/readiness and intervention authority, and establishes the first Store `PUBLISHED`
+  intent in the same serializable transaction;
+- if any currently implemented gate fails, neither Project activation nor Store publication
+  intent commits; the actionable blocker is returned to C2;
+- the direct routine C2 `Publish Store` mutation/UI is retired; the internal transition remains
+  available only to the atomic activation/recovery contract;
+- before `Project.opensAt`, effective state is SCHEDULED;
+- at/after `opensAt`, effective state becomes OPEN only while Project status, payment,
+  commission, Product/artwork/release and intervention gates all pass;
+- voluntary C2 pause/resume and exceptional C1 intervention remain separate; and
+- `Project.closesAt` remains the automatic trading-window boundary.
+
+Prefer the existing persisted Store statuses plus the E-A server-derived effective-state
+contract. The review proves no new typed schema evidence is required. Do not add a migration or
+a time-triggered mutation job merely to open a Store. Missing future Template/artwork evidence
+must remain fail-closed; E-D must not manufacture release evidence to make a Store ready.
+
+## 6. UI Alignment
+
+E-D may make only the bounded adjustments required by the new invariant:
+
+- remove the normal empty-Project `Prepare Store` expectation from the C2 workflow;
+- retain an idempotent missing-Store recovery only as an explicit diagnostic/remediation path,
+  not the normal business flow;
+- show the default Product set immediately after Project creation;
+- present active selection as all eligible Products minus C2 exclusions;
+- show an inactive retained membership as excluded/restorable even though its historic Store
+  Product row remains;
+- preserve C2 deselect/restore, ordering, visibility, copy and voluntary pause/resume; and
+- keep C1 portfolio oversight read-only for normal control, with exceptional actions only.
+
+Do not add a C1 routine Store-create or publish action.
+
+## 7. Existing Test-Data Reconciliation
+
+FUND has no live operational data. Define an explicit idempotent reconciliation command or
+bounded service operation for controlled development/staging use:
+
+1. prove the target environment and operator authority;
+2. report Projects missing Stores and the default eligible Product counts;
+3. require explicit execution after review;
+4. create only missing DRAFT Store/default-selection evidence;
+5. preserve every existing Store, Project Product exclusion, configuration and commercial
+   value; and
+6. report created/replayed/refused counts with audit evidence.
+
+Reconciliation never activates a Project, sets Store `PUBLISHED`, reactivates an inactive
+membership, overwrites Store-owned presentation or runs from a public/C1/C2 route. Its execution
+against development or staging is a later separately authorised operational step; E-D
+implementation and tests must use the disposable database only.
+
+Do not perform semantic row creation in a Prisma migration. Do not reset or delete LMSPro or
+shared tenant data.
+
+## 8. Validation
+
+Use only `TEST_DATABASE_URL` after proving it differs from `DATABASE_URL`.
+
+Automated coverage must include:
+
+- the migration inventory remains exactly 141 and Prisma schema diff is empty;
+- every canonical Project creation path creates Project, delivery, one Store and the complete
+  eligible default Product set;
+- interactive C1/C2 actor evidence and actor-null automated Intake evidence remain truthful;
+- zero-eligible-Product Project still receives a DRAFT Store and remains visibly blocked;
+- exact tenant, Client, organiser, Project, Product and Store ownership;
+- idempotent retry and cross-path/concurrent duplicate convergence;
+- injected rollback after Project, delivery, Product, Store, configuration and audit stages;
+- C2 deselection persists through refresh;
+- C2 restoration works explicitly;
+- an inactive membership with retained Store Product history renders excluded rather than
+  selected;
+- newly eligible Product with no prior membership is added by default;
+- ineligible and later re-eligible Product behaviour;
+- source commercial changes create only accepted immutable refresh evidence;
+- C2 Project activation and first publication intent commit atomically; every blocker rolls both
+  back; a successful future-window activation is SCHEDULED and does not trade before `opensAt`;
+- no ordinary C1 or second C2 Publish path can bypass that activation contract;
+- default-all is not silently truncated for a future Individual Artwork maximum, while future
+  locked-offer evidence prevents automatic additions;
+- payment, commission, readiness and C1 intervention remain fail-closed;
+- C1 portfolio sees the new DRAFT Store without gaining routine creation/publication authority;
+- E-A/E-B/E-C, R3-B/R3-C/R3-D, 1Q-E/1Q-F, 1R-D, C1-C6 and A1-A7 regressions; and
+- full cleanup with zero reserved residue.
+
+Human validation after controlled promotion must start by creating Projects through the real
+C1 and Intake workflows, then prove C1 visibility and C2 default/deselection/lifecycle
+behaviour. Hand-created Store fixtures cannot substitute for this proof.
+
+## 9. Explicit Exclusions
+
+E-D adds no:
+
+- public Store or checkout route;
+- real Stripe action, Order, Payment or refund behaviour;
+- Product price/tax/Catalogue commercial editor;
+- upload, template, artwork composition/approval or production workflow;
+- commission calculation, settlement or accounting;
+- C1 routine publication authority; or
+- LMSPro change.
+
+## 10. Rollback And Stop Boundary
+
+There is no schema rollback because E-D adds no migration. Before shared promotion, rollback is
+code reversion plus removal only of explicitly identified E-D disposable-test evidence. Once a
+real environment has created Project Stores through this contract, do not delete those rows as
+rollback; disable the new creation path and retain/audit the evidence pending a corrective plan.
+
+Stop after E-D implementation/review/documentation and the revised E-B/E-C human gate. Do not
+begin `1R-F-A`, public Store, artwork/template production or another slice.
+
+Implementation outcome:
+
+- implementation commit: `c45a41d9` on `feature/fund-1r-e-d-default-store`, integrated and
+  revalidated on application `dev`/`origin/dev` at `174dc8ac`;
+- no Prisma schema or migration change; retained inventory remains 141;
+- automatic/reviewed Intake and direct C1/C2 Project aggregates now share the default Store
+  initializer;
+- routine C2 Prepare/Publish routes are retired and first publication intent is owned by atomic
+  C2 activation;
+- the dry-run-first reconciliation command was implemented but not run against a shared
+  environment; and
+- automated review passed with zero disposable residue. Human workflow acceptance is scheduled
+  in the separate E-D review record after an explicitly authorised promotion.
+
+## 11. Review Prompt
+
+```text
+Review only FUND Phase 1 Slice 1R-E-D Default Project Store Instantiation And Eligible
+Product Reconciliation Implementation Planning. Do not implement schema or application code
+and do not begin 1R-F-A, public Store, artwork/template implementation, production,
+commission or another slice.
+
+Verify the plan against the governed default-Store input, completed/promoted E-A through
+E-C, R3-B through R3-D, 1Q-E/1Q-F, 1R-D, C1-C6, K1-F/K2, Commerce A1-A7 and the current
+141-migration contract. Resolve any conflict in mandatory one-Store-per-Project creation,
+canonical eligibility, all-eligible-minus-explicit-deselections, newly eligible and later
+ineligible Products, immutable commercial/configuration evidence, atomic creation across
+every retained Project writer, actor/audit ownership, idempotency/concurrency, default
+scheduled/open lifecycle, commission/readiness/intervention gates, existing test-data
+reconciliation, rollback and human testability.
+
+Confirm E-D preserves C1 oversight/exceptional authority and C2 normal Store control, creates
+no C1 routine Store/publish action, and adds no public Store, checkout, real Stripe, Order,
+Payment, upload, template/artwork, production, fulfilment, commission calculation or LMSPro
+behaviour.
+
+If acceptable, mark only E-D accepted and provide its single bounded implementation prompt.
+Make no Prisma, migration, service, router, route, UI or shared-environment change during
+review.
+```
+
+## 12. Accepted Implementation Prompt
+
+```text
+Continue only accepted FUND Phase 1 Slice 1R-E-D. Do not begin 1R-F-A, public Store,
+artwork/template implementation, production, commission or another slice.
+
+Work only from a new isolated FUND application worktree/branch based on verified
+origin/dev baseline e3f44b4b and the complete 141-migration history. Do not switch, stage,
+edit or commit the active LMSPro remediation worktree. Implement only Default Project Store
+Instantiation And Eligible Product Reconciliation. Add no Prisma schema or migration.
+
+Create one transaction-safe internal initializer/reconciler used by the shared direct C1/C2
+Project aggregate and the R3-B automatic/reviewed Intake aggregate. For every new Project,
+atomically create/replay its delivery profile, exactly one DRAFT Store, every distinct
+Product returned by canonical 1Q-E eligibility at one server-owned evaluation time, active
+FundProjectProduct snapshots, derived Store Products/configuration/readiness evidence and
+bounded audit. Use exact same-tenant interactive actor evidence and truthful nullable actor
+evidence for automatic Intake; invent no User and revive no legacy/clientless writer.
+
+Treat FundProjectProduct.isActive as selected/excluded authority. Preserve every inactive
+membership as an explicit C2 exclusion, never silently reactivate it, and never infer
+selection from retained Store Product existence. On controlled reconciliation, add a newly
+eligible Product only when no membership history exists and the offer is not finalised/
+locked; retain newly ineligible history and allow normal re-eligibility. Never truncate a
+default-all Individual Artwork selection to a future maximum or invent Template/artwork
+release evidence.
+
+Make authorised C2 Project activation, Store refresh/readiness validation and the first
+PUBLISHED Store intent one SERIALIZABLE operation. If commission, local Seller/A6-B payment,
+Product/configuration, Project/Event window, intervention or other implemented authority is
+not ready, roll back activation and publication intent together with actionable blockers.
+Keep effective state SCHEDULED before opensAt and OPEN only through the E-A fail-closed
+policy. Retire the separate routine C2 Publish UI/router action; retain C2 voluntary pause/
+resume and C1 oversight/exceptional intervention. Give C1 no routine Store-create,
+activation-publication or publish action.
+
+Adjust only the bounded E-C UI needed to remove the normal Prepare Store expectation and to
+show the immediate default set, explicit exclusions/restoration, ordering, visibility, copy,
+readiness and pause/resume correctly. Provide an internal, non-route, dry-run-first,
+idempotent reconciliation command for existing FUND test Projects missing Stores; it may
+create only missing DRAFT Store/default evidence, must preserve inactive memberships and all
+existing commercial/configuration/presentation values, and must not be run against any shared
+environment in this slice.
+
+Add no public Store/checkout, real Stripe, Order, Payment, Product commercial editor, upload,
+Template/artwork, production, fulfilment, commission calculation or LMSPro behaviour.
+
+Use only TEST_DATABASE_URL after proving it differs from DATABASE_URL. Verify the unchanged
+141-migration baseline; direct C1/C2 and automatic/reviewed Intake creation; zero-eligible,
+deduplicated and future-availability cases; actor/null-actor audit; same-request and concurrent
+convergence; injected rollback after every aggregate stage; deselect/restore and retained-row
+selection rendering; newly eligible/ineligible/re-eligible behaviour; immutable refresh;
+atomic activation/publication and every fail-closed gate; E-A/E-B/E-C, R3-B/R3-C/R3-D,
+1Q-E/1Q-F, 1R-D, C1-C6, K1-F/K2 and A1-A7 regressions; type-check, production build and zero
+residue. Make no shared database or deployment change.
+
+After successful validation, create separate E-D implementation-confirmation and review/test
+records, include a real-workflow E-B/E-C human smoke schedule, update the FUND, strategic,
+Commerce and root roadmaps plus planning README, commit only the isolated FUND application and
+documentation branches, and stop. Do not promote, run shared reconciliation or start 1R-F-A.
+```
