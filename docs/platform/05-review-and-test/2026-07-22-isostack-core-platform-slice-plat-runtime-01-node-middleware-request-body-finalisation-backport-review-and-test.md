@@ -4,9 +4,10 @@ Date: 2026-07-22
 
 Automated technical disposition: PASS
 
-Human/deployed disposition: PENDING — not deployed to staging
+Human/deployed disposition: PENDING — source promoted to staging; deployment verification and
+human smoke remain outstanding
 
-Promotion disposition: BLOCKED pending separately authorised staging deployment and human smoke
+Promotion disposition: STAGING SOURCE PROMOTED; `main`/live remain BLOCKED
 
 Planning source:
 
@@ -114,7 +115,27 @@ Rollback is source-only and requires no data reversal.
 
 ## 4. Mandatory Human Staging Smoke
 
-After separately authorised staging promotion, record each result:
+### 4.1 Promotion Evidence
+
+On 2026-07-22 the reviewed application commit was promoted by fast-forward in the accepted
+sequence:
+
+```text
+origin/dev:     90974123 -> 6b822e45
+origin/staging: 90974123 -> 6b822e45
+```
+
+The remote refs were fetched and verified between the two pushes. There is no Prisma migration
+and no new environment value in this corrective slice. This evidence confirms source promotion;
+it does not by itself claim that Render deployment completed successfully or that the staging
+runtime passed smoke.
+
+Do not promote to `main`/live. Do not resume the LMSPro R8-A3 human checklist until all mandatory
+Platform checks below pass and the deployed commit is confirmed as `6b822e45`.
+
+### 4.2 Human Checklist
+
+After confirming the staging deployment completed at `6b822e45`, record each result:
 
 1. **PENDING** — confirm `/api/health` is HTTP 200, database connected and expected RLS checks
    pass before testing;
@@ -138,9 +159,10 @@ attachment-delivery checklist until items 1 through 13 pass.
 
 ## 5. Gate Decision
 
-Automated technical review is PASS for exact application commit `6b822e45`. The slice is eligible
-for a separately controlled branch/dev/staging promotion assessment, but is not deployment-
-complete. No live promotion is authorised.
+Automated technical review is PASS for exact application commit `6b822e45`, and that commit is now
+the source head of both `origin/dev` and `origin/staging`. The slice is not deployment-complete
+until the staging deployment is verified and the mandatory human smoke passes. No live promotion
+is authorised.
 
 LMSPro R8-A3 remains explicitly blocked by this Platform slice until the staging smoke is recorded
 as PASS. If body-stream failure or a reproducible database failure appears, stop testing and open a

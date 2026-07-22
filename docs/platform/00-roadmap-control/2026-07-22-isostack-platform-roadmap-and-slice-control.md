@@ -252,8 +252,9 @@ its automated review and separately controlled staging smoke.
 Implementation and automated review now pass at exact dedicated-branch application commit
 `6b822e45`. Clean Node 22 installation, fail-closed patch verification, full Vitest, type-check,
 ordinary/standalone builds and repeated small/representative/10 MiB runtime probes passed. The
-commit is not pushed, merged or deployed. PLAT-RUNTIME-01 and LMSPro R8-A3 remain blocked on the
-separately controlled staging promotion and human/operational smoke.
+commit was subsequently fast-forwarded through `origin/dev` to `origin/staging`. Render deployment
+verification and human/operational smoke remain outstanding. PLAT-RUNTIME-01 is not complete and
+LMSPro R8-A3 remains blocked.
 
 ## 11. Current Control Decision
 
@@ -264,9 +265,8 @@ this control.
 The current Platform action is:
 
 ```text
-review exact PLAT-RUNTIME-01 commit 6b822e45 for controlled branch/dev/staging promotion
--> stop before staging deployment without explicit authority
--> run separately authorised staging smoke
+verify the staging deployment is exact PLAT-RUNTIME-01 commit 6b822e45
+-> run the mandatory Platform staging smoke
 -> hand control back to LMSPro R8-A3 only after PASS
 ```
 

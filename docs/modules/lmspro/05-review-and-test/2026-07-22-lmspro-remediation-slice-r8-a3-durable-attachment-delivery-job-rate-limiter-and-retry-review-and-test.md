@@ -186,8 +186,9 @@ required human/operational smoke. After that PASS, resume this checklist without
 accepted R8-A3 delivery contract.
 
 Platform implementation and automated review pass at dedicated-branch application commit
-`6b822e45`. That commit is not yet pushed, merged or deployed. This R8-A3 block therefore remains
-in force pending the Platform review record's separately controlled staging smoke.
+`6b822e45`. That exact commit was subsequently fast-forwarded through `origin/dev` to
+`origin/staging`. This R8-A3 block remains in force until the staging deployment is verified and
+the Platform review record's mandatory human smoke passes.
 
 ## 7. Required Staging-To-Live Environment Gate
 

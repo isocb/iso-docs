@@ -2,8 +2,8 @@
 
 Date: 2026-07-22
 
-Status: Implemented and committed on the dedicated corrective branch; not pushed, merged,
-deployed or promoted
+Status: Implemented and committed; subsequently promoted by fast-forward through `origin/dev` to
+`origin/staging`; staging deployment verification and human smoke pending
 
 Planning source:
 
@@ -124,11 +124,12 @@ in-process fetch mock for one non-routable `.invalid` Upstash hostname and deleg
 request to native fetch. This is test support only and is never loaded by the application build or
 normal runtime.
 
-## 6. Deployment State And Stop Boundary
+## 6. Promotion State And Stop Boundary
 
-The implementation exists only at application commit `6b822e45` on its dedicated branch. It has
-not been pushed, merged into `dev`, deployed to staging, migrated or promoted to `main`/live.
+The implementation is application commit `6b822e45` on its dedicated branch. On 2026-07-22 the
+same reviewed commit was fast-forwarded first to `origin/dev` and then to `origin/staging` from
+baseline `90974123`.
 
-There is no migration and no new environment setting to deploy. The next action is independent
-review of the evidence, followed by separately authorised branch/dev/staging promotion and human
-operational smoke. LMSPro R8-A3 remains blocked until that staging smoke passes.
+There is no migration and no new environment setting to deploy. Source promotion does not prove
+that Render deployment completed or that runtime smoke passed. `main`/live remain untouched and
+unauthorised. LMSPro R8-A3 remains blocked until the mandatory Platform staging smoke passes.

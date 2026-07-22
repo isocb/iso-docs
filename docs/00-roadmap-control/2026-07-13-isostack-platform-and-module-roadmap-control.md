@@ -187,9 +187,10 @@ the older checkpoint and status detail below.
   application baseline `90974123`. It owns the shared Next.js Node middleware defect exposed by
   LMSPro R8-A3 staging testing.
 - PLAT-RUNTIME-01 implementation and automated review pass at dedicated-branch application commit
-  `6b822e45`; the commit is not pushed, merged or deployed. Clean Node 22 installation, exact
-  fail-closed patch verification, full tests, ordinary/standalone builds and repeated payload
-  runtime probes passed.
+  `6b822e45`; that exact commit was subsequently fast-forwarded through `origin/dev` to
+  `origin/staging`. Clean Node 22 installation, exact fail-closed patch verification, full tests,
+  ordinary/standalone builds and repeated payload runtime probes passed. Staging deployment
+  verification and human smoke remain outstanding.
 - LMSPro R8-A3 human attachment testing is explicitly blocked until PLAT-RUNTIME-01 passes its
   automated review and separately controlled staging smoke. Database connection-close messages
   remain observation/regression scope and do not authorise speculative database changes.
