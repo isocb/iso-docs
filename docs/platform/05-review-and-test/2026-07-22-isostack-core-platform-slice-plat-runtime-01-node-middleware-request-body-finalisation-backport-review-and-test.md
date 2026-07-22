@@ -130,6 +130,11 @@ and no new environment value in this corrective slice. This evidence confirms so
 it does not by itself claim that Render deployment completed successfully or that the staging
 runtime passed smoke.
 
+A promotion-time request to `https://staging.seasonpro.co.uk/api/health` returned HTTP 200 with
+database `connected` and RLS `11/11`. The endpoint does not expose the deployed Git SHA, so this is
+recorded as a green availability observation only. Checklist item 1 remains PENDING until Render
+confirms that the responding deployment is exact commit `6b822e45`.
+
 Do not promote to `main`/live. Do not resume the LMSPro R8-A3 human checklist until all mandatory
 Platform checks below pass and the deployed commit is confirmed as `6b822e45`.
 
