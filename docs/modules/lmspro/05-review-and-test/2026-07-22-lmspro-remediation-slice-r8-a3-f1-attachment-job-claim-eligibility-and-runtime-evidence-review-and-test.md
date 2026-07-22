@@ -51,6 +51,10 @@ The remote refs were fetched and verified between pushes. There is no migration 
 environment value. Do not reuse or click retry on the stranded Email. After Render confirms the
 staging deployment is exact commit `d14a652f`:
 
+A promotion-time request to `https://staging.seasonpro.co.uk/api/health` returned HTTP 200 with
+database `connected` and RLS `11/11`. The endpoint does not expose the deployed Git SHA, so this
+is availability evidence only and does not replace Render commit verification.
+
 1. **PENDING** - create a fresh one-recipient Email with one accepted small attachment;
 2. **PENDING** - confirm the compose UI reports `Email queued` rather than merely observing the
    history badge;
