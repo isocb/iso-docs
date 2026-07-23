@@ -61,7 +61,8 @@ compatibility surface is materially larger.
 
 - `PLAT-RUNTIME-01` depends on the exact current dev/staging application baseline
   `90974123`.
-- LMSPro R8-A3 remains explicitly blocked by `PLAT-RUNTIME-01`.
+- LMSPro R8-A3 was explicitly blocked by `PLAT-RUNTIME-01`; the Platform staging gate passed on
+  2026-07-22 and the block is closed.
 - No database migration or environment-variable change is required.
 - Staging promotion remains unavailable until the slice's automated review is green.
 

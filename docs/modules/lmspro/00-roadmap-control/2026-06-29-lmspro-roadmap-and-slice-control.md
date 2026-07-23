@@ -102,10 +102,19 @@ R8-A1 is complete. The technically verified R8-A2 broad-file and ClamAV implemen
 superseded before promotion after cost/benefit and risk/benefit review. R8-A2R and its F1
 transport correction are deployed to staging and have passed the revised human UI smoke:
 three PDF/image/text uploads in private R2, 10 MB cumulative, three separate HTTPS links and
-no malware-scanning service. R8-A3 planning is accepted and implementation is authorised on
-a dedicated branch from the exact current `origin/dev` baseline. R8-A3 is technically
-complete at application commit `90974123`; deployment, migration and human smoke remain
-pending and production promotion is not authorised.
+no malware-scanning service. R8-A3 runtime is technically complete and deployed to staging at
+application commit `d14a652f`; final test-evidence reconciliation aligns `origin/dev` and
+`origin/staging` at test-only commit `99164ddd`. PLAT-RUNTIME-01 and R8-A3-F1 are closed at
+their staging gates.
+A fresh one-recipient large-PDF Email and a three-attachment/three-link Email queued, processed,
+reached the correct terminal UI state and arrived with intact resources after the staging cron was
+corrected to the exact singular private bucket name. A four-primary-recipient send and the final
+no-attachment regression also passed. The targeted CC/BCC contract checks and `Duplicate to Draft`
+send-again smoke now pass. The deterministic no-network 300-recipient proof also passes across two
+150-recipient cycles with no more than three mocked provider starts per rolling second. R8-A3 is
+accepted at the staging boundary. The production risk assessment is complete: R8-A3 is ready in
+principle, but the current combined `staging` to `main` bundle is HOLD/NOT AUTHORISED because it
+also contains unresolved Commerce/FUND/Platform production gates and 17 migrations.
 ```
 
 An urgent communications-integrity candidate now precedes optional feature implementation:
@@ -151,7 +160,7 @@ Accepted controlling plan:
 Status:
 
 ```text
-Accepted 2026-07-21; R8-A1 completed; R8-A2 superseded before promotion in its broad-file/ClamAV portions; R8-A2R-F1 technical and deployed human smoke complete; R8-A3 technically complete and awaiting controlled migration/deployment/human smoke.
+Accepted 2026-07-21; R8-A1 completed; R8-A2 superseded before promotion in its broad-file/ClamAV portions; R8-A2R-F1 complete; R8-A3 technical implementation, staging deployment, human transport checks and deterministic no-network 300-recipient pacing proof pass; R8-A3 is staging-accepted and production-ready in principle. The current combined staging bundle is HOLD/NOT AUTHORISED pending cross-lane and live-migration gates.
 ```
 
 Implementation baselines:
@@ -235,10 +244,18 @@ accepted.
 Next action:
 
 ```text
-Application commit `90974123` is aligned through `origin/dev` and `origin/staging`; its exact
-dev/staging Security Scans passed and the Render staging build completed the accepted
-migration-before-code sequence. Complete the R8-A3 staging human UI/transport smoke and
-existing-cron environment/log confirmation. Stop before any production promotion.
+Runtime commit `d14a652f` and final test-evidence commit `99164ddd` are aligned through
+`origin/dev` and `origin/staging`. The accepted
+migration-before-code deployment, Platform request-body smoke and R8-A3-F1 environment retest are
+complete. The staging cron now uses the exact private bucket name
+`seasonpro-email-attachment-staging`. Multi-resource, links, duplicate-prevention, status/log and
+final no-attachment, targeted CC/BCC and `Duplicate to Draft` manual send-again checks now pass.
+The deterministic mocked-provider 300-recipient pacing test also passes without any real Email or
+network request. Treat intentional send-again as a new immutable Email/delivery identity, not as
+permission to weaken duplicate-job prevention. Test and documentation reconciliation is complete.
+The controlled production assessment records R8-A3 as ready in principle but the exact current
+staging bundle as HOLD/NOT AUTHORISED because it spans 38 commits, 208 changed files and 17
+Commerce/FUND/LMSPro migrations with unresolved sibling-lane/live-data gates.
 
 R8-A3 planning:
 
@@ -307,6 +324,20 @@ review/test:
 application commits:
 5ca66f28, 135f6c79
 ```
+
+## Registered Consolidated Email Remediation CR
+
+The following planning-only CR input is now registered:
+
+`docs/modules/lmspro/01-cr-inputs/2026-07-22-lmspro-consolidated-email-integrity-club-visibility-and-remedial-work-cr-input.md`
+
+It captures the first of five expected email-remediation concerns: explicit many-to-many
+Email-to-Club visibility, audience-context preservation, shared delivery-result reconciliation
+and cursor-based unique Email history with bounded scroll/load-more behaviour.
+
+R8-A staging acceptance satisfies the CR's prior capture prerequisite. The CR is eligible for
+later triage but has no executable slice, does not infer the four reserved business concerns and
+does not supersede the current production HOLD decision.
 
 ## Existing Feature Candidate Lane
 
@@ -501,6 +532,34 @@ It should also define:
 This wishlist item is not part of R8-A2R or R8-A3 and must not delay the current silent-loss
 remediation. It requires a future CR/triage/bounded planning cycle before implementation.
 
+### Communications Wishlist - Recipient Controls And Send-Again Discoverability
+
+Wishlist identifier:
+
+```text
+LMS-W-COMMS-02
+```
+
+The compose modal currently places the collapsed `Add CC/BCC` control beneath Subject on the
+Compose tab. The control exists and the accepted server contract remains valid, but human testing
+showed that a competent C1 tester looked for copy recipients in the Recipients tab and concluded
+that CC/BCC had been removed. A future UI refinement should move or clearly surface CC/BCC in the
+Recipients tab while preserving:
+
+- one-primary-recipient CC/BCC support;
+- fail-closed refusal of CC/BCC with multiple primary recipients; and
+- the current server-side enforcement independent of UI placement.
+
+The three-dot menu's `Duplicate to Draft` action is the accepted safe manual send-again route. It
+creates a new Email UUID and delivery/idempotency boundary, copies validated resources to new
+private objects, permits recipient review or replacement and preserves the original sent record.
+A later UI refinement may label or explain this as `Send Again (creates a new draft)` so the
+historic manual resend capability is discoverable without introducing direct re-delivery of an
+already accepted immutable Email.
+
+This is a non-blocking presentation refinement. It must not delay R8-A3 production readiness once
+the existing CC/BCC and Duplicate-to-Draft contracts pass their targeted smoke tests.
+
 ## Do Not Build Yet
 
 Do not implement these until slice planning accepts them:
@@ -518,14 +577,16 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-R8-A3 - Staging human UI/transport smoke and cron confirmation
+Combined release-gate decision after the R8-A3 production HOLD
 ```
 
 Goal:
 
-Use deployed staging application commit `90974123`, confirm the existing cron/private-R2
-configuration and complete the linked human smoke. The controlled staging
-migration-before-code deployment is complete. Stop before production promotion.
+R8-A3 is accepted at staging and production-ready in principle. Test/lifecycle evidence is
+committed and `origin/dev`/`origin/staging` are reconciled at `99164ddd`. The production assessment
+found that an ordinary `staging` to `main` promotion would also release 38 commits and 17
+Commerce/FUND/LMSPro migrations. Choose either completion of the full combined release gate or a
+newly planned selective LMSPro release. No live promotion or migration is currently authorised.
 
 ## Fresh Chat Prompt
 
@@ -538,12 +599,16 @@ Review the R8-A3 technical and human-test handoff:
 isodocs/docs/modules/lmspro/05-review-and-test/2026-07-22-lmspro-remediation-slice-r8-a3-durable-attachment-delivery-job-rate-limiter-and-retry-review-and-test.md
 
 Goal:
-Using deployed staging commit `90974123`, confirm immediate no-attachment batch delivery,
-queued attachment delivery, one-recipient CC/BCC, multi-recipient CC/BCC refusal, exact
-attachment/link receipt and one-minute cron processing.
+Read the completed production assessment:
+isodocs/docs/00-roadmap-control/2026-07-23-lmspro-r8-a3-and-combined-staging-bundle-production-risk-assessment-and-promotion-decision.md
 
-Do not promote R8-A3 until technical evidence is complete and its deployed human UI smoke is
-reported PASS. Do not broaden the batch sender, add key-date sequence attachments, change
+Choose and explicitly authorise either the full combined release gate or a newly planned
+selective LMSPro release. For the full bundle, first close the outstanding FUND/Commerce/Platform
+gates and run the read-only live migration preflights. For a selective release, require a fresh
+dependency, migration, staging and lifecycle plan.
+
+Do not promote current staging or run its migrations while the production assessment is HOLD.
+Do not broaden the batch sender, add key-date sequence attachments, change
 recipient/cohort rules, automatically resend historic messages, alter season automation or
 change FUND logic.
 ```

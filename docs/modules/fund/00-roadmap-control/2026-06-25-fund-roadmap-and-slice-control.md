@@ -2,7 +2,7 @@
 
 Created: 2026-06-25
 
-Last consolidated: 2026-07-21
+Last consolidated: 2026-07-23
 
 Status: Active authoritative control for the FUND lane
 
@@ -67,19 +67,19 @@ the position when that material was written and must not select new work.
 Current application repository state:
 
 ```text
-working branch: dev
-local dev/origin dev: e3f44b4b
-local staging/origin staging: e3f44b4b
+working branch: controlled feature/test evidence with dedicated dev/staging worktrees
+local dev/origin dev: 99164ddd
+local staging/origin staging: 99164ddd
 local main/origin main: ea4e6193 (unchanged)
-IsoDocs main: E-B/E-C lifecycle and 1R-F/refinement reconciliation included in this documentation baseline
+IsoDocs main: current lifecycle and combined production-decision reconciliation included
 ```
 
 Current consolidated delivery state:
 
 - Commerce `A1` through `A7`, FUND `1R-C1` through `1R-D` and Project Intake/creation
   `1P-G-R3-A` through `R3-D` are included in the promoted application ancestry;
-- application `dev`/`origin/dev` are aligned at `174dc8ac`; application
-  `staging`/`origin/staging` remain at `e850c47b`, so E-D is not yet promoted to staging;
+- application `dev`/`origin-dev` and `staging`/`origin-staging` are aligned at
+  test-only evidence commit `99164ddd`; the staging ancestry includes E-D;
 - E-D adds no migration and performed no shared database action; shared database state
   remains governed by the preceding promotion records;
 - E-D secret detection, schema security and TypeScript CI gates passed. The overall dev
@@ -88,8 +88,8 @@ Current consolidated delivery state:
 - the staging application health check passed with its database connected and RLS enabled
   on all 11 expected tables;
 - prior human FUND administrator login and pre-existing UI smoke testing passed; E-B/E-C
-  authenticated human acceptance is now technically unblocked by E-D but remains pending
-  controlled staging promotion and the recorded real-workflow schedule; and
+  authenticated real-workflow acceptance is technically unblocked by E-D but remains
+  pending in the recorded schedule; and
 - application `main`, live deployment and the live database remain unchanged.
 
 Current E-A/E-B/E-C promotion state:
@@ -114,9 +114,9 @@ Current E-A/E-B/E-C promotion state:
   instantiate the Store/default eligible Product set, so E-B/E-C human acceptance was blocked
   rather than failed;
 - governed `1R-E-D - Default Project Store Instantiation And Eligible Product
-  Reconciliation` is implemented/reviewed at `c45a41d9`, integrated/revalidated and aligned
-  on application `dev`/`origin/dev` at `174dc8ac`; it requires no E-D schema migration, has
-  not been promoted to staging and has not been run against a shared database; and
+  Reconciliation` is implemented/reviewed at `c45a41d9`, integrated/revalidated and included
+  in current `dev`/`staging` ancestry; it requires no E-D schema migration. Its dependent
+  authenticated E-B/E-C real-workflow acceptance remains pending; and
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is reviewed and accepted as
   the non-executable successor to the three governed CRs; and
 - `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single next
@@ -246,23 +246,28 @@ Full evidence is recorded in:
 
 `docs/00-roadmap-control/2026-07-15-commerce-a7-dev-staging-promotion-confirmation.md`
 
-## 2.3 Controlled FUND 1R-E Development And Staging Promotion — 2026-07-20
+## 2.3 Controlled FUND 1R-E Development And Staging Position — reconciled 2026-07-23
 
 This subsection supersedes 2.2 for current application dev/staging branch state.
 
 ```text
-Application dev/origin-dev:         e3f44b4b
-Application staging/origin-staging: e3f44b4b
+Application dev/origin-dev:         99164ddd
+Application staging/origin-staging: 99164ddd
 Application main/origin-main:       ea4e6193 (unchanged)
 Neon development migrations:        140 previously recorded; not changed this turn
 Staging health:                      healthy; database connected; RLS 11/11
-E-B/E-C authenticated human UI:      pending controlled E-D promotion and smoke schedule
+E-D staging ancestry:                present; no E-D migration
+E-B/E-C/D authenticated human UI:    pending consolidated staging smoke schedule
 ```
 
 Exact dev and staging Security Scans passed. The Render build contract runs committed
 Prisma migrations before application build; no direct staging migration inventory was
 queried locally. Online health and unauthenticated C1/C2 route-protection checks passed.
 Production remains untouched.
+
+The definitive human schedule is:
+
+`docs/modules/fund/05-review-and-test/2026-07-23-fund-phase-1-slice-1r-e-b-through-1r-e-d-consolidated-staging-human-smoke-test-schedule.md`
 
 Full evidence is recorded in:
 
@@ -296,24 +301,27 @@ Full evidence is recorded in:
 | `COMMERCE-A7` | Commerce/FUND integration | Implemented/reviewed; dev/staging promotion and smoke gate complete at `91e8751c` | Dormant internal STRIPE_ONLINE integration from an authoritative FUND offer to generic Commerce and typed FUND context |
 | `1R-E` | FUND Store | Parent reviewed/accepted; non-executable; corrective E-D appended | C1 Store oversight, C2 normal Project Store control, exceptional C1 intervention and mandatory default Project Store initiation split into bounded E-A/E-B/E-C/E-D lifecycles |
 | `1R-E-A` | FUND Store | Implemented/reviewed; included in dev/staging promotion `e3f44b4b`; disposable database 141/0 | Typed C1 intervention evidence, C2 Project/Store authority, Event envelope guards and one effective Store-state/A7 availability policy; no UI |
-| `1R-E-B` | FUND Store | Implemented/reviewed; promoted through dev/staging at `e3f44b4b`; automated evidence passed; human acceptance pending controlled E-D promotion | C1 Store portfolio oversight and exceptional intervention surface consuming E-A authority |
-| `1R-E-C` | FUND Store | Implemented/reviewed; promoted through dev/staging at `e3f44b4b`; automated evidence passed; human acceptance pending controlled E-D promotion | C2 Project Store control surface consuming E-A authority, bounded C2 commission acceptance and normal Project/Store control |
-| `1R-E-D` | FUND Store | Implemented/reviewed at `c45a41d9`; integrated/revalidated on `dev`/`origin/dev` at `174dc8ac`; no E-D migration; not promoted to staging; human schedule pending | Mandatory one DRAFT Store per Project, all-eligible-minus-C2-exclusions defaults, atomic C2 activation/publication intent and real-workflow human testability |
+| `1R-E-B` | FUND Store | Implemented/reviewed; present in current dev/staging ancestry; automated evidence passed; consolidated human acceptance pending | C1 Store portfolio oversight and exceptional intervention surface consuming E-A authority |
+| `1R-E-C` | FUND Store | Implemented/reviewed; present in current dev/staging ancestry; automated evidence passed; consolidated human acceptance pending | C2 Project Store control surface consuming E-A authority, bounded C2 commission acceptance and normal Project/Store control |
+| `1R-E-D` | FUND Store | Implemented/reviewed at `c45a41d9`; present in current dev/staging ancestry; no E-D migration; consolidated human acceptance pending | Mandatory one DRAFT Store per Project, all-eligible-minus-C2-exclusions defaults, atomic C2 activation/publication intent and real-workflow human testability |
 
 `1R-C1` through `1R-D` and `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D` must not be rerun as pending work. No next
 implementation is authorised merely because the preceding lifecycle completed.
 
 ## 4. Current Sequence And Dependency Control
 
-Current promotion checkpoint: application `dev`/`origin/dev` and
-`staging`/`origin/staging` are aligned at `e3f44b4b`. The configured Neon development
+Current promotion checkpoint: application `dev`/`origin-dev` and
+`staging`/`origin-staging` are aligned at `99164ddd`. The configured Neon development
 database remains at its separately recorded 140-migration boundary. The Render staging
 build contract ran committed migrations before build; no direct staging migration inventory
 was queried locally. Exact dev/staging automated gates and online staging
-health/database/RLS checks passed. E-B/E-C human acceptance is blocked by the subsequently
-identified Project-to-Store instantiation gap. Production remains untouched. Authoritative
-promotion evidence is recorded at
-`docs/00-roadmap-control/2026-07-20-fund-1r-e-dev-staging-promotion-confirmation.md`.
+health/database/RLS checks passed. E-D is present in staging ancestry and closes the
+Project-to-Store testability gap; E-B/E-C/D consolidated human acceptance is pending under
+the 2026-07-23 schedule. Production remains untouched. Historical promotion evidence is
+recorded at
+`docs/00-roadmap-control/2026-07-20-fund-1r-e-dev-staging-promotion-confirmation.md`, and
+the current combined production decision is:
+`docs/00-roadmap-control/2026-07-23-lmspro-r8-a3-and-combined-staging-bundle-production-risk-assessment-and-promotion-decision.md`.
 
 Older statements below describing C1-C6/R3-D as unpushed or undeployed to the development
 database are superseded by this checkpoint.
@@ -336,12 +344,12 @@ COMMERCE-A1 (complete on dev)
   -> FUND 1R-E C1 Store Oversight And C2 Project Store Control Alignment parent accepted
   -> FUND 1R-E-A Store authority/intervention service implemented/reviewed and promoted
      -> FUND 1R-E-B C1 Store Portfolio Oversight And Exceptional Intervention Surface
-        implemented/reviewed and promoted at e3f44b4b; authenticated UI gate pending
+        implemented/reviewed and present in current staging ancestry; human gate pending
      -> FUND 1R-E-C C2 Project Store Control Surface
-        implemented/reviewed and promoted at e3f44b4b; human acceptance pending E-D staging
+        implemented/reviewed and present in current staging ancestry; human gate pending
      -> FUND 1R-E-D Default Project Store Instantiation And Eligible Product Reconciliation
-        implemented/reviewed at c45a41d9; integrated on dev/origin-dev at 174dc8ac;
-        no E-D migration; not promoted to staging
+        implemented/reviewed at c45a41d9; present in current staging ancestry;
+        no E-D migration; consolidated E-B/C/D human schedule pending
   -> FUND 1R-F Project Offer And Artwork Readiness Reconciliation parent accepted
      -> FUND 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
         single next planning candidate; implementation not authorised
@@ -382,11 +390,11 @@ Rules:
   completed dev/staging promotion at `91e8751c`;
 - FUND `1R-E - C1 Store Oversight And C2 Project Store Control Alignment` is an accepted
   non-executable parent; E-A/E-B/E-C are implemented/reviewed and promoted through
-  dev/staging at `e3f44b4b`; E-B/E-C automated evidence passes but human acceptance is
-  blocked pending corrective E-D;
+  dev/staging; E-B/E-C automated evidence passes and their connected human acceptance is
+  pending under the consolidated E-B/C/D staging schedule;
 - `1R-E-D - Default Project Store Instantiation And Eligible Product Reconciliation` is
-  implemented/reviewed and aligned on application `dev`/`origin/dev` at `174dc8ac`; human
-  acceptance remains pending controlled staging promotion;
+  implemented/reviewed and present in current `dev`/`staging` ancestry; human acceptance
+  remains pending under that same schedule;
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is an accepted
   non-executable parent at
   `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`;

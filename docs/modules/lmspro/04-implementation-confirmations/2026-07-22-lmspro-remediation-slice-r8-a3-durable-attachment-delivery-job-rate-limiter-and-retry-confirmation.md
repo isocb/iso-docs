@@ -4,7 +4,8 @@ Date: 2026-07-22
 
 Module: LMSPro / SeasonPro shared communications
 
-Implementation status: Technically complete on dedicated branch; not merged or deployed
+Implementation status: Technically complete, promoted through staging and accepted by technical,
+human and deterministic no-network scale evidence
 
 Planning source:
 
@@ -127,15 +128,55 @@ exclusion and existing warnings in older communications files. R8-A3 introduces 
 TypeScript or production-build failure; repository lint modernization remains governed by
 the platform assurance lane.
 
-## 7. Remaining Deployment Gate
+### 6.1 Test-Only 300-Recipient Assurance Follow-On
 
-This confirmation does not authorise promotion. Before deployed human smoke:
+On 2026-07-23 the cron processor test gained a deterministic 300-recipient scale case. It changes
+no production implementation. The test:
 
-1. align the branch with current `origin/dev` if that baseline moves;
-2. deploy the migration before code that queries the new tables;
-3. confirm the existing cron has Resend and private-R2 variables;
-4. confirm the cron schedule is one minute and overlapping runs are prevented by Render;
-5. deploy the same reviewed commit to the controlled test environment; and
-6. complete the linked human smoke record.
+- injects a provider stub and a global `fetch` trap so any real provider/network access fails;
+- uses synthetic `example.invalid` recipients and mocked queue/R2 boundaries;
+- runs the real worker pacing loop twice at its default 150-recipient chunk size;
+- proves 300 unique recipients and 300 unique idempotency keys;
+- proves no recipient is processed more than once;
+- proves no rolling one-second window contains more than three provider starts; and
+- proves terminal `SUCCEEDED` reconciliation with `300/0/0` accepted/pending/failed.
+
+Verification after that test-only addition:
+
+```text
+focused worker test: 2 PASS
+adjacent delivery-contract tests: 22 PASS across 4 files
+full Vitest: 162 PASS, 12 intentionally skipped
+TypeScript: PASS
+critical-file verification: PASS
+Prettier and git diff validation: PASS
+real Email/network sends: 0
+```
+
+The forced typed-ESLint attempt reproduced the already registered script/test project exclusion
+owned by PLAT-ASSURE-01; it did not report an application or runtime regression.
+
+## 7. Deployment Gate Outcome
+
+The staging deployment and human smoke subsequently passed, including the F1 environment
+correction and the test-only scale proof above. The assurance-only commit `99164ddd` is now
+fast-forwarded through `origin/dev` and `origin/staging`; it changes no runtime source. This
+confirmation does not independently authorise `main`/live promotion.
+
+The completed production assessment is:
+
+`docs/00-roadmap-control/2026-07-23-lmspro-r8-a3-and-combined-staging-bundle-production-risk-assessment-and-promotion-decision.md`
+
+It accepts R8-A3 for production in principle but places the current combined staging bundle on
+HOLD. If a later controlled release is authorised:
+
+1. commit and reconcile the test-only assurance and lifecycle evidence with current
+   `origin/dev`;
+2. complete the controlled staging-to-live risk assessment;
+3. verify the live cron has the live database, Resend/sender and exact private live-R2 values;
+4. confirm the live cron schedule is one minute and overlapping runs are prevented by Render;
+5. deploy the accepted migration before production code that queries the new tables;
+6. promote and deploy the same reviewed source through the normal controlled sequence; and
+7. complete one bounded live attachment delivery plus the no-attachment regression.
 
 R8-A4 remains responsible for fuller C1 progress/history and manual partial-failure controls.

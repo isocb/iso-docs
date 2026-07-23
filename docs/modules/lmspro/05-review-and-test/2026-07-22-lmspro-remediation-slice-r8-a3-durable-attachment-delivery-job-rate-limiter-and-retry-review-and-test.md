@@ -4,12 +4,13 @@ Date: 2026-07-22
 
 Technical review status: PASS
 
-Deployed human UI/transport status: BLOCKED — shared Platform Node middleware request-body
-finalisation defect prevents reliable attachment draft persistence/queue creation
+Deployed human UI/transport status: PASS — all mandatory human checks pass and the final
+300-recipient scale/rate gate passes through a deterministic mocked-provider test
 
-Promotion status: STAGING ONLY at application `90974123`; `main`/live not authorised
+Promotion status: STAGING ONLY; runtime accepted at `d14a652f`, evidence reconciled at
+test-only `99164ddd`; current combined `staging` to `main` bundle HOLD/NOT AUTHORISED
 
-Blocking Platform slice:
+Resolved Platform dependency:
 
 `docs/platform/03-slice-planning/2026-07-22-isostack-core-platform-slice-plat-runtime-01-node-middleware-request-body-finalisation-backport-planning.md`
 
@@ -60,6 +61,40 @@ produced an incomplete generated JSON file. The generated `.next` directory was 
 and one clean build then completed successfully. No source correction was required for that
 tooling incident.
 
+### 2.1 Non-Delivery Scale And Rate Proof
+
+On 2026-07-23 a test-only deterministic worker simulation exercised 300 synthetic recipients
+without calling Resend, R2 or any external network:
+
+```text
+provider transport: injected mock
+real fetch/network calls: 0
+cycle 1: 150 recipients processed
+cycle 2: 150 recipients processed
+unique recipient addresses: 300
+unique idempotency keys: 300
+duplicate recipient processing: 0
+rolling one-second provider starts: maximum 3
+terminal job state: SUCCEEDED
+accepted/pending/failed: 300/0/0
+focused worker tests: 2 PASS
+adjacent delivery-contract tests: 22 PASS across 4 files
+full Vitest: 162 PASS, 12 intentionally skipped
+TypeScript: PASS
+critical-file verification: PASS
+focused Prettier and diff validation: PASS
+```
+
+The simulation used fake time, a mocked Prisma queue, mocked private-path signing and an injected
+provider attempt function. A global `fetch` stub was configured to throw if reached and remained
+unused. This proves the real worker's two 150-recipient cycles, pacing loop, recipient uniqueness,
+idempotency separation and terminal reconciliation without sending any Email.
+
+Focused ESLint reports the pre-existing platform assurance limitation: this
+`scripts/**/*.test.ts` file is excluded by the normal lint pattern and is not included in the
+typed ESLint project when forced with `--no-ignore`. This is not a new source/test failure and
+remains governed by PLAT-ASSURE-01.
+
 ## 3. Required Deployment Sequence
 
 Use the normal controlled promotion sequence, but maintain this hard order within the test
@@ -83,62 +118,50 @@ Use controlled recipients and fresh drafts. Record each result independently:
 
 1. **PASS** — a no-attachment ad-hoc Email was delivered immediately through the existing
    batch route.
-2. **FAIL** — a one-recipient Email with one accepted attachment entered
-   `SENDING` rather than displaying a clear queued state. It remained there with a refresh
-   icon. Selecting that icon returned the safely refused message:
+2. **PASS** — a fresh one-recipient Email with one large accepted PDF displayed the explicit
+   `Email queued` confirmation.
+3. **PASS** — after correcting the staging cron's private-bucket name, the existing cron processed
+   the queued job, the UI reached the correct terminal state and the recipient received the Email
+   with the PDF attached.
 
-   ```text
-   Retry failed
-   Attachment retry is temporarily unavailable while the supported queued route is
-   completed. No recipients have been retried.
-   ```
+4. **PASS** — three permitted attachments totalling no more than 10 MB and three HTTPS links were
+   accepted and sent together;
+5. **PASS** — all three attachments arrived intact and all three links were clickable;
+6. **PASS** — one primary recipient with controlled CC and BCC addresses delivered exactly one
+   copy to each intended address. Moving the initially missed `Add CC/BCC` control into the
+   Recipients tab remains a non-blocking discoverability wishlist item;
+7. **PASS** — multiple primary recipients with CC/BCC failed closed and no Email was sent;
+8. **PASS** — duplicate queue prevention passed, and intentional manual send-again through
+   `Duplicate to Draft` also delivered successfully under a new Email/delivery identity without
+   mutating the original sent Email;
+9. **PASS** — the UI remained `SENDING` while queued and updated correctly after terminal
+   background delivery;
+10. **PASS** — reviewed cron/application evidence contained bounded job/count/status identifiers
+    without API keys, attachment bytes, signed URLs or raw provider bodies;
+11. **PASS** — a controlled four-primary-recipient delivery passed, and the deterministic
+    no-network worker simulation proved 300 unique recipients across two 150-recipient cycles
+    with no more than three mocked provider starts in any rolling one-second window;
+12. **PASS** — the final no-attachment Email used the existing immediate batch route successfully.
 
-   RENDER reports the cron job completed successfully:
+The accepted full 300-recipient case used the deterministic mocked-provider fixture rather than
+real business recipients. It demonstrated two 150-recipient cycles without duplicate acceptance
+or any external provider request.
 
-3. **FAIL** — the cron did not reach or claim the attachment job. The shared cron failed in
-   the earlier Commerce Stripe processor because its database target did not contain the
-   expected Commerce inbox relation:
+### 4.1 Required Manual Send-Again Smoke
 
-   ```text
-   ==> Cron job run started
-   ==> Running 'npm run jobs:tick'
-   > isostack-v2@2.0.1 jobs:tick
-   > tsx scripts/jobs/run.ts
-   [2026-07-22T14:21:32.793Z] Job tick started (worker-75-1784730092793)
-   Processing email sequences...
-     Claimed 0 enrollments for processing
-   Processing key date sequences... (worker: worker-75-1784730092793)
-     Found 1 active key-date sequences
-     Key date sequences done: 0 fired, 0 errors
-   Job tick failed with unhandled error: PrismaClientKnownRequestError
-   Invalid prisma.$queryRaw() invocation
-   Raw query failed. Code: 42P01.
-   relation "commerce.commerce_stripe_event_inbox" does not exist
-   at processStripeConnectEvents
-   at main (scripts/jobs/run.ts:86:35)
-   Cron job exited with status 1
-   ```
+The historic three-dot-menu resend requirement is satisfied through the safer immutable-history
+pattern now labelled `Duplicate to Draft`. The business tester reports the complete send-again
+smoke PASS:
 
-4. **PENDING** — repeat with three accepted attachments totalling no more than 10 MB and
-   three HTTPS links;
-5. **PENDING** — confirm all attachments are present and all links are clickable;
-6. **PENDING** — send one primary recipient with controlled CC and BCC addresses and confirm
-   each receives exactly one copy;
-7. **PENDING** — prepare multiple primary recipients with CC or BCC and confirm queueing fails
-   closed with the explicit copy-recipient guidance and no Email is sent;
-8. **PENDING** — repeat the send action for an already queued attachment Email and confirm no
-   second job or duplicate recipient delivery is created;
-9. **PENDING** — confirm the Email remains `SENDING` while queued and becomes `SENT` only after
-   terminal recipient reconciliation;
-10. **PENDING** — confirm cron/application/audit evidence contains job/count/status identifiers
-    but no API key, attachment bytes, signed URL or raw provider body;
-11. **PENDING** — observe a representative bounded multi-recipient test and confirm provider
-    starts do not exceed three per second; and
-12. **PENDING** — repeat the no-attachment batch smoke after all attachment checks.
-
-The full 300-recipient case may use an approved controlled load fixture rather than real
-business recipients. It should demonstrate two 150-recipient cron chunks and the accepted
-approximately two-to-three-minute completion envelope without duplicate acceptance.
+1. **PASS** open the three-dot menu on a successfully sent Email and choose `Duplicate to Draft`;
+2. **PASS** confirm a new editable draft opens and the original Email remains unchanged;
+3. **PASS** confirm subject, body, recipients, validated attachments and links are copied;
+4. **PASS** change the primary recipient to an alternative controlled address, or retain the
+   original controlled address for an intentional second delivery;
+5. **PASS** review and acknowledge the copied resources, then send the new draft;
+6. **PASS** confirm the new Email has its own history row/status and reaches the intended recipient once;
+7. **PASS** confirm the original Email and its recipient/provider evidence remain unchanged; and
+8. **PASS** confirm no idempotency collision or suppression occurs between the original and new Email.
 
 ## 5. Failure And Recovery Checks
 
@@ -154,6 +177,12 @@ Where the controlled environment permits safe simulation:
 - confirm a job cannot retry after its 30-minute private-path window.
 
 These simulations must use test recipients and test objects only.
+
+Human failure simulation was not run. This is recorded as **NOT RUN**, not as a human PASS. The
+technical suite already supplies bounded retry, idempotency, stale-claim, resource-readiness and
+expiry evidence. Because this section is explicitly conditional on what the controlled environment
+can simulate safely, the absence of destructive human simulation does not require unsafe staging
+interference.
 
 ## 6. Acceptance Gate
 
@@ -180,10 +209,8 @@ boundary, ownership has moved to Platform corrective slice `PLAT-RUNTIME-01`. Th
 zero attachment jobs for this attempt because no draft/job was persisted; this is not evidence
 that the R8-A3 worker rejected a queued job.
 
-Pause items 2 through 12. Do not record further R8-A3 attachment smoke evidence until the
-Platform slice passes its automated review, is separately promoted to staging and passes its
-required human/operational smoke. After that PASS, resume this checklist without reopening the
-accepted R8-A3 delivery contract.
+This blocker is closed. The Platform slice passed its automated and staging review, and the
+accepted attachment drafts no longer reproduce the HTML HTTP 500 or disturbed-body signature.
 
 Platform implementation and automated review pass at dedicated-branch application commit
 `6b822e45`. That exact commit was subsequently fast-forwarded through `origin/dev` to
@@ -197,8 +224,22 @@ Bounded corrective follow-on R8-A3-F1 is controlled by:
 `docs/modules/lmspro/03-slice-planning/2026-07-22-lmspro-remediation-slice-r8-a3-f1-attachment-job-claim-eligibility-and-runtime-evidence-planning.md`
 
 Its technical implementation passes at application commit `d14a652f`; that exact commit was
-subsequently fast-forwarded through `origin/dev` to `origin/staging`. R8-A3 remains blocked pending
-Render deployment verification and a fresh staging retest.
+subsequently fast-forwarded through `origin/dev` to `origin/staging` and passed its fresh deployed
+retest after the cron's bucket name was corrected.
+
+## 6B. Closed R8-A3-F1 Environment Blocker
+
+The F1 diagnostics proved the job was created and claimed, then failed closed with:
+
+```text
+ATTACHMENT_RESOURCE_NOT_READY
+The specified bucket does not exist.
+```
+
+The staging cron used plural `seasonpro-email-attachments-staging`, while the existing private
+bucket is singular `seasonpro-email-attachment-staging`. Correcting that environment value and
+rebuilding the cron enabled the green large-PDF test recorded at items 2, 3 and 9. No application
+code, schema, bucket rename or object migration was required for this final operational defect.
 
 ## 7. Required Staging-To-Live Environment Gate
 
@@ -225,9 +266,14 @@ R2_EMAIL_ATTACHMENT_BUCKET_NAME
 ```
 
 The staging cron must use the same staging database target as the web service serving
-`staging.seasonpro.co.uk` and the exact dedicated private staging attachment bucket. `PORT`
-is not attachment-delivery configuration. Do not add `R2_PUBLIC_URL` or the general public
-`R2_BUCKET_NAME` for this private route.
+`staging.seasonpro.co.uk` and the exact dedicated private staging attachment bucket:
+
+```text
+R2_EMAIL_ATTACHMENT_BUCKET_NAME=seasonpro-email-attachment-staging
+```
+
+The bucket name is singular. `PORT` is not attachment-delivery configuration. Do not add
+`R2_PUBLIC_URL` or the general public `R2_BUCKET_NAME` for this private route.
 
 Do not configure or change the live cron merely to complete staging testing. After every
 mandatory staging test passes and live promotion is explicitly authorised, repeat the same
@@ -248,3 +294,24 @@ The checked-in `render.yaml` currently calls the declared cron `isostack-jobs`, 
 not match the two actual Render service names above. Do not blindly synchronise that
 Blueprint because it may create a second cron. Reconcile this naming/configuration drift in
 a separate controlled infrastructure refinement.
+
+## 8. Final Staging Gate Decision
+
+PASS. R8-A3 technical evidence, deployed human UI/transport smoke, F1 correction, resource
+delivery, CC/BCC controls, duplicate prevention, intentional `Duplicate to Draft` send-again,
+status reconciliation, safe logs, immediate no-attachment regression and non-delivery
+300-recipient pacing proof are complete.
+
+R8-A3 is accepted at the staging boundary. This document does not itself authorise `main`/live
+promotion. Production requires the separately controlled risk assessment, exact source and
+documentation commit reconciliation, live cron environment inventory, migration-before-code
+sequence and bounded post-deployment smoke described above.
+
+Those reconciliation and risk-assessment steps are now complete:
+
+`docs/00-roadmap-control/2026-07-23-lmspro-r8-a3-and-combined-staging-bundle-production-risk-assessment-and-promotion-decision.md`
+
+The decision accepts R8-A3 for production in principle but places the current combined staging
+bundle on HOLD because it includes 38 commits, 208 changed files and 17
+Commerce/FUND/LMSPro migrations with outstanding cross-lane/live-data gates. No live promotion
+or migration is authorised.

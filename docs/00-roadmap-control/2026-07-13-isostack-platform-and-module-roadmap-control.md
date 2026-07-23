@@ -183,19 +183,46 @@ the older checkpoint and status detail below.
 - No platform remediation implementation is authorised by registration, and the finding
   does not invalidate focused passing evidence from a bounded module slice.
 - `PLAT-RUNTIME-01 - Node Middleware Request-Body Finalisation Backport And
-  Production-Runtime Assurance` is the current authorised Platform corrective slice at exact
-  application baseline `90974123`. It owns the shared Next.js Node middleware defect exposed by
-  LMSPro R8-A3 staging testing.
+  Production-Runtime Assurance` is the completed staging-accepted Platform corrective slice that
+  began at exact application baseline `90974123`. It owns the shared Next.js Node middleware
+  defect exposed by LMSPro R8-A3 staging testing.
 - PLAT-RUNTIME-01 implementation and automated review pass at dedicated-branch application commit
   `6b822e45`; that exact commit was subsequently fast-forwarded through `origin/dev` to
   `origin/staging`. Clean Node 22 installation, exact fail-closed patch verification, full tests,
-  ordinary/standalone builds and repeated payload runtime probes passed. Staging deployment
-  verification and human smoke remain outstanding.
-- LMSPro R8-A3 human attachment testing is explicitly blocked until PLAT-RUNTIME-01 passes its
-  automated review and separately controlled staging smoke. Database connection-close messages
-  remain observation/regression scope and do not authorise speculative database changes.
+  ordinary/standalone builds, repeated payload probes and the mandatory staging smoke passed.
+- The dependent LMSPro delivery handoff passed through R8-A3-F1 at application commit `d14a652f`
+  after diagnostics identified and corrected the staging cron's plural private-bucket typo. A
+  fresh large-PDF Email queued, processed, updated the UI and arrived with its attachment. Platform
+  control returned to R8-A3. Its remaining resource, CC/BCC, send-again, status/log and batch
+  regression checks passed, and a deterministic no-network test proved 300 recipients across two
+  150-recipient cycles at no more than three mocked provider starts per rolling second. R8-A3 is
+  staging-accepted; live promotion remains subject to separate risk assessment and control.
 - `PLAT-REFINE-01 - Dedicated Authenticated Private Binary Upload Transport` is registered as a
   non-executable wishlist item and does not expand the current corrective slice.
+
+### 2026-07-23 R8-A3 Reconciliation And Combined Production Decision
+
+Application `origin/dev` and `origin/staging` are reconciled at `99164ddd`. That final commit is
+test-only and adds the deterministic no-network 300-recipient pacing proof; the
+staging-accepted runtime remains `d14a652f`. Application `origin/main` remains `ea4e6193`.
+
+R8-A3 is accepted for production in principle. The exact `origin/main..origin/staging` release
+range is nevertheless HOLD/NOT AUTHORISED because it is a combined 38-commit, 208-file,
+17-migration Commerce/FUND/Platform/LMSPro release. It includes data-dependent FUND migration
+guards and sibling-lane human/production gates that R8-A3 testing cannot close.
+
+No `main`, live service, live cron, live R2 or live database change was made. The next root
+decision is to authorise either completion of the full combined release gate or a newly planned
+selective LMSPro release.
+
+The immediate evidence-gathering action for the preferred full-bundle option is the consolidated
+FUND E-B/E-C/E-D staging schedule:
+
+`docs/modules/fund/05-review-and-test/2026-07-23-fund-phase-1-slice-1r-e-b-through-1r-e-d-consolidated-staging-human-smoke-test-schedule.md`
+
+Authoritative assessment:
+
+`docs/00-roadmap-control/2026-07-23-lmspro-r8-a3-and-combined-staging-bundle-production-risk-assessment-and-promotion-decision.md`
 
 ### 2026-07-22 LMSPro R8-A2R-F1 Development Promotion And Staging Blocker
 

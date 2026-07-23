@@ -2,7 +2,8 @@
 
 Date: 2026-07-15
 
-Status: Automated/local lifecycle passed; human acceptance blocked pending 1R-E-D
+Status: Automated/local lifecycle passed; E-D is now in staging ancestry; consolidated
+human acceptance pending
 
 Roadmap renumbering notice: this historical record's `1R-F` public Store reference now
 means `1R-G`; current `1R-F` is Project Offer And Artwork Readiness.
@@ -96,14 +97,18 @@ Static/component review confirmed:
 - no full configuration hash or raw snapshot JSON in responses; and
 - no public/C2 route or Store/Checkout activation.
 
-A human C1 browser smoke on deployed development/staging data remains a later controlled
-promotion gate; the accepted E-B implementation did not authorise shared deployment.
+A human C1 browser smoke on deployed staging data remains a controlled acceptance gate.
 
 Post-promotion preparation on 2026-07-21 established that this gate is not executable from
 the real empty FUND state. C1 correctly lists and intervenes on existing Stores but has no
 routine creation authority, while canonical Project creation currently creates no Store.
-E-B human acceptance is therefore blocked—not failed—until E-D creates the mandatory DRAFT
+E-B human acceptance was therefore blocked—not failed—until E-D created the mandatory DRAFT
 Store/default eligible Product set through the Project workflow.
+
+E-D is now included in the current staging ancestry. The definitive connected E-B/E-C/E-D
+human schedule is:
+
+`docs/modules/fund/05-review-and-test/2026-07-23-fund-phase-1-slice-1r-e-b-through-1r-e-d-consolidated-staging-human-smoke-test-schedule.md`
 
 ## 6. Database Safety
 
@@ -117,7 +122,6 @@ E-B adds no schema/migration, missing-Store preparation, routine C1 lifecycle wr
 Store UI, public Store/Checkout, commercial Product editor, artwork/release writer, real
 Stripe action, Order, production, fulfilment or commission behaviour.
 
-`1R-E-B-R1` automated/local review passes and the implementation was subsequently promoted
-at application `e3f44b4b`. Human acceptance remains blocked by the separate Project-to-Store
-instantiation gap. `1R-E-D - Default Project Store Instantiation And Eligible Product
-Reconciliation` is the corrective next candidate before `1R-F-A`.
+`1R-E-B-R1` automated/local review passes and the implementation was subsequently promoted.
+The Project-to-Store instantiation blocker is corrected by E-D in current staging ancestry.
+Human acceptance remains pending—not blocked—under the consolidated schedule above.

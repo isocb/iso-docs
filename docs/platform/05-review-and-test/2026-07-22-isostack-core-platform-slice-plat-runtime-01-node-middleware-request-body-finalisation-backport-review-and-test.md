@@ -4,8 +4,8 @@ Date: 2026-07-22
 
 Automated technical disposition: PASS
 
-Human/deployed disposition: PASS for the Platform request-body correction; dependent LMSPro
-attachment-delivery item 11 remains FAIL
+Human/deployed disposition: PASS for the Platform request-body correction; the dependent LMSPro
+attachment-delivery handoff subsequently passed through R8-A3-F1
 
 Promotion disposition: STAGING SOURCE PROMOTED; `main`/live remain BLOCKED
 
@@ -132,11 +132,12 @@ runtime passed smoke.
 
 A promotion-time request to `https://staging.seasonpro.co.uk/api/health` returned HTTP 200 with
 database `connected` and RLS `11/11`. The endpoint does not expose the deployed Git SHA, so this is
-recorded as a green availability observation only. Checklist item 1 remains PENDING until Render
-confirms that the responding deployment is exact commit `6b822e45`.
+recorded as the initial green availability observation. Render/source confirmation and the
+subsequent checklist established exact commit `6b822e45` as the tested Platform runtime.
 
-Do not promote to `main`/live. Do not resume the LMSPro R8-A3 human checklist until all mandatory
-Platform checks below pass and the deployed commit is confirmed as `6b822e45`.
+The original gate prohibited `main`/live and resumption of the LMSPro checklist until all
+mandatory Platform checks passed. Those Platform checks are now complete; live remains governed
+by the later combined production decision.
 
 ### 4.2 Human Checklist
 
@@ -155,12 +156,12 @@ After confirming the staging deployment completed at `6b822e45`, record each res
    reopening the accepted small, representative and boundary attachment drafts. The original
    shared Platform request-body defect did not recur;
 10. **PASS** — a no-attachment Email continued to use the immediate batch route;
-11. **FAIL** — an attachment Email submitted at approximately 17:12 BST remained `SENDING` with
-    the refresh icon and was not delivered. Three subsequent healthy cron ticks reported
-    `email-attachment-delivery: 0 processed, 0 errors`. The business tester confirms the compose
-    flow first displayed the green `Email queued` response. Under the atomic queue contract, the
-    web runtime therefore committed the job; the remaining failure is that cron did not see it as
-    claimable;
+11. **PASS THROUGH BOUNDED FOLLOW-ON** — the initial attachment Email remained `SENDING`, which
+    opened R8-A3-F1. Its diagnostics proved queue creation and job claim, then exposed an
+    independent cron environment typo: plural `seasonpro-email-attachments-staging` named a bucket
+    that did not exist. After correction to the existing singular private bucket
+    `seasonpro-email-attachment-staging`, a fresh large-PDF Email queued, processed, reached the
+    correct terminal UI state and arrived with its attachment;
 12. **PASS** — the supplied cron interval and reviewed staging evidence contained no unexpected
     Prisma connection-close error, and each cron tick completed successfully; and
 13. **PASS** — post-test `/api/health` remained healthy.
@@ -189,18 +190,23 @@ Corrective follow-on:
 
 `docs/modules/lmspro/03-slice-planning/2026-07-22-lmspro-remediation-slice-r8-a3-f1-attachment-job-claim-eligibility-and-runtime-evidence-planning.md`
 
-R8-A3-F1 technical implementation and automated review pass at local dedicated-branch commit
+R8-A3-F1 technical implementation and automated review pass at dedicated-branch commit
 `d14a652f`. That exact commit was subsequently fast-forwarded through `origin/dev` to
-`origin/staging`. The failed item remains open pending Render deployment verification and its
-fresh staging retest.
+`origin/staging` and its fresh deployed retest passed after the cron environment correction.
 
 ## 5. Gate Decision
 
 Automated and deployed human review PASS for the Platform request-body correction at exact
-application commit `6b822e45`. The dependent LMSPro attachment-delivery handoff remains failed at
-item 11 and is owned by R8-A3-F1. No live promotion is authorised while that corrective follow-on
-remains undeployed and unproven.
+application commit `6b822e45`. The dependent attachment-delivery handoff also passes through the
+bounded R8-A3-F1 follow-on at `d14a652f`. PLAT-RUNTIME-01 is complete at the staging acceptance
+boundary and no longer blocks R8-A3 testing.
 
-LMSPro R8-A3 remains explicitly blocked by R8-A3-F1. If the body-stream failure recurs or a
-reproducible database failure appears, stop testing and open a separately evidenced Platform
-corrective/triage record rather than expanding the LMSPro implementation silently.
+This does not itself authorise `main`/live promotion. The wider R8-A3 checklist subsequently
+passed and is reconciled separately; the current combined staging bundle remains on production
+HOLD under:
+
+`docs/00-roadmap-control/2026-07-23-lmspro-r8-a3-and-combined-staging-bundle-production-risk-assessment-and-promotion-decision.md`
+
+If the body-stream failure recurs or a reproducible database failure appears, stop testing and
+open a separately evidenced Platform corrective/triage record rather than expanding the LMSPro
+implementation silently.

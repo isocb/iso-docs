@@ -2,16 +2,17 @@
 
 Date: 2026-07-22
 
-Status: Controlled development/staging promotion and migration deployment complete; human
-UI/transport testing blocked by staging cron configuration/database alignment failure
+Status: Controlled development/staging promotion and migration deployment complete; initial cron
+and R2 environment blockers corrected; R8-A3 staging acceptance complete
 
 ## 1. Scope
 
 This record controls promotion of LMSPro remediation slice `R8-A3` from its reviewed
 implementation branch through application `dev` to the online staging test environment.
 
-It does not authorise or claim application `main`, live deployment, live database change,
-human UI/transport acceptance or any later R8 slice.
+It does not authorise or claim application `main`, live deployment, live database change
+or any later R8 slice. Later sections reconcile the human UI/transport acceptance completed
+after the original deployment.
 
 ## 2. Mandatory Control Read
 
@@ -42,6 +43,26 @@ application origin/main:     ea4e6193a65de97d5cdf622560a5c8921154fc24
 
 Both `origin/dev...dev` and `origin/staging...staging` reported zero divergence after the
 promotion. Application `main` and `origin/main` remained unchanged.
+
+Final evidence reconciliation on 2026-07-23 added the test-only deterministic scale proof
+and fast-forwarded both controlled branches without changing runtime code:
+
+```text
+application feature branch:  99164dddcc51da0f27864fefc913eb32adb58ef0
+application dev/origin-dev:   99164dddcc51da0f27864fefc913eb32adb58ef0
+application staging/origin-staging:
+                               99164dddcc51da0f27864fefc913eb32adb58ef0
+application main/origin-main: ea4e6193a65de97d5cdf622560a5c8921154fc24
+runtime accepted at:           d14a652fb699790e99f0863049ac676f0552e190
+```
+
+Commit `99164ddd` changes one test file only. It adds no production source, schema,
+migration, UI or environment change.
+
+Its exact-commit Security Scans passed:
+
+- dev run `29988592900`; and
+- staging run `29988604215`.
 
 The controlled sequence was:
 
@@ -135,12 +156,17 @@ observed. The actual staging Cron Job is named `isostack-bedrock-1`; the live Cr
 named `isostack-bedrock`. This differs from the checked-in `render.yaml` name
 `isostack-jobs`, so Blueprint synchronisation must not be used casually.
 
-Human testing subsequently proved that the staging cron did not contain the complete
-private-R2 environment inventory and failed before attachment processing because its
-database target returned `42P01` for the expected
-`commerce.commerce_stripe_event_inbox` relation. Staging transport acceptance is therefore
-blocked pending safe cron/database alignment; this does not alter the completed web
-deployment evidence above.
+Human testing subsequently exposed two independent staging cron environment defects. Its database
+target first returned `42P01` for the expected `commerce.commerce_stripe_event_inbox` relation.
+After database alignment, R8-A3-F1 proved that attachment work was created and claimed but failed
+closed because the cron used plural `seasonpro-email-attachments-staging`, which did not exist.
+The existing private staging bucket is singular `seasonpro-email-attachment-staging`.
+
+After correcting that value and rebuilding the cron, a fresh one-recipient large-PDF Email queued,
+processed, reached the correct terminal UI state and arrived with its attachment. These initial
+environment blocks are closed. The remaining resource, CC/BCC, send-again, status/log and
+no-attachment checks subsequently passed, as did a deterministic no-network 300-recipient pacing
+proof. This does not alter the completed web deployment evidence above.
 
 ## 7. Remaining Human Gate
 
@@ -152,9 +178,11 @@ That schedule remains the authority for no-attachment regression, queued attachm
 delivery, exact attachment/link receipt, CC/BCC constraints, idempotency, status
 reconciliation, rate limiting, retry and audit/log evidence.
 
-No result in this promotion record substitutes for those authenticated checks. The web
-deployment is available, but the transport schedule remains blocked until the staging cron
-environment/database failure described above is corrected and evidenced.
+The linked authenticated checks are now reported PASS, including resource receipt, CC/BCC,
+duplicate protection, intentional Duplicate-to-Draft send-again, status reconciliation, safe logs
+and the final no-attachment regression. The test-only scale proof processed 300 synthetic
+recipients across two 150-recipient cycles without real provider/network access and proved the
+three-starts-per-second ceiling. R8-A3 is accepted at the staging boundary.
 
 Before any later live promotion, apply the environment gate recorded in the R8-A3 review:
 configure the live Cron Job only after explicit authority, use live-only database and private
@@ -163,6 +191,15 @@ accepted migration-before-code deployment and bounded live smoke.
 
 ## 8. Promotion Boundary
 
-Do not promote R8-A3 to `main` or live until the staging human UI/transport checks are
-reported PASS or a bounded corrective slice resolves every blocking failure. Application
-`main`, live services and the live database remain outside this action.
+The staging human UI/transport and non-delivery scale checks are PASS. This historical promotion
+record still does not authorise `main` or live. Application `main`, live services and the live
+database remain outside this action until the separate staging-to-live risk assessment,
+environment gate and explicit production promotion decision are complete.
+
+The subsequent production assessment is:
+
+`docs/00-roadmap-control/2026-07-23-lmspro-r8-a3-and-combined-staging-bundle-production-risk-assessment-and-promotion-decision.md`
+
+It records R8-A3 as ready in principle but places the current combined `staging` to `main`
+bundle on HOLD because the exact range contains 38 commits, 208 changed files and 17
+Commerce/FUND/LMSPro migrations with outstanding cross-lane and live-data gates.

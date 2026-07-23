@@ -4,7 +4,7 @@ Date: 2026-07-22
 
 Module: LMSPro / shared communications runtime
 
-Status: Corrective implementation authorised by failed R8-A3 staging item 11
+Status: Implemented, deployed to staging and accepted; parent R8-A3 human testing resumed
 
 Controlling parent:
 
@@ -95,6 +95,11 @@ Implementation must pass:
 - confirmation that no schema/migration/environment contract changed.
 
 After technical review, stop before staging. Human staging retest must use a fresh attachment
-Email, confirm the `Email queued` response, correlate the web and cron fingerprints, and prove the
-same job becomes claimed and terminal. PLAT-RUNTIME-01 and R8-A3 remain blocked until that retest
-passes.
+Email, confirm the `Email queued` response, correlate the web and cron evidence, and prove the
+same job becomes claimed and terminal.
+
+That gate passed after the diagnostic evidence exposed an independent environment typo. The cron
+used plural `seasonpro-email-attachments-staging`; the existing private staging bucket is singular
+`seasonpro-email-attachment-staging`. After correction and rebuild, a fresh large-PDF Email queued,
+processed, reached the correct terminal UI state and arrived with its attachment. This closes F1
+and returns control to the remaining parent R8-A3 human checklist.

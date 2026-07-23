@@ -44,7 +44,7 @@ technical boundary is every body-bearing request that traverses Node middleware.
 ## 3. Affected Scope
 
 The defect is owned by Platform because it sits in the shared HTTP/middleware runtime. LMSPro
-R8-A3 is the discovering and currently blocked consumer.
+R8-A3 is the discovering consumer and was blocked until the Platform correction passed staging.
 
 Potentially affected requests are POST, PUT, PATCH and DELETE requests with bodies that pass
 through Node middleware. No evidence currently identifies a module business-rule, database
@@ -74,7 +74,8 @@ The change must:
 ## 5. Settled Decisions
 
 1. This is a first-class Platform corrective lifecycle, not an expansion of LMSPro R8-A3.
-2. R8-A3 is blocked until this platform slice passes automated and staging gates.
+2. R8-A3 was blocked until this platform slice passed its automated and staging gates; those
+   gates passed on 2026-07-22 and control returned to the module checklist.
 3. The exact upstream missing-`await` correction is the bounded implementation direction.
 4. Database behaviour is within regression/observation scope but not correction scope unless a
    separate reproducible defect emerges.

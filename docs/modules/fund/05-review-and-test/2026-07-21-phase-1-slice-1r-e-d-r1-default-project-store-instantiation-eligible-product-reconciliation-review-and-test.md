@@ -2,8 +2,8 @@
 
 Date: 2026-07-21
 
-Status: Automated review and integrated current-dev revalidation passed; human workflow
-acceptance pending controlled staging promotion
+Status: Automated review and integrated revalidation passed; E-D is in current staging
+ancestry; consolidated human workflow acceptance pending
 
 Application implementation reviewed: `c45a41d9`
 
@@ -64,7 +64,12 @@ The E-D suite proved:
 
 ## Human Smoke Schedule After Controlled Promotion
 
-Do not substitute hand-created Store fixtures. Run in order on the promoted FUND environment:
+E-D is now included in the promoted staging ancestry. Do not substitute hand-created Store
+fixtures. The definitive connected E-B/E-C/E-D schedule is:
+
+`docs/modules/fund/05-review-and-test/2026-07-23-fund-phase-1-slice-1r-e-b-through-1r-e-d-consolidated-staging-human-smoke-test-schedule.md`
+
+The following retained E-D requirements are incorporated there:
 
 1. **C1 creation:** as FUND C1, create a Project for an existing Client. Confirm the Project
    immediately appears in C1 Store oversight with one DRAFT Store and the complete eligible
@@ -95,6 +100,6 @@ does not authorize manual database repair.
 
 ## Conclusion
 
-Automated E-D implementation review and integrated current-dev revalidation pass. E-B/E-C
-human acceptance is now testable but remains pending because E-D has not been promoted to
-staging. `1R-F-A` is the single next planning candidate only; no implementation has begun.
+Automated E-D implementation review and integrated revalidation pass. E-D is in current
+staging ancestry, so E-B/E-C/D human acceptance is testable and remains pending under the
+consolidated schedule. `1R-F-A` remains a planning candidate only; no implementation has begun.

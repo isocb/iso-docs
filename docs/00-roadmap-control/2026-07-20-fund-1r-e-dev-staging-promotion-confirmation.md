@@ -126,12 +126,24 @@ Store` action. Human acceptance is therefore blocked, not failed, pending correc
 Human results should be appended to the existing E-B/E-C review records only after E-D makes
 the real Project workflow testable.
 
+### 2026-07-23 Reconciliation
+
+E-D is now present in current `dev`/`staging` ancestry and adds no migration. The original
+Project-to-Store testability blocker is therefore closed at the source/deployment boundary.
+E-B/E-C/D authenticated human acceptance remains pending—not blocked—under the definitive
+connected schedule:
+
+`docs/modules/fund/05-review-and-test/2026-07-23-fund-phase-1-slice-1r-e-b-through-1r-e-d-consolidated-staging-human-smoke-test-schedule.md`
+
+This reconciliation does not alter the historical `e3f44b4b` promotion evidence above and
+does not authorise production.
+
 ## 8. Result And Boundary
 
 Application `dev` and `origin/dev` match, and the exact same commit is promoted to online
 `staging`/`origin/staging`. Automated staging acceptance and online health checks pass.
 
 Application `main`, live deployment and the live database remain unchanged. The subsequent
-E-D plan was separately reviewed/accepted on 2026-07-21 and is now the single next
-implementation candidate before `1R-F-A`; this earlier promotion itself authorised no E-D
-implementation.
+E-D implementation is now in current staging ancestry. The connected E-B/E-C/D human
+schedule is the remaining FUND staging gate before this work can contribute to a combined
+production decision; this earlier promotion itself authorised no E-D implementation.

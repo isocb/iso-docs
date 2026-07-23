@@ -2,7 +2,7 @@
 
 Date: 2026-07-15
 Automated review result: PASS
-Human UI result: BLOCKED - Project workflow does not yet instantiate the mandatory Store/default Product set
+Human UI result: PENDING - E-D is in staging ancestry; run the consolidated E-B/C/D schedule
 Migration inventory: 141 applied / 0 failed on retained disposable PostgreSQL after full replay
 
 Roadmap renumbering notice: this historical record's `1R-F` public Store reference now
@@ -18,8 +18,8 @@ state machine: server E-A evidence controls every displayed blocker and allowed 
 
 No blocker remains in automated implementation review. Post-promotion preparation found a
 separate workflow blocker: the Project creation/intake paths do not create the Store that this
-surface controls. Human interaction and visual proof remains required after E-D closes that
-testability gap.
+surface controls. Human interaction and visual proof remains required now that E-D closes that
+testability gap in current staging ancestry.
 
 ## Automated Evidence
 
@@ -101,9 +101,12 @@ deferred.
 
 ## Human UI Testing Schedule
 
-The earlier fixture-led schedule is superseded. Human testing is suspended until accepted
-E-D implementation is promoted. A hand-created Store fixture cannot prove the missing
-business workflow.
+The earlier fixture-led schedule is superseded. E-D is now in current staging ancestry. A
+hand-created Store fixture still cannot prove the business workflow.
+
+Use the definitive connected schedule:
+
+`docs/modules/fund/05-review-and-test/2026-07-23-fund-phase-1-slice-1r-e-b-through-1r-e-d-consolidated-staging-human-smoke-test-schedule.md`
 
 After E-D, the consolidated schedule must:
 
@@ -131,10 +134,10 @@ are bypassed or C2 sees C1/private commercial evidence.
 
 ## Remaining Manual Status
 
-E-B/E-C are promoted at application `e3f44b4b`; their automated gates, online health,
-database connectivity, RLS and unauthenticated route protection passed. Human acceptance is
-blocked, not failed, by the missing mandatory Project-to-Store/default-Product workflow.
-`1R-E-D` is the single corrective next candidate before `1R-F-A`.
+E-B/E-C are promoted in current staging ancestry; their automated gates, online health,
+database connectivity, RLS and unauthenticated route protection passed. E-D corrects the
+missing mandatory Project-to-Store/default-Product workflow and is also in staging ancestry.
+Human acceptance is now pending under the consolidated schedule rather than blocked.
 
 ## Final Boundary
 

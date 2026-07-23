@@ -3,7 +3,7 @@
 Date: 2026-07-22
 
 Status: Implemented and committed; subsequently promoted by fast-forward through `origin/dev` to
-`origin/staging`; staging deployment verification and human smoke pending
+`origin/staging`; mandatory staging deployment and human smoke passed
 
 Planning source:
 
@@ -132,4 +132,5 @@ baseline `90974123`.
 
 There is no migration and no new environment setting to deploy. Source promotion does not prove
 that Render deployment completed or that runtime smoke passed. `main`/live remain untouched and
-unauthorised. LMSPro R8-A3 remains blocked until the mandatory Platform staging smoke passes.
+unauthorised. The mandatory Platform staging smoke subsequently passed on 2026-07-22. LMSPro
+R8-A3 is no longer blocked by this Platform slice and has resumed its module-owned human tests.

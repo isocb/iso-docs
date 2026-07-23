@@ -2,8 +2,8 @@
 
 Date: 2026-07-22
 
-Implementation status: Technically complete and subsequently fast-forwarded through `origin/dev`
-to `origin/staging`; staging deployment verification and human retest pending
+Implementation status: Technically complete, fast-forwarded through `origin/dev` to
+`origin/staging`, and accepted by the mandatory staging retest
 
 Planning source:
 
@@ -86,5 +86,11 @@ failure.
 ## 5. Stop Boundary
 
 Commit `d14a652f` was published on its dedicated branch and fast-forwarded on 2026-07-22 from
-`6b822e45` first to `origin/dev` and then to `origin/staging`. Source promotion does not prove the
-Render deployment or fresh human retest. Live remains blocked.
+`6b822e45` first to `origin/dev` and then to `origin/staging`. The fresh deployed retest initially
+identified an independent cron environment typo: plural `seasonpro-email-attachments-staging`
+named a bucket that did not exist, while the actual private bucket is singular
+`seasonpro-email-attachment-staging`. After correcting and rebuilding the cron, a fresh large-PDF
+Email queued, processed, reached the correct terminal UI state and arrived with its attachment.
+
+The implementation and F1 staging gate are complete. The wider R8-A3 human checklist and any
+`main`/live promotion remain separately controlled.

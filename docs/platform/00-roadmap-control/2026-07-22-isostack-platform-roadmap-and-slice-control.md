@@ -236,7 +236,7 @@ It is high priority but is not an executable slice and does not displace the roo
 current next candidate unless the root control explicitly promotes it.
 
 `PLAT-RUNTIME-01 - Node Middleware Request-Body Finalisation Backport And
-Production-Runtime Assurance` is the current executable Platform corrective slice. It was
+Production-Runtime Assurance` is the most recently completed Platform corrective slice. It was
 discovered through LMSPro R8-A3 staging testing but is Platform-owned because the defect sits
 in shared Node middleware before tRPC/domain execution.
 
@@ -246,15 +246,18 @@ Lifecycle control:
 - `docs/platform/02-triage/2026-07-22-isostack-platform-node-middleware-request-body-finalisation-defect-triage.md`; and
 - `docs/platform/03-slice-planning/2026-07-22-isostack-core-platform-slice-plat-runtime-01-node-middleware-request-body-finalisation-backport-planning.md`.
 
-LMSPro R8-A3 human attachment testing remains explicitly blocked until PLAT-RUNTIME-01 passes
-its automated review and separately controlled staging smoke.
+LMSPro R8-A3 human attachment testing was blocked until PLAT-RUNTIME-01 passed its automated
+review and separately controlled staging smoke.
 
 Implementation and automated review now pass at exact dedicated-branch application commit
 `6b822e45`. Clean Node 22 installation, fail-closed patch verification, full Vitest, type-check,
 ordinary/standalone builds and repeated small/representative/10 MiB runtime probes passed. The
-commit was subsequently fast-forwarded through `origin/dev` to `origin/staging`. Render deployment
-verification and human/operational smoke remain outstanding. PLAT-RUNTIME-01 is not complete and
-LMSPro R8-A3 remains blocked.
+commit was subsequently fast-forwarded through `origin/dev` to `origin/staging`. The mandatory
+Platform staging smoke passed. A dependent delivery failure was then isolated through R8-A3-F1 to
+an incorrect plural private-bucket name in the staging cron; after correction to
+`seasonpro-email-attachment-staging`, a fresh large-PDF Email queued, processed, updated the UI and
+arrived with its attachment. PLAT-RUNTIME-01 is complete at the staging acceptance boundary and no
+longer blocks LMSPro R8-A3 testing. `main`/live promotion remains separately controlled.
 
 ## 11. Current Control Decision
 
@@ -265,10 +268,18 @@ this control.
 The current Platform action is:
 
 ```text
-verify the staging deployment is exact PLAT-RUNTIME-01 commit 6b822e45
--> run the mandatory Platform staging smoke
--> hand control back to LMSPro R8-A3 only after PASS
+PLAT-RUNTIME-01 staging acceptance complete
+-> control returned to LMSPro R8-A3
+-> R8-A3 staging acceptance and evidence reconciliation complete
+-> current combined staging-to-main release HOLD pending cross-lane/live-migration gates
 ```
+
+The governing production decision is:
+
+`docs/00-roadmap-control/2026-07-23-lmspro-r8-a3-and-combined-staging-bundle-production-risk-assessment-and-promotion-decision.md`
+
+PLAT-RUNTIME-01 itself is not reopened. Its production inclusion is governed as part of the
+exact combined release or a separately planned selective LMSPro dependency bundle.
 
 ## 12. Reconciliation Rule
 
