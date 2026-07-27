@@ -2,9 +2,10 @@
 
 Date: 2026-07-23
 
-Status: Ready for controlled staging execution; results not yet claimed
+Status: Controlled staging execution in progress; preflight complete; remaining results not
+yet claimed
 
-Environment: Staging only
+Functional-test environment: Staging
 
 Application candidate: `99164ddd` (`d14a652f` runtime plus test-only LMSPro assurance)
 
@@ -28,6 +29,13 @@ This consolidated schedule avoids duplicate fixture setup and ensures one workfl
 the connected C1, C2, Project, Store, Product-selection, readiness and intervention
 contracts. It does not replace or weaken any source acceptance criterion.
 
+Incomplete or blocked items in this schedule keep the affected FUND capability in
+development and determine its remediation work. They do not by themselves block deployment
+of the shared application to `main`. FUND is an unfinished module whose live visibility is
+controlled by the Platform Owner through the existing Product/module assignment controls.
+The Platform Owner may keep it unavailable or deliberately grant closely controlled
+alpha/beta access without claiming general FUND production readiness.
+
 ## 2. Boundary
 
 This is human staging verification, not implementation authority.
@@ -41,10 +49,11 @@ It must not:
 - use hand-created Store rows to bypass the Project workflow;
 - grant C1 routine Project Store preparation/publication authority;
 - claim public Store, artwork/template, Order, production or fulfilment completion; or
-- authorise `main`, live deployment or live database migration.
+- claim that FUND is ready for unrestricted live-client use.
 
 Any failure is recorded against the owning source review and stops the affected phase. It
-does not authorise an operator to repair rows manually.
+does not authorise an operator to repair rows manually. It creates or informs a bounded
+remediation slice; it is not automatically a shared-application promotion failure.
 
 ## 3. Required Test Identities And Safe Fixtures
 
@@ -63,6 +72,20 @@ Prepare through supported staging UI/workflows:
 | Products | At least three eligible Products with distinguishable titles; one additional Product that can safely become newly eligible |
 | Commercial readiness | Staging-only seller/price/tax/configuration evidence sufficient to exercise readiness without a real charge |
 
+The four identity rows are four separate authorization contexts, not four FUND Client role
+names:
+
+- the C1 administrator is a C1 tenant OWNER or ADMIN;
+- the C2 manager is a member of the target Client with PROJECT_MANAGER or ADMIN;
+- the C2 viewer is a different member of the same target Client with VIEWER; and
+- the isolation identity is a different user outside the target Client or tenant. Its
+  ordinary role may also be VIEWER, PROJECT_MANAGER or ADMIN; isolation comes from its
+  different tenant/Client ownership, not from a fourth role.
+
+Use separate staging test accounts or already-approved staging identities. Do not change a
+production user's role to perform this schedule. Separate browser profiles or private
+windows are recommended so each session remains visibly attributable.
+
 Use synthetic names such as `SMOKE-1RE-20260723-*`. Record opaque Project/Store IDs in the
 result table, but do not place organiser emails, private notes, full configuration hashes,
 raw snapshots, credentials or purchaser data in documentation/screenshots.
@@ -71,14 +94,16 @@ raw snapshots, credentials or purchaser data in documentation/screenshots.
 
 Complete before creating a Project:
 
-1. Confirm Render shows the staging service at candidate `99164ddd`, or prove the served
+1. Chris: PASS - Confirm Render shows the staging service at candidate `99164ddd`, or prove the served
    runtime contains accepted ancestors `c45a41d9` (E-D) and `d14a652f` (current runtime).
-2. Confirm `/api/health` is HTTP 200 with database `connected` and RLS `11/11`.
-3. Confirm the environment is staging by hostname, tenant and visible synthetic data.
-4. Confirm the tester can use the four identities above without changing production roles.
-5. Confirm the Event/Catalogue has the expected eligible Product set and record its count.
-6. Confirm no test requires a real Stripe charge, live Store or public purchaser action.
-7. Open the individual E-B/E-C/E-D review records alongside this schedule.
+2.  Chris: PASS - Confirm `/api/health` is HTTP 200 with database `connected` and RLS `11/11`.
+3.  Chris: PASS - Confirm the environment is staging by hostname, tenant and visible synthetic data.
+4.  Chris: PASS - Confirm the tester can sign in through the four separate staging authorization contexts
+   described above without changing any production role. Record only safe account labels,
+   not email addresses or credentials.
+5.  Chris: PASS - Confirm the Event/Catalogue has the expected eligible Product set and record its count.
+6.  Chris: PASS - Confirm no test requires a real Stripe charge, live Store or public purchaser action.
+7.  Chris: PASS - Open the individual E-B/E-C/E-D review records alongside this schedule.
 
 Stop immediately on a commit/environment mismatch, unhealthy database, tenant ambiguity or
 need for direct database intervention.
@@ -90,7 +115,7 @@ Run in order. Do not skip a failed prerequisite merely because a later screen is
 ### Phase A - Atomic Project, Store And Default Product Creation
 
 1. **C1 standalone creation**
-   - As C1, create a Standalone Project for the test Client using the retained Project path.
+    Chris: PASS - As C1, create a Standalone Project for the test Client using the retained Project path.
    - Confirm the successful response produces exactly one Project.
    - Open C1 Store oversight and confirm exactly one DRAFT Store exists for it immediately.
    - Confirm all distinct canonically eligible Products are present and selected by default.
@@ -226,7 +251,7 @@ Complete this table during execution:
 
 | Phase | Result | Tester role(s) | Safe Project/Store reference | Evidence/note |
 | --- | --- | --- | --- | --- |
-| Preflight | PENDING |  |  |  |
+| Preflight | PASS | Chris; four staging authorization contexts available | Candidate `99164ddd` | Items 1-7 recorded PASS; no credentials or personal identifiers retained |
 | A - Creation | PENDING |  |  |  |
 | B - C1 oversight | PENDING |  |  |  |
 | C - C2 selection/presentation | PENDING |  |  |  |
@@ -259,7 +284,14 @@ After the last permitted test:
 5. update each source review with only its relevant human result and a link back here;
 6. update the FUND controlling roadmap;
 7. update the root production assessment; and
-8. stop before `main`, live migration or live configuration.
+8. as a separate shared-platform promotion control, correct the scheduled Gitleaks scan so it
+   uses the governed bounded scan or an explicitly reviewed historical baseline, then prove
+   the candidate Security Scan is green; promotion of staging candidate `99164ddd` alone
+   resolves its dependency gate but does not reliably resolve the unbounded scheduled
+   historical Gitleaks gate; and
+9. continue remaining FUND testing and remediation on staging/dev under the recorded
+   candidate boundary, irrespective of whether the shared application has subsequently
+   completed its separately controlled promotion.
 
 ## 8. Acceptance Decision
 
@@ -273,5 +305,28 @@ E-B/E-C/E-D consolidated human acceptance is PASS only when:
 - no production or public purchaser action was used.
 
 A partial run is not a combined PASS. One failed tenant, authority, atomicity,
-deselection/readiness or intervention test keeps the combined production release gate on
-HOLD.
+deselection/readiness or intervention test keeps FUND E-B/E-C/E-D human acceptance in
+progress and requires recorded remediation before unrestricted FUND rollout. It does not
+by itself keep an otherwise accepted LMSPro/shared-application release on HOLD.
+
+## 9. Controlled Live Coexistence
+
+FUND may coexist in the live application while this schedule remains in progress because
+module availability is already controlled by the Platform Owner. No additional FUND route,
+feature-flag or code-level release gate is required by this schedule.
+
+The operating rules are:
+
+- the Platform Owner decides which C1 tenants, if any, receive FUND through the existing
+  Product/module controls;
+- no assignment means FUND remains unavailable through normal tenant module discovery and
+  navigation;
+- any deliberate live alpha/beta assignment is limited, reversible and does not constitute
+  unrestricted production acceptance;
+- open FUND observations remain recorded here and are addressed through bounded remediation
+  slices on dev/staging;
+- staging remains the authoritative environment for this human schedule; and
+- LMSPro readiness, shared security, migration safety, deployment monitoring and recovery
+  remain governed by their own production controls.
+
+This is a release classification, not a relaxation of tenant isolation or authorization.

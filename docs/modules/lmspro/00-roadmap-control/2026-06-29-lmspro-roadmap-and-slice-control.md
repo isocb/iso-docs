@@ -1,7 +1,7 @@
 # LMSPro / SeasonPro Roadmap And Slice Control
 
 Date: 2026-06-29
-Last updated: 2026-07-22
+Last updated: 2026-07-27
 Module: LMSPro / SeasonPro
 Control status: Active roadmap and delivery-cycle control
 
@@ -76,12 +76,12 @@ Current work should remain on dev/remediation branches until reviewed and explic
 Latest known app alignment from prior cycle:
 
 ```text
-origin/dev = origin/staging = 6c5aaa56ffa33ab3bcc2102ff7da6cdc84fda4a4
-origin/main = ea4e6193
+origin/dev = origin/staging = origin/main = b9287ffa
 ```
 
-This alignment included the completed LMSPro remediation and FUND availability baseline
-promotions before returning to LMSPro development planning.
+This alignment is the completed controlled combined promotion containing R8-A3 and its
+Platform/security dependencies. FUND remains an explicitly unfinished, assignment-controlled
+module whose human staging test programme continues separately.
 
 ## Current Completed LMSPro Cycle State
 
@@ -97,35 +97,36 @@ Recent LMSPro lanes completed and documented:
 Current posture:
 
 ```text
-R8-A is the active accepted LMSPro remediation lane.
+R8-A is implemented, technically accepted and deployed through staging and live.
 R8-A1 is complete. The technically verified R8-A2 broad-file and ClamAV implementation was
 superseded before promotion after cost/benefit and risk/benefit review. R8-A2R and its F1
-transport correction are deployed to staging and have passed the revised human UI smoke:
+transport correction are deployed through live and passed the revised human UI smoke:
 three PDF/image/text uploads in private R2, 10 MB cumulative, three separate HTTPS links and
-no malware-scanning service. R8-A3 runtime is technically complete and deployed to staging at
-application commit `d14a652f`; final test-evidence reconciliation aligns `origin/dev` and
-`origin/staging` at test-only commit `99164ddd`. PLAT-RUNTIME-01 and R8-A3-F1 are closed at
-their staging gates.
+no malware-scanning service. R8-A3 runtime is retained at application ancestor `d14a652f`;
+test-only evidence was reconciled at `99164ddd`; and the complete controlled application
+release is aligned through dev, staging and main at `b9287ffa`. PLAT-RUNTIME-01 and R8-A3-F1
+are closed.
 A fresh one-recipient large-PDF Email and a three-attachment/three-link Email queued, processed,
 reached the correct terminal UI state and arrived with intact resources after the staging cron was
 corrected to the exact singular private bucket name. A four-primary-recipient send and the final
 no-attachment regression also passed. The targeted CC/BCC contract checks and `Duplicate to Draft`
 send-again smoke now pass. The deterministic no-network 300-recipient proof also passes across two
-150-recipient cycles with no more than three mocked provider starts per rolling second. R8-A3 is
-accepted at the staging boundary. The production risk assessment is complete: R8-A3 is ready in
-principle, but the current combined `staging` to `main` bundle is HOLD/NOT AUTHORISED because it
-also contains unresolved Commerce/FUND/Platform production gates and 17 migrations.
+150-recipient cycles with no more than three mocked provider starts per rolling second.
+Following promotion, matching R2 credentials were applied to each environment's separate web
+and cron consumers; fresh attachment delivery passes in staging and MAIN. The A4 operational
+state and A5 deployed-provider/regression exit evidence were satisfied within the completed
+R8-A3 lifecycle and require no separate implementation slice.
 ```
 
-An urgent communications-integrity candidate now precedes optional feature implementation:
+The completed urgent communications-integrity lane was:
 
 ```text
 R8-A - Attachment-Aware Email Delivery Route And Fail-Closed Evidence
 ```
 
-R8-A has a captured CR input and accepted controlling slice plan. Sequential implementation
-of R8-A1 through R8-A5 is authorised, subject to the plan's business-decision and human UI
-smoke-test pause gates.
+R8-A has completed its planning, implementation, review, staging and live gates. Later
+email-remediation observations belong to the complete planning-only consolidated CR and do
+not reopen R8-A.
 
 ## Immediate Remedial Candidate Lane
 
@@ -160,7 +161,12 @@ Accepted controlling plan:
 Status:
 
 ```text
-Accepted 2026-07-21; R8-A1 completed; R8-A2 superseded before promotion in its broad-file/ClamAV portions; R8-A2R-F1 complete; R8-A3 technical implementation, staging deployment, human transport checks and deterministic no-network 300-recipient pacing proof pass; R8-A3 is staging-accepted and production-ready in principle. The current combined staging bundle is HOLD/NOT AUTHORISED pending cross-lane and live-migration gates.
+Accepted 2026-07-21; R8-A1 completed; R8-A2 superseded before promotion in its
+broad-file/ClamAV portions; R8-A2R-F1 complete; R8-A3 technical implementation, staging
+and live deployment, human transport checks and deterministic no-network 300-recipient
+pacing proof pass. Fresh attachment delivery passes in both staging and MAIN after each
+environment's web and cron consumers were aligned to the same current R2 credential set.
+R8-A3 and the parent R8-A lane are complete.
 ```
 
 Implementation baselines:
@@ -244,18 +250,14 @@ accepted.
 Next action:
 
 ```text
-Runtime commit `d14a652f` and final test-evidence commit `99164ddd` are aligned through
-`origin/dev` and `origin/staging`. The accepted
-migration-before-code deployment, Platform request-body smoke and R8-A3-F1 environment retest are
-complete. The staging cron now uses the exact private bucket name
-`seasonpro-email-attachment-staging`. Multi-resource, links, duplicate-prevention, status/log and
-final no-attachment, targeted CC/BCC and `Duplicate to Draft` manual send-again checks now pass.
-The deterministic mocked-provider 300-recipient pacing test also passes without any real Email or
-network request. Treat intentional send-again as a new immutable Email/delivery identity, not as
-permission to weaken duplicate-job prevention. Test and documentation reconciliation is complete.
-The controlled production assessment records R8-A3 as ready in principle but the exact current
-staging bundle as HOLD/NOT AUTHORISED because it spans 38 commits, 208 changed files and 17
-Commerce/FUND/LMSPro migrations with unresolved sibling-lane/live-data gates.
+Runtime commit `d14a652f` and final test-evidence commit `99164ddd` are retained ancestors
+of the controlled release aligned through `origin/dev`, `origin/staging` and `origin/main`
+at `b9287ffa`. The accepted migration-before-code deployment, Platform request-body smoke,
+R8-A3-F1 environment retest and live promotion are complete. Multi-resource, links,
+duplicate-prevention, status/log, final no-attachment, targeted CC/BCC and `Duplicate to
+Draft` checks pass. The deterministic mocked-provider 300-recipient pacing test also passes
+without any real Email or network request. Treat intentional send-again as a new immutable
+Email/delivery identity, not as permission to weaken duplicate-job prevention.
 
 R8-A3 planning:
 
@@ -331,13 +333,26 @@ The following planning-only CR input is now registered:
 
 `docs/modules/lmspro/01-cr-inputs/2026-07-22-lmspro-consolidated-email-integrity-club-visibility-and-remedial-work-cr-input.md`
 
-It captures the first of five expected email-remediation concerns: explicit many-to-many
-Email-to-Club visibility, audience-context preservation, shared delivery-result reconciliation
-and cursor-based unique Email history with bounded scroll/load-more behaviour.
+It now records the complete four-item remediation programme:
 
-R8-A staging acceptance satisfies the CR's prior capture prerequisite. The CR is eligible for
-later triage but has no executable slice, does not infer the four reserved business concerns and
-does not supersede the current production HOLD decision.
+1. Club dashboard Email visibility and history integrity;
+2. attachment dropzone click-to-browse regression;
+3. Club admission, Current participation and waiting-list alignment; and
+4. responsive Team status and waiting-list-position visibility.
+
+The formerly expected fifth item, C1 League dashboard reorganisation, is standalone work and
+requires its own CR lifecycle. The four-item CR and its 2026-07-27 planning refinement are ready
+for formal control-window triage. No executable slice is selected or authorised. Formal triage
+must preserve one coordinated programme with separately bounded slices, retain the requested
+candidate order of item 3, item 1, item 4 and item 2, and preserve item 3's accepted distinction:
+validated import establishes Registered/admission evidence; `ClubStatus.APPROVED` represents
+Current only with a qualifying Current/allocated Team; a Club with no qualifying Team is Club
+Waiting List while its unallocated Teams remain distinct. Item 3's read-only live-state inventory
+and consumer classification remain mandatory pre-implementation data gates.
+
+Planning refinement:
+
+`docs/modules/lmspro/01-cr-inputs/2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md`
 
 ## Existing Feature Candidate Lane
 
@@ -577,16 +592,19 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Combined release-gate decision after the R8-A3 production HOLD
+Formally triage the complete four-item LMSPro remediation CR
 ```
 
 Goal:
 
-R8-A3 is accepted at staging and production-ready in principle. Test/lifecycle evidence is
-committed and `origin/dev`/`origin/staging` are reconciled at `99164ddd`. The production assessment
-found that an ordinary `staging` to `main` promotion would also release 38 commits and 17
-Commerce/FUND/LMSPro migrations. Choose either completion of the full combined release gate or a
-newly planned selective LMSPro release. No live promotion or migration is currently authorised.
+R8-A3 is complete and present in staging and live. Application `dev`, `staging` and `main`
+were aligned at the completed release boundary `b9287ffa`. The four-item CR input and
+2026-07-27 planning refinement are complete and ready for control-window triage. Create the
+formal triage decision for one coordinated programme with separately bounded slices, preserve
+the requested candidate order `item 3 -> item 1 -> item 4 -> item 2`, and retain item 3's
+read-only live-state inventory and consumer classification as mandatory pre-implementation
+data gates. This is the LMSPro lane's next planning action; it does not override the root
+roadmap's single cross-lane executable-slice authority.
 
 ## Fresh Chat Prompt
 
@@ -595,20 +613,18 @@ Proceed with LMSPro / SeasonPro remediation planning from:
 isodocs/docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
 
 Next step:
-Review the R8-A3 technical and human-test handoff:
-isodocs/docs/modules/lmspro/05-review-and-test/2026-07-22-lmspro-remediation-slice-r8-a3-durable-attachment-delivery-job-rate-limiter-and-retry-review-and-test.md
+Formally triage the complete four-item CR and planning refinement:
+isodocs/docs/modules/lmspro/01-cr-inputs/2026-07-22-lmspro-consolidated-email-integrity-club-visibility-and-remedial-work-cr-input.md
+isodocs/docs/modules/lmspro/01-cr-inputs/2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md
 
 Goal:
-Read the completed production assessment:
-isodocs/docs/00-roadmap-control/2026-07-23-lmspro-r8-a3-and-combined-staging-bundle-production-risk-assessment-and-promotion-decision.md
+Record the formal `02-triage` decision for one coordinated programme with separately bounded
+implementation slices. Preserve the candidate order item 3, item 1, item 4 and item 2. Record the
+accepted Club aggregate: zero qualifying Current/allocated Teams means Club Waiting List, while
+unallocated Teams remain distinct and are not automatically Team Waiting List. Retain item 3's
+read-only live-state inventory and consumer classification before implementation.
 
-Choose and explicitly authorise either the full combined release gate or a newly planned
-selective LMSPro release. For the full bundle, first close the outstanding FUND/Commerce/Platform
-gates and run the read-only live migration preflights. For a selective release, require a fresh
-dependency, migration, staging and lifecycle plan.
-
-Do not promote current staging or run its migrations while the production assessment is HOLD.
-Do not broaden the batch sender, add key-date sequence attachments, change
-recipient/cohort rules, automatically resend historic messages, alter season automation or
-change FUND logic.
+Do not begin implementation, schema work or live-data reconciliation from the CR/refinement.
+Do not reopen R8-A, broaden the batch sender, add key-date sequence attachments, automatically
+resend historic messages, alter unrelated season automation or change FUND logic.
 ```

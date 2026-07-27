@@ -4,8 +4,8 @@ Date: 2026-07-22
 
 Module: LMSPro / SeasonPro shared communications
 
-Implementation status: Technically complete, promoted through staging and accepted by technical,
-human and deterministic no-network scale evidence
+Implementation status: Complete, promoted through staging and live, and accepted by technical,
+human, live-transport and deterministic no-network scale evidence
 
 Planning source:
 
@@ -158,25 +158,21 @@ owned by PLAT-ASSURE-01; it did not report an application or runtime regression.
 
 ## 7. Deployment Gate Outcome
 
-The staging deployment and human smoke subsequently passed, including the F1 environment
-correction and the test-only scale proof above. The assurance-only commit `99164ddd` is now
-fast-forwarded through `origin/dev` and `origin/staging`; it changes no runtime source. This
-confirmation does not independently authorise `main`/live promotion.
+The staging deployment and human smoke passed, including the F1 environment correction and
+the test-only scale proof above. Runtime ancestor `d14a652f` and assurance-only descendant
+`99164ddd` are included in the controlled release aligned through `origin/dev`,
+`origin/staging` and `origin/main` at `b9287ffa`.
 
 The completed production assessment is:
 
 `docs/00-roadmap-control/2026-07-23-lmspro-r8-a3-and-combined-staging-bundle-production-risk-assessment-and-promotion-decision.md`
 
-It accepts R8-A3 for production in principle but places the current combined staging bundle on
-HOLD. If a later controlled release is authorised:
+The controlled release, migration-before-code sequence and live checks are complete. An
+initial live attachment failed because the separately configured cron retained stale R2
+signing credentials after credential rotation. No credential value was recorded. The web
+and cron consumers were aligned to the same current R2 account/access-key/secret-key/bucket
+tuple, after which fresh attachment delivery passed in both staging and MAIN.
 
-1. commit and reconcile the test-only assurance and lifecycle evidence with current
-   `origin/dev`;
-2. complete the controlled staging-to-live risk assessment;
-3. verify the live cron has the live database, Resend/sender and exact private live-R2 values;
-4. confirm the live cron schedule is one minute and overlapping runs are prevented by Render;
-5. deploy the accepted migration before production code that queries the new tables;
-6. promote and deploy the same reviewed source through the normal controlled sequence; and
-7. complete one bounded live attachment delivery plus the no-attachment regression.
-
-R8-A4 remains responsible for fuller C1 progress/history and manual partial-failure controls.
+The accepted UI exposes the implemented queued/running/failed/completed operational state.
+Any later enhancement beyond that accepted surface belongs to a new CR and bounded slice;
+it is not outstanding R8-A3 implementation.

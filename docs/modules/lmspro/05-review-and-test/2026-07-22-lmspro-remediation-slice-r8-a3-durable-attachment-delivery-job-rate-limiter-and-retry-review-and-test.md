@@ -7,8 +7,8 @@ Technical review status: PASS
 Deployed human UI/transport status: PASS — all mandatory human checks pass and the final
 300-recipient scale/rate gate passes through a deterministic mocked-provider test
 
-Promotion status: STAGING ONLY; runtime accepted at `d14a652f`, evidence reconciled at
-test-only `99164ddd`; current combined `staging` to `main` bundle HOLD/NOT AUTHORISED
+Promotion status: PASS — runtime accepted at `d14a652f`, evidence reconciled at test-only
+`99164ddd`, and controlled staging/live release aligned at `b9287ffa`
 
 Resolved Platform dependency:
 
@@ -295,23 +295,27 @@ not match the two actual Render service names above. Do not blindly synchronise 
 Blueprint because it may create a second cron. Reconcile this naming/configuration drift in
 a separate controlled infrastructure refinement.
 
-## 8. Final Staging Gate Decision
+## 8. Final Staging And Live Gate Decision
 
 PASS. R8-A3 technical evidence, deployed human UI/transport smoke, F1 correction, resource
 delivery, CC/BCC controls, duplicate prevention, intentional `Duplicate to Draft` send-again,
 status reconciliation, safe logs, immediate no-attachment regression and non-delivery
 300-recipient pacing proof are complete.
 
-R8-A3 is accepted at the staging boundary. This document does not itself authorise `main`/live
-promotion. Production requires the separately controlled risk assessment, exact source and
-documentation commit reconciliation, live cron environment inventory, migration-before-code
-sequence and bounded post-deployment smoke described above.
+R8-A3 was accepted at the staging boundary and subsequently promoted through the separately
+controlled production decision, exact source reconciliation, live cron environment
+inventory and migration-before-code sequence.
 
 Those reconciliation and risk-assessment steps are now complete:
 
 `docs/00-roadmap-control/2026-07-23-lmspro-r8-a3-and-combined-staging-bundle-production-risk-assessment-and-promotion-decision.md`
 
-The decision accepts R8-A3 for production in principle but places the current combined staging
-bundle on HOLD because it includes 38 commits, 208 changed files and 17
-Commerce/FUND/LMSPro migrations with outstanding cross-lane/live-data gates. No live promotion
-or migration is authorised.
+The combined release completed at `b9287ffa`. The first live attachment test failed with an
+R2 request-signature mismatch because the separately configured live cron retained stale
+credentials after the web-service rotation. After the same current R2
+account/access-key/secret-key/bucket tuple was applied to both consumers and they were
+redeployed, the Platform Owner confirmed fresh attachment delivery passes in both staging
+and MAIN. No secret, full URL or signed-object value is retained in this evidence.
+
+Final result: **PASS**. R8-A3 implementation, staging acceptance, production promotion and
+live attachment transport are complete.

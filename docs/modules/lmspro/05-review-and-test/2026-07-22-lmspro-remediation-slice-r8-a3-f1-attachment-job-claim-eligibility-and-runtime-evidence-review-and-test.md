@@ -170,6 +170,7 @@ staging cron configured to the exact singular bucket name. Final test-only evide
 human testing.
 
 The remaining R8-A3 multi-resource, CC/BCC, idempotency, rate-limit and regression checklist
-subsequently passed. Production remains governed by the separate combined-bundle HOLD:
+subsequently passed. The separate combined-bundle control then completed production
+promotion and the corrected live attachment smoke:
 
 `docs/00-roadmap-control/2026-07-23-lmspro-r8-a3-and-combined-staging-bundle-production-risk-assessment-and-promotion-decision.md`

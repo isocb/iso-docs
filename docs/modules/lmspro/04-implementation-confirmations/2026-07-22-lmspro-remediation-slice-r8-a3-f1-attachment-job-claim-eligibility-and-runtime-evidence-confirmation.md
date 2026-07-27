@@ -2,8 +2,8 @@
 
 Date: 2026-07-22
 
-Implementation status: Technically complete, fast-forwarded through `origin/dev` to
-`origin/staging`, and accepted by the mandatory staging retest
+Implementation status: Complete, retained through `origin/dev`, `origin/staging` and
+`origin/main`, and accepted by the mandatory staging and parent live gates
 
 Planning source:
 

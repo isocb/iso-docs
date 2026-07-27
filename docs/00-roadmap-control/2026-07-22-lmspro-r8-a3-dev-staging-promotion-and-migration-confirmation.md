@@ -203,3 +203,15 @@ The subsequent production assessment is:
 It records R8-A3 as ready in principle but places the current combined `staging` to `main`
 bundle on HOLD because the exact range contains 38 commits, 208 changed files and 17
 Commerce/FUND/LMSPro migrations with outstanding cross-lane and live-data gates.
+
+## 9. Subsequent Controlled Production Outcome
+
+The boundary above accurately records this earlier dev/staging action. The later production
+assessment was amended and completed after its security, live-data, migration, environment
+and recovery controls passed.
+
+Application `dev`, `staging` and `main`, including remote counterparts, are now aligned at
+`b9287ffa`. R8-A3 is present in staging and live. After correcting stale R2 signing
+credentials on the separately configured cron consumers, fresh attachment delivery passed
+in both environments. The authoritative final outcome is the linked production decision,
+not the superseded HOLD wording above.

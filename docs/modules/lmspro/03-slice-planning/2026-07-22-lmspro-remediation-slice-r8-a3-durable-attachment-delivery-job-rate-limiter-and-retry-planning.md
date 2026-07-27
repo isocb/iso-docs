@@ -4,7 +4,7 @@ Date: 2026-07-22
 
 Module: LMSPro / SeasonPro shared communications
 
-Status: Accepted; implementation authorised using the existing Render cron runtime
+Status: Implemented, reviewed and accepted in staging and live
 
 Controlling parent:
 

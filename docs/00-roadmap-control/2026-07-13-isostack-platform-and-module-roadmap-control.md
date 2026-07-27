@@ -1,6 +1,6 @@
 # IsoStack Platform And Module Roadmap Control
 
-Date: 2026-07-22
+Date: 2026-07-27
 
 Status: Active parent roadmap
 
@@ -195,25 +195,33 @@ the older checkpoint and status detail below.
   fresh large-PDF Email queued, processed, updated the UI and arrived with its attachment. Platform
   control returned to R8-A3. Its remaining resource, CC/BCC, send-again, status/log and batch
   regression checks passed, and a deterministic no-network test proved 300 recipients across two
-  150-recipient cycles at no more than three mocked provider starts per rolling second. R8-A3 is
-  staging-accepted; live promotion remains subject to separate risk assessment and control.
+  150-recipient cycles at no more than three mocked provider starts per rolling second. R8-A3 was
+  staging-accepted and subsequently completed its separately controlled live promotion and
+  transport gate.
 - `PLAT-REFINE-01 - Dedicated Authenticated Private Binary Upload Transport` is registered as a
   non-executable wishlist item and does not expand the current corrective slice.
 
-### 2026-07-23 R8-A3 Reconciliation And Combined Production Decision
+### 2026-07-23 R8-A3 Reconciliation And Completed Combined Production Release
 
-Application `origin/dev` and `origin/staging` are reconciled at `99164ddd`. That final commit is
-test-only and adds the deterministic no-network 300-recipient pacing proof; the
-staging-accepted runtime remains `d14a652f`. Application `origin/main` remains `ea4e6193`.
+Runtime ancestor `d14a652f` and assurance-only descendant `99164ddd` are retained in the
+controlled combined release. Application `dev`, `staging` and `main`, including their
+remote counterparts, are aligned at `b9287ffa`.
 
-R8-A3 is accepted for production in principle. The exact `origin/main..origin/staging` release
-range is nevertheless HOLD/NOT AUTHORISED because it is a combined 38-commit, 208-file,
-17-migration Commerce/FUND/Platform/LMSPro release. It includes data-dependent FUND migration
-guards and sibling-lane human/production gates that R8-A3 testing cannot close.
+The scheduled and exact-candidate Security Scans passed. The Platform Owner completed the
+live snapshot and read-only migration preflights. The migration chain stopped safely at the
+R3-D empty-FUND guard, disposable live FUND development data was cleared under the recorded
+authority without deleting LMSPro/public data, the failed attempt was resolved as rolled
+back and the migration-before-code deployment completed.
 
-No `main`, live service, live cron, live R2 or live database change was made. The next root
-decision is to authorise either completion of the full combined release gate or a newly planned
-selective LMSPro release.
+An Upstash REST URL/token mismatch initially caused authentication HTTP 500 responses and
+was corrected without changing authentication or encryption keys. A later live attachment
+test exposed stale R2 signing credentials on the separately configured cron after the web
+service credentials had been rotated. Aligning each environment's web and cron consumers
+to its current R2 credential set restored delivery. Fresh attachment delivery passes in
+both staging and MAIN. R8-A3 is complete in staging and live.
+
+FUND E-B/E-C/E-D human testing continues independently and no unrestricted FUND production
+acceptance is inferred.
 
 The immediate evidence-gathering action for the preferred full-bundle option is the consolidated
 FUND E-B/E-C/E-D staging schedule:
@@ -223,6 +231,28 @@ FUND E-B/E-C/E-D staging schedule:
 Authoritative assessment:
 
 `docs/00-roadmap-control/2026-07-23-lmspro-r8-a3-and-combined-staging-bundle-production-risk-assessment-and-promotion-decision.md`
+
+### 2026-07-27 LMSPro Four-Item Remediation CR Completion
+
+The post-R8-A LMSPro remediation CR now contains exactly four complete business briefs:
+Club Email-history integrity, attachment click-to-browse restoration, Club admission/
+participation alignment and responsive Team status/Waiting List visibility. The formerly
+expected C1 League dashboard reorganisation is standalone work and is not a fifth item.
+
+The CR and its 2026-07-27 planning refinement are ready for formal LMSPro control-window
+triage. No executable slice is selected or authorised. The candidate delivery order is item 3,
+item 1, item 4 and item 2. Item 3's business semantics are settled: validated import creates
+Registered/admission evidence; `APPROVED` remains the Current compatibility state; and zero
+qualifying Current/allocated Teams means Club Waiting List while unallocated Teams remain
+distinct. Read-only live-state inventory and consumer classification remain mandatory planning/
+data gates. This LMSPro planning status does not displace the root roadmap's single cross-lane
+executable-slice authority.
+
+Authoritative LMSPro records:
+
+- `docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md`;
+- `docs/modules/lmspro/01-cr-inputs/2026-07-22-lmspro-consolidated-email-integrity-club-visibility-and-remedial-work-cr-input.md`; and
+- `docs/modules/lmspro/01-cr-inputs/2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md`.
 
 ### 2026-07-22 LMSPro R8-A2R-F1 Development Promotion And Staging Blocker
 

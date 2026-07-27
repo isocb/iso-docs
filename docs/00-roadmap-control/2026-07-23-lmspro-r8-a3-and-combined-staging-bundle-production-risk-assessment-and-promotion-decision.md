@@ -2,8 +2,9 @@
 
 Date: 2026-07-23
 
-Status: Assessment complete; R8-A3 accepted for production in principle; current combined
-`staging` to `main` promotion is **HOLD / NOT AUTHORISED**
+Status: Controlled combined promotion complete at application commit `b9287ffa`; R8-A3 is
+present and accepted in staging and live; FUND human testing remains in progress
+independently
 
 ## 1. Decision
 
@@ -11,19 +12,23 @@ LMSPro `R8-A3` has completed its bounded implementation, automated verification,
 dependency correction and staging human acceptance. Its attachment-delivery behaviour is
 ready to enter a controlled production release.
 
-The current application `staging` branch must nevertheless **not** be promoted to `main` as
-one release at this checkpoint.
+The current application `staging` branch is a larger combined release containing Commerce,
+FUND, Platform and LMSPro work. It must therefore continue to be promoted as that complete
+release unit rather than described as an R8-A3-only deployment.
 
-The reason is not an unresolved R8-A3 defect. Repository reconciliation proves that the
-current `staging` branch is a much larger combined release containing Commerce, FUND,
-Platform and LMSPro work whose collective production gates have not all been closed.
+The Platform Owner has confirmed that FUND is an unfinished development module and that its
+availability to live C1 tenants is already controlled through the existing Product/module
+assignment controls. Incomplete FUND human testing therefore governs FUND refinement and
+unrestricted rollout; it is not, by itself, a blocker to deploying the shared application
+or the accepted LMSPro attachment work.
 
-This document therefore records:
+This document therefore records the completed outcome:
 
 ```text
-R8-A3 bounded capability decision: READY IN PRINCIPLE
-current staging -> main bundle decision: HOLD / NOT AUTHORISED
-live services and live database: UNCHANGED
+R8-A3 bounded capability decision: COMPLETE IN STAGING AND LIVE
+FUND E-B/E-C/E-D human testing: IN PROGRESS; not an automatic shared-release blocker
+combined staging -> main route: COMPLETED through standard controls
+application dev/origin-dev/staging/origin-staging/main/origin-main: b9287ffa
 ```
 
 ## 2. Mandatory Controls Read
@@ -88,6 +93,19 @@ The reconciled `origin/main..origin/staging` range contains:
 
 This is the production release unit produced by an ordinary fast-forward of `main` to the
 current `staging`. It cannot accurately be described as an R8-A3-only deployment.
+
+The later controlled release added the reviewed security/history-governance corrections
+and completed with all application delivery branches aligned at:
+
+```text
+application dev/origin-dev:         b9287ffa
+application staging/origin-staging: b9287ffa
+application main/origin-main:       b9287ffa
+```
+
+`d14a652f` remains the accepted R8-A3 runtime ancestor and `99164ddd` remains its
+assurance-only pacing-test descendant. The later candidate does not remove or supersede
+that evidence.
 
 ## 4. R8-A3 Readiness Evidence
 
@@ -159,24 +177,26 @@ before authorising this migration chain.
 
 ## 6. Outstanding Cross-Lane Gates
 
-The current staging ancestry also includes FUND `1R-E-D`, but the FUND roadmap and 1R-E
-promotion record still identify authenticated E-B/E-C real-workflow acceptance as pending.
-Those documents must be reconciled with completed human evidence or the tests must be run
-before the combined bundle can be accepted for production.
+The current staging ancestry also includes FUND `1R-E-D`, while authenticated E-B/E-C/E-D
+real-workflow testing remains in progress. Under the Platform Owner's accepted operating
+model, that work may remain explicitly incomplete when the shared application is promoted.
+The existing Product/module assignment controls determine which C1 tenants, if any, receive
+controlled alpha/beta access. No additional FUND route or code-level release gate is
+required.
 
 The definitive FUND schedule is:
 
 `docs/modules/fund/05-review-and-test/2026-07-23-fund-phase-1-slice-1r-e-b-through-1r-e-d-consolidated-staging-human-smoke-test-schedule.md`
 
-Commerce and FUND production environment/configuration gates must also be reviewed for the
-exact 38-commit bundle. R8-A3 acceptance cannot implicitly authorise Stripe, Store, Project,
-production-asset, commission or other sibling-lane behaviour.
+Open findings continue to generate bounded FUND remediation work on dev/staging and prevent
+unrestricted FUND rollout until accepted. R8-A3 acceptance does not claim Stripe, Store,
+Project, production-asset, commission or other sibling-lane behaviour complete.
 
 ## 7. Risk Register
 
 | Risk | Assessment | Required control |
 | --- | --- | --- |
-| Promoting 38 commits as though they were one LMSPro fix | High | Treat the full range as the release unit and close every owning-lane gate |
+| Promoting 38 commits as though they were one LMSPro fix | High | Treat the full range as the release unit; separately record unfinished FUND as controlled work in progress |
 | Live FUND data violates R3-D empty-baseline guard | Critical until checked | Read-only live preflight; stop on any FUND Client or Project |
 | Existing FUND-source Orders or retired Store state block later migrations | High until checked | Run the exact accepted preflight queries before deployment |
 | Seventeen migrations run before a large code replacement | High | Approved maintenance window, migration-before-code ordering, logs and abort criteria |
@@ -212,18 +232,24 @@ database URLs or signed object URLs.
 
 ## 9. Promotion Options
 
-### Option A - Complete The Combined Release Gate
+### Option A - Controlled Combined Release With FUND Work In Progress
 
-Preferred when all 38 commits are intended for production:
+Selected operating model when all 38 commits are deployed together:
 
-1. reconcile the FUND staging status and complete/record E-B/E-C/E-D human acceptance;
-2. review all Commerce/FUND/Platform production environment dependencies;
-3. run read-only live migration preflights for all data-dependent guards;
-4. approve the complete 17-migration/38-commit release;
-5. configure/verify the live R8-A3 cron environment;
-6. deploy migrations before code through the accepted Render path;
-7. verify health, migration completion and bounded cross-lane smoke; and
-8. perform one controlled live attachment delivery followed by a no-attachment regression.
+1. record FUND E-B/E-C/E-D testing truthfully as in progress and retain Platform Owner
+   control over live tenant Product/module assignment;
+2. correct and prove the shared scheduled Security Scan;
+3. review the exact Commerce/FUND/Platform production environment dependencies without
+   enabling unfinished behaviours;
+4. run read-only live migration preflights for all data-dependent guards;
+5. approve the complete 17-migration/38-commit release and recovery boundary;
+6. configure/verify the live R8-A3 cron environment;
+7. deploy migrations before code through the accepted Render path;
+8. verify health, migration completion and bounded LMSPro/shared-platform smoke; and
+9. perform one controlled live attachment delivery followed by a no-attachment regression.
+
+FUND staging testing and bounded remediation then continue during the following week(s).
+Incomplete FUND items remain incomplete; they are not converted to PASS by deployment.
 
 ### Option B - Plan A Selective LMSPro Production Release
 
@@ -236,21 +262,89 @@ replay from the production baseline, full automated verification, a separate sta
 environment/deployment proof and updated lifecycle evidence. No such selective release is
 authorised by this document.
 
-## 10. Promotion Decision And Next Controlled Action
+## 10. Completed Promotion Decision
 
-The production decision is:
+The Platform Owner authorised Option A after the standard controls were satisfied. The
+completed decision is:
 
 ```text
-DO NOT fast-forward current staging to main.
-DO NOT run the 17-migration chain against live.
-DO NOT change live cron or live R2 settings under this assessment alone.
+shared Security Scan: PASS
+read-only live migration preflights: PASS
+live snapshot/recovery boundary: CONFIRMED BY PLATFORM OWNER
+controlled migration-before-code release: COMPLETE
+application branch alignment: b9287ffa
+R8-A3 staging/live attachment delivery: PASS
+FUND unrestricted production readiness: NOT CLAIMED
 ```
 
-R8-A3 remains staging-accepted and production-ready in principle. The next controlled
-decision is to choose and authorise either:
+The scheduled and exact-candidate Security Scans passed after the bounded dependency and
+Gitleaks corrections. The combined migration chain initially stopped safely at the R3-D
+empty-FUND baseline guard. The Platform Owner had already classified the live FUND records
+as disposable development data and held a live database snapshot. The FUND schema was
+cleared without deleting LMSPro/public data, the failed R3-D attempt was marked rolled
+back, and the same migration-before-code deployment was retried successfully.
 
-- completion of the full combined release gate under Option A; or
-- a newly planned selective LMSPro release under Option B.
+After deployment, authentication initially returned HTTP 500 because the configured
+Upstash REST URL and REST token did not belong to the same database credential set. The
+matching REST token was restored without changing `AUTH_SECRET`, `NEXTAUTH_SECRET` or the
+database encryption key, and MAIN returned green.
 
-Until that decision and its prerequisites are complete, `origin/main`, live services and
-the live database remain unchanged.
+The first live attachment delivery then failed because the web-service R2 credentials had
+been rotated but the separately configured live cron still held stale signing
+credentials. The same current R2 account/access-key/secret-key/bucket tuple was applied to
+the web and cron consumers without recording its values. Fresh attachment sends
+subsequently passed in both staging and MAIN. This closes the R8-A3 live environment and
+transport gate.
+
+FUND human testing continues against its recorded staging candidate. Open FUND findings
+remain development/remediation work and do not become PASS merely because the shared
+application is live.
+
+Exact-candidate Security Scan evidence:
+
+- manual governed branch-diff/current-tree run: `29997153382`;
+- `dev`: `29997506649`;
+- `staging`: `29997657278`; and
+- `main`: `29997904145`.
+
+## 11. Credential-Rotation Operational Note
+
+During the shared Security Scan remediation, the Platform Owner confirmed that resetting
+the password for an existing Upstash Redis database successfully regenerates its REST
+token without creating a replacement database. The Upstash console may continue to display
+the previous token in the current browser session after the success prompt. Log out of
+Upstash and sign in again before copying the refreshed token.
+
+After reset:
+
+1. refresh the Upstash session by logging out and back in;
+2. copy the newly displayed REST token without placing it in source, documentation, chat
+   or screenshots;
+3. update every approved Render service or cron that consumes that database;
+4. redeploy those consumers; and
+5. verify Redis-backed application behaviour before considering the rotation complete.
+
+This note records operating behaviour only. It contains no token, Redis URL, account
+identifier or credential evidence.
+
+Cloudflare R2 rotation has the same multi-consumer requirement. Each environment's web
+service and attachment-delivery cron are separate Render consumers. The account ID,
+access-key ID, secret access key and exact private attachment-bucket name must be updated
+and redeployed together for each affected consumer. A successful web upload does not prove
+that the cron can sign a valid private-object download.
+
+## 12. Remaining Documentation And Product Work
+
+R8-A3 implementation, deployment and promotion are complete. The next LMSPro email work is
+not selected by this record. The consolidated remediation CR was subsequently completed as a
+four-item planning input and reconciled by the 2026-07-27 planning refinement:
+
+`docs/modules/lmspro/01-cr-inputs/2026-07-22-lmspro-consolidated-email-integrity-club-visibility-and-remedial-work-cr-input.md`
+
+`docs/modules/lmspro/01-cr-inputs/2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md`
+
+The complete CR is ready for formal control-window triage. No executable slice is selected or
+authorised by this production record, the CR or the refinement. Formal triage must preserve one
+coordinated programme with separately bounded slices and carry item 3's accepted business
+semantics plus mandatory read-only live-state inventory and consumer-classification gates into
+bounded planning.

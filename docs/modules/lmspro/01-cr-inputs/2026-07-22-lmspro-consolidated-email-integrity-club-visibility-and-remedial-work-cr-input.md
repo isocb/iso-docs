@@ -1,13 +1,15 @@
 # LMSPro Consolidated Email Integrity, Club Visibility And Remedial Work CR Input
 
 Date: 2026-07-22
+Last updated: 2026-07-27
 
 Module: LMSPro / SeasonPro using the shared IsoStack communications service
 
-Status: Consolidated CR input opened; remedial item 1 captured; R8-A staging acceptance
-complete; eligible for later triage but no executable slice selected
+Status: Four-item consolidated CR input complete; R8-A production promotion complete; eligible
+for control-window triage but no executable slice selected
 
-Priority: High for communications-history integrity and C2 access control
+Priority: High for communications-history integrity, C2 access control and truthful seasonal
+Club participation
 
 Authoritative roadmap:
 
@@ -16,13 +18,14 @@ Authoritative roadmap:
 ## 1. Planning-Only Boundary
 
 This document is a consolidated change-request input. It records evidence, business intent,
-required outcomes, dependencies and open questions for later triage and bounded slice planning.
+required outcomes, dependencies, settled answers and mandatory planning/data gates for later
+triage and bounded slice planning.
 
 It does not:
 
 - authorise application code, schema, migration, infrastructure or deployment work;
 - assign or select an executable remediation slice;
-- change the active R8-A attachment-delivery lane;
+- reopen or change the completed R8-A attachment-delivery lane;
 - amend roadmap status or lifecycle evidence;
 - authorise retrospective production-data mutation; or
 - replace the authoritative LMSPro roadmap.
@@ -32,24 +35,25 @@ testing, lifecycle records, promotion and roadmap reconciliation.
 
 ## 2. Source Request And Consolidated CR Structure
 
-The business has identified five email-remediation concerns that should ultimately be considered
-as one coordinated LMSPro email-remedial programme rather than five unrelated fixes.
+The business has identified four related remedial concerns across LMSPro communications and the
+operating lifecycle. They should be considered as one coordinated compound CR rather than four
+unrelated fixes.
 
-This document opens that consolidated CR and records the first item in full:
+This document records the complete four-item consolidated CR:
 
 1. **Club dashboard email visibility and history integrity** - captured in this revision;
-2. email-remediation item 2 - reserved for later business evidence;
-3. email-remediation item 3 - reserved for later business evidence;
-4. email-remediation item 4 - reserved for later business evidence; and
-5. email-remediation item 5 - reserved for later business evidence.
+2. **Attachment dropzone click-to-browse regression** - captured in this revision;
+3. **Club admission, current participation and waiting-list alignment** - captured in this
+   revision;
+4. **Responsive Team status and waiting-list-position visibility** - captured in this revision.
 
-Reserved items are not requirements and must not be inferred or implemented until the business
-adds their evidence and desired outcomes.
+The C1 League dashboard reorganisation previously expected as item 5 is now a separate,
+standalone piece of work. It is not part of this consolidated CR and must receive its own CR,
+triage and planning lifecycle before implementation.
 
-The active attachment-delivery cycle has now completed its staging test/documentation gate.
-Production remains governed separately by the combined-release HOLD. This CR is therefore
-eligible for later triage when selected by the roadmap, but capturing or committing it does not
-select implementation, displace the production decision or infer requirements for items 2-5.
+The attachment-delivery cycle has completed its staging and live gates. This four-item CR is
+complete as a planning input and may proceed to control-window triage. Capturing or committing
+the current observations does not select or authorise implementation.
 
 ## 3. Related Accepted Foundations
 
@@ -76,9 +80,9 @@ Attachment transport remains controlled separately by:
 - the accepted R8-A controlling plan; and
 - its subordinate R8-A1 through R8-A3 planning, implementation and review lifecycle.
 
-This consolidated CR must consume the final accepted R8-A delivery and status contracts. It must
-not reopen attachment transport, private R2 policy, provider routing, rate limiting or retry while
-that lifecycle remains active.
+R8-A is complete through staging and live. This consolidated CR must consume its final accepted
+delivery and status contracts and must not reopen attachment transport, private R2 policy,
+provider routing, rate limiting or retry.
 
 ### 3.3 Current Evidence Surfaces
 
@@ -93,6 +97,30 @@ src/modules/lmspro/communications/cohort-resolver.ts
 scripts/jobs/processors/sequences.ts
 scripts/jobs/processors/key-date-sequences.ts
 prisma/schema.prisma
+```
+
+The third remedial item is supported by read-only review of the current Club Application, Club,
+Team, division, season-clone, communications and access contracts, including:
+
+```text
+prisma/schema.prisma
+src/modules/lmspro/routers/club-applications.router.ts
+src/modules/lmspro/routers/clubs.router.ts
+src/modules/lmspro/routers/teams.router.ts
+src/modules/lmspro/routers/seasons.router.ts
+src/modules/lmspro/communications/cohort-resolver.ts
+src/core/services/communications/components/ComposeEmailModal.tsx
+src/app/(app)/app/lmspro/team-approval/page.tsx
+src/app/(app)/app/lmspro/clubs/page.tsx
+```
+
+The fourth remedial item is supported by read-only review of:
+
+```text
+src/app/(app)/app/lmspro/teams/page.tsx
+src/app/(app)/app/lmspro/club/teams/page.tsx
+src/modules/lmspro/lib/teamStatus.ts
+src/styles/globals.css
 ```
 
 ## 4. Strategic Decision
@@ -422,9 +450,10 @@ Candidate deterministic reconciliation inputs are:
 Do not automatically assign historic visibility by matching a recipient address to current Club
 contacts or current User memberships. These values are mutable and may be shared.
 
-LMSPro can create successor Club records during season cloning. Later planning must define whether
-historic communication follows a durable Club lineage into the current dashboard or remains bound
-to the exact season Club record. Name matching alone must not become historic access authority.
+Each season is discrete for C2 Email history. Historic communication remains bound to the exact
+season Club context and does not carry into a successor-season dashboard. Current-season
+reconciliation must still use durable same-tenant evidence; name matching alone must never become
+historic access authority.
 
 Ambiguous historic rows should be reported for C1 review or deliberately remain absent. They must
 not be silently exposed.
@@ -453,14 +482,16 @@ not be silently exposed.
 - redesigning Announcement presentation except where its email audience must populate visibility;
 - changing Email content after send;
 - bulk mutation of ambiguous historic records without an accepted reconciliation plan;
-- implementing the four reserved remedial items before their evidence is supplied; and
+- the standalone C1 League dashboard reorganisation formerly expected as item 5;
+- implementing any of these four remedial items before triage and bounded slice acceptance; and
 - roadmap, deployment or production-data changes from this CR input.
 
 ## 14. Dependencies And Sequencing Implications
 
 Hard dependencies:
 
-1. complete, test, document and sign off the active R8-A attachment lifecycle;
+1. retain the completed, tested and signed-off R8-A attachment lifecycle as the delivery
+   foundation;
 2. accept the final shared Email/delivery status terminology produced by R8-A;
 3. inventory every current Email creation/send path before schema planning;
 4. decide the visibility threshold and historic reconciliation policy; and
@@ -501,9 +532,9 @@ Remedial item 1 is successful when:
 
 ## 17. Settled Business Decisions
 
-1. This is remedial item 1 within a planned five-item consolidated LMSPro email CR.
-2. The consolidated CR remains subordinate to the LMSPro roadmap and awaits triage after R8-A
-   attachment sign-off.
+1. This is remedial item 1 within the complete four-item consolidated LMSPro remediation CR.
+2. The consolidated CR remains subordinate to the LMSPro roadmap; R8-A attachment sign-off is
+   complete and the four-item CR is eligible for control-window triage.
 3. C1 Sent history and C2 Club history serve different authorised scopes but must reconcile under
    explicit rules.
 4. Email delivery recipient identity is not sufficient to control Club-history visibility.
@@ -521,10 +552,12 @@ Remedial item 1 is successful when:
 12. Historic sent Email content and delivery evidence remain immutable.
 13. No application implementation begins from this CR input.
 
-## 18. Open Business And Planning Questions
+## 18. Pre-Answer Business And Planning Questions
 
-The following must be answered or explicitly deferred during later triage/planning. They do not
-reopen the settled many-to-many direction.
+This section preserves the questions that preceded the 2026-07-27 business answers. The linked
+planning refinement reconciles them into settled decisions and mandatory planning/data gates.
+Where this section conflicts with that later refinement, the refinement controls formal triage.
+These questions do not reopen the settled many-to-many direction.
 
 ### 18.1 C2 Visibility Threshold
 
@@ -584,11 +617,645 @@ tenant retention policies apply.
 
 ## 19. Planning Handoff
 
-The controlling window may later:
+Planning-only four-item refinement:
 
-1. append remedial items 2 through 5 when their business evidence is supplied;
-2. complete and close the active R8-A lifecycle;
-3. triage the consolidated CR as one coordinated email-remediation capability;
-4. decide whether item 1 requires one or several bounded slices; and
+`docs/modules/lmspro/01-cr-inputs/2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md`
+
+The next controlling-window action is formal triage. It must:
+
+1. retain completed R8-A as the delivery foundation rather than reopening it;
+2. triage the complete four-item CR as one coordinated compound-remediation programme;
+3. create separately bounded implementation slices while preserving the accepted programme;
+4. open the C1 League dashboard reorganisation through a separate CR lifecycle when selected; and
 5. reconcile accepted work into the authoritative roadmap without treating this CR as execution
    authority.
+
+## 20. Remedial Item 2 - Attachment Dropzone Click-To-Browse Regression
+
+### 20.1 Business Observation
+
+Following the R8-A attachment remediation and production promotion, human LMSPro testing found
+that the email attachment control still accepts files dragged onto it but no longer reliably
+opens the local operating-system file picker when the same zone is clicked.
+
+The previously understood interaction was one combined control:
+
+```text
+drag files onto the attachment zone
+OR
+click the attachment zone to browse for local files
+```
+
+The loss of click-to-browse was not requested by the business and was not an accepted R8-A
+security, storage, delivery, rate-limit or provider decision. The current UI continues to state
+`Drag files here or click to browse`, so a non-responsive click is also a direct mismatch between
+the displayed instruction and actual behaviour.
+
+### 20.2 Required Outcome
+
+A later bounded remediation must:
+
+- restore both drag-and-drop and click-to-open-file-picker behaviour to the same attachment zone;
+- preserve the accepted R8-A2R file allowlist, three-file limit, cumulative 10 MB limit, private
+  R2 persistence, validation, acknowledgement and fail-closed delivery contracts;
+- preserve keyboard access so the file picker can be opened without a pointing device;
+- give the control an accessible name, visible focus treatment and truthful disabled/loading
+  state;
+- prevent a click on remove, link or another adjacent control from opening the file picker;
+- prevent double selection or repeated picker activation while selected files are being
+  processed;
+- work for a new Email, saved draft, reopened draft and duplicated-to-draft Email;
+- retain the separate external HTTPS shared-document-link editor and avoid describing an
+  uploaded local file as a link;
+- add focused component/browser regression coverage for pointer click, keyboard activation,
+  drag-and-drop, rejection, limits and processing state; and
+- include a human smoke check in the supported staging and production browsers.
+
+### 20.3 Investigation Boundary
+
+Current read-only review confirms that `ComposeEmailModal` still renders a Mantine `Dropzone` and
+still displays the click-to-browse instruction. The regression therefore requires focused runtime
+and browser investigation before a fix is selected. Candidate causes may include dropzone
+activation props, an overlay or disabled/loading state, event interception, focus behaviour or a
+dependency/runtime interaction; none is accepted as the cause without evidence.
+
+This CR does not authorise an opportunistic component rewrite or any change to attachment policy,
+provider delivery, R2 credentials, email visibility, recipient resolution or the external-link
+contract.
+
+### 20.4 Acceptance Principles
+
+Remedial item 2 is successful when:
+
+1. clicking anywhere in the intended attachment zone opens one local file picker;
+2. keyboard activation opens the same picker;
+3. dropping an accepted file continues to work;
+4. refused files and limit breaches remain safely rejected with understandable feedback;
+5. accepted files appear once and retain the exact R8-A validation/persistence evidence;
+6. loading prevents conflicting selection without leaving the control permanently inert;
+7. the instruction shown to the user matches the tested interaction; and
+8. no attachment delivery, no-attachment batch, external-link or draft-rehydration regression is
+   introduced.
+
+## 21. Remedial Item 3 - Club Admission, Current Participation And Waiting-List Alignment
+
+### 21.1 Business Observation
+
+A Club may be accepted into the league while none of its Teams currently has a division
+allocation. This includes:
+
+- a newly accepted Club whose requested Teams still await placement;
+- a Club with Teams that are all on the waiting list;
+- a Club with no Teams in the season; and
+- a previously participating Club whose last current Team loses its division allocation or moves
+  to another non-current state.
+
+The reconciled business meaning is:
+
+```text
+admitted Club + one or more current, division-allocated Teams = Current Club
+
+admitted Club + zero current, division-allocated Teams = Waiting List Club
++ preserve unallocated and consciously wait-listed Team evidence
+```
+
+Approval of the Club's onboarding application must remain durable admission evidence. Moving the
+seasonal Club between participation states must not reopen, revoke or repeat onboarding. Club
+Waiting List is the aggregate for zero qualifying Current/allocated Teams; it does not
+automatically change an unallocated Team into Team Waiting List.
+
+### 21.2 Verified Current Lifecycle
+
+The present model already contains two distinct records but does not consistently preserve their
+different meanings:
+
+1. `LMSProClubApplication.status` records onboarding review:
+   `PENDING -> EMAIL_VERIFIED -> APPROVED` or `REJECTED`.
+2. `LMSProClub.status` records a mixture of admission and operational state:
+   `PENDING`, `APPROVED`, `WAITING_LIST`, `SUSPENDED` or `WITHDRAWN`.
+3. The normal application approval path marks both the Application and Club `APPROVED`, even when
+   every requested Team is still `NEW_CLUB_PENDING_TEAM`.
+4. The application wait-list path marks the Application `APPROVED`, correctly recognising that a
+   wait-listed Club has still passed onboarding, while setting the Club to `WAITING_LIST`.
+5. A Team can currently be `CURRENT` while `aggId` is null. The Team Approval surface explicitly
+   describes this state as **Approved & Unallocated**.
+6. Team status and division allocation can be changed independently. Removing or changing a
+   division does not reconcile the Club's status.
+7. Several Club lists, dashboard counts, communication cohorts, registration guards and workflow
+   selectors equate `ClubStatus.APPROVED` with active/current participation.
+8. Season cloning currently carries the source Club status and Team status forward rather than
+   deriving the destination Club's participation state from destination-season allocations.
+
+The requested rule is therefore not a safe label-only change. A direct automatic
+`APPROVED <-> WAITING_LIST` update without aligning these consumers could hide a Club from
+communications, prevent its officials from registering Teams, distort counts or preserve the
+wrong status into a new season.
+
+#### Verified CRUD, table, filter and count contradiction
+
+`ClubStatus` has no `CURRENT` enum value. The currently deployed application nevertheless presents
+the same stored `APPROVED` value under several different business labels:
+
+- the main Clubs table renders `APPROVED` as a **Current** badge;
+- its default status filter stores `ClubStatus.APPROVED` but labels the option **Current**;
+- the main Clubs add flow defaults a directly created Club to `PENDING`, while the season-level
+  Clubs add flow defaults the same shared create procedure to `APPROVED`;
+- the create/edit Club modal on that same page labels the same value **Approved** and explains
+  `Approved = active in season`;
+- that modal omits `WAITING_LIST`, although the table and filter display it;
+- the season-level Clubs editor labels `APPROVED` as **Approved** and does include
+  `WAITING_LIST`;
+- the Club detail editor labels `APPROVED` as **Approved** and omits `WAITING_LIST`;
+- the main dashboard queries `APPROVED` Clubs and labels the count **Active Clubs**;
+- another dashboard card queries `APPROVED` Clubs and labels the result **Registered Clubs**;
+- the season statistics query `APPROVED` Clubs and label the result **Approved Clubs**; and
+- the communications cohort picker exposes `APPROVED` as **Approved**.
+
+The current queries are internally counting the stored `APPROVED` value, but their displayed
+meaning is not stable. They do not prove that each counted Club has a current, division-allocated
+Team. Likewise, the Club table's Team count currently counts Teams whose status is `CURRENT`, even
+though that status may presently coexist with a null division allocation.
+
+Later planning must therefore define each count and selector by business cohort rather than merely
+renaming its label:
+
+- **Admitted Clubs** - onboarding/admission has been approved;
+- **Current Clubs** - at least one qualifying current, division-allocated Team;
+- **Waiting List Clubs** - admitted with zero qualifying current, division-allocated Teams;
+- **Registered Clubs** - define explicitly whether this means all admitted, all non-terminal, or
+  every Club record; and
+- **Current Teams** - current and validly division-allocated under the accepted final invariant.
+
+### 21.3 Recommended Domain Separation
+
+Later bounded planning should preserve two separate authorities:
+
+#### Admission/onboarding authority
+
+- `LMSProClubApplication.status = APPROVED` means the league accepted the application.
+- That evidence remains approved when the Club is Current or Waiting List.
+- Team placement must never mutate the historic Application decision.
+- Directly created or imported Clubs that have no Application require equivalent explicit,
+  auditable admission evidence; admission must not be inferred from a Team count.
+
+#### Seasonal participation authority
+
+The business-facing Club participation states should be:
+
+- **Current** - the admitted Club has at least one Team in the same season whose status is
+  `CURRENT` and whose division/AGG allocation is non-null and valid;
+- **Waiting List** - the admitted Club has zero such Teams while retaining the distinct evidence
+  for unallocated and consciously wait-listed Teams;
+- **Suspended** - an explicit disciplinary or administrative override;
+- **Withdrawn** - an explicit terminal operational decision; and
+- **Pending** - only while admission/onboarding itself remains undecided.
+
+The existing database value `APPROVED` currently represents the business-facing **Current** state
+in several surfaces. Later planning should determine whether to rename that enum value or retain it
+as a compatibility value while presenting the truthful `Current` label. No enum or migration
+decision is made by this CR.
+
+Current and Club Waiting List are derived from qualifying Team allocation evidence. Team Waiting
+List remains a conscious status decision. Club participation should not remain an unconstrained
+choice in a generic Club CRUD status dropdown. The later surface contract should:
+
+- show the derived seasonal participation state read-only with its reason/evidence;
+- keep Application approval within the onboarding review workflow;
+- provide explicit authorised actions for suspension, withdrawal and reinstatement;
+- provide an explicit admitted/direct-create workflow where a Club does not originate from an
+  Application;
+- prevent a manual Club edit from contradicting the derived Current/Club Waiting List aggregate.
+
+### 21.4 Team Status And Division Invariant
+
+The preferred target contract is:
+
+```text
+Team CURRENT
+-> valid same-tenant, same-season division/AGG allocation
+
+Team WAITING_LIST
+-> explicit authorised waiting-list decision
+
+Team unallocated
+-> retained for Division Manager allocation work
+-> excluded from Current counts
+-> not automatically WAITING_LIST
+```
+
+Accordingly:
+
+- approving and allocating a Team should set its division and `CURRENT` status atomically;
+- a Team accepted in principle but not allocated remains the distinct reviewed/unallocated state
+  used by the Division Manager workflow;
+- moving a Team to `WAITING_LIST` requires a conscious authorised status decision;
+- removing the last valid division allocation should not leave the Team `CURRENT`;
+- assigning a waiting-list Team to a valid division should move it to `CURRENT`;
+- pending-review states remain distinct from both Current and Waiting List; and
+- `SUSPENDED`, `WITHDRAWN`, `CANCELLED`, `AGED_OUT`, `INACTIVE` and `NO_RESPONSE` Teams do not make
+  a Club Current.
+
+This removes the contradictory `CURRENT + unallocated` combination without silently converting
+the reviewed/unallocated state to Waiting List. Later planning must preserve and name that
+operational state consistently.
+
+### 21.5 Recommended End-To-End Transitions
+
+#### New Club accepted
+
+1. Application becomes and remains `APPROVED`.
+2. Club is admitted, provisioned and available to its authorised officials.
+3. Club begins Waiting List because no Team is yet Current and division-allocated.
+4. Requested Teams remain pending review until the league decides their placement.
+
+#### First Team allocated
+
+1. The Team's valid division allocation and `CURRENT` status are committed together.
+2. The Club becomes Current in the same controlled operation.
+3. The transition is audited once and may drive a bounded notification only if later accepted.
+
+#### Additional Team allocated or wait-listed
+
+- The Club remains Current while at least one qualifying Team remains.
+- A newly wait-listed Team does not make the whole Club Waiting List while another qualifying Team
+  remains Current.
+
+#### Last qualifying Team ceases to be current and allocated
+
+1. The Team transition and allocation change are committed together.
+2. The admitted Club becomes Waiting List while each remaining Team retains its actual
+   unallocated, waiting-list or other non-current status.
+3. Club officials retain the access required to manage the Club and submit or amend future Team
+   requests.
+4. Onboarding remains approved and is not repeated.
+
+#### Team later reallocated
+
+- The Team returns to `CURRENT` with its valid division allocation.
+- The Club returns to Current without a new onboarding decision.
+
+#### Manual Club overrides
+
+- `SUSPENDED` and `WITHDRAWN` take precedence over derived Current/Waiting List state.
+- Team allocation must not silently reactivate a suspended or withdrawn Club.
+- Reinstatement must be an explicit authorised and audited Club action, followed by evaluation of
+  the actual Team allocation evidence.
+
+### 21.6 Required Alignment Surface
+
+A later bounded slice must inventory and align every retained writer and consumer, including:
+
+- Application approve, wait-list and reject paths;
+- direct Club creation and import;
+- Team registration, approval, wait-list, allocation, de-allocation, bulk status and edit paths;
+- Team cancellation, suspension, withdrawal, no-response, ageing and deletion paths;
+- age-group changes that clear a division;
+- season clone, continuation and roll-forward;
+- Club lists, detail pages, filters, badges, quick statistics and dashboards;
+- Club-official access and Team-registration guards;
+- key-date confirmations, announcements, email composition and communication cohorts;
+- directory/public eligibility where applicable; and
+- audit, notification and historic reporting.
+
+The exact qualifying Team count must be tenant- and season-scoped and should be calculated as:
+
+```text
+count(
+  Team.organizationId = Club.organizationId
+  AND Team.seasonId = Club.seasonId
+  AND Team.clubId = Club.id
+  AND Team.status = CURRENT
+  AND Team.aggId references a valid division in that same tenant and season
+)
+```
+
+All status reconciliation must be idempotent and concurrency-safe. If participation state is
+persisted for filtering and reporting, the Team mutation and Club reconciliation should share one
+transaction or an equivalently strong repairable contract. It must not depend on a browser action
+being the only writer.
+
+### 21.7 Access And Communications Guard
+
+Waiting List is not suspension.
+
+A Club moving from Current to Waiting List must not automatically:
+
+- deactivate Club officials;
+- remove the Club dashboard;
+- prevent an admitted Club from submitting Team requests;
+- erase or hide historic Club communications;
+- remove the Club from every operational email audience;
+- revoke admission or Application approval; or
+- behave as withdrawal.
+
+Each consumer must request the correct cohort explicitly:
+
+- **admitted Clubs** may include both Current and Waiting List;
+- **currently participating Clubs** include only Clubs with qualifying allocated Teams;
+- **waiting-list Clubs** include admitted Clubs with zero qualifying allocated Teams;
+- **all operational Clubs** may include Current, Waiting List and other explicitly selected
+  non-terminal states; and
+- suspended/withdrawn handling remains purpose-specific.
+
+This distinction is especially important because several current queries filter only
+`ClubStatus.APPROVED`.
+
+### 21.8 Season Boundary
+
+Participation is season-specific. A new-season Club must not become Current merely because its
+source-season predecessor was Current.
+
+Season clone and roll-forward should:
+
+- retain durable Club identity/lineage and historic admission evidence;
+- create or retain destination-season Team records according to the accepted continuation rules;
+- reconcile the destination Club from destination-season Team allocations;
+- set the destination Club to Waiting List where no qualifying allocation exists, without
+  changing any unallocated Team to Team Waiting List; and
+- avoid changing the closed source season's historic status.
+
+### 21.9 Acceptance Principles
+
+Remedial item 3 is successful when:
+
+1. an approved Application remains approved regardless of seasonal Team placement;
+2. a newly admitted Club with no qualifying Team is a Waiting List Club while its Teams retain
+   their actual individual states;
+3. a Club becomes Current when its first Team becomes both current and division-allocated;
+4. a Club remains Current while any qualifying Team remains;
+5. a Club becomes Waiting List when its last qualifying Team ceases to qualify;
+6. no `CURRENT` Team remains division-unallocated under the accepted final contract;
+7. suspended and withdrawn Club decisions cannot be overwritten by Team reconciliation;
+8. Waiting List Club officials retain their accepted access and Team-request capability;
+9. dashboard counts, filters, communications and season rollover use the correct admitted/current/
+   waiting-list cohort;
+10. every Club badge, editor, filter, count and communication selector uses one defined business
+    term and never exposes `APPROVED` as both Approved and Current without explanation;
+11. a generic CRUD edit cannot contradict the derived Current/Waiting List state;
+12. every retained writer converges idempotently under same-request retries and concurrency;
+13. historic onboarding, Club, Team, allocation, communication and audit evidence is preserved;
+    and
+14. no implementation begins from this CR input.
+
+### 21.10 Business Defaults For Later Review
+
+The reconciled defaults and gates are:
+
+- **yes** - a Registered/admitted Club with no qualifying Current/allocated Team is Club Waiting
+  List;
+- **no automatic Team conversion** - unallocated or pending Teams do not become Team Waiting List;
+- **explicit Team decision required** - Team Waiting List remains conscious even while its Club
+  aggregate is Waiting List;
+- **yes** - one current and validly allocated Team is sufficient for the Club to be Current;
+- **no** - a suspended, withdrawn, cancelled, inactive, aged-out or no-response Team does not count;
+- **no** - Waiting List does not remove Club-official access or undo onboarding;
+- **no** - season clone does not carry Current blindly; it recalculates from destination evidence;
+  and
+- **no automatic notification** - C1 communicates participation changes manually.
+
+### 21.11 Live-Data Safety And Controlled Promotion
+
+LMSPro is a live, operational system. Remedial item 3 will eventually act on real Club,
+Application, Team, division, User-access, season and communications evidence. The normal
+`feature branch -> dev -> origin/dev -> staging -> main` promotion route is necessary but is not,
+by itself, sufficient protection for production data.
+
+Later planning and implementation must treat the production data contract as a controlling
+constraint:
+
+1. **No assumption of a clean baseline.** Existing combinations such as `APPROVED` Clubs with no
+   qualifying Teams, `CURRENT` Teams with null divisions, wait-listed Clubs with mixed Team states,
+   direct/imported Clubs without Applications and cloned-season inconsistencies must be expected
+   and measured.
+2. **Read-only inventory first.** Before schema or behaviour changes, provide tenant- and
+   season-scoped read-only reports that count every relevant state combination and identify only
+   safe record identifiers. Do not print personal contact data, credentials or unrestricted
+   metadata.
+3. **Classify before correcting.** Separate deterministic conversions from ambiguous records.
+   Ambiguous or contradictory live records must be retained and surfaced for authorised review;
+   they must not be silently forced into Current or Waiting List.
+4. **No destructive semantic backfill.** Do not delete Clubs, Applications, Teams, allocations,
+   officials, communications or audit evidence to make the new invariant pass. Do not rewrite
+   historic closed-season truth as if the new rule had always existed.
+5. **Forward-only compatibility.** Where persistence changes are required, prefer an additive or
+   expand/contract sequence that allows the currently deployed application and the candidate
+   application to coexist safely during promotion and rollback. Do not rename or remove the
+   `APPROVED` enum value in one irreversible step without a separately proven compatibility plan.
+6. **Dry-run reconciliation.** Any production reconciliation command must be bounded,
+   tenant-/season-scoped, idempotent, dry-run by default and capable of producing before/after
+   counts without mutation. Mutation mode requires explicit operator intent and durable audit.
+7. **Transactional convergence.** Each applied correction must preserve same-tenant ownership and
+   update the minimum related evidence atomically. A partial Team/Club conversion must roll back
+   rather than leave a more contradictory live state.
+8. **User-access protection.** Preflight must prove that a Current-to-Waiting-List reconciliation
+   will not deactivate Club officials, revoke dashboard access or block the admitted Club's
+   accepted Team-request workflow.
+9. **Communication protection.** Preflight must prove that historic Email visibility and intended
+   admitted/current/waiting-list cohorts remain available under the new terminology. A production
+   conversion must not silently remove Clubs from necessary operational messages.
+10. **Representative rehearsal.** Validate against disposable PostgreSQL data representing every
+    observed production state combination, then rehearse the exact migration/reconciliation
+    sequence against an authorised production snapshot or structurally representative clone.
+11. **Migration and code ordering.** The later implementation plan must state the exact safe order
+    for schema, compatibility code, reconciliation, constraint enforcement and UI terminology.
+    Migration-before-code or code-before-migration must not be assumed generically.
+12. **Explicit live preflight and go/no-go.** Immediately before Main promotion, rerun the
+    read-only production inventory, confirm migration history and candidate ancestry, preserve an
+    approved database recovery point, record rollback commands and stop for the authorised
+    production decision.
+13. **Post-promotion verification.** Verify live LMSPro login, Club-official access, Club and Team
+    counts, application history, Team allocation workflows, dashboards, communication cohorts and
+    season views before declaring the data lifecycle complete.
+14. **Rollback recognises data reality.** Code rollback and data recovery are separate controls.
+    The plan must define which forward-applied data remains compatible with the previous code and
+    when database point-in-time recovery would be required. It must never describe a Git revert as
+    sufficient database rollback.
+
+Staging evidence remains essential, but a green staging run does not authorise an unexamined live
+reclassification. Production inventory may differ from staging and must be evaluated independently
+at the controlled promotion gate.
+
+No live inventory, backfill, migration, reconciliation or environment change is authorised by this
+CR input.
+
+## 22. Remedial Item 4 - Responsive Team Status And Waiting-List-Position Visibility
+
+### 22.1 Business Observation
+
+The League Teams page and C2 Club Teams page both show Team status in a table badge. For
+waiting-list Teams the badge may also include the Team's numeric position and total, for example:
+
+```text
+Waiting List 3/12
+```
+
+As the viewport narrows, the table compresses the status cell and the badge. The numeric value can
+become clipped or hidden, especially on mobile. This removes decision-relevant information from
+the people most likely to consult it quickly on a phone.
+
+The required outcome is not merely that the badge remains coloured. The full visible words
+**Waiting List** and the available position/total must remain readable without hover, opening a
+tooltip or guessing from colour.
+
+### 22.2 Verified Current Surface
+
+Read-only review confirms:
+
+- `/app/lmspro/teams` renders a wide League table containing Team number, Club, notes, change
+  requests, Team name, age group, division, manager, status and free days;
+- `/app/lmspro/club/teams` renders a wide Club table containing age group, Team number, Team name,
+  change request, division, status, Team manager and free days;
+- neither table currently defines a deliberate mobile column-priority or compact-card contract;
+- neither table currently wraps the full result in a purposeful horizontal table `ScrollArea`;
+- global page styling suppresses horizontal body overflow, so table width pressure can be expressed
+  as clipping or compression rather than an obvious supported scroll interaction;
+- the League waiting-list badge adds `whiteSpace: nowrap` and relaxes label overflow, but the badge
+  and containing table cell can still be squeezed;
+- the Club waiting-list badge uses the default Badge sizing and has fewer anti-collapse
+  protections; and
+- both surfaces already provide a row/detail interaction where lower-priority evidence can remain
+  accessible if it is removed from the narrow summary row.
+
+This is a shared responsive-presentation defect. It does not require a change to waiting-list
+ordering, Team status, division allocation or the numeric values returned by the server.
+
+### 22.3 Information Priority
+
+At restricted width, the row must prioritise the information needed to identify the Team and
+understand its immediate position:
+
+#### League Team summary
+
+1. Team/Club identity;
+2. age group;
+3. status, including visible waiting-list position/total where available; and
+4. division or **Unallocated** state.
+
+#### Club Team summary
+
+1. Team name;
+2. age group;
+3. status, including visible waiting-list position/total where available; and
+4. division or **Unallocated** state.
+
+The following may leave the narrow summary row, but must remain available in the row detail or an
+equivalent accessible interaction:
+
+- Team number;
+- free-day usage;
+- Team-manager contact detail;
+- notes and change-request indicators; and
+- secondary external-division links.
+
+The Team number may remain available to assist waiting-list ordering in the detail/tooltip, but it
+must not consume scarce mobile row width ahead of the actual waiting-list position.
+
+### 22.4 Recommended Responsive Contract
+
+Later bounded planning should use one shared Team-status presentation contract on both pages.
+
+#### Status pill
+
+- never ellipsise or clip the status words;
+- do not allow the pill to shrink below the width needed for its visible content;
+- use `white-space: nowrap`, non-shrinking flex behaviour and an explicit content-based minimum
+  inline size;
+- keep readable text at or above the accepted small-body accessibility size rather than solving
+  width pressure with progressively tiny text;
+- permit a deliberate break between the status and position only if a two-line compact pill is
+  tested and remains visually clear;
+- render the position as visible text, preferably `3/12` or `3 of 12`, alongside **Waiting List**;
+- retain the richer explanatory tooltip for pointer/keyboard users, but never make the tooltip the
+  only source of the position; and
+- expose a complete accessible name such as `Waiting List, position 3 of 12`.
+
+#### Narrow layout
+
+The preferred mobile treatment is a compact stacked row/card rather than forcing every desktop
+column into one compressed line:
+
+```text
+Team name                         Waiting List
+Club / age group                 Position 3 of 12
+Division name or Unallocated
+```
+
+Where the existing Table is retained at intermediate widths:
+
+- hide Team number and Free Days first;
+- collapse Team-manager contact detail into the row detail;
+- preserve Team/Club identity, age group and status;
+- give the status column a non-shrinking minimum width;
+- truncate a long division display name with an ellipsis only after reserving status width;
+- provide the full division name through an accessible title/tooltip and in row detail; and
+- use an explicit table `ScrollArea` only as a supported fallback, not as the sole mobile design.
+
+The implementation should not abbreviate **Waiting List** to an unexplained icon or initials. Colour
+must remain supplementary and not be the only status signal.
+
+### 22.5 Shared Behaviour And Scope
+
+The later remediation should avoid two pages drifting again by sharing, where practical:
+
+- status label and colour mapping;
+- waiting-list position formatting;
+- accessible status text;
+- compact/mobile status presentation; and
+- breakpoint/column-priority rules.
+
+It must preserve:
+
+- the League rule that a waiting-list position is scoped to the selected age group;
+- the Club view's authorised waiting-list evidence;
+- current sorting and filtering authority;
+- row/detail navigation and keyboard operation;
+- Team and Club tenant isolation; and
+- every existing status value and server-calculated position.
+
+It adds no status mutation, waiting-list reorder, division allocation, free-day behaviour, Team
+number change, email, schema, migration or live-data reconciliation.
+
+### 22.6 Responsive And Accessibility Validation
+
+A later bounded slice must validate both pages with representative long Team, Club and division
+names and at least the following states:
+
+- Current;
+- Waiting List with single- and multi-digit position/total;
+- Pending Approval;
+- New Club Pending;
+- Awaiting Club Approval;
+- Suspended;
+- Withdrawn;
+- Cancelled;
+- No Response; and
+- Unallocated division.
+
+Validation must cover:
+
+- supported phone portrait and landscape widths;
+- tablet and desktop widths;
+- browser zoom to at least 200%;
+- keyboard-only navigation;
+- screen-reader accessible status wording;
+- no clipped or overlapped status/position text;
+- no inaccessible evidence caused by hidden columns;
+- long division-name truncation with a discoverable full value;
+- row/detail opening without accidental nested-action activation; and
+- equivalent behaviour on the League and Club Team surfaces.
+
+### 22.7 Acceptance Principles
+
+Remedial item 4 is successful when:
+
+1. **Waiting List** remains visibly readable at every supported width;
+2. an available waiting-list position and total remain visibly readable without hover;
+3. status text does not collapse, ellipsise or shrink below the accepted accessible size;
+4. lower-priority columns yield space before Team identity, age group, status or division state;
+5. hidden Team number, Free Days, manager and operational indicators remain available through
+   accessible row detail;
+6. long division text cannot displace or obscure Team status;
+7. the League and Club pages share the same status semantics and responsive behaviour;
+8. no Team status, waiting-list ordering, division, free-day or server-authority behaviour changes;
+   and
+9. no implementation begins from this CR input.
