@@ -92,6 +92,7 @@ accepted noise and cannot reliably prevent regressions.
 | --- | --- | --- | --- | --- |
 | `PLAT-ASSURE-01` | Repository-wide Lint, Typed-Test Coverage And CI Gate Remediation | Assurance/control weakness with code-quality and toolchain components | High | First-class finding; bounded remediation not yet authorised |
 | `PLAT-ASSURE-02` | High-Severity Dependency Advisory And Staging Security-Gate Remediation | Security/dependency and recurring-monitoring correction | High operational follow-through | Dependency gate cleared on dev/staging; scheduled matrix awaits main activation |
+| `PLAT-ASSURE-03` | Auth Dependency And Audit-Gate Security Remediation | Critical/high dependency security and fail-closed assurance correction | Urgent | Accepted; implementation isolated on dedicated branch; staging human auth smoke required |
 | `PLAT-REFINE-01` | Dedicated Authenticated Private Binary Upload Transport | Runtime resilience/efficiency architecture refinement | Medium | Wishlist only; no implementation authority |
 
 ## 5. PLAT-ASSURE-01 — Repository-wide Lint, Typed-Test Coverage And CI Gate Remediation
@@ -210,6 +211,25 @@ Lifecycle evidence:
 - `docs/platform/03-slice-planning/2026-07-22-isostack-platform-plat-assure-02-dependency-and-security-monitoring-remediation-planning.md`;
 - `docs/platform/04-implementation-confirmations/2026-07-22-isostack-platform-plat-assure-02-dependency-and-security-monitoring-remediation-confirmation.md`; and
 - `docs/platform/05-review-and-test/2026-07-22-isostack-platform-plat-assure-02-dependency-and-security-monitoring-remediation-review-and-test.md`.
+
+## 6A. PLAT-ASSURE-03 — Auth Dependency And Audit-Gate Security Remediation
+
+The 2026-07-27 audit of unchanged application baseline `f2b794da` reports 2 critical,
+19 high and 1 moderate vulnerability. The affected paths include Auth.js/NextAuth,
+`brace-expansion` and PostCSS. The same review found that the workflow records
+`npm audit ... || true` and therefore does not retain or validate the command's true exit status.
+
+`PLAT-ASSURE-03` is accepted as the single urgent Platform corrective slice. It is isolated from
+the documentation-only `f2b794da` change and must not enter `dev` until its dependency graph,
+fail-closed parser, complete tests, type-check, verification and production build pass.
+
+Automated completion is not the staging gate. The supported Auth.js/NextAuth update and stricter
+`session.user` checks require the dedicated signed-out/authenticated Platform, LMSPro and FUND
+human schedule:
+
+`docs/platform/05-review-and-test/2026-07-27-isostack-platform-plat-assure-03-auth-session-and-routing-staging-human-smoke-test-schedule.md`
+
+No schema, migration, database, environment or production action is authorised.
 
 ## 7. Settled Planning Decisions
 

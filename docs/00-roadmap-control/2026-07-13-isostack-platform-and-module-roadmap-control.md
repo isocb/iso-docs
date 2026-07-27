@@ -254,6 +254,26 @@ Authoritative LMSPro records:
 - `docs/modules/lmspro/01-cr-inputs/2026-07-22-lmspro-consolidated-email-integrity-club-visibility-and-remedial-work-cr-input.md`; and
 - `docs/modules/lmspro/01-cr-inputs/2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md`.
 
+### 2026-07-27 PLAT-ASSURE-03 Urgent Security Remediation Selection
+
+An audit of unchanged application baseline `f2b794da` reports 2 critical, 19 high and
+1 moderate dependency vulnerability across Auth.js/NextAuth, `brace-expansion` and PostCSS
+paths. The current npm-audit workflow also fails to retain and validate the command's real exit
+status. `PLAT-ASSURE-03` is selected as the urgent bounded Platform slice and displaces ordinary
+feature execution.
+
+The implementation is isolated on a dedicated branch. It must pass zero-vulnerability audit,
+fail-closed parser tests, dependency-tree, full test, type-check, critical-file and production
+build gates before `dev` promotion. Because it updates shared authentication dependencies and
+guards, an exact-commit authenticated staging smoke across public, Platform, LMSPro and FUND
+entry paths is mandatory. No production, schema, migration, database or environment action is
+authorised.
+
+Planning and human schedule:
+
+- `docs/platform/03-slice-planning/2026-07-27-isostack-platform-plat-assure-03-auth-dependency-and-audit-gate-security-remediation-planning.md`; and
+- `docs/platform/05-review-and-test/2026-07-27-isostack-platform-plat-assure-03-auth-session-and-routing-staging-human-smoke-test-schedule.md`.
+
 ### 2026-07-22 LMSPro R8-A2R-F1 Development Promotion And Staging Blocker
 
 Application `origin/dev` and the dedicated F1 branch are aligned at verified commit
