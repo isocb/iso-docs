@@ -2,7 +2,9 @@
 
 Date: 2026-07-27
 
-Status: Required; pending exact-commit staging deployment and human execution
+Status: Partially executed against exact staging commit `df40f45c`; signed-out and operational
+checks PASS; authenticated P1/C1/C2/FUND browser scenarios NOT RUN pending designated staging
+accounts and an interactive tester
 
 Planning control:
 
@@ -95,3 +97,45 @@ PASS requires every applicable scenario to succeed with:
 Record PASS, FAIL or NOT RUN for each numbered scenario. A failure keeps staging/production
 promotion on hold and returns the exact observation to the implementation branch. This schedule
 does not authorise production promotion.
+
+## 8. 2026-07-27 Execution Record
+
+Preconditions:
+
+- application `dev`, `origin/dev`, `staging` and `origin/staging`: `df40f45c`;
+- exact dev Security Scan `30260022945`: PASS;
+- exact staging Security Scan `30260218731`: PASS;
+- no Prisma/schema/migration delta;
+- Render-served staging assets report `Last-Modified: Mon, 27 Jul 2026 11:02:22 GMT`;
+- staging health: HTTP 200, database connected and RLS enabled on 11 of 11 tables; and
+- no production environment tested or changed.
+
+Signed-out/operational result:
+
+| Scenario | Result | Evidence |
+| --- | --- | --- |
+| Public IsoStack root | PASS | HTTP 200 |
+| `/welcome` while signed out | PASS | HTTP 307 to `/auth/signin?callbackUrl=%2Fwelcome` |
+| Shared protected LMSPro route | PASS | HTTP 307 to generic sign-in with encoded callback |
+| SeasonPro module root | PASS | HTTP 307 to `/auth/lmspro/login` |
+| SeasonPro protected LMSPro route | PASS | HTTP 307 to module login with encoded callback |
+| Platform login surface | PASS | HTTP 200 with Platform Administration sign-in content |
+| SeasonPro login surface | PASS | HTTP 200 with the expected SeasonPro sign-in content |
+| Signed-out session endpoint | PASS | HTTP 200 with `null`; no session data exposed |
+| Malformed percent-encoded bearer value | PASS | HTTP 200; no unhandled exception or 500 |
+| Private content before redirect | PASS at HTTP boundary | Protected responses redirect without private page content |
+
+Authenticated/browser result:
+
+- section 4: NOT RUN;
+- section 5: NOT RUN;
+- section 6 items 1 to 3: NOT RUN; and
+- browser-console inspection: NOT RUN.
+
+Reason: this execution environment has no designated staging account credentials and no
+interactive authenticated browser session. No account was created, password reset, cookie
+fabricated or database mutated to manufacture access.
+
+Disposition: **PARTIAL / PRODUCTION HOLD**. The exact staging deployment and signed-out security
+boundary pass. The schedule remains open until an authorised tester records the P1, tenant
+owner/admin, LMSPro C1, LMSPro C2 and FUND results.

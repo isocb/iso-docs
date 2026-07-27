@@ -264,17 +264,34 @@ feature execution.
 
 Dedicated-branch implementation `dc616c85` passes zero-vulnerability audit, fail-closed parser
 tests, dependency-tree, full test, type-check, critical-file and production build gates.
-Application `dev` and `origin/dev` are cleanly aligned at the separately completed
-documentation-only baseline `f2b794da`; they do not yet contain the security commit. The next
-security gate is controlled integration into `dev` followed by its exact-commit online Security
-Scan. Because the change updates shared authentication dependencies and guards, an exact-commit
-authenticated staging smoke across public, Platform, LMSPro and FUND entry paths remains
-mandatory. No production, schema, migration, database or environment action is authorised.
+At this selection checkpoint, application `dev` and `origin/dev` were aligned at the separately
+completed documentation-only baseline `f2b794da`; controlled integration and its exact-commit
+online Security Scan were the next gates. The later Dev/Staging checkpoint below supersedes that
+branch status. Because the change updates shared authentication dependencies and guards, an
+exact-commit authenticated staging smoke across public, Platform, LMSPro and FUND entry paths
+remains mandatory. No production, schema, migration, database or environment action is
+authorised.
 
 Planning and human schedule:
 
 - `docs/platform/03-slice-planning/2026-07-27-isostack-platform-plat-assure-03-auth-dependency-and-audit-gate-security-remediation-planning.md`; and
 - `docs/platform/05-review-and-test/2026-07-27-isostack-platform-plat-assure-03-auth-session-and-routing-staging-human-smoke-test-schedule.md`.
+
+### 2026-07-27 PLAT-ASSURE-03 Dev/Staging Checkpoint
+
+Application dev/staging and their remote counterparts align at `df40f45c`. Exact dev Security
+Scan `30260022945` and staging Security Scan `30260218731` pass. The Render staging deployment
+is healthy with connected database and 11/11 RLS coverage. Signed-out Platform/SeasonPro routing,
+login and defensive-session checks pass.
+
+Authenticated P1, tenant owner/admin, LMSPro C1, LMSPro C2 and FUND browser scenarios remain
+NOT RUN because no designated staging credentials or interactive authenticated browser were
+available. Production remains HOLD. No application main, live service, live database, schema,
+migration or environment setting changed.
+
+Promotion checkpoint:
+
+`docs/00-roadmap-control/2026-07-27-plat-assure-03-dev-staging-promotion-and-human-smoke-checkpoint.md`
 
 ### 2026-07-22 LMSPro R8-A2R-F1 Development Promotion And Staging Blocker
 

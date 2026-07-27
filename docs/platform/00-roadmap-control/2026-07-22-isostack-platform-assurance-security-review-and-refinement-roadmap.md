@@ -92,7 +92,7 @@ accepted noise and cannot reliably prevent regressions.
 | --- | --- | --- | --- | --- |
 | `PLAT-ASSURE-01` | Repository-wide Lint, Typed-Test Coverage And CI Gate Remediation | Assurance/control weakness with code-quality and toolchain components | High | First-class finding; bounded remediation not yet authorised |
 | `PLAT-ASSURE-02` | High-Severity Dependency Advisory And Staging Security-Gate Remediation | Security/dependency and recurring-monitoring correction | High operational follow-through | Dependency gate cleared on dev/staging; scheduled matrix awaits main activation |
-| `PLAT-ASSURE-03` | Auth Dependency And Audit-Gate Security Remediation | Critical/high dependency security and fail-closed assurance correction | Urgent | Technical PASS at `dc616c85`; dev online gate and staging human auth smoke required |
+| `PLAT-ASSURE-03` | Auth Dependency And Audit-Gate Security Remediation | Critical/high dependency security and fail-closed assurance correction | Urgent | Dev/staging `df40f45c`; scans and signed-out smoke PASS; authenticated human smoke pending |
 | `PLAT-REFINE-01` | Dedicated Authenticated Private Binary Upload Transport | Runtime resilience/efficiency architecture refinement | Medium | Wishlist only; no implementation authority |
 
 ## 5. PLAT-ASSURE-01 — Repository-wide Lint, Typed-Test Coverage And CI Gate Remediation
@@ -222,8 +222,8 @@ The 2026-07-27 audit of unchanged application baseline `f2b794da` reports 2 crit
 `PLAT-ASSURE-03` is accepted as the single urgent Platform corrective slice. It is isolated from
 the documentation-only `f2b794da` change. Dedicated-branch implementation `dc616c85` passes its
 dependency graph, fail-closed parser, complete tests, type-check, verification and production
-build gates. Application `dev` and `origin/dev` are cleanly aligned at `f2b794da`; they do not yet
-contain `dc616c85`.
+build gates. The implementation was consolidated into dev and promoted to staging. Dev/staging
+and their remote counterparts align at npm 10-compatible follow-up `df40f45c`.
 
 Automated completion is not the staging gate. The supported Auth.js/NextAuth update and stricter
 `session.user` checks require the dedicated signed-out/authenticated Platform, LMSPro and FUND
@@ -231,7 +231,10 @@ human schedule:
 
 `docs/platform/05-review-and-test/2026-07-27-isostack-platform-plat-assure-03-auth-session-and-routing-staging-human-smoke-test-schedule.md`
 
-No schema, migration, database, environment or production action is authorised.
+Exact dev Security Scan `30260022945` and staging Security Scan `30260218731` pass. Staging
+health and the signed-out schedule pass. Authenticated P1/C1/C2/FUND browser scenarios remain
+NOT RUN, so production remains on hold. No schema, migration, database, environment or
+production action is authorised.
 
 Implementation and review evidence:
 

@@ -2,8 +2,8 @@
 
 Date: 2026-07-27
 
-Status: Implemented and locally verified on dedicated branch; dev integration, online Security
-Scan and staging human smoke pending
+Status: Implemented through dev and staging at `df40f45c`; exact Security Scans and signed-out
+smoke PASS; authenticated staging browser smoke pending
 
 Planning control:
 
@@ -19,9 +19,10 @@ Application commit:
 
 `dc616c85`
 
-The branch is pushed to `origin`. Application `dev` and `origin/dev` were separately
-fast-forwarded to the documentation-only baseline `f2b794da`; they do not yet contain this
-security commit.
+The branch is pushed to `origin`. It was merged after documentation-only baseline `f2b794da` at
+dev commit `d2b303a5`. Follow-up `df40f45c` restores npm 10 lockfile compatibility without
+changing the resolved application dependency versions. Application dev/staging and their remote
+counterparts are aligned at `df40f45c`.
 
 ## 2. Implemented Change
 
@@ -39,7 +40,9 @@ changed.
 
 ## 3. Verification Evidence
 
-Using a clean install under Node `22.23.1` and npm `11.6.0`:
+The initial implementation passed locally under Node `22.23.1` and npm `11.6.0`. The final
+promoted lock was then regenerated and clean-installed under the CI-compatible Node `22.23.1`
+and npm `10.9.4` baseline:
 
 - `npm ci` passed;
 - `npm audit --audit-level=moderate` reported zero vulnerabilities;
@@ -55,11 +58,11 @@ Using a clean install under Node `22.23.1` and npm `11.6.0`:
 The build emitted the established warnings for intentionally absent local Upstash
 Redis/session-revocation configuration. No environment value was changed.
 
-## 4. Pending Gates
+## 4. Promotion And Pending Gate
 
-1. integrate the separate security commit into `dev` under the accepted branch workflow;
-2. record the exact promoted `dev` Security Scan;
-3. deploy that exact accepted commit to staging; and
-4. execute and record the required auth/session/routing human smoke.
+Exact dev Security Scan `30260022945` and exact staging Security Scan `30260218731` pass for
+`df40f45c`. The commit is promoted to staging; Render assets changed at 11:02:22 UTC and the
+staging health endpoint returns HTTP 200 with connected database and 11/11 RLS coverage.
 
-No staging or production promotion is authorised by this confirmation.
+The signed-out portion of the auth/session/routing smoke passes. Authenticated P1/C1/C2/FUND
+browser scenarios remain NOT RUN. No production promotion is authorised by this confirmation.
