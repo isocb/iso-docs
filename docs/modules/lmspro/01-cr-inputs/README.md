@@ -7,6 +7,10 @@ CR inputs are evidence only. They should not be treated as direct implementation
 Current planning input:
 
 - The consolidated LMSPro remediation CR contains exactly four complete business briefs.
-- Its 2026-07-27 planning refinement is ready for formal control-window triage.
+- Formal triage accepted the coordinated programme as `R9`, with four separately bounded
+  lifecycles.
+- `R9-A0` is selected as the first read-only writer, consumer and live-state inventory
+  boundary for Item 3.
 - The C1 League dashboard reorganisation is standalone work and is not a fifth item.
-- No executable remediation slice is selected or authorised.
+- No application implementation, schema, migration, reconciliation or data mutation is
+  authorised.

@@ -275,20 +275,33 @@ Club Email-history integrity, attachment click-to-browse restoration, Club admis
 participation alignment and responsive Team status/Waiting List visibility. The formerly
 expected C1 League dashboard reorganisation is standalone work and is not a fifth item.
 
-The CR and its 2026-07-27 planning refinement are ready for formal LMSPro control-window
-triage. No executable slice is selected or authorised. The candidate delivery order is item 3,
-item 1, item 4 and item 2. Item 3's business semantics are settled: validated import creates
-Registered/admission evidence; `APPROVED` remains the Current compatibility state; and zero
+Formal LMSPro triage accepts the CR as coordinated programme `R9`, with four separately
+bounded child lifecycles in the requested Item 3, Item 1, Item 4 and Item 2 order:
+`R9-A` Club admission/seasonal participation, `R9-B` Club Email visibility/history,
+`R9-C` responsive Team status and `R9-D` attachment click-to-browse.
+
+`R9-A0 - Club Participation Writer, Consumer And Live-State Inventory` is selected as the
+LMSPro lane's next planning/evidence boundary. Item 3's business semantics are settled:
+completed validated SeasonPro import, the linked two-stage form after email validation and
+C1 approval, and authorised direct C1 creation are the three valid
+Registered/admission routes; `APPROVED` remains the Current compatibility state; and zero
 qualifying Current/allocated Teams means Club Waiting List while unallocated Teams remain
-distinct. Read-only live-state inventory and consumer classification remain mandatory planning/
-data gates. This LMSPro planning status does not displace the root roadmap's single cross-lane
-executable-slice authority.
+distinct. R9-A0 authorises static inventory and separately authorised read-only aggregate
+evidence only. It authorises no application implementation, schema, migration,
+reconciliation, live-data mutation or deployment. Its reviewed results must define the
+candidate compatibility and implementation slices before another control decision may
+accept them.
+
+This LMSPro planning selection does not displace the root roadmap's single cross-lane
+executable-slice authority or the currently recorded FUND planning candidate.
 
 Authoritative LMSPro records:
 
 - `docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md`;
 - `docs/modules/lmspro/01-cr-inputs/2026-07-22-lmspro-consolidated-email-integrity-club-visibility-and-remedial-work-cr-input.md`; and
-- `docs/modules/lmspro/01-cr-inputs/2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md`.
+- `docs/modules/lmspro/01-cr-inputs/2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md`;
+- `docs/modules/lmspro/02-triage/2026-07-27-lmspro-r9-consolidated-four-item-remediation-triage.md`; and
+- `docs/modules/lmspro/03-slice-planning/2026-07-27-lmspro-remediation-slice-r9-a0-club-participation-writer-consumer-and-live-state-inventory-planning.md`.
 
 ### 2026-07-27 PLAT-ASSURE-03 Urgent Security Remediation Selection
 

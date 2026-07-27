@@ -76,12 +76,14 @@ Current work should remain on dev/remediation branches until reviewed and explic
 Latest known app alignment from prior cycle:
 
 ```text
-origin/dev = origin/staging = origin/main = b9287ffa
+dev = origin/dev = staging = origin/staging = df40f45c
+main = origin/main = b9287ffa
 ```
 
-This alignment is the completed controlled combined promotion containing R8-A3 and its
-Platform/security dependencies. FUND remains an explicitly unfinished, assignment-controlled
-module whose human staging test programme continues separately.
+`b9287ffa` remains the completed controlled production release containing R8-A3 and its
+Platform/runtime dependencies. Dev/staging subsequently advanced to `df40f45c` through the
+separately completed `PLAT-ASSURE-03` security remediation and exact staging human gate.
+No R9 application or data change is present in those baselines.
 
 ## Current Completed LMSPro Cycle State
 
@@ -341,18 +343,34 @@ It now records the complete four-item remediation programme:
 4. responsive Team status and waiting-list-position visibility.
 
 The formerly expected fifth item, C1 League dashboard reorganisation, is standalone work and
-requires its own CR lifecycle. The four-item CR and its 2026-07-27 planning refinement are ready
-for formal control-window triage. No executable slice is selected or authorised. Formal triage
-must preserve one coordinated programme with separately bounded slices, retain the requested
-candidate order of item 3, item 1, item 4 and item 2, and preserve item 3's accepted distinction:
-validated import establishes Registered/admission evidence; `ClubStatus.APPROVED` represents
-Current only with a qualifying Current/allocated Team; a Club with no qualifying Team is Club
-Waiting List while its unallocated Teams remain distinct. Item 3's read-only live-state inventory
-and consumer classification remain mandatory pre-implementation data gates.
+requires its own CR lifecycle. Formal triage accepts the four-item CR as coordinated programme
+`R9`, with separately bounded children in the requested order:
+
+1. `R9-A` — Item 3, Club admission and seasonal participation;
+2. `R9-B` — Item 1, Club Email visibility and history integrity;
+3. `R9-C` — Item 4, responsive Team status visibility; and
+4. `R9-D` — Item 2, attachment click-to-browse restoration.
+
+`R9-A0` is the selected next LMSPro planning/evidence boundary. It is a read-only writer,
+consumer and live-state inventory. It preserves Item 3's accepted distinction: validated
+SeasonPro import, the linked two-stage form after email validation and C1 approval, and
+authorised direct C1 creation are the three valid Registered/admission routes;
+`ClubStatus.APPROVED` represents Current only with a qualifying Current/allocated Team; a
+Club with no qualifying Team is Club Waiting List while its unallocated Teams remain
+distinct. No application implementation, schema, migration, reconciliation, live-data
+mutation or deployment is authorised.
 
 Planning refinement:
 
 `docs/modules/lmspro/01-cr-inputs/2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md`
+
+Formal triage:
+
+`docs/modules/lmspro/02-triage/2026-07-27-lmspro-r9-consolidated-four-item-remediation-triage.md`
+
+Selected R9-A0 plan:
+
+`docs/modules/lmspro/03-slice-planning/2026-07-27-lmspro-remediation-slice-r9-a0-club-participation-writer-consumer-and-live-state-inventory-planning.md`
 
 ## Existing Feature Candidate Lane
 
@@ -662,19 +680,21 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Formally triage the complete four-item LMSPro remediation CR
+Execute and review the bounded R9-A0 read-only inventory
 ```
 
 Goal:
 
-R8-A3 is complete and present in staging and live. Application `dev`, `staging` and `main`
-were aligned at the completed release boundary `b9287ffa`. The four-item CR input and
-2026-07-27 planning refinement are complete and ready for control-window triage. Create the
-formal triage decision for one coordinated programme with separately bounded slices, preserve
-the requested candidate order `item 3 -> item 1 -> item 4 -> item 2`, and retain item 3's
-read-only live-state inventory and consumer classification as mandatory pre-implementation
-data gates. This is the LMSPro lane's next planning action; it does not override the root
-roadmap's single cross-lane executable-slice authority.
+R8-A3 and `PLAT-ASSURE-03` are complete at their respective release/staging boundaries.
+Formal R9 triage is complete. Inventory every Item 3 writer and consumer, execute only
+separately authorised tenant/season-scoped read-only aggregate queries, classify compatible,
+deterministic, ambiguous, override and integrity states, and produce the evidence needed for
+later compatibility and implementation slice decisions.
+
+Stop after the reviewed inventory. Do not add schema, migration or product code; do not
+reconcile or mutate data; and do not pre-authorise successor slices. This is the LMSPro
+lane's next planning/evidence action and does not override the root roadmap's cross-lane
+execution authority.
 
 ## Fresh Chat Prompt
 
@@ -683,18 +703,21 @@ Proceed with LMSPro / SeasonPro remediation planning from:
 isodocs/docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
 
 Next step:
-Formally triage the complete four-item CR and planning refinement:
+Execute the accepted R9-A0 read-only inventory plan:
 isodocs/docs/modules/lmspro/01-cr-inputs/2026-07-22-lmspro-consolidated-email-integrity-club-visibility-and-remedial-work-cr-input.md
 isodocs/docs/modules/lmspro/01-cr-inputs/2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md
+isodocs/docs/modules/lmspro/02-triage/2026-07-27-lmspro-r9-consolidated-four-item-remediation-triage.md
+isodocs/docs/modules/lmspro/03-slice-planning/2026-07-27-lmspro-remediation-slice-r9-a0-club-participation-writer-consumer-and-live-state-inventory-planning.md
 
 Goal:
-Record the formal `02-triage` decision for one coordinated programme with separately bounded
-implementation slices. Preserve the candidate order item 3, item 1, item 4 and item 2. Record the
-accepted Club aggregate: zero qualifying Current/allocated Teams means Club Waiting List, while
-unallocated Teams remain distinct and are not automatically Team Waiting List. Retain item 3's
-read-only live-state inventory and consumer classification before implementation.
+Produce a complete static writer/consumer inventory and, only with explicit target authority,
+tenant/season-scoped aggregate live-state counts. Record the accepted Club aggregate: zero
+qualifying Current/allocated Teams means Club Waiting List, while unallocated Teams remain
+distinct and are not automatically Team Waiting List. Classify deterministic and ambiguous
+states and use the reviewed evidence to recommend later bounded compatibility and
+implementation slices.
 
-Do not begin implementation, schema work or live-data reconciliation from the CR/refinement.
+Do not begin implementation, schema work, migration or live-data reconciliation.
 Do not reopen R8-A, broaden the batch sender, add key-date sequence attachments, automatically
 resend historic messages, alter unrelated season automation or change FUND logic.
 ```

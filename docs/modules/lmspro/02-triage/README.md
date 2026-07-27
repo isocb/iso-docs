@@ -14,9 +14,9 @@ Accepted issues should move into named slice planning before implementation.
 
 Current queue:
 
-- The complete four-item LMSPro remediation CR and its 2026-07-27 planning refinement are ready
-  for formal triage.
-- Formal triage is expected to retain one coordinated programme with separately bounded slices.
-- No triage decision or executable slice has yet been recorded.
-- Item 3's business semantics are settled. Its read-only live-state inventory and consumer
-  classification remain mandatory planning/data gates before implementation.
+- The complete four-item LMSPro remediation CR is accepted as coordinated programme `R9`.
+- `R9-A`, `R9-B`, `R9-C` and `R9-D` are separately bounded child lifecycles in the
+  accepted Item 3, Item 1, Item 4, Item 2 order.
+- `R9-A0` is selected as the next LMSPro planning/evidence boundary.
+- R9-A0 is read-only inventory only; no application implementation, schema, migration,
+  reconciliation, data mutation or deployment is authorised.

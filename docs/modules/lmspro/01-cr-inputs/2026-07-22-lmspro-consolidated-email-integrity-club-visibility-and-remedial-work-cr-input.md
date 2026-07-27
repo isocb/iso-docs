@@ -5,8 +5,8 @@ Last updated: 2026-07-27
 
 Module: LMSPro / SeasonPro using the shared IsoStack communications service
 
-Status: Four-item consolidated CR input complete; R8-A production promotion complete; eligible
-for control-window triage but no executable slice selected
+Status: Four-item consolidated CR input complete; formally accepted as coordinated programme
+`R9`; `R9-A0` selected as read-only Item 3 inventory; no application implementation authorised
 
 Priority: High for communications-history integrity, C2 access control and truthful seasonal
 Club participation
@@ -52,8 +52,9 @@ standalone piece of work. It is not part of this consolidated CR and must receiv
 triage and planning lifecycle before implementation.
 
 The attachment-delivery cycle has completed its staging and live gates. This four-item CR is
-complete as a planning input and may proceed to control-window triage. Capturing or committing
-the current observations does not select or authorise implementation.
+complete as a planning input and has been accepted through the formal R9 triage record.
+`R9-A0` is the selected read-only Item 3 inventory boundary. Capturing or committing this
+input does not itself authorise implementation.
 
 ## 3. Related Accepted Foundations
 
@@ -534,7 +535,7 @@ Remedial item 1 is successful when:
 
 1. This is remedial item 1 within the complete four-item consolidated LMSPro remediation CR.
 2. The consolidated CR remains subordinate to the LMSPro roadmap; R8-A attachment sign-off is
-   complete and the four-item CR is eligible for control-window triage.
+   complete and formal R9 triage has accepted four separately bounded child lifecycles.
 3. C1 Sent history and C2 Club history serve different authorised scopes but must reconcile under
    explicit rules.
 4. Email delivery recipient identity is not sufficient to control Club-history visibility.
@@ -621,14 +622,13 @@ Planning-only four-item refinement:
 
 `docs/modules/lmspro/01-cr-inputs/2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md`
 
-The next controlling-window action is formal triage. It must:
+Formal triage is recorded at:
 
-1. retain completed R8-A as the delivery foundation rather than reopening it;
-2. triage the complete four-item CR as one coordinated compound-remediation programme;
-3. create separately bounded implementation slices while preserving the accepted programme;
-4. open the C1 League dashboard reorganisation through a separate CR lifecycle when selected; and
-5. reconcile accepted work into the authoritative roadmap without treating this CR as execution
-   authority.
+`docs/modules/lmspro/02-triage/2026-07-27-lmspro-r9-consolidated-four-item-remediation-triage.md`
+
+It retains completed R8-A, accepts one coordinated R9 programme, creates four separately
+bounded child lifecycles and selects only the read-only `R9-A0` Item 3 inventory boundary.
+The C1 League dashboard reorganisation remains a separate CR lifecycle.
 
 ## 20. Remedial Item 2 - Attachment Dropzone Click-To-Browse Regression
 
@@ -795,8 +795,13 @@ Later bounded planning should preserve two separate authorities:
 - `LMSProClubApplication.status = APPROVED` means the league accepted the application.
 - That evidence remains approved when the Club is Current or Waiting List.
 - Team placement must never mutate the historic Application decision.
-- Directly created or imported Clubs that have no Application require equivalent explicit,
-  auditable admission evidence; admission must not be inferred from a Team count.
+- Three canonical routes may establish explicit, auditable admission evidence:
+  completed validated import through the SeasonPro import tool; the linked two-stage form
+  after email validation and authorised C1 Application approval; and deliberate direct
+  creation by an authorised C1 tenant user.
+- Each route must retain its source, tenant, season, actor or controlled-system authority,
+  timestamp and primary-C2 evidence. Email validation alone, an unreviewed form submission,
+  bare row creation or Team count is not admission evidence.
 
 #### Seasonal participation authority
 
@@ -906,7 +911,8 @@ operational state consistently.
 A later bounded slice must inventory and align every retained writer and consumer, including:
 
 - Application approve, wait-list and reject paths;
-- direct Club creation and import;
+- all three Club-instantiation routes: validated SeasonPro import, approved two-stage
+  registration form and authorised direct C1 creation;
 - Team registration, approval, wait-list, allocation, de-allocation, bulk status and edit paths;
 - Team cancellation, suspension, withdrawal, no-response, ageing and deletion paths;
 - age-group changes that clear a division;
@@ -1025,8 +1031,8 @@ constraint:
 
 1. **No assumption of a clean baseline.** Existing combinations such as `APPROVED` Clubs with no
    qualifying Teams, `CURRENT` Teams with null divisions, wait-listed Clubs with mixed Team states,
-   direct/imported Clubs without Applications and cloned-season inconsistencies must be expected
-   and measured.
+   incomplete or overlapping evidence across validated import, approved two-stage form and
+   authorised direct C1 creation, and cloned-season inconsistencies must be expected and measured.
 2. **Read-only inventory first.** Before schema or behaviour changes, provide tenant- and
    season-scoped read-only reports that count every relevant state combination and identify only
    safe record identifiers. Do not print personal contact data, credentials or unrestricted

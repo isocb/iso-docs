@@ -4,10 +4,9 @@ Date: 2026-07-27
 
 Module: LMSPro / SeasonPro using the shared IsoStack communications service
 
-Status: Planning-only refinement; 2026-07-27 initial and follow-up business answers reconciled;
-four-item CR ready for control-window triage with its business semantics settled and item 3's
-read-only live-state inventory retained as a pre-implementation data gate; no executable slice
-selected or authorised
+Status: Planning refinement accepted through formal programme triage; business answers
+reconciled; four separately bounded R9 child lifecycles recorded; `R9-A0` selected as
+read-only Item 3 inventory; no application implementation authorised
 
 Source CR:
 
@@ -141,9 +140,12 @@ release merely because all four concerns share this planning envelope.
 - Item 1 requires tenant-, season- and Club-safe current-season treatment. Item 3 has no historic
   season to rewrite because this is the first operational season.
 - Item 2 must consume R8-A contracts without reopening them.
-- A validated import creates durable Registered/admission evidence. It does not set the
-  Current-compatible `ClubStatus.APPROVED` unless the imported Club also has a qualifying Current/
-  allocated Team; otherwise the admitted Club is a Waiting List Club.
+- Three canonical routes create valid Registered/admission evidence: completed validated
+  SeasonPro import; the linked two-stage registration form after email validation and
+  authorised C1 approval; and deliberate direct creation by an authorised C1 tenant user.
+  None sets the Current-compatible `ClubStatus.APPROVED` merely because registration is
+  complete. The Club also needs a qualifying Current/allocated Team; otherwise the admitted
+  Club is a Waiting List Club.
 
 ## 4. Ownership And Product Boundaries
 
@@ -474,11 +476,20 @@ reopen or revoke onboarding. Zero qualifying Current Teams makes the admitted Cl
 Club, but it does not automatically make every Team Waiting List. Unallocated Teams remain
 distinct in-process allocation evidence until an authorised Team status decision is made.
 
-Direct/imported Clubs require durable admission evidence equivalent to an Application decision,
-including import/source identity, actor or controlled system authority, timestamp, tenant and
-primary C2 representative. A validated import is approved as Registered/admitted evidence. It uses
-the Current-compatible `ClubStatus.APPROVED` only when it also has a qualifying Current/allocated
-Team; otherwise its Club participation state is Waiting List.
+All three accepted instantiation routes require durable admission evidence:
+
+- completed validated SeasonPro import records import/source identity and controlled-system
+  authority;
+- the linked two-stage form records email validation followed by the authorised C1
+  Application approval decision; and
+- direct C1 creation records the authorised tenant actor and deliberate registration
+  decision.
+
+Each route must retain its tenant, season, timestamp and primary C2 representative evidence.
+Email validation alone, an unreviewed submission, bare row creation or Team presence is not
+admission evidence. A Registered/admitted Club uses the Current-compatible
+`ClubStatus.APPROVED` only when it also has a qualifying Current/allocated Team; otherwise
+its Club participation state is Waiting List.
 
 ### 10.3 Team Invariant
 
@@ -728,12 +739,14 @@ No schema, migration or historic-data change is expected.
 
 ### Item 3
 
-The business meaning is settled: `ClubStatus.APPROVED = Current`; validated import establishes
-Registered/admission evidence; and a Registered Club with no qualifying Current/allocated Team is
-Club Waiting List while its unallocated Teams remain distinct. The exact additive persistence and
-compatibility design remains for bounded planning. Renaming or replacing a deployed value in one
-step is unsafe while live code and data consume it, so prefer expand/contract compatibility until
-every writer and consumer has moved to the accepted meaning.
+The business meaning is settled: `ClubStatus.APPROVED = Current`; completed validated
+import, approved two-stage form registration and authorised direct C1 creation are the
+three valid Registered/admission routes; and a Registered Club with no qualifying
+Current/allocated Team is Club Waiting List while its unallocated Teams remain distinct.
+The exact additive persistence and compatibility design remains for bounded planning.
+Renaming or replacing a deployed value in one step is unsafe while live code and data
+consume it, so prefer expand/contract compatibility until every writer and consumer has
+moved to the accepted meaning.
 
 ### Item 4
 
@@ -1011,9 +1024,11 @@ CHRIS: Unknown.
 31. C2 history uses 50 unique Emails per page with an explicit accessible `Load more` action.
 32. Item 2's desktop-first current/previous Chrome and Edge baseline, with current Firefox and
     Safari checks where used, is accepted.
-33. A validated import establishes Registered/admission evidence. It sets the Current-compatible
-    `ClubStatus.APPROVED` only with a qualifying Current/allocated Team; otherwise the imported
-    Club is Waiting List.
+33. Completed validated import, approved two-stage form registration and authorised direct
+    C1 creation are the three valid Registered/admission routes. Each retains its
+    route-specific authority and primary-C2 evidence. Registration alone sets the
+    Current-compatible `ClubStatus.APPROVED` only with a qualifying Current/allocated Team;
+    otherwise the Club is Waiting List.
 34. Unallocated Teams are a distinct in-process allocation state. They are neither Current nor
     automatically Team Waiting List, while their Registered Club remains Club Waiting List until
     at least one Team qualifies as Current/allocated.
@@ -1050,9 +1065,12 @@ The business accepted the item 3 direction with one controlling clarification:
 - Club Waiting List is the aggregate state for a Registered/admitted Club with no qualifying
   Current/allocated Team. This remains true when one or more Teams is unallocated rather than
   individually wait-listed.
-- A validated import creates Registered/admission evidence. It becomes
-  `ClubStatus.APPROVED`/Current only with a qualifying Current/allocated Team; otherwise the Club
-  is Waiting List.
+- Completed validated SeasonPro import, the linked two-stage form after email validation
+  and authorised C1 approval, and authorised direct C1 creation are all valid
+  Registered/admission routes. Each must retain route-specific durable evidence and a
+  primary C2 representative.
+- Registration through any of those routes becomes `ClubStatus.APPROVED`/Current only with
+  a qualifying Current/allocated Team; otherwise the Club is Waiting List.
 - The read-only tenant/season contradiction inventory and explicit consumer classification are
   accepted as required planning/data gates, not unresolved business questions or mutation
   authority.
@@ -1067,11 +1085,12 @@ reused.
 
 ### Control-Window Reconciliation
 
-The separate control window must:
+Formal triage is complete:
 
-1. create formal triage accepting one programme with separately bounded implementation slices;
-2. update the authoritative roadmap without treating this refinement as execution authority;
-3. preserve the requested decreasing-complexity order of item 3, item 1, item 4 and item 2; and
-4. retain item 3's read-only live-state inventory and consumer classification as mandatory
-   pre-implementation gates. All recorded business questions are resolved; no application,
-   schema, migration, live-data or deployment work is authorised by this refinement.
+`docs/modules/lmspro/02-triage/2026-07-27-lmspro-r9-consolidated-four-item-remediation-triage.md`
+
+It accepts one coordinated R9 programme with separately bounded `R9-A` through `R9-D`
+lifecycles, preserves the Item 3, Item 1, Item 4, Item 2 order and selects `R9-A0` as the
+read-only writer, consumer and live-state inventory boundary. All recorded business
+questions are resolved. No application, schema, migration, reconciliation, live-data or
+deployment work is authorised by this refinement or by R9-A0.
