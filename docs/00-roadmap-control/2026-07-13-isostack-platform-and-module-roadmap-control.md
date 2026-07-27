@@ -262,12 +262,14 @@ paths. The current npm-audit workflow also fails to retain and validate the comm
 status. `PLAT-ASSURE-03` is selected as the urgent bounded Platform slice and displaces ordinary
 feature execution.
 
-The implementation is isolated on a dedicated branch. It must pass zero-vulnerability audit,
-fail-closed parser tests, dependency-tree, full test, type-check, critical-file and production
-build gates before `dev` promotion. Because it updates shared authentication dependencies and
-guards, an exact-commit authenticated staging smoke across public, Platform, LMSPro and FUND
-entry paths is mandatory. No production, schema, migration, database or environment action is
-authorised.
+Dedicated-branch implementation `dc616c85` passes zero-vulnerability audit, fail-closed parser
+tests, dependency-tree, full test, type-check, critical-file and production build gates.
+Application `dev` and `origin/dev` are cleanly aligned at the separately completed
+documentation-only baseline `f2b794da`; they do not yet contain the security commit. The next
+security gate is controlled integration into `dev` followed by its exact-commit online Security
+Scan. Because the change updates shared authentication dependencies and guards, an exact-commit
+authenticated staging smoke across public, Platform, LMSPro and FUND entry paths remains
+mandatory. No production, schema, migration, database or environment action is authorised.
 
 Planning and human schedule:
 
