@@ -44,6 +44,9 @@ Therefore, **19 of the original 34 entries (56%) no longer belong on an absent-w
 Wishlist**. Some of those capabilities still require implementation, but they are now
 controlled by the main FUND roadmap rather than this refinement register.
 
+`2R-ACCESS-01` was added from 2026-07-27 staging smoke after this reconciliation. It is a
+newly discovered refinement and is not part of the original 34-entry count.
+
 ## 3. Removed Or Reclassified Entries
 
 | Original ID | Reconciliation | Current home or outcome |
@@ -109,6 +112,39 @@ controlled by the main FUND roadmap rather than this refinement register.
 | `2R-COMMS-02` | Client Dashboard Announcements | C1-to-Client announcements, campaign prompts, special offers and controlled one-to-one dashboard messages. | Medium |
 | `2R-COMMS-03` | Event And Project Campaign Editor And Email Sequences | A general C1 campaign editor for the primary sales-promotion workflow: configurable multi-step communications and timely Project-owner nudges using named Event/Project anchors and positive or negative offsets for Store, artwork, production and dispatch milestones. | Medium |
 | `2R-COMMS-04` | Email Content Editor UX Alignment | A comfortable rich-text editing, placeholder, preview and review experience aligned with the shared SeasonPro/LMSPro email editor pattern. | Low |
+
+### 4.6 Access And Entitlement
+
+| Refinement ID | Name | Genuinely absent outcome | Priority |
+| --- | --- | --- | --- |
+| `2R-ACCESS-01` | FUND Route Entitlement Guard And Handled Unavailable State | Direct `/app/fund` and nested navigation must verify the effective tenant's FUND Product/module entitlement before rendering the FUND shell. Unentitled authenticated users receive the shared handled unavailable/refusal outcome while server procedures remain independently fail closed. | Medium; elevate if read-path audit finds data disclosure |
+
+This item was discovered when an LMSPro-only C1/C2 session entered `/app/fund` by direct
+URL on staging commit `df40f45c`. The static shell and CRUD affordances rendered, but
+attempted mutations returned `FORBIDDEN` and no cross-tenant access was observed. The FUND
+shell has lacked a route-level module guard since its initial application entry point at
+commit `db6ff5ff` on 2026-06-11, so the finding predates the current Auth.js remediation.
+
+FUND consumer planning must:
+
+- consume the shared Platform route-entitlement guard controlled by `PLAT-REFINE-03`;
+- cover `/app/fund` and representative C1, organiser, client-member and nested routes;
+- preserve public Project Initiation routes outside the authenticated FUND guard;
+- preserve the existing tRPC `withFeature('fund')`, tenant scoping and domain-role checks
+  as independent server boundaries;
+- define the expected handled state for an authenticated but unentitled user;
+- verify that an unentitled session cannot read existing FUND Clients, Projects, Events,
+  Products, Stores, Intake submissions or other tenant data; and
+- cover entitled C1, C2 organiser/client-member, P1 and impersonation routes in automated
+  and human acceptance evidence.
+
+URL obscurity is not an accepted protection. The current server refusal reduces immediate
+risk, but the shell disclosure and inconsistent Product entitlement experience remain a
+real access-control refinement.
+
+This entry authorises no implementation and does not alter the current FUND critical path.
+A read-only route/API inventory and formal Platform/FUND triage must precede bounded
+planning.
 
 ## 5. Pilot Scope And Roadmap Placement Reconciliation
 

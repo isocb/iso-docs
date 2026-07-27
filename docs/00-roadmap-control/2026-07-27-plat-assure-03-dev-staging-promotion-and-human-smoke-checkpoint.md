@@ -2,8 +2,8 @@
 
 Date: 2026-07-27
 
-Status: Dev/staging promotion and signed-out smoke PASS; authenticated human smoke pending;
-production HOLD
+Status: COMPLETE — dev/staging promotion, exact Security Scans and complete signed-out/
+authenticated human smoke PASS; no production promotion performed or authorised
 
 Authoritative Platform review:
 
@@ -41,9 +41,24 @@ The bundle contains the intentional legacy environment-reference deletion plus
 Signed-out Platform/SeasonPro routing, login surfaces, callback preservation, session null
 response, malformed bearer handling and absence of private protected content all pass.
 
-Authenticated Platform owner, tenant owner/admin, LMSPro C1, LMSPro C2 and FUND scenarios were
-not run because the execution environment has no designated staging credentials or interactive
-authenticated browser. No credentials, cookies or database state were fabricated.
+The authorised human tester subsequently completed the Platform owner, tenant owner/admin,
+LMSPro C1, LMSPro C2 and representative FUND scenarios in desktop Vivaldi, Chrome and
+Safari. Ordinary sign-in, shared/module entry, copied-URL tenant isolation, sign-out,
+expiry/revocation and impersonation stop/sign-out pass. No remediation-attributable
+browser-console error was reported; no separate console export was retained.
+
+Two pre-existing supplemental findings remain open:
+
+- Platform `PLAT-REFINE-03` / FUND `2R-ACCESS-01`: an LMSPro-only user can render the
+  static FUND shell by direct URL, while mutations refuse access and no cross-tenant access
+  was observed; and
+- Platform `PLAT-REFINE-04`: P1 impersonation routes correctly but does not consistently
+  reproduce the selected tenant's established data because effective identity and RLS
+  context are not consumed uniformly.
+
+The bounded `PLAT-ASSURE-03` staging human gate is complete. The findings remain controlled
+roadmap scope and are not treated as acceptable behaviour or silently closed.
 
 No application main, live service, live database or production environment was changed.
-Production promotion remains HOLD until the linked human schedule records authenticated PASS.
+This checkpoint records staging completion only and does not authorise production
+promotion.

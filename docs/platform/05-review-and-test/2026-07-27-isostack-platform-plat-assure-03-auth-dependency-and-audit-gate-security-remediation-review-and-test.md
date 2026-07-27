@@ -2,8 +2,8 @@
 
 Date: 2026-07-27
 
-Status: Technical review, exact dev/staging Security Scans, staging deployment and signed-out
-smoke PASS; authenticated human browser smoke remains NOT RUN
+Status: COMPLETE — technical review, exact dev/staging Security Scans, staging deployment
+and complete signed-out/authenticated human browser schedule PASS
 
 Implementation confirmation:
 
@@ -52,11 +52,30 @@ Local and remote dev/staging are aligned at `df40f45c`. Render-served staging as
 11:02:22 UTC and subsequent health checks return HTTP 200 with connected database and RLS enabled
 on 11 of 11 tables. There is no migration or environment change.
 
-## 4. Remaining Human Evidence
+## 4. Human Evidence And Final Disposition
 
-The linked schedule records all signed-out and low-level defensive checks as PASS. Authenticated
-P1, tenant owner/admin, LMSPro C1, LMSPro C2 and FUND browser scenarios are NOT RUN because no
-designated staging credentials or interactive authenticated browser were available.
+The authorised tester completed the linked schedule in desktop Vivaldi, Chrome and Safari.
+Signed-out routing, ordinary authentication, shared/module entry, P1, tenant owner/admin,
+LMSPro C1, LMSPro C2, representative FUND, copied-URL tenant isolation, sign-out,
+expiry/revocation and impersonation stop/sign-out scenarios pass.
 
-Disposition remains **PARTIAL / PRODUCTION HOLD**. No live promotion is authorised until the
-authenticated human schedule is recorded as PASS.
+No remediation-attributable browser-console error was reported; no separate console export
+was retained.
+
+Two supplemental observations were reviewed and confirmed as pre-existing rather than
+introduced by `PLAT-ASSURE-03`:
+
+- an LMSPro-only C1/C2 session can render the static `/app/fund` shell by direct URL,
+  although mutations fail with `FORBIDDEN` and no cross-tenant access was observed; this is
+  registered under Platform `PLAT-REFINE-03` and FUND `2R-ACCESS-01`; and
+- P1 impersonation reaches the expected C1 dashboard but does not consistently reproduce
+  the selected tenant's established data; stop/sign-out passes, and the mixed effective
+  identity/RLS contract is registered under `PLAT-REFINE-04`.
+
+Neither observation is accepted as correct product behaviour. Their separate registration
+preserves controlled follow-up without misclassifying them as regressions in the bounded
+dependency and defensive-session change.
+
+Final disposition: **PASS FOR THE BOUNDED PLAT-ASSURE-03 STAGING GATE**. The staging human
+evidence is complete. This review does not itself authorise application-main or production
+promotion.

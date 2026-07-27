@@ -200,6 +200,42 @@ the older checkpoint and status detail below.
   transport gate.
 - `PLAT-REFINE-01 - Dedicated Authenticated Private Binary Upload Transport` is registered as a
   non-executable wishlist item and does not expand the current corrective slice.
+- `PLAT-REFINE-02 - Unified Tenant-User Provisioning And Account-Status Contract` is
+  registered as a high-priority, non-executable Platform refinement after an LMSPro
+  investigation on application baseline `df40f45c`. It owns the shared transactional
+  account/tenant service, same-tenant idempotent completion, cross-tenant fail-closed
+  conflict, authentication-status matrix, read-only partial-account inventory and shared
+  integration contract.
+- LMSPro consumer wishlist `LMS-W-USERS-01` owns required/default LMSPro role and
+  affiliation inputs, repairable `Unassigned` visibility and the P1-to-C1-to-login
+  acceptance path. Until a controlled remediation is promoted, the recorded operating
+  rule is to create LMSPro users through C1 LMSPro User Management.
+- Registration authorises no implementation or data repair and does not displace the
+  root roadmap's current serial next-slice decision.
+- `PLAT-REFINE-03 - Shared Module Route Entitlement Guard And Access-Denied Contract` is
+  registered from authenticated staging smoke at exact application commit `df40f45c`.
+  An LMSPro-only session can render the static `/app/fund` dashboard shell by direct URL,
+  while Product-derived API and FUND domain checks subsequently refuse operations.
+- Application history places the ungated FUND entry point at initial shell commit
+  `db6ff5ff` on 2026-06-11, so the finding is not introduced by `PLAT-ASSURE-03`.
+  Platform owns the reusable guard; FUND refinement `2R-ACCESS-01` owns the first consumer
+  adoption and its client-member/public-route exceptions.
+- This is medium-priority, non-executable refinement scope. A read-only route/API inventory
+  must precede planning, and triage must elevate the item if it finds tenant data disclosure
+  or broader authorization bypass. Registration does not reopen `PLAT-ASSURE-03` or change
+  the root serial next-slice decision.
+- `PLAT-REFINE-04 - Impersonation Effective-Principal And Tenant-View Contract` is
+  registered from the same staging schedule. P1 impersonation reached the selected C1
+  dashboard but showed an effectively new or empty tenant; stop/sign-out routing passed.
+- Static review found mixed identity propagation: shared context resolves the effective
+  subject while many LMSPro reads still consume the real P1 session, and RLS retains the
+  real Platform-administrator bypass. The future Platform contract must consistently
+  separate and audit the real actor and effective subject across data, authorization,
+  routing and session lifecycle.
+- This is medium-priority, non-executable refinement scope, with mandatory elevation if
+  inventory finds cross-tenant disclosure, unauthorised mutation or another
+  security-boundary failure. It does not reopen `PLAT-ASSURE-03` or change the root serial
+  next-slice decision.
 
 ### 2026-07-23 R8-A3 Reconciliation And Completed Combined Production Release
 
@@ -284,10 +320,17 @@ Scan `30260022945` and staging Security Scan `30260218731` pass. The Render stag
 is healthy with connected database and 11/11 RLS coverage. Signed-out Platform/SeasonPro routing,
 login and defensive-session checks pass.
 
-Authenticated P1, tenant owner/admin, LMSPro C1, LMSPro C2 and FUND browser scenarios remain
-NOT RUN because no designated staging credentials or interactive authenticated browser were
-available. Production remains HOLD. No application main, live service, live database, schema,
-migration or environment setting changed.
+The authorised human tester subsequently completed the P1, tenant owner/admin, LMSPro C1,
+LMSPro C2 and FUND browser scenarios in Vivaldi, Chrome and Safari. The bounded
+authentication, routing, sign-out, expiry/revocation and intended-account checks PASS.
+No remediation-attributable browser failure was reported.
+
+Two supplemental observations were confirmed as pre-existing and registered separately:
+the unentitled static FUND shell under `PLAT-REFINE-03` / `2R-ACCESS-01`, and inconsistent
+P1 impersonation tenant data under `PLAT-REFINE-04`. Neither is introduced by the
+`session.user` guard correction. The staging human gate for `PLAT-ASSURE-03` is complete;
+this checkpoint does not authorise production promotion. No application main, live service,
+live database, schema, migration or environment setting changed.
 
 Promotion checkpoint:
 

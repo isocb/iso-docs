@@ -535,6 +535,7 @@ payment model.
 | Commerce `A6-B` | Implemented/reviewed at local application `e8aecea`; not pushed/deployed | Tenant settings and hosted onboarding only; no migration, Checkout, webhook or FUND behavior |
 | Commerce `A6-C` | Implemented/reviewed at local application `34ef64bb`; not pushed/deployed | Dormant connected-account Checkout adapter only; no migration, route, UI, webhook, payment transition or FUND behavior |
 | Commerce `A6-D` | Implemented/reviewed at local application `fa670e3c`; not pushed/deployed/configured | Dedicated Connect receipt and canonical Payment/Refund reconciliation; no migration, real Stripe action, shared secret/Event destination, FUND or production behavior |
+| `2R-ACCESS-01` / `PLAT-REFINE-03` direct FUND route entitlement | Pre-existing static-shell exposure confirmed by 2026-07-27 staging smoke; mutations refused and no cross-tenant access observed | Registered medium-priority Platform-parent/FUND-consumer wishlist; perform read-only route/API inventory and elevate if any data disclosure or broader bypass is found |
 
 ### 7.1 Controlled Promotion Sequence Before LMSPro UI Work
 

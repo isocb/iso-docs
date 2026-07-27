@@ -491,6 +491,76 @@ This promotion also carries the SVG branding upload fix to live.
 - Attachment authoring for key-date email sequences; reconsider only after R8-A proves the
   reusable ordinary-endpoint attachment sender.
 
+### User Management Wishlist - Unified Provisioning And Repairable Unassigned Users
+
+Wishlist identifier:
+
+```text
+LMS-W-USERS-01
+```
+
+Platform parent/refinement identifier:
+
+```text
+PLAT-REFINE-02
+```
+
+An investigation on exact application dev/staging baseline `df40f45c` confirmed that P1
+and C1 user creation currently produce different records:
+
+- P1 correctly assigns the selected `organizationId`, but creates a Core tenant user with
+  legacy `PENDING` status and no LMSPro `ModuleRole`;
+- the authenticated user consequently receives the handled `No LMSPro Access` outcome;
+- C1 User Management defaults to active users and divides visible rows into League and
+  Club scopes, so a status-pending or scope-`NONE` partial user is not repairable there;
+- C1 creation safely detects the globally existing email but returns a conflict rather
+  than completing the compatible same-tenant record; and
+- creating through C1 succeeds because that path creates an active user and applies the
+  configured scoped LMSPro role.
+
+The LMSPro consumer outcome should:
+
+1. When P1 intends to create an LMSPro user, require a valid LMSPro role and any required
+   club affiliation, or explicitly create an `Unassigned` user that remains visible and
+   repairable.
+2. Add an `Unassigned` table/tab for same-tenant users with no valid LMSPro scope,
+   including clear status, role and affiliation diagnostics.
+3. Consume the shared Platform transactional provisioning service rather than creating a
+   second account lifecycle inside LMSPro.
+4. Support safe same-tenant partial-account completion while preserving fail-closed
+   cross-tenant email conflicts; LMSPro must never silently move a user between tenants.
+5. Preserve role-assignment permissions, current-season club affiliation and audit
+   evidence when completing or repairing a user.
+6. Add integration tests covering P1 creation -> C1 visibility -> LMSPro login,
+   role-required and explicit-unassigned outcomes, partial-account completion,
+   cross-tenant conflict and the Platform-owned authentication-status matrix.
+7. Require an exact human P1/C1 smoke schedule before promotion, including an unassigned
+   recovery path and a fully assigned successful-login path.
+
+The Platform lane owns the reusable provisioning transaction, account-status and
+authentication contract, global email/tenant safety, shared audit boundary and read-only
+partial-account inventory. LMSPro owns module-role selection/defaults, `Unassigned`
+visibility and repair UX, affiliation behaviour and module acceptance evidence.
+
+The prerequisite data audit must be read-only and identify users in LMSPro-enabled
+organisations with empty, invalid or orphaned `lmsproRoleIds`, including their account
+status and affiliation. No bulk repair, activation, relinking or deletion is authorised by
+this wishlist entry.
+
+Temporary operating rule:
+
+```text
+Until the controlled Platform and LMSPro remediation is reviewed and promoted,
+create LMSPro users through C1 LMSPro User Management.
+```
+
+Existing partial accounts should be reviewed and repaired in place under explicit
+authority rather than routinely deleted and recreated.
+
+This is a registered high-priority wishlist/finding only. It requires CR capture, formal
+cross-lane triage, a Platform parent/contract slice and separately bounded LMSPro consumer
+planning before implementation.
+
 ### Communications Wishlist - Links-First, Opt-In Uploaded Attachments
 
 Wishlist identifier:

@@ -235,6 +235,56 @@ first registered platform assurance finding. It is controlled by:
 It is high priority but is not an executable slice and does not displace the root roadmap's
 current next candidate unless the root control explicitly promotes it.
 
+`PLAT-REFINE-02 - Unified Tenant-User Provisioning And Account-Status Contract` is
+registered in the subordinate assurance/refinement roadmap after an LMSPro investigation
+confirmed divergent P1 and C1 creation outcomes on application baseline `df40f45c`.
+
+Platform owns the reusable transactional account/tenant provisioning boundary, same-tenant
+idempotent completion, cross-tenant fail-closed email conflict, account-status matrix,
+authentication enforcement, shared audit evidence and integration-test contract. LMSPro
+owns its bounded consumer adoption: required/default LMSPro roles and affiliations,
+repairable `Unassigned` visibility and the P1-to-C1-to-login human acceptance path.
+
+The item is a high-priority registered wishlist/finding, not an executable slice. It does
+not authorise code, schema, migration or data repair; it does not displace the root
+roadmap's selected work. A read-only partial-account inventory must precede any later
+repair authority. Until controlled remediation is promoted, LMSPro users should be created
+through the C1 LMSPro User Management surface.
+
+`PLAT-REFINE-03 - Shared Module Route Entitlement Guard And Access-Denied Contract` is
+registered from authenticated `PLAT-ASSURE-03` staging smoke on exact application commit
+`df40f45c`. An LMSPro-only session can render the static `/app/fund` dashboard shell by
+direct URL, while Product-derived tRPC and domain mutation checks subsequently refuse
+operations.
+
+Application history and static review place the ungated FUND shell at least as far back as
+its initial 2026-06-11 entry-point commit `db6ff5ff`; it is not an Auth.js remediation
+regression. Platform owns the reusable effective-user/effective-organisation module-route
+guard and consistent handled refusal contract. FUND refinement `2R-ACCESS-01` owns the
+first bounded consumer adoption and FUND-specific client-member/public-route exceptions.
+
+The item is medium priority and non-executable, with mandatory elevation if its read-only
+route/API inventory finds tenant data disclosure or a broader authorization bypass. It
+does not reopen or expand `PLAT-ASSURE-03`, and it does not displace the root roadmap's
+selected work.
+
+`PLAT-REFINE-04 - Impersonation Effective-Principal And Tenant-View Contract` is
+registered from the same authenticated staging schedule. P1 impersonation reached the
+expected C1 dashboard, but tenant content appeared new or empty; stop/sign-out and routing
+behaved correctly.
+
+Static review found that shared context resolves an effective user and organisation while
+many LMSPro reads still use the real P1 session identity, and RLS retains the real
+Platform-administrator bypass. Platform owns a single validated effective-principal
+contract, consistent data/authorization propagation, dual-actor audit evidence and
+fail-closed lifecycle behaviour. LMSPro, FUND and shared tenant surfaces provide
+representative consumer acceptance.
+
+The item is medium priority and non-executable, with mandatory elevation if its read-only
+inventory finds cross-tenant disclosure, unauthorised mutation or another security-boundary
+failure. It predates the bounded Auth.js remediation, does not reopen `PLAT-ASSURE-03` and
+does not displace the root roadmap's selected work.
+
 `PLAT-RUNTIME-01 - Node Middleware Request-Body Finalisation Backport And
 Production-Runtime Assurance` is the most recently completed Platform corrective slice. It was
 discovered through LMSPro R8-A3 staging testing but is Platform-owned because the defect sits
