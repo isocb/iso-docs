@@ -74,7 +74,11 @@ The refinement's reconciled decisions are accepted:
 - Club Waiting List does not undo onboarding, deactivate officials, remove C2 access or
   prevent authorised Team requests;
 - suspended and withdrawn states remain explicit overrides;
-- automatic participation convergence sends no Club notification; and
+- an actual automatic Club Current/Waiting List transition may notify through the existing
+  Notification Manager: user-triggered CRUD retains its on-CRUD control, while automatically
+  derived behaviour falls back to the manager's master and per-event switches,
+  default-or-custom content and existing recipient-routing contract; no-op evaluation,
+  evidence gathering, dry-run and unauthorised reconciliation do not send; and
 - this first operational season requires no closed-season rewrite.
 
 No remaining business question blocks R9-A0. The inventory may discover technical

@@ -357,8 +357,36 @@ SeasonPro import, the linked two-stage form after email validation and C1 approv
 authorised direct C1 creation are the three valid Registered/admission routes;
 `ClubStatus.APPROVED` represents Current only with a qualifying Current/allocated Team; a
 Club with no qualifying Team is Club Waiting List while its unallocated Teams remain
-distinct. No application implementation, schema, migration, reconciliation, live-data
-mutation or deployment is authorised.
+distinct. An actual automatic Club Current/Waiting List transition may use the existing
+Notification Manager: user-triggered CRUD retains its on-CRUD notification control and
+automatically derived behaviour falls back to the manager's master/per-event switches,
+default-or-custom content and recipient routing. No application implementation, schema,
+migration, reconciliation, live-data mutation, notification sending or deployment is
+authorised by R9-A0.
+
+The exact-commit static writer/consumer inventory is now complete at application commit
+`df40f45c`. It confirms the three routes and identifies overloaded status writers and
+consumers, uneven admission evidence, Current/unallocated Team paths, access coupling,
+cross-season cohort risks and season-clone/roll-forward dependencies.
+
+The first authorised STAGING snapshot fingerprint `6ee30baaf29f` stopped before Q1 because
+its tenant/season and migration ancestry did not match. The corrected STAGING target
+fingerprint `d18b9abe1450` and corrected season subsequently passed every precondition at
+application commit `df40f45c`. Q1-Q15 completed in an explicitly read-only transaction and
+ended with `ROLLBACK`; only tenant/season-scoped aggregate evidence was retained.
+
+The combined evidence identifies seven Current/unallocated Teams, nine Approved Clubs with
+no qualifying Team, 55 Clubs without detectable accepted-route evidence, 22 Clubs without a
+fully authoritative active primary C2, and a 59 raw-Approved versus zero evidence-derived
+Current cohort delta. All 400 scoped Team-to-Club/age-group relations are valid and all 40
+Team Waiting List records have detected authorised-decision evidence. R9-A0 is
+evidence-complete and awaits control review; no automatic classification, repair or
+successor implementation slice is authorised.
+
+The control owner subsequently attested that the 55 evidence-free Clubs are the pre-1 June
+2026 Derby JFL legacy Knack import cohort. This resolves their business explanation for
+planning but remains distinct from row-level automated provenance. Wishlist item
+`LMS-W-IMPORT-01` registers the future import-evidence capability.
 
 Planning refinement:
 
@@ -371,6 +399,14 @@ Formal triage:
 Selected R9-A0 plan:
 
 `docs/modules/lmspro/03-slice-planning/2026-07-27-lmspro-remediation-slice-r9-a0-club-participation-writer-consumer-and-live-state-inventory-planning.md`
+
+Static evidence:
+
+`docs/modules/lmspro/05-review-and-test/2026-07-27-lmspro-r9-a0-static-writer-consumer-and-live-state-inventory-evidence.md`
+
+Executed bounded query pack:
+
+`docs/modules/lmspro/05-review-and-test/2026-07-27-lmspro-r9-a0-bounded-read-only-live-state-query-pack.md`
 
 ## Existing Feature Candidate Lane
 
@@ -505,7 +541,7 @@ This promotion also carries the SVG branding upload fix to live.
 - C2 Club dashboard countdown display.
 - C1 dashboard countdown display beyond basic season-admin visibility.
 - General key-date automation changes unless explicitly scoped.
-- Notification sending or communication automation.
+- Notification sending or communication automation outside a separately accepted lifecycle.
 - Attachment authoring for key-date email sequences; reconsider only after R8-A proves the
   reusable ordinary-endpoint attachment sender.
 
@@ -578,6 +614,69 @@ authority rather than routinely deleted and recreated.
 This is a registered high-priority wishlist/finding only. It requires CR capture, formal
 cross-lane triage, a Platform parent/contract slice and separately bounded LMSPro consumer
 planning before implementation.
+
+### Import Wishlist - Durable Club And Team Provenance Evidence
+
+Wishlist identifier:
+
+```text
+LMS-W-IMPORT-01
+```
+
+R9-A0 source evidence shows that the current Club and Team import paths do not always leave
+enough durable evidence to identify the accepted instantiation route later. The bounded
+STAGING inventory found 55 Clubs without detectable import, approved-form or direct-C1
+evidence. The control owner subsequently attested that the pre-1 June 2026 Derby JFL Club
+cohort was imported personally from the legacy Knack system and that later applicant Clubs
+used the new application route. That attestation is valid planning evidence, but it must not
+be misrepresented as automated evidence already stored against each Club.
+
+A future bounded import-provenance lifecycle should make every successful Club and Team
+import automatically retain:
+
+- the fact that it was created or matched through an authorised import;
+- the import job, source-system label, tenant, season, operator and completion time;
+- the original source identifier where one exists;
+- validation outcome and any warnings or incomplete mappings;
+- whether each source row created, matched, updated, skipped or rejected a record;
+- the resulting Club/Team and age-group/division/AGG mapping outcome; and
+- immutable audit evidence sufficient to trace the imported record back to the import
+  decision without retaining unnecessary source personal data.
+
+The application should expose a system-generated provenance classification such as:
+
+```text
+Imported and validated — automated source evidence available
+```
+
+The facility should also provide:
+
+1. tenant/season-scoped aggregate import evidence and exception reporting;
+2. a controlled review path for incomplete or conflicting mappings;
+3. genuinely idempotent same-tenant/same-season retry behaviour;
+4. fail-closed handling of cross-tenant or cross-season matches;
+5. preservation of provenance when a record is edited, allocated or rolled forward; and
+6. integration tests for Club/Team creation, matching, rejection, retry, partial failure and
+   evidence retention.
+
+Import provenance is registration/admission evidence. It must not itself classify a Club or
+Team as Current. Club Current participation continues to require at least one qualifying
+same-tenant, same-season Current Team with valid allocation, and imported Teams must not
+default silently into Current when their allocation is absent or invalid.
+
+Legacy records may use a separately authorised classification such as:
+
+```text
+Control-owner-attested legacy import — automated source evidence unavailable
+```
+
+That classification must preserve the difference between human attestation and automated
+import evidence. It must not fabricate an import job, infer production equivalence from
+STAGING, alter status or trigger reconciliation.
+
+This is a registered wishlist item linked to the R9-A0 evidence. It requires CR capture,
+formal triage and separately bounded planning before any application, schema, migration or
+data work. It is not an accepted R9-A implementation slice.
 
 ### Communications Wishlist - Links-First, Opt-In Uploaded Attachments
 
@@ -680,21 +779,24 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Execute and review the bounded R9-A0 read-only inventory
+Review the completed R9-A0 static and STAGING evidence
 ```
 
 Goal:
 
 R8-A3 and `PLAT-ASSURE-03` are complete at their respective release/staging boundaries.
-Formal R9 triage is complete. Inventory every Item 3 writer and consumer, execute only
-separately authorised tenant/season-scoped read-only aggregate queries, classify compatible,
-deterministic, ambiguous, override and integrity states, and produce the evidence needed for
-later compatibility and implementation slice decisions.
+Formal R9 triage and the exact-commit R9-A0 static writer/consumer inventory are complete.
+The corrected STAGING target passed preflight and Q1-Q15 completed read-only with rollback.
+Review the combined evidence, especially the 55 control-owner-attested legacy imports that
+lack automated row-level provenance, seven Current/unallocated Teams, nine
+Approved/no-qualifying-Team Clubs and primary-C2 gaps. Accept, revise or split R9-A0, then
+decide the first separately bounded successor planning slice. Preserve the distinction
+between human attestation and automated evidence before any classification or repair.
 
-Stop after the reviewed inventory. Do not add schema, migration or product code; do not
-reconcile or mutate data; and do not pre-authorise successor slices. This is the LMSPro
-lane's next planning/evidence action and does not override the root roadmap's cross-lane
-execution authority.
+Do not add schema, migration or product code; do not reconcile or mutate data; and do not
+infer admission or Current participation from raw status alone. Do not pre-authorise
+successor slices. This is the LMSPro lane's next control action and does not override the
+root roadmap's cross-lane execution authority.
 
 ## Fresh Chat Prompt
 
@@ -703,21 +805,26 @@ Proceed with LMSPro / SeasonPro remediation planning from:
 isodocs/docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
 
 Next step:
-Execute the accepted R9-A0 read-only inventory plan:
+Review and complete the accepted R9-A0 read-only evidence boundary:
 isodocs/docs/modules/lmspro/01-cr-inputs/2026-07-22-lmspro-consolidated-email-integrity-club-visibility-and-remedial-work-cr-input.md
 isodocs/docs/modules/lmspro/01-cr-inputs/2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md
 isodocs/docs/modules/lmspro/02-triage/2026-07-27-lmspro-r9-consolidated-four-item-remediation-triage.md
 isodocs/docs/modules/lmspro/03-slice-planning/2026-07-27-lmspro-remediation-slice-r9-a0-club-participation-writer-consumer-and-live-state-inventory-planning.md
+isodocs/docs/modules/lmspro/05-review-and-test/2026-07-27-lmspro-r9-a0-static-writer-consumer-and-live-state-inventory-evidence.md
+isodocs/docs/modules/lmspro/05-review-and-test/2026-07-27-lmspro-r9-a0-bounded-read-only-live-state-query-pack.md
 
 Goal:
-Produce a complete static writer/consumer inventory and, only with explicit target authority,
-tenant/season-scoped aggregate live-state counts. Record the accepted Club aggregate: zero
-qualifying Current/allocated Teams means Club Waiting List, while unallocated Teams remain
-distinct and are not automatically Team Waiting List. Classify deterministic and ambiguous
-states and use the reviewed evidence to recommend later bounded compatibility and
-implementation slices.
+Review the completed exact-commit static inventory and bounded STAGING Q1-Q15 evidence.
+Determine whether the evidence is accepted, needs revision or requires R9-A0 to be split.
+In particular, preserve the 55 Clubs as control-owner-attested legacy imports whose
+automated row-level provenance is unavailable; do not infer Current participation from
+their raw status or Team presence. If the evidence is accepted, define—but do not
+implement—the first separately bounded successor planning slice and record the remaining
+shapes as provisional. Keep wishlist item `LMS-W-IMPORT-01` outside the accepted slice
+unless formal triage explicitly brings it in.
 
 Do not begin implementation, schema work, migration or live-data reconciliation.
+Do not infer production authority from staging authority and stop on target/ancestry mismatch.
 Do not reopen R8-A, broaden the batch sender, add key-date sequence attachments, automatically
 resend historic messages, alter unrelated season automation or change FUND logic.
 ```

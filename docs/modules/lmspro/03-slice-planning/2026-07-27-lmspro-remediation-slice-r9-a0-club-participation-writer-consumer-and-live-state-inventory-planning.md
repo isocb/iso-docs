@@ -4,8 +4,9 @@ Date: 2026-07-27
 
 Module: LMSPro / SeasonPro
 
-Status: ACCEPTED as the selected read-only planning/evidence boundary; inventory execution
-and evidence capture remain pending
+Status: EVIDENCE COMPLETE — exact-commit static inventory and authorised bounded STAGING
+aggregate inventory complete; awaiting acceptance, revision or split at the next control
+review
 
 Parent lifecycle:
 
@@ -62,6 +63,12 @@ Team unallocated
 
 Waiting List is not suspension, withdrawal or loss of onboarding/C2 authority.
 
+An actual automatic Club Current/Waiting List transition may create a notification through
+the existing Notification Manager. User-triggered CRUD retains its existing on-CRUD
+notification control; automatically derived behaviour falls back to the manager's master
+and per-event switches, default-or-custom content and recipient-routing contract. Mere
+re-evaluation without a category change does not notify.
+
 Registration/admission may originate through exactly three accepted routes:
 
 1. a completed validated Club import through the SeasonPro import tool;
@@ -99,7 +106,7 @@ registration/admission decision.
 - production deployment or environment changes;
 - automatic classification of ambiguous records;
 - historic closed-season rewrite;
-- notification sending; and
+- notification sending inside this read-only R9-A0 evidence boundary; and
 - implementation of any provisional successor shape.
 
 ## 4. Static Writer Inventory
@@ -260,6 +267,7 @@ whether later bounded work needs separate boundaries for:
 - additive admission/participation representation;
 - compatibility readers and named cohort resolution;
 - prospective writer convergence;
+- Notification Manager event integration, transition idempotency and send evidence;
 - controlled dry-run and authorised reconciliation;
 - UI terminology and generic-CRUD removal;
 - constraint enforcement and legacy cleanup; and
@@ -287,3 +295,51 @@ R9-A0 passes only when:
 Stop after the reviewed R9-A0 evidence record. Do not implement a schema, compatibility
 reader, writer change, reconciliation, UI correction or constraint until the next control
 decision accepts its exact bounded plan.
+
+## 13. Evidence Checkpoint
+
+The static application-source inventory completed at exact commit:
+
+```text
+df40f45cda955ef00e8f790de89a476c2463a629
+```
+
+Evidence record:
+
+`docs/modules/lmspro/05-review-and-test/2026-07-27-lmspro-r9-a0-static-writer-consumer-and-live-state-inventory-evidence.md`
+
+Bounded query pack:
+
+`docs/modules/lmspro/05-review-and-test/2026-07-27-lmspro-r9-a0-bounded-read-only-live-state-query-pack.md`
+
+The source evidence confirms all three valid registration/admission routes and confirms that
+current writers and consumers overload `APPROVED` and `CURRENT`.
+
+The first authorised STAGING snapshot fingerprint `6ee30baaf29f` passed connection controls
+but stopped because the supplied tenant/season did not exist and the expected July migration
+ancestry was absent. Q1-Q15 were not run against that target.
+
+The corrected STAGING target fingerprint `d18b9abe1450` was then authorised with the
+corrected season. Its preflight passed:
+
+- the expected `df40f45c` migration was applied;
+- no migration was unfinished;
+- every historical rolled-back migration name had a successful applied record; and
+- the season existed exactly once, belonged to the authorised tenant and was current and
+  active.
+
+Q1-Q15 then completed in an explicitly read-only transaction and ended with `ROLLBACK`.
+Only tenant/season-scoped aggregate results were retained.
+
+The combined evidence exposes seven Current/unallocated Teams, nine Approved Clubs with no
+qualifying Team, 55 Clubs without detectable accepted-route evidence, 22 Clubs without a
+fully authoritative active primary C2, and a 59 raw-Approved versus zero evidence-derived
+Current cohort delta. It also confirms that all 400 scoped Team-to-Club/age-group relations
+are valid and that all 40 Team Waiting List records have detected decision evidence.
+
+R9-A0 is evidence-complete and sufficient for the next control review. It remains open
+pending acceptance, revision or split. The provisional successor shapes in the evidence
+record are not accepted implementation slices. The control owner attests that the 55
+evidence-free Clubs are the pre-1 June 2026 Derby JFL legacy Knack import cohort, but that
+attestation is not row-level automated import evidence and does not authorise classification
+or repair. Future automated provenance is registered as wishlist item `LMS-W-IMPORT-01`.

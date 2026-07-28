@@ -1017,7 +1017,12 @@ The reconciled defaults and gates are:
 - **no** - Waiting List does not remove Club-official access or undo onboarding;
 - **no** - season clone does not carry Current blindly; it recalculates from destination evidence;
   and
-- **no automatic notification** - C1 communicates participation changes manually.
+- **Notification Manager controlled** - an actual automatic Club Current/Waiting List
+  transition may create the relevant automated notification. User-triggered CRUD behaviour
+  continues to respect its existing on-CRUD notification control; an automatically derived
+  transition falls back to the existing Notification Manager, where the tenant can pause or
+  resume all notifications or the individual event and can use or customise the default
+  content and recipient routing. Manual communication remains available.
 
 ### 21.11 Live-Data Safety And Controlled Promotion
 

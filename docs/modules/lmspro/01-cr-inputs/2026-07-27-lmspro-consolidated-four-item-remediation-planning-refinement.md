@@ -596,8 +596,16 @@ future source-season history must remain unchanged.
   including while their Teams remain unallocated.
 - No `CURRENT` Team remains unallocated under the accepted final contract.
 - Counts, filters, editors, cohorts and season rollover use named business definitions.
-- Automatic state convergence does not send Club notifications; C1 communicates these changes
-  manually.
+- An actual automatic Club Current/Waiting List transition may create a Club notification
+  through the existing Notification Manager. User-triggered CRUD behaviour continues to
+  respect its existing on-CRUD notification control; automatically derived behaviour falls
+  back to Notification Manager. Its master and per-event switches, platform-default or
+  tenant-custom content and existing recipient-routing contract remain authoritative.
+- Re-evaluation without a category change, evidence-only inventory and dry-run must not
+  send. Bulk reconciliation notification behaviour requires its own explicit promotion
+  decision and must not silently inherit the ordinary live-transition trigger. Later
+  implementation planning must define transition-event idempotency and delivery/audit
+  evidence before automatic sending is enabled.
 - Production reconciliation is measured, deterministic, idempotent, auditable and recoverable.
 
 ## 11. Candidate Workstream 4 - Responsive Team Status Visibility
@@ -938,7 +946,10 @@ CHRIS:  A registered club is a club that has applied to be recognized as a club 
 CHRIS: I dont know what the cohort labels are currently.  In the League Management Dashboard, there is a clubs page listing Current clubs witha. cohort filter, and the dashboard includes a summry of club count....
 
 6. Should automatic Current/Waiting List transitions create notifications?
-CHRIS: For clubs, this will be a manual email and does not require automate notifications
+CHRIS: Yes, Club notification may be automatic and switchable. User-triggered CRUD uses its
+existing notification switch; automatic behaviour falls back to the existing Notification
+Manager, where all or individual notifications can be switched on/off and default content
+can be customised.
 7. Which observed live contradictions are deterministic corrections and which require authorised
    review?
 
@@ -1003,8 +1014,11 @@ CHRIS: Unknown.
     of the Division Manager workflow and is excluded from Current counts.
 20. Club Waiting List and Team unallocated/Waiting List states do not undo onboarding or
     automatically remove C2 access.
-21. Automatic participation convergence does not send Club notifications; C1 communicates
-    changes manually.
+21. An actual automatic Club Current/Waiting List transition may use the existing
+    Notification Manager. User-triggered CRUD retains its on-CRUD notification control;
+    automated behaviour falls back to the manager's master/per-event switches,
+    default-or-custom content and recipient routing. No-op evaluation, inventory, dry-run
+    and unauthorised reconciliation do not send.
 22. There is no historic closed-season participation data to rewrite because this is the first
     operational season.
 23. Attachment browse, keyboard activation and drag-and-drop must coexist. Click-to-browse is
