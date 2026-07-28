@@ -391,12 +391,14 @@ planning but remains distinct from row-level automated provenance. Wishlist item
 
 R9-A1 is accepted as one `Admission Evidence And Derived Participation Compatibility`
 application-remediation slice on one branch. It combines the previously proposed A1A
-through A1E application concerns. The next exact control may commence its additive
-implementation, automated tests, implementation confirmation, verified STAGING snapshot,
-notifications-off STAGING deployment and focused review/human smoke lifecycle. Existing-data
-reconciliation remains one separately approved R9-A2 execution after STAGING dry-run, and
-cleanup is deferred indefinitely unless later evidence makes it necessary. R9-A1 has not
-commenced and R9-A2 execution is not authorised.
+through A1E application concerns. Its additive implementation is complete at application
+commit `654ec47cb85f710b4fa2055dc8fa28e0a79ed90f`, with exact parent/recovery baseline
+`df40f45cda955ef00e8f790de89a476c2463a629`. Local automated verification has passed,
+subject to the recorded pre-existing repository lint debt; the exact published-commit
+Security Scan, verified STAGING snapshot, migration, notifications-off deployment and
+focused review/human smoke remain pending. Existing-data reconciliation remains one
+separately approved R9-A2 execution after STAGING dry-run, and cleanup is deferred
+indefinitely unless later evidence makes it necessary. R9-A2 execution is not authorised.
 
 The legacy-attestation representation is now accepted: R9-A1 may add capability for one
 `LEGACY_ATTESTED_IMPORT` admission-evidence row per verified Club linked to one bounded
@@ -800,19 +802,21 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Commence the accepted R9-A1 implementation and STAGING validation boundary
+Advance the implemented R9-A1 commit through the controlled STAGING validation boundary
 ```
 
 Goal:
 
-R9-A0 evidence is accepted at controlling IsoDocs commit
-`c7667754d42f2fb6ca115e3c2dbf9c6c4154cc4c`, and the one-branch R9-A1 application plan is
-accepted. The next exact control may implement R9-A1, pass automated tests, create the
-implementation confirmation, verify a STAGING snapshot, apply the additive migration,
-deploy to STAGING with both new notification events off and execute the focused review and
-human smoke lifecycle. The UI smoke covers the linked two-stage registration/approval route
-and direct authorised C1 creation; import is covered by automated integration tests and is
-excluded from UI human smoke.
+R9-A0 evidence is accepted, the one-branch R9-A1 application plan is accepted, and R9-A1 is
+implemented at exact application commit
+`654ec47cb85f710b4fa2055dc8fa28e0a79ed90f` under controlling IsoDocs commit
+`afa5a5e23989ac8ddf1c37aca3f47aa222b2c3fb`. The implementation confirmation and scheduled
+review/human smoke record now exist. The next controlled work must publish and pass the
+exact-commit Security Scan, verify a STAGING snapshot, apply the additive migration, deploy
+only that commit to STAGING with both new notification events off and execute the focused
+review and human smoke lifecycle. The UI smoke covers the linked two-stage
+registration/approval route and direct authorised C1 creation; import is covered by
+automated integration tests and is excluded from UI human smoke.
 
 The lifecycle ends with an evidenced STAGING verdict. The R9-A2 dry-run may inform the
 separate reconciliation approval, but existing-data mutation remains prohibited until that
@@ -823,34 +827,22 @@ execution authority.
 ## Fresh Chat Prompt
 
 ```text
-Proceed with the controlled LMSPro / SeasonPro R9-A1 implementation from:
+Proceed with the controlled LMSPro / SeasonPro R9-A1 STAGING validation from:
 isodocs/docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
 
-Next step:
-Use the accepted R9-A1 planning boundary:
+Planning and lifecycle records:
 isodocs/docs/modules/lmspro/03-slice-planning/2026-07-28-lmspro-remediation-slice-r9-a1-admission-evidence-and-derived-participation-compatibility-planning.md
+isodocs/docs/modules/lmspro/04-implementation-confirmations/2026-07-28-lmspro-remediation-slice-r9-a1-admission-evidence-and-derived-participation-compatibility-confirmation.md
+isodocs/docs/modules/lmspro/05-review-and-test/2026-07-28-lmspro-remediation-slice-r9-a1-admission-evidence-and-derived-participation-compatibility-review-and-staging-smoke-test.md
 
-Before implementation, verify that the accepted R9-A1 plan and reconciled roadmap are
-committed in IsoDocs and record that exact controlling commit. Stop if the documents are
-uncommitted or differ from the accepted boundary.
+Exact application commit:
+654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
 
-Application starting baseline:
+Recovery baseline:
 df40f45cda955ef00e8f790de89a476c2463a629
 
-Create one dedicated R9-A1 feature branch from that exact baseline. Do not implement on
-`main`, `staging` or a production worktree.
-
-Goal:
-Commence the accepted one-branch R9-A1 application-remediation slice. Implement the
-additive admission evidence, derived participation compatibility, prospective writer and
-consumer alignment, and the two safely disabled Notification Manager transition events.
-Pass the required automated tests and create the implementation-confirmation record.
-
-Before deployment, create the review/test record with the focused human UI smoke schedule.
-Use the exact lifecycle records required by Section 13.1 of the accepted plan:
-
-- `docs/modules/lmspro/04-implementation-confirmations/2026-07-28-lmspro-remediation-slice-r9-a1-admission-evidence-and-derived-participation-compatibility-confirmation.md`
-- `docs/modules/lmspro/05-review-and-test/2026-07-28-lmspro-remediation-slice-r9-a1-admission-evidence-and-derived-participation-compatibility-review-and-staging-smoke-test.md`
+First publish the feature commit and pass the repository Security Scan against that exact
+commit. Stop on any Security Scan failure.
 
 Create and verify the STAGING database snapshot, apply the additive migration and deploy the
 exact R9-A1 commit to STAGING with both new events off. Execute and record human C1/C2 UI
