@@ -351,7 +351,7 @@ requires its own CR lifecycle. Formal triage accepts the four-item CR as coordin
 3. `R9-C` — Item 4, responsive Team status visibility; and
 4. `R9-D` — Item 2, attachment click-to-browse restoration.
 
-`R9-A0` is the selected next LMSPro planning/evidence boundary. It is a read-only writer,
+`R9-A0` was the selected LMSPro planning/evidence boundary. It is a read-only writer,
 consumer and live-state inventory. It preserves Item 3's accepted distinction: validated
 SeasonPro import, the linked two-stage form after email validation and C1 approval, and
 authorised direct C1 creation are the three valid Registered/admission routes;
@@ -380,13 +380,30 @@ no qualifying Team, 55 Clubs without detectable accepted-route evidence, 22 Club
 fully authoritative active primary C2, and a 59 raw-Approved versus zero evidence-derived
 Current cohort delta. All 400 scoped Team-to-Club/age-group relations are valid and all 40
 Team Waiting List records have detected authorised-decision evidence. R9-A0 is
-evidence-complete and awaits control review; no automatic classification, repair or
-successor implementation slice is authorised.
+evidence-complete and was formally accepted for successor planning at controlling IsoDocs
+commit `c7667754d42f2fb6ca115e3c2dbf9c6c4154cc4c`; no automatic classification, repair or
+successor implementation slice is authorised by that acceptance.
 
 The control owner subsequently attested that the 55 evidence-free Clubs are the pre-1 June
 2026 Derby JFL legacy Knack import cohort. This resolves their business explanation for
 planning but remains distinct from row-level automated provenance. Wishlist item
 `LMS-W-IMPORT-01` registers the future import-evidence capability.
+
+R9-A1 is accepted as one `Admission Evidence And Derived Participation Compatibility`
+application-remediation slice on one branch. It combines the previously proposed A1A
+through A1E application concerns. The next exact control may commence its additive
+implementation, automated tests, implementation confirmation, verified STAGING snapshot,
+notifications-off STAGING deployment and focused review/human smoke lifecycle. Existing-data
+reconciliation remains one separately approved R9-A2 execution after STAGING dry-run, and
+cleanup is deferred indefinitely unless later evidence makes it necessary. R9-A1 has not
+commenced and R9-A2 execution is not authorised.
+
+The legacy-attestation representation is now accepted: R9-A1 may add capability for one
+`LEGACY_ATTESTED_IMPORT` admission-evidence row per verified Club linked to one bounded
+attestation/reconciliation batch. It must preserve that automated historic source evidence
+is unavailable and must not fabricate an import job or unsupported provenance. R9-A1 does
+not insert these rows. The R9-A2 dry-run must show the exact proposed membership and counts,
+and reconciliation execution remains separately controlled.
 
 Planning refinement:
 
@@ -399,6 +416,10 @@ Formal triage:
 Selected R9-A0 plan:
 
 `docs/modules/lmspro/03-slice-planning/2026-07-27-lmspro-remediation-slice-r9-a0-club-participation-writer-consumer-and-live-state-inventory-planning.md`
+
+Accepted R9-A1 plan:
+
+`docs/modules/lmspro/03-slice-planning/2026-07-28-lmspro-remediation-slice-r9-a1-admission-evidence-and-derived-participation-compatibility-planning.md`
 
 Static evidence:
 
@@ -779,52 +800,73 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Review the completed R9-A0 static and STAGING evidence
+Commence the accepted R9-A1 implementation and STAGING validation boundary
 ```
 
 Goal:
 
-R8-A3 and `PLAT-ASSURE-03` are complete at their respective release/staging boundaries.
-Formal R9 triage and the exact-commit R9-A0 static writer/consumer inventory are complete.
-The corrected STAGING target passed preflight and Q1-Q15 completed read-only with rollback.
-Review the combined evidence, especially the 55 control-owner-attested legacy imports that
-lack automated row-level provenance, seven Current/unallocated Teams, nine
-Approved/no-qualifying-Team Clubs and primary-C2 gaps. Accept, revise or split R9-A0, then
-decide the first separately bounded successor planning slice. Preserve the distinction
-between human attestation and automated evidence before any classification or repair.
+R9-A0 evidence is accepted at controlling IsoDocs commit
+`c7667754d42f2fb6ca115e3c2dbf9c6c4154cc4c`, and the one-branch R9-A1 application plan is
+accepted. The next exact control may implement R9-A1, pass automated tests, create the
+implementation confirmation, verify a STAGING snapshot, apply the additive migration,
+deploy to STAGING with both new notification events off and execute the focused review and
+human smoke lifecycle. The UI smoke covers the linked two-stage registration/approval route
+and direct authorised C1 creation; import is covered by automated integration tests and is
+excluded from UI human smoke.
 
-Do not add schema, migration or product code; do not reconcile or mutate data; and do not
-infer admission or Current participation from raw status alone. Do not pre-authorise
-successor slices. This is the LMSPro lane's next control action and does not override the
-root roadmap's cross-lane execution authority.
+The lifecycle ends with an evidenced STAGING verdict. The R9-A2 dry-run may inform the
+separate reconciliation approval, but existing-data mutation remains prohibited until that
+approval. Do not promote to `main` or live, query or mutate production, or enable production
+notifications. This LMSPro lane action does not override the root roadmap's cross-lane
+execution authority.
 
 ## Fresh Chat Prompt
 
 ```text
-Proceed with LMSPro / SeasonPro remediation planning from:
+Proceed with the controlled LMSPro / SeasonPro R9-A1 implementation from:
 isodocs/docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
 
 Next step:
-Review and complete the accepted R9-A0 read-only evidence boundary:
-isodocs/docs/modules/lmspro/01-cr-inputs/2026-07-22-lmspro-consolidated-email-integrity-club-visibility-and-remedial-work-cr-input.md
-isodocs/docs/modules/lmspro/01-cr-inputs/2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md
-isodocs/docs/modules/lmspro/02-triage/2026-07-27-lmspro-r9-consolidated-four-item-remediation-triage.md
-isodocs/docs/modules/lmspro/03-slice-planning/2026-07-27-lmspro-remediation-slice-r9-a0-club-participation-writer-consumer-and-live-state-inventory-planning.md
-isodocs/docs/modules/lmspro/05-review-and-test/2026-07-27-lmspro-r9-a0-static-writer-consumer-and-live-state-inventory-evidence.md
-isodocs/docs/modules/lmspro/05-review-and-test/2026-07-27-lmspro-r9-a0-bounded-read-only-live-state-query-pack.md
+Use the accepted R9-A1 planning boundary:
+isodocs/docs/modules/lmspro/03-slice-planning/2026-07-28-lmspro-remediation-slice-r9-a1-admission-evidence-and-derived-participation-compatibility-planning.md
+
+Before implementation, verify that the accepted R9-A1 plan and reconciled roadmap are
+committed in IsoDocs and record that exact controlling commit. Stop if the documents are
+uncommitted or differ from the accepted boundary.
+
+Application starting baseline:
+df40f45cda955ef00e8f790de89a476c2463a629
+
+Create one dedicated R9-A1 feature branch from that exact baseline. Do not implement on
+`main`, `staging` or a production worktree.
 
 Goal:
-Review the completed exact-commit static inventory and bounded STAGING Q1-Q15 evidence.
-Determine whether the evidence is accepted, needs revision or requires R9-A0 to be split.
-In particular, preserve the 55 Clubs as control-owner-attested legacy imports whose
-automated row-level provenance is unavailable; do not infer Current participation from
-their raw status or Team presence. If the evidence is accepted, define—but do not
-implement—the first separately bounded successor planning slice and record the remaining
-shapes as provisional. Keep wishlist item `LMS-W-IMPORT-01` outside the accepted slice
-unless formal triage explicitly brings it in.
+Commence the accepted one-branch R9-A1 application-remediation slice. Implement the
+additive admission evidence, derived participation compatibility, prospective writer and
+consumer alignment, and the two safely disabled Notification Manager transition events.
+Pass the required automated tests and create the implementation-confirmation record.
 
-Do not begin implementation, schema work, migration or live-data reconciliation.
-Do not infer production authority from staging authority and stop on target/ancestry mismatch.
-Do not reopen R8-A, broaden the batch sender, add key-date sequence attachments, automatically
-resend historic messages, alter unrelated season automation or change FUND logic.
+Before deployment, create the review/test record with the focused human UI smoke schedule.
+Use the exact lifecycle records required by Section 13.1 of the accepted plan:
+
+- `docs/modules/lmspro/04-implementation-confirmations/2026-07-28-lmspro-remediation-slice-r9-a1-admission-evidence-and-derived-participation-compatibility-confirmation.md`
+- `docs/modules/lmspro/05-review-and-test/2026-07-28-lmspro-remediation-slice-r9-a1-admission-evidence-and-derived-participation-compatibility-review-and-staging-smoke-test.md`
+
+Create and verify the STAGING database snapshot, apply the additive migration and deploy the
+exact R9-A1 commit to STAGING with both new events off. Execute and record human C1/C2 UI
+smoke for exactly these two Club-instantiation routes:
+
+1. the linked two-stage registration form after email validation and authorised C1
+   approval; and
+2. deliberate direct Club creation by an authorised C1 tenant user.
+
+Do not perform the import route through the UI; retain it as mandatory automated integration
+coverage. After the first smoke pass, run only the tenant/season-bounded R9-A2 reconciliation
+dry-run and stop for explicit review and execution approval.
+
+This is a STAGING-only lifecycle. Do not query or mutate production, promote to `main` or
+live, enable production notifications, or execute R9-A2 reconciliation. Stop with the
+implementation confirmation, completed STAGING review/smoke record, dry-run evidence and
+an explicit R9-A1 STAGING implementation/smoke verdict. This is not a reconciliation,
+promotion or production verdict.
 ```
