@@ -2,9 +2,10 @@
 
 Date: 2026-07-28
 
-Record status: SCHEDULED — no human UI check has yet been executed
+Record status: STOPPED AT PRE-DEPLOYMENT GATE — no human UI check has yet been executed
 
-Automated technical disposition: PASS LOCALLY; exact-commit Security Scan pending
+Automated technical disposition: PASS LOCALLY; exact-commit Security Scan blocked pending
+authenticated GitHub workflow access
 
 STAGING deployment disposition: NOT DEPLOYED
 
@@ -77,9 +78,9 @@ All must pass before migration or deployment:
 
 | Gate | Expected evidence | Result |
 | --- | --- | --- |
-| Exact application commit | Published commit is exactly `654ec47c…` with parent `df40f45c…` | PENDING |
-| Exact Security Scan | Repository Security Scan passes against `654ec47c…` | PENDING |
-| Database identity | Credential-safe fingerprint is exactly `d18b9abe1450` | PENDING |
+| Exact application commit | Published commit is exactly `654ec47c…` with parent `df40f45c…` | PASS — dedicated feature branch only |
+| Exact Security Scan | Repository Security Scan passes against `654ec47c…` | BLOCKED — GitHub CLI authentication is invalid; no scan result exists |
+| Database identity | Credential-safe fingerprint is exactly `d18b9abe1450` | STOP — local STAGING URL produced `016aba10adf6` |
 | Tenant/season scope | Season belongs to the authorised tenant | PENDING |
 | Session boundary | Administrative preflight is read-only until the migration step | PENDING |
 | Migration ancestry | Last expected applied migration matches and no failed/rolled-back migration exists | PENDING |
@@ -89,6 +90,33 @@ All must pass before migration or deployment:
 | Environment scope | No production target, credential or deployment reference is selected | PENDING |
 
 Stop on any mismatch. Never display, copy or commit the database URL.
+
+### 3.1 Stopped preflight evidence
+
+The dedicated feature branch was published without advancing `dev`, `staging` or `main`.
+The repository workflow does not run on an ordinary feature-branch push, and the installed
+GitHub CLI reports an invalid login. No attempt was made to extract or repurpose a stored Git
+credential, and no Security Scan was represented as passed.
+
+The subsequent local identity check used the credential-safe application fingerprint method
+that hashes protocol, hostname, port and database path while excluding username, password and
+query values. The URL currently stored under `STAGING_DATABASE_URL` produced:
+
+```text
+observed fingerprint:   016aba10adf6
+authorised fingerprint: d18b9abe1450
+result:                 STOP
+```
+
+The first `psql` command also contained a client-variable substitution error. PostgreSQL rejected
+the entire command string during parsing at the first variable token, before `BEGIN` or any query
+executed. No database statement, transaction, snapshot, migration or mutation occurred.
+
+Do not retry the database preflight until either:
+
+1. `.env.staging.local` points to the already authorised `d18b9abe1450` target; or
+2. the control owner independently verifies that `016aba10adf6` is now the intended Render
+   STAGING database and explicitly revises the authorised fingerprint.
 
 ## 4. Snapshot, Migration And Deployment Record
 
@@ -146,7 +174,8 @@ Technical review must additionally verify in the deployed build:
 - outbox retry and recipient ambiguity remain auditable; and
 - no migration-time Club/Team classification occurred.
 
-Technical verdict: PENDING exact Security Scan, migration and deployed evidence.
+Technical verdict: STOPPED pending exact Security Scan authentication and exact STAGING database
+identity reconciliation; migration and deployed evidence do not exist.
 
 ## 6. Human UI Smoke Schedule
 
@@ -285,7 +314,7 @@ separate explicit approval.
 
 ## 9. Verdict
 
-R9-A1 STAGING implementation/smoke verdict: PENDING
+R9-A1 STAGING implementation/smoke verdict: STOPPED BEFORE SNAPSHOT/MIGRATION/DEPLOYMENT
 
 Recovery position: PENDING verified child snapshot
 

@@ -400,6 +400,14 @@ focused review/human smoke remain pending. Existing-data reconciliation remains 
 separately approved R9-A2 execution after STAGING dry-run, and cleanup is deferred
 indefinitely unless later evidence makes it necessary. R9-A2 execution is not authorised.
 
+The first pre-deployment attempt published only the dedicated feature branch, then stopped
+without snapshot, migration or deployment. The exact-commit Security Scan could not be
+triggered because the installed GitHub CLI authentication is invalid. The local
+`STAGING_DATABASE_URL` also produced credential-safe fingerprint `016aba10adf6`, not the
+authorised `d18b9abe1450`. Database parsing rejected the preflight command before any
+statement executed. Authentication and exact STAGING identity must therefore be reconciled
+before the pre-deployment gate may be retried.
+
 The legacy-attestation representation is now accepted: R9-A1 may add capability for one
 `LEGACY_ATTESTED_IMPORT` admission-evidence row per verified Club linked to one bounded
 attestation/reconciliation batch. It must preserve that automated historic source evidence
