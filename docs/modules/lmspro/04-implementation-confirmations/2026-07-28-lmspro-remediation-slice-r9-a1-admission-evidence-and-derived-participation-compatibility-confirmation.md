@@ -2,8 +2,9 @@
 
 Date: 2026-07-28
 
-Implementation status: BASE R9-A1 RETAINED ON STAGING; focused `R9-A1-F5` correction complete,
-Security-Scan-green and retained on `origin/dev`; STAGING redeployment remains pending
+Implementation status: BASE R9-A1 RETAINED ON STAGING; consolidated `R9-A1-F1` through
+`R9-A1-F5` correction complete, Security-Scan-green and retained on `origin/dev`; one exact
+STAGING redeployment and focused re-smoke remain pending
 
 Planning source:
 
@@ -21,7 +22,8 @@ starting/recovery baseline: df40f45cda955ef00e8f790de89a476c2463a629
 implementation commit: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
 parents: exactly df40f45cda955ef00e8f790de89a476c2463a629
 focused R9-A1-F5 correction: 5713f9ba8f637a6015dc1b4688258725a473ed35
-origin/dev: advanced from 654ec47c to 5713f9ba on 2026-07-29
+consolidated smoke-follow-up correction: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
+origin/dev: advanced from 654ec47c through 5713f9ba to 71c59653 on 2026-07-29
 origin/staging: fast-forwarded from df40f45c to 654ec47c on 2026-07-29;
   exact Render deployment confirmed Live by the control owner
 worktree state after commit: clean
@@ -260,3 +262,52 @@ schema/migration security, secret detection and report generation were green. `o
 Render STAGING and the STAGING database remain at the previously confirmed R9-A1 state; the
 correction has not been deployed or human re-smoked. No R9-A2 dry-run or reconciliation is
 authorised by this corrective commit.
+
+## 10. Consolidated R9-A1-F1 Through F4 Correction
+
+Rather than incur two STAGING builds, the remaining confirmed human-smoke findings were corrected
+as one application-only batch on top of exact green F5 commit `5713f9ba`.
+
+Exact consolidated candidate:
+
+`71c596536d1cb7f6258b3c2cfe1d46de2a22d85a`
+
+The correction:
+
+- removes the redundant Application-level Waiting List button and server mutation while retaining
+  normal Approve and Reject;
+- derives friendly linked-Application Club stages (`Awaiting Verification` and
+  `Ready for Review`) and aligns the Club Management badges and filters;
+- labels an unlinked `PENDING` Club explicitly as `Legacy Pending / Review`;
+- hides direct Club approval for a linked Application shell and rejects that bypass server-side;
+- displays `Current`, `Club Waiting List` and explicit override labels prominently on the C2
+  dashboard, summary and profile;
+- retains manager-detail editing for in-process Teams;
+- hides Free Day actions for non-Current or unallocated Teams and rejects ordinary or special Free
+  Day submissions server-side unless the Team is Current and allocated;
+- hides operational variation creation for pending/unallocated Teams and enforces the same server
+  rule, while retaining the existing Inactive-Team reinstatement path; and
+- centralises the Club-display/direct-approval and Team-action eligibility rules with focused
+  automated tests.
+
+The batch changes no schema, migration, record, fixture, environment or notification value.
+Existing pending Teams and append-only R9-A1 evidence remain untouched.
+
+Consolidated automated evidence:
+
+```text
+focused Club/Team boundary tests: 28 PASS
+full Vitest suite:                238 PASS; 12 intentionally skipped
+npm run type-check:               PASS
+npx tsx critical-file verifier:  PASS
+focused changed-file ESLint:      PASS with existing warnings only; zero errors
+npm run build:                    PASS
+git diff --check:                 PASS
+pre-commit checks:                PASS
+```
+
+Exact GitHub Security Scan run `30446138948` passed TypeScript safety, dependency vulnerability,
+database schema/migration security, secret detection and report generation. `origin/dev` is exact
+`71c59653`; `origin/staging`, Render STAGING and the STAGING database remain unchanged at the
+previously confirmed `654ec47c` application state. This implementation record does not authorise a
+database operation, R9-A2 dry-run, reconciliation or production promotion.

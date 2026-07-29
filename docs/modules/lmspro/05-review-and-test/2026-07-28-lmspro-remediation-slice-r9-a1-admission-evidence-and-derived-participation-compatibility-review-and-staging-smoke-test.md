@@ -3,11 +3,11 @@
 Date: 2026-07-28
 
 Record status: HUMAN STAGING SMOKE PAUSED — Route A access PASS; findings
-`R9-A1-F1` through `R9-A1-F5` recorded; `R9-A1-F5` corrected on `origin/dev` but not yet
-deployed or re-smoked
+`R9-A1-F1` through `R9-A1-F5` recorded and corrected on `origin/dev` but not yet deployed or
+re-smoked
 
-Automated technical disposition: BASE `654ec47c` PASS; corrective `5713f9ba` local automation
-PASS and exact automatic Security Scan PASS
+Automated technical disposition: BASE `654ec47c` PASS; consolidated corrective `71c59653`
+automation, production build and exact automatic Security Scan PASS
 
 STAGING deployment disposition: PASS — exact `654ec47c` confirmed Live
 
@@ -33,8 +33,9 @@ controlling IsoDocs commit: afa5a5e23989ac8ddf1c37aca3f47aa222b2c3fb
 feature branch: feature/lmspro-r9-a1-admission-participation
 application baseline/recovery: df40f45cda955ef00e8f790de89a476c2463a629
 application under review: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
-corrective candidate: 5713f9ba8f637a6015dc1b4688258725a473ed35
-origin/dev: 5713f9ba8f637a6015dc1b4688258725a473ed35
+F5 correction: 5713f9ba8f637a6015dc1b4688258725a473ed35
+consolidated corrective candidate: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
+origin/dev: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
 origin/staging and current Render deployment: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
 ```
 
@@ -475,6 +476,26 @@ schema, migration, database, fixture, environment or notification value changed.
 This does not close the finding. Advance only STAGING/Render to that exact commit, then repeat the
 bounded observation that both fixture Teams appear in All Pending, both are reviewable and the
 dashboard pending count agrees. Do not action either Team until that observation passes.
+
+### Consolidated correction candidate
+
+The remaining findings `R9-A1-F1` through `R9-A1-F4` were corrected together on top of the green
+F5 commit so STAGING requires one further build rather than two. Exact candidate
+`71c596536d1cb7f6258b3c2cfe1d46de2a22d85a`:
+
+- removes the redundant Application Waiting List approval route;
+- aligns linked-Application Club badges and filters and blocks the direct-Club-approval bypass;
+- adds the friendly Club participation badge to the C2 dashboard, summary and profile; and
+- gates Free Day and operational variation actions consistently in UI and server while retaining
+  pending-Team manager editing and Inactive-Team reinstatement.
+
+Focused boundary tests passed 28/28; the full suite passed 238 with 12 intentionally skipped;
+TypeScript, critical-file verification, production build, diff and pre-commit checks passed;
+focused changed-file lint had zero errors; and exact Security Scan run `30446138948` was green.
+
+No schema, migration, database, fixture, environment, access, notification or deployment state
+changed. The findings remain open until STAGING is advanced to exact `71c59653` and the affected
+UI observations pass. Keep both participation notification events OFF for that redeployment.
 
 ### Route B — authorised direct C1 creation
 
