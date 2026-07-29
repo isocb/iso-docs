@@ -2,8 +2,8 @@
 
 Date: 2026-07-28
 
-Implementation status: COMPLETE AT FEATURE COMMIT; STAGING migration, deployment and human
-validation remain pending
+Implementation status: COMPLETE AND RETAINED ON `origin/dev`; STAGING migration, deployment and
+human validation remain pending
 
 Planning source:
 
@@ -20,6 +20,7 @@ branch: feature/lmspro-r9-a1-admission-participation
 starting/recovery baseline: df40f45cda955ef00e8f790de89a476c2463a629
 implementation commit: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
 parents: exactly df40f45cda955ef00e8f790de89a476c2463a629
+origin/dev: fast-forwarded from df40f45c to 654ec47c on 2026-07-29
 worktree state after commit: clean
 ```
 
@@ -168,9 +169,10 @@ files and existing warning debt. No unrelated lint remediation was folded into R
 production files completed focused ESLint with no errors.
 
 A direct local registry audit was not executed because the controlled environment did not permit
-sending private dependency metadata to the npm registry. The repository Security Scan against
-the exact published commit remains a mandatory pre-deployment gate; it must not be represented as
-passed until its workflow evidence exists.
+sending private dependency metadata to the npm registry. Pushing exact commit `654ec47c` to
+`origin/dev` triggered the normal repository Security Scan. That scan remains a mandatory
+pre-deployment gate and must not be represented as passed until its workflow evidence is
+confirmed.
 
 Local build warnings that Upstash was not configured reflect the isolated local build environment
 and did not fail compilation. The request-body contract passed after the required standalone
@@ -205,5 +207,5 @@ build.
 - Production query, mutation, deployment, notification enablement and `main` promotion remain
   prohibited.
 
-The clean application commit completes implementation only. It is not yet an R9-A1 STAGING smoke,
-reconciliation, promotion or production verdict.
+The clean application commit and dev fast-forward complete implementation and dev validation
+only. They are not yet an R9-A1 STAGING smoke, reconciliation, promotion or production verdict.

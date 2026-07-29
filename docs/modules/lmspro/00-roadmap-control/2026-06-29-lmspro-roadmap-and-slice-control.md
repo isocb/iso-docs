@@ -393,20 +393,24 @@ R9-A1 is accepted as one `Admission Evidence And Derived Participation Compatibi
 application-remediation slice on one branch. It combines the previously proposed A1A
 through A1E application concerns. Its additive implementation is complete at application
 commit `654ec47cb85f710b4fa2055dc8fa28e0a79ed90f`, with exact parent/recovery baseline
-`df40f45cda955ef00e8f790de89a476c2463a629`. Local automated verification has passed,
-subject to the recorded pre-existing repository lint debt; the exact published-commit
-Security Scan, verified STAGING snapshot, migration, notifications-off deployment and
-focused review/human smoke remain pending. Existing-data reconciliation remains one
+`df40f45cda955ef00e8f790de89a476c2463a629`. On 2026-07-29 `dev` and `origin/dev` were
+fast-forwarded cleanly to that exact commit, restoring the normal
+feature-to-dev-to-STAGING workflow. Exact dev tests, type-check, verification and production
+build pass, subject to the recorded pre-existing repository lint debt. The automatic dev
+Security Scan result, verified STAGING snapshot details, migration, notifications-off
+deployment and focused review/human smoke remain pending. Existing-data reconciliation remains one
 separately approved R9-A2 execution after STAGING dry-run, and cleanup is deferred
 indefinitely unless later evidence makes it necessary. R9-A2 execution is not authorised.
 
-The first pre-deployment attempt published only the dedicated feature branch, then stopped
-without snapshot, migration or deployment. The exact-commit Security Scan could not be
-triggered because the installed GitHub CLI authentication is invalid. The local
-`STAGING_DATABASE_URL` also produced credential-safe fingerprint `016aba10adf6`, not the
-authorised `d18b9abe1450`. Database parsing rejected the preflight command before any
-statement executed. Authentication and exact STAGING identity must therefore be reconciled
-before the pre-deployment gate may be retried.
+The first pre-deployment attempt published only the dedicated feature branch and stopped
+without migration or deployment. Its use of the historic R9-A0 target fingerprint as a
+permanent STAGING gate was subsequently corrected. A new read-only preflight against the
+current configured target at fingerprint `016aba10adf6` confirms the accepted tenant/season
+dataset, exact pre-R9-A1 migration ancestry, 61 Clubs, 400 Teams and 8 Applications, with no
+unfinished or unresolved rolled-back migration. The R9-A1 tables are absent and no new
+notification-setting row exists. The transaction ended with `ROLLBACK`. The control owner
+confirms that a fresh backup snapshot has now been created; its identifier/time and the
+automatic dev Security Scan result remain required before migration.
 
 The legacy-attestation representation is now accepted: R9-A1 may add capability for one
 `LEGACY_ATTESTED_IMPORT` admission-evidence row per verified Club linked to one bounded

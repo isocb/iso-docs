@@ -2,10 +2,11 @@
 
 Date: 2026-07-28
 
-Record status: STOPPED AT PRE-DEPLOYMENT GATE — no human UI check has yet been executed
+Record status: DEV VALIDATION COMPLETE — waiting for the automatic dev Security Scan before
+STAGING migration
 
-Automated technical disposition: PASS LOCALLY; exact-commit Security Scan blocked pending
-authenticated GitHub workflow access
+Automated technical disposition: PASS ON EXACT `origin/dev`; automatic Security Scan result
+pending confirmation
 
 STAGING deployment disposition: NOT DEPLOYED
 
@@ -30,6 +31,8 @@ controlling IsoDocs commit: afa5a5e23989ac8ddf1c37aca3f47aa222b2c3fb
 feature branch: feature/lmspro-r9-a1-admission-participation
 application baseline/recovery: df40f45cda955ef00e8f790de89a476c2463a629
 application under review: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
+origin/dev: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
+origin/staging and current Render deployment: df40f45cda955ef00e8f790de89a476c2463a629
 ```
 
 ## 1. Exact STAGING Scope
@@ -40,7 +43,8 @@ tenant/organisation: 862d7c5b-72c4-42ab-9c89-ab216197f596
 season: d398ca2d-3c68-4538-ac8c-53eea68ee369
 expected pre-R9-A1 migration:
   20260722120000_lmspro_r8_a3_email_delivery_jobs
-expected database target fingerprint: d18b9abe1450
+current configured target fingerprint: 016aba10adf6
+historic R9-A0 inventory target fingerprint: d18b9abe1450
 new migration:
   20260728120000_lmspro_r9_a1_admission_participation
 ```
@@ -79,44 +83,57 @@ All must pass before migration or deployment:
 | Gate | Expected evidence | Result |
 | --- | --- | --- |
 | Exact application commit | Published commit is exactly `654ec47c…` with parent `df40f45c…` | PASS — dedicated feature branch only |
-| Exact Security Scan | Repository Security Scan passes against `654ec47c…` | BLOCKED — GitHub CLI authentication is invalid; no scan result exists |
-| Database identity | Credential-safe fingerprint is exactly `d18b9abe1450` | STOP — local STAGING URL produced `016aba10adf6` |
-| Tenant/season scope | Season belongs to the authorised tenant | PENDING |
-| Session boundary | Administrative preflight is read-only until the migration step | PENDING |
-| Migration ancestry | Last expected applied migration matches and no failed/rolled-back migration exists | PENDING |
-| Recovery point | A new STAGING child snapshot is created and independently verified | PENDING |
+| Exact Security Scan | Repository Security Scan passes against `654ec47c…` on `dev` | PENDING CONFIRMATION — triggered by normal dev push |
+| Database identity | Current configured target contains the authorised dataset and expected ancestry | PASS |
+| Tenant/season scope | Season belongs to the authorised tenant | PASS — one current ACTIVE match |
+| Session boundary | Administrative preflight is read-only until the migration step | PASS — transaction read-only and rolled back |
+| Migration ancestry | Last expected applied migration matches and no failed/rolled-back migration exists | PASS |
+| Recovery point | A new STAGING child snapshot is created and independently verified | CONTROL-OWNER ATTESTED; identifier/time still to record |
 | Additive SQL | Migration contains no existing-row rewrite, reconciliation or legacy evidence insertion | PASS — static review |
 | Notification default | Both new events are absent or OFF for the scoped tenant before deployment | PENDING |
 | Environment scope | No production target, credential or deployment reference is selected | PENDING |
 
 Stop on any mismatch. Never display, copy or commit the database URL.
 
-### 3.1 Stopped preflight evidence
+### 3.1 Workflow correction and successful preflight
 
-The dedicated feature branch was published without advancing `dev`, `staging` or `main`.
-The repository workflow does not run on an ordinary feature-branch push, and the installed
-GitHub CLI reports an invalid login. No attempt was made to extract or repurpose a stored Git
-credential, and no Security Scan was represented as passed.
-
-The subsequent local identity check used the credential-safe application fingerprint method
-that hashes protocol, hostname, port and database path while excluding username, password and
-query values. The URL currently stored under `STAGING_DATABASE_URL` produced:
+The implementation was restored to the normal repository sequence on 2026-07-29:
 
 ```text
-observed fingerprint:   016aba10adf6
-authorised fingerprint: d18b9abe1450
-result:                 STOP
+feature 654ec47c -> fast-forward dev to 654ec47c
+staging remains df40f45c
+Render remains df40f45c
 ```
 
-The first `psql` command also contained a client-variable substitution error. PostgreSQL rejected
-the entire command string during parsing at the first variable token, before `BEGIN` or any query
-executed. No database statement, transaction, snapshot, migration or mutation occurred.
+The dev push triggers the established Security Scan automatically. This removes the unnecessary
+manual feature-branch scan dependency and restores `dev` as the tested integration source.
 
-Do not retry the database preflight until either:
+The earlier fixed `d18b9abe1450` fingerprint belonged to the corrected R9-A0 inventory target.
+It is retained as historic evidence, not as a permanent identity for every later STAGING
+operation. The current configured target produced `016aba10adf6`. A new explicitly read-only
+preflight established that it contains the exact authorised operational dataset:
 
-1. `.env.staging.local` points to the already authorised `d18b9abe1450` target; or
-2. the control owner independently verifies that `016aba10adf6` is now the intended Render
-   STAGING database and explicitly revises the authorised fingerprint.
+```text
+transaction read-only:       ON
+latest applied migration:    20260722120000_lmspro_r8_a3_email_delivery_jobs
+unfinished migrations:       0
+unresolved rolled back:      0
+tenant/season matches:       1
+season:                      current and ACTIVE
+scoped Clubs:                61
+scoped Teams:                400
+scoped Applications:         8
+R9-A1 tables before migration: absent
+new event setting rows:      absent (safe default OFF in R9-A1 code)
+transaction end:             ROLLBACK
+```
+
+These match the accepted R9-A0 aggregate dataset and migration ancestry. No names, contact
+details or row identifiers were retrieved. No migration or mutation occurred.
+
+The control owner confirms that a fresh backup snapshot was created before migration. Its
+credential-safe branch/snapshot identifier and creation time must be added before the migration
+command runs.
 
 ## 4. Snapshot, Migration And Deployment Record
 
@@ -174,8 +191,9 @@ Technical review must additionally verify in the deployed build:
 - outbox retry and recipient ambiguity remain auditable; and
 - no migration-time Club/Team classification occurred.
 
-Technical verdict: STOPPED pending exact Security Scan authentication and exact STAGING database
-identity reconciliation; migration and deployed evidence do not exist.
+Technical verdict: DEV PASS; waiting only for the triggered Security Scan result and recovery
+snapshot identifier/time before STAGING migration. Migration and deployed evidence do not yet
+exist.
 
 ## 6. Human UI Smoke Schedule
 
@@ -314,7 +332,7 @@ separate explicit approval.
 
 ## 9. Verdict
 
-R9-A1 STAGING implementation/smoke verdict: STOPPED BEFORE SNAPSHOT/MIGRATION/DEPLOYMENT
+R9-A1 STAGING implementation/smoke verdict: PENDING MIGRATION/DEPLOYMENT/HUMAN SMOKE
 
 Recovery position: PENDING verified child snapshot
 
