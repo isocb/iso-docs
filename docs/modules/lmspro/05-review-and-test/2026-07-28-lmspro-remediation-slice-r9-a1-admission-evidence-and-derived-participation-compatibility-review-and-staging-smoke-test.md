@@ -2,19 +2,19 @@
 
 Date: 2026-07-28
 
-Record status: REOPENED — `R9-A1-F6` RE-SMOKE PASS; `R9-A1-F7` DIRECT-C1 TEAM-MODAL
-CORRECTION DEPLOYED TO STAGING BRANCH; EXACT RENDER/UI CONFIRMATION PENDING
+Record status: REOPENED — `R9-A1-F1` THROUGH `F7` STAGING SMOKE PASS; R9-A2 BOUNDED
+STAGING RECONCILIATION EXECUTED AND VERIFIED; POST-RECONCILIATION HUMAN RE-SMOKE PENDING
 
 Automated technical disposition: F6 corrective `12ae773d` and F7 corrective `15559f12`
 automation, production builds and exact dev/staging Security Scans PASS
 
-STAGING deployment disposition: `origin/staging` exact `15559f12`; all migrations applied;
-Security Scan PASS; public health HTTP 200; Render exact-commit confirmation pending
+STAGING deployment disposition: Render Live at exact displayed `15559f1`; `origin/staging`
+exact `15559f12`; all migrations applied; Security Scan PASS; public health HTTP 200
 
-Human STAGING disposition: F1-F6 PASS; F7 direct-C1 Team-create correction pending focused check
+Human STAGING disposition: F1-F7 PASS; post-reconciliation focused repeat pending
 
-R9-A2 dry-run disposition: PASS — 54 append-only evidence proposals and three Club
-participation changes reviewed; execution waits for F7 PASS and a fresh STAGING snapshot
+R9-A2 disposition: PASS — dry-run reviewed; fresh snapshot recorded; 54 append-only evidence
+rows and three Club participation changes committed; independent verification PASS
 
 Production/promotion disposition: PROHIBITED BY THIS LIFECYCLE
 
@@ -734,8 +734,51 @@ Dry-run result: PASS — no database mutation.
 
 The user reviewed the bounded effect—54 append-only evidence rows, one batch and three
 APPROVED-to-WAITING_LIST Club changes with no Team, allocation, official, access or contact
-rewrite—and explicitly authorised proceeding on STAGING. Execution remains paused until the F7
-focused UI check passes and a fresh immediately-pre-execution STAGING snapshot is recorded.
+rewrite—and explicitly authorised proceeding on STAGING. Execution remained paused until the F7
+focused UI check passed and a fresh immediately-pre-execution STAGING snapshot was recorded; both
+gates were subsequently satisfied.
+
+### R9-A2 execution
+
+The F7 focused UI check passed and the control owner created the required immediately-pre-execution
+STAGING recovery point:
+
+```text
+snapshot label: At 15559f1 before club workflow promotion
+snapshot branch: br-dawn-heart-abc0rq3b
+snapshot time: 2026-07-29 13:54:39 +01:00
+application: 15559f1275d7f8ae3990cc6a9dcda5f35748e570
+```
+
+The exact execution transaction was first rehearsed with a forced final `ROLLBACK`. Every insert,
+foreign key, update, suppression record, audit row and postcondition passed. The identical
+serializable transaction was then committed at approximately 2026-07-29 13:59 +01:00.
+
+```text
+attestation batches inserted:        1
+batch fingerprint:                   a4645619a914a8c4fc61be9763f2c26d
+LEGACY_ATTESTED_IMPORT rows inserted: 54
+distinct Clubs evidenced:            54
+Club APPROVED -> WAITING_LIST:        3
+suppressed transition rows:           3
+per-Club participation audit rows:    3
+batch reconciliation audit rows:      1
+Team rows/statuses/allocations changed: 0
+notifications enabled or sent:        0
+```
+
+Independent read-only verification proved:
+
+- exactly 54 valid batch-linked legacy evidence rows across 54 distinct Clubs;
+- 50 pre-cutoff Clubs remain `APPROVED` and four are `WAITING_LIST`;
+- both transition events remain effectively off;
+- all three transition records are `SUPPRESSED`;
+- Team-state observations are unchanged;
+- public STAGING health remains HTTP 200 with database connected and RLS 11/11; and
+- a repeat dry-run proposes zero remaining legacy evidence rows, proving operational
+  idempotency.
+
+R9-A2 execution result: PASS — post-reconciliation human re-smoke pending.
 
 ## 9. R9-A1-F6 Regression And Corrective Re-Smoke
 
@@ -835,18 +878,19 @@ Focused F7 UI gate:
 6. confirm the Club view updates without a forced browser refresh; and
 7. do not reconcile until this focused result is PASS.
 
-F7 result: PENDING HUMAN CONFIRMATION
+F7 result: PASS — Render Live at displayed `15559f1`; both missing choices present; a disposable
+Pending Team was created without a division, appeared in All Pending, agreed with the dashboard
+count and left the Club on Club Waiting List without a forced refresh.
 
 ## 11. Verdict
 
-R9-A1 STAGING implementation/smoke verdict: F1-F6 PASS; F7 AUTOMATION, SECURITY AND HEALTH PASS;
-EXACT RENDER/UI CONFIRMATION PENDING
+R9-A1 STAGING implementation/smoke verdict: F1-F7 PASS
 
-Recovery position: PASS — verified dormant child snapshot `br-gentle-fog-ab8uzsyy`; current
-STAGING database remains the active target and now contains the completed additive F6 migration.
+Recovery position: PASS — immediate pre-reconciliation snapshot `br-dawn-heart-abc0rq3b`;
+current STAGING database remains the active target.
 
-R9-A2 position: DRY-RUN PASS AND STAGING EXECUTION AUTHORISED IN PRINCIPLE; fresh snapshot and F7
-PASS required before execution.
+R9-A2 position: EXECUTION AND INDEPENDENT DATABASE VERIFICATION PASS; focused human
+post-reconciliation re-smoke pending.
 
 This record cannot become a production, `main`, promotion or reconciliation verdict. It ends at
 the exact R9-A1 STAGING outcome and the R9-A2 dry-run stop gate.
