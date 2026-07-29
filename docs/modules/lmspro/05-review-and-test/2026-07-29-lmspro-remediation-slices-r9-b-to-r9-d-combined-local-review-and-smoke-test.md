@@ -2,8 +2,8 @@
 
 Date: 2026-07-29
 
-Status: AUTOMATED LOCAL REVIEW PASS; CONTROLLED STAGING DEPLOYMENT AUTHORISED; FOCUSED
-STAGING HUMAN SMOKE PENDING
+Status: AUTOMATED LOCAL REVIEW PASS; DEV ALIGNED AND EXACT SECURITY SCAN PASS; STAGING
+RECOVERY SNAPSHOT AND DEPLOYMENT PENDING
 
 Application under review:
 
@@ -31,6 +31,19 @@ The control owner accepted that historic Emails are intentionally excluded and a
 exact candidate to progress through `dev` to STAGING. STAGING is the authoritative human browser
 smoke environment; repeating the complete schedule locally is not a promotion precondition.
 Production remains outside this record.
+
+Release evidence:
+
+```text
+local dev:              58ef44fd7c91e2c5932f0634bfa803bbfa13dd55
+origin/dev:             58ef44fd7c91e2c5932f0634bfa803bbfa13dd55
+dev Security Scan:      PASS — run 30466540339
+local staging:          15559f1275d7f8ae3990cc6a9dcda5f35748e570
+origin/staging:         15559f1275d7f8ae3990cc6a9dcda5f35748e570
+main/origin-main:       15559f1275d7f8ae3990cc6a9dcda5f35748e570
+STAGING snapshot:       PENDING
+STAGING deploy/smoke:   NOT STARTED
+```
 
 ## 2. Preconditions For STAGING Human Smoke
 

@@ -951,6 +951,12 @@ database was queried during implementation. The authorised release sequence must
 `dev`, pass the exact dev Security Scan, preserve a fresh dormant STAGING database snapshot,
 fast-forward STAGING, verify its additive migration and exact Security Scan, then stop for the
 control owner's focused smoke. No historic reconciliation is planned or authorised.
+
+Local `dev` and `origin/dev` are now exact
+`58ef44fd7c91e2c5932f0634bfa803bbfa13dd55`. Exact dev Security Scan run `30466540339`
+passed. Local/remote STAGING and main remain at `15559f1275d7f8ae3990cc6a9dcda5f35748e570`.
+The next gate is the fresh recovery-only snapshot of the current STAGING database; the active
+STAGING database URL must remain unchanged.
 Wishlist items `LMS-W-UX-01` and `LMS-W-UX-02` remain non-blocking presentation follow-ups.
 
 ## Fresh Chat Prompt
