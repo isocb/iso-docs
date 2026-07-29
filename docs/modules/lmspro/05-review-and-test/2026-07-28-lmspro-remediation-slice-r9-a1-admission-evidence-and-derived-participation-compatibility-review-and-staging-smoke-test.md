@@ -2,17 +2,18 @@
 
 Date: 2026-07-28
 
-Record status: HUMAN STAGING SMOKE PAUSED — Route A access PASS; findings
-`R9-A1-F1` through `R9-A1-F5` recorded and corrected on `origin/dev` but not yet deployed or
-re-smoked
+Record status: FOCUSED HUMAN STAGING RE-SMOKE READY SUBJECT TO RENDER COMMIT CONFIRMATION —
+Route A access PASS; findings `R9-A1-F1` through `R9-A1-F5` corrected and promoted to
+`origin/staging` at exact green commit
 
 Automated technical disposition: BASE `654ec47c` PASS; consolidated corrective `71c59653`
 automation, production build and exact automatic Security Scan PASS
 
-STAGING deployment disposition: PASS — exact `654ec47c` confirmed Live
+STAGING deployment disposition: SOURCE PASS — `origin/staging` exact `71c59653`; Render exact
+commit confirmation pending; public health PASS
 
-Human STAGING disposition: PARTIAL PASS — stop before participation mutation until
-`R9-A1-F5` is corrected and redeployed
+Human STAGING disposition: PARTIAL PASS — run the focused correction re-smoke and stop before
+either fixture Team is actioned
 
 R9-A2 dry-run disposition: NOT RUN
 
@@ -36,7 +37,9 @@ application under review: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
 F5 correction: 5713f9ba8f637a6015dc1b4688258725a473ed35
 consolidated corrective candidate: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
 origin/dev: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
-origin/staging and current Render deployment: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
+origin/staging: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
+last independently confirmed Render deployment: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
+expected corrective Render deployment: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
 ```
 
 ## 1. Exact STAGING Scope
@@ -251,6 +254,31 @@ new event settings:    no rows; both safely default OFF
 transaction:           read-only; ROLLBACK
 ```
 
+### 4.3 Consolidated corrective source promotion
+
+On 2026-07-29, fresh remote refs confirmed that exact green `dev` commit `71c59653` was a direct
+descendant of `origin/staging` at `654ec47c`. The clean source boundary was promoted without a
+force push:
+
+```text
+origin/dev:     71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
+origin/staging: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
+merge shape:    fast-forward only
+database action: none
+environment action: none
+notification action: none
+```
+
+Exact STAGING Security Scan run `30446501854` passed TypeScript safety, dependency vulnerability,
+database schema/migration security, secret detection and report generation. At
+`2026-07-29T11:12:42Z`, the public STAGING health endpoint returned HTTP 200 with the database
+connected and RLS `11/11`.
+
+The public endpoint does not expose the running commit and the public login page does not show the
+optional build banner. The control owner must therefore confirm Render displays `Live` at
+`71c5965` before commencing the focused UI schedule below. This is a commit-verification gate, not
+a request for a database, migration or environment change.
+
 ## 5. Automated And Technical Review
 
 Current local result:
@@ -275,8 +303,9 @@ Technical review must additionally verify in the deployed build:
 - outbox retry and recipient ambiguity remain auditable; and
 - no migration-time Club/Team classification occurred.
 
-Technical verdict: DEV, ADDITIVE MIGRATION, STAGING SOURCE PROMOTION AND EXACT RENDER DEPLOYMENT
-PASS. Human UI evidence does not yet exist.
+Technical verdict: BASE DEV, ADDITIVE MIGRATION, STAGING SOURCE PROMOTION AND EXACT RENDER
+DEPLOYMENT PASS. CORRECTIVE SOURCE PROMOTION AND SECURITY SCAN PASS; CORRECTIVE RENDER COMMIT
+CONFIRMATION PENDING. Human UI evidence is partial.
 
 ## 6. Human UI Smoke Schedule
 
@@ -493,9 +522,37 @@ Focused boundary tests passed 28/28; the full suite passed 238 with 12 intention
 TypeScript, critical-file verification, production build, diff and pre-commit checks passed;
 focused changed-file lint had zero errors; and exact Security Scan run `30446138948` was green.
 
-No schema, migration, database, fixture, environment, access, notification or deployment state
-changed. The findings remain open until STAGING is advanced to exact `71c59653` and the affected
-UI observations pass. Keep both participation notification events OFF for that redeployment.
+No schema, migration, database, fixture, environment, access or notification state changed in the
+corrective commits. `origin/staging` is now exact `71c59653`; the findings remain open until
+Render's exact commit is confirmed and the affected UI observations pass. Keep both participation
+notification events OFF.
+
+### Focused pre-mutation correction re-smoke
+
+Do not approve, allocate, wait-list, reject or otherwise change either fixture Team during this
+focused check.
+
+1. Confirm Render says `Live` at `71c5965`.
+2. As C1, open the dashboard and Team Approval / All Pending. Confirm both the
+   Application-carried `NEW CLUB PENDING TEAM` and the later C2-submitted `PENDING` Team are
+   present and each offers `Click to Review`. Confirm the dashboard pending count includes both
+   and agrees with the actionable pending list.
+3. As C1, inspect Club Management filters. Confirm linked Application stages use
+   `Awaiting Verification` and `Ready for Review`, while an unlinked legacy pending Club—if one is
+   present—is clearly `Legacy Pending / Review`.
+4. On any disposable linked Application still ready for review, confirm there is no separate
+   Application `Waiting List` action and no generic direct-Club approval bypass. Do not approve or
+   reject it for this focused check. If no such fixture exists, record this UI observation as
+   `NOT AVAILABLE` rather than creating another fixture.
+5. As the existing fixture C2, confirm the dashboard, summary and profile show the friendly
+   `Club Waiting List` category.
+6. Open each pending Team without submitting a change. Confirm manager details remain editable,
+   `Request Free Day` is absent and operational Team-change requests are unavailable or replaced
+   by the explanatory pending/unallocated message. Confirm `Register a New Team` remains
+   available.
+
+Record PASS, FAIL or NOT AVAILABLE for each observation. Stop and report any failure; do not
+continue into participation mutation until this focused set passes.
 
 ### Route B — authorised direct C1 creation
 
@@ -615,9 +672,11 @@ separate explicit approval.
 
 ## 9. Verdict
 
-R9-A1 STAGING implementation/smoke verdict: PENDING MIGRATION/DEPLOYMENT/HUMAN SMOKE
+R9-A1 STAGING implementation/smoke verdict: CORRECTIVE SOURCE PROMOTION PASS; RENDER COMMIT
+CONFIRMATION AND FOCUSED HUMAN RE-SMOKE PENDING
 
-Recovery position: PENDING verified child snapshot
+Recovery position: PASS — verified dormant child snapshot `br-gentle-fog-ab8uzsyy`; current
+STAGING database remains the active target
 
 Items requiring a later R9-A2 execution decision: PENDING dry-run evidence
 

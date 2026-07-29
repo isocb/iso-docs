@@ -2,9 +2,9 @@
 
 Date: 2026-07-28
 
-Implementation status: BASE R9-A1 RETAINED ON STAGING; consolidated `R9-A1-F1` through
-`R9-A1-F5` correction complete, Security-Scan-green and retained on `origin/dev`; one exact
-STAGING redeployment and focused re-smoke remain pending
+Implementation status: CONSOLIDATED `R9-A1-F1` THROUGH `R9-A1-F5` CORRECTION PROMOTED TO
+`origin/staging` AT EXACT SECURITY-SCAN-GREEN COMMIT; Render exact-commit confirmation and
+focused human re-smoke remain pending
 
 Planning source:
 
@@ -24,8 +24,9 @@ parents: exactly df40f45cda955ef00e8f790de89a476c2463a629
 focused R9-A1-F5 correction: 5713f9ba8f637a6015dc1b4688258725a473ed35
 consolidated smoke-follow-up correction: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
 origin/dev: advanced from 654ec47c through 5713f9ba to 71c59653 on 2026-07-29
-origin/staging: fast-forwarded from df40f45c to 654ec47c on 2026-07-29;
-  exact Render deployment confirmed Live by the control owner
+origin/staging: fast-forwarded from 654ec47c to 71c59653 on 2026-07-29
+last independently confirmed Render deployment: 654ec47c;
+  exact 71c59653 Render confirmation pending
 worktree state after commit: clean
 ```
 
@@ -258,10 +259,10 @@ pre-commit checks:               PASS
 
 `origin/dev` was advanced from `654ec47c` to exact `5713f9ba` on 2026-07-29. Exact GitHub
 Security Scan run `30444330070` passed: TypeScript safety, dependency vulnerability, database
-schema/migration security, secret detection and report generation were green. `origin/staging`,
-Render STAGING and the STAGING database remain at the previously confirmed R9-A1 state; the
-correction has not been deployed or human re-smoked. No R9-A2 dry-run or reconciliation is
-authorised by this corrective commit.
+schema/migration security, secret detection and report generation were green. This intermediate
+F5-only candidate was then superseded by consolidated correction `71c59653`, which was promoted
+to `origin/staging` as recorded below. No R9-A2 dry-run or reconciliation is authorised by this
+corrective commit.
 
 ## 10. Consolidated R9-A1-F1 Through F4 Correction
 
@@ -307,7 +308,12 @@ pre-commit checks:                PASS
 ```
 
 Exact GitHub Security Scan run `30446138948` passed TypeScript safety, dependency vulnerability,
-database schema/migration security, secret detection and report generation. `origin/dev` is exact
-`71c59653`; `origin/staging`, Render STAGING and the STAGING database remain unchanged at the
-previously confirmed `654ec47c` application state. This implementation record does not authorise a
-database operation, R9-A2 dry-run, reconciliation or production promotion.
+database schema/migration security, secret detection and report generation. `origin/dev` and
+`origin/staging` are exact `71c59653` after a non-force fast-forward on 2026-07-29. The
+STAGING-triggered exact-commit Security Scan run `30446501854` passed the same gates.
+
+The public STAGING health endpoint subsequently returned HTTP 200 with its database connected and
+RLS `11/11`. It does not expose a commit identifier, so Render's exact `Live at 71c5965` display
+remains a human confirmation gate before the focused UI re-smoke. This application-only promotion
+performed no database, migration, environment or notification action. This implementation record
+does not authorise an R9-A2 dry-run, reconciliation or production promotion.
