@@ -909,7 +909,7 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Close R9-A and return programme control to R9-B planning
+Commence the accepted combined R9-B to R9-D local implementation
 ```
 
 Goal:
@@ -922,28 +922,38 @@ changed nine Clubs to Club Waiting List, suppressed every transition notificatio
 Team, allocation, official, user or access record. Independent verification, a repeat no-op
 dry-run and focused post-reconciliation C1/C2 smoke all pass.
 
-The next programme item in the accepted order is `R9-B` — Club Email visibility and history
-integrity. First review its existing CR input and current source/live evidence, then define a
-small planning boundary. Do not infer that R9-A completion authorises R9-B application work.
+The remaining three accepted programme items have now been reviewed in one proportionate
+administrative planning boundary:
+
+`docs/modules/lmspro/03-slice-planning/2026-07-29-lmspro-remediation-slices-r9-b-to-r9-d-combined-planning.md`
+
+The plan retains three independently testable outcomes. `R9-B` is an additive Email audience,
+permission and migration outcome. `R9-C` and `R9-D` are sufficiently small to share one code-only
+UI implementation batch. Formal control accepted the plan on 2026-07-29 and authorised one local
+implementation branch from exact baseline `15559f12`, local application of the one additive
+migration, combined automated validation and lifecycle evidence. STAGING, production, environment,
+deployment and historic reconciliation actions remain unauthorised.
+
+Source review was completed at exact aligned application commit
+`15559f1275d7f8ae3990cc6a9dcda5f35748e570`. Local/tracked dev, staging and main all point to that
+commit. No STAGING or production database was queried. R9-B current-season aggregate evidence
+remains a later explicitly authorised read-only gate before any historic reconciliation.
 Wishlist items `LMS-W-UX-01` and `LMS-W-UX-02` remain non-blocking presentation follow-ups.
 
 ## Fresh Chat Prompt
 
 ```text
-Review and close the completed LMSPro / SeasonPro R9-A lifecycle from:
+Review the combined LMSPro R9-B to R9-D plan:
+
+isodocs/docs/modules/lmspro/03-slice-planning/2026-07-29-lmspro-remediation-slices-r9-b-to-r9-d-combined-planning.md
+
+Authoritative roadmap:
 isodocs/docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
 
-Production promotion and reconciliation record:
-isodocs/docs/modules/lmspro/05-review-and-test/2026-07-29-lmspro-r9-live-promotion-confirmation.md
-
-Exact application commit:
+Exact aligned application baseline:
 15559f1275d7f8ae3990cc6a9dcda5f35748e570
 
-Confirm R9-A requires no further application, migration or data action. Do not repeat the
-promotion or reconciliation.
-
-Then review the accepted programme's R9-B item—Club Email visibility and history integrity—
-against the consolidated CR input, triage and current application source. Prepare only the
-smallest proportionate planning/evidence boundary and stop for review. Do not change application
-code, schema, migrations, data, environments or deployments.
+Proceed under the accepted exact local implementation prompt in section 12 of the plan.
+Do not query or mutate STAGING or production, alter environment values, deploy or execute
+historic reconciliation.
 ```
