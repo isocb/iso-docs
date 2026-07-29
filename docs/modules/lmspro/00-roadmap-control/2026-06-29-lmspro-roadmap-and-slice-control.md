@@ -407,10 +407,11 @@ separately approved R9-A2 execution after STAGING dry-run, and cleanup is deferr
 indefinitely unless later evidence makes it necessary. R9-A2 execution is not authorised.
 
 `origin/staging` subsequently fast-forwarded cleanly from `df40f45c` to exact tested
-`origin/dev` commit `654ec47c`. The public STAGING health endpoint remained HTTP 200 with
-database connected and RLS 11/11 during the Render build window. Exact Render
-commit/build confirmation remains pending and human smoke must not begin until it is
-confirmed.
+`origin/dev` commit `654ec47c`. The control owner confirmed Render STAGING `Live` at
+displayed commit `654ec47`. Final post-deployment evidence confirms HTTP 200, database
+connected, RLS 11/11, the R9-A1 migration finished, unchanged 61/400/8 scoped
+Club/Team/Application counts, empty new evidence/outbox tables and both new events safely
+default-OFF. The scheduled human smoke is now the next controlled action.
 
 The first pre-deployment attempt published only the dedicated feature branch and stopped
 without migration or deployment. Its use of the historic R9-A0 target fingerprint as a

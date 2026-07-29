@@ -2,8 +2,8 @@
 
 Date: 2026-07-28
 
-Implementation status: COMPLETE AND RETAINED ON `origin/dev`; additive STAGING migration and
-source promotion complete; exact Render deployment and human validation remain pending
+Implementation status: COMPLETE AND RETAINED ON `origin/dev` and `origin/staging`; additive
+STAGING migration and exact Render deployment complete; human validation remains pending
 
 Planning source:
 
@@ -22,7 +22,7 @@ implementation commit: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
 parents: exactly df40f45cda955ef00e8f790de89a476c2463a629
 origin/dev: fast-forwarded from df40f45c to 654ec47c on 2026-07-29
 origin/staging: fast-forwarded from df40f45c to 654ec47c on 2026-07-29;
-  exact Render deployment confirmation pending
+  exact Render deployment confirmed Live by the control owner
 worktree state after commit: clean
 ```
 
@@ -201,11 +201,12 @@ build.
 - The R9-A2 dry-run and any later reconciliation execution remain separate controls.
 - Validated import is covered by automated integration testing and is deliberately excluded from
   the focused human UI smoke.
-- Both new notification events remain OFF until a bounded STAGING smoke step explicitly enables
-  one, and that event must be returned to OFF immediately afterwards.
-- Exact STAGING migration passed on 2026-07-29 with the new tables empty and existing scoped
-  statuses unchanged. Deployment, human UI results and R9-A2 dry-run evidence remain pending and
-  belong in the review/test record.
+- Both new notification events are confirmed default-OFF after the exact STAGING deployment.
+  A bounded smoke step may explicitly enable one, and that event must be returned to OFF
+  immediately afterwards.
+- Exact STAGING migration and deployment passed on 2026-07-29 with the new tables empty and
+  existing scoped statuses unchanged. Human UI results and R9-A2 dry-run evidence remain pending
+  and belong in the review/test record.
 - Production query, mutation, deployment, notification enablement and `main` promotion remain
   prohibited.
 

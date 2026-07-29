@@ -2,13 +2,13 @@
 
 Date: 2026-07-28
 
-Record status: DEV AND ADDITIVE STAGING MIGRATION PASS; `origin/staging` advanced — exact Render
-deployment confirmation pending
+Record status: DEV, ADDITIVE STAGING MIGRATION AND EXACT RENDER DEPLOYMENT PASS — ready for
+scheduled human UI smoke
 
 Automated technical disposition: PASS ON EXACT `origin/dev`; automatic Security Scan confirmed
 green by the control owner
 
-STAGING deployment disposition: SOURCE PROMOTED; RENDER CONFIRMATION PENDING
+STAGING deployment disposition: PASS — exact `654ec47c` confirmed Live
 
 Human STAGING disposition: NOT RUN
 
@@ -162,9 +162,10 @@ existing-row mutation check: PASS — 61 Clubs, 400 Teams and 8 Applications ret
   status aggregates exactly match pre-migration; all three new tables contain zero rows
 STAGING deployment reference before: df40f45cda955ef00e8f790de89a476c2463a629
 STAGING deployment reference after: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
-deployed commit independently verified: PENDING Render dashboard/build-ID confirmation
-STAGING health evidence: HTTP 200; database connected; RLS 11/11 while deployment state pending
-both events OFF after deployment:
+deployed commit independently verified: PASS — control owner confirms Render STAGING Live at
+  654ec47
+STAGING health evidence: HTTP 200 at 2026-07-29T09:43:40Z; database connected; RLS 11/11
+both events OFF after deployment: PASS — no setting rows; R9-A1 safe default is OFF
 ```
 
 Required sequence:
@@ -224,10 +225,27 @@ disposable generated client, after which the exact worktree type-check passed wi
 change. Render's build script also performs `npm ci` and `prisma generate` before its type-check.
 
 The public health endpoint remained HTTP 200 with its database connected and RLS 11/11 during the
-Render build window. The locally expected new Clubs route asset was not yet served during the
-bounded polling interval. That is not treated as proof of deployment failure or success because
-Render environment values can influence asset hashes. Exact Render commit/build confirmation is
-therefore required before human smoke begins.
+Render build window. The locally expected new Clubs route asset was not served during the bounded
+polling interval, which was correctly treated as non-authoritative because Render environment
+values can influence asset hashes. The control owner subsequently confirmed the Render dashboard
+status `Live` at exact displayed commit `654ec47`.
+
+Final post-deployment checks at `2026-07-29T09:43:40Z` confirmed:
+
+```text
+health:                PASS
+database:              connected
+RLS:                   11/11
+R9-A1 migration:       finished; not rolled back
+admission batches:     0
+admission evidence:    0
+transition outbox:     0
+Clubs:                 61
+Teams:                 400
+Applications:          8
+new event settings:    no rows; both safely default OFF
+transaction:           read-only; ROLLBACK
+```
 
 ## 5. Automated And Technical Review
 
@@ -253,8 +271,8 @@ Technical review must additionally verify in the deployed build:
 - outbox retry and recipient ambiguity remain auditable; and
 - no migration-time Club/Team classification occurred.
 
-Technical verdict: DEV, ADDITIVE MIGRATION AND STAGING SOURCE PROMOTION PASS. Exact Render
-deployment confirmation and human UI evidence do not yet exist.
+Technical verdict: DEV, ADDITIVE MIGRATION, STAGING SOURCE PROMOTION AND EXACT RENDER DEPLOYMENT
+PASS. Human UI evidence does not yet exist.
 
 ## 6. Human UI Smoke Schedule
 
