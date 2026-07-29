@@ -426,6 +426,16 @@ Waiting List. The redundant action risks divergent audit, review-note and notifi
 behaviour. Remove the Application-level button and mutation before production promotion;
 this does not affect the distinct, deliberately authorised Team Waiting List decision.
 
+Smoke finding `R9-A1-F2` confirms mixed pre-admission authority across Club Applications and
+Club Management. A verified Application is `Ready for Review`, while its provisional
+`ClubStatus.PENDING` shell is shown and filtered only as `Pending`. That Club row also exposes
+a generic approval shortcut which would record the shell as `AUTHORISED_DIRECT_C1` without
+reviewing the linked Application. Before production, derive the friendly Club-list
+pre-admission label/filter from the linked Application, hide the generic approval shortcut
+for linked shells and reject that bypass server-side. Keep `EMAIL_VERIFIED` on the
+Application rather than adding it to `ClubStatus`; separately identify any unlinked legacy
+Pending Club.
+
 The first pre-deployment attempt published only the dedicated feature branch and stopped
 without migration or deployment. Its use of the historic R9-A0 target fingerprint as a
 permanent STAGING gate was subsequently corrected. A new read-only preflight against the

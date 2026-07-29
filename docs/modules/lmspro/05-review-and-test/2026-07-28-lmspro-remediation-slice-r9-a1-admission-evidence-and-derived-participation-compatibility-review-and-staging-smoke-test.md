@@ -334,6 +334,32 @@ mutation before production promotion, retaining normal Approve and Reject. Do no
 with deliberate Team Waiting List, which remains a valid authorised league decision. No code was
 changed during this smoke finding.
 
+Review finding `R9-A1-F2`: the same pre-admission case is represented by two authorities and
+labels. The Application page maps `PENDING` to `Awaiting Verification` and `EMAIL_VERIFIED` to
+`Ready for Review`. Email verification may also create a provisional `ClubStatus.PENDING` shell
+for requested Teams, while Club Management maps that shell only to `Pending`. The Club page filter
+and badge are internally aligned with each other, but not with the linked Application's actual
+business stage.
+
+Static review also confirms a material bypass: Club Management shows a green generic approval
+action for every `ClubStatus.PENDING` row. If used on an Application-linked provisional shell,
+`clubs.approve` records `AUTHORISED_DIRECT_C1` evidence and moves the Club to Waiting List without
+reviewing the linked Application or using its approval notification/review contract.
+
+Recommended disposition before production:
+
+1. retain `EMAIL_VERIFIED` as an Application status; do not add it to `ClubStatus`;
+2. expose a derived pre-admission display/filter stage for Application-linked Club shells:
+   `Awaiting Verification` or `Ready for Review`;
+3. use the same friendly mapping in the Club badge and filter;
+4. hide the generic Club approval action for any Application-linked provisional shell and direct
+   the operator to Club Applications;
+5. make `clubs.approve` reject that linked case server-side; and
+6. explicitly label any remaining unlinked legacy `PENDING` Club as a separate legacy/review
+   cohort rather than silently treating it as an Application.
+
+No code or fixture state was changed while confirming this finding.
+
 ### Route B — authorised direct C1 creation
 
 1. Use C1 Club Management to deliberately create the disposable direct-C1 Club and its primary C2.
