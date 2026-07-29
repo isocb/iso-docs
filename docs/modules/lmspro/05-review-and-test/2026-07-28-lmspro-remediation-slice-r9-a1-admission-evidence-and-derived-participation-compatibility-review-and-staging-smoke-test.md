@@ -2,11 +2,12 @@
 
 Date: 2026-07-28
 
-Record status: HUMAN STAGING SMOKE IN PROGRESS — Route A access PASS; findings
-`R9-A1-F1` through `R9-A1-F5` recorded, with participation blocked by `R9-A1-F5`
+Record status: HUMAN STAGING SMOKE PAUSED — Route A access PASS; findings
+`R9-A1-F1` through `R9-A1-F5` recorded; `R9-A1-F5` corrected on `origin/dev` but not yet
+deployed or re-smoked
 
-Automated technical disposition: PASS ON EXACT `origin/dev`; automatic Security Scan confirmed
-green by the control owner
+Automated technical disposition: BASE `654ec47c` PASS; corrective `5713f9ba` local automation
+PASS and exact automatic Security Scan PASS
 
 STAGING deployment disposition: PASS — exact `654ec47c` confirmed Live
 
@@ -32,7 +33,8 @@ controlling IsoDocs commit: afa5a5e23989ac8ddf1c37aca3f47aa222b2c3fb
 feature branch: feature/lmspro-r9-a1-admission-participation
 application baseline/recovery: df40f45cda955ef00e8f790de89a476c2463a629
 application under review: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
-origin/dev: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
+corrective candidate: 5713f9ba8f637a6015dc1b4688258725a473ed35
+origin/dev: 5713f9ba8f637a6015dc1b4688258725a473ed35
 origin/staging and current Render deployment: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
 ```
 
@@ -460,6 +462,19 @@ the workflow safely. This review made no code or direct fixture change.
 Disposition: PROMOTION BLOCKER. Do not continue the Route A participation mutation against this
 deployment because it cannot exercise the original Application Team through the supported C1
 workflow.
+
+Correction status: IMPLEMENTED AND AUTOMATED-TESTED ON `origin/dev` at exact
+`5713f9ba8f637a6015dc1b4688258725a473ed35`. The shared eligibility boundary now makes both
+in-process Team statuses actionable for an admitted, non-overridden Club and supplies the same
+predicate to the dashboard count. Focused eligibility tests, the related R9 participation tests,
+the full Vitest suite, TypeScript, the critical-file verifier, diff checks and pre-commit checks
+passed. Exact GitHub Security Scan run `30444330070` also passed its TypeScript safety,
+dependency vulnerability, schema/migration security, secret-detection and report gates. No
+schema, migration, database, fixture, environment or notification value changed.
+
+This does not close the finding. Advance only STAGING/Render to that exact commit, then repeat the
+bounded observation that both fixture Teams appear in All Pending, both are reviewable and the
+dashboard pending count agrees. Do not action either Team until that observation passes.
 
 ### Route B — authorised direct C1 creation
 

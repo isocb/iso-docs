@@ -2,8 +2,8 @@
 
 Date: 2026-07-28
 
-Implementation status: COMPLETE AND RETAINED ON `origin/dev` and `origin/staging`; additive
-STAGING migration and exact Render deployment complete; human validation remains pending
+Implementation status: BASE R9-A1 RETAINED ON STAGING; focused `R9-A1-F5` correction complete,
+Security-Scan-green and retained on `origin/dev`; STAGING redeployment remains pending
 
 Planning source:
 
@@ -20,7 +20,8 @@ branch: feature/lmspro-r9-a1-admission-participation
 starting/recovery baseline: df40f45cda955ef00e8f790de89a476c2463a629
 implementation commit: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
 parents: exactly df40f45cda955ef00e8f790de89a476c2463a629
-origin/dev: fast-forwarded from df40f45c to 654ec47c on 2026-07-29
+focused R9-A1-F5 correction: 5713f9ba8f637a6015dc1b4688258725a473ed35
+origin/dev: advanced from 654ec47c to 5713f9ba on 2026-07-29
 origin/staging: fast-forwarded from df40f45c to 654ec47c on 2026-07-29;
   exact Render deployment confirmed Live by the control owner
 worktree state after commit: clean
@@ -212,3 +213,50 @@ build.
 
 The clean application commit and dev fast-forward complete implementation and dev validation
 only. They are not yet an R9-A1 STAGING smoke, reconciliation, promotion or production verdict.
+
+## 9. Focused R9-A1-F5 Correction
+
+The Route A human smoke found that the Application-carried
+`NEW_CLUB_PENDING_TEAM` existed in the Club Teams table but was absent from C1 Team Approval and
+the dashboard pending count. The same admitted Club's later C2-submitted `PENDING` Team was
+actionable on the Team Approval page while the dashboard still reported zero. Static review
+confirmed that both consumers retained the obsolete assumption that
+`ClubStatus.WAITING_LIST` meant Club acceptance was pending.
+
+Exact corrective application commit:
+
+`5713f9ba8f637a6015dc1b4688258725a473ed35`
+
+The correction:
+
+- defines one shared pending-Team eligibility boundary;
+- treats both `PENDING` and `NEW_CLUB_PENDING_TEAM` as actionable where the same-scope Club has
+  durable admission evidence;
+- preserves raw `ClubStatus.APPROVED` as the temporary legacy compatibility representation;
+- blocks suspended and withdrawn Club overrides;
+- keeps deliberate `TeamStatus.WAITING_LIST` separate;
+- applies the same Club predicate to the dashboard pending count;
+- retains genuinely pre-admission Teams as read-only; and
+- replaces obsolete “Waiting List means Club acceptance pending” explanatory copy.
+
+It changes no schema, migration, environment, database record, notification setting or deployment.
+Neither existing smoke Team was rewritten.
+
+Corrective automated evidence:
+
+```text
+focused eligibility tests:       9 PASS
+focused R9 participation tests:  29 PASS
+full Vitest suite:               219 PASS; 12 intentionally skipped
+npm run type-check:              PASS
+npx tsx critical-file verifier: PASS
+git diff --check:                PASS
+pre-commit checks:               PASS
+```
+
+`origin/dev` was advanced from `654ec47c` to exact `5713f9ba` on 2026-07-29. Exact GitHub
+Security Scan run `30444330070` passed: TypeScript safety, dependency vulnerability, database
+schema/migration security, secret detection and report generation were green. `origin/staging`,
+Render STAGING and the STAGING database remain at the previously confirmed R9-A1 state; the
+correction has not been deployed or human re-smoked. No R9-A2 dry-run or reconciliation is
+authorised by this corrective commit.
