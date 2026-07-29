@@ -88,7 +88,7 @@ All must pass before migration or deployment:
 | Tenant/season scope | Season belongs to the authorised tenant | PASS — one current ACTIVE match |
 | Session boundary | Administrative preflight is read-only until the migration step | PASS — transaction read-only and rolled back |
 | Migration ancestry | Last expected applied migration matches and no failed/rolled-back migration exists | PASS |
-| Recovery point | A new STAGING child snapshot is created and independently verified | CONTROL-OWNER ATTESTED; identifier/time still to record |
+| Recovery point | A new STAGING child snapshot is created and independently verified | PASS — control-owner-confirmed recovery branch `br-gentle-fog-ab8uzsyy` |
 | Additive SQL | Migration contains no existing-row rewrite, reconciliation or legacy evidence insertion | PASS — static review |
 | Notification default | Both new events are absent or OFF for the scoped tenant before deployment | PENDING |
 | Environment scope | No production target, credential or deployment reference is selected | PENDING |
@@ -131,19 +131,29 @@ transaction end:             ROLLBACK
 These match the accepted R9-A0 aggregate dataset and migration ancestry. No names, contact
 details or row identifiers were retrieved. No migration or mutation occurred.
 
-The control owner confirms that a fresh backup snapshot was created before migration. Its
-credential-safe branch/snapshot identifier and creation time must be added before the migration
-command runs.
+The control owner confirms that a fresh backup snapshot was created before migration:
+
+```text
+label:       Snapshot Before Club status update
+branch ID:   br-gentle-fog-ab8uzsyy
+created:     2026-07-29 07:27:52 +01:00
+purpose:     dormant recovery copy of the current STAGING database
+```
+
+This branch is a legacy/recovery backup only. It is not the future STAGING target and must not be
+placed in Render or `.env.staging.local`. The current STAGING database remains the migration and
+runtime target; no `DATABASE_URL` change is required or authorised.
 
 ## 4. Snapshot, Migration And Deployment Record
 
 To be completed with credential-safe evidence only:
 
 ```text
-snapshot/child identifier:
-snapshot created at:
-snapshot source fingerprint:
-snapshot verification:
+snapshot/child identifier: br-gentle-fog-ab8uzsyy
+snapshot created at: 2026-07-29 07:27:52 +01:00
+snapshot source fingerprint: 016aba10adf6
+snapshot verification: control owner confirms child branch br-gentle-fog-ab8uzsyy is a
+  recovery-only snapshot of the current STAGING database
 pre-migration applied head:
 migration command/workflow:
 migration started/completed:
@@ -166,6 +176,9 @@ Required sequence:
 6. advance only the established STAGING deployment reference to exact commit `654ec47c`;
 7. verify the deployed commit independently; and
 8. confirm both events remain OFF before creating smoke fixtures.
+
+The snapshot branch must remain dormant throughout this sequence. Migration and deployment
+continue against the existing current STAGING database URL.
 
 ## 5. Automated And Technical Review
 

@@ -412,6 +412,12 @@ notification-setting row exists. The transaction ended with `ROLLBACK`. The cont
 confirms that a fresh backup snapshot has now been created; its identifier/time and the
 automatic dev Security Scan result remain required before migration.
 
+The recovery snapshot is labelled `Snapshot Before Club status update`, was created at
+`2026-07-29 07:27:52 +01:00` and has Neon branch ID
+`br-gentle-fog-ab8uzsyy`. It is a dormant recovery copy of the current STAGING database,
+not a replacement runtime target. Render and the migration continue to use the existing
+current STAGING database; no `DATABASE_URL` change is required or authorised.
+
 The legacy-attestation representation is now accepted: R9-A1 may add capability for one
 `LEGACY_ATTESTED_IMPORT` admission-evidence row per verified Club linked to one bounded
 attestation/reconciliation batch. It must preserve that automated historic source evidence
