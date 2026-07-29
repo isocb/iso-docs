@@ -291,8 +291,8 @@ step passed from source inspection or API-only evidence.
    than Current.
 6. Confirm the primary C2 retains Club access and can request/create the permitted Team workflow.
 
-Result: PARTIAL PASS — registration, email validation and authorised C1 approval complete; C2
-login/access and participation transitions remain to run
+Result: PARTIAL PASS — registration, email validation, authorised C1 approval, C2 login/access
+and retained C2 Team-request capability complete; participation transitions remain to run
 
 Observed UI:
 
@@ -306,6 +306,17 @@ normal approval:                    PASS
 success message:                    PASS
 Club visible in C1 Club Management: PASS
 Club display after approval:        WAITING LIST
+C2 approval/login email:            RECEIVED
+C2 login:                           PASS
+C2 access-denied/notice screen:     NONE
+correct Club visible to C2:         PASS
+friendly Club category displayed:  NOT OBSERVED
+original requested Team visible:    PASS
+original requested Team display:    NEW CLUB PENDING TEAM
+Register a New Team action:         AVAILABLE AND ACTIONABLE
+C2 Team submission:                 PASS
+C2-submitted Team stored status:     PENDING
+unexpected Team control:            REQUEST FREE DAY OFFERED FOR UNAPPROVED/UNALLOCATED TEAM
 ```
 
 Read-only fixture evidence after approval:
@@ -315,11 +326,15 @@ Application:             APPROVED; reviewed; Club-linked
 Club:                    WAITING_LIST
 admission evidence:      1 APPROVED_APPLICATION / CLUB_APPLICATION / LINKED
 primary C2:              1; primary; ACTIVE; same tenant; matching Club; LMSPro role present
-Team:                    1 NEW_CLUB_PENDING_TEAM; unallocated
+Teams:                   1 NEW_CLUB_PENDING_TEAM; unallocated
+                         1 PENDING; unallocated
 participation outbox:    0
 ```
 
-No contact information or row identifier was retained.
+The second Team was submitted through the supported C2 `Register a New Team` workflow. A
+tenant/season/fixture-scoped read-only transaction then confirmed the two aggregate Team-state
+rows, unchanged Club category and zero participation-outbox rows; it ended with `ROLLBACK`. No
+contact information or row identifier was retained.
 
 Review finding `R9-A1-F1`: the Application review modal still exposes a separate orange
 `Waiting List` button. Static review confirms its `clubApplications.waitlist` mutation marks the
@@ -359,6 +374,54 @@ Recommended disposition before production:
    cohort rather than silently treating it as an Application.
 
 No code or fixture state was changed while confirming this finding.
+
+Review finding `R9-A1-F3`: C2 access and Team-request authority are retained, but the C2
+dashboard does not make the Club's participation category clear. The tester could see the
+correct Club and Team but could not find a Club status. Static review confirms the dashboard
+header shows the Club name, season and user role but not the Club category. A lower summary/profile
+surface can expose the raw stored value and does not provide a complete friendly mapping for
+`WAITING_LIST`.
+
+Recommended disposition before production: display one prominent, English-friendly participation
+badge in the C2 dashboard header and use the same mapping on the profile/summary surfaces, including
+`Club Waiting List`, `Current` and explicit override labels. This is a presentation correction only;
+it must not create another participation authority. No code was changed during this smoke finding.
+
+Review finding `R9-A1-F4`: the C2 Team detail modal offers `Request Free Day` for the
+`NEW_CLUB_PENDING_TEAM` fixture Team. Static review confirms that the control is currently hidden
+only for `INACTIVE`; therefore every other Team state, including unapproved and unallocated
+in-process states, receives the action. The modal also offers general variation/change requests
+without a Team-state eligibility boundary. Manager-detail editing is separately useful while a
+Team request is pending and need not be removed.
+
+Recommended disposition before production: define and enforce one small Team-action eligibility
+matrix in both UI and server mutations. Free Day requests should require a qualifying operational
+Team state and valid allocation. Variation types should appear only where that specific request is
+meaningful. Retain manager-detail editing for in-process Teams. No request was submitted and no code
+was changed during this smoke finding.
+
+Review finding `R9-A1-F5`: the two accepted pending-Team routes currently produce different
+statuses and C1 treatment:
+
+- a Team carried through the Club Application is advanced to `NEW_CLUB_PENDING_TEAM`; and
+- a new Team submitted by the admitted primary C2 is deliberately created as `PENDING`.
+
+The R9-A0 inventory classified both as compatible in-process, unallocated states. The distinction
+is nevertheless operationally material: the current Team Approval consumer treats `PENDING` as an
+existing-Club request that is actionable, while `NEW_CLUB_PENDING_TEAM` under a
+`ClubStatus.WAITING_LIST` Club is placed in a read-only Waiting List bucket. Under the accepted R9
+contract, Club Waiting List now means Registered/admitted with no qualifying Team; it no longer
+means that Club acceptance is still pending. The old C1 grouping therefore risks preventing the
+original Application Team from being approved and allocated, while a later C2 submission for the
+same Club can proceed.
+
+Recommended disposition before production: do not change the C2 writer to
+`NEW_CLUB_PENDING_TEAM` in isolation. First select and document one coherent meaning for the two
+in-process statuses, then align the Application writer, C2 writer, C1 approval buckets, badges,
+filters and server authorisation together. Whichever status is retained, every post-admission Team
+request from a non-overridden Registered Club must remain reviewable by C1 and must not become Team
+Waiting List without a deliberate league decision. This review made no code or direct fixture
+change.
 
 ### Route B — authorised direct C1 creation
 
