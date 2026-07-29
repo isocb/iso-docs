@@ -397,8 +397,12 @@ commit `654ec47cb85f710b4fa2055dc8fa28e0a79ed90f`, with exact parent/recovery ba
 fast-forwarded cleanly to that exact commit, restoring the normal
 feature-to-dev-to-STAGING workflow. Exact dev tests, type-check, verification and production
 build pass, subject to the recorded pre-existing repository lint debt. The automatic dev
-Security Scan result, verified STAGING snapshot details, migration, notifications-off
-deployment and focused review/human smoke remain pending. Existing-data reconciliation remains one
+Security Scan is confirmed green by the control owner. The verified recovery-only STAGING
+snapshot is recorded, and additive migration
+`20260728120000_lmspro_r9_a1_admission_participation` applied successfully at
+`2026-07-29T09:29:58Z`. The three new tables are empty, existing scoped status aggregates
+are unchanged and no reconciliation or notification occurred. The exact notifications-off
+STAGING deployment and focused review/human smoke remain pending. Existing-data reconciliation remains one
 separately approved R9-A2 execution after STAGING dry-run, and cleanup is deferred
 indefinitely unless later evidence makes it necessary. R9-A2 execution is not authorised.
 

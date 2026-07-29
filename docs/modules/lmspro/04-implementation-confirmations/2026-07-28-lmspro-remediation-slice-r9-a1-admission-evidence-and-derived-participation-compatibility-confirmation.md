@@ -170,9 +170,8 @@ production files completed focused ESLint with no errors.
 
 A direct local registry audit was not executed because the controlled environment did not permit
 sending private dependency metadata to the npm registry. Pushing exact commit `654ec47c` to
-`origin/dev` triggered the normal repository Security Scan. That scan remains a mandatory
-pre-deployment gate and must not be represented as passed until its workflow evidence is
-confirmed.
+`origin/dev` triggered the normal repository Security Scan. The control owner confirmed that
+exact dev scan green on 2026-07-29.
 
 Local build warnings that Upstash was not configured reflect the isolated local build environment
 and did not fail compilation. The request-body contract passed after the required standalone
@@ -202,7 +201,8 @@ build.
   the focused human UI smoke.
 - Both new notification events remain OFF until a bounded STAGING smoke step explicitly enables
   one, and that event must be returned to OFF immediately afterwards.
-- Exact STAGING migration, deployment, human UI results and R9-A2 dry-run evidence are pending and
+- Exact STAGING migration passed on 2026-07-29 with the new tables empty and existing scoped
+  statuses unchanged. Deployment, human UI results and R9-A2 dry-run evidence remain pending and
   belong in the review/test record.
 - Production query, mutation, deployment, notification enablement and `main` promotion remain
   prohibited.

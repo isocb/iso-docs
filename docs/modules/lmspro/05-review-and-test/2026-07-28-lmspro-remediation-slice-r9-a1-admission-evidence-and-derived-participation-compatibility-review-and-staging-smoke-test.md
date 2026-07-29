@@ -2,11 +2,10 @@
 
 Date: 2026-07-28
 
-Record status: DEV VALIDATION COMPLETE — waiting for the automatic dev Security Scan before
-STAGING migration
+Record status: DEV AND ADDITIVE STAGING MIGRATION PASS — STAGING application deployment pending
 
-Automated technical disposition: PASS ON EXACT `origin/dev`; automatic Security Scan result
-pending confirmation
+Automated technical disposition: PASS ON EXACT `origin/dev`; automatic Security Scan confirmed
+green by the control owner
 
 STAGING deployment disposition: NOT DEPLOYED
 
@@ -83,13 +82,13 @@ All must pass before migration or deployment:
 | Gate | Expected evidence | Result |
 | --- | --- | --- |
 | Exact application commit | Published commit is exactly `654ec47c…` with parent `df40f45c…` | PASS — dedicated feature branch only |
-| Exact Security Scan | Repository Security Scan passes against `654ec47c…` on `dev` | PENDING CONFIRMATION — triggered by normal dev push |
+| Exact Security Scan | Repository Security Scan passes against `654ec47c…` on `dev` | PASS — control owner confirmed green |
 | Database identity | Current configured target contains the authorised dataset and expected ancestry | PASS |
 | Tenant/season scope | Season belongs to the authorised tenant | PASS — one current ACTIVE match |
 | Session boundary | Administrative preflight is read-only until the migration step | PASS — transaction read-only and rolled back |
 | Migration ancestry | Last expected applied migration matches and no failed/rolled-back migration exists | PASS |
 | Recovery point | A new STAGING child snapshot is created and independently verified | PASS — control-owner-confirmed recovery branch `br-gentle-fog-ab8uzsyy` |
-| Additive SQL | Migration contains no existing-row rewrite, reconciliation or legacy evidence insertion | PASS — static review |
+| Additive SQL | Migration contains no existing-row rewrite, reconciliation or legacy evidence insertion | PASS — static and applied evidence |
 | Notification default | Both new events are absent or OFF for the scoped tenant before deployment | PENDING |
 | Environment scope | No production target, credential or deployment reference is selected | PENDING |
 
@@ -154,11 +153,12 @@ snapshot created at: 2026-07-29 07:27:52 +01:00
 snapshot source fingerprint: 016aba10adf6
 snapshot verification: control owner confirms child branch br-gentle-fog-ab8uzsyy is a
   recovery-only snapshot of the current STAGING database
-pre-migration applied head:
-migration command/workflow:
-migration started/completed:
-post-migration applied head:
-existing-row mutation check:
+pre-migration applied head: 20260722120000_lmspro_r8_a3_email_delivery_jobs
+migration command/workflow: npm run db:migrate / prisma migrate deploy
+migration started/completed: completed 2026-07-29T09:29:58Z
+post-migration applied head: 20260728120000_lmspro_r9_a1_admission_participation
+existing-row mutation check: PASS — 61 Clubs, 400 Teams and 8 Applications retained;
+  status aggregates exactly match pre-migration; all three new tables contain zero rows
 STAGING deployment reference before:
 STAGING deployment reference after:
 deployed commit independently verified:
@@ -179,6 +179,32 @@ Required sequence:
 
 The snapshot branch must remain dormant throughout this sequence. Migration and deployment
 continue against the existing current STAGING database URL.
+
+### 4.1 Applied migration evidence
+
+The additive migration completed successfully while Render and `origin/staging` remained on
+`df40f45c`.
+
+```text
+migration:             20260728120000_lmspro_r9_a1_admission_participation
+finished:              2026-07-29T09:29:58Z
+rolled back:           NO
+unfinished migrations: 0
+unresolved rollbacks:   0
+new tables:             3/3 present
+new integrity constraints: 22
+admission batches:      0 rows
+admission evidence:     0 rows
+transition outbox:      0 rows
+Club statuses:          59 APPROVED; 1 WAITING_LIST; 1 WITHDRAWN
+Team statuses:          355 CURRENT; 40 WAITING_LIST; 5 CANCELLED
+Applications:           8
+new event settings:     no rows; R9-A1 safe default is OFF
+verification:           explicitly read-only transaction; ROLLBACK
+```
+
+No legacy attestation, classification, reconciliation, notification or disposable smoke record
+was created by the migration.
 
 ## 5. Automated And Technical Review
 
@@ -204,9 +230,8 @@ Technical review must additionally verify in the deployed build:
 - outbox retry and recipient ambiguity remain auditable; and
 - no migration-time Club/Team classification occurred.
 
-Technical verdict: DEV PASS; waiting only for the triggered Security Scan result and recovery
-snapshot identifier/time before STAGING migration. Migration and deployed evidence do not yet
-exist.
+Technical verdict: DEV AND ADDITIVE MIGRATION PASS. The exact STAGING application deployment and
+human UI evidence do not yet exist.
 
 ## 6. Human UI Smoke Schedule
 
