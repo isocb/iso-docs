@@ -24,6 +24,13 @@ codes or customer data to this document.
 This is the lay operational companion to the
 [IsoStack Technical Continuity And Succession Handbook](./technical-continuity-and-succession-handbook.md).
 
+For a complete novice's explanation of GitHub, VS Code, Codex, ChatGPT/Sol–High, Render,
+Neon, Resend and Upstash Redis, use the
+[IsoStack Tools And AI Support Guide](./isostack-tools-and-ai-support-guide-for-lay-custodians.md).
+
+The recurring review schedule and dated evidence are governed by the
+[Continuity And Operational Assurance Cycle](./continuity-and-operational-assurance-cycle.md).
+
 Use this handbook to keep the existing service stable during a temporary period without
 development support. Use the technical continuity handbook for:
 

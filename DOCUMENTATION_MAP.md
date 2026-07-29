@@ -35,6 +35,12 @@
   `docs/00-overview/technical-continuity-and-succession-handbook.md`
 - Lay routine-management guide for keeping the existing service stable while development
   support is unavailable: `docs/00-overview/routine-isostack-management-handbook.md`
+- Complete-novice guide to GitHub, VS Code, Codex, ChatGPT/Sol–High, Render, Neon, Resend,
+  Upstash Redis and safe AI support:
+  `docs/00-overview/isostack-tools-and-ai-support-guide-for-lay-custodians.md`
+- Recurring monthly, quarterly, six-monthly, annual and event-driven continuity control:
+  `docs/00-overview/continuity-and-operational-assurance-cycle.md`
+- Dated continuity review evidence and template: `docs/continuity/`
 
 ### Database & Migrations
 

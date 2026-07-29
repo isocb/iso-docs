@@ -25,6 +25,13 @@ For a lay partner keeping the existing service stable while technical support is
 use the companion
 [Routine IsoStack Management Handbook](./routine-isostack-management-handbook.md).
 
+For a complete novice's explanation of the principal software, hosting, data, email and AI
+tools, use the
+[IsoStack Tools And AI Support Guide](./isostack-tools-and-ai-support-guide-for-lay-custodians.md).
+
+The recurring review schedule and evidence structure are governed by the
+[Continuity And Operational Assurance Cycle](./continuity-and-operational-assurance-cycle.md).
+
 It is deliberately not:
 
 - a password or secret store;
