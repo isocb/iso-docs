@@ -33,6 +33,10 @@ candidate to progress through `dev` to STAGING, with STAGING as the authoritativ
 smoke environment. Local `dev` and `origin/dev` subsequently fast-forwarded to exact
 `58ef44fd7c91e2c5932f0634bfa803bbfa13dd55`; exact dev Security Scan run `30466540339`
 passed. STAGING remains at the recovery baseline pending its fresh dormant database snapshot.
+An explicitly read-only STAGING preflight then passed and rolled back: the authorised
+tenant/season matched, all 147 repository-baseline migrations were applied, no unfinished or
+unresolved rolled-back migration existed, and both candidate tables and the candidate ledger
+row were absent.
 
 ## 1. R9-B Implemented Boundary
 

@@ -42,8 +42,30 @@ local staging:          15559f1275d7f8ae3990cc6a9dcda5f35748e570
 origin/staging:         15559f1275d7f8ae3990cc6a9dcda5f35748e570
 main/origin-main:       15559f1275d7f8ae3990cc6a9dcda5f35748e570
 STAGING snapshot:       PENDING
+STAGING preflight:      PASS — explicitly read-only; rolled back
 STAGING deploy/smoke:   NOT STARTED
 ```
+
+The pre-snapshot read-only STAGING preflight recorded:
+
+```text
+configured target fingerprint:              d315b1dd8b98
+database/session:                           neondb; transaction_read_only=on
+authorised tenant/season match:             1
+successfully applied migrations:            147
+unfinished migrations:                      0
+historic rolled-back attempts:              8
+historic names without later successful row: 0
+last successful migration:                  20260729123000_lmspro_team_approved_unallocated
+candidate migration rows:                   0
+candidate tables present:                   0
+Emails / recipients / attachments / links: 28 / 556 / 20 / 8
+transaction terminator:                     ROLLBACK
+```
+
+The eight rolled-back rows are the previously reviewed resolved retry history, not unresolved
+ledger failures. No names, addresses, bodies, row identifiers or provider evidence were
+retrieved.
 
 ## 2. Preconditions For STAGING Human Smoke
 
@@ -175,7 +197,7 @@ database remains the deployment target; do not change its URL to the snapshot.
 
 Preflight read-only and stop on any mismatch:
 - verify exact STAGING database identity and tenant/current-season scope;
-- verify migration ancestry and absence of failed/rolled-back migrations;
+- verify migration ancestry and absence of unfinished or unresolved rolled-back migrations;
 - verify the two new audience tables are absent before migration;
 - record aggregate Email/recipient/table counts only; and
 - do not retrieve names, addresses, bodies, UUIDs or provider evidence.

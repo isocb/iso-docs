@@ -957,6 +957,11 @@ Local `dev` and `origin/dev` are now exact
 passed. Local/remote STAGING and main remain at `15559f1275d7f8ae3990cc6a9dcda5f35748e570`.
 The next gate is the fresh recovery-only snapshot of the current STAGING database; the active
 STAGING database URL must remain unchanged.
+
+The aggregate-only STAGING preflight passed in an explicitly read-only transaction and ended
+with `ROLLBACK`: fingerprint `d315b1dd8b98`, correct authorised tenant/season, 147 successful
+migrations, zero unfinished or unresolved rolled-back migration names, and no R9-B candidate
+table or ledger row. The fresh recovery snapshot remains required before the staging push.
 Wishlist items `LMS-W-UX-01` and `LMS-W-UX-02` remain non-blocking presentation follow-ups.
 
 ## Fresh Chat Prompt
