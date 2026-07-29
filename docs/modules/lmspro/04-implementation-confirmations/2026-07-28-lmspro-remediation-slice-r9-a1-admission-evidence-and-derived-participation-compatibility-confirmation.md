@@ -2,9 +2,9 @@
 
 Date: 2026-07-28
 
-Implementation status: CONSOLIDATED `R9-A1-F1` THROUGH `R9-A1-F5` CORRECTION PROMOTED TO
-`origin/staging` AT EXACT SECURITY-SCAN-GREEN COMMIT; Render exact-commit confirmation and
-focused human re-smoke remain pending
+Implementation status: CONSOLIDATED `R9-A1-F1` THROUGH `R9-A1-F5` CORRECTION LIVE ON STAGING
+AT EXACT SECURITY-SCAN-GREEN COMMIT; all reported focused human checks PASS, with the friendly
+Club-filter observation not recorded
 
 Planning source:
 
@@ -25,8 +25,7 @@ focused R9-A1-F5 correction: 5713f9ba8f637a6015dc1b4688258725a473ed35
 consolidated smoke-follow-up correction: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
 origin/dev: advanced from 654ec47c through 5713f9ba to 71c59653 on 2026-07-29
 origin/staging: fast-forwarded from 654ec47c to 71c59653 on 2026-07-29
-last independently confirmed Render deployment: 654ec47c;
-  exact 71c59653 Render confirmation pending
+Render STAGING: control-owner-confirmed Live at displayed 71c5965 on 2026-07-29
 worktree state after commit: clean
 ```
 
@@ -313,7 +312,11 @@ database schema/migration security, secret detection and report generation. `ori
 STAGING-triggered exact-commit Security Scan run `30446501854` passed the same gates.
 
 The public STAGING health endpoint subsequently returned HTTP 200 with its database connected and
-RLS `11/11`. It does not expose a commit identifier, so Render's exact `Live at 71c5965` display
-remains a human confirmation gate before the focused UI re-smoke. This application-only promotion
+RLS `11/11`. The control owner confirmed Render `Live at 71c5965`, Render's seven-character
+display of the exact promoted commit.
+
+The focused human re-smoke then passed every reported C1 and C2 correction check with no unexpected
+behaviour. The friendly Club-filter field was left blank and is retained as `NOT RECORDED`; it is
+not inferred as a pass. Neither fixture Team was actioned. This application-only promotion
 performed no database, migration, environment or notification action. This implementation record
 does not authorise an R9-A2 dry-run, reconciliation or production promotion.
