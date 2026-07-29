@@ -2,15 +2,16 @@
 
 Date: 2026-07-28
 
-Record status: DEV, ADDITIVE STAGING MIGRATION AND EXACT RENDER DEPLOYMENT PASS — ready for
-scheduled human UI smoke
+Record status: HUMAN STAGING SMOKE IN PROGRESS — Route A access PASS; findings
+`R9-A1-F1` through `R9-A1-F5` recorded, with participation blocked by `R9-A1-F5`
 
 Automated technical disposition: PASS ON EXACT `origin/dev`; automatic Security Scan confirmed
 green by the control owner
 
 STAGING deployment disposition: PASS — exact `654ec47c` confirmed Live
 
-Human STAGING disposition: NOT RUN
+Human STAGING disposition: PARTIAL PASS — stop before participation mutation until
+`R9-A1-F5` is corrected and redeployed
 
 R9-A2 dry-run disposition: NOT RUN
 
@@ -32,7 +33,7 @@ feature branch: feature/lmspro-r9-a1-admission-participation
 application baseline/recovery: df40f45cda955ef00e8f790de89a476c2463a629
 application under review: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
 origin/dev: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
-origin/staging and current Render deployment: df40f45cda955ef00e8f790de89a476c2463a629
+origin/staging and current Render deployment: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
 ```
 
 ## 1. Exact STAGING Scope
@@ -292,7 +293,9 @@ step passed from source inspection or API-only evidence.
 6. Confirm the primary C2 retains Club access and can request/create the permitted Team workflow.
 
 Result: PARTIAL PASS — registration, email validation, authorised C1 approval, C2 login/access
-and retained C2 Team-request capability complete; participation transitions remain to run
+and retained C2 Team-request capability complete. Stop before the participation transition:
+`R9-A1-F5` prevents the Application-carried Team from entering the C1 approval/allocation
+workflow and makes the dashboard pending count inconsistent.
 
 Observed UI:
 
@@ -415,13 +418,48 @@ means that Club acceptance is still pending. The old C1 grouping therefore risks
 original Application Team from being approved and allocated, while a later C2 submission for the
 same Club can proceed.
 
+The human C1 follow-up confirmed the failure:
+
+```text
+Application-carried NEW_CLUB_PENDING_TEAM:
+  Club Teams table:                     visible
+  Team Approval / All Pending:          missing
+  approval/allocation control:          unavailable
+
+C2-submitted PENDING Team:
+  Club Teams table:                     visible
+  Team Approval / All Pending:          visible
+  approval/allocation control:          Click to Review
+
+C1 dashboard Team Approval & Allocation:
+  Pending approval count:               0
+```
+
+Static review identifies two directly related consumer contradictions:
+
+1. `listPendingForApproval` places `NEW_CLUB_PENDING_TEAM` under a
+   `ClubStatus.WAITING_LIST` Club into a legacy read-only `waitingList` result on the assumption
+   that Club acceptance is still pending. The Team Approval page does not render that result in
+   any tab; its visible Waiting List tab separately queries only deliberate
+   `TeamStatus.WAITING_LIST` Teams.
+2. `getPendingCount` excludes all pending-status Teams whose Club is `WAITING_LIST`. It therefore
+   reports zero for this Club even while the page correctly exposes the C2-created `PENDING` Team
+   as actionable.
+
 Recommended disposition before production: do not change the C2 writer to
-`NEW_CLUB_PENDING_TEAM` in isolation. First select and document one coherent meaning for the two
-in-process statuses, then align the Application writer, C2 writer, C1 approval buckets, badges,
-filters and server authorisation together. Whichever status is retained, every post-admission Team
-request from a non-overridden Registered Club must remain reviewable by C1 and must not become Team
-Waiting List without a deliberate league decision. This review made no code or direct fixture
-change.
+`NEW_CLUB_PENDING_TEAM` in isolation and do not rewrite either smoke Team. The smallest
+compatibility correction is to treat both in-process statuses as C1-actionable when the same-scope
+Club has durable admission evidence and is not under an explicit override. Use that identical
+predicate for the Team Approval result and dashboard count; remove the obsolete “club acceptance
+pending” interpretation of Club Waiting List; and keep deliberate `TeamStatus.WAITING_LIST`
+separate. Add focused automated coverage for the Application-carried and post-admission C2 routes,
+then redeploy the exact corrected commit and repeat this bounded C1 observation before mutating a
+Team. Prospective status normalisation can be decided separately and is not required to recover
+the workflow safely. This review made no code or direct fixture change.
+
+Disposition: PROMOTION BLOCKER. Do not continue the Route A participation mutation against this
+deployment because it cannot exercise the original Application Team through the supported C1
+workflow.
 
 ### Route B — authorised direct C1 creation
 
