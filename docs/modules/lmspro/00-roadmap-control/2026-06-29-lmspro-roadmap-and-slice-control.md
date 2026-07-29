@@ -880,77 +880,44 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Prepare the exact R9-A1/R9-A2 STAGING candidate for a separately controlled live promotion
+Hold production R9-A2 reconciliation for a separate evidence-first control decision
 ```
 
 Goal:
 
-R9-A1 and the bounded STAGING R9-A2 reconciliation are complete at exact application commit
-`15559f1275d7f8ae3990cc6a9dcda5f35748e570`. Dev and staging are identical, their exact
-Security Scans pass, Render STAGING is healthy, the two accepted human Club-instantiation
-routes pass, the 54-row legacy attestation and three Club Waiting List changes reconcile, and
-the post-reconciliation C1/C2 smoke passes.
+R9-A1 application promotion is complete at exact commit
+`15559f1275d7f8ae3990cc6a9dcda5f35748e570`. Dev, staging and main are identical. The exact
+main Security Scan passed, Render production is Live at displayed `15559f1`, both additive R9
+migrations are finished with no unresolved attempt, public health is green and the focused
+non-destructive C1/C2 live smoke passed.
 
-The next work is a separate live-promotion control, not more R9-A implementation. Before
-advancing `main`:
+The production snapshot `br-noisy-lab-abk9taaf` preserves the immediately pre-promotion
+database state. Deployment did not copy the STAGING reconciliation into production:
+admission-evidence batches, admission-evidence rows and participation-outbox rows remain zero.
 
-1. create and record an immediately-pre-promotion production database snapshot;
-2. connect read-only to the exact production database and verify its identity, migration
-   ledger and absence of unfinished or rolled-back migrations;
-3. calculate exactly which of the three post-main migration files are pending in production;
-4. verify `main` remains a clean ancestor of exact `15559f12`;
-5. confirm the Render production service currently maps to `main`;
-6. confirm both new notification events will remain default-off after migration; and
-7. record the production rollback owner and stop authority.
-
-Only after those gates pass may `main` fast-forward to the exact tested tree. Render's build
-will apply pending additive migrations before starting the new application. Verify the exact
-live commit, `/api/health`, login, C1/C2 access and the approval-to-allocation workflow.
-
-Do not copy the STAGING R9-A2 evidence/status reconciliation into production as part of code
-promotion. Any production legacy attestation or participation reconciliation requires its own
-read-only live dry-run, exact counts, snapshot and explicit approval.
+No production R9-A2 reconciliation is authorised. If the control owner wishes to proceed, the
+next boundary is a read-only production dry-run using the already-reviewed reconciliation
+command. It must report exact aggregate membership and proposed status changes without writing
+evidence, Club status, audit or outbox rows. Execution would remain a later, separately approved
+step with a fresh recovery point and exact dry-run comparison.
 
 ## Fresh Chat Prompt
 
 ```text
-Proceed with the controlled LMSPro / SeasonPro R9-A1 live-promotion preflight from:
+Review the completed LMSPro / SeasonPro R9 live-promotion evidence from:
 isodocs/docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
 
-Planning and lifecycle records:
-isodocs/docs/modules/lmspro/03-slice-planning/2026-07-28-lmspro-remediation-slice-r9-a1-admission-evidence-and-derived-participation-compatibility-planning.md
-isodocs/docs/modules/lmspro/04-implementation-confirmations/2026-07-28-lmspro-remediation-slice-r9-a1-admission-evidence-and-derived-participation-compatibility-confirmation.md
-isodocs/docs/modules/lmspro/05-review-and-test/2026-07-28-lmspro-remediation-slice-r9-a1-admission-evidence-and-derived-participation-compatibility-review-and-staging-smoke-test.md
+Live-promotion record:
+isodocs/docs/modules/lmspro/05-review-and-test/2026-07-29-lmspro-r9-live-promotion-confirmation.md
 
 Exact application commit:
 15559f1275d7f8ae3990cc6a9dcda5f35748e570
 
-Current main:
-b9287ffa393f5e67b4a786f4d26549e4ee02397a
+Confirm the promotion lifecycle is closed and do not repeat the code promotion or migrations.
 
-STAGING evidence:
-
-- origin/dev and origin/staging exact 15559f12;
-- exact dev Security Scan 30452691002 PASS;
-- exact staging Security Scan 30452881890 PASS;
-- Render STAGING Live at displayed 15559f1 and health HTTP 200;
-- R9-A1 F1-F7 human smoke PASS;
-- R9-A2 STAGING reconciliation and post-reconciliation smoke PASS; and
-- immediate STAGING recovery snapshot br-dawn-heart-abc0rq3b.
-
-First require and record a fresh production database snapshot. Then connect to production
-read-only and verify database identity, current migration ledger, unfinished/rolled-back
-state and the exact pending set among:
-
-1. 20260501090000_fix_bst_key_date_timezone_offset
-2. 20260728120000_lmspro_r9_a1_admission_participation
-3. 20260729123000_lmspro_team_approved_unallocated
-
-Stop if the target, snapshot, migration ancestry, branch ancestry, notification default or
-Render branch mapping differs. If every preflight passes, fast-forward main to the exact
-tested 15559f12 tree, require the exact main Security Scan and Render deployment to pass,
-verify public production health and run the minimum focused live smoke.
-
-Do not execute the STAGING R9-A2 reconciliation against production. Production data
-attestation or status convergence requires a separate live dry-run and explicit approval.
+Do not execute production reconciliation unless I explicitly authorise it. If authorised,
+run only the bounded R9-A2 production dry-run first. Verify the exact production target,
+tenant and season, use an explicitly read-only transaction, report credential-safe aggregate
+counts and stop for review. Do not insert admission evidence, change Club or Team status,
+write audit/outbox rows, send notifications or alter access.
 ```
