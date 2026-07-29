@@ -1,0 +1,163 @@
+# LMSPro Remediation Slices R9-B To R9-D Combined Implementation Confirmation
+
+Date: 2026-07-29
+
+Status: LOCAL IMPLEMENTATION COMMITTED AND TECHNICALLY GREEN; LOCAL HUMAN SMOKE AND
+CONTROLLED STAGING LIFECYCLE NOT YET EXECUTED
+
+Planning source:
+
+`docs/modules/lmspro/03-slice-planning/2026-07-29-lmspro-remediation-slices-r9-b-to-r9-d-combined-planning.md`
+
+Control and application:
+
+```text
+controlling IsoDocs acceptance commit:
+  3254f54
+application recovery baseline:
+  15559f1275d7f8ae3990cc6a9dcda5f35748e570
+branch:
+  fix/lmspro-r9-b-d-remediation
+implementation commit:
+  58ef44fd7c91e2c5932f0634bfa803bbfa13dd55
+implementation tree:
+  b14e9521687d8e75aa2876b1c13c9531e4519621
+migration:
+  20260729170000_lmspro_r9_b_email_club_visibility
+```
+
+No staging or production database, environment, deployment or record was queried or changed.
+No Email was sent during automated/local technical validation. No historic Email evidence was
+reconciled.
+
+## 1. R9-B Implemented Boundary
+
+The additive model is:
+
+```text
+Email
+-> EmailClubVisibility
+-> EmailClubVisibilityRecipient
+-> exact EmailRecipient delivery/content evidence
+```
+
+It records organisation, season, Email, Club, source and finalisation evidence without changing
+the existing Email, recipient, attachment or provider-delivery tables. Composite foreign keys
+fail closed across tenant, season, Email and recipient boundaries. The migration contains no
+historic insert, update, reclassification or reconciliation.
+
+One audience service now:
+
+- retains exact Club contexts before lowercase-address deduplication;
+- permits one provider recipient to represent several exact Club histories;
+- resolves direct Club, Team, current Club-official User and explicit manual Club/Team evidence;
+- rejects a selected Club or Team that cannot be proved in the organisation;
+- leaves a genuinely unlinked manual address outside Club history; and
+- materialises or replaces draft audience rows transactionally.
+
+Prospective compose/create/update/recipient replacement, duplicate-to-draft, Announcement,
+key-date reminder, ordinary sequence and key-date sequence writers use this boundary.
+No-attachment, attachment-job, Announcement, reminder and sequence outcomes now align the
+parent, recipient, immutable resolved content and Club-audience finalisation evidence.
+
+C1 composition shows separate deduplicated provider-recipient and Club-history audience counts.
+An unlinked manual address carries an explicit warning.
+
+C2 Club history now requires the exact current-season `EmailClubVisibility`, at least one linked
+accepted primary recipient and the exact Club/tenant scope. It returns one Email per row, no
+recipient identity, stable 50-row cursor pagination, distinct authorised content variants,
+attachment/link metadata and a short-lived server-authorised private attachment URL. The shared
+C1 Email routes enforce the LMSPro Sent/compose component authorities, removing the former C2
+organisation-wide bypass.
+
+Historic current-season Emails remain absent from the new tables until a separately authorised
+aggregate dry-run and insert-only reconciliation. This is intentional.
+
+## 2. R9-C Implemented Boundary
+
+C1 and C2 now consume one shared Team-status presentation contract:
+
+- `APPROVED` displays as `Approved & Unallocated`;
+- `PENDING` displays as `Pending Approval`;
+- `CANCELLED` displays as `Declined`;
+- every retained Team enum receives one friendly label and colour;
+- valid Waiting List evidence displays `Waiting List 3/12`;
+- the complete accessible name is `Waiting List, position 3 of 12`; and
+- incomplete position evidence does not invent a position.
+
+Both Team screens show compact stacked cards below the desktop boundary and the complete table
+from the desktop boundary. Identity, age group, complete status and division/`Unallocated`
+remain in the compact summary. Both card and table presentations expose an explicit
+keyboard-operable `More details` control. No Team value, waiting-list calculation, filter,
+allocation or workflow meaning changed.
+
+## 3. R9-D Implemented Boundary
+
+The accepted baseline runtime report was click-to-browse failure while drag/drop remained the
+retained selection path. Static inspection confirmed that the Mantine Dropzone relied on
+implicit defaults and had no explicit activation contract.
+
+The smallest correction explicitly enables Dropzone pointer and keyboard activation while idle,
+gives the control an accessible name and disables both activation paths while processing. Drop,
+browse and keyboard selection still enter the existing R8-A selection/validation function.
+Allowlist, count/size limits, private storage, acknowledgement, draft/duplicate behaviour,
+provider routing, retry and no-attachment delivery are unchanged.
+
+The Node test environment cannot open a native operating-system file picker. The focused local
+Chrome/Edge human smoke in the companion review record is therefore the authoritative runtime
+activation proof, as permitted by the accepted plan.
+
+## 4. Additive Migration And Local Database
+
+`prisma migrate dev` first stopped without changing data because the non-interactive generator
+also previewed unrelated live enum drift. That unrelated change was not bundled.
+
+The migration was instead bounded manually to:
+
+- two composite uniqueness indexes required by the new foreign keys;
+- the two new tables;
+- tenant/season/Email/Club/recipient constraints; and
+- Club-history and recipient lookup indexes.
+
+`prisma migrate deploy` then applied only this migration to the previously verified local
+development database. The local ledger reports 148 migrations and `Database schema is up to
+date`. No database URL or environment value changed.
+
+## 5. Automated Evidence
+
+```text
+Prisma format/validate: PASS
+focused R9-B/R9-C/R9-D plus R8-A regression tests: 22 PASS
+complete Vitest run: 260 PASS; 12 intentionally skipped
+TypeScript: PASS
+critical-file verification: PASS
+production build: PASS
+npm dependency audit: PASS; zero vulnerabilities
+new-migration credential/email-literal inspection: PASS
+workflow-pinned Gitleaks 8.24.3, exact one-commit range: PASS; no leaks
+git diff/check and pre-commit checks: PASS
+local migration ledger: PASS; 148 applied
+```
+
+Repository-wide `npm run lint` remains red on pre-existing unescaped-character errors in
+unrelated Bedrock, import and LMSPro coming-soon pages plus existing warning debt. Focused ESLint
+found no changed production-file error; its one error is the repository parser configuration
+excluding an already tracked communications test file. No unrelated lint cleanup was folded
+into R9.
+
+The local build also repeats the accepted local-only warning that Upstash is not configured.
+This is an environment warning, not a production configuration change or R9 regression.
+
+## 6. Retained Exceptions And Recovery
+
+- Historic Email-to-Club rows are deliberately absent.
+- The previously identified missing scheduled-Email worker remains an adjacent finding and was
+  not represented as repaired.
+- Native file-picker activation remains a named local human check.
+- The additive tables may remain if application rollback returns to `15559f12`; that application
+  ignores them.
+- R9-C and R9-D remain code-only and independently revertible.
+
+The exact safe application recovery point is
+`15559f1275d7f8ae3990cc6a9dcda5f35748e570`. The local database recovery is forward-compatible:
+the old application can run with the two unused additive tables.

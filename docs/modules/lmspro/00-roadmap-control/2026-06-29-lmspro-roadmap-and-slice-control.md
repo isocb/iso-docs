@@ -909,7 +909,7 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Commence the accepted combined R9-B to R9-D local implementation
+Review and execute the focused local human smoke for the committed R9-B to R9-D candidate
 ```
 
 Goal:
@@ -922,22 +922,30 @@ changed nine Clubs to Club Waiting List, suppressed every transition notificatio
 Team, allocation, official, user or access record. Independent verification, a repeat no-op
 dry-run and focused post-reconciliation C1/C2 smoke all pass.
 
-The remaining three accepted programme items have now been reviewed in one proportionate
-administrative planning boundary:
+The remaining three accepted programme items were reviewed in one proportionate administrative
+planning boundary and are now implemented locally:
 
 `docs/modules/lmspro/03-slice-planning/2026-07-29-lmspro-remediation-slices-r9-b-to-r9-d-combined-planning.md`
 
-The plan retains three independently testable outcomes. `R9-B` is an additive Email audience,
-permission and migration outcome. `R9-C` and `R9-D` are sufficiently small to share one code-only
-UI implementation batch. Formal control accepted the plan on 2026-07-29 and authorised one local
-implementation branch from exact baseline `15559f12`, local application of the one additive
-migration, combined automated validation and lifecycle evidence. STAGING, production, environment,
-deployment and historic reconciliation actions remain unauthorised.
+Exact application commit `58ef44fd7c91e2c5932f0634bfa803bbfa13dd55` implements the three
+independently testable outcomes. The one additive R9-B migration is applied only to the authorised
+local development database. R9-C and R9-D remain code-only. Schema validation, 260 runnable tests,
+type checking, critical-file verification, production build, dependency audit and the
+workflow-pinned bounded Gitleaks scan pass.
 
-Source review was completed at exact aligned application commit
-`15559f1275d7f8ae3990cc6a9dcda5f35748e570`. Local/tracked dev, staging and main all point to that
-commit. No STAGING or production database was queried. R9-B current-season aggregate evidence
-remains a later explicitly authorised read-only gate before any historic reconciliation.
+The combined implementation confirmation and local review/human schedule are:
+
+- `docs/modules/lmspro/04-implementation-confirmations/2026-07-29-lmspro-remediation-slices-r9-b-to-r9-d-combined-confirmation.md`; and
+- `docs/modules/lmspro/05-review-and-test/2026-07-29-lmspro-remediation-slices-r9-b-to-r9-d-combined-local-review-and-smoke-test.md`.
+
+STAGING, production, environment, deployment and historic reconciliation actions remain
+unauthorised. Focused local browser smoke is the next control point.
+
+Implementation started from exact aligned application commit
+`15559f1275d7f8ae3990cc6a9dcda5f35748e570`. Tracked dev, staging and main remain at that parent;
+the candidate exists only on `fix/lmspro-r9-b-d-remediation`. No STAGING or production database
+was queried. R9-B current-season aggregate evidence remains a later explicitly authorised
+read-only gate before any historic reconciliation.
 Wishlist items `LMS-W-UX-01` and `LMS-W-UX-02` remain non-blocking presentation follow-ups.
 
 ## Fresh Chat Prompt
