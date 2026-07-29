@@ -2,18 +2,19 @@
 
 Date: 2026-07-28
 
-Record status: REOPENED — `R9-A1-F6` CORRECTION AND MIGRATION ALIGNED ON DEV/STAGING;
-RENDER STAGING DATABASE CONNECTIVITY RECOVERY AND HUMAN RE-SMOKE PENDING
+Record status: REOPENED — `R9-A1-F6` RE-SMOKE PASS; `R9-A1-F7` DIRECT-C1 TEAM-MODAL
+CORRECTION DEPLOYED TO STAGING BRANCH; EXACT RENDER/UI CONFIRMATION PENDING
 
-Automated technical disposition: F6 corrective `12ae773d` automation, production build,
-development/test/staging migration deployment and exact dev/staging Security Scans PASS
+Automated technical disposition: F6 corrective `12ae773d` and F7 corrective `15559f12`
+automation, production builds and exact dev/staging Security Scans PASS
 
-STAGING deployment disposition: BLOCKED AT RUNTIME HEALTH — `origin/staging` exact `12ae773d`;
-all migrations applied; Security Scan PASS; Render cannot currently reach Neon
+STAGING deployment disposition: `origin/staging` exact `15559f12`; all migrations applied;
+Security Scan PASS; public health HTTP 200; Render exact-commit confirmation pending
 
-Human STAGING disposition: F1-F5 PASS; F6 BLOCKING REGRESSION CONFIRMED BEFORE TEAM MUTATION
+Human STAGING disposition: F1-F6 PASS; F7 direct-C1 Team-create correction pending focused check
 
-R9-A2 dry-run disposition: NOT RUN
+R9-A2 dry-run disposition: PASS — 54 append-only evidence proposals and three Club
+participation changes reviewed; execution waits for F7 PASS and a fresh STAGING snapshot
 
 Production/promotion disposition: PROHIBITED BY THIS LIFECYCLE
 
@@ -35,10 +36,11 @@ application under review: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
 F5 correction: 5713f9ba8f637a6015dc1b4688258725a473ed35
 consolidated corrective candidate: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
 F6 corrective candidate: 12ae773d67ed05cde86f839ddfab32e30d006010
-origin/dev: 12ae773d67ed05cde86f839ddfab32e30d006010
-origin/staging: 12ae773d67ed05cde86f839ddfab32e30d006010
-current Render candidate: 12ae773d67ed05cde86f839ddfab32e30d006010
-Render health: HTTP 500 — running process cannot reach configured Neon host
+F7 corrective candidate: 15559f1275d7f8ae3990cc6a9dcda5f35748e570
+origin/dev: 15559f1275d7f8ae3990cc6a9dcda5f35748e570
+origin/staging: 15559f1275d7f8ae3990cc6a9dcda5f35748e570
+current Render candidate: 15559f1275d7f8ae3990cc6a9dcda5f35748e570
+Render health: HTTP 200 — database connected; RLS 11/11
 ```
 
 ## 1. Exact STAGING Scope
@@ -686,23 +688,54 @@ This section may be executed only after the first R9-A1 smoke pass. It is read-o
 
 ```text
 dry-run command/version:
-target fingerprint:
+  controlled bounded SQL v1; PostgreSQL serializable read-only transaction
+target:
+  STAGING only; neondb; configured target fingerprint 016aba10adf6
 tenant/season verified:
+  862d7c5b-72c4-42ab-9c89-ab216197f596 /
+  d398ca2d-3c68-4538-ac8c-53eea68ee369; season is Current
+required migration ancestry:
+  all three post-main migrations finished; none rolled back
 proposed batch:
+  one bounded pre-2026-06-01 legacy-import attestation batch
+proposed membership:
+  54 of 64 scoped Clubs; membership fingerprint dcf67475260a9bb325025a6383664394
 proposed legacy evidence count:
-Current/unallocated Team proposals:
+  54 LEGACY_ATTESTED_IMPORT / ATTESTATION_BATCH rows
+existing prospective evidence:
+  2 APPROVED_APPLICATION; 1 AUTHORISED_DIRECT_C1
+Current/unallocated Team observations:
+  7 scoped Current Teams have no valid matching allocation; 6 belong to the proposed
+  legacy-attestation cohort
 Approved/no-qualifying-Team proposals:
+  3 Clubs currently APPROVED would become WAITING_LIST; one existing WAITING_LIST Club
+  remains WAITING_LIST
 integrity concerns:
+  7 Current/unallocated-or-invalid; 1 Waiting-List-but-allocated;
+  0 Approved-but-allocated; 0 Pending-but-allocated
 expected before/after aggregates:
+  evidence 0 -> 54 legacy rows plus one batch;
+  candidate Club status 53 APPROVED / 1 WAITING_LIST ->
+  50 APPROVED / 4 WAITING_LIST;
+  Team rows and allocations unchanged
 repeat/idempotency result:
+  repeat membership count and fingerprint identical; 54/54 proposed keys distinct;
+  0 evidence-key collisions; 0 batch-key collisions
+proposed attestor:
+  one active same-tenant direct-C1 recorder identified; identity retained privately
 notification result:
+  both participation events effectively OFF; no explicit enabling rows
 read-only/no-change proof:
+  transaction_read_only=on; ROLLBACK completed; post-run verification found
+  0 LEGACY_ATTESTED_IMPORT rows and 0 attestation batches
 ```
 
-Dry-run result: NOT RUN
+Dry-run result: PASS — no database mutation.
 
-R9-A2 reconciliation execution remains prohibited until the user reviews this evidence and gives
-separate explicit approval.
+The user reviewed the bounded effect—54 append-only evidence rows, one batch and three
+APPROVED-to-WAITING_LIST Club changes with no Team, allocation, official, access or contact
+rewrite—and explicitly authorised proceeding on STAGING. Execution remains paused until the F7
+focused UI check passes and a fresh immediately-pre-execution STAGING snapshot is recorded.
 
 ## 9. R9-A1-F6 Regression And Corrective Re-Smoke
 
@@ -757,17 +790,63 @@ After public health recovers:
 6. confirm the Club changes from Club Waiting List to Current only at allocation; and
 7. record any notification/outbox result without enabling or sending a notification.
 
-F6 re-smoke result: NOT RUN
+F6 re-smoke result: PASS — user-confirmed on STAGING:
 
-## 10. Verdict
+- application-created Team approved without selecting a division;
+- Team moved from All Pending to Approved & Unallocated;
+- Club remained Club Waiting List and dashboard counts agreed;
+- later valid division allocation made the Team Current and the Club Current; and
+- C2 access remained correct with notifications off.
 
-R9-A1 STAGING implementation/smoke verdict: F6 CODE, MIGRATION AND SECURITY GATES PASS;
-RENDER CONNECTIVITY RECOVERY AND HUMAN RE-SMOKE PENDING
+## 10. R9-A1-F7 Direct-C1 Team Creation Correction
+
+The direct-C1 Club route passed, but its Club Management Team modal omitted both `PENDING` and
+`APPROVED` from the displayed selector even though `PENDING` was the form default. It also did not
+refetch the Club after a Team mutation, requiring a forced page refresh to display participation
+changes.
+
+Exact corrective commit `15559f1275d7f8ae3990cc6a9dcda5f35748e570`:
+
+- exposes Pending approval and Approved & Unallocated as separate C1 choices;
+- labels Current as requiring a division;
+- explains the Pending/Approved distinction in the modal;
+- refetches Team and Club state after Team create, update and delete; and
+- adds focused regression coverage for the exposed workflow choices.
+
+```text
+focused tests:              22 PASS
+full Vitest:                251 PASS; 12 intentionally skipped
+type-check and verifier:    PASS
+production build:           PASS
+source ESLint:              0 errors; 16 pre-existing warnings
+pre-commit:                 PASS
+exact dev Security Scan:    PASS — run 30452691002
+exact staging Security Scan: PASS — run 30452881890
+public STAGING health:      HTTP 200; database connected; RLS 11/11
+```
+
+Focused F7 UI gate:
+
+1. confirm Render displays Live at `15559f1`;
+2. open the direct-C1 smoke Club and Add Team;
+3. confirm Pending approval and Approved & Unallocated are both selectable;
+4. create a disposable Team as Pending with no division;
+5. confirm it appears in All Pending and the dashboard count agrees;
+6. confirm the Club view updates without a forced browser refresh; and
+7. do not reconcile until this focused result is PASS.
+
+F7 result: PENDING HUMAN CONFIRMATION
+
+## 11. Verdict
+
+R9-A1 STAGING implementation/smoke verdict: F1-F6 PASS; F7 AUTOMATION, SECURITY AND HEALTH PASS;
+EXACT RENDER/UI CONFIRMATION PENDING
 
 Recovery position: PASS — verified dormant child snapshot `br-gentle-fog-ab8uzsyy`; current
 STAGING database remains the active target and now contains the completed additive F6 migration.
 
-Items requiring a later R9-A2 execution decision: PENDING dry-run evidence
+R9-A2 position: DRY-RUN PASS AND STAGING EXECUTION AUTHORISED IN PRINCIPLE; fresh snapshot and F7
+PASS required before execution.
 
 This record cannot become a production, `main`, promotion or reconciliation verdict. It ends at
 the exact R9-A1 STAGING outcome and the R9-A2 dry-run stop gate.

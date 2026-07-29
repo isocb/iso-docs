@@ -2,8 +2,8 @@
 
 Date: 2026-07-28
 
-Implementation status: `R9-A1-F6` CORRECTED; DEV AND STAGING MIGRATION LEDGERS ALIGNED;
-EXACT-COMMIT SECURITY SCANS GREEN; RENDER STAGING DATABASE CONNECTIVITY RECOVERY REQUIRED
+Implementation status: `R9-A1-F7` CORRECTED; DEV AND STAGING EXACT `15559f12`;
+EXACT-COMMIT SECURITY SCANS GREEN; PUBLIC STAGING HEALTHY; FOCUSED UI CONFIRMATION REQUIRED
 
 Planning source:
 
@@ -23,9 +23,10 @@ parents: exactly df40f45cda955ef00e8f790de89a476c2463a629
 focused R9-A1-F5 correction: 5713f9ba8f637a6015dc1b4688258725a473ed35
 consolidated smoke-follow-up correction: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
 approved-but-unallocated correction: 12ae773d67ed05cde86f839ddfab32e30d006010
-origin/dev: advanced from 71c59653 to 12ae773d on 2026-07-29
-origin/staging: advanced from 71c59653 to 12ae773d on 2026-07-29
-Render STAGING: deployment at 12ae773d unhealthy because its running process cannot reach Neon
+direct-C1 Team-modal correction: 15559f1275d7f8ae3990cc6a9dcda5f35748e570
+origin/dev: advanced from 12ae773d to 15559f12 on 2026-07-29
+origin/staging: advanced from 12ae773d to 15559f12 on 2026-07-29
+Render STAGING candidate: 15559f12; public health HTTP 200; exact UI confirmation pending
 worktree state after commit: clean
 ```
 
@@ -417,3 +418,37 @@ No existing Team was reclassified and no Team action, notification change, R9-A2
 reconciliation was performed by F6. After Render health recovers, the corrective STAGING human
 smoke must prove approval without allocation, visibility in Approved & Unallocated, later
 allocation to Current, and the expected Club participation transition.
+
+## 11. Direct-C1 Team Creation Modal Correction
+
+The post-F6 human smoke confirmed the two-stage application Team workflow, then exposed an
+independent direct-C1 Club Management discrepancy: the Team modal's displayed options omitted
+both Pending and Approved & Unallocated even though Pending was its internal default. Club state
+also required a forced refresh after Team changes.
+
+Exact correction `15559f1275d7f8ae3990cc6a9dcda5f35748e570`:
+
+- exposes Pending approval and Approved & Unallocated as distinct choices;
+- states that Current requires a division;
+- preserves the server-side Current/allocation and Approved/unallocated invariants;
+- refreshes both Team and Club state following Team create, update or delete; and
+- adds focused option-contract tests.
+
+Evidence:
+
+```text
+focused tests:               22 PASS
+full Vitest:                 251 PASS; 12 intentionally skipped
+type-check:                  PASS
+critical-file verifier:      PASS
+production build:            PASS
+source ESLint:               zero errors; 16 pre-existing warnings
+pre-commit:                  PASS
+exact dev Security Scan:     PASS — run 30452691002
+exact staging Security Scan: PASS — run 30452881890
+public STAGING health:       HTTP 200; database connected; RLS 11/11
+```
+
+This correction adds no schema or migration and performs no database reconciliation. Human
+confirmation that Render is Live at `15559f1` and that a direct-C1 Pending Team enters All Pending
+without a forced Club-page refresh remains the next gate.
