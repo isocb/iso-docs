@@ -413,6 +413,19 @@ connected, RLS 11/11, the R9-A1 migration finished, unchanged 61/400/8 scoped
 Club/Team/Application counts, empty new evidence/outbox tables and both new events safely
 default-OFF. The scheduled human smoke is now the next controlled action.
 
+Route A registration, email validation and normal C1 approval subsequently passed in STAGING.
+The fixture has one `APPROVED_APPLICATION` evidence row, one active authoritative primary
+C2, Club Waiting List participation, one unallocated `NEW_CLUB_PENDING_TEAM` and no
+participation-transition outbox row. C2 login/access and participation transitions remain
+to test.
+
+Smoke finding `R9-A1-F1` confirms that the Application review modal's separate orange
+`Waiting List` button now duplicates normal approval: both accept the Application, provision
+C2, record approved-Application evidence and initially place the admitted Club on Club
+Waiting List. The redundant action risks divergent audit, review-note and notification
+behaviour. Remove the Application-level button and mutation before production promotion;
+this does not affect the distinct, deliberately authorised Team Waiting List decision.
+
 The first pre-deployment attempt published only the dedicated feature branch and stopped
 without migration or deployment. Its use of the historic R9-A0 target fingerprint as a
 permanent STAGING gate was subsequently corrected. A new read-only preflight against the

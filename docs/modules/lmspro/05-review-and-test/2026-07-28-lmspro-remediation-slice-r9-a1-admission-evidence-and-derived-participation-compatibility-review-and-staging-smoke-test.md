@@ -291,7 +291,48 @@ step passed from source inspection or API-only evidence.
    than Current.
 6. Confirm the primary C2 retains Club access and can request/create the permitted Team workflow.
 
-Result: NOT RUN
+Result: PARTIAL PASS — registration, email validation and authorised C1 approval complete; C2
+login/access and participation transitions remain to run
+
+Observed UI:
+
+```text
+registration submitted:             PASS
+email validation:                   PASS
+unexpected submission behaviour:   NONE
+Application visible to C1:          PASS
+pre-approval display:               READY FOR REVIEW
+normal approval:                    PASS
+success message:                    PASS
+Club visible in C1 Club Management: PASS
+Club display after approval:        WAITING LIST
+```
+
+Read-only fixture evidence after approval:
+
+```text
+Application:             APPROVED; reviewed; Club-linked
+Club:                    WAITING_LIST
+admission evidence:      1 APPROVED_APPLICATION / CLUB_APPLICATION / LINKED
+primary C2:              1; primary; ACTIVE; same tenant; matching Club; LMSPro role present
+Team:                    1 NEW_CLUB_PENDING_TEAM; unallocated
+participation outbox:    0
+```
+
+No contact information or row identifier was retained.
+
+Review finding `R9-A1-F1`: the Application review modal still exposes a separate orange
+`Waiting List` button. Static review confirms its `clubApplications.waitlist` mutation marks the
+Application `APPROVED`, provisions C2, records the same `APPROVED_APPLICATION` admission evidence,
+makes the Club `WAITING_LIST` and advances placeholder Teams. Normal approval now necessarily
+produces that same participation category until a Team qualifies. The parallel action therefore
+has no remaining distinct accepted business outcome and risks inconsistent audit wording,
+review-note handling and approval notification behaviour.
+
+Recommended disposition: remove the Application-level `Waiting List` button and its redundant
+mutation before production promotion, retaining normal Approve and Reject. Do not confuse this
+with deliberate Team Waiting List, which remains a valid authorised league decision. No code was
+changed during this smoke finding.
 
 ### Route B — authorised direct C1 creation
 
