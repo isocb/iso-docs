@@ -1,9 +1,9 @@
-# LMSPro R9-B To R9-D Combined Local Review And Human Smoke Test
+# LMSPro R9-B To R9-D Combined Technical Review And STAGING Human Smoke Test
 
 Date: 2026-07-29
 
-Status: AUTOMATED LOCAL REVIEW PASS; FOCUSED LOCAL HUMAN SMOKE SCHEDULED; STAGING NOT
-AUTHORISED OR STARTED
+Status: AUTOMATED LOCAL REVIEW PASS; CONTROLLED STAGING DEPLOYMENT AUTHORISED; FOCUSED
+STAGING HUMAN SMOKE PENDING
 
 Application under review:
 
@@ -27,15 +27,22 @@ Migration:
 | Migration on authorised local development DB | PASS | N/A |
 | Historic reconciliation | NOT EXECUTED | NOT AUTHORISED |
 
-No staging or production action is part of this record.
+The control owner accepted that historic Emails are intentionally excluded and authorised the
+exact candidate to progress through `dev` to STAGING. STAGING is the authoritative human browser
+smoke environment; repeating the complete schedule locally is not a promotion precondition.
+Production remains outside this record.
 
-## 2. Preconditions For Local Human Smoke
+## 2. Preconditions For STAGING Human Smoke
 
 - run exact commit `58ef44fd7c91e2c5932f0634bfa803bbfa13dd55`;
-- use only the normal local development application and its already migrated development DB;
-- use controlled non-personal development mailboxes and disposable current-season Clubs;
-- do not point any environment value at staging or production;
-- do not use or alter historic production-like Email evidence;
+- first fast-forward `dev` and `origin/dev`, and require the exact dev Security Scan to pass;
+- create and record a fresh dormant snapshot of the current STAGING database immediately before
+  migration; keep the current STAGING database as the target and do not change its URL;
+- use controlled non-personal STAGING mailboxes and disposable current-season Clubs;
+- confirm Render is Live at the exact candidate and the migration ledger contains
+  `20260729170000_lmspro_r9_b_email_club_visibility`;
+- treat historic Email absence from C2 history as expected; test only Emails created after the
+  migration and candidate deployment;
 - do not execute reconciliation; and
 - stop if the displayed commit, database or tenant differs.
 
@@ -92,7 +99,7 @@ Confirm:
 
 ## 5. R9-D Browser Schedule
 
-Use current Chrome and Edge locally; repeat Firefox/Safari where used.
+Use current Chrome and Edge against STAGING; repeat Firefox/Safari where used.
 
 1. Open a new Email draft and focus the Dropzone by keyboard.
 2. Press Enter, cancel the picker, then press Space. Confirm exactly one native picker opens per
@@ -134,7 +141,7 @@ Any R9-B authority failure, cross-Club disclosure, duplicate provider delivery, 
 mismatch or R8-A regression is a stop condition. A presentation defect may be corrected locally
 without expanding the business or data boundary.
 
-## 7. Next Controlled STAGING Prompt
+## 7. Authorised STAGING Progression
 
 ```text
 Proceed with controlled LMSPro R9-B to R9-D STAGING validation only.
@@ -145,9 +152,10 @@ Use exact application commit:
 Use migration:
 20260729170000_lmspro_r9_b_email_club_visibility
 
-First confirm the local human smoke record is complete and accepted, the exact branch Security
-Scan is green, the application tree is clean, STAGING is still at the expected accepted parent,
-and the configured database is STAGING rather than local or production.
+First confirm the automated local review is complete and accepted, the exact dev Security Scan
+is green, the application tree is clean, STAGING is still at the expected accepted parent, and
+the configured database is STAGING rather than local or production. A duplicate complete local
+human smoke is not required.
 
 Create and record a fresh dormant STAGING database snapshot as recovery. The current STAGING
 database remains the deployment target; do not change its URL to the snapshot.
@@ -163,7 +171,8 @@ If preflight passes, apply only the additive migration, independently verify the
 unchanged existing Email/recipient/resource aggregates, then deploy exact commit 58ef44fd.
 Do not insert historic audience rows and do not execute reconciliation.
 
-Run the focused R9-B, R9-C and R9-D human schedule from:
+After the exact STAGING Security Scan, Render deployment and migration-ledger verification pass,
+stop for the control owner to run the focused R9-B, R9-C and R9-D human schedule from:
 isodocs/docs/modules/lmspro/05-review-and-test/2026-07-29-lmspro-remediation-slices-r9-b-to-r9-d-combined-local-review-and-smoke-test.md
 
 Use controlled STAGING mailboxes and Clubs only. Do not send an uncontrolled Email.

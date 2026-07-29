@@ -2,8 +2,8 @@
 
 Date: 2026-07-29
 
-Status: LOCAL IMPLEMENTATION COMMITTED AND TECHNICALLY GREEN; LOCAL HUMAN SMOKE AND
-CONTROLLED STAGING LIFECYCLE NOT YET EXECUTED
+Status: LOCAL IMPLEMENTATION COMMITTED AND TECHNICALLY GREEN; CONTROLLED STAGING
+DEPLOYMENT AUTHORISED; STAGING HUMAN SMOKE PENDING
 
 Planning source:
 
@@ -26,9 +26,11 @@ migration:
   20260729170000_lmspro_r9_b_email_club_visibility
 ```
 
-No staging or production database, environment, deployment or record was queried or changed.
-No Email was sent during automated/local technical validation. No historic Email evidence was
-reconciled.
+No staging or production database, environment, deployment or record was queried or changed
+during implementation. No Email was sent during automated/local technical validation. No
+historic Email evidence was reconciled. The control owner subsequently authorised the exact
+candidate to progress through `dev` to STAGING, with STAGING as the authoritative human browser
+smoke environment.
 
 ## 1. R9-B Implemented Boundary
 
@@ -103,9 +105,9 @@ browse and keyboard selection still enter the existing R8-A selection/validation
 Allowlist, count/size limits, private storage, acknowledgement, draft/duplicate behaviour,
 provider routing, retry and no-attachment delivery are unchanged.
 
-The Node test environment cannot open a native operating-system file picker. The focused local
-Chrome/Edge human smoke in the companion review record is therefore the authoritative runtime
-activation proof, as permitted by the accepted plan.
+The Node test environment cannot open a native operating-system file picker. The focused
+Chrome/Edge human smoke on STAGING in the companion review record is therefore the authoritative
+runtime activation proof.
 
 ## 4. Additive Migration And Local Database
 
@@ -153,7 +155,7 @@ This is an environment warning, not a production configuration change or R9 regr
 - Historic Email-to-Club rows are deliberately absent.
 - The previously identified missing scheduled-Email worker remains an adjacent finding and was
   not represented as repaired.
-- Native file-picker activation remains a named local human check.
+- Native file-picker activation remains a named STAGING human check.
 - The additive tables may remain if application rollback returns to `15559f12`; that application
   ignores them.
 - R9-C and R9-D remain code-only and independently revertible.

@@ -909,7 +909,8 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Review and execute the focused local human smoke for the committed R9-B to R9-D candidate
+Progress the exact R9-B to R9-D candidate through `dev` to STAGING and execute the focused
+STAGING human smoke
 ```
 
 Goal:
@@ -938,14 +939,18 @@ The combined implementation confirmation and local review/human schedule are:
 - `docs/modules/lmspro/04-implementation-confirmations/2026-07-29-lmspro-remediation-slices-r9-b-to-r9-d-combined-confirmation.md`; and
 - `docs/modules/lmspro/05-review-and-test/2026-07-29-lmspro-remediation-slices-r9-b-to-r9-d-combined-local-review-and-smoke-test.md`.
 
-STAGING, production, environment, deployment and historic reconciliation actions remain
-unauthorised. Focused local browser smoke is the next control point.
+The control owner accepted that historic Emails remain deliberately excluded and authorised the
+exact candidate to progress through `dev` to STAGING. The complete human browser schedule will
+run once on STAGING as the authoritative runtime proof; duplicate complete local browser smoke
+is not required. Production and historic reconciliation remain unauthorised.
 
 Implementation started from exact aligned application commit
 `15559f1275d7f8ae3990cc6a9dcda5f35748e570`. Tracked dev, staging and main remain at that parent;
-the candidate exists only on `fix/lmspro-r9-b-d-remediation`. No STAGING or production database
-was queried. R9-B current-season aggregate evidence remains a later explicitly authorised
-read-only gate before any historic reconciliation.
+the candidate initially exists only on `fix/lmspro-r9-b-d-remediation`. No STAGING or production
+database was queried during implementation. The authorised release sequence must fast-forward
+`dev`, pass the exact dev Security Scan, preserve a fresh dormant STAGING database snapshot,
+fast-forward STAGING, verify its additive migration and exact Security Scan, then stop for the
+control owner's focused smoke. No historic reconciliation is planned or authorised.
 Wishlist items `LMS-W-UX-01` and `LMS-W-UX-02` remain non-blocking presentation follow-ups.
 
 ## Fresh Chat Prompt
