@@ -3,8 +3,7 @@
 Date: 2026-07-28
 
 Implementation status: CONSOLIDATED `R9-A1-F1` THROUGH `R9-A1-F5` CORRECTION LIVE ON STAGING
-AT EXACT SECURITY-SCAN-GREEN COMMIT; all reported focused human checks PASS, with the friendly
-Club-filter observation not recorded
+AT EXACT SECURITY-SCAN-GREEN COMMIT; focused corrective human re-smoke PASS
 
 Planning source:
 
@@ -315,8 +314,9 @@ The public STAGING health endpoint subsequently returned HTTP 200 with its datab
 RLS `11/11`. The control owner confirmed Render `Live at 71c5965`, Render's seven-character
 display of the exact promoted commit.
 
-The focused human re-smoke then passed every reported C1 and C2 correction check with no unexpected
-behaviour. The friendly Club-filter field was left blank and is retained as `NOT RECORDED`; it is
-not inferred as a pass. Neither fixture Team was actioned. This application-only promotion
-performed no database, migration, environment or notification action. This implementation record
-does not authorise an R9-A2 dry-run, reconciliation or production promotion.
+The focused human re-smoke then passed every C1 and C2 correction check with no unexpected
+behaviour. The control owner separately confirmed the friendly Club filters align with the
+displayed badges, completing the final observation. Neither fixture Team was actioned. This
+application-only promotion performed no database, migration, environment or notification action.
+This implementation record does not authorise an R9-A2 dry-run, reconciliation or production
+promotion.

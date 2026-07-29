@@ -2,9 +2,8 @@
 
 Date: 2026-07-28
 
-Record status: FOCUSED HUMAN STAGING RE-SMOKE PARTIAL PASS — exact corrective commit confirmed
-Live; all reported checks PASS with no unexpected behaviour; friendly Club-filter observation
-not recorded
+Record status: FOCUSED HUMAN STAGING RE-SMOKE PASS — exact corrective commit confirmed Live;
+all corrective checks PASS with no unexpected behaviour
 
 Automated technical disposition: BASE `654ec47c` PASS; consolidated corrective `71c59653`
 automation, production build and exact automatic Security Scan PASS
@@ -12,8 +11,8 @@ automation, production build and exact automatic Security Scan PASS
 STAGING deployment disposition: PASS — `origin/staging` exact `71c59653`; control-owner-confirmed
 Render Live at displayed `71c5965`; public health PASS
 
-Human STAGING disposition: PARTIAL PASS — reported corrective observations PASS; friendly
-Club-filter observation remains `NOT RECORDED`; neither fixture Team actioned
+Human STAGING disposition: FOCUSED CORRECTIVE PASS — neither fixture Team actioned;
+participation mutation remains not run
 
 R9-A2 dry-run disposition: NOT RUN
 
@@ -562,7 +561,7 @@ C1:
 both fixture Teams in All Pending:                 PASS
 both offer Click to Review:                        PASS
 dashboard pending count agrees:                    PASS
-friendly Club filters:                             NOT RECORDED
+friendly Club filters aligned with badges:         PASS
 redundant Application Waiting List action removed: PASS
 direct Club approval bypass removed:               PASS
 
@@ -581,8 +580,7 @@ unexpected behaviour:                              NONE
 Finding disposition:
 
 - `R9-A1-F1`: focused STAGING PASS;
-- `R9-A1-F2`: direct-approval and parallel-Waiting-List corrections PASS; friendly-filter
-  observation remains `NOT RECORDED`;
+- `R9-A1-F2`: focused STAGING PASS, including aligned friendly filters and badges;
 - `R9-A1-F3`: focused STAGING PASS;
 - `R9-A1-F4`: focused STAGING PASS; and
 - `R9-A1-F5`: focused STAGING PASS.
@@ -708,8 +706,8 @@ separate explicit approval.
 
 ## 9. Verdict
 
-R9-A1 STAGING implementation/smoke verdict: CORRECTIVE DEPLOYMENT PASS; FOCUSED HUMAN RE-SMOKE
-PARTIAL PASS — FRIENDLY CLUB-FILTER OBSERVATION NOT RECORDED; PARTICIPATION MUTATION NOT RUN
+R9-A1 STAGING implementation/smoke verdict: CORRECTIVE DEPLOYMENT AND FOCUSED HUMAN RE-SMOKE
+PASS; PARTICIPATION MUTATION NOT RUN
 
 Recovery position: PASS — verified dormant child snapshot `br-gentle-fog-ab8uzsyy`; current
 STAGING database remains the active target
