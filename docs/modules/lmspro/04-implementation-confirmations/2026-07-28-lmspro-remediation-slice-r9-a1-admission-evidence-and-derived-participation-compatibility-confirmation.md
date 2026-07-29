@@ -2,8 +2,8 @@
 
 Date: 2026-07-28
 
-Implementation status: CONSOLIDATED `R9-A1-F1` THROUGH `R9-A1-F5` CORRECTION LIVE ON STAGING
-AT EXACT SECURITY-SCAN-GREEN COMMIT; focused corrective human re-smoke PASS
+Implementation status: REOPENED FOR `R9-A1-F6`; APPROVED-BUT-UNALLOCATED TEAM WORKFLOW
+CORRECTED AND SECURITY-SCAN-GREEN ON DEV; ADDITIVE STAGING MIGRATION AND REDEPLOY PENDING
 
 Planning source:
 
@@ -22,7 +22,8 @@ implementation commit: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
 parents: exactly df40f45cda955ef00e8f790de89a476c2463a629
 focused R9-A1-F5 correction: 5713f9ba8f637a6015dc1b4688258725a473ed35
 consolidated smoke-follow-up correction: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
-origin/dev: advanced from 654ec47c through 5713f9ba to 71c59653 on 2026-07-29
+approved-but-unallocated correction: 12ae773d67ed05cde86f839ddfab32e30d006010
+origin/dev: advanced from 71c59653 to 12ae773d on 2026-07-29
 origin/staging: fast-forwarded from 654ec47c to 71c59653 on 2026-07-29
 Render STAGING: control-owner-confirmed Live at displayed 71c5965 on 2026-07-29
 worktree state after commit: clean
@@ -320,3 +321,93 @@ displayed badges, completing the final observation. Neither fixture Team was act
 application-only promotion performed no database, migration, environment or notification action.
 This implementation record does not authorise an R9-A2 dry-run, reconciliation or production
 promotion.
+
+## 11. R9-A1-F6 Approved-But-Unallocated Team Correction
+
+The focused STAGING smoke subsequently found an unintended regression in the normal Team
+approval workflow. The pending-Team review attempted to write `CURRENT`, while the accepted R9-A1
+invariant correctly requires every Current Team to have a valid same-tenant, same-season
+division/AGG allocation. Because the approval modal confirms the Team name and age group but does
+not allocate a division, ordinary approval could no longer complete.
+
+The accepted business workflow is:
+
+```text
+Pending
+  -> Approved and unallocated
+  -> Current only when a valid division/AGG is later allocated
+```
+
+Waiting List and Declined remain deliberate alternatives. Removing the allocation from a Current
+Team returns it to Approved and unallocated; it does not make the Team Pending or place it on the
+Team Waiting List.
+
+Exact corrective commit:
+
+`12ae773d67ed05cde86f839ddfab32e30d006010`
+
+The correction:
+
+- adds explicit `TeamStatus.APPROVED` as the representation of league-approved but unallocated;
+- makes individual, bulk and dashboard approval write `APPROVED` after age-group confirmation;
+- retains Approved Teams in the existing Approved & Unallocated cohort;
+- changes a Team to `CURRENT` only when a valid allocation is applied;
+- returns a deallocated Current Team to `APPROVED`;
+- preserves explicit Waiting List, Declined and other terminal states;
+- separates approval notification from allocation notification; and
+- enforces the same boundary in server-side invariants and focused tests.
+
+Additive migration:
+
+`prisma/migrations/20260729123000_lmspro_team_approved_unallocated/migration.sql`
+
+The migration adds the `APPROVED` enum value only. It contains no `UPDATE`, backfill or Team
+reclassification. Existing legacy `CURRENT`/unallocated rows remain visible in the Approved &
+Unallocated compatibility cohort until separately reviewed.
+
+During migration-ledger verification, the repository was also found to be missing the historical
+file for the already-applied STAGING migration
+`20260501090000_fix_bst_key_date_timezone_offset`. The exact file was recovered from local Git
+history. Its SHA-256,
+`dc14cd5dc2935db831876245d082735fac53f75c35b12eac9c31160bf7f809da`, exactly matches the
+STAGING Prisma ledger checksum. This repairs repository ancestry; it does not re-run or alter the
+already-recorded STAGING migration.
+
+Development migration evidence after the recovery:
+
+```text
+repository migration directories: 147
+development applied migrations:    147
+development failed migrations:     0
+new APPROVED enum value:            present
+existing Teams reclassified:        0
+```
+
+The development database applied the recovered historical, Fund, email, R9-A1 and F6 migrations
+through the normal `prisma migrate deploy` workflow. The test database also applied its pending
+R8-A3, R9-A1 and F6 migrations successfully with no failed migration.
+
+Corrective automated evidence:
+
+```text
+focused tests:                    49 PASS
+full Vitest suite:               249 PASS; 12 intentionally skipped
+npm run type-check:              PASS
+npx prisma validate:             PASS
+critical-file verifier:          PASS
+production build:                PASS
+focused changed-file ESLint:     zero errors; existing warnings only
+pre-commit checks:               PASS
+exact dev Security Scan:         PASS — run 30449594027
+```
+
+`origin/dev` is exact `12ae773d`. STAGING application and Render remain exact `71c59653`, and
+STAGING has 146 applied migrations with zero failures. After the recovered historical migration
+is recognised, its only pending repository migration is
+`20260729123000_lmspro_team_approved_unallocated`.
+
+No STAGING migration, deployment, Team action, notification change, R9-A2 dry-run or
+reconciliation was performed by F6. Before applying the additive F6 migration and fast-forwarding
+STAGING, the control owner must confirm a fresh dormant STAGING recovery snapshot. The corrective
+STAGING human smoke must then prove approval without allocation, visibility in Approved &
+Unallocated, later allocation to Current, and the expected Club participation transition.

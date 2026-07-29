@@ -2,17 +2,16 @@
 
 Date: 2026-07-28
 
-Record status: FOCUSED HUMAN STAGING RE-SMOKE PASS — exact corrective commit confirmed Live;
-all corrective checks PASS with no unexpected behaviour
+Record status: REOPENED — `R9-A1-F6` REGRESSION FOUND IN HUMAN STAGING SMOKE; CORRECTION
+SECURITY-SCAN-GREEN ON DEV; F6 STAGING MIGRATION, DEPLOYMENT AND RE-SMOKE PENDING
 
-Automated technical disposition: BASE `654ec47c` PASS; consolidated corrective `71c59653`
-automation, production build and exact automatic Security Scan PASS
+Automated technical disposition: F6 corrective `12ae773d` automation, production build,
+development/test migration deployment and exact automatic Security Scan PASS
 
-STAGING deployment disposition: PASS — `origin/staging` exact `71c59653`; control-owner-confirmed
-Render Live at displayed `71c5965`; public health PASS
+STAGING deployment disposition: PREVIOUS BUILD PASS — `origin/staging` exact `71c59653`;
+control-owner-confirmed Render Live at displayed `71c5965`; F6 NOT YET DEPLOYED
 
-Human STAGING disposition: FOCUSED CORRECTIVE PASS — neither fixture Team actioned;
-participation mutation remains not run
+Human STAGING disposition: F1-F5 PASS; F6 BLOCKING REGRESSION CONFIRMED BEFORE TEAM MUTATION
 
 R9-A2 dry-run disposition: NOT RUN
 
@@ -35,7 +34,8 @@ application baseline/recovery: df40f45cda955ef00e8f790de89a476c2463a629
 application under review: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
 F5 correction: 5713f9ba8f637a6015dc1b4688258725a473ed35
 consolidated corrective candidate: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
-origin/dev: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
+F6 corrective candidate: 12ae773d67ed05cde86f839ddfab32e30d006010
+origin/dev: 12ae773d67ed05cde86f839ddfab32e30d006010
 origin/staging: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
 current Render deployment: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
 Render displayed commit: 71c5965
@@ -704,13 +704,64 @@ Dry-run result: NOT RUN
 R9-A2 reconciliation execution remains prohibited until the user reviews this evidence and gives
 separate explicit approval.
 
-## 9. Verdict
+## 9. R9-A1-F6 Regression And Corrective Re-Smoke
 
-R9-A1 STAGING implementation/smoke verdict: CORRECTIVE DEPLOYMENT AND FOCUSED HUMAN RE-SMOKE
-PASS; PARTICIPATION MUTATION NOT RUN
+After the F1-F5 focused checks passed, the Team approval test exposed a blocking workflow
+regression: the approval modal attempted to make a Team `CURRENT`, but R9-A1 now correctly rejects
+Current without a valid division/AGG allocation. The normal league workflow requires approval of
+the Team name and age group first, followed by a separate allocation decision.
+
+The regression was not worked around and neither smoke Team was actioned. Exact corrective commit
+`12ae773d67ed05cde86f839ddfab32e30d006010` adds explicit Approved-and-unallocated status and
+restores the two-stage approval/allocation workflow. Its additive migration changes the enum only
+and does not rewrite existing Team rows.
+
+Development/test evidence:
+
+```text
+development migration ledger: 147 applied; 0 failed; no pending repository migration
+development existing APPROVED Team rows after migration: 0
+test database pending migrations: applied successfully; 0 failed
+focused tests: 49 PASS
+full Vitest: 249 PASS; 12 intentionally skipped
+type-check, Prisma validation, verifier, build and pre-commit: PASS
+exact dev Security Scan run 30449594027: PASS
+```
+
+STAGING remains safely at the previous application and database state:
+
+```text
+application / origin-staging: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
+Render displayed commit:       71c5965
+applied migrations:            146
+failed migrations:             0
+only pending repository item:  20260729123000_lmspro_team_approved_unallocated
+```
+
+No STAGING database or application change occurred during the correction. Before continuing, the
+control owner must confirm a new dormant backup snapshot of the current STAGING database. The
+controlled sequence is then:
+
+1. verify the current STAGING target, zero failed migrations and the recorded snapshot;
+2. apply the single additive F6 enum migration to the current STAGING database;
+3. fast-forward `origin/staging` from `71c59653` to exact green `12ae773d`;
+4. confirm the exact STAGING Security Scan and Render Live commit;
+5. with transition notifications still OFF, approve a disposable pending Team after confirming
+   its age group and without selecting a division;
+6. confirm it appears in Approved & Unallocated and is not Current or Team Waiting List;
+7. allocate it to a valid same-tenant, same-season division and confirm it becomes Current;
+8. confirm the Club changes from Club Waiting List to Current only at allocation; and
+9. record any notification/outbox result without enabling or sending a notification.
+
+F6 re-smoke result: NOT RUN
+
+## 10. Verdict
+
+R9-A1 STAGING implementation/smoke verdict: REOPENED FOR F6; DEV CORRECTION PASS; STAGING
+MIGRATION, DEPLOYMENT AND HUMAN RE-SMOKE PENDING
 
 Recovery position: PASS — verified dormant child snapshot `br-gentle-fog-ab8uzsyy`; current
-STAGING database remains the active target
+STAGING database remains the active target. A fresh snapshot is required immediately before F6.
 
 Items requiring a later R9-A2 execution decision: PENDING dry-run evidence
 
