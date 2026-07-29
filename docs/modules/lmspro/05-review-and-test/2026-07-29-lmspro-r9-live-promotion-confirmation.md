@@ -2,10 +2,10 @@
 
 Date: 2026-07-29
 
-Record status: COMPLETE — EXACT LIVE COMMIT, MACHINE GATES AND FOCUSED HUMAN SMOKE PASS
+Record status: COMPLETE — R9-A1 LIVE PROMOTION AND R9-A2 PRODUCTION RECONCILIATION PASS
 
 Scope: promotion of the STAGING-tested R9-A1 application tree and its two additive migrations
-to production. This record does not authorise or execute the R9-A2 production reconciliation.
+to production, followed by the separately authorised R9-A2 production reconciliation.
 
 Application and control:
 
@@ -126,9 +126,139 @@ The focused non-destructive production smoke then produced:
 No production record was created or changed. The smoke did not change a Club or Team status,
 allocate a Team, alter access or trigger reconciliation.
 
-## 6. Final Disposition
+## 6. R9-A1 Promotion Disposition
 
 The exact live commit, source alignment, Security Scan, migration ledger, no-reconciliation check,
 public health and focused human live smoke all pass. The R9-A1 production promotion is complete.
 
-Production R9-A2 reconciliation remains a separately controlled future decision.
+## 7. R9-A2 Production Dry-Run
+
+The control owner subsequently identified nine production Clubs still stored as `APPROVED`
+despite having no qualifying Current/allocated Team. This was expected legacy state rather than
+a deployment failure: R9-A1 deliberately added no historic evidence or automatic migration-time
+classification.
+
+The separately authorised serializable read-only production dry-run confirmed:
+
+```text
+bounded tenant/season:                   Derby JFL current season
+scoped Clubs/Teams/Applications:         64 / 400 / 11
+legacy pre-1-June cohort:                54
+legacy membership fingerprint:           dcf67475260a9bb325025a6383664394
+post-cutoff approved Application Clubs:  9
+complete durable Application evidence:   9
+proposed evidence rows:                  54 legacy + 9 Application
+proposed APPROVED -> WAITING_LIST:        9
+Team/allocation changes:                 0
+notification settings enabled:           0
+transaction end:                         ROLLBACK
+```
+
+The nine proposed Club changes consisted of two Clubs from the attested legacy-import cohort
+and seven Clubs backed by complete email-verified, authorised approved-Application records. A
+legacy-only execution would therefore have left seven known contradictions unresolved. The
+control owner accepted the combined deterministic scope.
+
+One post-cutoff Withdrawn Club has no approved-Application link or supporting audit signal. It
+remains an explicit override and no unsupported admission evidence was fabricated for it.
+
+## 8. Recovery Point, Rehearsal And Execution
+
+The control owner created and confirmed a fresh post-migration, immediately pre-reconciliation
+production recovery child:
+
+```text
+snapshot endpoint reference: ep-morning-union-ab08ttgc
+snapshot branch:             br-bold-meadow-abrzpfkd
+snapshot created:            2026-07-29 15:26:16 +01:00
+purpose:                     dormant recovery copy; not a runtime target
+```
+
+The current production database remained the runtime and reconciliation target. No environment
+or database URL was changed.
+
+The complete combined transaction was first executed with hard tenant, season, migration,
+cohort, membership-fingerprint, notification, idempotency and protected-domain assertions. Its
+in-transaction evidence matched the accepted dry-run and it ended with `ROLLBACK`. Independent
+verification found the original 62 Approved, one Waiting List and one Withdrawn Club, with zero
+evidence, batch, outbox or rehearsal-audit rows.
+
+After explicit execution approval, the identical transaction was executed once with only the
+final transaction terminator changed from `ROLLBACK` to `COMMIT`, recording snapshot branch
+`br-bold-meadow-abrzpfkd` in its audit evidence.
+
+Committed result:
+
+```text
+admission-evidence batches:               1
+LEGACY_ATTESTED_IMPORT evidence:          54
+APPROVED_APPLICATION evidence:             9
+distinct evidenced Clubs/keys:            63 / 63
+Club APPROVED -> WAITING_LIST:             9
+suppressed transition-outbox rows:         9
+participation audit rows:                  9
+combined reconciliation audit rows:        1
+Teams changed:                             0
+allocations changed:                       0
+Club officials changed:                    0
+users/access changed:                      0
+notifications sent/delivery signals:       0
+```
+
+The exact rollback-only rehearsal artifact is:
+
+`docs/modules/lmspro/05-review-and-test/artifacts/2026-07-29-lmspro-r9-a2-production-combined-reconciliation-rehearsal.sql`
+
+## 9. Independent Verification And Repeat Dry-Run
+
+Independent serializable read-only verification established:
+
+```text
+Club totals:
+  Current / APPROVED:       53
+  Club Waiting List:        10
+  Withdrawn:                 1
+  Total:                    64
+Teams:                     400
+scoped Club officials:     141
+tenant users:              135
+enabled notifications:       0
+outbox delivery signals:     0
+```
+
+All 54 legacy rows are batch-linked, actor-linked and explicitly record unavailable automated
+source evidence. All nine Application rows link to their complete approved Application source
+and record the supported `LINKED` primary-C2 outcome. Every outbox row is `SUPPRESSED`.
+
+The repeat dry-run found the same 54 legacy and nine Application members, zero missing evidence
+rows and zero remaining Club status changes. Production health remained HTTP 200 with the
+database connected and RLS `11/11`.
+
+## 10. Post-Reconciliation Human Live Smoke
+
+The control owner completed the focused non-destructive production re-smoke:
+
+| Check | Result |
+| --- | --- |
+| Refresh C1 Club Management | PASS |
+| Current 53 / Club Waiting List 10 / Withdrawn 1 / Total 64 | PASS |
+| Nine corrected Clubs visible under Club Waiting List | PASS |
+| Reclassified Club officials and Teams remain visible | PASS |
+| Team Approval and counts remain normal | PASS |
+| Existing C2 login | PASS |
+| Correct C2 Club and Teams visible | PASS |
+| No access-denied message | PASS |
+| Register a New Team | PASS — correctly unavailable under the current key-date rule |
+| Reconciliation notification | PASS — none received |
+
+No production record was changed during the human smoke.
+
+## 11. Final Disposition
+
+R9-A1 production promotion and the separately controlled R9-A2 production reconciliation both
+pass. Application, migration, evidence, status, access, notification, health and human UI gates
+are complete. No further R9-A data action is pending.
+
+The inconsistent editable status choices between the Club-list and Club-detail modals remain a
+non-blocking presentation issue. Current and Club Waiting List remain derived server-controlled
+states; this inconsistency is registered separately and did not affect reconciliation integrity.

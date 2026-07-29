@@ -401,17 +401,18 @@ Security Scan is confirmed green by the control owner. The verified recovery-onl
 snapshot is recorded, and additive migration
 `20260728120000_lmspro_r9_a1_admission_participation` applied successfully at
 `2026-07-29T09:29:58Z`. The three new tables are empty, existing scoped status aggregates
-are unchanged and no reconciliation or notification occurred. The exact notifications-off
-STAGING deployment and focused review/human smoke remain pending. Existing-data reconciliation remains one
-separately approved R9-A2 execution after STAGING dry-run, and cleanup is deferred
-indefinitely unless later evidence makes it necessary. R9-A2 execution is not authorised.
+are unchanged and no reconciliation or notification occurred. At that implementation checkpoint,
+the exact notifications-off STAGING deployment and focused review/human smoke were pending.
+Existing-data reconciliation remained one separately approved R9-A2 execution after STAGING
+dry-run, and cleanup was deferred indefinitely unless later evidence made it necessary. R9-A2
+execution was not yet authorised at that checkpoint.
 
 `origin/staging` subsequently fast-forwarded cleanly from `df40f45c` to exact tested
 `origin/dev` commit `654ec47c`. The control owner confirmed Render STAGING `Live` at
 displayed commit `654ec47`. Final post-deployment evidence confirms HTTP 200, database
 connected, RLS 11/11, the R9-A1 migration finished, unchanged 61/400/8 scoped
 Club/Team/Application counts, empty new evidence/outbox tables and both new events safely
-default-OFF. The scheduled human smoke is now the next controlled action.
+default-OFF. The scheduled human smoke was the next controlled action at that checkpoint.
 
 Route A registration, email validation and normal C1 approval subsequently passed in STAGING.
 The fixture has one `APPROVED_APPLICATION` evidence row, one active authoritative primary
@@ -779,6 +780,34 @@ A future bounded presentation refinement should:
 This is a non-blocking usability and verification improvement. It must not reopen or delay the
 completed R9-A1/R9-A2 STAGING result and requires no schema or data reconciliation.
 
+### Club Management UX Wishlist - Consistent Derived Status Presentation
+
+Wishlist identifier:
+
+```text
+LMS-W-UX-02
+```
+
+Production review identified two inconsistent C1 Club edit surfaces. The Club-list modal uses
+the accepted friendly labels `Current (derived)` and `Club Waiting List (derived)`, while the
+Club-detail modal retains the older `Approved`/`Pending` choices and omits Club Waiting List.
+The server correctly rejects manual changes into either derived participation state, so exposing
+them as ordinary editable enum choices is also misleading.
+
+A future bounded presentation correction should:
+
+- show the same friendly derived participation status on both Club surfaces;
+- make clear that Current and Club Waiting List follow qualifying Team allocation rather than a
+  manual Club decision;
+- prevent either modal from presenting a derived state as a normal manual correction;
+- retain explicit supported handling for Suspended and Withdrawn overrides;
+- define the supported route for removing an override and re-running participation derivation;
+- refresh the displayed Club status immediately after a qualifying Team mutation; and
+- add UI tests proving the list, detail, badge and filter presentations agree.
+
+This is a non-blocking UI consistency item. It does not reopen the completed R9-A evidence or
+production reconciliation and requires no additional data correction.
+
 ### Communications Wishlist - Links-First, Opt-In Uploaded Attachments
 
 Wishlist identifier:
@@ -880,44 +909,41 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Hold production R9-A2 reconciliation for a separate evidence-first control decision
+Close R9-A and return programme control to R9-B planning
 ```
 
 Goal:
 
-R9-A1 application promotion is complete at exact commit
-`15559f1275d7f8ae3990cc6a9dcda5f35748e570`. Dev, staging and main are identical. The exact
-main Security Scan passed, Render production is Live at displayed `15559f1`, both additive R9
-migrations are finished with no unresolved attempt, public health is green and the focused
-non-destructive C1/C2 live smoke passed.
+R9-A is complete in production at exact application commit
+`15559f1275d7f8ae3990cc6a9dcda5f35748e570`. R9-A1 promotion, additive migrations, Security
+Scan, health and initial live smoke pass. The separately approved R9-A2 combined reconciliation
+recorded 54 attested legacy-import and nine deterministic approved-Application evidence rows,
+changed nine Clubs to Club Waiting List, suppressed every transition notification and changed no
+Team, allocation, official, user or access record. Independent verification, a repeat no-op
+dry-run and focused post-reconciliation C1/C2 smoke all pass.
 
-The production snapshot `br-noisy-lab-abk9taaf` preserves the immediately pre-promotion
-database state. Deployment did not copy the STAGING reconciliation into production:
-admission-evidence batches, admission-evidence rows and participation-outbox rows remain zero.
-
-No production R9-A2 reconciliation is authorised. If the control owner wishes to proceed, the
-next boundary is a read-only production dry-run using the already-reviewed reconciliation
-command. It must report exact aggregate membership and proposed status changes without writing
-evidence, Club status, audit or outbox rows. Execution would remain a later, separately approved
-step with a fresh recovery point and exact dry-run comparison.
+The next programme item in the accepted order is `R9-B` — Club Email visibility and history
+integrity. First review its existing CR input and current source/live evidence, then define a
+small planning boundary. Do not infer that R9-A completion authorises R9-B application work.
+Wishlist items `LMS-W-UX-01` and `LMS-W-UX-02` remain non-blocking presentation follow-ups.
 
 ## Fresh Chat Prompt
 
 ```text
-Review the completed LMSPro / SeasonPro R9 live-promotion evidence from:
+Review and close the completed LMSPro / SeasonPro R9-A lifecycle from:
 isodocs/docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
 
-Live-promotion record:
+Production promotion and reconciliation record:
 isodocs/docs/modules/lmspro/05-review-and-test/2026-07-29-lmspro-r9-live-promotion-confirmation.md
 
 Exact application commit:
 15559f1275d7f8ae3990cc6a9dcda5f35748e570
 
-Confirm the promotion lifecycle is closed and do not repeat the code promotion or migrations.
+Confirm R9-A requires no further application, migration or data action. Do not repeat the
+promotion or reconciliation.
 
-Do not execute production reconciliation unless I explicitly authorise it. If authorised,
-run only the bounded R9-A2 production dry-run first. Verify the exact production target,
-tenant and season, use an explicitly read-only transaction, report credential-safe aggregate
-counts and stop for review. Do not insert admission evidence, change Club or Team status,
-write audit/outbox rows, send notifications or alter access.
+Then review the accepted programme's R9-B item—Club Email visibility and history integrity—
+against the consolidated CR input, triage and current application source. Prepare only the
+smallest proportionate planning/evidence boundary and stop for review. Do not change application
+code, schema, migrations, data, environments or deployments.
 ```
