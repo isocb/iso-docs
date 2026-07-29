@@ -2,8 +2,8 @@
 
 Date: 2026-07-28
 
-Record status: REOPENED — `R9-A1-F1` THROUGH `F7` STAGING SMOKE PASS; R9-A2 BOUNDED
-STAGING RECONCILIATION EXECUTED AND VERIFIED; POST-RECONCILIATION HUMAN RE-SMOKE PENDING
+Record status: COMPLETE — `R9-A1-F1` THROUGH `F7` STAGING SMOKE PASS; R9-A2 BOUNDED
+STAGING RECONCILIATION AND POST-RECONCILIATION HUMAN RE-SMOKE PASS
 
 Automated technical disposition: F6 corrective `12ae773d` and F7 corrective `15559f12`
 automation, production builds and exact dev/staging Security Scans PASS
@@ -11,10 +11,10 @@ automation, production builds and exact dev/staging Security Scans PASS
 STAGING deployment disposition: Render Live at exact displayed `15559f1`; `origin/staging`
 exact `15559f12`; all migrations applied; Security Scan PASS; public health HTTP 200
 
-Human STAGING disposition: F1-F7 PASS; post-reconciliation focused repeat pending
+Human STAGING disposition: F1-F7 AND POST-RECONCILIATION FOCUSED REPEAT PASS
 
 R9-A2 disposition: PASS — dry-run reviewed; fresh snapshot recorded; 54 append-only evidence
-rows and three Club participation changes committed; independent verification PASS
+rows and three Club participation changes committed; database and human verification PASS
 
 Production/promotion disposition: PROHIBITED BY THIS LIFECYCLE
 
@@ -882,15 +882,52 @@ F7 result: PASS — Render Live at displayed `15559f1`; both missing choices pre
 Pending Team was created without a division, appeared in All Pending, agreed with the dashboard
 count and left the Club on Club Waiting List without a forced refresh.
 
-## 11. Verdict
+## 11. Post-Reconciliation Human Re-Smoke
+
+The control owner repeated the focused C1/C2 checks after R9-A2 execution.
+
+```text
+C1 Club Management:
+  Current:           56 — PASS
+  Club Waiting List:  7 — PASS
+  Withdrawn:          1 — PASS
+  total:             64 — PASS
+
+changed-cohort Club:
+  West Hallam displays Club Waiting List: PASS
+  existing officials retained:            PASS
+  no Teams present:                        EXPECTED
+  unexpected access/status message:        NONE
+
+existing primary C2:
+  login:                         PASS
+  correct Club visible:          PASS
+  Teams:                         N/A — Club has none
+  Register a New Team available: PASS
+  access-denied notice:          NONE
+  reconciliation notification:  NONE
+
+direct-C1 disposable Pending Team:
+  remains in All Pending: PASS
+  dashboard count agrees: PASS
+```
+
+The Club Management view does not provide a cohort count summary equivalent to the Teams view, so
+the control owner had to count the filtered Club rows manually. This is a non-blocking
+presentation/discoverability follow-up registered as roadmap wishlist item `LMS-W-UX-01`; it does
+not weaken the reconciled database or access result.
+
+Post-reconciliation human result: PASS
+
+## 12. Verdict
 
 R9-A1 STAGING implementation/smoke verdict: F1-F7 PASS
 
 Recovery position: PASS — immediate pre-reconciliation snapshot `br-dawn-heart-abc0rq3b`;
 current STAGING database remains the active target.
 
-R9-A2 position: EXECUTION AND INDEPENDENT DATABASE VERIFICATION PASS; focused human
-post-reconciliation re-smoke pending.
+R9-A2 position: EXECUTION, INDEPENDENT DATABASE VERIFICATION AND HUMAN RE-SMOKE PASS.
 
-This record cannot become a production, `main`, promotion or reconciliation verdict. It ends at
-the exact R9-A1 STAGING outcome and the R9-A2 dry-run stop gate.
+This is the final STAGING verdict. It does not itself authorise production data reconciliation.
+Any `main`/live promotion must use a separate production recovery snapshot, read-only live
+migration preflight and exact-commit deployment verification.

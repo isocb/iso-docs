@@ -753,6 +753,32 @@ This is a registered wishlist item linked to the R9-A0 evidence. It requires CR 
 formal triage and separately bounded planning before any application, schema, migration or
 data work. It is not an accepted R9-A implementation slice.
 
+### Club Management UX Wishlist - Visible Cohort Counts
+
+Wishlist identifier:
+
+```text
+LMS-W-UX-01
+```
+
+R9-A2 post-reconciliation smoke proved that the Club Management status filters return the
+correct Current, Club Waiting List and Withdrawn cohorts, but unlike Team Management the page
+does not display cohort or total counts. The control owner therefore had to count filtered Club
+rows manually to verify the expected 56 Current, seven Club Waiting List, one Withdrawn and 64
+total Clubs.
+
+A future bounded presentation refinement should:
+
+- display the total number of Clubs in the current tenant/season;
+- display the count for each friendly filter cohort;
+- update the visible count immediately when filters or Club participation change;
+- use the same named cohort definitions as badges, filters, dashboard summaries and exports;
+- make clear whether a count is the whole season or the filtered result; and
+- add UI tests proving the displayed counts agree with the underlying tenant/season query.
+
+This is a non-blocking usability and verification improvement. It must not reopen or delay the
+completed R9-A1/R9-A2 STAGING result and requires no schema or data reconciliation.
+
 ### Communications Wishlist - Links-First, Opt-In Uploaded Attachments
 
 Wishlist identifier:
@@ -854,32 +880,41 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Advance the implemented R9-A1 commit through the controlled STAGING validation boundary
+Prepare the exact R9-A1/R9-A2 STAGING candidate for a separately controlled live promotion
 ```
 
 Goal:
 
-R9-A0 evidence is accepted, the one-branch R9-A1 application plan is accepted, and R9-A1 is
-implemented at exact application commit
-`654ec47cb85f710b4fa2055dc8fa28e0a79ed90f` under controlling IsoDocs commit
-`afa5a5e23989ac8ddf1c37aca3f47aa222b2c3fb`. The implementation confirmation and scheduled
-review/human smoke record now exist. The next controlled work must publish and pass the
-exact-commit Security Scan, verify a STAGING snapshot, apply the additive migration, deploy
-only that commit to STAGING with both new notification events off and execute the focused
-review and human smoke lifecycle. The UI smoke covers the linked two-stage
-registration/approval route and direct authorised C1 creation; import is covered by
-automated integration tests and is excluded from UI human smoke.
+R9-A1 and the bounded STAGING R9-A2 reconciliation are complete at exact application commit
+`15559f1275d7f8ae3990cc6a9dcda5f35748e570`. Dev and staging are identical, their exact
+Security Scans pass, Render STAGING is healthy, the two accepted human Club-instantiation
+routes pass, the 54-row legacy attestation and three Club Waiting List changes reconcile, and
+the post-reconciliation C1/C2 smoke passes.
 
-The lifecycle ends with an evidenced STAGING verdict. The R9-A2 dry-run may inform the
-separate reconciliation approval, but existing-data mutation remains prohibited until that
-approval. Do not promote to `main` or live, query or mutate production, or enable production
-notifications. This LMSPro lane action does not override the root roadmap's cross-lane
-execution authority.
+The next work is a separate live-promotion control, not more R9-A implementation. Before
+advancing `main`:
+
+1. create and record an immediately-pre-promotion production database snapshot;
+2. connect read-only to the exact production database and verify its identity, migration
+   ledger and absence of unfinished or rolled-back migrations;
+3. calculate exactly which of the three post-main migration files are pending in production;
+4. verify `main` remains a clean ancestor of exact `15559f12`;
+5. confirm the Render production service currently maps to `main`;
+6. confirm both new notification events will remain default-off after migration; and
+7. record the production rollback owner and stop authority.
+
+Only after those gates pass may `main` fast-forward to the exact tested tree. Render's build
+will apply pending additive migrations before starting the new application. Verify the exact
+live commit, `/api/health`, login, C1/C2 access and the approval-to-allocation workflow.
+
+Do not copy the STAGING R9-A2 evidence/status reconciliation into production as part of code
+promotion. Any production legacy attestation or participation reconciliation requires its own
+read-only live dry-run, exact counts, snapshot and explicit approval.
 
 ## Fresh Chat Prompt
 
 ```text
-Proceed with the controlled LMSPro / SeasonPro R9-A1 STAGING validation from:
+Proceed with the controlled LMSPro / SeasonPro R9-A1 live-promotion preflight from:
 isodocs/docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
 
 Planning and lifecycle records:
@@ -888,29 +923,34 @@ isodocs/docs/modules/lmspro/04-implementation-confirmations/2026-07-28-lmspro-re
 isodocs/docs/modules/lmspro/05-review-and-test/2026-07-28-lmspro-remediation-slice-r9-a1-admission-evidence-and-derived-participation-compatibility-review-and-staging-smoke-test.md
 
 Exact application commit:
-654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
+15559f1275d7f8ae3990cc6a9dcda5f35748e570
 
-Recovery baseline:
-df40f45cda955ef00e8f790de89a476c2463a629
+Current main:
+b9287ffa393f5e67b4a786f4d26549e4ee02397a
 
-First publish the feature commit and pass the repository Security Scan against that exact
-commit. Stop on any Security Scan failure.
+STAGING evidence:
 
-Create and verify the STAGING database snapshot, apply the additive migration and deploy the
-exact R9-A1 commit to STAGING with both new events off. Execute and record human C1/C2 UI
-smoke for exactly these two Club-instantiation routes:
+- origin/dev and origin/staging exact 15559f12;
+- exact dev Security Scan 30452691002 PASS;
+- exact staging Security Scan 30452881890 PASS;
+- Render STAGING Live at displayed 15559f1 and health HTTP 200;
+- R9-A1 F1-F7 human smoke PASS;
+- R9-A2 STAGING reconciliation and post-reconciliation smoke PASS; and
+- immediate STAGING recovery snapshot br-dawn-heart-abc0rq3b.
 
-1. the linked two-stage registration form after email validation and authorised C1
-   approval; and
-2. deliberate direct Club creation by an authorised C1 tenant user.
+First require and record a fresh production database snapshot. Then connect to production
+read-only and verify database identity, current migration ledger, unfinished/rolled-back
+state and the exact pending set among:
 
-Do not perform the import route through the UI; retain it as mandatory automated integration
-coverage. After the first smoke pass, run only the tenant/season-bounded R9-A2 reconciliation
-dry-run and stop for explicit review and execution approval.
+1. 20260501090000_fix_bst_key_date_timezone_offset
+2. 20260728120000_lmspro_r9_a1_admission_participation
+3. 20260729123000_lmspro_team_approved_unallocated
 
-This is a STAGING-only lifecycle. Do not query or mutate production, promote to `main` or
-live, enable production notifications, or execute R9-A2 reconciliation. Stop with the
-implementation confirmation, completed STAGING review/smoke record, dry-run evidence and
-an explicit R9-A1 STAGING implementation/smoke verdict. This is not a reconciliation,
-promotion or production verdict.
+Stop if the target, snapshot, migration ancestry, branch ancestry, notification default or
+Render branch mapping differs. If every preflight passes, fast-forward main to the exact
+tested 15559f12 tree, require the exact main Security Scan and Render deployment to pass,
+verify public production health and run the minimum focused live smoke.
+
+Do not execute the STAGING R9-A2 reconciliation against production. Production data
+attestation or status convergence requires a separate live dry-run and explicit approval.
 ```
