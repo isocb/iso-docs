@@ -12,32 +12,45 @@
 ## Where to find guidance
 
 ### Architecture
+
 - Core architecture: `docs/core/architecture.md`
 - Platform architecture patterns: `docs/00-overview/architecture.md`
 - Tenant model and tenancy rules: `docs/core/*`
 
 ### Deployment / Operations
+
 - Deployment guide: `docs/guides/deployment/deployment-guide.md`
 - Commit and verification checklists: `docs/00-overview/` and `../isostack-bedrock/docs/00-READ_THIS/DEPLOY_VERIFY_CHECKLIST.md`
 - Database workflow: `SAFE_DATABASE_WORKFLOW.md` (canonical) and `docs/guides/deployment/deployment-guide.md`
 
 ### Roadmap Control / Platform Assurance
+
 - Root platform and module roadmap: `docs/00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md`
 - Platform lifecycle and roadmap: `docs/platform/00-roadmap-control/2026-07-22-isostack-platform-roadmap-and-slice-control.md`
 - Platform assurance, monthly security review and refinement roadmap: `docs/platform/00-roadmap-control/2026-07-22-isostack-platform-assurance-security-review-and-refinement-roadmap.md`
 
+### Continuity / Succession
+
+- Technical continuity, working method, codebase orientation and emergency handover:
+  `docs/00-overview/technical-continuity-and-succession-handbook.md`
+- Lay routine-management guide for keeping the existing service stable while development
+  support is unavailable: `docs/00-overview/routine-isostack-management-handbook.md`
+
 ### Database & Migrations
+
 - Safe migration policy: `SAFE_DATABASE_WORKFLOW.md`
 - Module-specific migration examples: `docs/modules/*/migrations/*` (where present)
 - Database architecture references: `docs/core/database-schema.md`, `docs/core/*`
 
 ### Modules / Apps
+
 - Module index: `docs/modules/README.md`
 - Branding module: `docs/modules/branding/*`
 - Tooltips module: `docs/modules/tooltips/*`
 - LMSPro and other module docs: `docs/modules/lmspro/*`
 
 ### AI / Codex / Agent Guidance
+
 - Canonical AI/Codex context: `docs/00-overview/README.md`
 - Codex safety and process reminders in-repo: `../isostack-bedrock/docs/00-READ_THIS/CODEX_OPERATING_CHARTER.md`
 
