@@ -2,12 +2,13 @@
 
 Date: 2026-07-28
 
-Record status: DEV AND ADDITIVE STAGING MIGRATION PASS — STAGING application deployment pending
+Record status: DEV AND ADDITIVE STAGING MIGRATION PASS; `origin/staging` advanced — exact Render
+deployment confirmation pending
 
 Automated technical disposition: PASS ON EXACT `origin/dev`; automatic Security Scan confirmed
 green by the control owner
 
-STAGING deployment disposition: NOT DEPLOYED
+STAGING deployment disposition: SOURCE PROMOTED; RENDER CONFIRMATION PENDING
 
 Human STAGING disposition: NOT RUN
 
@@ -159,10 +160,10 @@ migration started/completed: completed 2026-07-29T09:29:58Z
 post-migration applied head: 20260728120000_lmspro_r9_a1_admission_participation
 existing-row mutation check: PASS — 61 Clubs, 400 Teams and 8 Applications retained;
   status aggregates exactly match pre-migration; all three new tables contain zero rows
-STAGING deployment reference before:
-STAGING deployment reference after:
-deployed commit independently verified:
-STAGING health evidence:
+STAGING deployment reference before: df40f45cda955ef00e8f790de89a476c2463a629
+STAGING deployment reference after: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
+deployed commit independently verified: PENDING Render dashboard/build-ID confirmation
+STAGING health evidence: HTTP 200; database connected; RLS 11/11 while deployment state pending
 both events OFF after deployment:
 ```
 
@@ -206,6 +207,28 @@ verification:           explicitly read-only transaction; ROLLBACK
 No legacy attestation, classification, reconciliation, notification or disposable smoke record
 was created by the migration.
 
+### 4.2 STAGING source promotion
+
+The clean `staging` worktree fast-forwarded from `df40f45c` to exact tested `dev` commit
+`654ec47c` and pushed successfully:
+
+```text
+origin/dev:     654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
+origin/staging: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
+merge shape:    fast-forward only
+```
+
+The separate staging worktree initially ran its post-merge type-check against a stale generated
+Prisma client and reported missing new enums/models. `npx prisma generate` refreshed that
+disposable generated client, after which the exact worktree type-check passed with no source
+change. Render's build script also performs `npm ci` and `prisma generate` before its type-check.
+
+The public health endpoint remained HTTP 200 with its database connected and RLS 11/11 during the
+Render build window. The locally expected new Clubs route asset was not yet served during the
+bounded polling interval. That is not treated as proof of deployment failure or success because
+Render environment values can influence asset hashes. Exact Render commit/build confirmation is
+therefore required before human smoke begins.
+
 ## 5. Automated And Technical Review
 
 Current local result:
@@ -230,8 +253,8 @@ Technical review must additionally verify in the deployed build:
 - outbox retry and recipient ambiguity remain auditable; and
 - no migration-time Club/Team classification occurred.
 
-Technical verdict: DEV AND ADDITIVE MIGRATION PASS. The exact STAGING application deployment and
-human UI evidence do not yet exist.
+Technical verdict: DEV, ADDITIVE MIGRATION AND STAGING SOURCE PROMOTION PASS. Exact Render
+deployment confirmation and human UI evidence do not yet exist.
 
 ## 6. Human UI Smoke Schedule
 

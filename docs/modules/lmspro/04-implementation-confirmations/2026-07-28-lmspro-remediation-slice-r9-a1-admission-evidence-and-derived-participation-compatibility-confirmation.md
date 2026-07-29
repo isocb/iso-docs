@@ -2,8 +2,8 @@
 
 Date: 2026-07-28
 
-Implementation status: COMPLETE AND RETAINED ON `origin/dev`; STAGING migration, deployment and
-human validation remain pending
+Implementation status: COMPLETE AND RETAINED ON `origin/dev`; additive STAGING migration and
+source promotion complete; exact Render deployment and human validation remain pending
 
 Planning source:
 
@@ -21,6 +21,8 @@ starting/recovery baseline: df40f45cda955ef00e8f790de89a476c2463a629
 implementation commit: 654ec47cb85f710b4fa2055dc8fa28e0a79ed90f
 parents: exactly df40f45cda955ef00e8f790de89a476c2463a629
 origin/dev: fast-forwarded from df40f45c to 654ec47c on 2026-07-29
+origin/staging: fast-forwarded from df40f45c to 654ec47c on 2026-07-29;
+  exact Render deployment confirmation pending
 worktree state after commit: clean
 ```
 

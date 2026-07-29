@@ -406,6 +406,12 @@ STAGING deployment and focused review/human smoke remain pending. Existing-data 
 separately approved R9-A2 execution after STAGING dry-run, and cleanup is deferred
 indefinitely unless later evidence makes it necessary. R9-A2 execution is not authorised.
 
+`origin/staging` subsequently fast-forwarded cleanly from `df40f45c` to exact tested
+`origin/dev` commit `654ec47c`. The public STAGING health endpoint remained HTTP 200 with
+database connected and RLS 11/11 during the Render build window. Exact Render
+commit/build confirmation remains pending and human smoke must not begin until it is
+confirmed.
+
 The first pre-deployment attempt published only the dedicated feature branch and stopped
 without migration or deployment. Its use of the historic R9-A0 target fingerprint as a
 permanent STAGING gate was subsequently corrected. A new read-only preflight against the
