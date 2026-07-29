@@ -2,8 +2,8 @@
 
 Date: 2026-07-28
 
-Implementation status: REOPENED FOR `R9-A1-F6`; APPROVED-BUT-UNALLOCATED TEAM WORKFLOW
-CORRECTED AND SECURITY-SCAN-GREEN ON DEV; ADDITIVE STAGING MIGRATION AND REDEPLOY PENDING
+Implementation status: `R9-A1-F6` CORRECTED; DEV AND STAGING MIGRATION LEDGERS ALIGNED;
+EXACT-COMMIT SECURITY SCANS GREEN; RENDER STAGING DATABASE CONNECTIVITY RECOVERY REQUIRED
 
 Planning source:
 
@@ -24,8 +24,8 @@ focused R9-A1-F5 correction: 5713f9ba8f637a6015dc1b4688258725a473ed35
 consolidated smoke-follow-up correction: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
 approved-but-unallocated correction: 12ae773d67ed05cde86f839ddfab32e30d006010
 origin/dev: advanced from 71c59653 to 12ae773d on 2026-07-29
-origin/staging: fast-forwarded from 654ec47c to 71c59653 on 2026-07-29
-Render STAGING: control-owner-confirmed Live at displayed 71c5965 on 2026-07-29
+origin/staging: advanced from 71c59653 to 12ae773d on 2026-07-29
+Render STAGING: deployment at 12ae773d unhealthy because its running process cannot reach Neon
 worktree state after commit: clean
 ```
 
@@ -401,13 +401,19 @@ pre-commit checks:               PASS
 exact dev Security Scan:         PASS — run 30449594027
 ```
 
-`origin/dev` is exact `12ae773d`. STAGING application and Render remain exact `71c59653`, and
-STAGING has 146 applied migrations with zero failures. After the recovered historical migration
-is recognised, its only pending repository migration is
-`20260729123000_lmspro_team_approved_unallocated`.
+`origin/dev` and `origin/staging` are exact `12ae773d`. STAGING has all 147 repository migrations
+applied with zero failures. The F6 enum migration started at `2026-07-29T11:59:44.656Z`, completed
+at `2026-07-29T11:59:44.773Z` and was not rolled back. Exact staging Security Scan run
+`30449795658` passed.
 
-No STAGING migration, deployment, Team action, notification change, R9-A2 dry-run or
-reconciliation was performed by F6. Before applying the additive F6 migration and fast-forwarding
-STAGING, the control owner must confirm a fresh dormant STAGING recovery snapshot. The corrective
-STAGING human smoke must then prove approval without allocation, visibility in Approved &
-Unallocated, later allocation to Current, and the expected Club participation transition.
+The public STAGING health endpoint nevertheless returned HTTP 500 after deployment because the
+running Render process could not reach the configured Neon host. The same configured STAGING
+endpoint was reachable from the controlled local session and returned the complete Prisma ledger,
+so this is recorded as a Render-to-Neon runtime connectivity/reconnection incident rather than a
+pending or failed migration. A Render restart or redeploy of exact `12ae773d` is required before
+human testing continues.
+
+No existing Team was reclassified and no Team action, notification change, R9-A2 dry-run or
+reconciliation was performed by F6. After Render health recovers, the corrective STAGING human
+smoke must prove approval without allocation, visibility in Approved & Unallocated, later
+allocation to Current, and the expected Club participation transition.

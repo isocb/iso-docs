@@ -2,14 +2,14 @@
 
 Date: 2026-07-28
 
-Record status: REOPENED — `R9-A1-F6` REGRESSION FOUND IN HUMAN STAGING SMOKE; CORRECTION
-SECURITY-SCAN-GREEN ON DEV; F6 STAGING MIGRATION, DEPLOYMENT AND RE-SMOKE PENDING
+Record status: REOPENED — `R9-A1-F6` CORRECTION AND MIGRATION ALIGNED ON DEV/STAGING;
+RENDER STAGING DATABASE CONNECTIVITY RECOVERY AND HUMAN RE-SMOKE PENDING
 
 Automated technical disposition: F6 corrective `12ae773d` automation, production build,
-development/test migration deployment and exact automatic Security Scan PASS
+development/test/staging migration deployment and exact dev/staging Security Scans PASS
 
-STAGING deployment disposition: PREVIOUS BUILD PASS — `origin/staging` exact `71c59653`;
-control-owner-confirmed Render Live at displayed `71c5965`; F6 NOT YET DEPLOYED
+STAGING deployment disposition: BLOCKED AT RUNTIME HEALTH — `origin/staging` exact `12ae773d`;
+all migrations applied; Security Scan PASS; Render cannot currently reach Neon
 
 Human STAGING disposition: F1-F5 PASS; F6 BLOCKING REGRESSION CONFIRMED BEFORE TEAM MUTATION
 
@@ -36,9 +36,9 @@ F5 correction: 5713f9ba8f637a6015dc1b4688258725a473ed35
 consolidated corrective candidate: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
 F6 corrective candidate: 12ae773d67ed05cde86f839ddfab32e30d006010
 origin/dev: 12ae773d67ed05cde86f839ddfab32e30d006010
-origin/staging: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
-current Render deployment: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
-Render displayed commit: 71c5965
+origin/staging: 12ae773d67ed05cde86f839ddfab32e30d006010
+current Render candidate: 12ae773d67ed05cde86f839ddfab32e30d006010
+Render health: HTTP 500 — running process cannot reach configured Neon host
 ```
 
 ## 1. Exact STAGING Scope
@@ -728,40 +728,44 @@ type-check, Prisma validation, verifier, build and pre-commit: PASS
 exact dev Security Scan run 30449594027: PASS
 ```
 
-STAGING remains safely at the previous application and database state:
+STAGING Git and migration state is aligned:
 
 ```text
-application / origin-staging: 71c596536d1cb7f6258b3c2cfe1d46de2a22d85a
-Render displayed commit:       71c5965
-applied migrations:            146
+application / origin-staging: 12ae773d67ed05cde86f839ddfab32e30d006010
+applied migrations:            147
 failed migrations:             0
-only pending repository item:  20260729123000_lmspro_team_approved_unallocated
+pending repository migrations: 0
+F6 migration finished:         2026-07-29T11:59:44.773Z
+F6 migration rolled back:      no
+staging Security Scan:          PASS — run 30449795658
+public Render health:           HTTP 500 — cannot reach Neon
 ```
 
-No STAGING database or application change occurred during the correction. Before continuing, the
-control owner must confirm a new dormant backup snapshot of the current STAGING database. The
-controlled sequence is then:
+The configured STAGING endpoint is reachable from the controlled local session and returns the
+complete ledger, while Render's running process cannot currently reach the same Neon host. The
+next controlled action is therefore a Render restart or redeploy of exact `12ae773d`, not another
+migration.
 
-1. verify the current STAGING target, zero failed migrations and the recorded snapshot;
-2. apply the single additive F6 enum migration to the current STAGING database;
-3. fast-forward `origin/staging` from `71c59653` to exact green `12ae773d`;
-4. confirm the exact STAGING Security Scan and Render Live commit;
-5. with transition notifications still OFF, approve a disposable pending Team after confirming
+After public health recovers:
+
+1. confirm Render is Live at displayed `12ae773`;
+2. confirm `/api/health` returns HTTP 200 with its database connected and RLS healthy;
+3. with transition notifications still OFF, approve a disposable pending Team after confirming
    its age group and without selecting a division;
-6. confirm it appears in Approved & Unallocated and is not Current or Team Waiting List;
-7. allocate it to a valid same-tenant, same-season division and confirm it becomes Current;
-8. confirm the Club changes from Club Waiting List to Current only at allocation; and
-9. record any notification/outbox result without enabling or sending a notification.
+4. confirm it appears in Approved & Unallocated and is not Current or Team Waiting List;
+5. allocate it to a valid same-tenant, same-season division and confirm it becomes Current;
+6. confirm the Club changes from Club Waiting List to Current only at allocation; and
+7. record any notification/outbox result without enabling or sending a notification.
 
 F6 re-smoke result: NOT RUN
 
 ## 10. Verdict
 
-R9-A1 STAGING implementation/smoke verdict: REOPENED FOR F6; DEV CORRECTION PASS; STAGING
-MIGRATION, DEPLOYMENT AND HUMAN RE-SMOKE PENDING
+R9-A1 STAGING implementation/smoke verdict: F6 CODE, MIGRATION AND SECURITY GATES PASS;
+RENDER CONNECTIVITY RECOVERY AND HUMAN RE-SMOKE PENDING
 
 Recovery position: PASS — verified dormant child snapshot `br-gentle-fog-ab8uzsyy`; current
-STAGING database remains the active target. A fresh snapshot is required immediately before F6.
+STAGING database remains the active target and now contains the completed additive F6 migration.
 
 Items requiring a later R9-A2 execution decision: PENDING dry-run evidence
 
