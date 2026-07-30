@@ -836,6 +836,24 @@ It must not change Club admission, participation derivation, Team allocation, ac
 migrations or data. It is a distinct post-R9 presentation CR/planning slice and was not added to
 the already tested `fbab1862` production promotion.
 
+Lifecycle commencement on 2026-07-30:
+
+- `LMS-W-UX-03` was accepted as code-only slice `R10-A`;
+- the exact recovery baseline is
+  `fbab1862fa8124ae3990cc6a9dcda5f35748e570`;
+- source review found no unresolved business decision and no server, schema, migration or data
+  requirement;
+- the accepted implementation boundary is one responsive C1 Club card, the retained desktop
+  table, responsive controls, one matching-results count and focused presentation tests; and
+- the control owner authorised local implementation, automated dev validation and exact
+  staging promotion before stopping for focused C1 human smoke.
+
+Controlling records:
+
+1. `docs/modules/lmspro/01-cr-inputs/2026-07-30-lmspro-responsive-c1-club-management-cr-input.md`;
+2. `docs/modules/lmspro/02-triage/2026-07-30-lmspro-r10-a-responsive-c1-club-management-triage.md`;
+3. `docs/modules/lmspro/03-slice-planning/2026-07-30-lmspro-remediation-slice-r10-a-responsive-c1-club-management-planning.md`.
+
 ### Communications Wishlist - Links-First, Opt-In Uploaded Attachments
 
 Wishlist identifier:
@@ -937,8 +955,8 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Formally triage the responsive C1 Club Management presentation follow-up as the next small,
-code-only LMSPro planning candidate
+Implement and technically validate accepted code-only slice R10-A, then promote the exact
+green candidate through dev to STAGING and stop for focused C1 human smoke
 ```
 
 Goal:
