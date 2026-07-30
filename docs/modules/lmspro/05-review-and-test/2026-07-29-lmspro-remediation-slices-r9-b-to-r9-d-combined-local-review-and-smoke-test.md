@@ -4,7 +4,7 @@ Date: 2026-07-29
 
 Status: AUTOMATED LOCAL REVIEW PASS; INITIAL STAGING DEPLOYMENT, MIGRATION, SECURITY SCAN,
 WEB HEALTH AND CRON TICK PASS; HUMAN SMOKE STOPPED ON CORRECTABLE APPLICATION DEFECTS;
-CORRECTIVE DEPLOYMENT AND FOCUSED RE-SMOKE PASS; REMAINING HUMAN MATRIX PENDING
+CORRECTIVE DEPLOYMENT AND COMPLETE STAGING HUMAN SMOKE PASS; PROMOTION REVIEW READY
 
 Application under review:
 
@@ -27,7 +27,7 @@ Migration:
 | Outcome | Automated/local technical result | Human result |
 | --- | --- | --- |
 | R9-B prospective Club Email history | PASS after corrective transaction test | PASS |
-| R9-C shared responsive Team status | PASS after corrective selector/label tests | Corrective C1 labels/selectors PASS; responsive matrix pending |
+| R9-C shared responsive Team status | PASS after corrective selector/label tests | PASS |
 | R9-D pointer/keyboard attachment browse | PASS at bounded source/selection level | PASS — Chrome and Safari |
 | Migration on authorised local development DB | PASS | N/A |
 | Historic reconciliation | NOT EXECUTED | NOT AUTHORISED |
@@ -52,7 +52,7 @@ STAGING Security Scan:  PASS — run 30516573670
 STAGING Render web:     PASS — control-owner confirmation Live at fbab1862; health HTTP 200
 STAGING migration:      PASS — 148 applied; candidate finished
 STAGING cron tick:      PASS — build/run exact f321eb0
-STAGING human smoke:    corrective blocker re-smoke PASS; remaining R9 matrix pending
+STAGING human smoke:    PASS — R9-B, R9-C and R9-D
 ```
 
 The control owner confirmed the immediately pre-deployment recovery point:
@@ -224,6 +224,22 @@ The already completed R9-B smoke supplies attachment and no-attachment delivery 
 evidence. It need not be repeated for R9-D. The control owner subsequently confirmed the reduced
 activation check passed in Safari. Chrome and Safari evidence therefore closes R9-D human smoke
 as PASS.
+
+## 2F. R9-C Responsive And Accessibility Result
+
+The control owner completed the focused C1 and C2 Team presentation schedule against exact
+STAGING `fbab1862`. All checks passed:
+
+- mobile, tablet, desktop and 200% zoom presentations remained usable;
+- Team identity, age group, complete friendly status and division/`Unallocated` remained
+  visible;
+- status text did not clip and no page-wide horizontal scrolling appeared;
+- available Waiting List positions displayed correctly; and
+- keyboard Enter/Space opened the existing `More details` interaction.
+
+R9-C human smoke is PASS. Together with the completed R9-B and R9-D results, the combined
+R9-B-to-R9-D STAGING human boundary is PASS and exact `fbab1862` is ready for a separately
+controlled production-promotion decision.
 
 ## 2C. Retained Preconditions For STAGING Human Smoke
 

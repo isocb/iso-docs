@@ -4,7 +4,7 @@ Date: 2026-07-29
 
 Status: IMPLEMENTATION COMMITTED; DEV/STAGING ALIGNED; EXACT SECURITY SCANS, ADDITIVE
 STAGING MIGRATION, WEB DEPLOYMENT AND CRON TICK PASS; INITIAL HUMAN SMOKE STOPPED;
-CORRECTIVE DEPLOYMENT AND FOCUSED RE-SMOKE PASS; REMAINING HUMAN MATRIX PENDING
+CORRECTIVE DEPLOYMENT AND COMPLETE STAGING HUMAN SMOKE PASS; PROMOTION REVIEW READY
 
 Planning source:
 
@@ -227,6 +227,13 @@ fourth-file and cumulative-size behaviour passed; and activation remained correc
 save/reopen and duplicate. The existing R9-B delivery evidence avoids duplicate controlled
 Emails. The reduced activation check subsequently passed in Safari. R9-D human browser smoke is
 PASS.
+
+The control owner then confirmed the complete R9-C responsive Team presentation on C1 and C2:
+mobile, tablet, desktop and 200% zoom passed; identity, age group, complete friendly status and
+division/`Unallocated` remained visible; no status clipping or page-wide horizontal scroll
+occurred; available Waiting List positions were correct; and keyboard Enter/Space opened
+`More details`. R9-C human smoke is PASS. R9-B, R9-C and R9-D are now technically green on exact
+STAGING `fbab1862`; production promotion remains a separate control action.
 
 ## 5. Automated Evidence
 

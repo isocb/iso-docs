@@ -909,8 +909,8 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Progress the exact R9-B to R9-D candidate through `dev` to STAGING and execute the focused
-STAGING human smoke
+Review and authorise controlled production promotion of exact R9-B-to-R9-D candidate
+fbab1862fa8124ae5f1d64df1b2741fdb19761fc
 ```
 
 Goal:
@@ -987,24 +987,50 @@ Email/recipient/resource aggregates.
 The control owner confirmed STAGING Cron Job build `bld-d9lda6142hec73civ1tg` succeeded for
 exact displayed `f321eb0`. A complete invocation matched database fingerprint
 `016aba10adf6`, loaded every registered processor, processed zero work with zero errors, fired no
-key-date Email and finished successfully. Focused R9-B/R9-C/R9-D human smoke is now the next
+key-date Email and finished successfully. Focused R9-B/R9-C/R9-D human smoke was then the next
 controlled action.
+
+Initial human smoke identified bounded Waiting List selector/status-presentation defects and a
+prospective Email Club-audience nested-write defect. Corrective commit
+`fbab1862fa8124ae5f1d64df1b2741fdb19761fc` resolved those defects without a new migration or
+data change. Local/remote `dev` and `staging` are exact `fbab1862`; exact dev Security Scan run
+`30516436459` and exact staging Security Scan run `30516573670` pass; Render STAGING is confirmed
+Live at `fbab1862`; and public health remains green.
+
+Focused R9-B Club Email visibility and cross-Club Email/detail/attachment authority passed.
+R9-C C1/C2 responsive Team presentation passed at mobile, tablet, desktop and 200% zoom,
+including keyboard `More details`. R9-D pointer, Enter/Space, drag/drop, validation,
+save/reopen and duplicate passed in Chrome, with reduced activation also passing in Safari.
+The combined R9-B-to-R9-D STAGING human boundary is PASS. Historic Emails remain deliberately
+outside C2 history, and no historic reconciliation is planned. Production remains unchanged at
+`15559f1275d7f8ae3990cc6a9dcda5f35748e570` pending a separately controlled promotion.
 Wishlist items `LMS-W-UX-01` and `LMS-W-UX-02` remain non-blocking presentation follow-ups.
 
 ## Fresh Chat Prompt
 
 ```text
-Review the combined LMSPro R9-B to R9-D plan:
+Review the completed LMSPro R9-B-to-R9-D STAGING lifecycle and prepare its controlled
+production promotion.
 
-isodocs/docs/modules/lmspro/03-slice-planning/2026-07-29-lmspro-remediation-slices-r9-b-to-r9-d-combined-planning.md
+Authoritative records:
 
-Authoritative roadmap:
-isodocs/docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
+1. isodocs/docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
+2. isodocs/docs/modules/lmspro/03-slice-planning/2026-07-29-lmspro-remediation-slices-r9-b-to-r9-d-combined-planning.md
+3. isodocs/docs/modules/lmspro/04-implementation-confirmations/2026-07-29-lmspro-remediation-slices-r9-b-to-r9-d-combined-confirmation.md
+4. isodocs/docs/modules/lmspro/05-review-and-test/2026-07-29-lmspro-remediation-slices-r9-b-to-r9-d-combined-local-review-and-smoke-test.md
 
-Exact aligned application baseline:
+Exact tested candidate:
+fbab1862fa8124ae5f1d64df1b2741fdb19761fc
+
+Expected production/main parent:
 15559f1275d7f8ae3990cc6a9dcda5f35748e570
 
-Proceed under the accepted exact local implementation prompt in section 12 of the plan.
-Do not query or mutate STAGING or production, alter environment values, deploy or execute
-historic reconciliation.
+First verify repository alignment, clean worktrees, exact Security Scans, completed STAGING
+migration and complete R9-B/R9-C/R9-D human pass. Define the bounded production snapshot,
+read-only migration-ledger preflight, fast-forward, deployment, migration verification and
+non-mutating live smoke sequence.
+
+Do not change main, production data, environment values or deployment state until the control
+owner supplies and confirms the fresh production snapshot and explicitly authorises execution.
+Do not reconcile historic Emails.
 ```
