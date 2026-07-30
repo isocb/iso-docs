@@ -2,8 +2,9 @@
 
 Date: 2026-07-30
 
-Status: IMPLEMENTATION COMMITTED; LOCAL TECHNICAL GATES GREEN; DEV/STAGING EXACT AND SECURITY
-GREEN; PUBLIC STAGING HEALTHY; RENDER EXACT DISPLAY AND HUMAN SMOKE PENDING
+Status: STAGING NOTE-PARITY CORRECTION COMMITTED; LOCAL TECHNICAL GATES GREEN; DEV/STAGING
+EXACT AND SECURITY GREEN; PUBLIC STAGING HEALTHY; RENDER EXACT DISPLAY AND FOCUSED NOTE
+RETEST PENDING
 
 Planning source:
 
@@ -22,20 +23,22 @@ implementation commit:
   4ecf49f2
 design-rule correction:
   f374b61a
+staging-smoke Note-editor parity correction:
+  cf04d3dc
 exact candidate:
-  f374b61a
+  cf04d3dc479bc130a59ad9bc4bf61f3bad314998
 migration:
   none
 origin/dev and local dev:
-  f374b61af104396a8f8712a55cb51107472f90f4
+  cf04d3dc479bc130a59ad9bc4bf61f3bad314998
 origin/staging and local staging:
-  f374b61af104396a8f8712a55cb51107472f90f4
+  cf04d3dc479bc130a59ad9bc4bf61f3bad314998
 origin/main:
   fbab1862fa8124ae5f1d64df1b2741fdb19761fc
 exact dev Security Scan:
-  PASS — run 30521487931
+  PASS — run 30523034889
 exact staging Security Scan:
-  PASS — run 30521622851
+  PASS — run 30523036190
 public staging health:
   HTTP 200; database connected; RLS 11/11
 ```
@@ -56,6 +59,9 @@ R10-A:
   responsive management-card design rule;
 - removes the desktop Actions column and makes the complete table row the Club-detail pointer
   target while retaining the Club-name keyboard control; and
+- aligns the Club-list Notes shortcut editor with the established Club-detail editor for Note
+  Date, Next Action Date, priority, category, pinning, file/URL attachments, attachment removal
+  and archive; and
 - keeps direct approval limited by the existing helper.
 
 No status, filter value, sort meaning, action eligibility, mutation or navigation target was
@@ -87,6 +93,8 @@ src/app/(app)/app/lmspro/clubs/page.tsx
 src/modules/lmspro/components/ClubManagementCard.tsx
 src/modules/lmspro/lib/club-management-card-presentation.ts
 src/modules/lmspro/lib/__tests__/club-management-card-presentation.test.ts
+src/modules/lmspro/lib/club-note-editor.ts
+src/modules/lmspro/lib/__tests__/club-note-editor.test.ts
 ```
 
 The existing Club page was normalised by the repository formatter while it was edited. The
@@ -108,13 +116,13 @@ R10-A changes no:
 ## 5. Local Automated Evidence
 
 ```text
-focused Club card/status tests:
-  13 PASS
+focused Club card/status and Note-editor parity tests:
+  16 PASS
 
 full Vitest suite:
-  267 PASS
+  270 PASS
   12 intentionally skipped
-  43 files passed
+  44 files passed
   1 file intentionally skipped
 
 npm run type-check:
@@ -153,11 +161,16 @@ file was removed.
 Recovery remains exact `fbab1862`. Because no database or environment state changed, reverting
 application commit `4ecf49f2` completely removes R10-A.
 
+The first human staging pass confirmed every responsive, search, filtering, sorting and
+interaction requirement. It found one genuine parity defect: the Club-list Notes editor omitted
+Note Date, Next Action Date and editing attachments, while the Club-detail editor exposed them.
+The direct child `cf04d3dc` corrects that defect and also retains the desirable pin control.
+
 Next:
 
 ```text
-confirm Render STAGING displays Live at f374b61
--> execute focused C1 human smoke
+confirm Render STAGING displays Live at cf04d3d
+-> execute focused Notes parity retest
 ```
 
 Production promotion is not authorised by this lifecycle stage.

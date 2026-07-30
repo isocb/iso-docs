@@ -881,6 +881,22 @@ Promotion evidence:
 - main remains the unchanged recovery baseline `fbab1862`; and
 - Render's displayed exact commit and focused C1 human smoke are the remaining gates.
 
+Human staging and correction update:
+
+- the control owner confirmed every responsive, zoom, search, filter, sort, compact-card and
+  desktop-row requirement at `f374b61a`;
+- the only partial result was the Club-list Notes shortcut, whose editor did not expose the
+  Note Date, Next Action Date and attachment behaviour available from Club detail;
+- direct child `cf04d3dc` aligns the shortcut editor with the established Note dates, pinning,
+  file/URL attachment, removal and archive contracts;
+- focused tests, the full 270-test suite, type checking, changed-production lint and production
+  build pass;
+- local/origin dev and staging are exact `cf04d3dc`;
+- exact dev Security Scan `30523034889` and staging Security Scan `30523036190` pass;
+- public staging health remains HTTP 200 with database connected and RLS 11/11; and
+- Render's displayed `cf04d3d` confirmation and the focused Notes parity retest are the only
+  remaining R10-A staging gates.
+
 Controlling records:
 
 1. `docs/modules/lmspro/01-cr-inputs/2026-07-30-lmspro-responsive-c1-club-management-cr-input.md`;
@@ -990,8 +1006,8 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Implement and technically validate accepted code-only slice R10-A, then promote the exact
-green candidate through dev to STAGING and stop for focused C1 human smoke
+Confirm Render STAGING at exact `cf04d3d`, execute the focused R10-A Notes parity retest and
+stop for the production-promotion decision
 ```
 
 Goal:
