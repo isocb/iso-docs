@@ -5,8 +5,8 @@ Date: 2026-07-29
 Status: AUTOMATED LOCAL REVIEW PASS; INITIAL STAGING DEPLOYMENT, MIGRATION, SECURITY SCAN,
 WEB HEALTH AND CRON TICK PASS; HUMAN SMOKE STOPPED ON CORRECTABLE APPLICATION DEFECTS;
 CORRECTIVE DEPLOYMENT AND COMPLETE STAGING HUMAN SMOKE PASS; PRODUCTION READ-ONLY PREFLIGHT
-AND SNAPSHOT PASS; MAIN FAST-FORWARD, SECURITY SCAN, MIGRATION AND HEALTH PASS; LIVE HUMAN
-CONFIRMATION PENDING
+AND SNAPSHOT PASS; MAIN FAST-FORWARD, SECURITY SCAN, MIGRATION, HEALTH AND LIVE HUMAN
+CONFIRMATION PASS
 
 Application under review:
 
@@ -322,6 +322,13 @@ public production endpoint `https://app.seasonpro.co.uk/api/health` returned HTT
 database connected and RLS enabled on 11/11 expected tables. Because the health endpoint does
 not expose the running Git commit, control-owner confirmation that Render is Live at displayed
 `fbab1862` remains required before the non-mutating live smoke.
+
+The control owner subsequently confirmed Render **Live at `fbab1862`**. Existing C1 and C2
+logins passed; Club Management, Team Management and Communications loaded normally; friendly
+Team statuses and Club Waiting List selectors were correct; C2 showed the correct Club; and
+historic C2 Email absence matched the accepted prospective-only contract. No Email,
+notification or production record was created or changed. The companion live-promotion record
+closes the deployment.
 
 ## 2C. Retained Preconditions For STAGING Human Smoke
 

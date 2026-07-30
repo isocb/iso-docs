@@ -808,6 +808,34 @@ A future bounded presentation correction should:
 This is a non-blocking UI consistency item. It does not reopen the completed R9-A evidence or
 production reconciliation and requires no additional data correction.
 
+### Club Management UX Wishlist - Responsive C1 Club Presentation
+
+Wishlist identifier:
+
+```text
+LMS-W-UX-03
+```
+
+The control owner accepted the responsive Team card/table pattern delivered by R9-C and asked
+for the same clear small-screen treatment on the C1 Club Management view.
+
+The next small code-only planning candidate should:
+
+- adapt the C1 Club Management list to the proven compact-card/mobile and full-table/desktop
+  pattern;
+- retain Club-name sorting, search, filters, totals, derived status meanings and existing
+  actions;
+- keep complete Club identity and friendly Current, Club Waiting List, Suspended and Withdrawn
+  presentation visible without clipping;
+- preserve keyboard operation and expose the existing Club detail action with a clear accessible
+  name;
+- cover mobile, tablet, desktop and 200% zoom without page-wide horizontal scrolling; and
+- reuse shared presentation helpers where proportionate.
+
+It must not change Club admission, participation derivation, Team allocation, access, schema,
+migrations or data. It is a distinct post-R9 presentation CR/planning slice and was not added to
+the already tested `fbab1862` production promotion.
+
 ### Communications Wishlist - Links-First, Opt-In Uploaded Attachments
 
 Wishlist identifier:
@@ -909,8 +937,8 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Review and authorise controlled production promotion of exact R9-B-to-R9-D candidate
-fbab1862fa8124ae5f1d64df1b2741fdb19761fc
+Formally triage the responsive C1 Club Management presentation follow-up as the next small,
+code-only LMSPro planning candidate
 ```
 
 Goal:
@@ -1022,34 +1050,37 @@ Local/remote `main` subsequently fast-forwarded without merge commit from `15559
 unfinished migrations, the one R9-B additive migration finished without rollback, both
 candidate tables present and zero prospective audience rows. No historic reconciliation ran.
 Public production health is HTTP 200 with database connected and RLS 11/11. Render exact-commit
-confirmation and non-mutating live smoke remain the final promotion gate.
-Wishlist items `LMS-W-UX-01` and `LMS-W-UX-02` remain non-blocking presentation follow-ups.
+confirmation and non-mutating live smoke subsequently passed.
+
+The control owner confirmed Render Live at exact `fbab1862`. Existing C1/C2 login, Club
+Management, Team Management, Communications, friendly Team statuses, Club Waiting List
+selectors and correct C2 Club scope passed. Historic C2 Email absence remained the expected
+prospective-only result. No Email, notification or production record was created or changed.
+R9-B, R9-C and R9-D production promotion is COMPLETE.
+Wishlist items `LMS-W-UX-01`, `LMS-W-UX-02` and `LMS-W-UX-03` remain non-blocking
+presentation follow-ups.
 
 ## Fresh Chat Prompt
 
 ```text
-Review the completed LMSPro R9-B-to-R9-D STAGING lifecycle and prepare its controlled
-production promotion.
+Formally triage LMS-W-UX-03 as the next small LMSPro planning candidate: responsive C1 Club
+Management presentation using the proven R9-C Team card/table pattern.
 
 Authoritative records:
 
 1. isodocs/docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
-2. isodocs/docs/modules/lmspro/03-slice-planning/2026-07-29-lmspro-remediation-slices-r9-b-to-r9-d-combined-planning.md
-3. isodocs/docs/modules/lmspro/04-implementation-confirmations/2026-07-29-lmspro-remediation-slices-r9-b-to-r9-d-combined-confirmation.md
-4. isodocs/docs/modules/lmspro/05-review-and-test/2026-07-29-lmspro-remediation-slices-r9-b-to-r9-d-combined-local-review-and-smoke-test.md
+2. isodocs/docs/modules/lmspro/05-review-and-test/2026-07-30-lmspro-r9-b-to-r9-d-live-promotion-confirmation.md
+3. the current C1 Club Management source and the completed R9-C shared Team presentation
+   components/tests
 
-Exact tested candidate:
+Exact aligned application baseline:
 fbab1862fa8124ae5f1d64df1b2741fdb19761fc
 
-Expected production/main parent:
-15559f1275d7f8ae3990cc6a9dcda5f35748e570
+Create one proportionate code-only planning record. Preserve Club admission, derived Current and
+Club Waiting List meanings, Team allocation, existing filters/totals/actions, permissions and
+data. Define the reusable card/table presentation, responsive breakpoints, keyboard/accessibility
+expectations, focused automated tests and a short C1 human smoke matrix.
 
-First verify repository alignment, clean worktrees, exact Security Scans, completed STAGING
-migration and complete R9-B/R9-C/R9-D human pass. Define the bounded production snapshot,
-read-only migration-ledger preflight, fast-forward, deployment, migration verification and
-non-mutating live smoke sequence.
-
-Do not change main, production data, environment values or deployment state until the control
-owner supplies and confirms the fresh production snapshot and explicitly authorises execution.
-Do not reconcile historic Emails.
+Do not change application code, schema, migrations, database records, environment values or
+deployment state. Stop after the bounded plan and exact implementation-approval prompt.
 ```

@@ -5,8 +5,8 @@ Date: 2026-07-29
 Status: IMPLEMENTATION COMMITTED; DEV/STAGING ALIGNED; EXACT SECURITY SCANS, ADDITIVE
 STAGING MIGRATION, WEB DEPLOYMENT AND CRON TICK PASS; INITIAL HUMAN SMOKE STOPPED;
 CORRECTIVE DEPLOYMENT AND COMPLETE STAGING HUMAN SMOKE PASS; PRODUCTION READ-ONLY PREFLIGHT
-AND SNAPSHOT PASS; MAIN FAST-FORWARD, SECURITY SCAN, MIGRATION AND HEALTH PASS; LIVE HUMAN
-CONFIRMATION PENDING
+AND SNAPSHOT PASS; MAIN FAST-FORWARD, SECURITY SCAN, MIGRATION, HEALTH AND LIVE HUMAN
+CONFIRMATION PASS
 
 Planning source:
 
@@ -257,7 +257,13 @@ run `30519008355` passed. Independent read-only production verification confirms
 migrations, zero unfinished migrations, the R9-B migration finished without rollback, both
 additive tables present and zero visibility/visibility-recipient rows. No historic Email was
 reconciled. Production health is HTTP 200 with its database connected and RLS 11/11. Render
-exact-commit confirmation and non-mutating human live smoke remain pending.
+exact-commit confirmation and non-mutating human live smoke subsequently passed.
+
+The control owner confirmed Render Live at exact `fbab1862` and a non-mutating live smoke pass
+for existing C1/C2 login, Club Management, Team Management, Communications, friendly Team
+statuses, Club Waiting List selectors and correct C2 Club scope. Historic C2 Email absence
+remained expected. No Email, notification or production record was created or changed. The
+promotion is complete.
 
 ## 5. Automated Evidence
 
