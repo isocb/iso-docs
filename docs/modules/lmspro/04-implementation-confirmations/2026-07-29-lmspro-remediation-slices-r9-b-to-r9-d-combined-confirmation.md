@@ -3,7 +3,8 @@
 Date: 2026-07-29
 
 Status: IMPLEMENTATION COMMITTED; DEV/STAGING ALIGNED; EXACT SECURITY SCANS, ADDITIVE
-STAGING MIGRATION, WEB DEPLOYMENT AND CRON TICK PASS; HUMAN SMOKE PENDING
+STAGING MIGRATION, WEB DEPLOYMENT AND CRON TICK PASS; INITIAL HUMAN SMOKE STOPPED;
+CORRECTIVE CANDIDATE DEPLOYING
 
 Planning source:
 
@@ -26,6 +27,8 @@ standalone cron correction:
   f321eb07936ec546e8738c22709809b2704be5ed
 exact release candidate:
   f321eb07936ec546e8738c22709809b2704be5ed
+corrective release candidate:
+  fbab1862fa8124ae5f1d64df1b2741fdb19761fc
 migration:
   20260729170000_lmspro_r9_b_email_club_visibility
 ```
@@ -174,6 +177,35 @@ The bounded correction:
 
 A complete local `jobs:tick` then loaded all five processors and exited successfully with zero
 queued work and zero errors. No provider Email was sent.
+
+## 4B. Initial Human-Smoke Correction
+
+Initial STAGING human smoke on exact `f321eb07` exposed two related presentation/selector
+defects and one prospective Email writer defect. Waiting List Clubs were missing from
+communication and Team selectors; some C1 Team surfaces showed raw or incomplete status
+vocabulary; and the nested Email-to-Club recipient writer supplied an `emailId` that Prisma
+already derives from its parent visibility.
+
+The bounded correction at `fbab1862fa8124ae5f1d64df1b2741fdb19761fc`:
+
+- includes registered Current and Club Waiting List Clubs in exact-current-season selectors,
+  with a visible Waiting List suffix;
+- shares friendly Team-status options and badges across the affected C1 surfaces;
+- preserves the linked Club when a Waiting List Club's Team is edited;
+- removes the duplicate nested Email ID so no-attachment Email creation can persist the
+  prospective Club audience;
+- retains mandatory R8-A resource acknowledgement while making its existing explanatory
+  validation reachable; and
+- makes the generic Email-operation error truthful when the failure is not attachment
+  preparation.
+
+The Email save was exercised against the normal local development database in a complete
+transaction ending in deliberate rollback. No Email or other test data remained. The correction
+adds no migration and changes no database, Club, Team, allocation, official, user or access
+state. Local full tests report 264 pass and 12 intentional skips; TypeScript and production
+build pass. Exact dev Security Scan run `30516436459` passed. Local/remote `dev` and
+local/remote `staging` now point to the corrective commit. Render exact-commit confirmation and
+focused corrective human re-smoke remain outstanding.
 
 ## 5. Automated Evidence
 

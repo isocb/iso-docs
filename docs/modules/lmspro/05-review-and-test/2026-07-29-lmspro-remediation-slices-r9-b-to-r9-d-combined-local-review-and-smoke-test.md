@@ -2,10 +2,15 @@
 
 Date: 2026-07-29
 
-Status: AUTOMATED LOCAL REVIEW PASS; EXACT STAGING DEPLOYMENT, MIGRATION, SECURITY SCAN,
-WEB HEALTH AND CRON TICK PASS; STAGING HUMAN SMOKE PENDING
+Status: AUTOMATED LOCAL REVIEW PASS; INITIAL STAGING DEPLOYMENT, MIGRATION, SECURITY SCAN,
+WEB HEALTH AND CRON TICK PASS; HUMAN SMOKE STOPPED ON CORRECTABLE APPLICATION DEFECTS;
+CORRECTIVE CANDIDATE DEPLOYING
 
 Application under review:
+
+`fbab1862fa8124ae5f1d64df1b2741fdb19761fc`
+
+Initial STAGING smoke candidate:
 
 `f321eb07936ec546e8738c22709809b2704be5ed`
 
@@ -21,8 +26,8 @@ Migration:
 
 | Outcome | Automated/local technical result | Human result |
 | --- | --- | --- |
-| R9-B prospective Club Email history | PASS | PENDING |
-| R9-C shared responsive Team status | PASS | PENDING |
+| R9-B prospective Club Email history | PASS after corrective transaction test | STOPPED; corrective re-smoke pending |
+| R9-C shared responsive Team status | PASS after corrective selector/label tests | STOPPED; corrective re-smoke pending |
 | R9-D pointer/keyboard attachment browse | PASS at bounded source/selection level | PENDING — authoritative browser proof |
 | Migration on authorised local development DB | PASS | N/A |
 | Historic reconciliation | NOT EXECUTED | NOT AUTHORISED |
@@ -47,7 +52,7 @@ STAGING Security Scan:  PASS — run 30514385014
 STAGING Render web:     PASS — compiled build f321eb0; health HTTP 200
 STAGING migration:      PASS — 148 applied; candidate finished
 STAGING cron tick:      PASS — build/run exact f321eb0
-STAGING human smoke:    NOT STARTED
+STAGING human smoke:    STARTED; STOPPED ON f321eb0; corrective re-smoke pending
 ```
 
 The control owner confirmed the immediately pre-deployment recovery point:
@@ -119,9 +124,56 @@ credential-safe fingerprint function. All five processors ran; one active key-da
 observed but none fired; no attachment job was claimable; total processing was zero with zero
 errors; and the tick finished successfully. No `server-only` failure or provider send occurred.
 
-## 2B. Preconditions For STAGING Human Smoke
+## 2B. Initial Human Smoke Stop And Bounded Correction
 
-- run exact commit `f321eb07936ec546e8738c22709809b2704be5ed`;
+Human smoke began on exact `f321eb07`. Historic Emails being absent from C2 history was
+accepted as expected. The smoke stopped before controlled delivery because:
+
+- Club-recipient and Team Club selectors used the older Current-only Club query and excluded
+  registered Clubs on the Club Waiting List;
+- the C1 Club Teams table and status filters bypassed the shared friendly Team-status
+  presentation, so `APPROVED` appeared as `Approved` rather than
+  `Approved & Unallocated`;
+- editing a Team linked to a Waiting List Club could display no selected Club because that Club
+  was absent from the mandatory selector;
+- a no-attachment Email failed before save with a misleading attachment-preparation message;
+  and
+- an Email with a resource left Send disabled until the existing R8-A responsibility
+  acknowledgement was selected, but the disabled control did not explain that requirement.
+
+The Email failure was reproduced against the normal local development database in a transaction
+that was forced to roll back. The new nested Club-visibility recipient writer incorrectly
+supplied the parent `emailId` a second time; Prisma rejected that nested field before the Email
+could be saved. Removing the duplicate field let the full Email, recipient and Club-audience
+transaction reach the deliberate rollback. No diagnostic Email or data change remains.
+
+Corrective commit `fbab1862fa8124ae5f1d64df1b2741fdb19761fc`:
+
+- includes Current and Club Waiting List Clubs for the exact active season, with Waiting List
+  options labelled `(Club Waiting List)` and Club-name sorting retained;
+- uses shared friendly Team-status labels and exposes `Approved & Unallocated` in filters and
+  edit workflow;
+- preserves the selected Waiting List Club while a Team is edited or allocated;
+- removes the invalid duplicate nested Email ID;
+- replaces the misleading catch-all attachment error with a neutral Email-operation failure;
+  and
+- keeps the R8-A acknowledgement mandatory while allowing Send to be activated so the existing
+  explanatory validation notice is shown.
+
+This correction changes no schema, migration, database record, Email history, Team or Club
+state. Local evidence is 264 passing tests with 12 intentional skips, TypeScript pass,
+production build pass, focused changed-source lint with no errors, and a successful real
+database transaction ending in forced rollback. Exact dev Security Scan run `30516436459`
+passed. Local/remote `dev` and local/remote `staging` fast-forwarded to exact `fbab1862`; Render
+exact-commit confirmation and the focused corrective re-smoke remain pending.
+
+## 2C. Retained Preconditions For STAGING Human Smoke
+
+These were the initial `f321eb07` deployment preconditions and remain as evidence. The
+corrective re-smoke must instead confirm exact `fbab1862fa8124ae5f1d64df1b2741fdb19761fc`;
+it requires no new migration or database change.
+
+- initial smoke ran exact commit `f321eb07936ec546e8738c22709809b2704be5ed`;
 - first fast-forward `dev` and `origin/dev`, and require the exact dev Security Scan to pass;
 - create and record a fresh dormant snapshot of the current STAGING database immediately before
   migration; keep the current STAGING database as the target and do not change its URL;
