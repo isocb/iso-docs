@@ -26,7 +26,7 @@ Migration:
 
 | Outcome | Automated/local technical result | Human result |
 | --- | --- | --- |
-| R9-B prospective Club Email history | PASS after corrective transaction test | Core same-/other-Club list authority PASS; remaining detail/resource checks pending |
+| R9-B prospective Club Email history | PASS after corrective transaction test | PASS |
 | R9-C shared responsive Team status | PASS after corrective selector/label tests | Corrective C1 labels/selectors PASS; responsive matrix pending |
 | R9-D pointer/keyboard attachment browse | PASS at bounded source/selection level | PENDING — authoritative browser proof |
 | Migration on authorised local development DB | PASS | N/A |
@@ -197,9 +197,14 @@ Focused prospective Email checks passed:
 - Club A could see only Club A Emails and not Club B Emails.
 
 The list-level cross-Club privacy boundary and separate provider-recipient/Club-history audience
-counts are evidenced as PASS. Copied-detail-URL denial and private attachment download authority
-remain separate checks in the retained schedule. No addresses, content or identifiers are
-recorded.
+counts are evidenced as PASS. The control owner then confirmed:
+
+- Club B could not open Club A's copied Email-detail URL or see its content;
+- Club B could download and open its own authorised attachment; and
+- Club A could not use Club B's copied attachment URL.
+
+R9-B focused STAGING human smoke is therefore PASS. No addresses, content, private URLs or
+identifiers are recorded.
 
 ## 2C. Retained Preconditions For STAGING Human Smoke
 

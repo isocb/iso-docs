@@ -214,8 +214,12 @@ appeared once in the intended C2 Club history, with separate provider-recipient 
 audience counts displayed before send. A controlled attachment Email appeared only in its
 intended Club B history, while Club A continued to see only Club A Emails. The existing resource
 acknowledgement remained enforced with an explanatory notice. The remaining responsive,
-keyboard, copied-detail-URL and attachment-download authority checks stay in the companion
-review schedule.
+keyboard and browser-activation checks stay in the companion review schedule.
+
+The control owner subsequently confirmed the remaining R9-B authority checks: Club B was denied
+Club A's copied Email-detail URL without content disclosure; Club B could download and open its
+own authorised attachment; and Club A was denied Club B's copied attachment URL. R9-B focused
+STAGING human smoke is PASS.
 
 ## 5. Automated Evidence
 
