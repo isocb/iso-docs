@@ -897,6 +897,20 @@ Human staging and correction update:
 - Render's displayed `cf04d3d` confirmation and the focused Notes parity retest are the only
   remaining R10-A staging gates.
 
+Second human staging correction:
+
+- the control owner confirmed `cf04d3d` and passed the complete field, date persistence,
+  pinning, attachment, removal, clearing, unpinning and archive schedule;
+- the remaining partial result was confined to interaction presentation: small Note-row
+  Edit/Archive icons, a short non-sticky modal and a competing Add Note action during edit;
+- direct child `cc4b4dc8` makes the complete Note row the pointer/Enter/Space edit target,
+  removes those row icons, uses the mandatory sticky Archive/Cancel/Save footer, suppresses Add
+  Note during editing and sizes the modal responsively to the viewport;
+- no query, mutation, schema, migration, data, environment or business rule changes; and
+- exact dev Security Scan `30524100833` and staging Security Scan `30524101351` pass;
+- public staging health is HTTP 200 with database connected and RLS 11/11; and
+- Render exact display and the focused modal-only retest remain.
+
 Controlling records:
 
 1. `docs/modules/lmspro/01-cr-inputs/2026-07-30-lmspro-responsive-c1-club-management-cr-input.md`;
@@ -1006,8 +1020,8 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Confirm Render STAGING at exact `cf04d3d`, execute the focused R10-A Notes parity retest and
-stop for the production-promotion decision
+Confirm exact `cc4b4dc8` dev/staging Security Scans and Render STAGING display, execute the
+focused R10-A Notes modal interaction retest and stop for the production-promotion decision
 ```
 
 Goal:

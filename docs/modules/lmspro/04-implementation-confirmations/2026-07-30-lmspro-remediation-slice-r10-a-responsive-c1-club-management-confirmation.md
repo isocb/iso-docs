@@ -2,9 +2,9 @@
 
 Date: 2026-07-30
 
-Status: STAGING NOTE-PARITY CORRECTION COMMITTED; LOCAL TECHNICAL GATES GREEN; DEV/STAGING
-EXACT AND SECURITY GREEN; PUBLIC STAGING HEALTHY; RENDER EXACT DISPLAY AND FOCUSED NOTE
-RETEST PENDING
+Status: STAGING NOTE-MODAL INTERACTION CORRECTION COMMITTED; LOCAL TECHNICAL GATES GREEN;
+DEV/STAGING EXACT AND SECURITY GREEN; PUBLIC STAGING HEALTHY; RENDER EXACT DISPLAY AND
+FOCUSED MODAL RETEST PENDING
 
 Planning source:
 
@@ -25,20 +25,22 @@ design-rule correction:
   f374b61a
 staging-smoke Note-editor parity correction:
   cf04d3dc
+staging-smoke Note-modal interaction correction:
+  cc4b4dc8
 exact candidate:
-  cf04d3dc479bc130a59ad9bc4bf61f3bad314998
+  cc4b4dc8332f0bdc994c7c2609d2ece873a74087
 migration:
   none
 origin/dev and local dev:
-  cf04d3dc479bc130a59ad9bc4bf61f3bad314998
+  cc4b4dc8332f0bdc994c7c2609d2ece873a74087
 origin/staging and local staging:
-  cf04d3dc479bc130a59ad9bc4bf61f3bad314998
+  cc4b4dc8332f0bdc994c7c2609d2ece873a74087
 origin/main:
   fbab1862fa8124ae5f1d64df1b2741fdb19761fc
 exact dev Security Scan:
-  PASS — run 30523034889
+  PASS — run 30524100833
 exact staging Security Scan:
-  PASS — run 30523036190
+  PASS — run 30524101351
 public staging health:
   HTTP 200; database connected; RLS 11/11
 ```
@@ -62,6 +64,9 @@ R10-A:
 - aligns the Club-list Notes shortcut editor with the established Club-detail editor for Note
   Date, Next Action Date, priority, category, pinning, file/URL attachments, attachment removal
   and archive; and
+- makes each Note row the complete pointer/Enter/Space edit target, removes inline Edit/Archive
+  icons, places Archive at the modal footer's lower-left, retains Cancel/Save at the right,
+  suppresses Add Note while editing and uses a taller responsive modal with a sticky footer; and
 - keeps direct approval limited by the existing helper.
 
 No status, filter value, sort meaning, action eligibility, mutation or navigation target was
@@ -164,13 +169,20 @@ application commit `4ecf49f2` completely removes R10-A.
 The first human staging pass confirmed every responsive, search, filtering, sorting and
 interaction requirement. It found one genuine parity defect: the Club-list Notes editor omitted
 Note Date, Next Action Date and editing attachments, while the Club-detail editor exposed them.
-The direct child `cf04d3dc` corrects that defect and also retains the desirable pin control.
+Direct child `cf04d3dc` corrected that defect and retained the desirable pin control.
+
+The focused retest at `cf04d3dc` passed all Note fields, persistence, pinning, attachment,
+removal, clearing, unpinning and archive behaviour. It identified a second UI-standard defect:
+the Note list still used small Edit/Archive icons, the modal was unnecessarily short, its footer
+was not sticky and Add Note remained visible while editing. Direct child `cc4b4dc8` applies the
+mandatory click-to-edit and CRUD-modal rules without changing a mutation or data contract.
 
 Next:
 
 ```text
-confirm Render STAGING displays Live at cf04d3d
--> execute focused Notes parity retest
+confirm exact dev/staging Security Scans for `cc4b4dc8` pass
+-> confirm Render STAGING displays Live at cc4b4dc
+-> execute focused Notes interaction/modal retest
 ```
 
 Production promotion is not authorised by this lifecycle stage.

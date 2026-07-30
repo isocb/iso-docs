@@ -2,9 +2,9 @@
 
 Date: 2026-07-30
 
-Status: RESPONSIVE HUMAN STAGING SMOKE PASS; NOTE-EDITOR PARITY DEFECT CORRECTED; EXACT
-DEV/STAGING SECURITY AND PUBLIC HEALTH PASS; RENDER EXACT DISPLAY AND FOCUSED NOTE RETEST
-PENDING
+Status: RESPONSIVE AND NOTE-BEHAVIOUR HUMAN STAGING SMOKE PASS; NOTE-MODAL INTERACTION DEFECT
+CORRECTED; EXACT DEV/STAGING SECURITY AND PUBLIC HEALTH PASS; RENDER DISPLAY AND FOCUSED
+MODAL RETEST PENDING
 
 Implementation confirmation:
 
@@ -13,7 +13,7 @@ Implementation confirmation:
 Exact candidate:
 
 ```text
-cf04d3dc479bc130a59ad9bc4bf61f3bad314998
+cc4b4dc8332f0bdc994c7c2609d2ece873a74087
 ```
 
 ## 1. Technical Review
@@ -44,8 +44,8 @@ Result: PASS for local implementation.
 | Changed production files lint | PASS — no errors |
 | Production build | PASS |
 | Diff check | PASS |
-| Exact dev Security Scan | PASS — `30523034889` |
-| Exact staging Security Scan | PASS — `30523036190` |
+| Exact dev Security Scan | PASS — `30524100833` |
+| Exact staging Security Scan | PASS — `30524101351` |
 | Public staging health | PASS — HTTP 200; database connected; RLS 11/11 |
 
 ## 3. Database And Recovery Review
@@ -78,55 +78,70 @@ was a reduced version of the established Club-detail editor. It omitted Note Dat
 Date and editing attachments. Control also requested retention of the useful pin-to-top
 behaviour. This is a staging-smoke correction within R10-A, not a new business or data boundary.
 
-## 5. Focused Human STAGING Retest
+## 5. First Focused Notes Retest Result
+
+The control owner confirmed Render `Live at cf04d3d`. Results:
+
+- complete add-note fields: PASS;
+- creation and saved-value/date persistence: PASS;
+- pin-to-top: PASS;
+- file attachment, reopen/download and removal: PASS;
+- clearing Next Action Date and unpinning: PASS; and
+- archive: PASS.
+
+The result remained PARTIAL because the active Note list showed small Edit and Archive icons
+instead of making the row the edit target. The modal also required avoidable scrolling, lacked
+the mandatory sticky footer and continued to show Add Note during editing.
+
+The mandatory `table-crud-pattern.md` and UX/UI Standard Sections 7.1 and 8 require the whole
+row to open editing, no inline destructive action, Archive at the footer's lower-left,
+Cancel/Save at the right and a sticky footer. Exact child `cc4b4dc8` applies those rules and
+makes the modal taller within the available viewport.
+
+## 6. Focused Human STAGING Modal Retest
 
 Preconditions:
 
-- Render STAGING shows `Live at cf04d3d` (Render's normal seven-character display);
-- the staging Security Scan for exact `cf04d3dc479bc130a59ad9bc4bf61f3bad314998`
+- Render STAGING shows `Live at cc4b4dc` (Render's normal seven-character display);
+- the staging Security Scan for exact `cc4b4dc8332f0bdc994c7c2609d2ece873a74087`
   is green; and
 - public health is HTTP 200 with database connected.
 
-Use a controlled C1 login and one disposable staging note. Do not change a Club, Team, official,
-status, approval or allocation.
+Use a controlled C1 login and existing staging Notes. No new data is required.
 
 1. Open Club Management and use Notes for the controlled Club.
-2. Select Add Note and confirm Subject, Category, Priority, Note Date, Next Action Date, Note
-   Content and `Pin this note to the top of the list` are all available.
-3. Confirm the new-note view explains that attachments become available after the note is
-   first saved.
-4. Create one disposable note with a distinctive Note Date and Next Action Date; leave it
-   unpinned.
-5. Edit that note from the same Club-list Notes shortcut.
-6. Confirm both dates and every other saved value reopen correctly.
-7. Pin the note, save and confirm it moves to the top.
-8. Edit again and add one small accepted file attachment.
-9. Confirm the attachment appears once, downloads/opens correctly and remains present after
-   closing and reopening Notes.
-10. Remove the attachment and confirm it disappears without closing or navigating to Club
-    detail.
-11. Clear Next Action Date, unpin, save and reopen; confirm both changes persist.
-12. Archive the disposable note and confirm it leaves the active Notes list.
+2. Confirm active Note rows show no Edit or Archive/Delete icons.
+3. Click an ordinary part of a Note row and confirm it opens directly in edit mode.
+4. Repeat on another row with Enter, then Space, confirming direct edit each time.
+5. Confirm editing shows only the selected Note and does not show an Add Note button.
+6. Confirm the modal is substantially taller on desktop and remains within the viewport at
+   mobile, tablet and 200% zoom.
+7. Confirm the editor's footer remains visible while its main area scrolls.
+8. Confirm Archive is red/outline at lower-left and Cancel/Save Changes are at lower-right.
+9. Select Cancel and confirm no value changes.
+10. Reopen Add Note and confirm its footer shows Cancel/Add Note but no Archive.
 
-## 6. Result Template
+## 7. Result Template
 
 ```text
-Render Live at cf04d3d: YES / NO
-Complete add-note fields: PASS / FAIL
-Save-first attachment explanation: PASS / FAIL
-Dates and values persist after reopen: PASS / FAIL
-Pin moves note to top: PASS / FAIL
-File attaches once and reopens/downloads: PASS / FAIL
-Attachment removal: PASS / FAIL
-Cleared Next Action Date persists: PASS / FAIL
-Unpin persists: PASS / FAIL
-Archive removes disposable note: PASS / FAIL
+Render Live at cc4b4dc: YES / NO
+No Note-row Edit/Archive icons: PASS / FAIL
+Pointer row opens edit: PASS / FAIL
+Enter row opens edit: PASS / FAIL
+Space row opens edit: PASS / FAIL
+Only selected Note shown while editing: PASS / FAIL
+No Add Note action while editing: PASS / FAIL
+Taller responsive modal: PASS / FAIL
+Sticky visible footer: PASS / FAIL
+Archive left; Cancel/Save right: PASS / FAIL
+Cancel leaves data unchanged: PASS / FAIL
+Add mode has Cancel/Add Note only: PASS / FAIL
 Unexpected behaviour: NONE / details
 ```
 
-## 7. Current Decision
+## 8. Current Decision
 
-The responsive boundary has passed human staging smoke. The exact Notes parity correction has
-passed local implementation review, dev/staging Security Scans and public health. The control
-owner must confirm Render's displayed exact commit and execute the focused note retest above.
-Do not promote to production on automated evidence alone.
+The responsive boundary and substantive Note behaviour have passed human staging smoke. The
+exact modal-interaction correction has passed local implementation review, dev/staging Security
+Scans and public health. Render commit confirmation and the focused modal retest remain. Do not
+promote to production on automated evidence alone.
