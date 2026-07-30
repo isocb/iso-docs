@@ -923,6 +923,17 @@ Final staging result and promotion:
 - exact main Security Scan, production deployment health and focused read-only live smoke
   remain before lifecycle closure.
 
+Production promotion update:
+
+- local/origin dev, staging and main are exact
+  `cc4b4dc8332f0bdc994c7c2609d2ece873a74087`;
+- main advanced by controlled local `--ff-only` from `fbab1862`;
+- exact main Security Scan `30527463001` passes;
+- public production health is HTTP 200 with database connected and RLS 11/11;
+- no migration, schema, database, environment or data action occurred; and
+- Render's displayed exact commit plus focused read-only production smoke remain before R10-A
+  closure.
+
 Controlling records:
 
 1. `docs/modules/lmspro/01-cr-inputs/2026-07-30-lmspro-responsive-c1-club-management-cr-input.md`;
@@ -1032,8 +1043,8 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Fast-forward local main and origin/main to exact `cc4b4dc8`, require the exact main Security
-Scan and healthy production deployment, then stop for focused read-only live smoke
+Confirm Render production displays exact `cc4b4dc`, execute the focused read-only R10-A live
+smoke and close the lifecycle if green
 ```
 
 Goal:

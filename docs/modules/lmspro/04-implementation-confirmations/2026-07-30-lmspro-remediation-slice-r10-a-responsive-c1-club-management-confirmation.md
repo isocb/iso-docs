@@ -2,8 +2,8 @@
 
 Date: 2026-07-30
 
-Status: STAGING IMPLEMENTATION AND HUMAN SMOKE PASS; CONTROL OWNER APPROVES EXACT
-FAST-FORWARD PRODUCTION PROMOTION
+Status: STAGING IMPLEMENTATION AND HUMAN SMOKE PASS; DEV/STAGING/MAIN EXACT; MAIN SECURITY
+AND PUBLIC PRODUCTION HEALTH PASS; RENDER EXACT DISPLAY AND READ-ONLY LIVE SMOKE PENDING
 
 Planning source:
 
@@ -35,7 +35,7 @@ origin/dev and local dev:
 origin/staging and local staging:
   cc4b4dc8332f0bdc994c7c2609d2ece873a74087
 origin/main:
-  fbab1862fa8124ae5f1d64df1b2741fdb19761fc
+  cc4b4dc8332f0bdc994c7c2609d2ece873a74087
 exact dev Security Scan:
   PASS — run 30524100833
 exact staging Security Scan:
@@ -46,6 +46,10 @@ Render staging:
   Live at cc4b4dc
 focused human staging smoke:
   PASS
+exact main Security Scan:
+  PASS — run 30527463001
+public production health:
+  HTTP 200; database connected; RLS 11/11
 ```
 
 ## 1. Implemented Boundary
@@ -200,9 +204,9 @@ migration repair, database URL change or manual database action occurred.
 Next:
 
 ```text
-fast-forward local main and origin/main from `fbab1862` to exact `cc4b4dc8`
--> require exact main Security Scan and healthy production deployment
--> stop for focused read-only production smoke
+confirm Render production displays Live at `cc4b4dc`
+-> execute focused read-only production smoke
+-> close R10-A lifecycle if green
 ```
 
 Production promotion is not authorised by this lifecycle stage.

@@ -2,7 +2,8 @@
 
 Date: 2026-07-30
 
-Status: COMPLETE STAGING HUMAN SMOKE PASS; EXACT PRODUCTION PROMOTION APPROVED
+Status: COMPLETE STAGING HUMAN SMOKE PASS; EXACT PRODUCTION PROMOTED; MAIN SECURITY AND
+PUBLIC HEALTH PASS; RENDER EXACT DISPLAY AND READ-ONLY LIVE SMOKE PENDING
 
 Implementation confirmation:
 
@@ -167,3 +168,15 @@ live smoke:
 7. confirm no unexpected notification or record change.
 
 Do not create, update, archive, approve or delete production data during this smoke.
+
+## 9. Production Promotion Evidence
+
+- local/origin dev: `cc4b4dc8332f0bdc994c7c2609d2ece873a74087`;
+- local/origin staging: `cc4b4dc8332f0bdc994c7c2609d2ece873a74087`;
+- local/origin main: `cc4b4dc8332f0bdc994c7c2609d2ece873a74087`;
+- promotion method: controlled local-main `--ff-only` from `fbab1862`, then push;
+- schema/migration delta: none;
+- exact main Security Scan: PASS — `30527463001`; and
+- public production health: PASS — HTTP 200, database connected, RLS 11/11.
+
+Render's displayed exact commit and the read-only live smoke above remain before closure.
