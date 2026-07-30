@@ -4,7 +4,8 @@ Date: 2026-07-29
 
 Status: IMPLEMENTATION COMMITTED; DEV/STAGING ALIGNED; EXACT SECURITY SCANS, ADDITIVE
 STAGING MIGRATION, WEB DEPLOYMENT AND CRON TICK PASS; INITIAL HUMAN SMOKE STOPPED;
-CORRECTIVE DEPLOYMENT AND COMPLETE STAGING HUMAN SMOKE PASS; PROMOTION REVIEW READY
+CORRECTIVE DEPLOYMENT AND COMPLETE STAGING HUMAN SMOKE PASS; PRODUCTION READ-ONLY PREFLIGHT
+PASS; FRESH PRODUCTION SNAPSHOT PENDING
 
 Planning source:
 
@@ -234,6 +235,14 @@ division/`Unallocated` remained visible; no status clipping or page-wide horizon
 occurred; available Waiting List positions were correct; and keyboard Enter/Space opened
 `More details`. R9-C human smoke is PASS. R9-B, R9-C and R9-D are now technically green on exact
 STAGING `fbab1862`; production promotion remains a separate control action.
+
+The control owner authorised production promotion. Clean repository and fast-forward checks
+passed: `dev` and `staging` remain exact `fbab1862`, while `main` remains its direct ancestor at
+`15559f12`. A forced-rollback production transaction against configured active endpoint
+`ep-autumn-silence-abep1qat` confirmed read-only mode, fingerprint `fc6d0a8f1bc7`, 147
+successful migrations, zero unfinished migrations, no R9-B candidate ledger row and neither
+candidate table. No production change occurred. The fresh dormant production snapshot is the
+remaining recovery gate before moving `main`.
 
 ## 5. Automated Evidence
 

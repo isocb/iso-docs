@@ -4,7 +4,8 @@ Date: 2026-07-29
 
 Status: AUTOMATED LOCAL REVIEW PASS; INITIAL STAGING DEPLOYMENT, MIGRATION, SECURITY SCAN,
 WEB HEALTH AND CRON TICK PASS; HUMAN SMOKE STOPPED ON CORRECTABLE APPLICATION DEFECTS;
-CORRECTIVE DEPLOYMENT AND COMPLETE STAGING HUMAN SMOKE PASS; PROMOTION REVIEW READY
+CORRECTIVE DEPLOYMENT AND COMPLETE STAGING HUMAN SMOKE PASS; PRODUCTION READ-ONLY PREFLIGHT
+PASS; FRESH PRODUCTION SNAPSHOT PENDING
 
 Application under review:
 
@@ -240,6 +241,42 @@ STAGING `fbab1862`. All checks passed:
 R9-C human smoke is PASS. Together with the completed R9-B and R9-D results, the combined
 R9-B-to-R9-D STAGING human boundary is PASS and exact `fbab1862` is ready for a separately
 controlled production-promotion decision.
+
+## 2G. Production Promotion Preflight
+
+The control owner authorised promotion of exact `fbab1862`. Before changing `main`, deployment
+or data, the repository and configured production database were checked.
+
+Repository evidence:
+
+```text
+candidate/feature:  fbab1862fa8124ae5f1d64df1b2741fdb19761fc
+dev/origin-dev:     fbab1862fa8124ae5f1d64df1b2741fdb19761fc
+staging/origin:     fbab1862fa8124ae5f1d64df1b2741fdb19761fc
+main/origin-main:   15559f1275d7f8ae3990cc6a9dcda5f35748e570
+fast-forward proof: PASS
+worktrees:          clean
+dev Security Scan:  PASS — 30516436459
+staging scan:       PASS — 30516573670
+```
+
+The configured `PRODUCTION_DATABASE_URL` resolved to active endpoint
+`ep-autumn-silence-abep1qat-pooler.eu-west-2.aws.neon.tech`, fingerprint `fc6d0a8f1bc7`.
+An explicitly read-only transaction recorded:
+
+```text
+database:                    neondb
+transaction_read_only:       on
+successful migrations:       147
+unfinished migrations:       0
+R9-B candidate ledger rows:  0
+R9-B candidate tables:       0
+terminator:                   ROLLBACK
+```
+
+This is the expected pre-promotion state. No production row, schema, environment or deployment
+changed. Promotion is paused until the control owner confirms a fresh dormant snapshot of this
+active production branch.
 
 ## 2C. Retained Preconditions For STAGING Human Smoke
 

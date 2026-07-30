@@ -1004,6 +1004,13 @@ save/reopen and duplicate passed in Chrome, with reduced activation also passing
 The combined R9-B-to-R9-D STAGING human boundary is PASS. Historic Emails remain deliberately
 outside C2 history, and no historic reconciliation is planned. Production remains unchanged at
 `15559f1275d7f8ae3990cc6a9dcda5f35748e570` pending a separately controlled promotion.
+
+The control owner subsequently authorised that production promotion. Repository alignment and
+fast-forward checks passed. An explicitly read-only, forced-rollback preflight against configured
+active production endpoint `ep-autumn-silence-abep1qat`, fingerprint `fc6d0a8f1bc7`, confirmed
+147 successful migrations, zero unfinished migrations, no R9-B candidate ledger row and neither
+candidate table. This is the expected pre-promotion state. `main`, production schema and
+production data remain unchanged while a fresh dormant production snapshot is obtained.
 Wishlist items `LMS-W-UX-01` and `LMS-W-UX-02` remain non-blocking presentation follow-ups.
 
 ## Fresh Chat Prompt
