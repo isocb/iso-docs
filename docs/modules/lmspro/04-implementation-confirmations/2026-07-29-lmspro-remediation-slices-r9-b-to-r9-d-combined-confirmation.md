@@ -3,7 +3,7 @@
 Date: 2026-07-29
 
 Status: IMPLEMENTATION COMMITTED; DEV/STAGING ALIGNED; EXACT SECURITY SCANS, ADDITIVE
-STAGING MIGRATION AND WEB DEPLOYMENT PASS; STAGING CRON TICK PENDING
+STAGING MIGRATION, WEB DEPLOYMENT AND CRON TICK PASS; HUMAN SMOKE PENDING
 
 Planning source:
 
@@ -55,8 +55,12 @@ staging Security Scan run `30514385014` passed. Render's public compiled build c
 `15559f1` to `f321eb0`; health is HTTP 200 with database connected and RLS 11/11. Independent
 read-only ledger verification confirms 148 successful migrations, the candidate finished
 without rollback, both additive tables present, zero new visibility rows and unchanged existing
-Email/recipient/resource aggregates. One successful actual STAGING Cron Job invocation remains
-the final technical gate before human smoke.
+Email/recipient/resource aggregates.
+
+The control owner then confirmed STAGING Cron Job build `bld-d9lda6142hec73civ1tg` succeeded
+for exact displayed `f321eb0`. One complete invocation loaded all five processors, matched active
+STAGING database fingerprint `016aba10adf6`, processed no queued work, fired no key-date Email,
+reported zero errors and finished successfully. The focused human smoke is now the next gate.
 
 ## 1. R9-B Implemented Boundary
 

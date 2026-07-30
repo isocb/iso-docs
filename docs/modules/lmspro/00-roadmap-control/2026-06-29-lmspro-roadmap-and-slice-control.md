@@ -968,7 +968,7 @@ The next gate is the fresh recovery-only snapshot of the current STAGING databas
 STAGING database URL must remain unchanged.
 
 The aggregate-only STAGING preflight passed in an explicitly read-only transaction and ended
-with `ROLLBACK`: fingerprint `d315b1dd8b98`, correct authorised tenant/season, 147 successful
+with `ROLLBACK`: application fingerprint `016aba10adf6`, correct authorised tenant/season, 147 successful
 migrations, zero unfinished or unresolved rolled-back migration names, and no R9-B candidate
 table or ledger row. The fresh recovery snapshot remains required before the staging push.
 
@@ -982,8 +982,13 @@ Scan run `30514385014` passed; Render's compiled public build is `f321eb0`; publ
 HTTP 200 with its database connected and RLS 11/11. Independent read-only ledger verification
 records 148 successful migrations, the R9-B candidate migration finished without rollback, both
 additive tables present, zero historic audience rows and unchanged existing
-Email/recipient/resource aggregates. The actual STAGING Cron Job `isostack-bedrock-1` must now
-record one successful invocation before the control owner begins human smoke.
+Email/recipient/resource aggregates.
+
+The control owner confirmed STAGING Cron Job build `bld-d9lda6142hec73civ1tg` succeeded for
+exact displayed `f321eb0`. A complete invocation matched database fingerprint
+`016aba10adf6`, loaded every registered processor, processed zero work with zero errors, fired no
+key-date Email and finished successfully. Focused R9-B/R9-C/R9-D human smoke is now the next
+controlled action.
 Wishlist items `LMS-W-UX-01` and `LMS-W-UX-02` remain non-blocking presentation follow-ups.
 
 ## Fresh Chat Prompt

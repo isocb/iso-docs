@@ -2,8 +2,8 @@
 
 Date: 2026-07-29
 
-Status: AUTOMATED LOCAL REVIEW PASS; EXACT STAGING DEPLOYMENT, MIGRATION, SECURITY SCAN
-AND WEB HEALTH PASS; STAGING CRON TICK AND HUMAN SMOKE PENDING
+Status: AUTOMATED LOCAL REVIEW PASS; EXACT STAGING DEPLOYMENT, MIGRATION, SECURITY SCAN,
+WEB HEALTH AND CRON TICK PASS; STAGING HUMAN SMOKE PENDING
 
 Application under review:
 
@@ -46,7 +46,7 @@ STAGING preflight:      PASS — explicitly read-only; rolled back
 STAGING Security Scan:  PASS — run 30514385014
 STAGING Render web:     PASS — compiled build f321eb0; health HTTP 200
 STAGING migration:      PASS — 148 applied; candidate finished
-STAGING cron tick:      PENDING RENDER LOG CONFIRMATION
+STAGING cron tick:      PASS — build/run exact f321eb0
 STAGING human smoke:    NOT STARTED
 ```
 
@@ -65,7 +65,7 @@ with the snapshot URL.
 The pre-snapshot read-only STAGING preflight recorded:
 
 ```text
-configured target fingerprint:              d315b1dd8b98
+configured target fingerprint:              016aba10adf6
 database/session:                           neondb; transaction_read_only=on
 authorised tenant/season match:             1
 successfully applied migrations:            147
@@ -81,7 +81,9 @@ transaction terminator:                     ROLLBACK
 
 The eight rolled-back rows are the previously reviewed resolved retry history, not unresolved
 ledger failures. No names, addresses, bodies, row identifiers or provider evidence were
-retrieved.
+retrieved. The initially recorded `d315b1dd8b98` value used an ad-hoc local hash shape and has
+been corrected to the application's credential-safe fingerprint algorithm; it was not evidence
+of a different database.
 
 ## 2A. STAGING Technical Deployment Evidence
 
@@ -108,7 +110,14 @@ transaction terminator:  ROLLBACK
 The unchanged existing aggregates and zero candidate-table rows prove that the additive
 migration did not reconcile or rewrite historic Email evidence. The workspace has no Render API
 credential and therefore does not invent a cron-log result. The actual STAGING Cron Job
-`isostack-bedrock-1` requires one successful post-deployment invocation before human smoke.
+`isostack-bedrock-1` subsequently supplied that evidence.
+
+The control owner confirmed Render Cron Job `crn-d6t7bpf5gffc738vlcn0`, build
+`bld-d9lda6142hec73civ1tg`, succeeded for exact displayed `f321eb0`. Its invocation reported
+database fingerprint `016aba10adf6`, matching the active STAGING target under the application's
+credential-safe fingerprint function. All five processors ran; one active key-date sequence was
+observed but none fired; no attachment job was claimable; total processing was zero with zero
+errors; and the tick finished successfully. No `server-only` failure or provider send occurred.
 
 ## 2B. Preconditions For STAGING Human Smoke
 
