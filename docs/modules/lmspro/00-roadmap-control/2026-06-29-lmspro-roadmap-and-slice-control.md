@@ -848,11 +848,21 @@ Lifecycle commencement on 2026-07-30:
 - the control owner authorised local implementation, automated dev validation and exact
   staging promotion before stopping for focused C1 human smoke.
 
+Implementation update:
+
+- exact application candidate `4ecf49f2` implements only the accepted presentation boundary;
+- focused tests, 267 full-suite tests, type checking, critical-file verification, changed-file
+  lint and the production build pass;
+- no schema, migration, database, environment, job or notification change exists; and
+- exact dev/staging Security Scan and staging health gates remain before human smoke.
+
 Controlling records:
 
 1. `docs/modules/lmspro/01-cr-inputs/2026-07-30-lmspro-responsive-c1-club-management-cr-input.md`;
 2. `docs/modules/lmspro/02-triage/2026-07-30-lmspro-r10-a-responsive-c1-club-management-triage.md`;
 3. `docs/modules/lmspro/03-slice-planning/2026-07-30-lmspro-remediation-slice-r10-a-responsive-c1-club-management-planning.md`.
+4. `docs/modules/lmspro/04-implementation-confirmations/2026-07-30-lmspro-remediation-slice-r10-a-responsive-c1-club-management-confirmation.md`.
+5. `docs/modules/lmspro/05-review-and-test/2026-07-30-lmspro-remediation-slice-r10-a-responsive-c1-club-management-review-and-staging-smoke-test.md`.
 
 ### Communications Wishlist - Links-First, Opt-In Uploaded Attachments
 

@@ -1,0 +1,133 @@
+# LMSPro Remediation Slice R10-A - Responsive C1 Club Management Confirmation
+
+Date: 2026-07-30
+
+Status: IMPLEMENTATION COMMITTED; LOCAL TECHNICAL GATES GREEN; DEV/STAGING PROMOTION IN
+PROGRESS
+
+Planning source:
+
+`docs/modules/lmspro/03-slice-planning/2026-07-30-lmspro-remediation-slice-r10-a-responsive-c1-club-management-planning.md`
+
+Control and application:
+
+```text
+controlling IsoDocs commit:
+  d7d5f56
+application recovery baseline:
+  fbab1862fa8124ae5f1d64df1b2741fdb19761fc
+branch:
+  feature/lmspro-r10-a-responsive-club-management
+implementation commit:
+  4ecf49f2
+migration:
+  none
+```
+
+## 1. Implemented Boundary
+
+R10-A:
+
+- adds a compact Club-management card below the Mantine `md` boundary;
+- retains the existing complete Club table from `md`;
+- drives cards and table from the same filtered and sorted result;
+- keeps full and short Club identity, friendly status, season and Team count visible;
+- adds a matching-results count;
+- makes search, status and season controls responsive;
+- exposes Club detail as a native `More details` button with a Club-specific accessible name;
+- retains notes, edit, eligible direct approval and eligible delete actions on compact cards;
+- adds Club-specific accessible names to the retained table icon actions; and
+- keeps delete disabled for Clubs with Teams and direct approval limited by the existing helper.
+
+No status, filter value, sort meaning, action eligibility, mutation or navigation target was
+changed.
+
+## 2. Shared Presentation Contract
+
+`getClubManagementCardPresentation` composes, rather than replaces:
+
+- `getClubStatusPresentation`; and
+- `canUseDirectClubApproval`.
+
+It supplies the card's count grammar and Club-specific accessible action labels. The page does
+not duplicate admission or participation rules.
+
+## 3. Changed Files
+
+```text
+src/app/(app)/app/lmspro/clubs/page.tsx
+src/modules/lmspro/components/ClubManagementCard.tsx
+src/modules/lmspro/lib/club-management-card-presentation.ts
+src/modules/lmspro/lib/__tests__/club-management-card-presentation.test.ts
+```
+
+The existing Club page was normalised by the repository formatter while it was edited. The
+behavioural boundary remains the responsive result presentation, controls, count and accessible
+names described above.
+
+## 4. Explicit Non-Changes
+
+R10-A changes no:
+
+- Club admission or derived participation meaning;
+- Team status or allocation workflow;
+- router, permission, query cohort or tenant scope;
+- Prisma schema or migration;
+- database record or environment value;
+- Email, notification, job or deployment setting; or
+- production state.
+
+## 5. Local Automated Evidence
+
+```text
+focused Club card/status tests:
+  13 PASS
+
+full Vitest suite:
+  267 PASS
+  12 intentionally skipped
+  43 files passed
+  1 file intentionally skipped
+
+npm run type-check:
+  PASS
+
+npm run verify:
+  PASS
+
+changed-production-file ESLint:
+  PASS with no errors
+  retained pre-existing Club-page warnings only
+
+npm run build:
+  PASS
+
+git diff --check:
+  PASS
+```
+
+The first sandboxed `npm run verify` attempt could not create the temporary local `tsx` IPC
+socket and stopped with `EPERM` before verification. The identical command was rerun with the
+required local permission and passed, including its nested type check.
+
+The production build completed all 131 static-page generation steps. Its local environment
+reported the established missing/non-HTTPS Upstash development warnings; these did not stop the
+build and are not caused by R10-A.
+
+## 6. Recovery And Next Gate
+
+Recovery remains exact `fbab1862`. Because no database or environment state changed, reverting
+application commit `4ecf49f2` completely removes R10-A.
+
+Next:
+
+```text
+fast-forward dev to exact 4ecf49f2
+-> require exact dev Security Scan PASS
+-> fast-forward staging to the same commit
+-> require exact staging Security Scan and public health PASS
+-> stop for focused C1 human smoke
+```
+
+Production promotion is not authorised by this lifecycle stage.
+
