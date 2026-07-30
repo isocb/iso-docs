@@ -2,8 +2,8 @@
 
 Date: 2026-07-29
 
-Status: LOCAL IMPLEMENTATION COMMITTED AND TECHNICALLY GREEN; DEV ALIGNED AND EXACT
-SECURITY SCAN PASS; CONTROLLED STAGING DEPLOYMENT AUTHORISED
+Status: IMPLEMENTATION COMMITTED; DEV/STAGING ALIGNED; EXACT SECURITY SCANS, ADDITIVE
+STAGING MIGRATION AND WEB DEPLOYMENT PASS; STAGING CRON TICK PENDING
 
 Planning source:
 
@@ -49,6 +49,14 @@ The control owner subsequently confirmed dormant recovery branch `br-long-glade-
 named `Staging Snaphot before cronjob fix 2026-07-30`, created
 `2026-07-30 05:34:51 +01:00`. The current STAGING database remains the authorised target; no
 database URL change is required.
+
+Local/remote STAGING subsequently fast-forwarded to exact release candidate `f321eb07`. Exact
+staging Security Scan run `30514385014` passed. Render's public compiled build changed from
+`15559f1` to `f321eb0`; health is HTTP 200 with database connected and RLS 11/11. Independent
+read-only ledger verification confirms 148 successful migrations, the candidate finished
+without rollback, both additive tables present, zero new visibility rows and unchanged existing
+Email/recipient/resource aggregates. One successful actual STAGING Cron Job invocation remains
+the final technical gate before human smoke.
 
 ## 1. R9-B Implemented Boundary
 

@@ -976,6 +976,14 @@ The recovery gate is now satisfied. The control owner confirmed dormant STAGING 
 `br-long-glade-abv9jrk0`, named `Staging Snaphot before cronjob fix 2026-07-30`, created
 `2026-07-30 05:34:51 +01:00`. It is a recovery copy only; the active STAGING database and URL
 remain unchanged.
+
+Local/remote STAGING then fast-forwarded cleanly to exact `f321eb07`. Exact staging Security
+Scan run `30514385014` passed; Render's compiled public build is `f321eb0`; public health is
+HTTP 200 with its database connected and RLS 11/11. Independent read-only ledger verification
+records 148 successful migrations, the R9-B candidate migration finished without rollback, both
+additive tables present, zero historic audience rows and unchanged existing
+Email/recipient/resource aggregates. The actual STAGING Cron Job `isostack-bedrock-1` must now
+record one successful invocation before the control owner begins human smoke.
 Wishlist items `LMS-W-UX-01` and `LMS-W-UX-02` remain non-blocking presentation follow-ups.
 
 ## Fresh Chat Prompt

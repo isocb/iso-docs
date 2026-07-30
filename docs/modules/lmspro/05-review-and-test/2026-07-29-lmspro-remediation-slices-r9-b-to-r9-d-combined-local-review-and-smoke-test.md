@@ -2,8 +2,8 @@
 
 Date: 2026-07-29
 
-Status: AUTOMATED LOCAL REVIEW PASS; DEV ALIGNED AND EXACT SECURITY SCAN PASS; STAGING
-RECOVERY SNAPSHOT AND DEPLOYMENT PENDING
+Status: AUTOMATED LOCAL REVIEW PASS; EXACT STAGING DEPLOYMENT, MIGRATION, SECURITY SCAN
+AND WEB HEALTH PASS; STAGING CRON TICK AND HUMAN SMOKE PENDING
 
 Application under review:
 
@@ -38,12 +38,16 @@ Release evidence:
 local dev:              f321eb07936ec546e8738c22709809b2704be5ed
 origin/dev:             f321eb07936ec546e8738c22709809b2704be5ed
 dev Security Scan:      PASS — run 30513826659
-local staging:          15559f1275d7f8ae3990cc6a9dcda5f35748e570
-origin/staging:         15559f1275d7f8ae3990cc6a9dcda5f35748e570
+local staging:          f321eb07936ec546e8738c22709809b2704be5ed
+origin/staging:         f321eb07936ec546e8738c22709809b2704be5ed
 main/origin-main:       15559f1275d7f8ae3990cc6a9dcda5f35748e570
 STAGING snapshot:       PASS — recovery-only branch br-long-glade-abv9jrk0
 STAGING preflight:      PASS — explicitly read-only; rolled back
-STAGING deploy/smoke:   NOT STARTED
+STAGING Security Scan:  PASS — run 30514385014
+STAGING Render web:     PASS — compiled build f321eb0; health HTTP 200
+STAGING migration:      PASS — 148 applied; candidate finished
+STAGING cron tick:      PENDING RENDER LOG CONFIRMATION
+STAGING human smoke:    NOT STARTED
 ```
 
 The control owner confirmed the immediately pre-deployment recovery point:
@@ -79,7 +83,34 @@ The eight rolled-back rows are the previously reviewed resolved retry history, n
 ledger failures. No names, addresses, bodies, row identifiers or provider evidence were
 retrieved.
 
-## 2. Preconditions For STAGING Human Smoke
+## 2A. STAGING Technical Deployment Evidence
+
+Local and remote STAGING fast-forwarded without merge commit from `15559f12` to exact
+`f321eb07936ec546e8738c22709809b2704be5ed`. Exact staging Security Scan run
+`30514385014` passed.
+
+The public login page's compiled layout bundle changed from displayed build `15559f1` to
+`f321eb0`. The post-switch `/api/health` result is HTTP 200, database connected and RLS enabled
+on 11/11 expected tables.
+
+Independent aggregate-only database verification ran in an explicitly read-only transaction:
+
+```text
+candidate migration:     1 finished; 0 unfinished; 0 rolled back
+successful migrations:   148
+candidate tables:        2
+Club visibility rows:    0
+visibility-recipient rows: 0
+Emails / recipients / attachments / links: 28 / 556 / 20 / 8
+transaction terminator:  ROLLBACK
+```
+
+The unchanged existing aggregates and zero candidate-table rows prove that the additive
+migration did not reconcile or rewrite historic Email evidence. The workspace has no Render API
+credential and therefore does not invent a cron-log result. The actual STAGING Cron Job
+`isostack-bedrock-1` requires one successful post-deployment invocation before human smoke.
+
+## 2B. Preconditions For STAGING Human Smoke
 
 - run exact commit `f321eb07936ec546e8738c22709809b2704be5ed`;
 - first fast-forward `dev` and `origin/dev`, and require the exact dev Security Scan to pass;
