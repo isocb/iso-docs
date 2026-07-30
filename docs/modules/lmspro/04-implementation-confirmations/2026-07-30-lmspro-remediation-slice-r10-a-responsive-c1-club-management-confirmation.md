@@ -2,8 +2,8 @@
 
 Date: 2026-07-30
 
-Status: IMPLEMENTATION COMMITTED; LOCAL TECHNICAL GATES GREEN; DEV/STAGING PROMOTION IN
-PROGRESS
+Status: IMPLEMENTATION COMMITTED; LOCAL TECHNICAL GATES GREEN; DEV/STAGING EXACT AND SECURITY
+GREEN; PUBLIC STAGING HEALTHY; RENDER EXACT DISPLAY AND HUMAN SMOKE PENDING
 
 Planning source:
 
@@ -26,6 +26,18 @@ exact candidate:
   f374b61a
 migration:
   none
+origin/dev and local dev:
+  f374b61af104396a8f8712a55cb51107472f90f4
+origin/staging and local staging:
+  f374b61af104396a8f8712a55cb51107472f90f4
+origin/main:
+  fbab1862fa8124ae5f1d64df1b2741fdb19761fc
+exact dev Security Scan:
+  PASS — run 30521487931
+exact staging Security Scan:
+  PASS — run 30521622851
+public staging health:
+  HTTP 200; database connected; RLS 11/11
 ```
 
 ## 1. Implemented Boundary
@@ -144,11 +156,8 @@ application commit `4ecf49f2` completely removes R10-A.
 Next:
 
 ```text
-fast-forward dev to exact f374b61a
--> require exact dev Security Scan PASS
--> fast-forward staging to the same commit
--> require exact staging Security Scan and public health PASS
--> stop for focused C1 human smoke
+confirm Render STAGING displays Live at f374b61
+-> execute focused C1 human smoke
 ```
 
 Production promotion is not authorised by this lifecycle stage.

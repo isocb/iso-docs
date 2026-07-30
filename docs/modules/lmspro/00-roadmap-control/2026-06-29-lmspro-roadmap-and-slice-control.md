@@ -872,6 +872,15 @@ name remains the keyboard route and Notes remains the explicit evidence shortcut
 
 Exact design-corrected candidate: `f374b61a`, a direct child of first candidate `4ecf49f2`.
 
+Promotion evidence:
+
+- local/origin dev and staging are exact `f374b61a`;
+- exact dev Security Scan `30521487931` passed;
+- exact staging Security Scan `30521622851` passed;
+- public staging health is HTTP 200 with database connected and RLS 11/11;
+- main remains the unchanged recovery baseline `fbab1862`; and
+- Render's displayed exact commit and focused C1 human smoke are the remaining gates.
+
 Controlling records:
 
 1. `docs/modules/lmspro/01-cr-inputs/2026-07-30-lmspro-responsive-c1-club-management-cr-input.md`;
