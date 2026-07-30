@@ -28,7 +28,7 @@ Migration:
 | --- | --- | --- |
 | R9-B prospective Club Email history | PASS after corrective transaction test | PASS |
 | R9-C shared responsive Team status | PASS after corrective selector/label tests | Corrective C1 labels/selectors PASS; responsive matrix pending |
-| R9-D pointer/keyboard attachment browse | PASS at bounded source/selection level | PENDING — authoritative browser proof |
+| R9-D pointer/keyboard attachment browse | PASS at bounded source/selection level | Chrome PASS; secondary supported browser pending |
 | Migration on authorised local development DB | PASS | N/A |
 | Historic reconciliation | NOT EXECUTED | NOT AUTHORISED |
 
@@ -205,6 +205,24 @@ counts are evidenced as PASS. The control owner then confirmed:
 
 R9-B focused STAGING human smoke is therefore PASS. No addresses, content, private URLs or
 identifiers are recorded.
+
+## 2E. R9-D Chrome Browser Result
+
+The complete R9-D schedule passed in current Chrome against exact STAGING `fbab1862`:
+
+- pointer activation opened exactly one native file chooser;
+- keyboard focus reached the Dropzone and Enter/Space each opened exactly one chooser;
+- one valid file produced one selected row without duplication;
+- drag/drop used the same selected-file presentation;
+- removing a file did not reopen the chooser;
+- an invalid type was unavailable in the native chooser and was not accepted;
+- a fourth file and a cumulative selection over 10 MB were refused;
+- save/reopen retained working pointer and keyboard activation; and
+- duplicate-draft pointer and keyboard activation passed.
+
+The already completed R9-B smoke supplies attachment and no-attachment delivery regression
+evidence. It need not be repeated for R9-D. A reduced pointer/Enter/Space/select/remove check in
+one second supported browser remains the proportionate cross-browser close condition.
 
 ## 2C. Retained Preconditions For STAGING Human Smoke
 

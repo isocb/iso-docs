@@ -221,6 +221,12 @@ Club A's copied Email-detail URL without content disclosure; Club B could downlo
 own authorised attachment; and Club A was denied Club B's copied attachment URL. R9-B focused
 STAGING human smoke is PASS.
 
+The control owner then completed the full R9-D schedule in current Chrome. Pointer, Enter and
+Space each opened exactly one chooser; valid selection, drag/drop, removal, invalid type,
+fourth-file and cumulative-size behaviour passed; and activation remained correct after
+save/reopen and duplicate. The existing R9-B delivery evidence avoids duplicate controlled
+Emails. One reduced activation check in a second supported browser remains pending.
+
 ## 5. Automated Evidence
 
 ```text
