@@ -2,9 +2,8 @@
 
 Date: 2026-07-30
 
-Status: STAGING NOTE-MODAL INTERACTION CORRECTION COMMITTED; LOCAL TECHNICAL GATES GREEN;
-DEV/STAGING EXACT AND SECURITY GREEN; PUBLIC STAGING HEALTHY; RENDER EXACT DISPLAY AND
-FOCUSED MODAL RETEST PENDING
+Status: STAGING IMPLEMENTATION AND HUMAN SMOKE PASS; CONTROL OWNER APPROVES EXACT
+FAST-FORWARD PRODUCTION PROMOTION
 
 Planning source:
 
@@ -43,6 +42,10 @@ exact staging Security Scan:
   PASS — run 30524101351
 public staging health:
   HTTP 200; database connected; RLS 11/11
+Render staging:
+  Live at cc4b4dc
+focused human staging smoke:
+  PASS
 ```
 
 ## 1. Implemented Boundary
@@ -177,12 +180,29 @@ the Note list still used small Edit/Archive icons, the modal was unnecessarily s
 was not sticky and Add Note remained visible while editing. Direct child `cc4b4dc8` applies the
 mandatory click-to-edit and CRUD-modal rules without changing a mutation or data contract.
 
+The final focused staging retest at `cc4b4dc8` passed:
+
+- no Note-row Edit/Archive icon actions;
+- full-row pointer, Enter and Space edit activation;
+- selected-Note-only edit mode with no competing Add Note action;
+- taller responsive mobile, tablet and 200%-zoom layout;
+- sticky footer;
+- Archive lower-left and Cancel/Save Changes lower-right;
+- Cancel without mutation; and
+- Add mode with Cancel/Add Note and no Archive.
+
+The first Render build attempt for `cc4b4dc8` reached the staging Neon database but timed out
+before migration execution while waiting for Prisma's global advisory lock. The candidate
+contains no schema or migration delta. The control owner used Render's safe retry-latest-commit
+operation; it completed and Render subsequently displayed `Live at cc4b4dc`. No lock bypass,
+migration repair, database URL change or manual database action occurred.
+
 Next:
 
 ```text
-confirm exact dev/staging Security Scans for `cc4b4dc8` pass
--> confirm Render STAGING displays Live at cc4b4dc
--> execute focused Notes interaction/modal retest
+fast-forward local main and origin/main from `fbab1862` to exact `cc4b4dc8`
+-> require exact main Security Scan and healthy production deployment
+-> stop for focused read-only production smoke
 ```
 
 Production promotion is not authorised by this lifecycle stage.

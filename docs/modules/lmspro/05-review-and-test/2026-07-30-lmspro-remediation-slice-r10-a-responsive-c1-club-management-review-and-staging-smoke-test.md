@@ -2,9 +2,7 @@
 
 Date: 2026-07-30
 
-Status: RESPONSIVE AND NOTE-BEHAVIOUR HUMAN STAGING SMOKE PASS; NOTE-MODAL INTERACTION DEFECT
-CORRECTED; EXACT DEV/STAGING SECURITY AND PUBLIC HEALTH PASS; RENDER DISPLAY AND FOCUSED
-MODAL RETEST PENDING
+Status: COMPLETE STAGING HUMAN SMOKE PASS; EXACT PRODUCTION PROMOTION APPROVED
 
 Implementation confirmation:
 
@@ -141,7 +139,31 @@ Unexpected behaviour: NONE / details
 
 ## 8. Current Decision
 
-The responsive boundary and substantive Note behaviour have passed human staging smoke. The
-exact modal-interaction correction has passed local implementation review, dev/staging Security
-Scans and public health. Render commit confirmation and the focused modal retest remain. Do not
-promote to production on automated evidence alone.
+The control owner confirmed Render `Live at cc4b4dc` and every focused modal item passed:
+
+- no Note-row Edit/Archive icons;
+- pointer, Enter and Space direct edit;
+- selected Note only and no Add Note during edit;
+- taller responsive modal at mobile, tablet and 200% zoom;
+- sticky visible footer;
+- Archive lower-left and Cancel/Save Changes lower-right;
+- Cancel makes no changes; and
+- Add mode shows Cancel/Add Note only.
+
+R10-A therefore passes its complete staging human boundary. The control owner authorises the
+clean exact fast-forward of main from `fbab1862` to `cc4b4dc8`. There is no schema or migration
+delta and no production database action is authorised or required beyond the deployment's
+normal idempotent migration-ledger check.
+
+After exact main Security Scan and production deployment health pass, stop for this read-only
+live smoke:
+
+1. confirm Render production displays `Live at cc4b4dc`;
+2. confirm existing C1 login and Club Management load;
+3. confirm responsive Club cards/table and the absence of generic Edit/Delete actions;
+4. open existing Club Notes without creating or changing data;
+5. confirm Note rows have no Edit/Archive icons;
+6. open one Note by row click, confirm the taller sticky-footer editor and select Cancel;
+7. confirm no unexpected notification or record change.
+
+Do not create, update, archive, approve or delete production data during this smoke.

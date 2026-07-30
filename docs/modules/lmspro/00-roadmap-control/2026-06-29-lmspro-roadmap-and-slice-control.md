@@ -908,8 +908,20 @@ Second human staging correction:
   Note during editing and sizes the modal responsively to the viewport;
 - no query, mutation, schema, migration, data, environment or business rule changes; and
 - exact dev Security Scan `30524100833` and staging Security Scan `30524101351` pass;
-- public staging health is HTTP 200 with database connected and RLS 11/11; and
-- Render exact display and the focused modal-only retest remain.
+- public staging health is HTTP 200 with database connected and RLS 11/11.
+
+Final staging result and promotion:
+
+- Render staging displayed `Live at cc4b4dc`;
+- the complete Note-row, keyboard, selected-record, action-suppression, responsive-modal,
+  sticky-footer, footer-placement and Cancel/Add-mode schedule passed;
+- the first `cc4b4dc8` Render build timed out before migration execution on Prisma's advisory
+  lock; the candidate has no migration delta and a safe retry-latest-commit completed without
+  any lock bypass, ledger repair, URL change or manual database action;
+- the control owner accepts R10-A staging evidence and authorises the exact clean fast-forward
+  of main from `fbab1862` to `cc4b4dc8`; and
+- exact main Security Scan, production deployment health and focused read-only live smoke
+  remain before lifecycle closure.
 
 Controlling records:
 
@@ -1020,8 +1032,8 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Confirm exact `cc4b4dc8` dev/staging Security Scans and Render STAGING display, execute the
-focused R10-A Notes modal interaction retest and stop for the production-promotion decision
+Fast-forward local main and origin/main to exact `cc4b4dc8`, require the exact main Security
+Scan and healthy production deployment, then stop for focused read-only live smoke
 ```
 
 Goal:
