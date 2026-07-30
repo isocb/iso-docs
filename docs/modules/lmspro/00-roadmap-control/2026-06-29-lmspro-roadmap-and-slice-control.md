@@ -971,6 +971,11 @@ The aggregate-only STAGING preflight passed in an explicitly read-only transacti
 with `ROLLBACK`: fingerprint `d315b1dd8b98`, correct authorised tenant/season, 147 successful
 migrations, zero unfinished or unresolved rolled-back migration names, and no R9-B candidate
 table or ledger row. The fresh recovery snapshot remains required before the staging push.
+
+The recovery gate is now satisfied. The control owner confirmed dormant STAGING snapshot branch
+`br-long-glade-abv9jrk0`, named `Staging Snaphot before cronjob fix 2026-07-30`, created
+`2026-07-30 05:34:51 +01:00`. It is a recovery copy only; the active STAGING database and URL
+remain unchanged.
 Wishlist items `LMS-W-UX-01` and `LMS-W-UX-02` remain non-blocking presentation follow-ups.
 
 ## Fresh Chat Prompt

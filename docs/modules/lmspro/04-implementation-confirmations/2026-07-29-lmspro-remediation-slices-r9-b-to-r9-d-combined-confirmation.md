@@ -45,6 +45,11 @@ tenant/season matched, all 147 repository-baseline migrations were applied, no u
 unresolved rolled-back migration existed, and both candidate tables and the candidate ledger
 row were absent.
 
+The control owner subsequently confirmed dormant recovery branch `br-long-glade-abv9jrk0`,
+named `Staging Snaphot before cronjob fix 2026-07-30`, created
+`2026-07-30 05:34:51 +01:00`. The current STAGING database remains the authorised target; no
+database URL change is required.
+
 ## 1. R9-B Implemented Boundary
 
 The additive model is:

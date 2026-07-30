@@ -41,10 +41,22 @@ dev Security Scan:      PASS — run 30513826659
 local staging:          15559f1275d7f8ae3990cc6a9dcda5f35748e570
 origin/staging:         15559f1275d7f8ae3990cc6a9dcda5f35748e570
 main/origin-main:       15559f1275d7f8ae3990cc6a9dcda5f35748e570
-STAGING snapshot:       PENDING
+STAGING snapshot:       PASS — recovery-only branch br-long-glade-abv9jrk0
 STAGING preflight:      PASS — explicitly read-only; rolled back
 STAGING deploy/smoke:   NOT STARTED
 ```
+
+The control owner confirmed the immediately pre-deployment recovery point:
+
+```text
+snapshot branch ID: br-long-glade-abv9jrk0
+snapshot branch name: Staging Snaphot before cronjob fix 2026-07-30
+snapshot created: 2026-07-30 05:34:51 +01:00
+disposition: dormant recovery copy only
+```
+
+The active STAGING database remains the migration/deployment target. Its URL must not be replaced
+with the snapshot URL.
 
 The pre-snapshot read-only STAGING preflight recorded:
 
