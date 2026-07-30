@@ -210,11 +210,12 @@ focused corrective human re-smoke subsequently passed.
 The control owner confirmed Render STAGING Live at exact `fbab1862`. Exact staging Security Scan
 run `30516573670` passed. C1 Waiting List Club selectors, friendly Team statuses and preservation
 of a Team's linked Waiting List Club all passed. A new no-attachment Club Email saved, sent and
-appeared once in the intended C2 Club history. A controlled attachment Email appeared only in
-its intended Club B history, while Club A continued to see only Club A Emails. The existing
-resource acknowledgement remained enforced with an explanatory notice. The remaining
-responsive, keyboard, copied-detail-URL and attachment-download authority checks stay in the
-companion review schedule.
+appeared once in the intended C2 Club history, with separate provider-recipient and Club-history
+audience counts displayed before send. A controlled attachment Email appeared only in its
+intended Club B history, while Club A continued to see only Club A Emails. The existing resource
+acknowledgement remained enforced with an explanatory notice. The remaining responsive,
+keyboard, copied-detail-URL and attachment-download authority checks stay in the companion
+review schedule.
 
 ## 5. Automated Evidence
 

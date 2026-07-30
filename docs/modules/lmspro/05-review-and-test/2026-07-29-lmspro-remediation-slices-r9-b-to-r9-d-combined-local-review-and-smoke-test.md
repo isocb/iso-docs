@@ -185,6 +185,7 @@ Focused C1 correction checks passed:
 Focused prospective Email checks passed:
 
 - a Waiting List Club was selectable;
+- separate provider-recipient and Club-history audience counts appeared;
 - a new no-attachment Email sent successfully and appeared once in C1 Sent;
 - the same new Email appeared once in the intended Club A C2 history;
 - historic Email absence remained the accepted expected result;
@@ -195,11 +196,10 @@ Focused prospective Email checks passed:
   controlled Club B Email; and
 - Club A could see only Club A Emails and not Club B Emails.
 
-The control owner did not explicitly mark the separate provider-recipient and Club-history
-audience-count display check, so that result remains unconfirmed. The list-level cross-Club
-privacy boundary is evidenced as PASS; copied-detail-URL denial and private attachment download
-authority remain separate checks in the retained schedule. No addresses, content or identifiers
-are recorded.
+The list-level cross-Club privacy boundary and separate provider-recipient/Club-history audience
+counts are evidenced as PASS. Copied-detail-URL denial and private attachment download authority
+remain separate checks in the retained schedule. No addresses, content or identifiers are
+recorded.
 
 ## 2C. Retained Preconditions For STAGING Human Smoke
 
