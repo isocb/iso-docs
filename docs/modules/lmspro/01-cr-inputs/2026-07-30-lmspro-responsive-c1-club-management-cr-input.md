@@ -79,3 +79,17 @@ The control owner's instruction on 2026-07-30 authorises the bounded lifecycle t
 through local implementation, automated dev validation and staging promotion without another
 administrative approval. Work must stop if a business decision is discovered.
 
+## 5. Accepted Design Clarification
+
+Pre-smoke review clarified the retained-action requirement:
+
+- the compact card must not repeat generic Edit or Delete icons;
+- Notes remains the useful non-destructive evidence shortcut and sits above `More details`;
+- the desktop table must not retain an Actions column or small Edit/Delete/Approve targets;
+- the complete desktop row is the large pointer target for Club detail;
+- the Club-name control remains the explicit keyboard-operable route; and
+- detailed edit/destructive workflows belong on the opened child page or protected modal, not
+  as generic list-row shortcuts.
+
+This clarification supersedes references above to retaining inline list actions. It changes
+presentation and action placement only; it does not change any mutation authority.

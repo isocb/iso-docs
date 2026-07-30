@@ -20,6 +20,10 @@ branch:
   feature/lmspro-r10-a-responsive-club-management
 implementation commit:
   4ecf49f2
+design-rule correction:
+  f374b61a
+exact candidate:
+  f374b61a
 migration:
   none
 ```
@@ -35,9 +39,12 @@ R10-A:
 - adds a matching-results count;
 - makes search, status and season controls responsive;
 - exposes Club detail as a native `More details` button with a Club-specific accessible name;
-- retains notes, edit, eligible direct approval and eligible delete actions on compact cards;
-- adds Club-specific accessible names to the retained table icon actions; and
-- keeps delete disabled for Clubs with Teams and direct approval limited by the existing helper.
+- retains Notes above `More details` and the exceptional eligible direct-approval action;
+- removes repeated generic Edit and Delete icons from compact cards in accordance with the
+  responsive management-card design rule;
+- removes the desktop Actions column and makes the complete table row the Club-detail pointer
+  target while retaining the Club-name keyboard control; and
+- keeps direct approval limited by the existing helper.
 
 No status, filter value, sort meaning, action eligibility, mutation or navigation target was
 changed.
@@ -51,6 +58,15 @@ changed.
 
 It supplies the card's count grammar and Club-specific accessible action labels. The page does
 not duplicate admission or participation rules.
+
+The first committed candidate exposed Notes, Edit and Delete icons beneath `More details`.
+Control-owner review corrected that before human smoke: Notes is useful evidence and is retained
+above the primary button; generic Edit and Delete are not repeated on the compact card.
+
+The same review then identified generic Edit/Delete/Approve icon targets in the desktop Actions
+column. The corrected boundary removes that column, retains Notes as the explicit evidence
+shortcut and opens Club detail from the complete row. No mutation implementation or authority
+was changed.
 
 ## 3. Changed Files
 
@@ -114,6 +130,12 @@ The production build completed all 131 static-page generation steps. Its local e
 reported the established missing/non-HTTPS Upstash development warnings; these did not stop the
 build and are not caused by R10-A.
 
+After the design correction, two incremental builds compiled the application but different
+generated `.next` page-manifest entries failed during page collection. The generated cache was
+moved intact to `/private/tmp/isostack-r10-next-cache.Xopw1i/.next`; a clean build then compiled,
+collected page data and generated all 131 static pages successfully. No source or environment
+file was removed.
+
 ## 6. Recovery And Next Gate
 
 Recovery remains exact `fbab1862`. Because no database or environment state changed, reverting
@@ -122,7 +144,7 @@ application commit `4ecf49f2` completely removes R10-A.
 Next:
 
 ```text
-fast-forward dev to exact 4ecf49f2
+fast-forward dev to exact f374b61a
 -> require exact dev Security Scan PASS
 -> fast-forward staging to the same commit
 -> require exact staging Security Scan and public health PASS
@@ -130,4 +152,3 @@ fast-forward dev to exact 4ecf49f2
 ```
 
 Production promotion is not authorised by this lifecycle stage.
-

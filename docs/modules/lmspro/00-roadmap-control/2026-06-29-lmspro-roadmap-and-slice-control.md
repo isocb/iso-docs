@@ -856,6 +856,22 @@ Implementation update:
 - no schema, migration, database, environment, job or notification change exists; and
 - exact dev/staging Security Scan and staging health gates remain before human smoke.
 
+Pre-smoke design correction:
+
+- control-owner review found that the first compact card unnecessarily repeated Edit and Delete
+  icon actions below `More details`;
+- compact Club cards retain the helpful Notes shortcut above `More details`;
+- generic Edit and Delete remain in the dedicated detail/modal workflow and are removed from
+  the compact card; and
+- the reusable responsive data-display rule is recorded in
+  `docs/guides/table-crud-pattern.md`.
+
+The control owner then applied the same rule to the desktop table: its Actions column and small
+generic Edit/Delete/Approve targets are removed, the complete row opens Club detail, the Club
+name remains the keyboard route and Notes remains the explicit evidence shortcut.
+
+Exact design-corrected candidate: `f374b61a`, a direct child of first candidate `4ecf49f2`.
+
 Controlling records:
 
 1. `docs/modules/lmspro/01-cr-inputs/2026-07-30-lmspro-responsive-c1-club-management-cr-input.md`;

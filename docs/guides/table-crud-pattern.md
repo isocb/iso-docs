@@ -1,6 +1,6 @@
 # Table CRUD Pattern - Enforcement Guide
 
-**Version:** 1.1  
+**Version:** 1.2
 **Authority:** isostack-ux-ui-standard.md Section 7.1  
 **Status:** MANDATORY for all table interfaces
 
@@ -17,6 +17,29 @@ All table-to-CRUD interfaces MUST follow the "Click-to-View-and-Edit" pattern de
 3. **Large click targets** - No sub-16px interactive elements
 4. **Cursor feedback** - `cursor: 'pointer'` on DataTable
 5. **Sortable columns default as standard** - all sortable headers are click targets, first click sorts asc, second click reverses
+
+## Responsive Compact-Card Extension
+
+When a wide management table becomes compact cards below the desktop breakpoint:
+
+1. The compact cards and desktop table MUST consume the same filtered and sorted result.
+2. A card MUST retain the entity's identity, complete friendly status and the minimum context
+   needed to distinguish the record.
+3. Use one large, keyboard-operable primary route: card click or a full-width
+   **More details** button with an entity-specific accessible name.
+4. Do not repeat generic Edit or Delete icon actions on the compact card. Edit belongs in the
+   opened CRUD modal or child page; Delete belongs in that modal/page's protected action area.
+5. One genuinely useful, non-destructive evidence shortcut such as Notes may remain. Place it
+   above the primary More details control, give it an explicit accessible name and do not let it
+   compete visually with the primary route.
+6. An exceptional domain-specific quick action requires an explicit approved workflow reason;
+   it must not be introduced merely to duplicate the detail workflow.
+7. Labels and status badges must wrap without clipping, and the card stack must not introduce
+   page-wide horizontal scrolling.
+8. Pointer, Enter, Space and 200% zoom behaviour must be included in focused human smoke.
+
+This extension does not authorise different card/table filtering, status calculation,
+permissions or mutation behaviour.
 
 ### ❌ NEVER DO THIS
 
@@ -292,6 +315,6 @@ Manual verification:
 
 ---
 
-**Last Updated:** 11 June 2026  
+**Last Updated:** 30 July 2026
 **Maintained by:** Platform Team  
 **Questions:** Refer to isostack-ux-ui-standard.md

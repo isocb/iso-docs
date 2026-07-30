@@ -54,11 +54,12 @@ It must show:
 - season;
 - Team count;
 - a native `More details` button with `More details for {Club}` as its accessible name; and
-- notes, edit, eligible direct approval and eligible delete controls with explicit accessible
-  names.
+- a non-destructive notes shortcut above `More details`, plus the exceptional eligible direct
+  approval control where the existing helper permits it.
 
-Delete remains disabled when the Club has Teams. Direct approval remains absent unless the
-existing helper permits it.
+Generic edit and delete controls must not be repeated on the compact card. They remain in the
+dedicated detail/modal workflow. Direct approval remains absent unless the existing helper
+permits the established exceptional legacy workflow.
 
 ### 3.2 Page integration
 
@@ -80,11 +81,15 @@ count from the season result total when those values differ.
 ### 3.3 Accessibility and resilience
 
 - Native buttons provide Enter/Space activation.
-- Icon-only controls receive Club-specific `aria-label` values.
+- Retained icon-only controls receive Club-specific `aria-label` values.
 - Status text must not be clipped or reduced to colour alone.
 - Long Club identity must wrap within the card.
 - Card actions may wrap without creating page-wide horizontal scrolling.
 - The desktop table remains the complete high-density operator view.
+
+The control-owner design clarification removes its generic Actions column. The complete row is
+the large pointer target for Club detail; the Club-name button remains the keyboard-operable
+route. Notes remains the one explicit inline evidence shortcut and stops row propagation.
 
 ## 4. Likely Files
 
@@ -119,7 +124,9 @@ The focused test should prove that:
 
 - complete Club identity, status, season and Team count render;
 - the details action is a named native button;
-- eligible actions render with accessible names;
+- Notes appears above that button with an accessible name;
+- generic Edit and Delete icons are absent from compact cards;
+- any retained exceptional eligible action renders with an accessible name;
 - direct approval is absent when ineligible; and
 - deletion is disabled when Teams exist.
 
@@ -155,10 +162,11 @@ At mobile, tablet, desktop and 200% zoom:
 6. confirm the matching count agrees with the visible cards/table rows;
 7. confirm Club-name sort order remains alphabetical;
 8. open `More details` with pointer, Enter and Space and confirm the correct Club;
-9. open notes and edit from a compact card and close without changing data;
-10. confirm delete remains disabled for a Club with Teams;
+9. open notes from a compact card and close without changing data;
+10. confirm compact cards do not repeat Edit or Delete icons;
 11. where an eligible legacy Pending Club exists, confirm approval is offered only there; and
-12. confirm the desktop table retains its existing columns and actions.
+12. confirm the desktop table retains its data columns, has no Actions column or generic small
+    action targets, and opens the correct Club when the row is selected.
 
 Human smoke should avoid creating, updating, approving or deleting a Club. It exercises
 presentation and modal/navigation opening only.
@@ -168,4 +176,3 @@ presentation and modal/navigation opening only.
 The plan is complete, internally consistent and proportionate. No business decision is open.
 The control owner's instruction authorises implementation and staging progression when every
 technical gate is green.
-

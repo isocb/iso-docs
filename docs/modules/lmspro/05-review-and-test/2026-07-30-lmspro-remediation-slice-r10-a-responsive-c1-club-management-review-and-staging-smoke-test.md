@@ -12,7 +12,7 @@ Implementation confirmation:
 Exact candidate:
 
 ```text
-4ecf49f2
+f374b61a
 ```
 
 ## 1. Technical Review
@@ -61,8 +61,8 @@ The exact recovery point is application commit `fbab1862`.
 
 Preconditions:
 
-- Render STAGING shows `Live at 4ecf49f` (Render's normal seven-character display);
-- the staging Security Scan for exact `4ecf49f2` is green; and
+- Render STAGING shows `Live at f374b61` (Render's normal seven-character display);
+- the staging Security Scan for exact `f374b61a` is green; and
 - public health is HTTP 200 with database connected.
 
 Use a C1 login. Do not create, update, approve or delete a Club.
@@ -93,23 +93,25 @@ Test C1 Club Management at mobile, tablet, desktop and 200% zoom:
 - use pointer to open `More details` and confirm the correct Club;
 - focus another card's `More details`, press Enter and confirm the correct Club;
 - repeat with Space;
-- open notes from a card and close without changing data;
-- open edit from a card and cancel without saving;
-- confirm delete is disabled for a Club with Teams;
+- confirm Notes is placed above `More details`, then open and close it without changing data;
+- confirm compact cards do not show generic Edit or Delete icons;
 - confirm direct approval is not offered for admitted Clubs; and
 - if a Team-free unlinked legacy Pending Club exists, confirm approval is offered only there
   without activating it.
 
 ### Desktop regression
 
-- confirm Notes, Club Name, Primary Contact, Season, Teams, Status and Actions remain visible;
+- confirm Notes, Club Name, Primary Contact, Season, Teams and Status remain visible;
+- confirm there is no Actions column and no generic small Edit/Delete/Approve target;
+- click an ordinary non-Notes part of a row and confirm the correct Club detail opens;
+- use the keyboard-operable Club-name control and confirm the correct Club detail opens;
 - confirm table sorting still works; and
-- open details, notes and edit, closing without changing data.
+- open and close Notes without changing data.
 
 ## 5. Result Template
 
 ```text
-Render Live at 4ecf49f: YES / NO
+Render Live at f374b61: YES / NO
 
 Responsive:
 Mobile cards: PASS / FAIL
@@ -133,11 +135,13 @@ Enter More details: PASS / FAIL
 Space More details: PASS / FAIL
 Correct Club opened: PASS / FAIL
 Notes opens/closes unchanged: PASS / FAIL
-Edit opens/cancels unchanged: PASS / FAIL
-Delete disabled with Teams: PASS / FAIL
+Notes sits above More details: PASS / FAIL
+No compact Edit/Delete icons: PASS / FAIL
 Approval eligibility unchanged: PASS / FAIL / NOT REPRESENTED
 
 Desktop regression: PASS / FAIL
+No desktop Actions column/small generic targets: PASS / FAIL
+Desktop row opens correct Club: PASS / FAIL
 Unexpected behaviour: NONE / details
 ```
 
@@ -146,4 +150,3 @@ Unexpected behaviour: NONE / details
 Local implementation is technically suitable to progress through the exact dev and staging
 gates. Stop after healthy staging deployment for the control owner's human smoke. Do not promote
 to production on automated evidence alone.
-
