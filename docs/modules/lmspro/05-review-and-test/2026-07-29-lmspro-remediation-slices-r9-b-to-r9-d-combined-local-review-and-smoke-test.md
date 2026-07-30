@@ -278,6 +278,18 @@ This is the expected pre-promotion state. No production row, schema, environment
 changed. Promotion is paused until the control owner confirms a fresh dormant snapshot of this
 active production branch.
 
+The recovery gate is satisfied. The control owner confirmed:
+
+```text
+snapshot name: Main - snaphot before fbab1862fa8124ae5f1d64df1b2741fdb19761fc
+snapshot branch ID: br-mute-paper-abuiyyj1
+created: 2026-07-30 07:13:14 +01:00
+time to live: 7 days
+disposition: dormant recovery copy only
+```
+
+The active production database and URL remain unchanged.
+
 ## 2C. Retained Preconditions For STAGING Human Smoke
 
 These were the initial `f321eb07` deployment preconditions and remain as evidence. The

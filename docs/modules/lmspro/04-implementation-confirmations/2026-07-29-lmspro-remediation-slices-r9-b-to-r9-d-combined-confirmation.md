@@ -244,6 +244,12 @@ successful migrations, zero unfinished migrations, no R9-B candidate ledger row 
 candidate table. No production change occurred. The fresh dormant production snapshot is the
 remaining recovery gate before moving `main`.
 
+The control owner then confirmed dormant seven-day production snapshot
+`br-mute-paper-abuiyyj1`, named
+`Main - snaphot before fbab1862fa8124ae5f1d64df1b2741fdb19761fc`, created
+`2026-07-30 07:13:14 +01:00`. The active production database remains the target and its URL is
+unchanged.
+
 ## 5. Automated Evidence
 
 ```text

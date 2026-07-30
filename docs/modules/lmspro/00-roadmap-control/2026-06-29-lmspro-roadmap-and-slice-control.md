@@ -1011,6 +1011,10 @@ active production endpoint `ep-autumn-silence-abep1qat`, fingerprint `fc6d0a8f1b
 147 successful migrations, zero unfinished migrations, no R9-B candidate ledger row and neither
 candidate table. This is the expected pre-promotion state. `main`, production schema and
 production data remain unchanged while a fresh dormant production snapshot is obtained.
+The control owner confirmed seven-day recovery snapshot `br-mute-paper-abuiyyj1`, named
+`Main - snaphot before fbab1862fa8124ae5f1d64df1b2741fdb19761fc`, created
+`2026-07-30 07:13:14 +01:00`. It is a dormant recovery copy only; the active production target
+and URL remain unchanged.
 Wishlist items `LMS-W-UX-01` and `LMS-W-UX-02` remain non-blocking presentation follow-ups.
 
 ## Fresh Chat Prompt
