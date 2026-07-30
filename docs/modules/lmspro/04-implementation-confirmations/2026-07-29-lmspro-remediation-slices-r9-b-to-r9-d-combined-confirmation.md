@@ -225,7 +225,8 @@ The control owner then completed the full R9-D schedule in current Chrome. Point
 Space each opened exactly one chooser; valid selection, drag/drop, removal, invalid type,
 fourth-file and cumulative-size behaviour passed; and activation remained correct after
 save/reopen and duplicate. The existing R9-B delivery evidence avoids duplicate controlled
-Emails. One reduced activation check in a second supported browser remains pending.
+Emails. The reduced activation check subsequently passed in Safari. R9-D human browser smoke is
+PASS.
 
 ## 5. Automated Evidence
 

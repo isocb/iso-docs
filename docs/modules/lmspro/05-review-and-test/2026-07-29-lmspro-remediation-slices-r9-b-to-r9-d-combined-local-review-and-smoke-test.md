@@ -28,7 +28,7 @@ Migration:
 | --- | --- | --- |
 | R9-B prospective Club Email history | PASS after corrective transaction test | PASS |
 | R9-C shared responsive Team status | PASS after corrective selector/label tests | Corrective C1 labels/selectors PASS; responsive matrix pending |
-| R9-D pointer/keyboard attachment browse | PASS at bounded source/selection level | Chrome PASS; secondary supported browser pending |
+| R9-D pointer/keyboard attachment browse | PASS at bounded source/selection level | PASS — Chrome and Safari |
 | Migration on authorised local development DB | PASS | N/A |
 | Historic reconciliation | NOT EXECUTED | NOT AUTHORISED |
 
@@ -221,8 +221,9 @@ The complete R9-D schedule passed in current Chrome against exact STAGING `fbab1
 - duplicate-draft pointer and keyboard activation passed.
 
 The already completed R9-B smoke supplies attachment and no-attachment delivery regression
-evidence. It need not be repeated for R9-D. A reduced pointer/Enter/Space/select/remove check in
-one second supported browser remains the proportionate cross-browser close condition.
+evidence. It need not be repeated for R9-D. The control owner subsequently confirmed the reduced
+activation check passed in Safari. Chrome and Safari evidence therefore closes R9-D human smoke
+as PASS.
 
 ## 2C. Retained Preconditions For STAGING Human Smoke
 
