@@ -5,7 +5,8 @@ Date: 2026-07-29
 Status: IMPLEMENTATION COMMITTED; DEV/STAGING ALIGNED; EXACT SECURITY SCANS, ADDITIVE
 STAGING MIGRATION, WEB DEPLOYMENT AND CRON TICK PASS; INITIAL HUMAN SMOKE STOPPED;
 CORRECTIVE DEPLOYMENT AND COMPLETE STAGING HUMAN SMOKE PASS; PRODUCTION READ-ONLY PREFLIGHT
-PASS; FRESH PRODUCTION SNAPSHOT PENDING
+AND SNAPSHOT PASS; MAIN FAST-FORWARD, SECURITY SCAN, MIGRATION AND HEALTH PASS; LIVE HUMAN
+CONFIRMATION PENDING
 
 Planning source:
 
@@ -249,6 +250,14 @@ The control owner then confirmed dormant seven-day production snapshot
 `Main - snaphot before fbab1862fa8124ae5f1d64df1b2741fdb19761fc`, created
 `2026-07-30 07:13:14 +01:00`. The active production database remains the target and its URL is
 unchanged.
+
+Local/remote `main` then fast-forwarded without merge commit from `15559f12` to the exact tested
+candidate `fbab1862`; local/remote `dev` and `staging` already matched. Exact main Security Scan
+run `30519008355` passed. Independent read-only production verification confirms 148 successful
+migrations, zero unfinished migrations, the R9-B migration finished without rollback, both
+additive tables present and zero visibility/visibility-recipient rows. No historic Email was
+reconciled. Production health is HTTP 200 with its database connected and RLS 11/11. Render
+exact-commit confirmation and non-mutating human live smoke remain pending.
 
 ## 5. Automated Evidence
 

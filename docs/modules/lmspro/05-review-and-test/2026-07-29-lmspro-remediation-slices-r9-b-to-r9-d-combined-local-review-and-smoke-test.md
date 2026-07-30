@@ -5,7 +5,8 @@ Date: 2026-07-29
 Status: AUTOMATED LOCAL REVIEW PASS; INITIAL STAGING DEPLOYMENT, MIGRATION, SECURITY SCAN,
 WEB HEALTH AND CRON TICK PASS; HUMAN SMOKE STOPPED ON CORRECTABLE APPLICATION DEFECTS;
 CORRECTIVE DEPLOYMENT AND COMPLETE STAGING HUMAN SMOKE PASS; PRODUCTION READ-ONLY PREFLIGHT
-PASS; FRESH PRODUCTION SNAPSHOT PENDING
+AND SNAPSHOT PASS; MAIN FAST-FORWARD, SECURITY SCAN, MIGRATION AND HEALTH PASS; LIVE HUMAN
+CONFIRMATION PENDING
 
 Application under review:
 
@@ -289,6 +290,38 @@ disposition: dormant recovery copy only
 ```
 
 The active production database and URL remain unchanged.
+
+## 2H. Production Source And Machine Verification
+
+Immediately before promotion, remote refs were refreshed and still matched the reviewed
+preconditions. `main` then fast-forwarded without merge commit from `15559f12` to exact
+`fbab1862`. Local/remote `dev`, `staging` and `main` now align at:
+
+`fbab1862fa8124ae5f1d64df1b2741fdb19761fc`
+
+Exact main Security Scan run `30519008355` passed dependency vulnerability, database-schema,
+secret-detection and TypeScript gates.
+
+Render's normal deployment migration step applied the one pending additive migration.
+Independent verification against the unchanged active production database ran in a read-only
+transaction and rolled back:
+
+```text
+successful migrations:              148
+unfinished migrations:              0
+R9-B candidate ledger row:          1 — finished; not rolled back
+email_club_visibilities:             present
+email_club_visibility_recipients:   present
+historic visibility rows:           0
+visibility-recipient rows:          0
+terminator:                          ROLLBACK
+```
+
+The zero audience rows prove that deployment performed no historic Email reconciliation. The
+public production endpoint `https://app.seasonpro.co.uk/api/health` returned HTTP 200 with the
+database connected and RLS enabled on 11/11 expected tables. Because the health endpoint does
+not expose the running Git commit, control-owner confirmation that Render is Live at displayed
+`fbab1862` remains required before the non-mutating live smoke.
 
 ## 2C. Retained Preconditions For STAGING Human Smoke
 

@@ -1015,6 +1015,14 @@ The control owner confirmed seven-day recovery snapshot `br-mute-paper-abuiyyj1`
 `Main - snaphot before fbab1862fa8124ae5f1d64df1b2741fdb19761fc`, created
 `2026-07-30 07:13:14 +01:00`. It is a dormant recovery copy only; the active production target
 and URL remain unchanged.
+
+Local/remote `main` subsequently fast-forwarded without merge commit from `15559f12` to exact
+`fbab1862`; local/remote `dev` and `staging` already matched. Exact main Security Scan run
+`30519008355` passed. Read-only production verification records 148 successful migrations, zero
+unfinished migrations, the one R9-B additive migration finished without rollback, both
+candidate tables present and zero prospective audience rows. No historic reconciliation ran.
+Public production health is HTTP 200 with database connected and RLS 11/11. Render exact-commit
+confirmation and non-mutating live smoke remain the final promotion gate.
 Wishlist items `LMS-W-UX-01` and `LMS-W-UX-02` remain non-blocking presentation follow-ups.
 
 ## Fresh Chat Prompt
