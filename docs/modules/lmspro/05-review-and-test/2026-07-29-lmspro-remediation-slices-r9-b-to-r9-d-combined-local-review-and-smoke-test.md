@@ -4,7 +4,7 @@ Date: 2026-07-29
 
 Status: AUTOMATED LOCAL REVIEW PASS; INITIAL STAGING DEPLOYMENT, MIGRATION, SECURITY SCAN,
 WEB HEALTH AND CRON TICK PASS; HUMAN SMOKE STOPPED ON CORRECTABLE APPLICATION DEFECTS;
-CORRECTIVE CANDIDATE DEPLOYING
+CORRECTIVE DEPLOYMENT AND FOCUSED RE-SMOKE PASS; REMAINING HUMAN MATRIX PENDING
 
 Application under review:
 
@@ -26,8 +26,8 @@ Migration:
 
 | Outcome | Automated/local technical result | Human result |
 | --- | --- | --- |
-| R9-B prospective Club Email history | PASS after corrective transaction test | STOPPED; corrective re-smoke pending |
-| R9-C shared responsive Team status | PASS after corrective selector/label tests | STOPPED; corrective re-smoke pending |
+| R9-B prospective Club Email history | PASS after corrective transaction test | Core same-/other-Club list authority PASS; remaining detail/resource checks pending |
+| R9-C shared responsive Team status | PASS after corrective selector/label tests | Corrective C1 labels/selectors PASS; responsive matrix pending |
 | R9-D pointer/keyboard attachment browse | PASS at bounded source/selection level | PENDING — authoritative browser proof |
 | Migration on authorised local development DB | PASS | N/A |
 | Historic reconciliation | NOT EXECUTED | NOT AUTHORISED |
@@ -40,19 +40,19 @@ Production remains outside this record.
 Release evidence:
 
 ```text
-local dev:              f321eb07936ec546e8738c22709809b2704be5ed
-origin/dev:             f321eb07936ec546e8738c22709809b2704be5ed
-dev Security Scan:      PASS — run 30513826659
-local staging:          f321eb07936ec546e8738c22709809b2704be5ed
-origin/staging:         f321eb07936ec546e8738c22709809b2704be5ed
+local dev:              fbab1862fa8124ae5f1d64df1b2741fdb19761fc
+origin/dev:             fbab1862fa8124ae5f1d64df1b2741fdb19761fc
+dev Security Scan:      PASS — run 30516436459
+local staging:          fbab1862fa8124ae5f1d64df1b2741fdb19761fc
+origin/staging:         fbab1862fa8124ae5f1d64df1b2741fdb19761fc
 main/origin-main:       15559f1275d7f8ae3990cc6a9dcda5f35748e570
 STAGING snapshot:       PASS — recovery-only branch br-long-glade-abv9jrk0
 STAGING preflight:      PASS — explicitly read-only; rolled back
-STAGING Security Scan:  PASS — run 30514385014
-STAGING Render web:     PASS — compiled build f321eb0; health HTTP 200
+STAGING Security Scan:  PASS — run 30516573670
+STAGING Render web:     PASS — control-owner confirmation Live at fbab1862; health HTTP 200
 STAGING migration:      PASS — 148 applied; candidate finished
 STAGING cron tick:      PASS — build/run exact f321eb0
-STAGING human smoke:    STARTED; STOPPED ON f321eb0; corrective re-smoke pending
+STAGING human smoke:    corrective blocker re-smoke PASS; remaining R9 matrix pending
 ```
 
 The control owner confirmed the immediately pre-deployment recovery point:
@@ -165,7 +165,41 @@ state. Local evidence is 264 passing tests with 12 intentional skips, TypeScript
 production build pass, focused changed-source lint with no errors, and a successful real
 database transaction ending in forced rollback. Exact dev Security Scan run `30516436459`
 passed. Local/remote `dev` and local/remote `staging` fast-forwarded to exact `fbab1862`; Render
-exact-commit confirmation and the focused corrective re-smoke remain pending.
+exact-commit confirmation and the focused corrective re-smoke subsequently passed as recorded
+below.
+
+## 2D. Corrective STAGING Re-Smoke Result
+
+The control owner confirmed Render STAGING **Live at `fbab1862`**. Exact staging Security Scan
+run `30516573670` passed, and the public health endpoint remained HTTP 200 with the database
+connected and RLS enabled on 11/11 expected tables.
+
+Focused C1 correction checks passed:
+
+- the Club filter included Current and Club Waiting List Clubs;
+- Waiting List Clubs displayed with the `(Club Waiting List)` suffix in Club-name order;
+- Team status filtering included `Approved & Unallocated`;
+- a Team linked to a Waiting List Club retained its mandatory Club in the edit modal; and
+- the Club detail Teams table displayed `APPROVED` as `Approved & Unallocated`.
+
+Focused prospective Email checks passed:
+
+- a Waiting List Club was selectable;
+- a new no-attachment Email sent successfully and appeared once in C1 Sent;
+- the same new Email appeared once in the intended Club A C2 history;
+- historic Email absence remained the accepted expected result;
+- a valid attachment could be selected;
+- attempting Send before acknowledgement produced the explanatory acknowledgement notice;
+- accepting the existing R8-A responsibility statement permitted Send;
+- a controlled attachment Email sent to Club B appeared in Club B history with an earlier
+  controlled Club B Email; and
+- Club A could see only Club A Emails and not Club B Emails.
+
+The control owner did not explicitly mark the separate provider-recipient and Club-history
+audience-count display check, so that result remains unconfirmed. The list-level cross-Club
+privacy boundary is evidenced as PASS; copied-detail-URL denial and private attachment download
+authority remain separate checks in the retained schedule. No addresses, content or identifiers
+are recorded.
 
 ## 2C. Retained Preconditions For STAGING Human Smoke
 
