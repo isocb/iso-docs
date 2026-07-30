@@ -7,7 +7,7 @@ RECOVERY SNAPSHOT AND DEPLOYMENT PENDING
 
 Application under review:
 
-`58ef44fd7c91e2c5932f0634bfa803bbfa13dd55`
+`f321eb07936ec546e8738c22709809b2704be5ed`
 
 Recovery baseline:
 
@@ -35,9 +35,9 @@ Production remains outside this record.
 Release evidence:
 
 ```text
-local dev:              58ef44fd7c91e2c5932f0634bfa803bbfa13dd55
-origin/dev:             58ef44fd7c91e2c5932f0634bfa803bbfa13dd55
-dev Security Scan:      PASS — run 30466540339
+local dev:              f321eb07936ec546e8738c22709809b2704be5ed
+origin/dev:             f321eb07936ec546e8738c22709809b2704be5ed
+dev Security Scan:      PASS — run 30513826659
 local staging:          15559f1275d7f8ae3990cc6a9dcda5f35748e570
 origin/staging:         15559f1275d7f8ae3990cc6a9dcda5f35748e570
 main/origin-main:       15559f1275d7f8ae3990cc6a9dcda5f35748e570
@@ -69,7 +69,7 @@ retrieved.
 
 ## 2. Preconditions For STAGING Human Smoke
 
-- run exact commit `58ef44fd7c91e2c5932f0634bfa803bbfa13dd55`;
+- run exact commit `f321eb07936ec546e8738c22709809b2704be5ed`;
 - first fast-forward `dev` and `origin/dev`, and require the exact dev Security Scan to pass;
 - create and record a fresh dormant snapshot of the current STAGING database immediately before
   migration; keep the current STAGING database as the target and do not change its URL;
@@ -80,6 +80,13 @@ retrieved.
   migration and candidate deployment;
 - do not execute reconciliation; and
 - stop if the displayed commit, database or tenant differs.
+
+Before human Email smoke, confirm one STAGING cron invocation:
+
+- loads every registered processor without a `server-only` error;
+- completes with its normal processor summary;
+- uses the unchanged active STAGING database target; and
+- does not send a notification merely as a consequence of this verification.
 
 ## 3. R9-B Focused Schedule
 
@@ -182,7 +189,7 @@ without expanding the business or data boundary.
 Proceed with controlled LMSPro R9-B to R9-D STAGING validation only.
 
 Use exact application commit:
-58ef44fd7c91e2c5932f0634bfa803bbfa13dd55
+f321eb07936ec546e8738c22709809b2704be5ed
 
 Use migration:
 20260729170000_lmspro_r9_b_email_club_visibility
@@ -203,11 +210,12 @@ Preflight read-only and stop on any mismatch:
 - do not retrieve names, addresses, bodies, UUIDs or provider evidence.
 
 If preflight passes, apply only the additive migration, independently verify the ledger and
-unchanged existing Email/recipient/resource aggregates, then deploy exact commit 58ef44fd.
+unchanged existing Email/recipient/resource aggregates, then deploy exact commit f321eb07.
 Do not insert historic audience rows and do not execute reconciliation.
 
-After the exact STAGING Security Scan, Render deployment and migration-ledger verification pass,
-stop for the control owner to run the focused R9-B, R9-C and R9-D human schedule from:
+After the exact STAGING Security Scan, Render deployment, migration-ledger verification and one
+successful STAGING cron tick pass, stop for the control owner to run the focused R9-B, R9-C and
+R9-D human schedule from:
 isodocs/docs/modules/lmspro/05-review-and-test/2026-07-29-lmspro-remediation-slices-r9-b-to-r9-d-combined-local-review-and-smoke-test.md
 
 Use controlled STAGING mailboxes and Clubs only. Do not send an uncontrolled Email.

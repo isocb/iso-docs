@@ -22,6 +22,10 @@ implementation commit:
   58ef44fd7c91e2c5932f0634bfa803bbfa13dd55
 implementation tree:
   b14e9521687d8e75aa2876b1c13c9531e4519621
+standalone cron correction:
+  f321eb07936ec546e8738c22709809b2704be5ed
+exact release candidate:
+  f321eb07936ec546e8738c22709809b2704be5ed
 migration:
   20260729170000_lmspro_r9_b_email_club_visibility
 ```
@@ -32,7 +36,10 @@ historic Email evidence was reconciled. The control owner subsequently authorise
 candidate to progress through `dev` to STAGING, with STAGING as the authoritative human browser
 smoke environment. Local `dev` and `origin/dev` subsequently fast-forwarded to exact
 `58ef44fd7c91e2c5932f0634bfa803bbfa13dd55`; exact dev Security Scan run `30466540339`
-passed. STAGING remains at the recovery baseline pending its fresh dormant database snapshot.
+passed. The subsequently reported standalone cron startup failure was corrected at direct child
+`f321eb07936ec546e8738c22709809b2704be5ed`; local `dev` and `origin/dev` now use that exact
+release candidate and replacement exact dev Security Scan run `30513826659` passed. STAGING
+remains at the recovery baseline pending its fresh dormant database snapshot.
 An explicitly read-only STAGING preflight then passed and rolled back: the authorised
 tenant/season matched, all 147 repository-baseline migrations were applied, no unfinished or
 unresolved rolled-back migration existed, and both candidate tables and the candidate ledger
@@ -131,12 +138,32 @@ The migration was instead bounded manually to:
 development database. The local ledger reports 148 migrations and `Database schema is up to
 date`. No database URL or environment value changed.
 
+## 4A. Standalone Cron Runtime Correction
+
+The Render cron log proved that `npm run jobs:tick` stopped during module loading with the
+`server-only` package error. It did not reach the configured database or any processor. A
+processor-by-processor standalone import isolated the failure to the LMSPro participation
+transition path.
+
+The bounded correction:
+
+- permits standalone workers to pass their own Prisma client through participation delivery,
+  Email branding, product-feature resolution and letterhead resolution;
+- retains lazy Next.js Prisma resolution for existing web callers;
+- changes no notification switch, recipient, content, delivery, retry or idempotency rule;
+- adds a child-process regression test that imports every cron processor without the Vitest
+  `server-only` shim; and
+- leaves schema, migration and data unchanged.
+
+A complete local `jobs:tick` then loaded all five processors and exited successfully with zero
+queued work and zero errors. No provider Email was sent.
+
 ## 5. Automated Evidence
 
 ```text
 Prisma format/validate: PASS
 focused R9-B/R9-C/R9-D plus R8-A regression tests: 22 PASS
-complete Vitest run: 260 PASS; 12 intentionally skipped
+complete Vitest run: 261 PASS; 12 intentionally skipped
 TypeScript: PASS
 critical-file verification: PASS
 production build: PASS
@@ -159,8 +186,9 @@ This is an environment warning, not a production configuration change or R9 regr
 ## 6. Retained Exceptions And Recovery
 
 - Historic Email-to-Club rows are deliberately absent.
-- The previously identified missing scheduled-Email worker remains an adjacent finding and was
-  not represented as repaired.
+- The existing Render cron service and its registered processors are now confirmed. The adjacent
+  finding is narrower: no processor for ordinary ad-hoc Emails stored with status `SCHEDULED`
+  was found, and this correction does not represent that dispatcher as implemented.
 - Native file-picker activation remains a named STAGING human check.
 - The additive tables may remain if application rollback returns to `15559f12`; that application
   ignores them.

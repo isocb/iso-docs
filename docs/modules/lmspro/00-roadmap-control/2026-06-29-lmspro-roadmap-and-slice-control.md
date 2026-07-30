@@ -930,7 +930,7 @@ planning boundary and are now implemented locally:
 
 Exact application commit `58ef44fd7c91e2c5932f0634bfa803bbfa13dd55` implements the three
 independently testable outcomes. The one additive R9-B migration is applied only to the authorised
-local development database. R9-C and R9-D remain code-only. Schema validation, 260 runnable tests,
+local development database. R9-C and R9-D remain code-only. Schema validation, 261 runnable tests,
 type checking, critical-file verification, production build, dependency audit and the
 workflow-pinned bounded Gitleaks scan pass.
 
@@ -952,9 +952,18 @@ database was queried during implementation. The authorised release sequence must
 fast-forward STAGING, verify its additive migration and exact Security Scan, then stop for the
 control owner's focused smoke. No historic reconciliation is planned or authorised.
 
+The Render cron subsequently reported a startup failure before database access because the
+standalone `tsx` process reached a Next.js `server-only` Prisma import through the LMSPro
+participation-notification path. Direct child
+`f321eb07936ec546e8738c22709809b2704be5ed` passes the worker Prisma client through branding
+and letterhead resolution, preserves web defaults and all notification/delivery rules, and adds
+a real standalone processor-import regression test. A complete local cron tick loaded all five
+processors and completed with zero queued work, zero errors and no provider send.
+
 Local `dev` and `origin/dev` are now exact
-`58ef44fd7c91e2c5932f0634bfa803bbfa13dd55`. Exact dev Security Scan run `30466540339`
-passed. Local/remote STAGING and main remain at `15559f1275d7f8ae3990cc6a9dcda5f35748e570`.
+`f321eb07936ec546e8738c22709809b2704be5ed`. Replacement exact dev Security Scan run
+`30513826659` passed. Local/remote STAGING and main remain at
+`15559f1275d7f8ae3990cc6a9dcda5f35748e570`.
 The next gate is the fresh recovery-only snapshot of the current STAGING database; the active
 STAGING database URL must remain unchanged.
 
