@@ -2,8 +2,8 @@
 
 Date: 2026-08-05
 
-Status: **COMMITTED AND EXACT ON DEV/STAGING AT `ec7e0cc4`; AUTOMATED AND BUILD GATES
-PASS; STAGING HUMAN SMOKE REQUIRED; MAIN NOT AUTHORISED**
+Status: **AUTOMATED/BUILD GATES PASS; CONTROL-OWNER STAGING HUMAN SMOKE 15/15 PASS;
+EXACT `ec7e0cc4` PROMOTED THROUGH MAIN; RENDER LIVE EXACT-BUILD CONFIRMATION PENDING**
 
 Accepted corrected plan:
 
@@ -21,15 +21,17 @@ application commit: ec7e0cc4c22ee9470534e8d09df1e402bbf0f81e
 commit subject: fix(communications): enforce LMSPro audience eligibility
 local dev/origin-dev: ec7e0cc4c22ee9470534e8d09df1e402bbf0f81e
 local staging/origin-staging: ec7e0cc4c22ee9470534e8d09df1e402bbf0f81e
-main/origin-main: 9974eed5d271783722e685ba3e35ef843d48e30b
+local main/origin-main: ec7e0cc4c22ee9470534e8d09df1e402bbf0f81e
 schema/migration: none
 data mutation: none
 saved-draft compatibility: deliberately excluded by control-owner decision
 provider Send during automated verification: none
 ```
 
-Staging was promoted by clean fast-forward from `9974eed5` to `ec7e0cc4`. Main remains at
-the accepted F2.1 baseline and requires explicit authority after human staging acceptance.
+Staging was promoted by clean fast-forward from `9974eed5` to `ec7e0cc4`. After the full
+staging human-smoke pass, the control owner explicitly authorised live promotion. Main was
+then fast-forwarded and pushed to the same exact commit. Render live exact-build
+confirmation remains an operational evidence step, not an implementation blocker.
 
 ## 2. Implemented Audience Algebra
 
@@ -153,43 +155,60 @@ they did not stop the build and are unrelated to F2.2.
 | Provider delivery is unintentionally changed | Provider sender, batching and attachment routes are untouched |
 
 No production audience data was queried or mutated during implementation. Automated
-fixtures prove resolver semantics; staging human evidence must prove the real tenant data
-shape and UI presentation.
+fixtures prove resolver semantics, and the control-owner staging evidence confirms the
+real tenant data shape and UI presentation for the accepted matrix.
 
-## 8. Required Staging Human Smoke
+## 8. Staging Human-Smoke Acceptance
 
-First confirm Render staging displays `Live at ec7e0cc4`.
+The control owner confirmed Render staging displayed `Live at ec7e0cc4` and completed the
+following controlled test with non-sensitive content. Save Draft was used unless a step
+explicitly required Send.
 
-Use controlled non-sensitive content and Save Draft unless a step explicitly says Send:
-
-1. Confirm Team Current and Club Current are selected by default.
-2. Confirm the last selected status in either dimension cannot be cleared.
+1. Confirm Team Current and Club Current are selected by default. — **PASS**
+2. Confirm the last selected status in either dimension cannot be cleared. — **PASS**
 3. Select one Age Group with Team Managers and Club Secretaries; record provider-recipient,
-   Team and eligible Club-history counts.
-4. Confirm only current-season, selected-status Teams and Clubs contribute.
+   Team and eligible Club-history counts. — **PASS**
+4. Confirm only current-season, selected-status Teams and Clubs contribute. — **PASS**
 5. Add a non-current Team status and confirm only matching Teams inside that Age Group are
-   added.
-6. Add a non-current Club status and confirm only matching Club contexts are added.
+   added. — **PASS**
+6. Add a non-current Club status and confirm only matching Club contexts are added. — **PASS**
 7. Add one League Role and confirm its recipients are added without narrowing the Age Group.
+   — **PASS**
 8. Add one Club Role and confirm independently status-eligible role recipients are added,
-   including eligible recipients outside the selected Age Group.
+   including eligible recipients outside the selected Age Group. — **PASS**
 9. Confirm overlapping addresses remain one provider recipient while all eligible Club
-   histories remain represented.
+   histories remain represented. — **PASS**
 10. Remove every additive source while leaving statuses selected; confirm recipient count
-    is zero and Send is disabled.
-11. Save Draft, reopen it, and confirm sources, statuses and all counts are stable.
-12. Confirm the Recipients-tab badge displays the complete multi-digit count.
-13. Confirm Save Draft invokes no provider Send.
+    is zero and Send is disabled. — **PASS**
+11. Save Draft, reopen it, and confirm sources, statuses and all counts are stable. — **PASS**
+12. Confirm the Recipients-tab badge displays the complete multi-digit count. — **PASS**
+13. Confirm Save Draft invokes no provider Send. — **PASS**
 14. Negatively verify an excluded old-season, withdrawn or otherwise unselected-status
-    Club does not receive a history.
+    Club does not receive a history. — **PASS**
 15. In a deliberately controlled single-recipient Send, start from a Draft-filtered list
     and confirm successful Send returns to the complete unfiltered list while manual status
-    filtering remains available.
+    filtering remains available. — **PASS**
 
-A broad real-recipient Send is not required for staging acceptance. Main/live promotion is
-not authorised by this confirmation.
+A broad real-recipient Send was not required. The result is a clean **15/15 PASS** with no
+failed or qualified item. This evidence satisfied the human gate for explicit main/live
+promotion authority.
 
-## 9. Rollback
+## 9. Production Promotion
+
+After accepting the staging evidence, the control owner authorised promotion in the
+established branch corridor:
+
+```text
+main/origin-main: 9974eed5 -> ec7e0cc4 (clean fast-forward)
+dev = origin/dev = staging = origin/staging = main = origin/main = ec7e0cc4
+Render live deployment: initiated by origin/main push
+Render live exact-build confirmation: pending
+```
+
+No schema migration, data operation or separate release content was introduced during
+promotion.
+
+## 10. Rollback
 
 Rollback is an application revert of `ec7e0cc4` through the normal branch corridor. There
 is no database rollback because F2.2 contains no schema migration or data mutation.

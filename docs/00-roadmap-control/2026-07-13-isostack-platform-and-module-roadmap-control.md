@@ -29,15 +29,16 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application evidence:
 
 ```text
-dev = origin/dev = staging = origin/staging = main = origin/main = 9974eed5
-Render live exact-build confirmation = pending after authorised main push
+dev = origin/dev = staging = origin/staging = main = origin/main = ec7e0cc4
+Render staging exact-build confirmation = PASS at ec7e0cc4
+Render live deployment = initiated from origin/main ec7e0cc4; exact-build confirmation pending
 ```
 
 Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | LMSPro `CR-Fix F2.2 - Current-Season Eligibility And Count Integrity` | Corrected additive-source/restrictive-eligibility plan is implemented at `ec7e0cc4`, exact on dev/staging with automated/build PASS. Staging human smoke and an explicit main-promotion decision remain. Existing attachment-policy F3 follows F2.2. |
+| **NOW** | LMSPro email `CR-Fix`: F2.2 production confirmation, then F3 formalisation | F2.2 automated/build gates and all 15 staging human-smoke checks pass. Exact `ec7e0cc4` is aligned through main and live deployment is initiated; record Render's exact live build, then convert the existing F3 uploaded-file-only acknowledgement refinement into formal triage and bounded slice planning. F3 implementation is not yet authorised. |
 | **NEXT** | FUND `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` planning | R10-A is closed after the control owner's totally-green production smoke. Restore only the bounded planning candidate already registered in FUND control; renderer implementation, later 1R-F/1R-G work and artwork production remain unauthorised. |
 
 Registered candidates which do not displace that pair:
@@ -49,9 +50,10 @@ Registered candidates which do not displace that pair:
 - LMSPro 500-recipient operating envelope: standard communications/capacity triage input;
 - LMSPro cohort email draft persistence and audience selection `CR-Fix`: accepted as the
   portfolio `Now`; F1/F2.1 remain green, but production review found a separate high-risk
-  status-as-audience-source/eligibility defect. F2.2 is implemented at `ec7e0cc4`, exact
-  on dev/staging and awaiting human smoke; the
-  existing attachment-policy F3 follows it;
+  status-as-audience-source/eligibility defect. F2.2 passed automated/build and all 15
+  staging human-smoke checks; exact `ec7e0cc4` is aligned through main and awaits Render
+  live exact-build confirmation. The existing attachment-policy F3 is the immediate
+  internal follow-on;
 - FUND `1R-F-A`: restored as formal root `Next` after R10-A's totally-green closure; it
   remains planning-only and does not displace the email CR-Fix `Now`;
 - Platform `PLAT-REFINE-02` through `PLAT-REFINE-04`: registered non-executable findings;
@@ -643,10 +645,12 @@ different documentation lifecycles.
 ## 7. Current Parent Control Decision
 
 The 2026-08-05 reconciliation in Section 0 is the current decision: the accepted LMSPro
-email CR-Fix remains `Now`; F1 and F2.1 remain green and exact `9974eed5` is aligned through
-main. Production review found the separate status-as-audience-source/eligibility defect.
-F2.2 is implemented at `ec7e0cc4`, exact on dev/staging with human smoke pending; the existing
-attachment-policy F3 follows it. FUND 1R-F-A bounded planning remains `Next`.
+email CR-Fix remains `Now`; F1 and F2.1 remain green. Production review found the separate
+status-as-audience-source/eligibility defect. F2.2 is implemented at `ec7e0cc4`, passed all
+automated/build and 15 staging human-smoke checks, and is exact through main after explicit
+promotion authority. Render live exact-build confirmation remains; the existing
+attachment-policy F3 is the immediate formal triage/planning follow-on. FUND 1R-F-A bounded
+planning remains `Next`.
 R10-A is complete after the control owner's totally-green production smoke. The detailed
 history below explains how the lanes reached that position and must not be read as a
 competing selector.

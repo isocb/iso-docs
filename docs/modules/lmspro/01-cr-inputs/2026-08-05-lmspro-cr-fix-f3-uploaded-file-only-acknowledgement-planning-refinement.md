@@ -2,8 +2,8 @@
 
 Date: 2026-08-05
 
-Planning status: **PPP planning input for control-window triage and bounded slice planning;
-not an executable slice and not implementation authority; sequenced after urgent F2.2**
+Planning status: **IMMEDIATE FOLLOW-ON PLANNING INPUT AFTER F2.2 LIVE CONFIRMATION; REQUIRES
+FORMAL TRIAGE AND AN EXPLICITLY ACCEPTED BOUNDED PLAN; NOT IMPLEMENTATION AUTHORITY**
 
 Source request:
 
@@ -282,16 +282,13 @@ F3 should be accepted only if the eventual bounded plan proves all of the follow
 
 ## 11. Dependencies And Ordering
 
-1. Record Render live at exact `9974eed5` and complete the minimum production Save Draft
-   verification for F1/F2.1.
-2. Complete the newly accepted F2.2 current-season eligibility, additive-source and
-   count-integrity lifecycle; recipient authority takes precedence over this
-   policy-friction correction.
-3. Reconcile this planning input into a formal F3 triage amendment or dedicated triage
+1. Record Render live at exact `ec7e0cc4` to close F2.2 production evidence. F2.2 already
+   has automated/build PASS, a 15/15 staging human-smoke PASS and exact main promotion.
+2. Reconcile this planning input into a formal F3 triage amendment or dedicated triage
    record under the existing CR-Fix.
-4. Create and explicitly accept a bounded F3 slice plan.
-5. Only then begin application implementation and focused verification.
-6. Keep FUND `1R-F-A` as formal portfolio `Next` unless the authoritative root control is
+3. Create and explicitly accept a bounded F3 slice plan.
+4. Only then begin application implementation and focused verification.
+5. Keep FUND `1R-F-A` as formal portfolio `Next` unless the authoritative root control is
    deliberately changed.
 
 ## 12. Settled Decisions Captured
@@ -324,7 +321,7 @@ decision.
 
 The formal control window should:
 
-- record the F2.1 exact-live and production Save Draft prerequisite;
+- record F2.2's Render live exact-build confirmation;
 - accept or amend the triage recommendation in Section 6;
 - settle the three questions in Section 13;
 - create the bounded F3 slice plan from Sections 7–10; and

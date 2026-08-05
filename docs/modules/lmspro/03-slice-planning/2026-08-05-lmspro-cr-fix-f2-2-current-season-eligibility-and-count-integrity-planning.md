@@ -4,8 +4,8 @@ Date: 2026-08-05
 
 Module: LMSPro / SeasonPro communications
 
-Status: **CONTROL-OWNER ACCEPTED; IMPLEMENTED AT `ec7e0cc4`; EXACT ON DEV/STAGING;
-STAGING HUMAN SMOKE REQUIRED**
+Status: **IMPLEMENTED AT `ec7e0cc4`; AUTOMATED/BUILD PASS; STAGING HUMAN SMOKE 15/15 PASS;
+EXACT THROUGH MAIN; RENDER LIVE EXACT-BUILD CONFIRMATION PENDING**
 
 Accepted corrected triage:
 
@@ -572,5 +572,7 @@ The control owner corrected and then authorised implementation of:
 5. the source-specific eligibility applicability in Section 3.5, including no Team/Club
    status filtering of League Roles without an authoritative relationship.
 
-Application commit `ec7e0cc4` implements this boundary and is exact on dev and staging.
-Main/live promotion remains unauthorised until the linked staging human smoke is accepted.
+Application commit `ec7e0cc4` implements this boundary. The control owner accepted all 15
+staging human-smoke checks and explicitly authorised live promotion. Dev, staging and main,
+including their origin refs, are exact at that commit. Render live exact-build confirmation
+is the remaining production-evidence step.

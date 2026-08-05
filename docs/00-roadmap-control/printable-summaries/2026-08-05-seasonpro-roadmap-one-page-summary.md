@@ -10,8 +10,8 @@ communications behaviour.
 
 ## Current Position
 
-- **Portfolio NOW:** human-smoke F2.2 current-season eligibility and additive audience
-  sources on staging at exact `ec7e0cc4`; main is not yet authorised.
+- **Portfolio NOW:** close F2.2 with Render's exact live-build confirmation, then formalise
+  the existing F3 uploaded-file-only acknowledgement triage and bounded plan.
 - F1 human staging smoke passes through the maximum available 440-recipient draft, with a
   341 ms broad-case server wait.
 - F2 failed because it treated C1/C2/hat-swap access context as independently selectable
@@ -23,8 +23,9 @@ communications behaviour.
   and Age Group/Division resolvers do not explicitly default Team/Club status to Current.
   The corrected model unions selected Age Group/Division/Club and functional-role audience
   sources, while season/status filters only restrict sources to which they apply.
-- F2.2 is implemented at `ec7e0cc4`, exact on dev/staging with automated/build PASS. Human
-  staging acceptance remains; F3 follows F2.2.
+- F2.2 is implemented at `ec7e0cc4`; automated/build and all 15 staging human-smoke checks
+  pass. Dev, staging and main are exact; live deployment is initiated and exact Render
+  confirmation remains. F3 follows F2.2 and is not yet implementation-authorised.
 - F2.2 also includes two bounded UI fixes: show the complete recipient count in the tab
   badge, and return to an unfiltered Email list after successful Send while retaining the
   status filter.
@@ -57,13 +58,14 @@ communications behaviour.
 
 ## Immediate Management Rule
 
-Confirm Render staging displays exact `ec7e0cc4`, then execute the bounded F2.2 Save Draft
-and controlled single-recipient smoke. Do not use a broad cohort Send as proof.
+Confirm Render live displays exact `ec7e0cc4`, record that evidence, then reconcile the
+existing F3 planning refinement into formal triage and bounded slice planning. Do not begin
+F3 application work until that plan is explicitly accepted.
 
 ## Next Decision
 
-Accept or reject the F2.2 staging candidate, then decide main promotion before the
-separately bounded F3 milestone. FUND `1R-F-A` remains planning-only portfolio `Next`.
+Close F2.2 after exact live confirmation, then accept or amend the formal F3 bounded plan.
+FUND `1R-F-A` remains the planning-only portfolio `Next`.
 
 Authoritative source:
 [`LMSPro / SeasonPro Roadmap And Slice Control`](../../modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md)

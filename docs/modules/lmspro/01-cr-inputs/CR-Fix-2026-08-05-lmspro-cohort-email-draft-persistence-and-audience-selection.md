@@ -16,8 +16,9 @@ dev, staging and main after explicit control-owner promotion authority. Producti
 then identified that current-season Team/Club statuses do not constrain applicable
 audience sources and instead add recipients as independent cohorts. Urgent F2.2 triage is
 accepted; its corrected additive-source/restrictive-eligibility plan was authorised and
-implemented at `ec7e0cc4`, now exact on dev/staging with human smoke pending. Existing
-saved drafts remain outside scope. The
+implemented at `ec7e0cc4`. All 15 staging human-smoke checks passed, the control owner
+authorised promotion, and dev/staging/main are exact at that commit. Render live exact-build
+confirmation remains pending. Existing saved drafts remain outside scope. The
 uploaded-file-only acknowledgement correction retains identifier F3 and follows F2.2.**
 
 Application baseline reviewed: `7154937c`
@@ -482,8 +483,9 @@ Accepted planning outcome:
   status filtering; and
 - preserve F1 atomic persistence, F2.1 taxonomy and provider/attachment behaviour.
 
-Implementation is complete at `ec7e0cc4`, exact on dev/staging with automated and build
-gates green. Staging human smoke is required before any main/live promotion.
+Implementation is complete at `ec7e0cc4` with automated/build gates green and a clean
+15/15 control-owner staging human-smoke pass. Main was explicitly authorised, fast-forwarded
+and pushed to the same commit. Render live exact-build confirmation remains to be recorded.
 
 ### CR-Fix F3 — Uploaded-File-Only Acknowledgement Policy
 
@@ -676,4 +678,6 @@ The control owner has decided:
    it cross-cutting rather than safe/trivial, so it was excluded from `07a71906`; and
 5. accept urgent F2.2 triage for current-season eligibility, additive audience sources and
    truthful counts,
-   preserving F3's existing identifier and sequencing F2.2 before it.
+   preserving F3's existing identifier and sequencing F2.2 before it; and
+6. accept the complete F2.2 staging matrix, authorise exact `ec7e0cc4` for main/live and
+   retain F3 as the immediate follow-on inside this same CR-Fix.

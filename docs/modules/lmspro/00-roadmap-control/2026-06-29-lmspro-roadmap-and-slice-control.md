@@ -33,12 +33,12 @@ authority. Later disposition changes must update the existing row.
 | [`2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md`](../01-cr-inputs/2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md) | Consumed by the same R9 programme and its bounded plans | Completed/superseded as active planning by the delivered R9 lifecycle; retained as decision provenance |
 | [`2026-07-30-lmspro-responsive-c1-club-management-cr-input.md`](../01-cr-inputs/2026-07-30-lmspro-responsive-c1-club-management-cr-input.md) | R10-A implemented, staging-smoked, included by ancestry in live application `7154937` and reported totally green in the control-owner production smoke | Completed and closed on 2026-08-05; no remaining resumption action |
 | [`2026-08-05-lmspro-500-recipient-email-operating-envelope-refinement.md`](../01-cr-inputs/2026-08-05-lmspro-500-recipient-email-operating-envelope-refinement.md) | Captured planning input; awaiting formal triage | Registered standard communications/capacity candidate; no limit change, implementation or displacement of `Now`/`Next` authorised |
-| [`CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md`](../01-cr-inputs/CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md) | F1 PASS; F2 superseded; F2.1 final staging PASS and `9974eed5` aligned through main; F2.2 corrected additive-source/restrictive-eligibility plan implemented at `ec7e0cc4`, exact on dev/staging with automated/build PASS; saved-draft compatibility excluded; F3 attachment policy remains queued | **Portfolio NOW:** complete F2.2 staging human smoke and decide main promotion before the existing F3 policy follow-on |
+| [`CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md`](../01-cr-inputs/CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md) | F1 PASS; F2 superseded; F2.1 final staging PASS; F2.2 automated/build and staging human smoke 15/15 PASS, with exact `ec7e0cc4` aligned through main after explicit promotion; saved-draft compatibility excluded; Render live exact-build confirmation pending; F3 planning refinement remains the immediate follow-on | **Portfolio NOW:** record F2.2 exact live-build evidence, then formalise F3 triage and bounded slice planning; no F3 implementation authority yet |
 
 Current LMSPro portfolio disposition:
 
 ```text
-NOW  -> CR-Fix F2.2 staging human smoke at exact ec7e0cc4; main not yet authorised
+NOW  -> Email CR-Fix: F2.2 exact live confirmation, then F3 formal triage/planning
 NEXT -> FUND 1R-F-A planning candidate at root; no LMSPro successor selected
 ```
 
@@ -46,7 +46,7 @@ The control owner completed the displaced R10-A smoke as totally green. The curr
 pair is therefore:
 
 ```text
-NOW  -> LMSPro CR-Fix: F2.2 current-season eligibility, additive sources and truthful counts
+NOW  -> LMSPro email CR-Fix: close F2.2 production evidence, then formalise F3
 NEXT -> FUND 1R-F-A bounded planning candidate
 ```
 
@@ -130,19 +130,21 @@ dev
 
 Current work should remain on dev/remediation branches until reviewed and explicitly aligned.
 
-Latest known app alignment from prior cycle:
+Current app alignment:
 
 ```text
-dev = origin/dev = staging = origin/staging = main = origin/main = 9974eed5
-Render live exact-build confirmation = pending after authorised main push
+dev = origin/dev = staging = origin/staging = main = origin/main = ec7e0cc4
+Render staging exact-build confirmation = PASS at ec7e0cc4
+Render live deployment = initiated from origin/main ec7e0cc4; exact-build confirmation pending
 ```
 
 Application `7154937` was the confirmed live baseline and includes R9/R10-A by ancestry.
 The control owner reported the final R10-A production smoke totally green on 2026-08-05.
-After all ten F2.1 staging checks passed, the control owner authorised promotion and
-`9974eed5` was fast-forwarded and pushed to main. Exact Render live-build confirmation and
-controlled production Save Draft evidence remain to be recorded. Exact main Security Scan
-`31015039314` passed.
+After all ten F2.1 staging checks passed, the control owner authorised its promotion. F2.2
+subsequently passed automated/build gates and all 15 staging human-smoke checks. The control
+owner authorised exact `ec7e0cc4`, which was fast-forwarded and pushed through main. Render
+live exact-build confirmation remains to be recorded. Exact main Security Scan `31015039314`
+is retained as the earlier F2.1 release evidence.
 
 ## Current Completed LMSPro Cycle State
 
@@ -1103,8 +1105,8 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Confirm Render staging is exact at `ec7e0cc4`, execute the F2.2 human smoke schedule and
-record the control-owner decision before any main promotion
+Confirm Render live is exact at `ec7e0cc4`, record F2.2 production evidence, then convert
+the existing F3 refinement into formal triage and bounded slice planning
 ```
 
 Goal:

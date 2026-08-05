@@ -4,7 +4,8 @@ Date: 2026-08-05
 
 Module: LMSPro / SeasonPro communications
 
-Status: **IMPLEMENTED AT `ec7e0cc4`; EXACT ON DEV/STAGING; STAGING HUMAN SMOKE REQUIRED**
+Status: **IMPLEMENTED AT `ec7e0cc4`; STAGING HUMAN SMOKE 15/15 PASS; EXACT THROUGH MAIN;
+RENDER LIVE EXACT-BUILD CONFIRMATION PENDING**
 
 Parent CR-Fix:
 
@@ -273,8 +274,10 @@ authority and unintended delivery risk are more serious than link-acknowledgemen
 
 The control owner corrected and accepted the linked F2.2 plan, authorised implementation,
 and requested immediate dev/staging promotion absent blockers. Application commit
-`ec7e0cc4` is exact on dev and staging with automated/build gates green. Existing F1/F2.1
-evidence remains valid; staging human smoke is now the main/live gate.
+`ec7e0cc4` passed automated/build gates and all 15 control-owner staging human-smoke
+checks. Existing F1/F2.1 evidence remains valid. The control owner explicitly authorised
+main/live promotion; dev, staging and main are exact at `ec7e0cc4`, with Render live
+exact-build confirmation still to be recorded.
 
 ## 10. Exit From Triage
 
