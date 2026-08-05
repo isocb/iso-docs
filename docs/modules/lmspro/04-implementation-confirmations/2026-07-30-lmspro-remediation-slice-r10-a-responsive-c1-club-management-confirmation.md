@@ -2,8 +2,7 @@
 
 Date: 2026-07-30
 
-Status: STAGING IMPLEMENTATION AND HUMAN SMOKE PASS; DEV/STAGING/MAIN EXACT; MAIN SECURITY
-AND PUBLIC PRODUCTION HEALTH PASS; RENDER EXACT DISPLAY AND READ-ONLY LIVE SMOKE PENDING
+Status: **COMPLETE AND CLOSED — CONTROL-OWNER PRODUCTION SMOKE TOTALLY GREEN ON 2026-08-05**
 
 Planning source:
 
@@ -210,3 +209,9 @@ confirm Render production displays Live at `cc4b4dc`
 ```
 
 Production promotion is not authorised by this lifecycle stage.
+
+## 7. Final Closure — 2026-08-05
+
+The control owner subsequently completed the focused production R10-A review and reported a
+totally green PASS. The linked review/test record is now the closure authority. No additional
+R10-A implementation, schema, migration or data action remains.

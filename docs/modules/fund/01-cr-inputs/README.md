@@ -19,3 +19,15 @@ Workflow:
 ```text
 Issue / CR export -> triage document -> slice planning -> implementation/review
 ```
+
+Mandatory registration:
+
+- add every new CR or governed source brief to Section 0 of
+  `../00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md` in the same
+  documentation change;
+- give it an explicit current disposition; and
+- do not treat registration as slice selection or implementation authority.
+
+Plain-English addition and delivery guide:
+
+`../../../00-roadmap-control/2026-08-05-human-guide-change-request-to-release.md`

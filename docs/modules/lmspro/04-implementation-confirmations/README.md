@@ -1,5 +1,11 @@
 # LMSPro Implementation Confirmations
 
+Current local correction:
+
+- `2026-08-05-lmspro-cr-fix-f2-1-cohort-taxonomy-and-picker-correction-local-confirmation.md`
+  records local and final staging human PASS and exact dev/staging/main alignment at
+  `9974eed5`; Render exact live-build evidence remains to be recorded.
+
 This folder contains implementation confirmations for completed LMSPro / SeasonPro slices.
 
 Each confirmation should record:
@@ -14,6 +20,7 @@ Each confirmation should record:
 
 Recent remediation confirmations:
 
+- `2026-08-05-lmspro-cr-fix-f1-f2-cohort-email-draft-persistence-and-audience-selection-local-confirmation.md`
 - `2026-07-01-lmspro-remediation-slice-r2-a-import-club-user-membership-strengthening-confirmation.md`
 - `2026-07-02-lmspro-remediation-slice-r2-b-staging-live-snapshot-audit-and-manual-repair-rehearsal-confirmation.md`
 - `2026-07-02-lmspro-remediation-slice-r2-c-live-club-user-membership-repair-confirmation.md`

@@ -2,7 +2,7 @@
 
 Created: 2026-06-25
 
-Last consolidated: 2026-07-23
+Last consolidated: 2026-08-05
 
 Status: Active authoritative control for the FUND lane
 
@@ -42,6 +42,41 @@ This document is planning/documentation only. It does not implement code, change
 This FUND roadmap controls the FUND lane only. It records Commerce dependencies but does not
 own or sequence Commerce Core implementation.
 
+## 0. Authoritative CR Inventory And Current FUND Disposition — 2026-08-05
+
+This file is confirmed as the one authoritative FUND child roadmap. The strategic
+completion overview and refinement/pilot-placement register remain subordinate. The root
+Platform/module roadmap owns the one serial cross-lane `Now` and `Next`.
+
+Every FUND CR input must be registered in this table in the same documentation change that
+creates the CR. Registration proves ownership and disposition only; it does not perform
+triage, select a slice or authorise implementation. Later lifecycle changes must update the
+same row.
+
+| Source CR or governed input | Current disposition | Roadmap treatment |
+| --- | --- | --- |
+| [`2026-06-25-c2-organisation-scope-clarification.md`](../01-cr-inputs/2026-06-25-c2-organisation-scope-clarification.md) | Consumed by the `1P-D-R1` C2 dashboard review/scope note | Historical architecture clarification; no active implementation candidate |
+| [`2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md) | Planned through `1Q-G-B` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
+| [`2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md) | Planned through `1Q-G-A` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
+| [`2026-07-13-fund-cr-commission-ladder-planner-input.md`](../01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md) | Policy/assignment foundation partly incorporated through `1R-C5`; aggregate calculation, statements and settlement remain absent | Parked later commission work, represented by subordinate `2R-PROD-05`; not selected |
+| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Registered governed strategic input allocated to the Individual Artwork branch of `1R-F` | Parked input to later bounded work; open questions retained; no direct implementation authority |
+| [`2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md`](../01-cr-inputs/2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md) | Registered governed strategic input allocated to the collective/Standard branches of `1R-F` | Parked input to later bounded work; open questions retained; no direct implementation authority |
+| [`2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`](../01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md) | Registered governed strategic input allocated to Project-offer and Individual Artwork readiness in `1R-F` | Parked input to later bounded work; open questions retained; no direct implementation authority |
+| [`2026-07-15-fund-template-manager-brief.md`](../01-cr-inputs/2026-07-15-fund-template-manager-brief.md) | Retained source brief for the Application/Artwork Template input | Provenance only; not a fourth CR and its provisional `T` labels carry no slice authority |
+| [`2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md`](../01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md) | Implemented/reviewed as `1R-E-D`; application commit is included by ancestry in live `7154937` | Completed technical correction; E-B/E-C real-workflow human acceptance remains a separate recorded gate and is not invented here |
+| [`change-request-cmqt61xmf000612xt5ifl1mdn-2026-06-25.md`](../01-cr-inputs/change-request-cmqt61xmf000612xt5ifl1mdn-2026-06-25.md) | Original issue bundle was triaged and distributed across the historical `1P`/`1Q` lifecycle and later refinement controls | Superseded as a single active queue; retained as source evidence, with any genuinely absent outcome governed by its named current refinement/workstream |
+
+Current FUND portfolio disposition:
+
+```text
+NOW  -> none inside FUND; root portfolio Now is the accepted LMSPro email CR-Fix F1/F2 release
+NEXT -> 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof planning candidate
+```
+
+`1R-F-A` is restored as formal root `Next` after the control owner's totally-green R10-A
+production smoke. It remains planning-only; this FUND roadmap does not independently start
+implementation while the LMSPro email CR-Fix remains portfolio `Now`.
+
 ## 1. Control Authority And Reading Rule
 
 Use this document as the authoritative control for FUND slice selection, planning status,
@@ -67,19 +102,19 @@ the position when that material was written and must not select new work.
 Current application repository state:
 
 ```text
-working branch: controlled feature/test evidence with dedicated dev/staging worktrees
-local dev/origin dev: 99164ddd
-local staging/origin staging: 99164ddd
-local main/origin main: ea4e6193 (unchanged)
-IsoDocs main: current lifecycle and combined production-decision reconciliation included
+application dev/origin dev: 7154937
+application staging/origin staging: 7154937
+application main/origin main: 7154937
+live application: 7154937, confirmed by the 2026-08-04 Platform dependency review
+IsoDocs baseline for this reconciliation: 1a49081 plus the current documentation changes
 ```
 
 Current consolidated delivery state:
 
 - Commerce `A1` through `A7`, FUND `1R-C1` through `1R-D` and Project Intake/creation
   `1P-G-R3-A` through `R3-D` are included in the promoted application ancestry;
-- application `dev`/`origin-dev` and `staging`/`origin-staging` are aligned at
-  test-only evidence commit `99164ddd`; the staging ancestry includes E-D;
+- application dev, staging and main are aligned at live commit `7154937`; its ancestry
+  includes E-D and the previously promoted FUND/Commerce application work;
 - E-D adds no migration and performed no shared database action; shared database state
   remains governed by the preceding promotion records;
 - E-D secret detection, schema security and TypeScript CI gates passed. The overall dev
@@ -90,7 +125,8 @@ Current consolidated delivery state:
 - prior human FUND administrator login and pre-existing UI smoke testing passed; E-B/E-C
   authenticated real-workflow acceptance is technically unblocked by E-D but remains
   pending in the recorded schedule; and
-- application `main`, live deployment and the live database remain unchanged.
+- this reconciliation makes no new database, migration, environment or FUND human-acceptance
+  claim; those remain governed by their existing promotion and review records.
 
 Current E-A/E-B/E-C promotion state:
 
@@ -344,15 +380,15 @@ COMMERCE-A1 (complete on dev)
   -> FUND 1R-E C1 Store Oversight And C2 Project Store Control Alignment parent accepted
   -> FUND 1R-E-A Store authority/intervention service implemented/reviewed and promoted
      -> FUND 1R-E-B C1 Store Portfolio Oversight And Exceptional Intervention Surface
-        implemented/reviewed and present in current staging ancestry; human gate pending
+        implemented/reviewed and included in current live ancestry; human gate pending
      -> FUND 1R-E-C C2 Project Store Control Surface
-        implemented/reviewed and present in current staging ancestry; human gate pending
+        implemented/reviewed and included in current live ancestry; human gate pending
      -> FUND 1R-E-D Default Project Store Instantiation And Eligible Product Reconciliation
-        implemented/reviewed at c45a41d9; present in current staging ancestry;
+        implemented/reviewed at c45a41d9; included in current live ancestry;
         no E-D migration; consolidated E-B/C/D human schedule pending
   -> FUND 1R-F Project Offer And Artwork Readiness Reconciliation parent accepted
      -> FUND 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
-        single next planning candidate; implementation not authorised
+        formal root NEXT after R10-A closure; planning-only and implementation not authorised
         -> apply the accepted pilot/refinement placement before accepting later F/G work;
            this is a control gate, not an executable slice
 
@@ -788,8 +824,9 @@ After every planning acceptance, implementation confirmation or review/test outc
 4. verify that exactly one next candidate is named and that it is not falsely authorised;
 5. move superseded operational detail into Appendix A or another archive/triage record;
 6. ensure branch, commit, migration and deployment claims match repository evidence;
-7. reconcile any new strategic overview, CR or supporting brief into the governed-input
-   register before it can influence a bounded plan;
+7. register every new CR or supporting brief in Section 0 in the same documentation change
+   that creates it, then reconcile any strategic overview before it can influence a bounded
+   plan;
 8. reconcile every promoted, deferred or completed refinement with the subordinate
    2026-07-20 register without allowing that register to select the next slice;
 9. carry only the decisions relevant to the selected slice and preserve unrelated open

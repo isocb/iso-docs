@@ -8,6 +8,10 @@ The authoritative FUND control is:
 
 `2026-06-25-fund-roadmap-and-slice-control.md`
 
+Every new FUND CR or governed source brief must be added to that control's Section 0
+inventory with an explicit disposition in the same documentation change. Registration does
+not authorise or select a slice.
+
 The subordinate strategic completion overview is:
 
 `2026-07-15-fund-store-artwork-orders-and-production-strategic-completion-roadmap.md`
@@ -89,3 +93,11 @@ Promotion confirmations may use:
 ```
 
 Where a review is static-only or local-route-only, say so directly and list authenticated browser smoke expectations as pending.
+
+Human/AI working method:
+
+`../../<module>/work-method.md`
+
+Printable FUND snapshot (non-authoritative):
+
+`../../../00-roadmap-control/printable-summaries/2026-08-05-fund-roadmap-one-page-summary.md`

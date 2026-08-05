@@ -2,7 +2,105 @@
 
 Date: 2026-07-27
 
+Last portfolio reconciliation: 2026-08-05
+
 Status: Active parent roadmap
+
+## 0. Current Portfolio Control — 2026-08-05
+
+This section is the current cross-lane control and supersedes older global `single next`
+wording later in this document. Older statements remain evidence of the sequence at the
+time they were written; they must not displace this reconciled `Now`/`Next` pair.
+
+The three definitive product/platform child roadmaps in the present solo-developer
+portfolio are:
+
+1. Platform —
+   `docs/platform/00-roadmap-control/2026-07-22-isostack-platform-roadmap-and-slice-control.md`;
+2. LMSPro / SeasonPro —
+   `docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md`; and
+3. FUND —
+   `docs/modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md`.
+
+Commerce Core remains a separately authoritative bounded Core-domain control because FUND
+depends on shared checkout, Order, money and payment contracts. It joins the serial
+portfolio queue when selected, but it is not a fourth product backlog for daily attention.
+
+Current application evidence:
+
+```text
+dev = origin/dev = staging = origin/staging = main = origin/main = 9974eed5
+Render live exact-build confirmation = pending after authorised main push
+```
+
+Current serial portfolio decision:
+
+| Position | Lane and outcome | Exact boundary |
+| --- | --- | --- |
+| **NOW** | LMSPro `CR-Fix - Live Verification And F3 Follow-On` | F1 human staging PASS; F2 superseded; F2.1 local and final staging human PASS. Exact `9974eed5` is aligned across dev/staging/main after explicit promotion authority, and exact main Security Scan `31015039314` passes. Record Render exact-build and controlled production Save Draft evidence, then proceed to the already accepted separate F3 milestone. |
+| **NEXT** | FUND `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` planning | R10-A is closed after the control owner's totally-green production smoke. Restore only the bounded planning candidate already registered in FUND control; renderer implementation, later 1R-F/1R-G work and artwork production remain unauthorised. |
+
+Registered candidates which do not displace that pair:
+
+- Platform/SeasonPro role-authority clarification: high-priority cross-lane triage input;
+- Platform support-ticketing client readiness: privacy/security and client-enablement triage
+  input, with the internal-note and server-authority findings eligible for an explicit
+  expedite proposal if triage confirms the risk;
+- LMSPro 500-recipient operating envelope: standard communications/capacity triage input;
+- LMSPro cohort email draft persistence and audience selection `CR-Fix`: accepted as the
+  portfolio `Now`; F1 and F2.1 local/final-staging evidence pass and exact `9974eed5` is
+  aligned through main; live verification remains, followed by the separate F3 milestone;
+- FUND `1R-F-A`: restored as formal root `Next` after R10-A's totally-green closure; it
+  remains planning-only and does not displace the email CR-Fix `Now`;
+- Platform `PLAT-REFINE-02` through `PLAT-REFINE-04`: registered non-executable findings;
+  and
+- all parked FUND and LMSPro candidates recorded in their child CR inventories.
+
+CR capture contract:
+
+1. every new CR is added to its owning authoritative child roadmap in the same
+   documentation change;
+2. the child row always carries an explicit disposition, even when that disposition is
+   only `captured; awaiting triage`;
+3. registration does not authorise or schedule work;
+4. the root is updated only when a CR changes cross-lane ownership/dependency, creates an
+   expedite proposal, or changes portfolio `Now`/`Next`; and
+5. exactly one `Now` and one `Next` may exist across the child lanes.
+
+Remedial `CR-Fix` control:
+
+1. `CR-Fix` identifies a fault/regression CR inside its owning child lane; it is not a
+   fourth roadmap or automatic implementation authority;
+2. every `CR-Fix` records containment, severity, workaround safety, risk assessment,
+   expedite decision and displaced-work resumption;
+3. an accepted expedite becomes the only portfolio `Now`;
+4. the displaced former `Now` becomes `Next` at its exact safe resumption point, while the
+   former `Next` remains registered but temporarily loses that formal position; and
+5. closure/re-disposition of the `CR-Fix` must explicitly resume the interrupted outcome
+   and restore or reconsider the prior sequence.
+
+The email `CR-Fix` expedite is accepted. Its source, triage and slice plan are:
+
+- `docs/modules/lmspro/01-cr-inputs/CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md`;
+- `docs/modules/lmspro/02-triage/2026-08-05-lmspro-cr-fix-f1-f2-cohort-email-draft-persistence-and-audience-selection-triage.md`; and
+- `docs/modules/lmspro/03-slice-planning/2026-08-05-lmspro-cr-fix-f1-f2-cohort-email-draft-persistence-and-audience-selection-planning.md`.
+
+Its replacement F2.1 plan is:
+
+- `docs/modules/lmspro/03-slice-planning/2026-08-05-lmspro-cr-fix-f2-1-cohort-taxonomy-and-picker-correction-planning.md`.
+
+Working-method and human navigation references:
+
+- authoritative human/AI method:
+  `docs/modules/<module>/work-method.md`;
+- plain-English CR-to-release guide:
+  `docs/00-roadmap-control/2026-08-05-human-guide-change-request-to-release.md`; and
+- printable management snapshots:
+  `docs/00-roadmap-control/printable-summaries/`.
+
+The printable summaries are subordinate snapshots. Refresh the affected summary when a
+material reconciliation changes its source roadmap; if it ever differs, this root control
+and the authoritative child control win.
 
 ## 1. Purpose
 
@@ -19,6 +117,8 @@ IsoStack Root Roadmap
 │   ├── shared application, tenancy, administration and platform services
 │   └── Platform assurance, security review and refinement roadmap
 │       └── cross-cutting quality/security gates, toolchain debt and monthly findings
+├── LMSPro / SeasonPro roadmap
+│   └── League, Club, season, participation and module communications behaviour
 ├── Core Commerce roadmap
 │   └── reusable checkout, Order, money and payment infrastructure
 └── FUND roadmap
@@ -29,6 +129,7 @@ Authoritative child controls:
 
 ```text
 docs/platform/00-roadmap-control/2026-07-22-isostack-platform-roadmap-and-slice-control.md
+docs/modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
 docs/core/commerce/00-roadmap-control/2026-07-13-commerce-core-roadmap-and-slice-control.md
 docs/modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md
 ```
@@ -391,8 +492,8 @@ implemented/reviewed locally without a migration or shared deployment; its human
 schedule remains pending. `1R-F - Project Offer And Artwork Readiness Reconciliation` is
 reviewed/accepted at
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`.
-Its bounded `1R-F-A` real-template/renderer proof is the single next planning candidate;
-proof implementation and `1R-G` remain unauthorised.
+Its bounded `1R-F-A` real-template/renderer proof is restored as formal portfolio `Next`
+after the totally-green R10-A closure; proof implementation and `1R-G` remain unauthorised.
 
 ### Commerce Core
 
@@ -516,11 +617,12 @@ COMMERCE-A1 complete
      -> FUND 1R-E-C C2 Project Store Control Surface
         implemented/reviewed/promoted; human acceptance pending promoted E-D workflow
      -> FUND 1R-E-D Default Project Store Instantiation And Eligible Product Reconciliation
-        implemented/reviewed at c45a41d9; integrated on dev/origin-dev at 174dc8ac;
-        not promoted to staging
+        implemented/reviewed at c45a41d9 and included by ancestry in live 7154937;
+        separate E-B/E-C real-workflow human acceptance is not inferred
   -> FUND 1R-F Project Offer And Artwork Readiness Reconciliation parent accepted
      -> FUND 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
-        single next planning candidate; implementation not authorised
+        formal portfolio NEXT after R10-A closure; planning-only and implementation not
+        authorised
 
 FUND 1R-C1 -> C2 -> C3 -> C4 -> C5 -> C6 complete
 FUND 1P-G-R3-A -> R3-B -> R3-C -> R3-D complete
@@ -537,6 +639,14 @@ Platform Assurance monthly review
 different documentation lifecycles.
 
 ## 7. Current Parent Control Decision
+
+The 2026-08-05 reconciliation in Section 0 is the current decision: the accepted LMSPro
+email CR-Fix remains `Now`; F1 and F2.1 have passed final staging review and exact
+`9974eed5` is aligned through main. Live verification and the immediate F3 follow-on remain.
+FUND 1R-F-A bounded planning remains `Next`.
+R10-A is complete after the control owner's totally-green production smoke. The detailed
+history below explains how the lanes reached that position and must not be read as a
+competing selector.
 
 `1R-C1` through `1R-D`, `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D`, Commerce A1 through A7 and
 FUND 1R-E-A are complete through implementation confirmation and review/test. The retained
@@ -669,11 +779,12 @@ acceptance awaits controlled promotion of the now-implemented Project-to-Store/d
 Product workflow. Bounded `1R-E-D - Default Project Store Instantiation And Eligible Product
 Reconciliation` is implemented/reviewed at `c45a41d9` and integrated/revalidated on
 application `dev`/`origin/dev` at `174dc8ac` without an E-D migration or shared database
-change. It is not promoted to staging. The non-executable
+change. Its application commit is now included by ancestry in live `7154937`; this does not
+invent separate E-B/E-C real-workflow human acceptance. The non-executable
 `1R-F - Project Offer And Artwork Readiness Reconciliation` parent is reviewed/accepted.
-`1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single next
-planning candidate; no proof, `1R-G` or artwork/template production implementation is
-authorised.
+`1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is restored as formal
+portfolio `Next` after R10-A closure; no proof, `1R-G` or artwork/template production
+implementation is authorised.
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-b-c1-store-portfolio-oversight-exceptional-intervention-surface-implementation-planning.md`
 

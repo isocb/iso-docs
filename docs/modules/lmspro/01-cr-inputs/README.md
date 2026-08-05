@@ -4,13 +4,30 @@ This folder contains raw issue tracker exports, change request evidence and user
 
 CR inputs are evidence only. They should not be treated as direct implementation instructions until they have been triaged and assigned to a slice.
 
-Current planning input:
+Mandatory registration:
 
-- The consolidated LMSPro remediation CR contains exactly four complete business briefs.
-- Formal triage accepted the coordinated programme as `R9`, with four separately bounded
-  lifecycles.
-- `R9-A0` is selected as the first read-only writer, consumer and live-state inventory
-  boundary for Item 3.
-- The C1 League dashboard reorganisation is standalone work and is not a fifth item.
-- No application implementation, schema, migration, reconciliation or data mutation is
-  authorised.
+- add every new CR to
+  `../00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md` in the same
+  documentation change;
+- record an explicit disposition, initially `captured; awaiting triage` where appropriate;
+  and
+- do not treat registration as acceptance, implementation authority or a change to the
+  root portfolio `Now`/`Next`.
+
+The authoritative roadmap, rather than this README, records the current LMSPro CR inventory
+and active disposition.
+
+Remedial naming and control:
+
+- prefix a fault/regression correction with `CR-Fix-`, for example
+  `CR-Fix-YYYY-MM-DD-lmspro-<bounded-outcome>.md`;
+- keep it in this folder and register it in the same authoritative LMSPro roadmap table;
+- record environment, regression status, containment, workaround safety, risk assessment,
+  expedite proposal/decision and displaced-work resumption point;
+- do not treat `CR-Fix` as automatic `Now` or implementation authority; and
+- cross-link rather than overwrite an older feature/capacity CR when the remedial fault is
+  a distinct live problem.
+
+Plain-English addition and delivery guide:
+
+`../../../00-roadmap-control/2026-08-05-human-guide-change-request-to-release.md`

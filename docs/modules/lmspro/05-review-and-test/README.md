@@ -1,5 +1,20 @@
 # LMSPro Review And Test
 
+Current email CR-Fix result:
+
+- F1 broad-cohort Save Draft human staging smoke: PASS;
+- F2 independent `BOTH`-role selection: FAIL, with the acceptance model rejected;
+- combined `07a71906` live promotion: superseded by corrected F2.1; and
+- replacement F2.1 planning:
+  `../03-slice-planning/2026-08-05-lmspro-cr-fix-f2-1-cohort-taxonomy-and-picker-correction-planning.md`.
+- F2.1 local technical and human verification: PASS; completed local schedule:
+  `2026-08-05-lmspro-cr-fix-f2-1-dev-human-smoke-schedule.md`.
+- F2.1 exact dev/staging commit, Security, health and final staging human gates: PASS;
+  main promotion completed at `9974eed5`. Recorded final schedule:
+  `2026-08-05-lmspro-cr-fix-f2-1-staging-final-human-smoke.md`.
+- Render exact live-build confirmation and controlled production Save Draft evidence remain
+  to be recorded; F3 is the immediate follow-on under the open CR-Fix.
+
 This folder contains review and authenticated smoke-test confirmations.
 
 Review/test documents should record:
@@ -14,6 +29,7 @@ Review/test documents should record:
 
 Current control documents:
 
+- `2026-08-05-lmspro-cr-fix-f1-f2-staging-readiness-and-human-smoke-schedule.md`
 - `2026-07-02-lmspro-r2-complex-data-issue-review-and-promotion-method.md`
 - `2026-07-02-lmspro-next-season-roll-forward-staging-dummy-rehearsal-plan.md`
 - `2026-07-22-lmspro-remediation-slice-r8-a3-durable-attachment-delivery-job-rate-limiter-and-retry-review-and-test.md`

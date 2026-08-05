@@ -19,6 +19,10 @@ Read in this order when resuming work:
 5. `05-fund-open-questions.md` - active/deferred design questions.
 6. `README-AI.md` - concise AI handoff and guardrails.
 
+Also apply the shared human/AI portfolio method at `../<module>/work-method.md`. The root
+and child roadmaps, not a CR, old plan, chat memory or printable summary, select executable
+work.
+
 ## Document Workflow
 
 ```text

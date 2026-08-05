@@ -1,9 +1,57 @@
 # LMSPro / SeasonPro Roadmap And Slice Control
 
 Date: 2026-06-29
-Last updated: 2026-07-27
+Last updated: 2026-08-05
 Module: LMSPro / SeasonPro
-Control status: Active roadmap and delivery-cycle control
+Control status: Active authoritative LMSPro / SeasonPro child roadmap and delivery-cycle control
+
+Parent portfolio control:
+
+`docs/00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md`
+
+## 0. Authoritative CR Inventory And Current LMSPro Disposition — 2026-08-05
+
+This file is confirmed as the one authoritative LMSPro / SeasonPro child roadmap. The root
+Platform/module roadmap owns the one serial cross-lane `Now` and `Next`. CR inputs, triage,
+plans and historic lifecycle records do not independently select work.
+
+Every LMSPro CR input must be registered in this table in the same documentation change
+that creates the CR. Registration is traceability, not acceptance or implementation
+authority. Later disposition changes must update the existing row.
+
+| Source CR | Current disposition | Roadmap treatment |
+| --- | --- | --- |
+| [`2026-07-02-lmspro-cr-club-official-removal-access-lifecycle-input.md`](../01-cr-inputs/2026-07-02-lmspro-cr-club-official-removal-access-lifecycle-input.md) | R3 planning completed; no implementation confirmation or review record was located for an executable R3 delivery | Historical planned policy; parked unless a fresh fault or accepted implementation need reopens it |
+| [`2026-07-06-lmspro-cr-communications-email-announcements-remediation-input.md`](../01-cr-inputs/2026-07-06-lmspro-cr-communications-email-announcements-remediation-input.md) | R4-A/R4-B implemented with local browser-smoke evidence | Completed at the recorded local evidence boundary; later communications CRs own subsequent changes |
+| [`2026-07-06-lmspro-cr-dynamic-age-group-division-role-permissions-routing-input.md`](../01-cr-inputs/2026-07-06-lmspro-cr-dynamic-age-group-division-role-permissions-routing-input.md) | R5-A/R5-B implemented and reviewed; authenticated browser smoke passed, with R5-A routing confidence closed by R5-B | Completed historical remediation |
+| [`2026-07-06-lmspro-cr-playing-day-configuration-multi-day-league-architecture-input.md`](../01-cr-inputs/2026-07-06-lmspro-cr-playing-day-configuration-multi-day-league-architecture-input.md) | R6 planning/architecture outcome only | Deferred architecture; no executable implementation selected |
+| [`2026-07-07-lmspro-cr-small-remedial-ui-and-count-polish-input.md`](../01-cr-inputs/2026-07-07-lmspro-cr-small-remedial-ui-and-count-polish-input.md) | R7-A implemented, reviewed, browser-smoked and promoted through live | Completed and closed |
+| [`2026-07-07-lmspro-cr-tenant-scoped-role-catalogue-legacy-template-pruning-input.md`](../01-cr-inputs/2026-07-07-lmspro-cr-tenant-scoped-role-catalogue-legacy-template-pruning-input.md) | R5-C implemented locally; its review record still says `Ready for browser smoke` | Waiting for evidence reconciliation; not portfolio `Now` and no completion beyond the recorded boundary is claimed |
+| [`2026-07-08-lmspro-cr-club-player-management.md`](../01-cr-inputs/2026-07-08-lmspro-cr-club-player-management.md) | PM1-A planning exists but is not accepted for implementation | Parked feature candidate; safeguarding and Team Manager access remain preconditions |
+| [`2026-07-20-lmspro-cr-attachment-aware-email-delivery-and-fail-closed-evidence-remediation-input.md`](../01-cr-inputs/2026-07-20-lmspro-cr-attachment-aware-email-delivery-and-fail-closed-evidence-remediation-input.md) | R8-A and its bounded corrections completed through staging/live and human transport evidence | Completed and closed; later operating-envelope changes require a new lifecycle |
+| [`2026-07-22-lmspro-consolidated-email-integrity-club-visibility-and-remedial-work-cr-input.md`](../01-cr-inputs/2026-07-22-lmspro-consolidated-email-integrity-club-visibility-and-remedial-work-cr-input.md) | Accepted through consolidated R9 triage and delivered by R9-A through R9-D; production promotion/evidence complete | Completed coordinated programme input |
+| [`2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md`](../01-cr-inputs/2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md) | Consumed by the same R9 programme and its bounded plans | Completed/superseded as active planning by the delivered R9 lifecycle; retained as decision provenance |
+| [`2026-07-30-lmspro-responsive-c1-club-management-cr-input.md`](../01-cr-inputs/2026-07-30-lmspro-responsive-c1-club-management-cr-input.md) | R10-A implemented, staging-smoked, included by ancestry in live application `7154937` and reported totally green in the control-owner production smoke | Completed and closed on 2026-08-05; no remaining resumption action |
+| [`2026-08-05-lmspro-500-recipient-email-operating-envelope-refinement.md`](../01-cr-inputs/2026-08-05-lmspro-500-recipient-email-operating-envelope-refinement.md) | Captured planning input; awaiting formal triage | Registered standard communications/capacity candidate; no limit change, implementation or displacement of `Now`/`Next` authorised |
+| [`CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md`](../01-cr-inputs/CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md) | F1 human staging PASS; F2 superseded; F2.1 local and final staging human PASS; exact `9974eed5` aligned across dev/staging/main; saved-draft compatibility excluded; Render live evidence and F3 remain open | **Portfolio NOW:** record exact live deployment and controlled Save Draft evidence, then plan/execute the already accepted immediate F3 follow-on without reopening F1/F2.1 |
+
+Current LMSPro portfolio disposition:
+
+```text
+NOW  -> CR-Fix F1/F2.1 promoted; live evidence then immediate F3 follow-on
+NEXT -> FUND 1R-F-A planning candidate at root; no LMSPro successor selected
+```
+
+The control owner completed the displaced R10-A smoke as totally green. The current root/child
+pair is therefore:
+
+```text
+NOW  -> LMSPro CR-Fix: live verification at 9974eed5, then immediate F3 follow-on
+NEXT -> FUND 1R-F-A bounded planning candidate
+```
+
+R10-A is complete and closed. FUND `1R-F-A` is restored as formal root `Next`, but remains
+planning-only and gains no implementation authority from that position.
 
 ## Purpose
 
@@ -27,6 +75,10 @@ Current and new operational work should use:
 
 Existing broad/historical planning remains in `planning/` unless it becomes operationally active.
 
+Remedial inputs use the `CR-Fix-` filename/title prefix but remain in `01-cr-inputs` and
+the same authoritative inventory. The prefix identifies corrective purpose; it does not
+create implementation authority or a separate remedial roadmap.
+
 ## Controlled Delivery Cycle
 
 Use this cycle for all non-trivial LMSPro / SeasonPro work:
@@ -44,6 +96,8 @@ Use this cycle for all non-trivial LMSPro / SeasonPro work:
 Gate rules:
 
 - A CR input is evidence and intent. It is not an implementation plan.
+- Creating a CR also updates the Section 0 inventory with an explicit disposition in the
+  same documentation change.
 - Triage decides whether the CR is accepted, deferred, split, rejected or moved to concept
   control.
 - Slice planning defines the exact build boundary, risks, data model implications,
@@ -51,7 +105,8 @@ Gate rules:
 - Implementation should not begin until the relevant 03 slice plan is accepted.
 - Implementation confirmation records what was actually changed.
 - Review/test records browser smoke, scripts, known gaps and promotion confidence.
-- This roadmap/control document is updated at cycle close before the next slice begins.
+- This roadmap/control document is updated both at CR capture and at cycle close before the
+  next slice begins.
 
 Recommended improvements to the cycle:
 
@@ -62,6 +117,8 @@ Recommended improvements to the cycle:
 - Keep concept/product strategy documents separate from near-term feature CRs.
 - Treat suggested slices in CR inputs as advisory until triage and planning accept them.
 - Prefer smaller slices where permission boundaries or sensitive data are involved.
+- For `CR-Fix` work, record containment, operational severity, workaround safety, correction
+  risk, expedite decision and displaced-work resumption before implementation begins.
 
 ## Current App Branch Context
 
@@ -76,14 +133,16 @@ Current work should remain on dev/remediation branches until reviewed and explic
 Latest known app alignment from prior cycle:
 
 ```text
-dev = origin/dev = staging = origin/staging = df40f45c
-main = origin/main = b9287ffa
+dev = origin/dev = staging = origin/staging = main = origin/main = 9974eed5
+Render live exact-build confirmation = pending after authorised main push
 ```
 
-`b9287ffa` remains the completed controlled production release containing R8-A3 and its
-Platform/runtime dependencies. Dev/staging subsequently advanced to `df40f45c` through the
-separately completed `PLAT-ASSURE-03` security remediation and exact staging human gate.
-No R9 application or data change is present in those baselines.
+Application `7154937` was the confirmed live baseline and includes R9/R10-A by ancestry.
+The control owner reported the final R10-A production smoke totally green on 2026-08-05.
+After all ten F2.1 staging checks passed, the control owner authorised promotion and
+`9974eed5` was fast-forwarded and pushed to main. Exact Render live-build confirmation and
+controlled production Save Draft evidence remain to be recorded. Exact main Security Scan
+`31015039314` passed.
 
 ## Current Completed LMSPro Cycle State
 
@@ -92,7 +151,8 @@ Recent LMSPro lanes completed and documented:
 - R2 - imported club-user membership and live data repair;
 - R3 - club official removal and archived access lifecycle planning;
 - R4 - communications, email and announcements remediation;
-- R5 - age group/division manager notification routing and role catalogue polish;
+- R5 - age group/division manager notification routing completed; role-catalogue R5-C is
+  implemented locally but its review record still requires browser-smoke reconciliation;
 - R6 - playing-day mitigation and architecture overview planning;
 - R7 - small UI/count polish promoted through staging and live.
 
@@ -1043,8 +1103,8 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Confirm Render production displays exact `cc4b4dc`, execute the focused read-only R10-A live
-smoke and close the lifecycle if green
+Confirm Render staging displays `9974eed`, execute the final F2.1 role-taxonomy and
+recipient-type Save Draft smoke, then record the explicit main/live and F3 decision
 ```
 
 Goal:

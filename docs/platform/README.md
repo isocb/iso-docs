@@ -7,6 +7,10 @@ Start with:
 
 `00-roadmap-control/2026-07-22-isostack-platform-roadmap-and-slice-control.md`
 
+Human and AI sessions should also follow the portfolio working method at
+`../modules/<module>/work-method.md`; the roadmap, not chat memory or a printable summary,
+selects executable work.
+
 Authority is intentionally separated:
 
 - `docs/00-overview/` supplies non-executable principles, architecture summaries and

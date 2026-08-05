@@ -2,8 +2,7 @@
 
 Date: 2026-07-30
 
-Status: COMPLETE STAGING HUMAN SMOKE PASS; EXACT PRODUCTION PROMOTED; MAIN SECURITY AND
-PUBLIC HEALTH PASS; RENDER EXACT DISPLAY AND READ-ONLY LIVE SMOKE PENDING
+Status: **COMPLETE AND CLOSED — STAGING AND PRODUCTION HUMAN SMOKE TOTALLY GREEN**
 
 Implementation confirmation:
 
@@ -101,55 +100,60 @@ makes the modal taller within the available viewport.
 
 Preconditions:
 
-- Render STAGING shows `Live at cc4b4dc` (Render's normal seven-character display);
+- Render STAGING shows `Live at cc4b4dc` (Render's normal seven-character display); later deploy:  71549 because of remedial security patches only
 - the staging Security Scan for exact `cc4b4dc8332f0bdc994c7c2609d2ece873a74087`
   is green; and
-- public health is HTTP 200 with database connected.
+- public health is HTTP 200 with database connected. PASS
 
 Use a controlled C1 login and existing staging Notes. No new data is required.
 
-1. Open Club Management and use Notes for the controlled Club.
-2. Confirm active Note rows show no Edit or Archive/Delete icons.
-3. Click an ordinary part of a Note row and confirm it opens directly in edit mode.
-4. Repeat on another row with Enter, then Space, confirming direct edit each time.
-5. Confirm editing shows only the selected Note and does not show an Add Note button.
+1. Open Club Management and use Notes for the controlled Club. PASS
+2. Confirm active Note rows show no Edit or Archive/Delete icons. PASS
+3. Click an ordinary part of a Note row and confirm it opens directly in edit mode. PASS
+4. Repeat on another row with Enter, then Space, confirming direct edit each time. PASS
+5. Confirm editing shows only the selected Note and does not show an Add Note button. PASS
 6. Confirm the modal is substantially taller on desktop and remains within the viewport at
-   mobile, tablet and 200% zoom.
-7. Confirm the editor's footer remains visible while its main area scrolls.
-8. Confirm Archive is red/outline at lower-left and Cancel/Save Changes are at lower-right.
-9. Select Cancel and confirm no value changes.
-10. Reopen Add Note and confirm its footer shows Cancel/Add Note but no Archive.
+   mobile, tablet and 200% zoom. PASS
+7. Confirm the editor's footer remains visible while its main area scrolls. PASS
+8. Confirm Archive is red/outline at lower-left and Cancel/Save Changes are at lower-right.PASS
+9. Select Cancel and confirm no value changes. PASS
+10. Reopen Add Note and confirm its footer shows Cancel/Add Note but no Archive. PASS
 
 ## 7. Result Template
 
 ```text
-Render Live at cc4b4dc: YES / NO
-No Note-row Edit/Archive icons: PASS / FAIL
-Pointer row opens edit: PASS / FAIL
-Enter row opens edit: PASS / FAIL
-Space row opens edit: PASS / FAIL
-Only selected Note shown while editing: PASS / FAIL
-No Add Note action while editing: PASS / FAIL
-Taller responsive modal: PASS / FAIL
-Sticky visible footer: PASS / FAIL
-Archive left; Cancel/Save right: PASS / FAIL
-Cancel leaves data unchanged: PASS / FAIL
-Add mode has Cancel/Add Note only: PASS / FAIL
-Unexpected behaviour: NONE / details
+Render Live at cc4b4dc:   NO Later  71549 after security patch
+No Note-row Edit/Archive icons: PASS
+Pointer row opens edit: PASS
+Enter row opens edit: PASS
+Space row opens edit: PASS
+Only selected Note shown while editing: PASS
+No Add Note action while editing: PASS
+Taller responsive modal: PASS
+Sticky visible footer: PASS
+Archive left; Cancel/Save right: PASS
+Cancel leaves data unchanged: PASS
+Add mode has Cancel/Add Note only: PASS
+Unexpected behaviour: NONE
 ```
 
 ## 8. Current Decision
 
 The control owner confirmed Render `Live at cc4b4dc` and every focused modal item passed:
 
-- no Note-row Edit/Archive icons;
-- pointer, Enter and Space direct edit;
-- selected Note only and no Add Note during edit;
-- taller responsive modal at mobile, tablet and 200% zoom;
-- sticky visible footer;
-- Archive lower-left and Cancel/Save Changes lower-right;
-- Cancel makes no changes; and
-- Add mode shows Cancel/Add Note only.
+Render Live at cc4b4dc:   NO Later  71549 after security patch
+No Note-row Edit/Archive icons: PASS
+Pointer row opens edit: PASS
+Enter row opens edit: PASS
+Space row opens edit: PASS
+Only selected Note shown while editing: PASS
+No Add Note action while editing: PASS
+Taller responsive modal: PASS
+Sticky visible footer: PASS
+Archive left; Cancel/Save right: PASS
+Cancel leaves data unchanged: PASS
+Add mode has Cancel/Add Note only: PASS
+Unexpected behaviour: NONE
 
 R10-A therefore passes its complete staging human boundary. The control owner authorises the
 clean exact fast-forward of main from `fbab1862` to `cc4b4dc8`. There is no schema or migration
@@ -180,3 +184,17 @@ Do not create, update, archive, approve or delete production data during this sm
 - public production health: PASS — HTTP 200, database connected, RLS 11/11.
 
 Render's displayed exact commit and the read-only live smoke above remain before closure.
+
+## 10. Control-Owner Production Smoke And Closure — 2026-08-05
+
+The control owner reports that the complete R10-A production review/smoke schedule is a
+**totally green PASS**, with no unexpected behaviour. This closes the previously outstanding
+Render/read-only live-smoke boundary recorded above.
+
+Closure means:
+
+- R10-A is complete through implementation, staging, production promotion and human smoke;
+- no new code, schema, migration, database or production-data action is required;
+- R10-A is removed from the portfolio `Next` position; and
+- the root portfolio restores FUND `1R-F-A` as the formal planning-only `Next` while the
+  email CR-Fix remains `Now`.

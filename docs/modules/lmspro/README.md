@@ -60,6 +60,10 @@ Start current remediation work at:
 00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md
 ```
 
+Human and AI sessions should also follow the shared portfolio working method at
+`../<module>/work-method.md`. The root and child roadmaps, not a CR, old plan, chat memory
+or printable summary, select executable work.
+
 Current folder roles:
 
 - `00-roadmap-control/` - current roadmap and slice-control documents.
