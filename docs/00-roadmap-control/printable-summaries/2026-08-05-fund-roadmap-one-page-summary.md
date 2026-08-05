@@ -12,8 +12,8 @@ payment contracts remain owned by Commerce Core.
 ## Current Position
 
 - FUND has no portfolio `Now` at this snapshot.
-- **Portfolio NOW:** the SeasonPro email `CR-Fix`; F1/F2.1 final staging smoke is green and
-  exact `9974eed5` is aligned through main, with live evidence and F3 still open.
+- **Portfolio NOW:** the SeasonPro email `CR-Fix`; F2.2 is exact on dev/staging at
+  `ec7e0cc4` and awaits human smoke before existing F3.
 - **Portfolio NEXT:** `1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof`
   bounded planning candidate, restored after the totally-green R10-A closure.
 - `1R-F-A` is a planning candidate only. No renderer implementation, later `1R-F` branch,
@@ -54,8 +54,8 @@ boundaries and test route before code is authorised.
 
 ## Next Decision
 
-Complete SeasonPro live verification and its immediate F3 follow-on before deciding whether
-to begin bounded `1R-F-A` planning. Keep later work parked.
+Complete SeasonPro F2.2 and its existing F3 follow-on before deciding whether to begin
+bounded `1R-F-A` planning. Keep later work parked.
 
 Authoritative source:
 [`FUND Roadmap And Slice Control`](../../modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md)

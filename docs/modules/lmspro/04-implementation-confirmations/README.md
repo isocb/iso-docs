@@ -2,6 +2,9 @@
 
 Current local correction:
 
+- `2026-08-05-lmspro-cr-fix-f2-2-current-season-eligibility-and-count-integrity-confirmation.md`
+  records automated/build PASS and exact dev/staging alignment at `ec7e0cc4`; staging human
+  smoke is required before main.
 - `2026-08-05-lmspro-cr-fix-f2-1-cohort-taxonomy-and-picker-correction-local-confirmation.md`
   records local and final staging human PASS and exact dev/staging/main alignment at
   `9974eed5`; Render exact live-build evidence remains to be recorded.

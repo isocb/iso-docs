@@ -16,8 +16,10 @@ Current queue:
 
 - `CR-Fix F1/F2 - Cohort Email Draft Persistence And Audience Selection` is the accepted
   urgent operational expedite and portfolio `Now`.
-- F3 uploaded-file-only acknowledgement remains the immediate follow-on under the same
-  CR-Fix; it failed the safe/trivial pre-promotion inclusion check and was not included.
+- F2.2 current-season eligibility, additive audience sources and count integrity is the
+  active urgent triage;
+  its bounded plan awaits explicit acceptance.
+- F3 uploaded-file-only acknowledgement retains its identifier and follows F2.2.
 - R10-A is closed after the control owner's totally-green production smoke. FUND `1R-F-A`
   is restored as formal planning-only portfolio `Next`.
 

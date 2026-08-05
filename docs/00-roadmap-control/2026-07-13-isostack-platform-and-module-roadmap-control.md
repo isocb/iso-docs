@@ -37,7 +37,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | LMSPro `CR-Fix - Live Verification And F3 Follow-On` | F1 human staging PASS; F2 superseded; F2.1 local and final staging human PASS. Exact `9974eed5` is aligned across dev/staging/main after explicit promotion authority, and exact main Security Scan `31015039314` passes. Record Render exact-build and controlled production Save Draft evidence, then proceed to the already accepted separate F3 milestone. |
+| **NOW** | LMSPro `CR-Fix F2.2 - Current-Season Eligibility And Count Integrity` | Corrected additive-source/restrictive-eligibility plan is implemented at `ec7e0cc4`, exact on dev/staging with automated/build PASS. Staging human smoke and an explicit main-promotion decision remain. Existing attachment-policy F3 follows F2.2. |
 | **NEXT** | FUND `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` planning | R10-A is closed after the control owner's totally-green production smoke. Restore only the bounded planning candidate already registered in FUND control; renderer implementation, later 1R-F/1R-G work and artwork production remain unauthorised. |
 
 Registered candidates which do not displace that pair:
@@ -48,8 +48,10 @@ Registered candidates which do not displace that pair:
   expedite proposal if triage confirms the risk;
 - LMSPro 500-recipient operating envelope: standard communications/capacity triage input;
 - LMSPro cohort email draft persistence and audience selection `CR-Fix`: accepted as the
-  portfolio `Now`; F1 and F2.1 local/final-staging evidence pass and exact `9974eed5` is
-  aligned through main; live verification remains, followed by the separate F3 milestone;
+  portfolio `Now`; F1/F2.1 remain green, but production review found a separate high-risk
+  status-as-audience-source/eligibility defect. F2.2 is implemented at `ec7e0cc4`, exact
+  on dev/staging and awaiting human smoke; the
+  existing attachment-policy F3 follows it;
 - FUND `1R-F-A`: restored as formal root `Next` after R10-A's totally-green closure; it
   remains planning-only and does not displace the email CR-Fix `Now`;
 - Platform `PLAT-REFINE-02` through `PLAT-REFINE-04`: registered non-executable findings;
@@ -641,9 +643,10 @@ different documentation lifecycles.
 ## 7. Current Parent Control Decision
 
 The 2026-08-05 reconciliation in Section 0 is the current decision: the accepted LMSPro
-email CR-Fix remains `Now`; F1 and F2.1 have passed final staging review and exact
-`9974eed5` is aligned through main. Live verification and the immediate F3 follow-on remain.
-FUND 1R-F-A bounded planning remains `Next`.
+email CR-Fix remains `Now`; F1 and F2.1 remain green and exact `9974eed5` is aligned through
+main. Production review found the separate status-as-audience-source/eligibility defect.
+F2.2 is implemented at `ec7e0cc4`, exact on dev/staging with human smoke pending; the existing
+attachment-policy F3 follows it. FUND 1R-F-A bounded planning remains `Next`.
 R10-A is complete after the control owner's totally-green production smoke. The detailed
 history below explains how the lanes reached that position and must not be read as a
 competing selector.

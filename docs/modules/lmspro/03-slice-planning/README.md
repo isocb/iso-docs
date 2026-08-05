@@ -25,8 +25,12 @@ Current boundary:
   dev, staging and main after both pre-main Security Scans and public staging health passed.
   Render exact live-build and controlled production Save Draft evidence remain to be
   recorded.
-- F3 remains the immediate follow-on, failed the safe/trivial inclusion check and was not
-  included in `07a71906`.
+- Current urgent plan awaiting explicit acceptance:
+  `2026-08-05-lmspro-cr-fix-f2-2-current-season-eligibility-and-count-integrity-planning.md`.
+- F2.2 corrects status selectors acting as audience sources, adds source-specific
+  current-season/status eligibility and preserves additive structural/role cohorts with
+  truthful counts. It precedes the existing F3 uploaded-file-only acknowledgement
+  follow-on.
 
 Historical programme context retained below does not select current work:
 

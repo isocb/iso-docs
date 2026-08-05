@@ -10,8 +10,8 @@ communications behaviour.
 
 ## Current Position
 
-- **Portfolio NOW:** verify the promoted email correction live, then complete the bounded
-  F3 follow-on under the same CR-Fix.
+- **Portfolio NOW:** human-smoke F2.2 current-season eligibility and additive audience
+  sources on staging at exact `ec7e0cc4`; main is not yet authorised.
 - F1 human staging smoke passes through the maximum available 440-recipient draft, with a
   341 ms broad-case server wait.
 - F2 failed because it treated C1/C2/hat-swap access context as independently selectable
@@ -19,7 +19,15 @@ communications behaviour.
 - F2.1 separates access context, functional roles and structural-cohort recipient types.
   Local and final staging human smoke pass; exact commit `9974eed5` is aligned across
   dev/staging/main after both pre-main Security Scans and public staging health passed.
-- F3 was not implemented and remains the immediate follow-on.
+- Production review found that status controls are acting as recipient-producing cohorts
+  and Age Group/Division resolvers do not explicitly default Team/Club status to Current.
+  The corrected model unions selected Age Group/Division/Club and functional-role audience
+  sources, while season/status filters only restrict sources to which they apply.
+- F2.2 is implemented at `ec7e0cc4`, exact on dev/staging with automated/build PASS. Human
+  staging acceptance remains; F3 follows F2.2.
+- F2.2 also includes two bounded UI fixes: show the complete recipient count in the tab
+  badge, and return to an unfiltered Email list after successful Send while retaining the
+  status filter.
 - `R10-A Responsive C1 Club Management` is complete and closed after a totally-green
   control-owner production smoke.
 - **Portfolio NEXT:** FUND `1R-F-A` bounded planning candidate; implementation unauthorised.
@@ -49,13 +57,13 @@ communications behaviour.
 
 ## Immediate Management Rule
 
-Confirm Render live displays exact `9974eed`, then record the controlled production Save
-Draft verification without reopening F1/F2.1 or using a broad provider Send as UI proof.
+Confirm Render staging displays exact `ec7e0cc4`, then execute the bounded F2.2 Save Draft
+and controlled single-recipient smoke. Do not use a broad cohort Send as proof.
 
 ## Next Decision
 
-After live evidence, execute the separately bounded F3 milestone. FUND `1R-F-A` remains
-planning-only portfolio `Next` until the CR-Fix closes or is explicitly re-dispositioned.
+Accept or reject the F2.2 staging candidate, then decide main promotion before the
+separately bounded F3 milestone. FUND `1R-F-A` remains planning-only portfolio `Next`.
 
 Authoritative source:
 [`LMSPro / SeasonPro Roadmap And Slice Control`](../../modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md)

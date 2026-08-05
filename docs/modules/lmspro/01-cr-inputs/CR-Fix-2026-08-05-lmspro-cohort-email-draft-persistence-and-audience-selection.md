@@ -12,9 +12,13 @@ application-source review
 
 Current disposition: **F1 human staging smoke passes. F2 is superseded. F2.1 local and
 final staging human smoke pass entirely green. Exact commit `9974eed5` is aligned across
-dev, staging and main after explicit control-owner promotion authority. Existing saved
-drafts are outside scope. Render live exact-build confirmation and controlled production
-Save Draft evidence remain to be recorded. F3 is the immediate separate follow-on.**
+dev, staging and main after explicit control-owner promotion authority. Production review
+then identified that current-season Team/Club statuses do not constrain applicable
+audience sources and instead add recipients as independent cohorts. Urgent F2.2 triage is
+accepted; its corrected additive-source/restrictive-eligibility plan was authorised and
+implemented at `ec7e0cc4`, now exact on dev/staging with human smoke pending. Existing
+saved drafts remain outside scope. The
+uploaded-file-only acknowledgement correction retains identifier F3 and follows F2.2.**
 
 Application baseline reviewed: `7154937c`
 
@@ -46,6 +50,22 @@ F2.1 local implementation confirmation:
 
 `docs/modules/lmspro/04-implementation-confirmations/2026-08-05-lmspro-cr-fix-f2-1-cohort-taxonomy-and-picker-correction-local-confirmation.md`
 
+Urgent F2.2 triage:
+
+`docs/modules/lmspro/02-triage/2026-08-05-lmspro-cr-fix-f2-2-current-season-eligibility-and-count-integrity-triage.md`
+
+Bounded F2.2 plan:
+
+`docs/modules/lmspro/03-slice-planning/2026-08-05-lmspro-cr-fix-f2-2-current-season-eligibility-and-count-integrity-planning.md`
+
+F2.2 implementation confirmation:
+
+`docs/modules/lmspro/04-implementation-confirmations/2026-08-05-lmspro-cr-fix-f2-2-current-season-eligibility-and-count-integrity-confirmation.md`
+
+F3 attachment-policy planning refinement:
+
+`docs/modules/lmspro/01-cr-inputs/2026-08-05-lmspro-cr-fix-f3-uploaded-file-only-acknowledgement-planning-refinement.md`
+
 ## 0. Latest Control-Owner Review
 
 ```text
@@ -63,6 +83,29 @@ smoke pass all ten checks; the dev and staging Security Scans and public staging
 pass. The control owner then authorised main promotion, and main was fast-forwarded and
 pushed to the same commit. Exact Render live confirmation and controlled production Save
 Draft evidence remain to be recorded before the incident-ending milestone closes.
+
+### F2.2 Production Audience-Scope Finding
+
+Production review of the promoted picker exposed a separate high-severity authority defect:
+
+- Age Group and Division resolution does not explicitly constrain Team or Club status;
+- Team Status and Club Status are independent recipient-producing cohorts rather than
+  constraints;
+- status filters are concatenated as recipient-producing cohorts before address
+  deduplication;
+- a selected Club Role is tenant-wide and is not restricted through authoritative
+  status-eligible Club membership; and
+- the `Club histories` badge counts distinct Club-dashboard visibility records, not people.
+
+The observed `62 Club histories` when only 53 Clubs are considered Current is consistent
+with this source defect. Exact production identities remain unqueried and unresolved.
+
+The corrected F2.2 objective is current-season scope; Team/Club status defaults of Current;
+additive union of selected Age Group, Division, explicit Club, League Role, Club Role and
+other recipient-producing sources; source-specific restrictive status eligibility;
+status-only selection producing no recipients; exact C1-defined role IDs; primary-contact
+Club Secretaries for eligible Clubs; and one resolver contract for preview/persistence
+counts.
 
 ### Send Confidence Boundary
 
@@ -356,6 +399,10 @@ F3 is the immediate follow-on unless the accepted inclusion check proves it safe
 and non-delaying, in which case it may share the urgent release.
 ```
 
+Later amendment: F3 failed that inclusion check and remained separate. Production review
+then accepted the more serious F2.2 audience-authority triage ahead of F3. The historic
+decision above remains provenance, not the current execution order.
+
 The root portfolio is reconciled as:
 
 ```text
@@ -369,7 +416,7 @@ authority.
 
 ## 8. Accepted Resolution Structure
 
-One `CR-Fix` holds the related evidence, but implementation planning should preserve three
+One `CR-Fix` holds the related evidence, but implementation planning should preserve four
 bounded sub-slices.
 
 ### CR-Fix F1 — Scalable Atomic Draft Persistence And Observability
@@ -411,10 +458,37 @@ Historical implemented outcome, no longer accepted:
 Replacement: F2.1 defines access context separately from functional roles, restricts role
 cohorts to exact scope and contextualises the Division/Age Group recipient-type modifier.
 
+### CR-Fix F2.2 — Current-Season Eligibility And Count Integrity
+
+Priority: Urgent audience-authority correction before the attachment-policy F3.
+
+Accepted planning outcome:
+
+- server-resolve the exact current season;
+- default Team and Club status constraints to Current while allowing deliberate
+  multi-status selection;
+- union independently eligible Age Group, Division, explicit Club, League Role, Club Role
+  and other selected audience sources before global address deduplication;
+- treat Team/Club statuses only as restrictive filters on sources with the relevant
+  authoritative relationship, never as recipient-producing cohorts;
+- return zero recipients when only status controls are selected;
+- retain primary-contact Club Secretary semantics for qualifying structural Clubs;
+- resolve exact C1-defined Club Roles as an additive source through active User role plus
+  authoritative status-eligible Club membership, independently of selected structural
+  sources and without hard-coded names;
+- derive provider-recipient and Club-history counts from the same plan used by Save Draft;
+- make the Recipients-tab badge display the complete resolved count;
+- clear the stale Draft list filter after a successful Send while retaining deliberate
+  status filtering; and
+- preserve F1 atomic persistence, F2.1 taxonomy and provider/attachment behaviour.
+
+Implementation is complete at `ec7e0cc4`, exact on dev/staging with automated and build
+gates green. Staging human smoke is required before any main/live promotion.
+
 ### CR-Fix F3 — Uploaded-File-Only Acknowledgement Policy
 
-Priority: Bounded immediate policy follow-on; it may share the urgent release only if the
-accepted planning inclusion check proves it safe, trivial and non-delaying to F1/F2.
+Priority: Bounded policy follow-on after the more serious F2.2 audience-authority
+correction.
 
 Accepted conditional outcome:
 
@@ -581,8 +655,8 @@ reviewed migration plan with explicit rollback and production compatibility evid
 1. Exact Render/Prisma exception for the 411-recipient request.
 2. Measured confirmation that the accepted 10-second `maxWait` and 30-second transaction
    timeout provide material headroom after the bulk correction.
-3. Whether F3 passes the accepted inclusion check without delaying the incident-ending
-   F1/F2 correction.
+3. F3 did not pass the inclusion check; it remains separate and is now sequenced after the
+   urgent F2.2 audience-authority correction.
 4. Whether 500 remains an evidence target, becomes a supported envelope or later becomes a
    server hard maximum; this remains owned by the separate capacity CR.
 5. Exact live operational date by which the intended communication must be available.
@@ -599,4 +673,7 @@ The control owner has decided:
    and restore FUND `1R-F-A` as formal planning-only `Next`;
 3. include F1 and F2 in the urgent remedial release under the accepted slice plan; and
 4. retain F3 as the immediate follow-on within this CR-Fix; the pre-promotion review found
-   it cross-cutting rather than safe/trivial, so it was excluded from `07a71906`.
+   it cross-cutting rather than safe/trivial, so it was excluded from `07a71906`; and
+5. accept urgent F2.2 triage for current-season eligibility, additive audience sources and
+   truthful counts,
+   preserving F3's existing identifier and sequencing F2.2 before it.

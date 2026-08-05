@@ -33,12 +33,12 @@ authority. Later disposition changes must update the existing row.
 | [`2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md`](../01-cr-inputs/2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md) | Consumed by the same R9 programme and its bounded plans | Completed/superseded as active planning by the delivered R9 lifecycle; retained as decision provenance |
 | [`2026-07-30-lmspro-responsive-c1-club-management-cr-input.md`](../01-cr-inputs/2026-07-30-lmspro-responsive-c1-club-management-cr-input.md) | R10-A implemented, staging-smoked, included by ancestry in live application `7154937` and reported totally green in the control-owner production smoke | Completed and closed on 2026-08-05; no remaining resumption action |
 | [`2026-08-05-lmspro-500-recipient-email-operating-envelope-refinement.md`](../01-cr-inputs/2026-08-05-lmspro-500-recipient-email-operating-envelope-refinement.md) | Captured planning input; awaiting formal triage | Registered standard communications/capacity candidate; no limit change, implementation or displacement of `Now`/`Next` authorised |
-| [`CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md`](../01-cr-inputs/CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md) | F1 human staging PASS; F2 superseded; F2.1 local and final staging human PASS; exact `9974eed5` aligned across dev/staging/main; saved-draft compatibility excluded; Render live evidence and F3 remain open | **Portfolio NOW:** record exact live deployment and controlled Save Draft evidence, then plan/execute the already accepted immediate F3 follow-on without reopening F1/F2.1 |
+| [`CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md`](../01-cr-inputs/CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md) | F1 PASS; F2 superseded; F2.1 final staging PASS and `9974eed5` aligned through main; F2.2 corrected additive-source/restrictive-eligibility plan implemented at `ec7e0cc4`, exact on dev/staging with automated/build PASS; saved-draft compatibility excluded; F3 attachment policy remains queued | **Portfolio NOW:** complete F2.2 staging human smoke and decide main promotion before the existing F3 policy follow-on |
 
 Current LMSPro portfolio disposition:
 
 ```text
-NOW  -> CR-Fix F1/F2.1 promoted; live evidence then immediate F3 follow-on
+NOW  -> CR-Fix F2.2 staging human smoke at exact ec7e0cc4; main not yet authorised
 NEXT -> FUND 1R-F-A planning candidate at root; no LMSPro successor selected
 ```
 
@@ -46,7 +46,7 @@ The control owner completed the displaced R10-A smoke as totally green. The curr
 pair is therefore:
 
 ```text
-NOW  -> LMSPro CR-Fix: live verification at 9974eed5, then immediate F3 follow-on
+NOW  -> LMSPro CR-Fix: F2.2 current-season eligibility, additive sources and truthful counts
 NEXT -> FUND 1R-F-A bounded planning candidate
 ```
 
@@ -1103,8 +1103,8 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Confirm Render staging displays `9974eed`, execute the final F2.1 role-taxonomy and
-recipient-type Save Draft smoke, then record the explicit main/live and F3 decision
+Confirm Render staging is exact at `ec7e0cc4`, execute the F2.2 human smoke schedule and
+record the control-owner decision before any main promotion
 ```
 
 Goal:
