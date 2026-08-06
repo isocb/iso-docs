@@ -23,7 +23,8 @@ Current queue:
   triage/planning follow-on inside the same `CR-Fix`.
 - R11-A recipient-tab accordion and responsive layout refinement has automated/build and
   authenticated local UI smoke 18/18 PASS. Exact `83356030` is promoted to staging; exact
-  deployment and staging smoke remain. It does not displace the current `Now`/`Next`.
+  build identification and authenticated staging smoke remain after public health PASS. It
+  does not displace the current `Now`/`Next`.
 - R10-A is closed after the control owner's totally-green production smoke. FUND `1R-F-A`
   is restored as formal planning-only portfolio `Next`.
 

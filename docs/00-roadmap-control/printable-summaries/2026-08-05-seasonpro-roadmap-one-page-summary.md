@@ -32,8 +32,9 @@ communications behaviour.
 - `R11-A` refines the recipient picker with closed-by-default accordions, stored-selection
   disclosure, clearer Division/Age Group recipient-type grouping and responsive mobile
   presentation. Automated/build and local human smoke 18/18 PASS; exact `83356030` is
-  promoted to staging and awaits exact deployment plus staging smoke. It does not alter
-  audience resolution, delivery or the portfolio `Now`/`Next` pair.
+  promoted to staging; post-push public health is green, while exact-build identification
+  and authenticated staging smoke remain. It does not alter audience resolution, delivery
+  or the portfolio `Now`/`Next` pair.
 - `R10-A Responsive C1 Club Management` is complete and closed after a totally-green
   control-owner production smoke.
 - **Portfolio NEXT:** FUND `1R-F-A` bounded planning candidate; implementation unauthorised.

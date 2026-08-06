@@ -4,7 +4,8 @@ Date: 2026-08-06
 
 Status: **IMPLEMENTED; AUTOMATED/TYPE/VERIFY/LINT/BUILD GATES PASS; LOCAL AUTHENTICATED
 SMOKE 18/18 PASS; COMMITTED AT `83356030`; DEV/ORIGIN-DEV AND STAGING/ORIGIN-STAGING
-ALIGNED; STAGING DEPLOYMENT/SMOKE PENDING; NO LIVE PROMOTION**
+ALIGNED; POST-PUSH STAGING HEALTH PASS; EXACT DEPLOYED BUILD/AUTHENTICATED STAGING SMOKE
+PENDING; NO LIVE PROMOTION**
 
 Accepted plan:
 
@@ -26,7 +27,7 @@ exact R11-A application commit: 833560309786c71265c361b71f3523dbc100499d
 dev/origin-dev: 833560309786c71265c361b71f3523dbc100499d
 staging/origin-staging: 833560309786c71265c361b71f3523dbc100499d
 main/origin-main: ec7e0cc4c22ee9470534e8d09df1e402bbf0f81e (unchanged)
-staging deployment: triggered by origin/staging push; exact deployed build pending
+staging public health after push: PASS; exact deployed build pending
 schema/migration: none
 API/payload change: none
 provider Send invoked: no
@@ -136,6 +137,19 @@ src/core/services/communications/components/cohort-accordion-state.test.ts
 No server router, provider, resolver, Prisma schema, migration, delivery or attachment file
 changed.
 
+## 3.1 Post-Promotion Public Staging Evidence
+
+After the `origin/staging` push:
+
+- `https://staging.seasonpro.co.uk/api/health` returned HTTP 200;
+- the response reported `healthy`, database `connected` and RLS `11/11` enabled; and
+- the signed-out communications route returned HTTP 307, consistent with its authentication
+  boundary.
+
+These checks prove that the public staging service boots and its database/RLS health gate is
+green. They do not expose the deployed Git SHA and do not replace authenticated C1 browser
+smoke, so exact `83356030` Render identification and staging UI acceptance remain pending.
+
 ## 4. Automated Evidence
 
 | Gate | Result |
@@ -177,9 +191,9 @@ R11-A does not change:
 Static review and automated gates are green. The control owner reports all 18 local smoke
 items passing, including the corrected reopened-draft disclosure display in test 7.
 
-Exact commit `83356030` is promoted to staging. Confirm the Render staging service is live
-at that exact commit and execute the focused authenticated staging smoke before any request
-for live promotion.
+Exact commit `83356030` is promoted to staging and public service health is green. Confirm
+Render identifies that exact deployed commit and execute the focused authenticated staging
+smoke before any request for live promotion.
 
 ## 7. Rollback
 

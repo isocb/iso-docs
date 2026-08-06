@@ -3,7 +3,8 @@
 Date: 2026-08-06
 
 Review status: **LOCAL STATIC/AUTOMATED REVIEW PASS; AUTHENTICATED LOCAL UI SMOKE 18/18
-PASS; EXACT `83356030` PROMOTED TO STAGING; STAGING DEPLOYMENT/SMOKE PENDING**
+PASS; EXACT `83356030` PROMOTED TO STAGING; POST-PUSH PUBLIC HEALTH PASS; EXACT DEPLOYED
+BUILD/AUTHENTICATED STAGING SMOKE PENDING**
 
 Implementation confirmation:
 
@@ -158,7 +159,7 @@ local implementation: complete
 automated/static review: PASS
 local authenticated UI smoke: 18/18 PASS
 commit/push: PASS at exact 83356030
-staging promotion: PASS; exact Render deployment and staging smoke pending
+staging promotion: PASS; public health PASS; exact Render build and authenticated smoke pending
 live promotion: not authorised
 ```
 

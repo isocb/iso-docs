@@ -4,7 +4,7 @@ Date: 2026-08-06
 
 Planning status: **R11-A IMPLEMENTED; AUTOMATED/BUILD PASS; LOCAL AUTHENTICATED SMOKE 18/18
 PASS; COMMITTED AT `83356030`; DEV AND ORIGIN/DEV MATCH; PROMOTED TO STAGING; STAGING
-DEPLOYMENT/SMOKE PENDING**
+PUBLIC HEALTH PASS; EXACT BUILD/AUTHENTICATED SMOKE PENDING**
 
 Module: LMSPro / SeasonPro communications using the shared IsoStack Email composer
 
@@ -364,6 +364,7 @@ The authoritative control window should:
 
 The control owner reported the corrected local candidate **18/18 PASS**. Application commit
 `83356030` is exact across local `dev`, `origin/dev`, local `staging` and `origin/staging`.
-The push to `origin/staging` triggered the staging deployment; exact deployed-build and
+The push to `origin/staging` triggered the staging deployment. Post-push public health is
+PASS with the database connected and RLS 11/11; exact deployed-build identification and
 authenticated staging smoke evidence remain pending. `main` and `origin/main` remain at
 `ec7e0cc4` and no live promotion is authorised.

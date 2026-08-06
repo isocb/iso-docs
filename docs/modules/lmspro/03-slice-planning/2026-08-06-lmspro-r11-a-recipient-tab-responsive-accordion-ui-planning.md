@@ -6,7 +6,8 @@ Module: LMSPro / SeasonPro communications
 
 Status: **CONTROL-OWNER AUTHORISED IMPLEMENTATION AND STAGING PROMOTION; AUTOMATED/BUILD
 PASS; LOCAL AUTHENTICATED SMOKE 18/18 PASS; COMMITTED AT `83356030`; DEV/ORIGIN-DEV AND
-STAGING/ORIGIN-STAGING ALIGNED; STAGING DEPLOYMENT/SMOKE PENDING**
+STAGING/ORIGIN-STAGING ALIGNED; POST-PUSH PUBLIC HEALTH PASS; EXACT BUILD/AUTHENTICATED
+STAGING SMOKE PENDING**
 
 Source CR:
 
@@ -413,5 +414,6 @@ R11-A is implemented with automated/build gates green. Test 7 initially exposed 
 open-state/visible-content mismatch on draft reopen; the bounded zero-duration disclosure
 correction then passed focused retest, completing the authenticated local matrix at 18/18.
 The control owner authorised commit and promotion. Exact application commit `83356030` is
-aligned through `origin/dev` and `origin/staging`; staging deployment confirmation and the
-focused authenticated staging smoke remain the next gate. No live promotion is authorised.
+aligned through `origin/dev` and `origin/staging`; post-push public staging health is PASS.
+Exact Render-build identification and the focused authenticated staging smoke remain the
+next gate. No live promotion is authorised.
