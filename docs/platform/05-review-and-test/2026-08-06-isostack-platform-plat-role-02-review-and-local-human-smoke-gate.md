@@ -31,9 +31,12 @@ required gate.
 
 Use disposable local accounts and records only. Do not test escalation against a real user.
 
-1. As a C1 Organisation Admin, create an ordinary League user. Confirm Organisation
-   Authority is read-only Member, the intended League role is saved, and no Owner/Admin
-   choice is offered.
+1. Sign in as a user who has Organisation Authority `ADMIN` and an assigned SeasonPro
+   League-scoped role which permits user management. In SeasonPro Admin > Users, create a
+   new user and assign that new user an eligible League-scoped SeasonPro role. Confirm the
+   new user's separate Organisation Authority is fixed at `MEMBER`—with no Admin/Owner
+   choice—and, after reopening the record, both `MEMBER` and the selected SeasonPro League
+   role have been retained.
 2. As the same Admin, create an ordinary Club user. Confirm Member + intended Club role +
    exact current Club; reopen and verify all three facts.
 3. Edit either user's SeasonPro role/Club affiliation and confirm Organisation Authority is
