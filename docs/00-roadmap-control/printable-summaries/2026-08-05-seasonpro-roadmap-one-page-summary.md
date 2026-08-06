@@ -12,6 +12,8 @@ communications behaviour.
 
 - **Portfolio NOW:** SeasonPro Email F3 uploaded-file-only acknowledgement, through its
   accepted bounded implementation and controlled release cycle.
+- F3 exact application `72c02d92` is aligned across dev/staging; both Security Scans and
+  public staging health pass. Exact Render identification and human staging smoke remain.
 - F1 human staging smoke passes through the maximum available 440-recipient draft, with a
   341 ms broad-case server wait.
 - F2 failed because it treated C1/C2/hat-swap access context as independently selectable

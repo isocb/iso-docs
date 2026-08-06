@@ -2,8 +2,8 @@
 
 Date: 2026-08-06
 
-Status: **AUTOMATED REVIEW PASS; READY FOR EXACT-BUILD STAGING HUMAN SMOKE; PRODUCTION
-PROMOTION BLOCKED**
+Status: **AUTOMATED REVIEW, DEV/STAGING SECURITY SCANS AND PUBLIC STAGING HEALTH PASS;
+EXACT RENDER IDENTIFICATION AND HUMAN SMOKE PENDING; PRODUCTION PROMOTION BLOCKED**
 
 Reviewed application commit:
 
@@ -43,6 +43,9 @@ critical-file verification     PASS
 changed production ESLint      PASS — no errors
 production build               PASS — 131 pages
 whitespace/error-marker check  PASS
+dev Security Scan              PASS — run 31093600886
+staging Security Scan          PASS — run 31093614885
+staging public health          PASS — HTTP 200; database connected; RLS 11/11
 ```
 
 Direct ESLint invocation against the two new test files reports the repository's existing

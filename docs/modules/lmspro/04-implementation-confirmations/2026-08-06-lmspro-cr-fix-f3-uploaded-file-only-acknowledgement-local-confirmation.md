@@ -2,8 +2,8 @@
 
 Date: 2026-08-06
 
-Status: **LOCAL IMPLEMENTATION AND AUTOMATED GATES PASS AT EXACT APPLICATION
-`72c02d92bf7222793f70b24a1d13e541eb215efa`; READY FOR CONTROLLED DEV/STAGING PROMOTION**
+Status: **IMPLEMENTATION/AUTOMATED GATES PASS AT EXACT APPLICATION `72c02d92`; DEV AND
+STAGING BRANCHES ALIGNED; SECURITY SCANS AND PUBLIC STAGING HEALTH PASS; HUMAN SMOKE PENDING**
 
 Accepted plan:
 
@@ -85,11 +85,16 @@ evidence. No historic sent record or stored resource is rewritten by deployment.
 
 Rollback is a bounded application revert. There is no migration or data rollback.
 
-## 6. Remaining Gate
+## 6. Promotion Checkpoint And Remaining Gate
 
-Commit and promote the exact application build through dev to staging. Production remains
-blocked until the control owner supplies the focused staging smoke evidence in the linked
-review schedule and explicitly authorises live promotion.
+Exact application `72c02d92` is aligned across local dev, `origin/dev`, local staging and
+`origin/staging`. GitHub Security Scan runs `31093600886` (dev) and `31093614885` (staging)
+passed. At 2026-08-06 10:32:11 UTC, the public staging health endpoint returned HTTP 200,
+database connected and RLS enabled on 11/11 expected tables.
+
+Exact Render `Live at 72c02d9` identification and the control-owner human staging smoke
+remain pending. Production remains blocked until that evidence is supplied and the control
+owner explicitly authorises live promotion.
 
 Exact application commit:
 

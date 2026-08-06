@@ -29,10 +29,11 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application evidence:
 
 ```text
-local dev = 72c02d92 (F3 implementation and automated review PASS)
-origin/dev = staging = origin/staging = main = origin/main = 83356030 before F3 promotion
-F3 production build = PASS (131 pages); no schema/migration
-F3 staging human smoke = pending; production promotion blocked
+dev = origin/dev = staging = origin/staging = 72c02d92
+main = origin/main = 83356030
+F3 tests/type/verify/build = PASS; dev/staging Security Scans = PASS
+staging public health = HTTP 200; database connected; RLS 11/11
+exact Render staging build and human smoke = pending; production promotion blocked
 ```
 
 Current serial portfolio decision:
