@@ -1,6 +1,6 @@
 # FUND Roadmap — One-Page Summary
 
-Snapshot: 2026-08-05
+Snapshot: 2026-08-06
 Status: Printable management summary — **not delivery authority**
 
 ## Purpose
@@ -11,16 +11,16 @@ payment contracts remain owned by Commerce Core.
 
 ## Current Position
 
-- FUND has no portfolio `Now` at this snapshot.
-- **Portfolio NOW:** the SeasonPro email `CR-Fix`; F2.2 passed all 15 staging checks and
-  exact `ec7e0cc4` is aligned through main. Render live confirmation and the existing F3
-  formal triage/planning follow-on remain ahead of FUND.
-- **Portfolio NEXT:** `1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof`
-  bounded planning candidate, restored after the totally-green R10-A closure.
-- `1R-F-A` is a planning candidate only. No renderer implementation, later `1R-F` branch,
-  `1R-G` work or production artwork system is authorised.
-- The current application is exact `ec7e0cc4` across dev/staging/main; its Render live
-  deployment has been initiated and exact-build evidence remains to be recorded.
+- **Portfolio NOW:** `1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof`
+  bounded planning, selected by business priority to resume FUND's completion cycle.
+- **Portfolio NEXT:** the conditional `1R-F-A` executable proof that emerges from an
+  explicitly accepted plan. It remains unauthorised until a separate implementation decision.
+- No renderer implementation, later `1R-F` branch, `1R-G` work or production artwork system
+  is authorised by the planning selection.
+- The current application is exact `83356030` across dev/staging/main. The selected planning
+  work starts from that branch-aligned baseline.
+- SeasonPro Email F3 remains required but parked; it does not interrupt the selected FUND
+  focus and has no implementation authority.
 
 ## Foundation Already In Place
 
@@ -48,16 +48,15 @@ Commission aggregation, statements and settlement remain parked for later work.
 
 ## Immediate Management Rule
 
-Do not begin implementation from the strategic artwork documents. `1R-F-A` is formal
-portfolio `Next`, not `Now`. Prepare only its bounded planning/evidence boundary when the
-root releases the current email CR-Fix, and prove its decisions, dependencies, data
-boundaries and test route before code is authorised.
+Do not begin implementation from the strategic artwork documents. Prepare the bounded
+`1R-F-A` planning/evidence boundary now and prove its decisions, dependencies, data
+boundaries and test route. Stop for explicit plan acceptance and implementation authority.
 
 ## Next Decision
 
-Record SeasonPro F2.2's exact live build and complete its existing F3 formal planning and
-delivery decision before deciding whether to begin bounded `1R-F-A` planning. Keep later
-work parked.
+Create and review the bounded `1R-F-A` proof plan. If accepted, decide whether to authorise
+its exact executable proof. Keep later FUND work and required SeasonPro Email F3 parked
+until explicitly selected.
 
 Authoritative source:
 [`FUND Roadmap And Slice Control`](../../modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md)

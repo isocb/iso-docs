@@ -39,8 +39,8 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | LMSPro email `CR-Fix`: F2.2 production confirmation, then F3 formalisation | F2.2 automated/build gates and all 15 staging human-smoke checks pass. Exact `ec7e0cc4` is aligned through main and live deployment is initiated; record Render's exact live build, then convert the existing F3 uploaded-file-only acknowledgement refinement into formal triage and bounded slice planning. F3 implementation is not yet authorised. |
-| **NEXT** | FUND `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` planning | R10-A is closed after the control owner's totally-green production smoke. Restore only the bounded planning candidate already registered in FUND control; renderer implementation, later 1R-F/1R-G work and artwork production remain unauthorised. |
+| **NOW** | FUND `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` bounded planning | Business priority selects FUND to resume its completion cycle. Produce and explicitly accept one bounded proof plan only; no renderer implementation, schema, production storage/job, later `1R-F` branch, `1R-G`, Order Code, production or commission work is authorised by this selection. |
+| **NEXT** | FUND `1R-F-A` executable proof candidate, conditional on the accepted plan | Preserve FUND continuity after planning. The exact implementation boundary must come from the accepted `1R-F-A` plan and still requires explicit implementation authority; it is not authorised merely by occupying `Next`. |
 
 Registered candidates which do not displace that pair:
 
@@ -55,13 +55,11 @@ Registered candidates which do not displace that pair:
   identification and authenticated production smoke remain; this bounded UI release does
   not displace the portfolio `Now`/`Next` pair;
 - LMSPro cohort email draft persistence and audience selection `CR-Fix`: accepted as the
-  portfolio `Now`; F1/F2.1 remain green, but production review found a separate high-risk
-  status-as-audience-source/eligibility defect. F2.2 passed automated/build and all 15
-  staging human-smoke checks; exact `ec7e0cc4` is aligned through main and awaits Render
-  live exact-build confirmation. The existing attachment-policy F3 is the immediate
-  internal follow-on;
-- FUND `1R-F-A`: restored as formal root `Next` after R10-A's totally-green closure; it
-  remains planning-only and does not displace the email CR-Fix `Now`;
+  former expedite; F1/F2.1/F2.2 corrections are delivered in the ancestry of current
+  application `83356030`. F3 remains a required uploaded-file-only acknowledgement
+  follow-on under that CR-Fix, but is parked behind the selected FUND completion focus;
+- FUND `1R-F-A`: selected as formal root `Now` for bounded planning. Its conditional
+  executable proof is root `Next`; no application implementation is yet authorised;
 - Platform `PLAT-REFINE-02` through `PLAT-REFINE-04`: registered non-executable findings;
   and
 - all parked FUND and LMSPro candidates recorded in their child CR inventories.
@@ -89,7 +87,9 @@ Remedial `CR-Fix` control:
 5. closure/re-disposition of the `CR-Fix` must explicitly resume the interrupted outcome
    and restore or reconsider the prior sequence.
 
-The email `CR-Fix` expedite is accepted. Its source, triage and slice plan are:
+The email `CR-Fix` expedite was accepted and its incident-ending corrections were delivered.
+Its required F3 policy follow-on is retained but no longer occupies portfolio `Now`. The
+source, triage and delivered slice plan are:
 
 - `docs/modules/lmspro/01-cr-inputs/CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md`;
 - `docs/modules/lmspro/02-triage/2026-08-05-lmspro-cr-fix-f1-f2-cohort-email-draft-persistence-and-audience-selection-triage.md`; and
@@ -502,8 +502,8 @@ implemented/reviewed locally without a migration or shared deployment; its human
 schedule remains pending. `1R-F - Project Offer And Artwork Readiness Reconciliation` is
 reviewed/accepted at
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`.
-Its bounded `1R-F-A` real-template/renderer proof is restored as formal portfolio `Next`
-after the totally-green R10-A closure; proof implementation and `1R-G` remain unauthorised.
+Its bounded `1R-F-A` real-template/renderer proof is selected as formal portfolio `Now` for
+planning; the conditional proof implementation is `Next`, and `1R-G` remains unauthorised.
 
 ### Commerce Core
 
@@ -631,8 +631,8 @@ COMMERCE-A1 complete
         separate E-B/E-C real-workflow human acceptance is not inferred
   -> FUND 1R-F Project Offer And Artwork Readiness Reconciliation parent accepted
      -> FUND 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
-        formal portfolio NEXT after R10-A closure; planning-only and implementation not
-        authorised
+        formal portfolio NOW for bounded planning; conditional executable proof is NEXT
+        and remains unauthorised until the plan is explicitly accepted
 
 FUND 1R-C1 -> C2 -> C3 -> C4 -> C5 -> C6 complete
 FUND 1P-G-R3-A -> R3-B -> R3-C -> R3-D complete
@@ -650,13 +650,11 @@ different documentation lifecycles.
 
 ## 7. Current Parent Control Decision
 
-The 2026-08-06 reconciliation in Section 0 is the current decision: the accepted LMSPro
-email CR-Fix remains `Now`; F1 and F2.1 remain green. Production review found the separate
-status-as-audience-source/eligibility defect. F2.2 is implemented at `ec7e0cc4`, passed all
-automated/build and 15 staging human-smoke checks, and is exact through main after explicit
-promotion authority. Render live exact-build confirmation remains; the existing
-attachment-policy F3 is the immediate formal triage/planning follow-on. FUND 1R-F-A bounded
-planning remains `Next`.
+The 2026-08-06 reconciliation in Section 0 is the current decision: business priority moves
+portfolio `Now` to bounded FUND `1R-F-A` planning and reserves its conditional executable
+proof as `Next`. The delivered LMSPro Email corrections remain in current application
+ancestry. F3 remains required under the same Email CR-Fix, but is explicitly parked behind
+the selected FUND focus and has no implementation authority.
 R11-A is a separately authorised bounded UI release at `83356030`; local smoke is 18/18 and
 staging smoke is all green. The exact commit is aligned through `origin/main`, the live
 deployment is triggered and public live health is PASS. Exact Render live-build
@@ -800,9 +798,9 @@ application `dev`/`origin/dev` at `174dc8ac` without an E-D migration or shared 
 change. Its application commit is now included by ancestry in live `7154937`; this does not
 invent separate E-B/E-C real-workflow human acceptance. The non-executable
 `1R-F - Project Offer And Artwork Readiness Reconciliation` parent is reviewed/accepted.
-`1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is restored as formal
-portfolio `Next` after R10-A closure; no proof, `1R-G` or artwork/template production
-implementation is authorised.
+`1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is selected as formal
+portfolio `Now` for bounded planning; its conditional executable proof is `Next`. No proof,
+`1R-G` or artwork/template production implementation is authorised.
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-b-c1-store-portfolio-oversight-exceptional-intervention-surface-implementation-planning.md`
 

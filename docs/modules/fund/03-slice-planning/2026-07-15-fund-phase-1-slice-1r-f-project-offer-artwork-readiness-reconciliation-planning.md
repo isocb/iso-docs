@@ -261,7 +261,8 @@ review/test record unless explicitly described as a planning/proof-only child.
 
 ### 6.1 1R-F-A — Real AMOW Template, Pricing And Deployed Renderer Proof
 
-Single next planning candidate.
+Selected root `Now` for bounded planning. The executable proof remains the conditional
+`Next` and is not yet authorised.
 
 Bounded outcome:
 
@@ -386,13 +387,13 @@ Accepted conclusions:
    new typed evidence.
 4. A generated Artwork Template requires its own aggregate.
 5. No artwork/template implementation is safe before a real deployed-renderer/print proof.
-6. `1R-F-A` is therefore the single next planning candidate.
+6. `1R-F-A` is therefore the single selected bounded planning outcome.
 
 Because this is a non-executable parent reconciliation, no `04-implementation-confirmations`
 or `05-review-and-test` record is created. Each executable child receives the full
 lifecycle independently.
 
-## 10. Single Next Prompt
+## 10. Current Selected Planning Prompt
 
 ```text
 Continue only accepted FUND Phase 1 Slice 1R-F-A planning. Do not implement production

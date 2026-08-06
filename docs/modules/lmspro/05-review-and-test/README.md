@@ -19,8 +19,8 @@ Current email CR-Fix result:
 - F2.1 exact dev/staging commit, Security, health and final staging human gates: PASS;
   main promotion completed at `9974eed5`. Recorded final schedule:
   `2026-08-05-lmspro-cr-fix-f2-1-staging-final-human-smoke.md`.
-- Render exact live-build confirmation and controlled production Save Draft evidence remain
-  to be recorded; F3 is the immediate follow-on under the open CR-Fix.
+- Exact historic Render evidence was not separately recorded. F3 remains a required parked
+  follow-on under the open CR-Fix while FUND owns the selected portfolio focus.
 
 This folder contains review and authenticated smoke-test confirmations.
 

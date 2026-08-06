@@ -33,26 +33,29 @@ authority. Later disposition changes must update the existing row.
 | [`2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md`](../01-cr-inputs/2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md) | Consumed by the same R9 programme and its bounded plans | Completed/superseded as active planning by the delivered R9 lifecycle; retained as decision provenance |
 | [`2026-07-30-lmspro-responsive-c1-club-management-cr-input.md`](../01-cr-inputs/2026-07-30-lmspro-responsive-c1-club-management-cr-input.md) | R10-A implemented, staging-smoked, included by ancestry in live application `7154937` and reported totally green in the control-owner production smoke | Completed and closed on 2026-08-05; no remaining resumption action |
 | [`2026-08-05-lmspro-500-recipient-email-operating-envelope-refinement.md`](../01-cr-inputs/2026-08-05-lmspro-500-recipient-email-operating-envelope-refinement.md) | Captured planning input; awaiting formal triage | Registered standard communications/capacity candidate; no limit change, implementation or displacement of `Now`/`Next` authorised |
-| [`CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md`](../01-cr-inputs/CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md) | F1 PASS; F2 superseded; F2.1 final staging PASS; F2.2 automated/build and staging human smoke 15/15 PASS, with exact `ec7e0cc4` aligned through main after explicit promotion; saved-draft compatibility excluded; Render live exact-build confirmation pending; F3 planning refinement remains the immediate follow-on | **Portfolio NOW:** record F2.2 exact live-build evidence, then formalise F3 triage and bounded slice planning; no F3 implementation authority yet |
-| [`2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md`](../01-cr-inputs/2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md) | R11-A implemented with corrected combined Division/Age Group recipient-type widget, session disclosure and responsive layout; focused/full tests, type, verification, lint and 131-page build PASS; authenticated local UI smoke 18/18 and staging smoke all green; exact `83356030` aligned through dev, staging and main; public live health PASS with database connected and RLS 11/11; no schema/API/provider/configuration change | Live branch promotion complete; exact Render live-build identification and focused authenticated production smoke remain before closure; does not displace the Email `CR-Fix` `Now` or FUND `Next` |
+| [`CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md`](../01-cr-inputs/CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md) | F1 PASS; F2 superseded; F2.1/F2.2 delivered in current `83356030` ancestry; saved-draft compatibility excluded; exact historic Render evidence was not separately recorded; F3 uploaded-file-only acknowledgement planning refinement remains required | Required parked follow-on behind the selected FUND focus; formal F3 triage and accepted bounded planning still required; no F3 implementation authority |
+| [`2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md`](../01-cr-inputs/2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md) | R11-A implemented with corrected combined Division/Age Group recipient-type widget, session disclosure and responsive layout; focused/full tests, type, verification, lint and 131-page build PASS; authenticated local UI smoke 18/18 and staging smoke all green; exact `83356030` aligned through dev, staging and main; public live health PASS with database connected and RLS 11/11; no schema/API/provider/configuration change | Live branch promotion complete; exact Render live-build identification and focused authenticated production smoke remain before closure; does not displace the selected FUND `Now`/`Next` |
 
 Current LMSPro portfolio disposition:
 
 ```text
-NOW  -> Email CR-Fix: F2.2 exact live confirmation, then F3 formal triage/planning
-NEXT -> FUND 1R-F-A planning candidate at root; no LMSPro successor selected
+NOW  -> FUND 1R-F-A bounded planning at root
+NEXT -> conditional FUND 1R-F-A executable proof candidate at root
+LMSPro parked required -> Email CR-Fix F3 formal triage and bounded planning
 ```
 
 The control owner completed the displaced R10-A smoke as totally green. The current root/child
 pair is therefore:
 
 ```text
-NOW  -> LMSPro email CR-Fix: close F2.2 production evidence, then formalise F3
-NEXT -> FUND 1R-F-A bounded planning candidate
+NOW  -> FUND 1R-F-A bounded planning
+NEXT -> conditional FUND 1R-F-A executable proof candidate
+PARKED REQUIRED -> LMSPro Email CR-Fix F3 formal triage and bounded planning
 ```
 
-R10-A is complete and closed. FUND `1R-F-A` is restored as formal root `Next`, but remains
-planning-only and gains no implementation authority from that position.
+R10-A is complete and closed. Business priority selects FUND `1R-F-A` as formal root `Now`
+for planning; its conditional executable proof is `Next` and remains unauthorised. F3 is
+retained as required parked work rather than being silently dropped.
 
 ## Purpose
 
@@ -134,12 +137,13 @@ Current work should remain on dev/remediation branches until reviewed and explic
 Current app alignment:
 
 ```text
-dev = origin/dev = staging = origin/staging = main = origin/main = ec7e0cc4
-Render staging exact-build confirmation = PASS at ec7e0cc4
-Render live deployment = initiated from origin/main ec7e0cc4; exact-build confirmation pending
+dev = origin/dev = staging = origin/staging = main = origin/main = 83356030
+R11-A staging authenticated smoke = all green
+Render live public health = PASS; exact-build identification and authenticated production smoke pending
 ```
 
-Application `7154937` was the confirmed live baseline and includes R9/R10-A by ancestry.
+Application `83356030` is the current branch-aligned baseline and includes prior LMSPro,
+FUND and Commerce work by ancestry.
 The control owner reported the final R10-A production smoke totally green on 2026-08-05.
 After all ten F2.1 staging checks passed, the control owner authorised its promotion. F2.2
 subsequently passed automated/build gates and all 15 staging human-smoke checks. The control
@@ -1106,8 +1110,8 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Confirm Render live is exact at `ec7e0cc4`, record F2.2 production evidence, then convert
-the existing F3 refinement into formal triage and bounded slice planning
+Proceed with selected FUND `1R-F-A` bounded planning. Retain Email F3 as required parked
+formal triage/planning work; do not implement F3 without later root selection and authority.
 ```
 
 Goal:

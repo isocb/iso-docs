@@ -10,8 +10,8 @@ communications behaviour.
 
 ## Current Position
 
-- **Portfolio NOW:** close F2.2 with Render's exact live-build confirmation, then formalise
-  the existing F3 uploaded-file-only acknowledgement triage and bounded plan.
+- **Portfolio NOW:** FUND `1R-F-A` bounded planning. SeasonPro Email F3 is a required parked
+  follow-on and does not interrupt the selected FUND completion focus.
 - F1 human staging smoke passes through the maximum available 440-recipient draft, with a
   341 ms broad-case server wait.
 - F2 failed because it treated C1/C2/hat-swap access context as independently selectable
@@ -23,9 +23,8 @@ communications behaviour.
   and Age Group/Division resolvers do not explicitly default Team/Club status to Current.
   The corrected model unions selected Age Group/Division/Club and functional-role audience
   sources, while season/status filters only restrict sources to which they apply.
-- F2.2 is implemented at `ec7e0cc4`; automated/build and all 15 staging human-smoke checks
-  pass. Dev, staging and main are exact; live deployment is initiated and exact Render
-  confirmation remains. F3 follows F2.2 and is not yet implementation-authorised.
+- F2.2 was implemented at `ec7e0cc4`; its corrections are retained by ancestry in current
+  branch-aligned application `83356030`. F3 remains required and is not implementation-authorised.
 - F2.2 also includes two bounded UI fixes: show the complete recipient count in the tab
   badge, and return to an unfiltered Email list after successful Send while retaining the
   status filter.
@@ -37,7 +36,8 @@ communications behaviour.
   remain. It does not alter audience resolution, delivery or the portfolio `Now`/`Next`.
 - `R10-A Responsive C1 Club Management` is complete and closed after a totally-green
   control-owner production smoke.
-- **Portfolio NEXT:** FUND `1R-F-A` bounded planning candidate; implementation unauthorised.
+- **Portfolio NEXT:** the conditional FUND `1R-F-A` executable proof; implementation remains
+  unauthorised until its bounded plan is explicitly accepted.
 
 ## Recently Completed
 
@@ -64,14 +64,14 @@ communications behaviour.
 
 ## Immediate Management Rule
 
-Confirm Render live displays exact `ec7e0cc4`, record that evidence, then reconcile the
-existing F3 planning refinement into formal triage and bounded slice planning. Do not begin
-F3 application work until that plan is explicitly accepted.
+Retain F3 as required parked work under the existing Email CR-Fix. Do not begin F3 formal
+triage, planning or application work while FUND owns the selected focus unless root control
+explicitly reprioritises it.
 
 ## Next Decision
 
-Close F2.2 after exact live confirmation, then accept or amend the formal F3 bounded plan.
-FUND `1R-F-A` remains the planning-only portfolio `Next`.
+Proceed with FUND `1R-F-A` bounded planning. Revisit F3 through formal triage and an accepted
+bounded plan when root control releases the FUND focus or explicitly reprioritises it.
 
 Authoritative source:
 [`LMSPro / SeasonPro Roadmap And Slice Control`](../../modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md)

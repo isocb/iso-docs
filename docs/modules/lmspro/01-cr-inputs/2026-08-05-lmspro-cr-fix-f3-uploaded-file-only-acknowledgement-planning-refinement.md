@@ -2,8 +2,9 @@
 
 Date: 2026-08-05
 
-Planning status: **IMMEDIATE FOLLOW-ON PLANNING INPUT AFTER F2.2 LIVE CONFIRMATION; REQUIRES
-FORMAL TRIAGE AND AN EXPLICITLY ACCEPTED BOUNDED PLAN; NOT IMPLEMENTATION AUTHORITY**
+Planning status: **REQUIRED PARKED FOLLOW-ON UNDER THE EMAIL CR-FIX; FUND `1R-F-A` IS THE
+SELECTED PORTFOLIO FOCUS; F3 STILL REQUIRES FORMAL TRIAGE AND AN EXPLICITLY ACCEPTED BOUNDED
+PLAN; NOT IMPLEMENTATION AUTHORITY**
 
 Source request:
 
@@ -141,7 +142,7 @@ Recommended classification for formal control-window triage:
 
 ```text
 Type       CR-Fix F3 policy/behaviour correction under the existing parent CR-Fix
-Priority   Immediate follow-on already accepted by the control owner
+Priority   Required follow-on, parked behind the selected FUND completion focus
 Severity   Medium operational friction; High correction sensitivity at attachment safety gate
 Owner      Shared communications UI/router/readiness, expressed through LMSPro/SeasonPro
 Data       No schema migration or backfill expected
@@ -282,14 +283,14 @@ F3 should be accepted only if the eventual bounded plan proves all of the follow
 
 ## 11. Dependencies And Ordering
 
-1. Record Render live at exact `ec7e0cc4` to close F2.2 production evidence. F2.2 already
-   has automated/build PASS, a 15/15 staging human-smoke PASS and exact main promotion.
-2. Reconcile this planning input into a formal F3 triage amendment or dedicated triage
+1. Retain F1/F2.1/F2.2 as delivered corrections in current application `83356030` ancestry;
+   unrecorded exact historic Render evidence must not be invented.
+2. Complete the selected FUND `1R-F-A` planning/proof focus, unless root control explicitly
+   reprioritises F3.
+3. Reconcile this planning input into a formal F3 triage amendment or dedicated triage
    record under the existing CR-Fix.
-3. Create and explicitly accept a bounded F3 slice plan.
-4. Only then begin application implementation and focused verification.
-5. Keep FUND `1R-F-A` as formal portfolio `Next` unless the authoritative root control is
-   deliberately changed.
+4. Create and explicitly accept a bounded F3 slice plan.
+5. Only then begin application implementation and focused verification.
 
 ## 12. Settled Decisions Captured
 
@@ -321,7 +322,7 @@ decision.
 
 The formal control window should:
 
-- record F2.2's Render live exact-build confirmation;
+- retain F3 as required parked work while FUND owns portfolio `Now`/`Next`;
 - accept or amend the triage recommendation in Section 6;
 - settle the three questions in Section 13;
 - create the bounded F3 slice plan from Sections 7–10; and

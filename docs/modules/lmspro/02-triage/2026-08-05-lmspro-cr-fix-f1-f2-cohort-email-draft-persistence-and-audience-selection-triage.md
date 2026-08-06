@@ -160,7 +160,7 @@ migration, warnings and compatibility are excluded; the sole user will delete te
 
 ## 7. F3 Follow-On Disposition
 
-F3 remains accepted as an immediate follow-on under this same CR-Fix:
+F3 remains accepted as a required follow-on under this same CR-Fix:
 
 ```text
 Uploaded files require responsibility acknowledgement.
@@ -175,6 +175,11 @@ Planning must perform a bounded inclusion check:
 - otherwise F1/F2 must be reviewed and promoted first, then F3 proceeds immediately as a
   second release milestone under the still-open CR-Fix; and
 - FUND `1R-F-A` remains formal planning-only `Next`; R10-A is closed.
+
+Later root reconciliation on 2026-08-06 supersedes that original immediate ordering:
+FUND `1R-F-A` is now portfolio `Now` for bounded planning and its conditional proof is
+`Next`. F3 remains required and parked under this CR-Fix; it has not been cancelled,
+completed or authorised for implementation.
 
 ## 8. Risk And Recovery Decision
 
@@ -215,11 +220,12 @@ The urgent incident-ending milestone is complete only when F1/F2 acceptance and 
 live Save Draft evidence pass. F3 then completes in the same release if safely included or
 as the immediate second CR-Fix milestone.
 
-When the CR-Fix closes:
+Current root disposition:
 
 ```text
-NOW  -> release for the next explicit root decision
-NEXT -> FUND 1R-F-A bounded planning candidate unless deliberately reconsidered
+NOW  -> FUND 1R-F-A bounded planning
+NEXT -> conditional FUND 1R-F-A executable proof candidate
+PARKED REQUIRED -> Email CR-Fix F3 formal triage and bounded planning
 ```
 
 The roadmap must record that transition rather than relying on chat memory.

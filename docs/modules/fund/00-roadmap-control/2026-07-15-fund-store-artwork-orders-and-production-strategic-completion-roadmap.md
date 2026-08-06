@@ -2,9 +2,13 @@
 
 Created: 2026-07-15
 
-Last consolidated: 2026-07-21
+Last consolidated: 2026-08-06
 
 Status: Subordinate strategic capability overview; planning coordination only
+
+Current control note: authoritative root/FUND control selects `1R-F-A` as portfolio `Now`
+for bounded planning. Its conditional executable proof is `Next` and remains unauthorised
+until the plan is explicitly accepted and separate implementation authority is given.
 
 Authoritative FUND roadmap and slice control:
 
@@ -204,7 +208,8 @@ The authoritative controls currently establish:
   with green automated gates and healthy staging/database/RLS evidence; prior FUND-admin
   login and pre-existing UI smoke passed, while E-B/E-C human acceptance is blocked by the
   missing default Project Store initiation workflow;
-- application `main`, live deployment and real Stripe configuration remain separate; and
+- application dev/staging/main are aligned at `83356030`; real Stripe configuration and
+  environment-specific operational evidence remain separately controlled; and
 - FUND `1R-E - C1 Store Oversight And C2 Project Store Control Alignment` is an accepted
   non-executable parent; its bounded E-A lifecycle is implemented/reviewed at application
   commit `daafc349` on the 141-migration disposable baseline and included in promoted
@@ -216,16 +221,14 @@ The authoritative controls currently establish:
   migration; its automated evidence passes and human acceptance now awaits controlled
   promotion of E-D plus the recorded real-workflow schedule.
 - `1R-E-D - Default Project Store Instantiation And Eligible Product Reconciliation` is
-  implemented/reviewed at `c45a41d9` and integrated/revalidated on application
-  `dev`/`origin/dev` at `174dc8ac` as the mandatory bridge
+  implemented/reviewed at `c45a41d9` and included by ancestry in application `83356030` as the mandatory bridge
   from Project creation to the E-B/E-C surfaces. It uses the existing 141-migration schema,
   retains default-all rather than silently truncating future Individual Artwork selections,
-  is not promoted to staging and leaves human workflow acceptance pending controlled staging
-  promotion.
+  leaves its separately recorded human workflow acceptance pending.
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is reviewed/accepted as the
   non-executable parent; and
-- `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single next
-  planning candidate; implementation is not authorised.
+- `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single selected
+  bounded planning outcome; its conditional executable proof remains unauthorised.
 
 This baseline is a summary only. Commit, migration, deployment and current-next-action
 claims must be read from the authoritative controls.
@@ -771,7 +774,7 @@ A6-D lifecycle complete
    no E-D migration; not promoted to staging
 -> 1R-F workflow-conditional Project Offer And Artwork Readiness parent accepted
 -> 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
-   single next planning candidate; proof implementation not authorised
+   selected bounded planning outcome; conditional proof implementation not authorised
 -> apply confirmed pilot gates: Intake confirmation/conditional embed and type fit,
    essential purchaser option/media authority, required messages and evidence-led
    Product duplication
@@ -912,7 +915,7 @@ The reconciled
 It allocates separate Individual, collective and Standard Product readiness branches
 after `1R-E`; the formerly reserved Public Store slice moves to `1R-G`. E-D is
 implemented/reviewed at `c45a41d9` and integrated at `174dc8ac`. `1R-F-A - Real AMOW Template, Pricing And
-Deployed Renderer Proof` is the single next planning candidate. This document authorises no
+Deployed Renderer Proof` is the selected bounded planning outcome. This document authorises no
 proof implementation, `1R-G` or artwork/template production implementation.
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-b-c1-store-portfolio-oversight-exceptional-intervention-surface-implementation-planning.md`
