@@ -4,9 +4,9 @@ Date: 2026-08-04
 
 Owning lane: IsoStack Platform, with a bounded SeasonPro / LMSPro consumer outcome
 
-Status: **ACTIVE PROJECT; PLAT-ROLE-01 STATIC INVENTORY COMPLETE; CORE TERMINOLOGY AND C1
-OWNER AUTHORITY ACCEPTED; REMAINING HUMAN MATRIX ITEMS PENDING; NO APPLICATION OR DATA
-MUTATION AUTHORISED**
+Status: **ACTIVE PROJECT; PLAT-ROLE-01 STATIC INVENTORY COMPLETE; CORE AND C1/C2 CONTEXT
+TERMINOLOGY, C1 OWNER AUTHORITY AND C2 SAME-NODE DELEGATION ACCEPTED; REMAINING HUMAN
+MATRIX ITEMS PENDING; NO APPLICATION OR DATA MUTATION AUTHORISED**
 
 Application source reviewed:
 
@@ -81,6 +81,20 @@ P1 Platform authority is separate again. A `PlatformAdmin` record gives an autho
 Platform operator cross-tenant support and administration capability. P1 is not a fourth
 value in the three-value Core tenant-role enum.
 
+`C1` and `C2` describe the module's operating hierarchy and resulting dashboard/data
+context, not additional Core roles:
+
+```text
+P1 = Platform operator and separate Platform route
+C1 = the tenant-side context, for example the League
+C2 = a client node inside that tenant, for example one Club
+```
+
+A C2 SeasonPro user is therefore a composite: Organisation `MEMBER`, a node-scoped
+SeasonPro role, and affiliation to the exact Club node. That combination routes the person
+to the Club dashboard and limits data to that Club. `MEMBER` by itself is insufficient to
+choose a dashboard because a bounded C1/League worker may also be an Organisation Member.
+
 In plain English, the intended sequence is:
 
 ```text
@@ -115,7 +129,7 @@ Platform authority which creates the tenant organisation and its initial C1 Owne
 | C1 tenant owner | `OWNER` | An appropriate `LEAGUE` SeasonPro role, normally League Administrator |
 | Additional C1 tenant administrator | `ADMIN` | An appropriate `LEAGUE` or `BOTH` SeasonPro role |
 | League worker without tenant-administration responsibility | `MEMBER` | A deliberately bounded `LEAGUE` role |
-| C2 Club user | `MEMBER` | A `CLUB` or appropriate `BOTH` role plus the correct Club affiliation |
+| C2 Club user | `MEMBER` | A node-bounded `CLUB` role plus the exact current Club affiliation |
 | Unassigned user | Normally `MEMBER` | No valid module role; visible and repairable through the controlled unassigned-user outcome |
 
 The intended principles are:
@@ -142,10 +156,17 @@ The intended principles are:
 11. A C1 Owner may deliberately create C1 Admins and additional C1 Owners. That combined
     SeasonPro workflow must call a Platform-owned, same-tenant organisation-authority
     contract rather than making SeasonPro the owner of Core-role policy or persistence.
+12. C1/C2 is a module operating-context distinction. Dashboard routing must derive from
+    valid module-role scope plus node affiliation, never from Organisation `MEMBER` alone.
+13. A suitably permitted C2 Member may create other C2 Members only inside the actor's own
+    Club node. The target remains Organisation `MEMBER`, receives only node-scoped roles and
+    cannot be affiliated to another Club.
+14. C2 read-only and other action capabilities are determined by assigned module roles and
+    must be enforced by the server as well as the dashboard.
 
 ## 3. Why The Current Language Is Ambiguous
 
-The original IsoStack glossary defines:
+The original, now superseded for current operating guidance, IsoStack glossary defines:
 
 ```text
 C1 = Client Super Admin = OWNER
@@ -167,8 +188,9 @@ Consequently, the label `C2` can currently mean either a Core tenant Administrat
 SeasonPro Club user who is normally a Core Member. `C1` can mean a genuine Core Owner or any
 user who has been given sufficiently broad League component permissions.
 
-This CR proposes that lifecycle documents and operator-facing guidance stop using a C-number
-by itself. Where a C-number remains useful, it should be qualified, for example:
+The accepted current meaning is hierarchical: C1 is the tenant-side module context and C2
+is a client node inside that tenant. Lifecycle documents and operator-facing guidance must
+qualify the context, for example:
 
 ```text
 C1 Tenant Owner
@@ -179,8 +201,8 @@ Core ADMIN
 Core MEMBER
 ```
 
-The canonical security contract should use the actual Core role, module role, scope and
-affiliation rather than relying on the informal C-number.
+The canonical security contract must use the actual Core role, module role, scope and node
+affiliation rather than trusting the C-number label by itself.
 
 ## 4. Confirmed Current Model
 
@@ -291,6 +313,21 @@ C1 creation use different account lifecycles, and a P1-created Core account may 
 SeasonPro role or repairable SeasonPro scope. Role clarification must be incorporated into the
 shared provisioning contract rather than corrected independently in multiple UIs.
 
+### 5.7 C2 dashboard routing and same-node user delegation are not one enforced contract
+
+The welcome route currently attempts to choose League, Club or combined presentation from
+module-role scope and Club association. That direction matches the accepted model, but the
+queries do not yet apply every tenant/module/active-role constraint in one canonical
+resolver.
+
+The C2 creation contract is also inconsistent. The browser fixes a Club-only creator's Club
+selector to their current Club, while the server `canManageUsers` guard excludes Organisation
+Members from creation. Other role-assignment logic describes C2 delegation but admits
+`BOTH`-scoped roles, and the creation mutation validates an explicitly supplied Club only as
+same-tenant rather than proving it is the actor's exact node. The result is both an intended
+capability gap and a cross-node risk if the UI restriction is bypassed or the access guard is
+relaxed in isolation. `LMS-ROLE-01` must implement the complete server contract together.
+
 ## 6. Why This Matters Beyond SeasonPro
 
 `User.role` belongs to the shared Platform user, not to LMSPro. A change made from a
@@ -326,6 +363,10 @@ This has the following cross-module implications:
    consumers and live assignments have been inventoried.
 8. Session revocation or refresh after Core or module-role changes must be predictable across
    every authentication method and module.
+9. Each module must derive its C1/C2 dashboard and data context from validated module scope
+   and node affiliation. Core `MEMBER` is not a dashboard-routing flag.
+10. Node-scoped user delegation must force the actor's exact node server-side and must not
+    accept another same-tenant node or a tenant-wide/combined role.
 
 ## 7. Requested Combined Outcome
 
@@ -345,8 +386,12 @@ The combined Platform-parent and SeasonPro-consumer remediation should deliver:
 8. consistent server enforcement of read-only module roles;
 9. session invalidation/refresh after authority changes;
 10. preservation of tenant and Club isolation, including copied-URL and direct-procedure
-    refusal; and
-11. a controlled retirement plan for ambiguous C1/C2/C3 wording and remaining legacy role
+    refusal;
+11. explicit C1 tenant-context and C2 node-context dashboard routing, including a handled
+    combined-context choice where both scopes are valid;
+12. same-node C2 Member creation when granted by module role, with cross-node and
+    tenant-wide-role assignment refused server-side; and
+13. a controlled retirement plan for conflicting legacy C1/C2/C3 wording and remaining legacy role
     consumers.
 
 ## 8. Safety Rules For Core-Role Management
@@ -366,7 +411,10 @@ status and session rules remain decisions for `PLAT-ROLE-03` planning acceptance
 - a cross-tenant account must never be moved or relinked silently;
 - module-role changes must be validated against the same tenant and module;
 - Club-scoped roles must require a valid same-tenant Club affiliation where the role contract
-  requires one; and
+  requires one;
+- C2 user creation must keep the target as Organisation Member, force the creator's exact
+  current Club node, accept only eligible Club-scoped roles and refuse other nodes even
+  inside the same tenant;
 - UI visibility must never substitute for server-side enforcement.
 
 ## 9. Evidence Required Before Implementation
@@ -408,15 +456,16 @@ deletion is authorised by the inventory.
 
 ## 10. Decisions Requiring Human Confirmation Before `PLAT-ROLE-03`
 
-1. Confirm that current SeasonPro documentation will use `C1 League` and `C2 Club` only when
-   qualified, while Core authority is always named Owner/Admin/Member explicitly.
+1. Accepted: `C1` is the tenant-side module context and `C2` is a client node within that
+   tenant; Core authority remains explicitly Owner/Admin/Member.
 2. Confirm whether additional C1 League administrators who manage users and configuration
    should normally be Core `ADMIN`, while limited League workers remain Core `MEMBER`.
 3. Confirm that Core Owner/Admin should not receive blanket module capability merely because
    of Core status; the preferred outcome is explicit automatic assignment of an auditable
    module-administrator role.
-4. Confirm which Core roles may create ordinary users, assign module roles and assign Club
-   affiliations.
+4. Accepted in part: a suitably module-authorised C2 Member may create C2 Members only in
+   their own node. Confirm the exact module permission and the remaining C1/Admin delegation
+   matrix.
 5. Multiple Owners and the C1 Owner's authority to create an additional Owner are accepted;
    confirm whether the safe workflow is direct creation, invitation/acceptance or a controlled
    combined workflow.
@@ -458,7 +507,11 @@ Future accepted plans should require automated and human evidence proving at lea
 - P1, tenant Owner, tenant Admin, limited League Member, Club Member and Unassigned outcomes;
 - identical direct-login and properly constrained impersonation results;
 - visible cards agree with permitted direct navigation and mutations;
+- League-only users route to the C1 dashboard, Club-only users route to their C2 node
+  dashboard, and valid combined-scope users receive the deliberate context choice;
 - a Club user cannot obtain League or another Club's data;
+- a permitted C2 Member can create an Organisation Member only for their own Club, while a
+  copied/direct request for another Club or a League/Both role is refused;
 - a League module role does not silently grant Core tenant administration;
 - Core Admin cannot grant Owner authority;
 - self-demotion and last-Owner loss fail safely;

@@ -38,6 +38,7 @@ Reproducible searches covered:
 | Module authority | Same-tenant, active `ModuleRole` IDs and component/action grants | Which module capabilities the person has | Core elevation or access to another module/tenant |
 | Module scope | `LEAGUE`, `CLUB` or `BOTH` | Breadth of module data context | A Core Owner/Admin/Member state |
 | Club context | Same-tenant/current Club affiliation and assignments | Exact Club data boundary | League-wide authority |
+| C1/C2 presentation context | Derived from valid module scope plus node affiliation | Tenant-side, exact-node or combined dashboard route | Core authority or an independent security grant |
 | Read-only | Effective assigned module-role policy | Refusal of module mutations | A browser-only presentation hint |
 | Seasonal visibility | Key Dates and visibility rules | When an already-authorised action is presented/actionable | Underlying authority |
 
@@ -92,6 +93,8 @@ ordinary recovery path. Any future execution needs its own exact-environment aut
 | `components.listForUser` | Uses real session user/org, not effective impersonated identity; no Core bypass | Cards can disagree with direct component checks and impersonated context | `LMS-ROLE-02` plus `PLAT-REFINE-04` |
 | Dashboard `adminOnly` cards | Uses Core Owner/Admin from the browser session | Core authority is used as a module UI capability outside the role/component contract | `LMS-ROLE-02` |
 | `user-context.getUserContext` | Uses effective identity, but role query omits tenant/active constraints and legacy facts still affect scope | Scope may be derived from stale or invalid role facts | `LMS-ROLE-01/02` |
+| Welcome dashboard routing | Derives League/Club/combined route from role scope and Club association | Direction matches C1/C2 intent, but resolution lacks one canonical tenant/module/active-role contract | `LMS-ROLE-01/02` |
+| C2 user creation/delegation | UI fixes a Club-only creator to their Club; server `canManageUsers` excludes Member, `canAssignRoles` admits `BOTH`, and create checks a supplied Club only as same-tenant | Legitimate same-node delegation is blocked while the adjacent server contract would not safely constrain it if enabled alone | `LMS-ROLE-01` |
 | `user-context.canAccessClub` | Treats any `lmsproRoleIds` value as League-wide access | A Club-only assigned role can be misclassified as League authority | `LMS-ROLE-02` Critical data-scope containment consideration |
 | Read-only role calculation | `user-context` exposes a display flag when all roles are read-only | No shared server mutation guard consumes that flag | `LMS-ROLE-02` |
 | LMSPro layout/routers | Layout checks a recent organisation product state; most routers use `protectedProcedure` plus local guards | No single server module-entitlement guard proves active LMSPro entitlement before every operation | `PLAT-REFINE-03` / `LMS-ROLE-02` |
@@ -110,7 +113,7 @@ means the target contract, not a claim about current source.
 | Tenant Owner | Create Member/Admin/additional Owner through a Platform-owned same-tenant authority contract; manage roles subject to last-Owner rules | Assign same-tenant active roles/affiliation when explicitly authorised | Needs explicit module-administrator assignment; Core Owner alone is not module capability |
 | Tenant Admin | Create Members only; no Owner/Admin grant, self-change or owner-state change | Assign bounded same-tenant module roles/affiliation if the accepted matrix permits | No blanket module bypass |
 | Limited League Member | No Core role/status authority | Only explicitly granted module user-management actions; never Core mutation | League data/actions named by active role and component grants |
-| Club Member | No Core authority | At most bounded management inside the affiliated current Club when explicitly granted | Exact Club only; never League/other-Club access |
+| C2 Club Member | Literal Organisation Member; no Core elevation | When explicitly granted, create/manage Organisation Members with eligible Club-only roles inside the actor's exact current Club; never choose another node | Club dashboard and data for the exact Club only; never League/other-Club access |
 | Read-only module user | No Core authority | No module mutation even if a card/control is reachable | Reads only inside entitlement, role and scope |
 | Unassigned user | Profile/self-service only | No module role or inferred affiliation | Clear handled Unassigned outcome; no business actions/data |
 | No active module entitlement | Core account may remain valid | Module roles do not overcome missing entitlement | Module routes and procedures refuse or route to an explained gate |
@@ -141,10 +144,14 @@ Human acceptance is still required for:
    Owner approval;
 4. which explicit module permission lets a limited League Member assign module roles or
    Club affiliation;
-5. whether Club-scoped user management exists and its exact target/Club boundary;
+5. the exact module permission enabling the accepted C2 same-node Member creation contract;
 6. session revocation/reauthentication requirements for Core role, status, module role and
    affiliation changes; and
 7. the explicit support override, if any, during P1 impersonation.
+
+The business owner has settled the C2 boundary in principle: suitably module-authorised C2
+Members may create C2 Members only inside their own node. The remaining decision is which
+module permission grants it and the wider C1/Admin delegation matrix.
 
 No application implementation may start from this record until the controlling next slice
 is explicitly selected. No live aggregate inventory was inferred or executed.

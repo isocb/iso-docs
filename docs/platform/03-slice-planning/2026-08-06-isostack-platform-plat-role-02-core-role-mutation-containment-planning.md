@@ -78,7 +78,9 @@ Admins and additional C1 Owners through a Platform-owned authority contract.
 - no schema, migration or data repair;
 - no change to existing user Core roles;
 - no redesign of account statuses, impersonation or module route entitlement;
-- no broad component/card/read-only alignment; and
+- no broad component/card/read-only alignment;
+- no enablement or redesign of C2 same-node user creation; keep that path fail closed until
+  `LMS-ROLE-01` implements role permission plus exact-node enforcement together; and
 - no automatic module role assignment based on Core role.
 
 ## 4. Automated Acceptance
@@ -103,7 +105,9 @@ Also prove:
   Owner through the accepted Platform-owned path;
 - current Owner-only Core `updateRole` behaviour remains unchanged by containment;
 - explicit P1 procedures remain separately protected; and
-- existing user listing/editing does not demote a Core role merely by saving module fields.
+- existing user listing/editing does not demote a Core role merely by saving module fields;
+- containment does not broaden C2 creation, role assignment or Club selection while removing
+  the unsafe Core-role fields from the shared SeasonPro procedures.
 
 Run focused router/UI tests, full tests, type-check, changed lint, verification, production
 build, Security Scans and exact staging smoke.

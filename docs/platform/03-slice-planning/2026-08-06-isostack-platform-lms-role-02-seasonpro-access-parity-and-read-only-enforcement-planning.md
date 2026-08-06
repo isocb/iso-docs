@@ -12,7 +12,8 @@ Accepted triage:
 ## 1. Objective
 
 Ensure an accepted direct-login authority matrix produces consistent SeasonPro card,
-navigation, read and mutation outcomes, including server-enforced read-only roles.
+dashboard routing, navigation, read and mutation outcomes, including exact-node C2 isolation
+and server-enforced read-only roles.
 
 ## 2. Contract
 
@@ -33,6 +34,8 @@ module entitlement
 - ensure tenant Owners receive any default module-administrator role explicitly and
   auditably through provisioning, not through a hidden runtime bypass;
 - align administration-card visibility with the exact server procedure guard;
+- route League-only users to C1 presentation, Club-only users to their exact C2 node and
+  valid combined users to the deliberate context choice, using the same validated resolver;
 - enforce read-only on every selected mutation and not only in the browser;
 - preserve copied-URL/direct-procedure refusal and exact Club isolation; and
 - distinguish no Product entitlement, no module role and seasonal closure as different

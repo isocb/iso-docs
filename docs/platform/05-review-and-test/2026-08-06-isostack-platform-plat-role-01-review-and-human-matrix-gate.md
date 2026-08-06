@@ -2,8 +2,9 @@
 
 Date: 2026-08-06
 
-Status: **STATIC INVENTORY REVIEW PASS; CORE TERMINOLOGY ACCEPTED AND C1 OWNER AUTHORITY
-CLARIFIED 2026-08-06; REMAINING HUMAN MATRIX ITEMS PENDING; STOPPED BEFORE PLAT-ROLE-02**
+Status: **STATIC INVENTORY REVIEW PASS; CORE AND C1/C2 CONTEXT TERMINOLOGY ACCEPTED; C1
+OWNER AND C2 SAME-NODE AUTHORITY CLARIFIED 2026-08-06; REMAINING MATRIX ITEMS PENDING;
+STOPPED BEFORE PLAT-ROLE-02**
 
 Delivery record:
 
@@ -32,8 +33,9 @@ The appropriate human gate is review of the canonical matrix and retained decisi
 | `RA-H04` | Confirmed High defect | Module-role IDs are not uniformly tenant/module/active/template validated | `LMS-ROLE-01` |
 | `RA-H05` | Confirmed High design gap | Most SeasonPro procedures lack one canonical module-entitlement gate | `PLAT-REFINE-03` / `LMS-ROLE-02` |
 | `RA-H06` | Confirmed High design gap | Real/effective identity differs across component, router and RLS consumers | `PLAT-REFINE-04` |
+| `RA-H07` | Confirmed High functional/security gap | C2 Member creation is blocked by one guard while adjacent role/Club checks do not enforce the complete exact-node contract | `LMS-ROLE-01` |
 | `RA-D01` | Part-settled human decision | Multiple Owners and C1 Owner authority to create Admin/additional Owner are confirmed; exact workflow and last-Owner contract remain | Before `PLAT-ROLE-02/03` |
-| `RA-D02` | Human decision | Exact module user-management and Club-management delegation | Before `LMS-ROLE-01` |
+| `RA-D02` | Part-settled human decision | C2 same-node Member creation is accepted; exact enabling permission and remaining C1/Admin delegation matrix remain | Before `LMS-ROLE-01` |
 | `RA-L01` | Conditional live concern | Invalid/orphaned/cross-module assignments may already exist | Aggregate query only with separate database authority |
 
 No exploitation or live invalid assignment is claimed by the source findings.
@@ -71,6 +73,20 @@ Module role + permissions + scope/affiliation
 -> says what that user can do inside SeasonPro or another module
 ```
 
+Within a module, C1/C2 describes operating context rather than Core role:
+
+```text
+C1 tenant context (League) + LEAGUE scope -> League dashboard
+C2 client node (Club) + MEMBER + CLUB scope + exact Club -> Club dashboard
+valid LEAGUE and CLUB contexts -> explicit context/hat choice
+no valid module context -> handled no-access/unassigned outcome
+```
+
+An Organisation Member is not automatically C2. A bounded C1 League worker can also be a
+Member. The module scope and node affiliation therefore select presentation and data scope;
+module permissions decide actions/read-only behaviour. A C2 dashboard may expose the Club's
+own child records, such as Teams and Communications, but never another Club's records.
+
 Core role and module role are related by controlled provisioning and permission checks, but
 one must not be inferred from the other. A SeasonPro C1 Owner is therefore normally both:
 
@@ -102,10 +118,17 @@ Confirm or amend these statements:
 9. Read-only means server-refused mutations, not merely hidden controls.
 10. P1 impersonation uses the effective user's permissions unless a separately labelled,
     audited support override is deliberately invoked.
+11. **Accepted:** C1 is the tenant-side module context and C2 is a client node within it;
+    dashboard routing derives from validated module scope and node affiliation, not Core
+    `MEMBER` alone.
+12. **Accepted:** a suitably permitted C2 Member may create other C2 Members only inside the
+    actor's exact node. The target remains Organisation `MEMBER`, receives only eligible
+    node-scoped roles, and cannot be attached to another node.
+13. C2 read-only and other capabilities come from module roles and are enforced server-side.
 
 ## 5. Next Decision
 
 If the matrix is accepted, explicitly authorise `PLAT-ROLE-02` as the next bounded Critical
 containment slice, incorporating `RA-C04` and a containment review of `RA-H02`. Do not combine
-the canonical service, live repair, every component family or impersonation redesign into
-that release.
+the canonical service, the fail-closed `RA-H07` C2 feature repair, live repair, every
+component family or impersonation redesign into that release.

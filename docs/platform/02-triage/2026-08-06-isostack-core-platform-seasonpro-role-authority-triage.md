@@ -2,9 +2,9 @@
 
 Date: 2026-08-06
 
-Status: **ACTIVE PORTFOLIO PROJECT; PLAT-ROLE-01 STATIC INVENTORY COMPLETE; CORE TERMINOLOGY
-AND C1 OWNER AUTHORITY ACCEPTED; REMAINING MATRIX ITEMS PENDING; CRITICAL PLAT-ROLE-02
-CONTAINMENT NOT YET IMPLEMENTATION-AUTHORISED**
+Status: **ACTIVE PORTFOLIO PROJECT; PLAT-ROLE-01 STATIC INVENTORY COMPLETE; CORE AND C1/C2
+CONTEXT TERMINOLOGY, C1 OWNER AUTHORITY AND C2 SAME-NODE DELEGATION ACCEPTED; REMAINING
+MATRIX ITEMS PENDING; CRITICAL PLAT-ROLE-02 CONTAINMENT NOT YET IMPLEMENTATION-AUTHORISED**
 
 Source CR:
 
@@ -47,6 +47,7 @@ The project must preserve distinct concepts:
 | Module authority | Tenant/module `ModuleRole` assignments and component/action grants |
 | Module scope | `LEAGUE`, `CLUB` or `BOTH` role scope |
 | Club data context | Same-tenant/current Club affiliation and assignments |
+| C1/C2 module context | Derived tenant-side or exact client-node dashboard/data context |
 | Seasonal presentation | Key Dates and visibility rules applied after underlying authority |
 
 No C-number, dashboard mode, role name, card visibility or browser-hidden control is a
@@ -74,6 +75,9 @@ The 2026-08-06 static source recheck confirms broader risk than the original UI 
    owner-safety/session/audit contract.
 8. component-list resolution, individual component checks and direct Core-role checks do
    not currently produce one explainable card/route/API result.
+9. C2 same-node creation is not one server-enforced contract: `canManageUsers` excludes
+   Organisation Members, while adjacent C2 role logic admits `BOTH` and create validates a
+   supplied Club as same-tenant rather than exact-actor-node.
 
 These are source-confirmed authorization defects. No exploitation, live user change or
 cross-tenant disclosure is asserted by this triage.
@@ -105,6 +109,13 @@ silently close route-entitlement or impersonation work outside the accepted slic
   accepted ability to create C1 Admins and additional C1 Owners through a Platform-owned
   same-tenant authority contract.
 - P1 creates/manages tenant organisations and the initial C1 Owner.
+- C1 is the tenant-side module context; C2 is a client node inside that tenant. They are not
+  synonyms for Core Owner/Admin/Member.
+- dashboard routing derives from validated module scope and node affiliation: League-only to
+  C1, Club-only to the exact C2 node, valid combined scope to a deliberate context choice.
+- a suitably permitted C2 Organisation Member may create other Organisation Members only
+  inside the actor's own node; target role, affiliation and all reads/writes remain
+  server-bounded to that node.
 - Core Owner/Admin must not receive unexplained blanket module capability; module access is
   explicit and auditable.
 - documentation and UI must qualify C-number language and name actual authority in security
@@ -118,16 +129,16 @@ silently close route-entitlement or impersonation work outside the accepted slic
 2. The last-active-Owner, self-change, suspension and deactivation rules.
 3. How the accepted C1 Owner capability to create Admin/additional Owner is exposed through
    a Platform-owned service without returning policy ownership to SeasonPro.
-4. The exact matrix for who may create ordinary users, assign module roles and assign Club
-   affiliations.
+4. The remaining C1/Admin creation matrix and the exact module permission enabling the
+   accepted C2 same-node Member creation capability.
 5. Whether Core Admin may create users only as Members or may request Admin subject to Owner
    approval.
 6. The intended C1 League persona choices presented during user creation without conflating
    them with Core roles.
 7. Session refresh/revocation behaviour for Core role, module role, affiliation and status
    changes.
-8. Whether legacy C1/C2/C3 wording is corrected in current guidance and retained only as
-   marked historical terminology.
+8. The migration treatment for legacy C1/C2/C3 comments which conflict with the accepted
+   C1-tenant/C2-node meaning.
 
 Planning recommendation: support multiple active Owners, prohibit self-demotion and loss of
 the last active Owner, let ordinary Admin create Members only, and require an Owner/P1

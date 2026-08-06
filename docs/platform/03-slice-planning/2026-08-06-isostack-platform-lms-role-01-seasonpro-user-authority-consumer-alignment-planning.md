@@ -26,6 +26,13 @@ tenant-owned functional module roles, scope and Club affiliation.
   request is routed through the Platform-owned authority contract;
 - validate every selected ModuleRole as same-tenant, LMSPro, active and non-template;
 - require a valid same-tenant Club affiliation when selected role scope requires Club;
+- derive C1 tenant-side versus C2 node-side presentation from validated role scope and
+  affiliation; never use Core `MEMBER` alone as the dashboard switch;
+- allow a C2 Member to create another C2 Member only when the actor's module role grants the
+  user-management action, force the target to literal Organisation `MEMBER`, force the
+  actor's exact current Club node and accept only eligible active `CLUB` roles;
+- refuse copied/direct requests naming another same-tenant Club, `LEAGUE`/`BOTH` roles or
+  any wider scope, regardless of browser selector state;
 - do not infer Core role from League/Club/Both scope or role name;
 - show same-tenant users with missing/invalid module authority as `Unassigned`, with a
   repairable module-role/affiliation workflow;
@@ -36,11 +43,14 @@ tenant-owned functional module roles, scope and Club affiliation.
 ## 3. Acceptance
 
 Cover P1 and tenant creation, compatible same-tenant completion, cross-tenant conflict,
-League Member, Club Member, multiple module roles, invalid/inactive/template role,
+League Member, Club Member, permitted same-node C2 creation, refused other-node creation,
+refused League/Both assignment by C2, multiple module roles, invalid/inactive/template role,
 missing/wrong-tenant Club, Unassigned repair and other-module preservation.
 
 Human smoke must prove the displayed Core authority, SeasonPro roles, scope and affiliation
 remain distinct and survive create/edit/reopen without silent elevation or demotion.
+It must also prove League-only, Club-only and combined users reach the intended dashboard,
+and that a C2 creator cannot alter or escape the locked node through a direct request.
 
 ## 4. Non-Goals And Stop
 
