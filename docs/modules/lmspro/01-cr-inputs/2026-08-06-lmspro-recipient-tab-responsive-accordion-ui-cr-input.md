@@ -2,9 +2,9 @@
 
 Date: 2026-08-06
 
-Planning status: **R11-A IMPLEMENTED; AUTOMATED/BUILD PASS; LOCAL AUTHENTICATED SMOKE 18/18
-PASS; COMMITTED AT `83356030`; DEV AND ORIGIN/DEV MATCH; PROMOTED TO STAGING; STAGING
-PUBLIC HEALTH PASS; EXACT BUILD/AUTHENTICATED SMOKE PENDING**
+Planning status: **R11-A IMPLEMENTED; AUTOMATED/BUILD PASS; LOCAL SMOKE 18/18 AND STAGING
+SMOKE ALL GREEN; EXACT `83356030` ALIGNED THROUGH MAIN; LIVE DEPLOYMENT TRIGGERED; PUBLIC
+LIVE HEALTH PASS; EXACT RENDER BUILD/AUTHENTICATED PRODUCTION SMOKE PENDING**
 
 Module: LMSPro / SeasonPro communications using the shared IsoStack Email composer
 
@@ -359,12 +359,13 @@ The authoritative control window should:
 1. retain this source CR's explicit roadmap disposition without moving portfolio `Now` or
    `Next`;
 2. retain the completed 18/18 authenticated local UI-smoke evidence;
-3. complete the focused staging deployment and smoke gate for exact commit `83356030`; and
+3. retain the completed all-green staging acceptance and complete exact Render live-build
+   confirmation plus focused production smoke for `83356030`; and
 4. preserve F2.2 semantic regression gates and the no-provider-Send UI evidence boundary.
 
 The control owner reported the corrected local candidate **18/18 PASS**. Application commit
-`83356030` is exact across local `dev`, `origin/dev`, local `staging` and `origin/staging`.
-The push to `origin/staging` triggered the staging deployment. Post-push public health is
-PASS with the database connected and RLS 11/11; exact deployed-build identification and
-authenticated staging smoke evidence remain pending. `main` and `origin/main` remain at
-`ec7e0cc4` and no live promotion is authorised.
+`83356030` is exact across local/remote `dev`, `staging` and `main`. The control owner reports
+staging smoke all green and explicitly authorised live promotion. `origin/main` was advanced
+by controlled local fast-forward, triggering the live deployment. Post-push public live
+health is PASS with the database connected and RLS 11/11. Exact Render live-build
+identification and focused authenticated production smoke remain pending.

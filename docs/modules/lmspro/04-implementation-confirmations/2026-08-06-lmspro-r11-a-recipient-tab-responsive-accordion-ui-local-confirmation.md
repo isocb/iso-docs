@@ -1,11 +1,10 @@
-# LMSPro R11-A — Recipient-Tab Accordion And Responsive Layout Implementation And Staging Promotion Confirmation
+# LMSPro R11-A — Recipient-Tab Accordion And Responsive Layout Implementation And Live Branch Promotion Confirmation
 
 Date: 2026-08-06
 
-Status: **IMPLEMENTED; AUTOMATED/TYPE/VERIFY/LINT/BUILD GATES PASS; LOCAL AUTHENTICATED
-SMOKE 18/18 PASS; COMMITTED AT `83356030`; DEV/ORIGIN-DEV AND STAGING/ORIGIN-STAGING
-ALIGNED; POST-PUSH STAGING HEALTH PASS; EXACT DEPLOYED BUILD/AUTHENTICATED STAGING SMOKE
-PENDING; NO LIVE PROMOTION**
+Status: **IMPLEMENTED; AUTOMATED/TYPE/VERIFY/LINT/BUILD GATES PASS; LOCAL SMOKE 18/18 AND
+STAGING SMOKE ALL GREEN; EXACT `83356030` ALIGNED THROUGH MAIN; LIVE DEPLOYMENT TRIGGERED;
+PUBLIC LIVE HEALTH PASS; EXACT RENDER BUILD/AUTHENTICATED PRODUCTION SMOKE PENDING**
 
 Accepted plan:
 
@@ -26,8 +25,10 @@ application base before R11-A: ec7e0cc4c22ee9470534e8d09df1e402bbf0f81e
 exact R11-A application commit: 833560309786c71265c361b71f3523dbc100499d
 dev/origin-dev: 833560309786c71265c361b71f3523dbc100499d
 staging/origin-staging: 833560309786c71265c361b71f3523dbc100499d
-main/origin-main: ec7e0cc4c22ee9470534e8d09df1e402bbf0f81e (unchanged)
-staging public health after push: PASS; exact deployed build pending
+main/origin-main: 833560309786c71265c361b71f3523dbc100499d
+staging authenticated smoke: all green
+live deployment: triggered by origin/main push
+live public health after push: PASS; exact deployed build pending
 schema/migration: none
 API/payload change: none
 provider Send invoked: no
@@ -36,7 +37,8 @@ provider Send invoked: no
 The application worktree was clean and exact with `origin/dev` before R11-A began. After
 18/18 local smoke acceptance, the candidate was committed on `dev`, pushed to `origin/dev`,
 then promoted through a controlled fast-forward of local `staging` and `origin/staging`.
-No direct remote-ref promotion was used.
+After all-green staging smoke and explicit authority, local `main` was fast-forwarded from
+`staging` and pushed to `origin/main`. No direct remote-ref promotion was used.
 
 ## 2. Implemented Behaviour
 
@@ -148,7 +150,22 @@ After the `origin/staging` push:
 
 These checks prove that the public staging service boots and its database/RLS health gate is
 green. They do not expose the deployed Git SHA and do not replace authenticated C1 browser
-smoke, so exact `83356030` Render identification and staging UI acceptance remain pending.
+smoke. The control owner subsequently reported the staging smoke all green.
+
+## 3.2 Live Branch Promotion And Public Health Evidence
+
+After all-green staging acceptance and explicit live-promotion authority:
+
+- local `main` was confirmed exact with `origin/main` at the prior `ec7e0cc4` boundary;
+- local `main` fast-forwarded from `staging` to exact `83356030`;
+- `origin/main` advanced to `83356030`, triggering the Render live deployment;
+- `https://app.seasonpro.co.uk/api/health` returned HTTP 200 after the push;
+- the response reported `healthy`, database `connected` and RLS `11/11` enabled; and
+- the signed-out live communications route returned HTTP 307 at its authentication boundary.
+
+Public health does not expose the Render Git SHA and does not replace authenticated
+production UI smoke. Exact Render live-build identification and focused production
+acceptance therefore remain pending.
 
 ## 4. Automated Evidence
 
@@ -186,14 +203,14 @@ R11-A does not change:
 - attachment/link acknowledgement or F3 policy; or
 - provider delivery, batching or Email status behaviour.
 
-## 6. Local Review Position
+## 6. Release Position
 
 Static review and automated gates are green. The control owner reports all 18 local smoke
 items passing, including the corrected reopened-draft disclosure display in test 7.
 
-Exact commit `83356030` is promoted to staging and public service health is green. Confirm
-Render identifies that exact deployed commit and execute the focused authenticated staging
-smoke before any request for live promotion.
+Exact commit `83356030` passed all-green staging smoke and is aligned through `origin/main`.
+Public live health is green after the main push. Confirm Render identifies that exact live
+commit and execute focused authenticated production smoke before lifecycle closure.
 
 ## 7. Rollback
 

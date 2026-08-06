@@ -33,8 +33,8 @@ Current boundary:
   truthful counts. It precedes the existing F3 uploaded-file-only acknowledgement
   follow-on.
 - R11-A standard UI plan, implemented with automated/build and authenticated local UI smoke
-  18/18 PASS; exact `83356030` is promoted to staging and public health is PASS;
-  exact-build identification and authenticated smoke remain:
+  18/18 PASS plus all-green staging smoke; exact `83356030` is aligned through main and
+  public live health is PASS; exact live-build identification and production smoke remain:
   `2026-08-06-lmspro-r11-a-recipient-tab-responsive-accordion-ui-planning.md`.
 - R11-A defines fresh-blank closed accordions, stored-selection initial disclosure,
   session-only user state, additive-before-eligibility order and responsive/mobile Selected

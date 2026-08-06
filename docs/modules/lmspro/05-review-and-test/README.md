@@ -4,8 +4,8 @@ Current UI release review:
 
 - `2026-08-06-lmspro-r11-a-recipient-tab-responsive-accordion-ui-review-and-test.md`
   records static/automated and authenticated local responsive smoke 18/18 PASS for R11-A.
-  Exact `83356030` is promoted to staging; public health is PASS, while exact-build
-  identification and authenticated staging smoke remain.
+  Staging smoke is all green; exact `83356030` is aligned through main and public live
+  health is PASS, while exact Render live-build identification and production smoke remain.
 
 Current email CR-Fix result:
 

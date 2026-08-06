@@ -29,10 +29,10 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application evidence:
 
 ```text
-dev = origin/dev = staging = origin/staging = 83356030
-main = origin/main = ec7e0cc4
-Render staging public health = PASS after origin/staging push; exact-build confirmation pending
-Render live deployment = initiated from origin/main ec7e0cc4; exact-build confirmation pending
+dev = origin/dev = staging = origin/staging = main = origin/main = 83356030
+R11-A staging authenticated smoke = all green
+Render live deployment = triggered from origin/main 83356030
+Render live public health = PASS; exact-build identification and authenticated production smoke pending
 ```
 
 Current serial portfolio decision:
@@ -50,9 +50,9 @@ Registered candidates which do not displace that pair:
   expedite proposal if triage confirms the risk;
 - LMSPro 500-recipient operating envelope: standard communications/capacity triage input;
 - LMSPro R11-A recipient-tab presentation: automated/build and authenticated local smoke
-  18/18 PASS; exact `83356030` is promoted through `origin/dev` and `origin/staging`, with
-  public staging health PASS, with exact staging build and focused staging smoke pending;
-  this bounded UI release does
+  18/18 PASS and staging smoke all green; exact `83356030` is aligned through `origin/main`;
+  the live deployment is triggered and public health is PASS, while exact Render-build
+  identification and authenticated production smoke remain; this bounded UI release does
   not displace the portfolio `Now`/`Next` pair;
 - LMSPro cohort email draft persistence and audience selection `CR-Fix`: accepted as the
   portfolio `Now`; F1/F2.1 remain green, but production review found a separate high-risk
@@ -657,10 +657,11 @@ automated/build and 15 staging human-smoke checks, and is exact through main aft
 promotion authority. Render live exact-build confirmation remains; the existing
 attachment-policy F3 is the immediate formal triage/planning follow-on. FUND 1R-F-A bounded
 planning remains `Next`.
-R11-A is a separately authorised bounded UI staging candidate at `83356030`; its 18/18
-local smoke is complete and post-push public staging health is PASS. Exact staging-build
-identification and authenticated smoke remain pending. It does not alter the selected `Now`
-or `Next`.
+R11-A is a separately authorised bounded UI release at `83356030`; local smoke is 18/18 and
+staging smoke is all green. The exact commit is aligned through `origin/main`, the live
+deployment is triggered and public live health is PASS. Exact Render live-build
+identification and authenticated production smoke remain. It does not alter the selected
+`Now` or `Next`.
 R10-A is complete after the control owner's totally-green production smoke. The detailed
 history below explains how the lanes reached that position and must not be read as a
 competing selector.

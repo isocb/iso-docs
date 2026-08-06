@@ -4,9 +4,9 @@ Date: 2026-08-06
 
 Module: LMSPro / SeasonPro communications
 
-Status: **IMPLEMENTED; AUTOMATED/BUILD PASS; LOCAL AUTHENTICATED SMOKE 18/18 PASS; COMMITTED
-AT `83356030`; DEV/ORIGIN-DEV ALIGNED AND PROMOTED TO STAGING; POST-PUSH PUBLIC HEALTH PASS;
-EXACT BUILD/AUTHENTICATED SMOKE PENDING; NO PORTFOLIO NOW/NEXT DISPLACEMENT**
+Status: **IMPLEMENTED; AUTOMATED/BUILD PASS; LOCAL SMOKE 18/18 AND STAGING SMOKE ALL GREEN;
+EXACT `83356030` ALIGNED THROUGH MAIN; LIVE DEPLOYMENT TRIGGERED; PUBLIC LIVE HEALTH PASS;
+EXACT LIVE BUILD/AUTHENTICATED PRODUCTION SMOKE PENDING; NO NOW/NEXT DISPLACEMENT**
 
 Source CR:
 
@@ -48,9 +48,10 @@ The slice is planning-complete only when its linked plan expresses:
 - F2.2 semantic regression protection.
 
 The control owner subsequently authorised local implementation, reported all 18 local smoke
-checks passing, and explicitly authorised commit plus staging promotion. Exact application
-commit `83356030` is aligned through `origin/dev` and `origin/staging`. This bounded release
-does not make R11-A portfolio `Now` or alter the root `Now`/`Next` pair.
+checks passing, then reported staging smoke all green and explicitly authorised live
+promotion. Exact application commit `83356030` is aligned through `origin/dev`,
+`origin/staging` and `origin/main`. This bounded release does not make R11-A portfolio `Now`
+or alter the root `Now`/`Next` pair.
 
 ## 2. Classification
 

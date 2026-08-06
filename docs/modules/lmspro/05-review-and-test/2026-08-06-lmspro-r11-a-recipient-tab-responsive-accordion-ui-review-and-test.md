@@ -2,9 +2,9 @@
 
 Date: 2026-08-06
 
-Review status: **LOCAL STATIC/AUTOMATED REVIEW PASS; AUTHENTICATED LOCAL UI SMOKE 18/18
-PASS; EXACT `83356030` PROMOTED TO STAGING; POST-PUSH PUBLIC HEALTH PASS; EXACT DEPLOYED
-BUILD/AUTHENTICATED STAGING SMOKE PENDING**
+Review status: **STATIC/AUTOMATED PASS; LOCAL SMOKE 18/18 AND STAGING SMOKE ALL GREEN; EXACT
+`83356030` ALIGNED THROUGH MAIN; LIVE DEPLOYMENT TRIGGERED; PUBLIC LIVE HEALTH PASS; EXACT
+RENDER BUILD/AUTHENTICATED PRODUCTION SMOKE PENDING**
 
 Implementation confirmation:
 
@@ -22,8 +22,9 @@ No blocking code-review, automated-test or local human-smoke defect remains. The
 authenticated local smoke passed 17 of 18 checks; after the test 7 presentation correction,
 its focused retest passed and completed the matrix at 18/18.
 
-The accepted candidate is committed and promoted to staging. Human staging evidence is not
-inferred from local or automated tests.
+The accepted candidate is committed, promoted to staging and reported all green in staging
+human smoke. The control owner then explicitly authorised live promotion. Human production
+evidence is not inferred from staging or automated tests.
 
 ## 2. Static Code Review
 
@@ -159,16 +160,19 @@ local implementation: complete
 automated/static review: PASS
 local authenticated UI smoke: 18/18 PASS
 commit/push: PASS at exact 83356030
-staging promotion: PASS; public health PASS; exact Render build and authenticated smoke pending
-live promotion: not authorised
+staging promotion and authenticated smoke: PASS / all green
+main/origin-main promotion: PASS at exact 83356030
+public live health: PASS; database connected; RLS 11/11
+exact Render live build and authenticated production smoke: pending
 ```
 
-On exact staging commit `83356030`, repeat the focused recipient-tab matrix sufficiently to
-confirm deployment fidelity, including draft reopen, fresh-composition reset, responsive
-layout, stable counts and Save Draft without provider Send. Any selection/count change,
-session reset, hidden selection or mobile overflow returns R11-A to implementation.
+On production after Render identifies exact `83356030`, repeat a focused, non-destructive
+recipient-tab smoke sufficient to confirm deployment fidelity, including draft reopen,
+fresh-composition reset, responsive layout, stable counts and Save Draft without provider
+Send. Any selection/count change, session reset, hidden selection or mobile overflow returns
+R11-A to implementation.
 
 ## 7. Release Recommendation
 
-**PROCEED WITH STAGING HUMAN SMOKE ONLY.** Do not promote to live without exact staging
-deployment confirmation, completed staging acceptance and separate control-owner authority.
+**LIVE BRANCH PROMOTION COMPLETE; PRODUCTION ACCEPTANCE PENDING.** Confirm Render's exact
+live commit and complete the focused authenticated production smoke before closing R11-A.
