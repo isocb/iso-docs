@@ -16,10 +16,14 @@ Current queue:
 
 - `CR-Fix F1/F2 - Cohort Email Draft Persistence And Audience Selection` is the accepted
   urgent operational expedite and portfolio `Now`.
-- F2.2 current-season eligibility, additive audience sources and count integrity is the
-  active urgent triage;
-  its bounded plan awaits explicit acceptance.
-- F3 uploaded-file-only acknowledgement retains its identifier and follows F2.2.
+- F2.2 current-season eligibility, additive audience sources and count integrity passed
+  automated/build and all 15 staging human checks; exact `ec7e0cc4` is aligned through main
+  and awaits Render live exact-build confirmation.
+- F3 uploaded-file-only acknowledgement retains its identifier and is the immediate formal
+  triage/planning follow-on inside the same `CR-Fix`.
+- R11-A recipient-tab accordion and responsive layout refinement has automated/build and
+  authenticated local UI smoke 18/18 PASS. Exact `83356030` is promoted to staging; exact
+  deployment and staging smoke remain. It does not displace the current `Now`/`Next`.
 - R10-A is closed after the control owner's totally-green production smoke. FUND `1R-F-A`
   is restored as formal planning-only portfolio `Next`.
 

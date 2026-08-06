@@ -1,5 +1,11 @@
 # LMSPro Review And Test
 
+Current UI release review:
+
+- `2026-08-06-lmspro-r11-a-recipient-tab-responsive-accordion-ui-review-and-test.md`
+  records static/automated and authenticated local responsive smoke 18/18 PASS for R11-A.
+  Exact `83356030` is promoted to staging; exact deployment and staging smoke remain.
+
 Current email CR-Fix result:
 
 - F1 broad-cohort Save Draft human staging smoke: PASS;

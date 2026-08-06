@@ -1,10 +1,14 @@
 # LMSPro Implementation Confirmations
 
-Current local correction:
+Current staging candidate:
 
+- `2026-08-06-lmspro-r11-a-recipient-tab-responsive-accordion-ui-local-confirmation.md`
+  records R11-A implementation with automated/type/verify/lint/build and authenticated
+  local UI smoke 18/18 PASS; exact `83356030` is promoted to staging and awaits exact
+  deployment/staging smoke.
 - `2026-08-05-lmspro-cr-fix-f2-2-current-season-eligibility-and-count-integrity-confirmation.md`
-  records automated/build PASS and exact dev/staging alignment at `ec7e0cc4`; staging human
-  smoke is required before main.
+  records automated/build PASS, staging human smoke 15/15 PASS and exact `ec7e0cc4`
+  promotion through main; Render live exact-build confirmation remains to be recorded.
 - `2026-08-05-lmspro-cr-fix-f2-1-cohort-taxonomy-and-picker-correction-local-confirmation.md`
   records local and final staging human PASS and exact dev/staging/main alignment at
   `9974eed5`; Render exact live-build evidence remains to be recorded.

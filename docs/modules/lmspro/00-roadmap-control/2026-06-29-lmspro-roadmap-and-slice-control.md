@@ -1,7 +1,7 @@
 # LMSPro / SeasonPro Roadmap And Slice Control
 
 Date: 2026-06-29
-Last updated: 2026-08-05
+Last updated: 2026-08-06
 Module: LMSPro / SeasonPro
 Control status: Active authoritative LMSPro / SeasonPro child roadmap and delivery-cycle control
 
@@ -9,7 +9,7 @@ Parent portfolio control:
 
 `docs/00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md`
 
-## 0. Authoritative CR Inventory And Current LMSPro Disposition — 2026-08-05
+## 0. Authoritative CR Inventory And Current LMSPro Disposition — 2026-08-06
 
 This file is confirmed as the one authoritative LMSPro / SeasonPro child roadmap. The root
 Platform/module roadmap owns the one serial cross-lane `Now` and `Next`. CR inputs, triage,
@@ -34,6 +34,7 @@ authority. Later disposition changes must update the existing row.
 | [`2026-07-30-lmspro-responsive-c1-club-management-cr-input.md`](../01-cr-inputs/2026-07-30-lmspro-responsive-c1-club-management-cr-input.md) | R10-A implemented, staging-smoked, included by ancestry in live application `7154937` and reported totally green in the control-owner production smoke | Completed and closed on 2026-08-05; no remaining resumption action |
 | [`2026-08-05-lmspro-500-recipient-email-operating-envelope-refinement.md`](../01-cr-inputs/2026-08-05-lmspro-500-recipient-email-operating-envelope-refinement.md) | Captured planning input; awaiting formal triage | Registered standard communications/capacity candidate; no limit change, implementation or displacement of `Now`/`Next` authorised |
 | [`CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md`](../01-cr-inputs/CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md) | F1 PASS; F2 superseded; F2.1 final staging PASS; F2.2 automated/build and staging human smoke 15/15 PASS, with exact `ec7e0cc4` aligned through main after explicit promotion; saved-draft compatibility excluded; Render live exact-build confirmation pending; F3 planning refinement remains the immediate follow-on | **Portfolio NOW:** record F2.2 exact live-build evidence, then formalise F3 triage and bounded slice planning; no F3 implementation authority yet |
+| [`2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md`](../01-cr-inputs/2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md) | R11-A implemented with corrected combined Division/Age Group recipient-type widget, session disclosure and responsive layout; focused/full tests, type, verification, lint and 131-page build PASS; authenticated local UI smoke 18/18 PASS including corrected test 7; exact `83356030` aligned across dev/origin-dev and staging/origin-staging; no schema/API/provider/configuration change | Staging candidate awaiting exact Render deployment and focused staging human smoke; no live promotion authority; does not displace the Email `CR-Fix` `Now` or FUND `Next` |
 
 Current LMSPro portfolio disposition:
 

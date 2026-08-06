@@ -25,12 +25,19 @@ Current boundary:
   dev, staging and main after both pre-main Security Scans and public staging health passed.
   Render exact live-build and controlled production Save Draft evidence remain to be
   recorded.
-- Current urgent plan awaiting explicit acceptance:
+- Implemented urgent plan with automated/build and 15/15 staging human PASS, exact through
+  main at `ec7e0cc4` and awaiting Render live exact-build confirmation:
   `2026-08-05-lmspro-cr-fix-f2-2-current-season-eligibility-and-count-integrity-planning.md`.
 - F2.2 corrects status selectors acting as audience sources, adds source-specific
   current-season/status eligibility and preserves additive structural/role cohorts with
   truthful counts. It precedes the existing F3 uploaded-file-only acknowledgement
   follow-on.
+- R11-A standard UI plan, implemented with automated/build and authenticated local UI smoke
+  18/18 PASS; exact `83356030` is promoted to staging and awaits deployment/staging smoke:
+  `2026-08-06-lmspro-r11-a-recipient-tab-responsive-accordion-ui-planning.md`.
+- R11-A defines fresh-blank closed accordions, stored-selection initial disclosure,
+  session-only user state, additive-before-eligibility order and responsive/mobile Selected
+  Groups presentation. It does not displace the Email `CR-Fix` or FUND `Next`.
 
 Historical programme context retained below does not select current work:
 

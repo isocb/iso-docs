@@ -2,11 +2,11 @@
 
 Date: 2026-07-27
 
-Last portfolio reconciliation: 2026-08-05
+Last portfolio reconciliation: 2026-08-06
 
 Status: Active parent roadmap
 
-## 0. Current Portfolio Control — 2026-08-05
+## 0. Current Portfolio Control — 2026-08-06
 
 This section is the current cross-lane control and supersedes older global `single next`
 wording later in this document. Older statements remain evidence of the sequence at the
@@ -29,8 +29,9 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application evidence:
 
 ```text
-dev = origin/dev = staging = origin/staging = main = origin/main = ec7e0cc4
-Render staging exact-build confirmation = PASS at ec7e0cc4
+dev = origin/dev = staging = origin/staging = 83356030
+main = origin/main = ec7e0cc4
+Render staging deployment = triggered from origin/staging 83356030; exact-build confirmation pending
 Render live deployment = initiated from origin/main ec7e0cc4; exact-build confirmation pending
 ```
 
@@ -48,6 +49,10 @@ Registered candidates which do not displace that pair:
   input, with the internal-note and server-authority findings eligible for an explicit
   expedite proposal if triage confirms the risk;
 - LMSPro 500-recipient operating envelope: standard communications/capacity triage input;
+- LMSPro R11-A recipient-tab presentation: automated/build and authenticated local smoke
+  18/18 PASS; exact `83356030` is promoted through `origin/dev` and `origin/staging`, with
+  exact staging deployment and focused staging smoke pending; this bounded UI release does
+  not displace the portfolio `Now`/`Next` pair;
 - LMSPro cohort email draft persistence and audience selection `CR-Fix`: accepted as the
   portfolio `Now`; F1/F2.1 remain green, but production review found a separate high-risk
   status-as-audience-source/eligibility defect. F2.2 passed automated/build and all 15
@@ -644,13 +649,16 @@ different documentation lifecycles.
 
 ## 7. Current Parent Control Decision
 
-The 2026-08-05 reconciliation in Section 0 is the current decision: the accepted LMSPro
+The 2026-08-06 reconciliation in Section 0 is the current decision: the accepted LMSPro
 email CR-Fix remains `Now`; F1 and F2.1 remain green. Production review found the separate
 status-as-audience-source/eligibility defect. F2.2 is implemented at `ec7e0cc4`, passed all
 automated/build and 15 staging human-smoke checks, and is exact through main after explicit
 promotion authority. Render live exact-build confirmation remains; the existing
 attachment-policy F3 is the immediate formal triage/planning follow-on. FUND 1R-F-A bounded
 planning remains `Next`.
+R11-A is a separately authorised bounded UI staging candidate at `83356030`; its 18/18
+local smoke is complete and its staging deployment/smoke gate is pending. It does not alter
+the selected `Now` or `Next`.
 R10-A is complete after the control owner's totally-green production smoke. The detailed
 history below explains how the lanes reached that position and must not be read as a
 competing selector.
