@@ -176,10 +176,9 @@ Planning must perform a bounded inclusion check:
   second release milestone under the still-open CR-Fix; and
 - FUND `1R-F-A` remains formal planning-only `Next`; R10-A is closed.
 
-Later root reconciliation on 2026-08-06 supersedes that original immediate ordering:
-FUND `1R-F-A` is now portfolio `Now` for bounded planning and its conditional proof is
-`Next`. F3 remains required and parked under this CR-Fix; it has not been cancelled,
-completed or authorised for implementation.
+The latest root reconciliation on 2026-08-06 selects F3 as portfolio `Now` under the
+dedicated accepted F3 triage and bounded plan. Role Authority is `Next`, Support Ticketing
+follows, and FUND `1R-F-A` is parked at its exact pre-planning boundary.
 
 ## 8. Risk And Recovery Decision
 
@@ -223,9 +222,10 @@ as the immediate second CR-Fix milestone.
 Current root disposition:
 
 ```text
-NOW  -> FUND 1R-F-A bounded planning
-NEXT -> conditional FUND 1R-F-A executable proof candidate
-PARKED REQUIRED -> Email CR-Fix F3 formal triage and bounded planning
+NOW  -> Email CR-Fix F3 accepted bounded implementation
+NEXT -> Platform/SeasonPro Role Authority bounded project
+THEN -> Platform Support Ticketing client-readiness project
+PARKED -> FUND 1R-F-A bounded planning
 ```
 
 The roadmap must record that transition rather than relying on chat memory.

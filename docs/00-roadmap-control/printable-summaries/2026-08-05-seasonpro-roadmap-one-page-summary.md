@@ -10,8 +10,8 @@ communications behaviour.
 
 ## Current Position
 
-- **Portfolio NOW:** FUND `1R-F-A` bounded planning. SeasonPro Email F3 is a required parked
-  follow-on and does not interrupt the selected FUND completion focus.
+- **Portfolio NOW:** SeasonPro Email F3 uploaded-file-only acknowledgement, through its
+  accepted bounded implementation and controlled release cycle.
 - F1 human staging smoke passes through the maximum available 440-recipient draft, with a
   341 ms broad-case server wait.
 - F2 failed because it treated C1/C2/hat-swap access context as independently selectable
@@ -24,7 +24,8 @@ communications behaviour.
   The corrected model unions selected Age Group/Division/Club and functional-role audience
   sources, while season/status filters only restrict sources to which they apply.
 - F2.2 was implemented at `ec7e0cc4`; its corrections are retained by ancestry in current
-  branch-aligned application `83356030`. F3 remains required and is not implementation-authorised.
+  branch-aligned application `83356030`. F3 is now implementation-authorised under its
+  dedicated 2026-08-06 triage and bounded plan.
 - F2.2 also includes two bounded UI fixes: show the complete recipient count in the tab
   badge, and return to an unfiltered Email list after successful Send while retaining the
   status filter.
@@ -36,8 +37,9 @@ communications behaviour.
   remain. It does not alter audience resolution, delivery or the portfolio `Now`/`Next`.
 - `R10-A Responsive C1 Club Management` is complete and closed after a totally-green
   control-owner production smoke.
-- **Portfolio NEXT:** the conditional FUND `1R-F-A` executable proof; implementation remains
-  unauthorised until its bounded plan is explicitly accepted.
+- **Portfolio NEXT:** the self-contained Platform/SeasonPro Role Authority project, starting
+  with formal triage and read-only authority inventory. Support Ticketing follows; FUND
+  remains parked until all three housekeeping outcomes are complete.
 
 ## Recently Completed
 
@@ -64,14 +66,13 @@ communications behaviour.
 
 ## Immediate Management Rule
 
-Retain F3 as required parked work under the existing Email CR-Fix. Do not begin F3 formal
-triage, planning or application work while FUND owns the selected focus unless root control
-explicitly reprioritises it.
+Complete F3 only inside its accepted file-only acknowledgement boundary. Do not weaken
+dedicated-link validation/fingerprinting or uploaded-file acknowledgement safety.
 
 ## Next Decision
 
-Proceed with FUND `1R-F-A` bounded planning. Revisit F3 through formal triage and an accepted
-bounded plan when root control releases the FUND focus or explicitly reprioritises it.
+Complete F3 through staging and the explicit production gate, then open Role Authority as
+its own bounded project. Support Ticketing follows before FUND resumes.
 
 Authoritative source:
 [`LMSPro / SeasonPro Roadmap And Slice Control`](../../modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md)

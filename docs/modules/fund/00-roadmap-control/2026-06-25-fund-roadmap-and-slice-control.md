@@ -69,15 +69,16 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-NOW  -> 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof bounded planning
-NEXT -> conditional 1R-F-A executable proof candidate after accepted plan and explicit authority
+ROOT NOW  -> LMSPro Email CR-Fix F3 accepted bounded implementation
+ROOT NEXT -> Platform/SeasonPro Role Authority bounded project
+THEN      -> Platform Support Ticketing client-readiness project
+FUND      -> 1R-F-A preserved at its exact pre-planning boundary
 ```
 
-Business priority now selects `1R-F-A` bounded planning as formal root `Now`. Planning must
-produce one explicit proof contract and stop for acceptance. The resulting executable proof
-is the conditional root `Next`, but no implementation is authorised until that plan is
-accepted and the control owner gives separate authority. The LMSPro Email F3 policy
-follow-on remains required and parked; it does not interrupt the selected FUND focus.
+Revised business priority creates a bounded housekeeping sequence before FUND resumes:
+Email F3, Role Authority, then Support Ticketing. `1R-F-A` remains the exact FUND resumption
+point, but its planning and executable proof are no longer root `Now`/`Next`. No FUND
+implementation is authorised while those three prerequisite projects remain open.
 
 ## 1. Control Authority And Reading Rule
 
@@ -157,8 +158,8 @@ Current E-A/E-B/E-C promotion state:
   authenticated E-B/E-C real-workflow acceptance remains pending; and
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is reviewed and accepted as
   the non-executable successor to the three governed CRs; and
-- `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single selected
-  planning outcome. Its conditional executable proof is `Next`. No proof implementation,
+- `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the preserved FUND
+  resumption outcome after F3, Role Authority and Support Ticketing. No proof implementation,
   `1R-F-B` through `1R-F-I`, `1R-G` or artwork/template production implementation is
   authorised.
 - the 2026-07-20 refinement reconciliation is accepted as subordinate placement control:
@@ -391,8 +392,8 @@ COMMERCE-A1 (complete on dev)
         no E-D migration; consolidated E-B/C/D human schedule pending
   -> FUND 1R-F Project Offer And Artwork Readiness Reconciliation parent accepted
      -> FUND 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
-        formal root NOW for bounded planning; conditional executable proof is NEXT and
-        implementation is not authorised
+        preserved FUND resumption point after F3, Role Authority and Support Ticketing;
+        planning and implementation are not authorised
         -> apply the accepted pilot/refinement placement before accepting later F/G work;
            this is a control gate, not an executable slice
 
@@ -438,8 +439,9 @@ Rules:
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is an accepted
   non-executable parent at
   `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`;
-- `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` follows E-D and is now
-  selected for bounded planning; this does not authorise proof or production implementation;
+- `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` follows E-D and remains
+  the exact FUND resumption point after the selected housekeeping sequence; this does not
+  authorise proof or production implementation;
 - the subordinate 2026-07-20 refinement register must inform the AMOW proof and later
   pilot gates, but cannot start work or displace the selected bounded planning outcome;
 - never implement two slices merely because their planning can be discussed together;
@@ -813,8 +815,8 @@ E-D is implemented/reviewed at `c45a41d9` and is included by ancestry in current
 in the E-D review. The
 non-executable `1R-F - Project Offer And Artwork Readiness Reconciliation` parent is
 reviewed/accepted and records the separate Individual, collective and Standard readiness
-branches. `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single
-selected planning outcome; its executable proof remains conditional and unauthorised. No
+branches. `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the preserved
+FUND resumption outcome; its planning and executable proof remain unauthorised. No
 `1R-G` or artwork/template production implementation is authorised.
 ```
 

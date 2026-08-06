@@ -2,9 +2,8 @@
 
 Date: 2026-08-05
 
-Planning status: **REQUIRED PARKED FOLLOW-ON UNDER THE EMAIL CR-FIX; FUND `1R-F-A` IS THE
-SELECTED PORTFOLIO FOCUS; F3 STILL REQUIRES FORMAL TRIAGE AND AN EXPLICITLY ACCEPTED BOUNDED
-PLAN; NOT IMPLEMENTATION AUTHORITY**
+Planning status: **CONSUMED BY ACCEPTED F3 TRIAGE AND BOUNDED PLAN ON 2026-08-06; RETAINED
+AS DECISION AND SOURCE-REVIEW PROVENANCE**
 
 Source request:
 
@@ -37,9 +36,10 @@ Parent portfolio control:
 
 ## 1. Authority And Handoff Boundary
 
-This document refines the already accepted F3 outcome and supplies evidence for formal
-control-window triage and planning. It is subordinate to the parent CR-Fix, accepted
-triage, LMSPro roadmap and root roadmap.
+This document refined the accepted F3 outcome and supplied evidence for formal
+control-window triage and planning. It is now consumed by the accepted 2026-08-06 F3
+triage and bounded plan and remains subordinate to those records, the parent CR-Fix,
+LMSPro roadmap and root roadmap.
 
 It does not:
 
@@ -142,7 +142,7 @@ Recommended classification for formal control-window triage:
 
 ```text
 Type       CR-Fix F3 policy/behaviour correction under the existing parent CR-Fix
-Priority   Required follow-on, parked behind the selected FUND completion focus
+Priority   Required follow-on; selected as portfolio Now on 2026-08-06
 Severity   Medium operational friction; High correction sensitivity at attachment safety gate
 Owner      Shared communications UI/router/readiness, expressed through LMSPro/SeasonPro
 Data       No schema migration or backfill expected
@@ -285,12 +285,10 @@ F3 should be accepted only if the eventual bounded plan proves all of the follow
 
 1. Retain F1/F2.1/F2.2 as delivered corrections in current application `83356030` ancestry;
    unrecorded exact historic Render evidence must not be invented.
-2. Complete the selected FUND `1R-F-A` planning/proof focus, unless root control explicitly
-   reprioritises F3.
-3. Reconcile this planning input into a formal F3 triage amendment or dedicated triage
-   record under the existing CR-Fix.
-4. Create and explicitly accept a bounded F3 slice plan.
-5. Only then begin application implementation and focused verification.
+2. Root control reprioritised F3 ahead of FUND on 2026-08-06.
+3. The dedicated F3 triage record was accepted under the existing CR-Fix.
+4. The bounded F3 slice plan was explicitly accepted.
+5. Application implementation and focused verification may proceed under those records.
 
 ## 12. Settled Decisions Captured
 
@@ -302,17 +300,11 @@ F3 should be accepted only if the eventual bounded plan proves all of the follow
 - F3 is cross-cutting and must not be implemented as a UI-only toggle.
 - No schema migration or historic-record rewrite is expected.
 
-## 13. Open Business And Planning Questions
+## 13. Resolved Business And Planning Questions
 
-1. Should the non-blocking dedicated-link notice remain in the same orange responsibility
-   panel without a checkbox, or move to neutral informational text beside the link editor?
-   Planning recommendation: neutral informational text beside the link editor.
-2. Should removing the final attachment immediately clear the in-memory acknowledgement,
-   or merely make it irrelevant until Save? Planning recommendation: clear it immediately
-   so adding a later attachment always requires a fresh deliberate action.
-3. Is one controlled links-only provider Send required in staging, or is Save/reopen plus
-   automated Send-readiness and existing links-only delivery evidence sufficient?
-   Planning recommendation: one controlled single-recipient staging Send, with no broad
+1. Dedicated-link guidance uses neutral informational text beside the link editor.
+2. Removing the final attachment immediately clears the in-memory acknowledgement.
+3. Staging requires one controlled single-recipient links-only provider Send, with no broad
    audience and no production provider test required.
 
 These questions affect presentation and evidence depth, not the settled file-only gating
@@ -320,10 +312,6 @@ decision.
 
 ## 14. Control-Window Handoff
 
-The formal control window should:
-
-- retain F3 as required parked work while FUND owns portfolio `Now`/`Next`;
-- accept or amend the triage recommendation in Section 6;
-- settle the three questions in Section 13;
-- create the bounded F3 slice plan from Sections 7–10; and
-- leave implementation blocked until that plan is explicitly accepted.
+The formal control window completed the handoff on 2026-08-06 by selecting F3 as `Now`,
+accepting its dedicated triage and bounded plan, resolving Section 13 and authorising
+implementation through the controlled staging gate.

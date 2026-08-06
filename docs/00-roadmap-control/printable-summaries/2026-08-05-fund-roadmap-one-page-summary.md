@@ -11,16 +11,15 @@ payment contracts remain owned by Commerce Core.
 
 ## Current Position
 
-- **Portfolio NOW:** `1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof`
-  bounded planning, selected by business priority to resume FUND's completion cycle.
-- **Portfolio NEXT:** the conditional `1R-F-A` executable proof that emerges from an
-  explicitly accepted plan. It remains unauthorised until a separate implementation decision.
+- **Portfolio NOW:** SeasonPro Email F3 accepted bounded implementation.
+- **Portfolio NEXT:** the Platform/SeasonPro Role Authority bounded project, followed by
+  Support Ticketing client readiness.
 - No renderer implementation, later `1R-F` branch, `1R-G` work or production artwork system
   is authorised by the planning selection.
 - The current application is exact `83356030` across dev/staging/main. The selected planning
   work starts from that branch-aligned baseline.
-- SeasonPro Email F3 remains required but parked; it does not interrupt the selected FUND
-  focus and has no implementation authority.
+- `1R-F-A` remains the exact FUND resumption point, but all FUND planning and implementation
+  is parked until F3, Role Authority and Support Ticketing are complete.
 
 ## Foundation Already In Place
 
@@ -48,15 +47,13 @@ Commission aggregation, statements and settlement remain parked for later work.
 
 ## Immediate Management Rule
 
-Do not begin implementation from the strategic artwork documents. Prepare the bounded
-`1R-F-A` planning/evidence boundary now and prove its decisions, dependencies, data
-boundaries and test route. Stop for explicit plan acceptance and implementation authority.
+Do not begin FUND implementation during the housekeeping sequence. Preserve `1R-F-A` as
+the exact resumption point and retain all existing inputs and gates unchanged.
 
 ## Next Decision
 
-Create and review the bounded `1R-F-A` proof plan. If accepted, decide whether to authorise
-its exact executable proof. Keep later FUND work and required SeasonPro Email F3 parked
-until explicitly selected.
+Complete F3, Role Authority and Support Ticketing through their separate controlled
+lifecycles. Then restore `1R-F-A` to root selection for bounded planning.
 
 Authoritative source:
 [`FUND Roadmap And Slice Control`](../../modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md)

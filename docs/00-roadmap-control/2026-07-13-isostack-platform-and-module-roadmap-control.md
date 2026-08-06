@@ -29,37 +29,39 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application evidence:
 
 ```text
-dev = origin/dev = staging = origin/staging = main = origin/main = 83356030
-R11-A staging authenticated smoke = all green
-Render live deployment = triggered from origin/main 83356030
-Render live public health = PASS; exact-build identification and authenticated production smoke pending
+local dev = 72c02d92 (F3 implementation and automated review PASS)
+origin/dev = staging = origin/staging = main = origin/main = 83356030 before F3 promotion
+F3 production build = PASS (131 pages); no schema/migration
+F3 staging human smoke = pending; production promotion blocked
 ```
 
 Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | FUND `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` bounded planning | Business priority selects FUND to resume its completion cycle. Produce and explicitly accept one bounded proof plan only; no renderer implementation, schema, production storage/job, later `1R-F` branch, `1R-G`, Order Code, production or commission work is authorised by this selection. |
-| **NEXT** | FUND `1R-F-A` executable proof candidate, conditional on the accepted plan | Preserve FUND continuity after planning. The exact implementation boundary must come from the accepted `1R-F-A` plan and still requires explicit implementation authority; it is not authorised merely by occupying `Next`. |
+| **NOW** | LMSPro Email CR-Fix `F3 - Uploaded-File-Only Acknowledgement` | Complete the accepted bounded application slice through local review, staging human smoke and the explicit production gate. Uploaded files alone require acknowledgement; dedicated and ordinary links never do, while link validation/fingerprinting remains mandatory. |
+| **NEXT** | Platform/SeasonPro Role Authority bounded project | Begin with formal cross-lane triage, read-only authority inventory and the smallest safe containment plan. It is a self-contained project and receives no application authority merely by occupying `Next`. |
 
-Registered candidates which do not displace that pair:
+Registered and ordered work outside that pair:
 
-- Platform/SeasonPro role-authority clarification: high-priority cross-lane triage input;
+- Platform/SeasonPro role-authority clarification: mandatory bounded project selected as
+  root `Next`; formal triage and implementation authority remain outstanding;
 - Platform support-ticketing client readiness: privacy/security and client-enablement triage
-  input, with the internal-note and server-authority findings eligible for an explicit
-  expedite proposal if triage confirms the risk;
+  input selected as the mandatory self-contained project after Role Authority, with the
+  internal-note and server-authority findings eligible for an explicit expedite proposal
+  if triage confirms the risk;
 - LMSPro 500-recipient operating envelope: standard communications/capacity triage input;
 - LMSPro R11-A recipient-tab presentation: automated/build and authenticated local smoke
   18/18 PASS and staging smoke all green; exact `83356030` is aligned through `origin/main`;
   the live deployment is triggered and public health is PASS, while exact Render-build
   identification and authenticated production smoke remain; this bounded UI release does
   not displace the portfolio `Now`/`Next` pair;
-- LMSPro cohort email draft persistence and audience selection `CR-Fix`: accepted as the
-  former expedite; F1/F2.1/F2.2 corrections are delivered in the ancestry of current
-  application `83356030`. F3 remains a required uploaded-file-only acknowledgement
-  follow-on under that CR-Fix, but is parked behind the selected FUND completion focus;
-- FUND `1R-F-A`: selected as formal root `Now` for bounded planning. Its conditional
-  executable proof is root `Next`; no application implementation is yet authorised;
+- LMSPro cohort email draft persistence and audience selection `CR-Fix`: F1/F2.1/F2.2
+  corrections are delivered in the ancestry of current application `83356030`; F3 is now
+  the accepted bounded portfolio `Now`;
+- FUND `1R-F-A`: deliberately parked at its exact pre-planning boundary until F3, Role
+  Authority and Support Ticketing are completed; no application implementation is
+  authorised;
 - Platform `PLAT-REFINE-02` through `PLAT-REFINE-04`: registered non-executable findings;
   and
 - all parked FUND and LMSPro candidates recorded in their child CR inventories.
@@ -88,8 +90,8 @@ Remedial `CR-Fix` control:
    and restore or reconsider the prior sequence.
 
 The email `CR-Fix` expedite was accepted and its incident-ending corrections were delivered.
-Its required F3 policy follow-on is retained but no longer occupies portfolio `Now`. The
-source, triage and delivered slice plan are:
+Its required F3 policy follow-on is now selected as portfolio `Now`. The source, earlier
+triage and delivered F1/F2 slice plan are:
 
 - `docs/modules/lmspro/01-cr-inputs/CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md`;
 - `docs/modules/lmspro/02-triage/2026-08-05-lmspro-cr-fix-f1-f2-cohort-email-draft-persistence-and-audience-selection-triage.md`; and
@@ -98,6 +100,11 @@ source, triage and delivered slice plan are:
 Its replacement F2.1 plan is:
 
 - `docs/modules/lmspro/03-slice-planning/2026-08-05-lmspro-cr-fix-f2-1-cohort-taxonomy-and-picker-correction-planning.md`.
+
+The accepted F3 authority is:
+
+- `docs/modules/lmspro/02-triage/2026-08-06-lmspro-cr-fix-f3-uploaded-file-only-acknowledgement-triage.md`; and
+- `docs/modules/lmspro/03-slice-planning/2026-08-06-lmspro-cr-fix-f3-uploaded-file-only-acknowledgement-planning.md`.
 
 Working-method and human navigation references:
 
@@ -651,15 +658,15 @@ different documentation lifecycles.
 ## 7. Current Parent Control Decision
 
 The 2026-08-06 reconciliation in Section 0 is the current decision: business priority moves
-portfolio `Now` to bounded FUND `1R-F-A` planning and reserves its conditional executable
-proof as `Next`. The delivered LMSPro Email corrections remain in current application
-ancestry. F3 remains required under the same Email CR-Fix, but is explicitly parked behind
-the selected FUND focus and has no implementation authority.
+portfolio `Now` to accepted LMSPro Email F3 implementation and selects the bounded Role
+Authority project as `Next`. Support Ticketing follows as its own project. FUND `1R-F-A`
+is preserved at its exact pre-planning boundary until all three housekeeping outcomes are
+complete.
 R11-A is a separately authorised bounded UI release at `83356030`; local smoke is 18/18 and
 staging smoke is all green. The exact commit is aligned through `origin/main`, the live
 deployment is triggered and public live health is PASS. Exact Render live-build
-identification and authenticated production smoke remain. It does not alter the selected
-`Now` or `Next`.
+identification and authenticated production smoke remain. It does not alter the current
+F3/Role Authority `Now`/`Next` pair.
 R10-A is complete after the control owner's totally-green production smoke. The detailed
 history below explains how the lanes reached that position and must not be read as a
 competing selector.

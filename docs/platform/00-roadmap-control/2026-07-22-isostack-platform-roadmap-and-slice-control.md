@@ -2,7 +2,7 @@
 
 Date: 2026-07-22
 
-Last reconciled: 2026-08-05
+Last reconciled: 2026-08-06
 
 Status: Active authoritative Platform child roadmap; no implementation authorised by
 this document alone
@@ -36,17 +36,16 @@ default.
 | --- | --- | --- |
 | [`2026-07-22-isostack-platform-node-middleware-request-body-finalisation-defect-cr.md`](../01-cr-inputs/2026-07-22-isostack-platform-node-middleware-request-body-finalisation-defect-cr.md) | Completed through `PLAT-RUNTIME-01`; subsequently included in the completed LMSPro R8-A production release | Closed historical corrective input; do not reopen without a new finding |
 | [`2026-07-27-isostack-platform-auth-dependency-and-audit-gate-security-remediation-cr-input.md`](../01-cr-inputs/2026-07-27-isostack-platform-auth-dependency-and-audit-gate-security-remediation-cr-input.md) | Completed through the documented `PLAT-ASSURE-03` dev/staging lifecycle and human gate; no separate production claim is added by this reconciliation | Closed at its recorded evidence boundary; `PLAT-REFINE-03` and `PLAT-REFINE-04` retain separate follow-up concerns |
-| [`2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md`](../01-cr-inputs/2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md) | Captured; awaiting formal cross-lane triage | High-priority Platform-parent/SeasonPro-consumer authority and security candidate; no slice selected |
-| [`2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md`](../01-cr-inputs/2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md) | Captured; awaiting formal Platform triage | Client-enablement and privacy/security candidate; internal-note privacy, server lifecycle authority and notification operability require triage before client enablement; Platform Notice work remains separable and non-expedite |
+| [`2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md`](../01-cr-inputs/2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md) | Captured; selected as the mandatory self-contained project after F3; awaiting formal cross-lane triage | Root `Next`; begin with read-only authority inventory and smallest safe containment planning; no application slice or implementation authority yet |
+| [`2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md`](../01-cr-inputs/2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md) | Captured; selected as the mandatory self-contained project after Role Authority; awaiting formal Platform triage | Client-enablement and privacy/security project; internal-note privacy, server lifecycle authority and notification operability precede client enablement; Platform Notice remains separable and non-expedite |
 
 Current Platform portfolio disposition:
 
-- application dev, staging and main are aligned at live `7154937`; the bounded 2026-08-04
-  dependency advisory refresh review records its automated, deployed-health and authorised
-  human evidence as complete through live;
-- no Platform implementation slice is the root portfolio `Now` or `Next`;
-- the role-authority and support-ticketing CRs are registered triage candidates, not
-  implementation authority; and
+- application dev, staging and main are aligned at `83356030`; the later root/application
+  evidence remains authoritative for exact deployment status;
+- no Platform application implementation slice is currently authorised;
+- Role Authority is root `Next`, while Support Ticketing is the mandatory following
+  self-contained project; both still require triage and bounded planning; and
 - an evidenced live security/privacy failure may still be proposed to the root as an
   expedite candidate under the ordinary control process.
 

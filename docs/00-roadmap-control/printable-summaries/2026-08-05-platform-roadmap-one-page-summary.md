@@ -1,6 +1,6 @@
 # Platform Roadmap — One-Page Summary
 
-Snapshot: 2026-08-05
+Snapshot: 2026-08-06
 Status: Printable management summary — **not delivery authority**
 
 ## Purpose
@@ -11,15 +11,17 @@ infrastructure, security assurance and engineering controls.
 
 ## Current Position
 
-- The application is aligned through dev, staging, main and live at `7154937`.
+- The latest reconciled branch-aligned application baseline is `83356030`.
 - The dependency advisory refresh is complete through live evidence.
-- Platform has no implementation slice in the portfolio `Now` or `Next` positions.
+- Platform has no currently authorised application slice. Role Authority is root `NEXT`
+  after the active Email F3 cycle.
 
 ## Open Management Inputs
 
-- **Role authority clarification:** high-priority Platform/SeasonPro triage candidate. It
-  must settle parent-versus-tenant authority and security boundaries before implementation.
-- **Support ticketing client readiness:** awaiting Platform triage. Client enablement is
+- **Role authority clarification:** mandatory self-contained project after F3. It starts
+  with formal triage, read-only inventory and the smallest safe containment plan.
+- **Support ticketing client readiness:** mandatory self-contained project after Role
+  Authority, still awaiting Platform triage. Client enablement is
   blocked on tenant scope, server-side lifecycle authority, internal-note privacy,
   notification routing/acknowledgements, lifecycle reporting and useful filters.
 - **Assurance refinements 02–04:** registered findings only; none is executable.
@@ -41,9 +43,9 @@ expedite; it is not automatically an expedite.
 
 ## Next Decision
 
-Triage the role-authority and support-ticketing inputs when the active LMSPro closure and
-portfolio sequence permit. Keep client support enablement off until the security/privacy
-and notification-operability boundaries are accepted and tested.
+After F3, triage and complete Role Authority as a bounded project. Then run Support
+Ticketing as a separate client-readiness project. Keep client support enablement off until
+its security/privacy and notification-operability boundaries are accepted and tested.
 
 Authoritative source:
 [`IsoStack Platform Roadmap And Slice Control`](../../platform/00-roadmap-control/2026-07-22-isostack-platform-roadmap-and-slice-control.md)
