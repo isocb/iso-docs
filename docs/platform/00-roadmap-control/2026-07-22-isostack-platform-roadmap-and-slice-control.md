@@ -36,7 +36,7 @@ default.
 | --- | --- | --- |
 | [`2026-07-22-isostack-platform-node-middleware-request-body-finalisation-defect-cr.md`](../01-cr-inputs/2026-07-22-isostack-platform-node-middleware-request-body-finalisation-defect-cr.md) | Completed through `PLAT-RUNTIME-01`; subsequently included in the completed LMSPro R8-A production release | Closed historical corrective input; do not reopen without a new finding |
 | [`2026-07-27-isostack-platform-auth-dependency-and-audit-gate-security-remediation-cr-input.md`](../01-cr-inputs/2026-07-27-isostack-platform-auth-dependency-and-audit-gate-security-remediation-cr-input.md) | Completed through the documented `PLAT-ASSURE-03` dev/staging lifecycle and human gate; no separate production claim is added by this reconciliation | Closed at its recorded evidence boundary; `PLAT-REFINE-03` and `PLAT-REFINE-04` retain separate follow-up concerns |
-| [`2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md`](../01-cr-inputs/2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md) | Captured; selected as the mandatory self-contained project after F3; awaiting formal cross-lane triage | Root `Next`; begin with read-only authority inventory and smallest safe containment planning; no application slice or implementation authority yet |
+| [`2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md`](../01-cr-inputs/2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md) | Formally triaged 2026-08-06; mandatory self-contained project after F3; five bounded plans prepared; Critical Core-role mutation containment candidate identified | Root `Next`; first select read-only `PLAT-ROLE-01`, then decide separate `PLAT-ROLE-02` containment authority; no application or data implementation authority yet |
 | [`2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md`](../01-cr-inputs/2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md) | Captured; selected as the mandatory self-contained project after Role Authority; awaiting formal Platform triage | Client-enablement and privacy/security project; internal-note privacy, server lifecycle authority and notification operability precede client enablement; Platform Notice remains separable and non-expedite |
 
 Current Platform portfolio disposition:
@@ -44,10 +44,22 @@ Current Platform portfolio disposition:
 - application dev, staging and main are aligned at `83356030`; the later root/application
   evidence remains authoritative for exact deployment status;
 - no Platform application implementation slice is currently authorised;
-- Role Authority is root `Next`, while Support Ticketing is the mandatory following
-  self-contained project; both still require triage and bounded planning; and
+- Role Authority is root `Next`; its triage and bounded plans are complete but none is
+  implementation-authorised. Support Ticketing is the mandatory following self-contained
+  project and still requires triage and bounded planning; and
 - an evidenced live security/privacy failure may still be proposed to the root as an
   expedite candidate under the ordinary control process.
+
+Prepared Role Authority sequence:
+
+1. [`PLAT-ROLE-01 — Authority Inventory And Canonical Matrix`](../03-slice-planning/2026-08-06-isostack-platform-plat-role-01-authority-inventory-and-canonical-matrix-planning.md) — read-only first slice;
+2. [`PLAT-ROLE-02 — Core-Role Mutation Containment`](../03-slice-planning/2026-08-06-isostack-platform-plat-role-02-core-role-mutation-containment-planning.md) — separate Critical containment decision;
+3. [`PLAT-ROLE-03 — Canonical Core Authority Service And Owner Safety`](../03-slice-planning/2026-08-06-isostack-platform-plat-role-03-canonical-core-authority-service-and-owner-safety-planning.md) — conditional Platform service;
+4. [`LMS-ROLE-01 — SeasonPro User Authority Consumer Alignment`](../03-slice-planning/2026-08-06-isostack-platform-lms-role-01-seasonpro-user-authority-consumer-alignment-planning.md) — conditional consumer alignment; and
+5. [`LMS-ROLE-02 — SeasonPro Access Parity And Read-Only Enforcement`](../03-slice-planning/2026-08-06-isostack-platform-lms-role-02-seasonpro-access-parity-and-read-only-enforcement-planning.md) — conditional UI/server parity.
+
+The controlling triage is
+[`2026-08-06-isostack-core-platform-seasonpro-role-authority-triage.md`](../02-triage/2026-08-06-isostack-core-platform-seasonpro-role-authority-triage.md).
 
 ## 1. Purpose
 

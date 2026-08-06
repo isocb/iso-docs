@@ -41,12 +41,14 @@ Current serial portfolio decision:
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
 | **NOW** | LMSPro Email CR-Fix `F3 - Uploaded-File-Only Acknowledgement` | Complete the accepted bounded application slice through local review, staging human smoke and the explicit production gate. Uploaded files alone require acknowledgement; dedicated and ordinary links never do, while link validation/fingerprinting remains mandatory. |
-| **NEXT** | Platform/SeasonPro Role Authority bounded project | Begin with formal cross-lane triage, read-only authority inventory and the smallest safe containment plan. It is a self-contained project and receives no application authority merely by occupying `Next`. |
+| **NEXT** | Platform/SeasonPro Role Authority bounded project | Formal cross-lane triage and five bounded plans are complete. After F3, explicitly select the read-only `PLAT-ROLE-01` inventory, then decide separate authority for the Critical `PLAT-ROLE-02` containment slice. No application authority is granted merely by occupying `Next`. |
 
 Registered and ordered work outside that pair:
 
 - Platform/SeasonPro role-authority clarification: mandatory bounded project selected as
-  root `Next`; formal triage and implementation authority remain outstanding;
+  root `Next`; triage and five plans are complete, with read-only inventory first and a
+  separately authorised Critical containment slice second; implementation authority remains
+  outstanding;
 - Platform support-ticketing client readiness: privacy/security and client-enablement triage
   input selected as the mandatory self-contained project after Role Authority, with the
   internal-note and server-authority findings eligible for an explicit expedite proposal
@@ -662,7 +664,9 @@ The 2026-08-06 reconciliation in Section 0 is the current decision: business pri
 portfolio `Now` to accepted LMSPro Email F3 implementation and selects the bounded Role
 Authority project as `Next`. Support Ticketing follows as its own project. FUND `1R-F-A`
 is preserved at its exact pre-planning boundary until all three housekeeping outcomes are
-complete.
+complete. Role Authority triage and its five bounded plans are now prepared; the first
+read-only inventory and every later implementation slice still require their recorded
+explicit authority.
 R11-A is a separately authorised bounded UI release at `83356030`; local smoke is 18/18 and
 staging smoke is all green. The exact commit is aligned through `origin/main`, the live
 deployment is triggered and public live health is PASS. Exact Render live-build

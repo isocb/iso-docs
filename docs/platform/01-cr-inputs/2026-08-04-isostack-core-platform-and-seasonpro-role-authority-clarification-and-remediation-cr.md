@@ -4,12 +4,14 @@ Date: 2026-08-04
 
 Owning lane: IsoStack Platform, with a bounded SeasonPro / LMSPro consumer outcome
 
-Status: CR INPUT CAPTURED — AWAITING TRIAGE; NO IMPLEMENTATION AUTHORITY
+Status: **TRIAGED 2026-08-06; MANDATORY PROJECT AFTER EMAIL F3; BOUNDED PLANS PREPARED;
+NO APPLICATION OR DATA IMPLEMENTATION AUTHORITY**
 
 Application source reviewed:
 
 ```text
-cc4b4dc8332f0bdc994c7c2609d2ece873a74087
+Original CR baseline: cc4b4dc8332f0bdc994c7c2609d2ece873a74087
+Triage source recheck: 72c02d92bf7222793f70b24a1d13e541eb215efa
 ```
 
 IsoDocs parent reviewed:
@@ -25,6 +27,15 @@ Related registered work:
 - `PLAT-REFINE-04` — Impersonation Effective-Principal And Tenant-View Contract;
 - `LMS-W-USERS-01` — LMSPro user provisioning, visibility and repair; and
 - the tenant-scoped LMSPro role-catalogue and legacy-template-pruning CR input.
+
+Controlled outcome records:
+
+- [`Role Authority triage`](../02-triage/2026-08-06-isostack-core-platform-seasonpro-role-authority-triage.md);
+- [`PLAT-ROLE-01 authority inventory and canonical matrix`](../03-slice-planning/2026-08-06-isostack-platform-plat-role-01-authority-inventory-and-canonical-matrix-planning.md);
+- [`PLAT-ROLE-02 Core-role mutation containment`](../03-slice-planning/2026-08-06-isostack-platform-plat-role-02-core-role-mutation-containment-planning.md);
+- [`PLAT-ROLE-03 canonical Core authority service and owner safety`](../03-slice-planning/2026-08-06-isostack-platform-plat-role-03-canonical-core-authority-service-and-owner-safety-planning.md);
+- [`LMS-ROLE-01 SeasonPro user-authority consumer alignment`](../03-slice-planning/2026-08-06-isostack-platform-lms-role-01-seasonpro-user-authority-consumer-alignment-planning.md); and
+- [`LMS-ROLE-02 SeasonPro access parity and read-only enforcement`](../03-slice-planning/2026-08-06-isostack-platform-lms-role-02-seasonpro-access-parity-and-read-only-enforcement-planning.md).
 
 ## 1. Human Introduction — What This CR Is About
 
@@ -83,9 +94,9 @@ is equally unsafe.
 
 ## 2. Proposed Business Vocabulary And Intention
 
-The following is the proposed understandable operating model for confirmation during triage.
-It records the control owner's stated expectation without pretending that every detail has
-already been accepted.
+The following is the understandable operating model confirmed as the triage baseline. It
+records the control owner's stated expectation without pretending that every detailed
+authority decision required by `PLAT-ROLE-03` has already been accepted.
 
 | Person | Proposed Core authority | Proposed SeasonPro authority |
 | --- | --- | --- |
@@ -326,7 +337,8 @@ The combined Platform-parent and SeasonPro-consumer remediation should deliver:
 
 ## 8. Safety Rules For Core-Role Management
 
-The exact rules require triage and planning, but the minimum safety direction is:
+The triage confirms the following minimum safety direction. The exact owner-appointment,
+status and session rules remain decisions for `PLAT-ROLE-03` planning acceptance:
 
 - only an authorised Core `OWNER` or controlled P1 action may grant or remove Core Owner
   authority;
@@ -343,7 +355,7 @@ The exact rules require triage and planning, but the minimum safety direction is
   requires one; and
 - UI visibility must never substitute for server-side enforcement.
 
-## 9. Evidence Required Before Implementation Planning
+## 9. Evidence Required Before Implementation
 
 The first technical boundary should be a read-only writer, consumer and live-assignment
 inventory. It should report rather than repair.
@@ -380,7 +392,7 @@ No names, email addresses, credentials or unnecessary row-level personal informa
 enter the lifecycle evidence. No data repair, promotion, demotion, relinking, activation or
 deletion is authorised by the inventory.
 
-## 10. Decisions Requiring Human Confirmation At Triage
+## 10. Decisions Requiring Human Confirmation Before `PLAT-ROLE-03`
 
 1. Confirm that current SeasonPro documentation will use `C1 League` and `C2 Club` only when
    qualified, while Core authority is always named Owner/Admin/Member explicitly.
@@ -403,24 +415,27 @@ deletion is authorised by the inventory.
 No other business decision should be invented during implementation. Technical ambiguities
 found by the inventory must be reported for the planning decision.
 
-## 11. Provisional Delivery Shape
+## 11. Accepted Delivery Shape
 
-Triage should decide the exact slices. The current proportionate shape is:
+Triage divides the project into these independently authorisable slices; none is authorised
+by this CR or the planning records alone:
 
-1. **Authority inventory and canonical matrix** — read-only evidence and accepted language.
-2. **Platform authority service and guards** — shared Core-role/provisioning/session/audit
-   contract, including owner safety.
-3. **SeasonPro consumer alignment** — user UI, module role/affiliation assignment, card/action
-   parity, read-only enforcement and removal of unsafe Core mutation from the module router.
-4. **Legacy/live reconciliation** — separately approved dry-run and execution only if the
-   inventory proves that data repair is necessary.
-5. **Wider-module adoption** — bounded checks or consumer slices for other enabled modules;
-   do not silently change their established business-role contracts inside the SeasonPro
-   implementation.
+1. **`PLAT-ROLE-01` Authority inventory and canonical matrix** — read-only evidence and
+   accepted language.
+2. **`PLAT-ROLE-02` Core-role mutation containment** — remove the confirmed SeasonPro and
+   ordinary Admin-invitation escalation paths without waiting for the wider redesign.
+3. **`PLAT-ROLE-03` Platform authority service and owner safety** — one shared
+   Core-role/provisioning/session/audit contract after the retained human decisions.
+4. **`LMS-ROLE-01` SeasonPro user-authority consumer alignment** — provisioning, module
+   role/affiliation assignment and visible Unassigned repairability.
+5. **`LMS-ROLE-02` SeasonPro access parity and read-only enforcement** — a bounded first
+   component/action set chosen by the inventory.
+6. **Conditional legacy/live reconciliation** — separately approved dry-run and execution
+   only if the inventory proves that data repair is necessary.
 
-These may use one development branch and combined automated validation where sensible, but
-Platform Core authority and each module consumer must remain independently testable and
-reversible.
+Wider-module adoption remains separate; no SeasonPro implementation may silently change an
+established business-role contract in another module. Platform Core authority and each
+module consumer must remain independently testable and reversible.
 
 ## 12. Acceptance Direction
 
@@ -455,9 +470,12 @@ This CR input does not:
 - reopen completed SeasonPro business-status remediation; or
 - assume that every current role assignment is wrong.
 
-The next controlled action is Platform-led triage which reconciles this combined input with
-the existing registered items, assigns severity and ownership, confirms the human decisions
-in section 10 and selects only the first bounded evidence/planning step.
+Platform-led triage is complete. It confirms a Critical containment candidate within a
+larger High-severity consistency project and preserves Platform parent / SeasonPro consumer
+ownership. The next controlled action, after Email F3 closes, is explicit root selection of
+the read-only `PLAT-ROLE-01` inventory. `PLAT-ROLE-02` may receive separate implementation
+authority after that static writer boundary is confirmed. The remaining plans stay
+conditional on their recorded dependencies and the human decisions in section 10.
 
 ## 14. Evidence And Orientation References
 

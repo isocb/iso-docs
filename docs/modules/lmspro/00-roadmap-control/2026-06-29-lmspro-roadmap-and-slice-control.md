@@ -58,7 +58,9 @@ PARKED -> FUND 1R-F-A bounded planning
 R10-A is complete and closed. Revised business priority selects F3 as formal root `Now`,
 Role Authority as `Next`, and Support Ticketing as the required following project. FUND
 `1R-F-A` is preserved at its exact pre-planning boundary until those housekeeping outcomes
-are complete.
+are complete. Role Authority triage and five independently bounded plans are prepared under
+the Platform parent; execution still starts only after F3 closes and the root explicitly
+selects the read-only `PLAT-ROLE-01` inventory.
 
 ## Purpose
 
@@ -1114,7 +1116,9 @@ Do not implement these until slice planning accepts them:
 
 ```text
 Complete the accepted Email F3 bounded implementation through staging human smoke and the
-explicit production gate. Then open Role Authority as the separately bounded root `Next`.
+explicit production gate. Then explicitly select the read-only `PLAT-ROLE-01` inventory as
+the first Role Authority slice; its Critical containment plan and later consumer plans are
+not implementation-authorised by their preparation.
 ```
 
 Goal:

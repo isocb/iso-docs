@@ -18,8 +18,9 @@ infrastructure, security assurance and engineering controls.
 
 ## Open Management Inputs
 
-- **Role authority clarification:** mandatory self-contained project after F3. It starts
-  with formal triage, read-only inventory and the smallest safe containment plan.
+- **Role authority clarification:** mandatory self-contained project after F3. Formal
+  triage and five bounded plans are complete. Start with the read-only authority inventory,
+  then make a separate decision on the Critical Core-role mutation containment slice.
 - **Support ticketing client readiness:** mandatory self-contained project after Role
   Authority, still awaiting Platform triage. Client enablement is
   blocked on tenant scope, server-side lifecycle authority, internal-note privacy,
@@ -43,9 +44,10 @@ expedite; it is not automatically an expedite.
 
 ## Next Decision
 
-After F3, triage and complete Role Authority as a bounded project. Then run Support
-Ticketing as a separate client-readiness project. Keep client support enablement off until
-its security/privacy and notification-operability boundaries are accepted and tested.
+After F3, explicitly select the first read-only Role Authority slice; the plans themselves
+do not authorise code or data access. Complete Role Authority as a bounded project, then run
+Support Ticketing as a separate client-readiness project. Keep client support enablement off
+until its security/privacy and notification-operability boundaries are accepted and tested.
 
 Authoritative source:
 [`IsoStack Platform Roadmap And Slice Control`](../../platform/00-roadmap-control/2026-07-22-isostack-platform-roadmap-and-slice-control.md)

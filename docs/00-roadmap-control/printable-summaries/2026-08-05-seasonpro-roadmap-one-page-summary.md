@@ -39,9 +39,10 @@ communications behaviour.
   remain. It does not alter audience resolution, delivery or the portfolio `Now`/`Next`.
 - `R10-A Responsive C1 Club Management` is complete and closed after a totally-green
   control-owner production smoke.
-- **Portfolio NEXT:** the self-contained Platform/SeasonPro Role Authority project, starting
-  with formal triage and read-only authority inventory. Support Ticketing follows; FUND
-  remains parked until all three housekeeping outcomes are complete.
+- **Portfolio NEXT:** the self-contained Platform/SeasonPro Role Authority project. Triage
+  and five plans are prepared; execution starts only when the root selects the read-only
+  authority inventory. Support Ticketing follows; FUND remains parked until all three
+  housekeeping outcomes are complete.
 
 ## Recently Completed
 
@@ -73,8 +74,9 @@ dedicated-link validation/fingerprinting or uploaded-file acknowledgement safety
 
 ## Next Decision
 
-Complete F3 through staging and the explicit production gate, then open Role Authority as
-its own bounded project. Support Ticketing follows before FUND resumes.
+Complete F3 through staging and the explicit production gate, then select the first
+read-only Role Authority slice. Its Critical containment plan requires a separate explicit
+implementation decision. Support Ticketing follows before FUND resumes.
 
 Authoritative source:
 [`LMSPro / SeasonPro Roadmap And Slice Control`](../../modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md)
