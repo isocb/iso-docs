@@ -12,7 +12,8 @@ communications behaviour.
 
 - Email F3 exact application `72c02d92` passed its automated gates and 13/13 staging smoke,
   is aligned through main, and is closed with public production health green.
-- **Portfolio NOW:** `PLAT-ROLE-02` local human containment gate at `5e551938`.
+- **Portfolio NOW:** corrected `PLAT-ROLE-02` replacement local human containment gate at
+  `7e453665`.
 - **Portfolio NEXT:** exact-commit `PLAT-ROLE-02` staging lifecycle after local acceptance.
 - F1 human staging smoke passes through the maximum available 440-recipient draft, with a
   341 ms broad-case server wait.
@@ -39,9 +40,11 @@ communications behaviour.
   remain. It does not alter audience resolution, delivery or the portfolio `Now`/`Next`.
 - `R10-A Responsive C1 Club Management` is complete and closed after a totally-green
   control-owner production smoke.
-- Role Authority matrix is accepted. `PLAT-ROLE-02` contains the four Critical paths and
-  bounded Club-access finding locally; technical gates pass, with no staging/live/data
-  change. Support Ticketing follows the Role project; FUND remains parked.
+- Role Authority matrix is accepted with corrected C1/C2 persona wording. First
+  `PLAT-ROLE-02` checkpoint `5e551938` failed usefully and was not promoted. Corrective
+  `7e453665` contains the four Critical paths, complete persona enforcement and bounded
+  Club-access finding locally; technical gates pass, with no staging/live/data change.
+  Support Ticketing follows the Role project; FUND remains parked.
 
 ## Recently Completed
 
@@ -73,7 +76,7 @@ the selected matrix/containment boundaries; do not combine live repair or the wi
 
 ## Next Decision
 
-Complete the `PLAT-ROLE-02` local human gate, then decide its staging lifecycle. Support
+Complete the replacement `PLAT-ROLE-02` local human gate, then decide its staging lifecycle. Support
 Ticketing follows the completed Role project before FUND resumes.
 
 Authoritative source:

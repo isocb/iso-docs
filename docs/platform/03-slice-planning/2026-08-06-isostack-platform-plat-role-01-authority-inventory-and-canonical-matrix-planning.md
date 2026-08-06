@@ -37,7 +37,7 @@ Produce a human-readable and test-oriented matrix covering at least:
 
 - P1 real actor;
 - tenant Owner, Admin and Member;
-- limited League Member;
+- C1 Owner/Admin with an exact League role;
 - Club Member with valid affiliation;
 - Unassigned user;
 - module entitlement present/absent;
@@ -56,7 +56,7 @@ return aggregate, non-identifying counts only for:
 
 - active Owner/Admin/Member by tenant;
 - zero/one/multiple active Owners;
-- League module-role users who are Core Members;
+- invalid League module-role users who remain Core Members;
 - Club-role users who are Core Owner/Admin;
 - missing/orphaned/inactive/template role assignments;
 - incompatible or missing Club affiliation; and

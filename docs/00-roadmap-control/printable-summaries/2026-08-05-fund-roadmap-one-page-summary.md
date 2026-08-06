@@ -11,13 +11,14 @@ payment contracts remain owned by Commerce Core.
 
 ## Current Position
 
-- **Portfolio NOW:** `PLAT-ROLE-02` local human containment gate at `5e551938`.
+- **Portfolio NOW:** corrected `PLAT-ROLE-02` replacement local human containment gate at
+  `7e453665`.
 - **Portfolio NEXT:** `PLAT-ROLE-02` exact-commit staging lifecycle, followed by the
   remaining Role Authority slices and Support Ticketing client readiness.
 - No renderer implementation, later `1R-F` branch, `1R-G` work or production artwork system
   is authorised by the planning selection.
 - Remote dev/staging/main remain exact `72c02d92`; local dev contains the unpromoted
-  `PLAT-ROLE-02` commit `5e551938`.
+  corrective `PLAT-ROLE-02` commit `7e453665`.
 - `1R-F-A` remains the exact FUND resumption point, but all FUND planning and implementation
   is parked until F3, Role Authority and Support Ticketing are complete.
 

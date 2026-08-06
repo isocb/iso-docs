@@ -3,7 +3,8 @@
 Date: 2026-08-06
 
 Status: **COMPLETE — STATIC INVENTORY REVIEW PASS; ALL 13 CANONICAL MATRIX ITEMS ACCEPTED
-2026-08-06; PLAT-ROLE-02 SEPARATELY AUTHORISED**
+AND C1/C2 PERSONA WORDING CORRECTED AFTER THE FIRST PLAT-ROLE-02 LOCAL GATE ON 2026-08-06;
+PLAT-ROLE-02 SEPARATELY AUTHORISED**
 
 Delivery record:
 
@@ -81,12 +82,12 @@ separate League role + separate Club role + exact Club -> explicit context/hat c
 no valid module context -> handled no-access/unassigned outcome
 ```
 
-An Organisation Member is not automatically C2. A bounded C1 League worker can also be a
-Member. The module scope and node affiliation therefore select presentation and data scope;
-module permissions decide actions/read-only behaviour. A C2 dashboard may expose the Club's
-own child records, such as Teams and Communications, but never another Club's records.
-The combined state is derived and conjunctive: `BOTH` is not a standalone user role or
-persona, and removing the League role, Club role or Club link removes the combined context.
+For SeasonPro, C1 requires Organisation `OWNER` or `ADMIN` plus an explicit League role. C2
+requires Organisation `MEMBER` plus a Club role and exact current Club. A Member never
+receives League/C1 routing. A C2 dashboard may expose the Club's own child records, such as
+Teams and Communications, but never another Club's records. The combined state is available
+only to a C1 Owner/Admin and is derived from separate League and Club roles plus the exact
+Club; `BOTH` is not a standalone user role or persona.
 
 Core role and module role are related by controlled provisioning and permission checks, but
 one must not be inferred from the other. A SeasonPro C1 Owner is therefore normally both:
@@ -102,10 +103,10 @@ Accepted canonical statements:
 
 1. **Accepted:** Core Owner/Admin/Member means the shared Organisation authority layer and
    remains separate from P1 and SeasonPro roles.
-2. **Accepted:** SeasonPro module procedures must not independently decide or directly persist
-   Organisation role. An ordinary module user defaults to literal `MEMBER`; a C1 Owner may
-   deliberately create an Organisation Admin or additional Owner through the shared
-   Platform-owned authority contract.
+2. **Corrected and accepted after local-gate finding:** SeasonPro module procedures must not
+   independently decide or directly persist Organisation role. A C1 Owner deliberately
+   creates a C1 Owner/Admin or a C2 Member through the shared Platform-owned authority
+   contract; there is no generic Member + League-role persona.
 3. **Accepted:** Organisation Admin creates Members only and cannot elevate Organisation authority.
 4. **Accepted:** a C1 Owner may create C1 Admins and additional C1 Owners, subject to
    explicit same-tenant, audit, session and last-Owner safeguards.
@@ -119,11 +120,10 @@ Accepted canonical statements:
 9. **Accepted:** Read-only means server-refused mutations, not merely hidden controls.
 10. **Accepted:** P1 impersonation uses the effective user's permissions unless a separately labelled,
     audited support override is deliberately invoked.
-11. **Accepted:** C1 is the tenant-side module context and C2 is a client node within it;
-    dashboard routing derives from validated module scope and node affiliation, not Core
-    `MEMBER` alone.
-    Combined routing specifically requires a separate League role, separate Club role and
-    exact Club affiliation; preserve this currently working behaviour without regression.
+11. **Corrected and accepted after local-gate finding:** C1 requires Organisation Owner/Admin
+    plus a League role. C2 requires Organisation Member plus a Club role and exact Club and
+    never sees C1. Combined routing is only for a C1 Owner/Admin with a separate League role,
+    separate Club role and exact Club; preserve this working behaviour without regression.
 12. **Accepted:** a suitably permitted C2 Member may create other C2 Members only inside the
     actor's exact node. The target remains Organisation `MEMBER`, receives only eligible
     node-scoped roles, and cannot be attached to another node.

@@ -29,27 +29,27 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application evidence:
 
 ```text
-local dev = 5e551938 (PLAT-ROLE-02; not pushed)
+local dev = 7e453665 (corrected PLAT-ROLE-02; not pushed)
 origin/dev = staging = origin/staging = main = origin/main = 72c02d92
 F3 tests/type/verify/build = PASS; dev/staging/main Security Scans = PASS
 F3 staging human smoke = 13/13 PASS; production promotion = COMPLETE
 staging and production public health = HTTP 200; database connected; RLS 11/11
-PLAT-ROLE-01 matrix = COMPLETE and all 13 items accepted
-PLAT-ROLE-02 automated/type/verify/build/security gates = PASS; local human smoke pending
+PLAT-ROLE-01 matrix = COMPLETE; all 13 items accepted with corrected C1/C2 persona wording
+PLAT-ROLE-02 corrective automated/type/verify/build/security gates = PASS; replacement local human smoke pending
 ```
 
 Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | `PLAT-ROLE-02` local human containment gate | Exact local `5e551938` has passed automated, regression, type, verification, build and security gates. Execute the disposable-account Organisation Authority, invitation and League/Club-context smoke matrix; no staging yet. |
+| **NOW** | `PLAT-ROLE-02` replacement local human containment gate | First checkpoint `5e551938` failed usefully because its test exposed the invalid Member + League model and was not promoted. Corrective exact local `7e453665` has passed automated, regression, type, verification, build and security gates. Execute the corrected C1 Owner/Admin, C2 Member, invitation and hat-swap smoke matrix; no staging yet. |
 | **NEXT** | `PLAT-ROLE-02` exact-commit staging lifecycle | Only after the local gate passes, align/push the accepted exact commit and conduct the documented staging security/deployment/human gate. Do not begin `PLAT-ROLE-03` or live repair implicitly. |
 
 Registered and ordered work outside that pair:
 
 - Platform/SeasonPro role-authority clarification: active root project. `PLAT-ROLE-01` is
-  accepted and complete; `PLAT-ROLE-02` is implemented only on local dev at `5e551938` and
-  awaits the explicit local human gate;
+  corrected, accepted and complete; `PLAT-ROLE-02` is implemented only on local dev at
+  `7e453665` and awaits the replacement local human gate;
 - Platform support-ticketing client readiness: privacy/security and client-enablement triage
   input selected as the mandatory self-contained project after Role Authority, with the
   internal-note and server-authority findings eligible for an explicit expedite proposal
@@ -663,8 +663,9 @@ different documentation lifecycles.
 
 The 2026-08-06 reconciliation in Section 0 is the current decision: F3 is complete at exact
 deployed application `72c02d92`, and Role Authority is the active project. `PLAT-ROLE-01` is
-accepted and complete. `PLAT-ROLE-02` is implemented locally at `5e551938`; its human local
-gate is `Now` and its exact-commit staging lifecycle is `Next`. Support Ticketing follows the
+corrected, accepted and complete. First PLAT-ROLE-02 checkpoint `5e551938` failed usefully
+and was not promoted; corrective `7e453665` is local only. Its replacement human local gate
+is `Now` and its exact-commit staging lifecycle is `Next`. Support Ticketing follows the
 completed Role Authority project.
 FUND `1R-F-A` is preserved at its exact pre-planning boundary until the housekeeping
 outcomes are complete.

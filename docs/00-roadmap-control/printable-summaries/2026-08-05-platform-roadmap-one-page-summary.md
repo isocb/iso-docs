@@ -11,16 +11,20 @@ infrastructure, security assurance and engineering controls.
 
 ## Current Position
 
-- Deployed/remote branches remain `72c02d92`; local dev is `5e551938` for `PLAT-ROLE-02`.
+- Deployed/remote branches remain `72c02d92`; local dev is corrective `7e453665` for
+  `PLAT-ROLE-02`.
 - The dependency advisory refresh is complete through live evidence.
-- Role Authority is active. All 13 `PLAT-ROLE-01` matrix items are accepted.
-- `PLAT-ROLE-02` is implemented locally; technical gates pass and human local smoke is due.
+- Role Authority is active. All 13 `PLAT-ROLE-01` matrix items are accepted with corrected
+  C1/C2 persona wording.
+- First `PLAT-ROLE-02` checkpoint `5e551938` failed usefully and was not promoted.
+  Corrective `7e453665` passes technical gates; replacement human local smoke is due.
 
 ## Open Management Inputs
 
 - **Role authority clarification:** active self-contained project. Static inventory confirms
   four Critical Core escalation/relink paths and several High access-consistency findings.
-  The `PLAT-ROLE-02` local human gate is `NOW`; exact-commit staging is `NEXT` after a pass.
+  The replacement `PLAT-ROLE-02` local human gate is `NOW`; exact-commit staging is `NEXT`
+  after a pass.
 - **Support ticketing client readiness:** mandatory self-contained project after Role
   Authority, still awaiting Platform triage. Client enablement is
   blocked on tenant scope, server-side lifecycle authority, internal-note privacy,
@@ -44,8 +48,8 @@ expedite; it is not automatically an expedite.
 
 ## Next Decision
 
-Complete the `PLAT-ROLE-02` local human smoke at `5e551938`, then decide its exact-commit
-staging lifecycle. Complete the later Role Authority slices before
+Complete the replacement `PLAT-ROLE-02` local human smoke at `7e453665`, then decide its
+exact-commit staging lifecycle. Complete the later Role Authority slices before
 Support Ticketing. Keep client support enablement off until its security/privacy and
 notification-operability boundaries are accepted and tested.
 

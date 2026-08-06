@@ -39,7 +39,7 @@ authority. Later disposition changes must update the existing row.
 Current LMSPro portfolio disposition:
 
 ```text
-NOW  -> PLAT-ROLE-02 local human containment gate at 5e551938
+NOW  -> PLAT-ROLE-02 replacement local human containment gate at 7e453665
 NEXT -> PLAT-ROLE-02 exact-commit staging lifecycle after local acceptance
 THEN -> Platform Support Ticketing client-readiness project
 PARKED -> FUND 1R-F-A at its exact pre-planning boundary
@@ -49,7 +49,7 @@ The control owner completed the displaced R10-A smoke as totally green. The curr
 pair is therefore:
 
 ```text
-NOW  -> PLAT-ROLE-02 local human containment gate at 5e551938
+NOW  -> PLAT-ROLE-02 replacement local human containment gate at 7e453665
 NEXT -> PLAT-ROLE-02 exact-commit staging lifecycle after local acceptance
 THEN -> Platform Support Ticketing client-readiness project
 PARKED -> FUND 1R-F-A bounded planning
@@ -58,8 +58,9 @@ PARKED -> FUND 1R-F-A bounded planning
 F3 and R10-A are complete and closed. Role Authority is the active root project and Support
 Ticketing remains the required following project. FUND `1R-F-A` is preserved at its exact
 pre-planning boundary until those housekeeping outcomes are complete. `PLAT-ROLE-01` is
-accepted and complete. `PLAT-ROLE-02` is implemented locally at `5e551938`, awaits human
-smoke and has not changed staging, production or live data.
+corrected, accepted and complete. First `PLAT-ROLE-02` checkpoint `5e551938` failed usefully
+and was not promoted; corrective `7e453665` awaits replacement human smoke and has not
+changed staging, production or live data.
 
 ## Purpose
 
@@ -141,11 +142,11 @@ Current work should remain on dev/remediation branches until reviewed and explic
 Current app alignment:
 
 ```text
-local dev = 5e551938; origin/dev = staging = origin/staging = main = origin/main = 72c02d92
+local dev = 7e453665; origin/dev = staging = origin/staging = main = origin/main = 72c02d92
 F3 staging smoke = 13/13 PASS; exact main promotion = COMPLETE
 Render live public health = PASS; database connected; RLS 11/11
-PLAT-ROLE-01 = complete; all 13 matrix items accepted
-PLAT-ROLE-02 = local technical gates PASS; human local smoke pending
+PLAT-ROLE-01 = complete; all 13 matrix items accepted with corrected C1/C2 persona wording
+PLAT-ROLE-02 = corrective local technical gates PASS; replacement human local smoke pending
 ```
 
 Application `72c02d92` is the current branch-aligned baseline and includes prior LMSPro,
@@ -1116,8 +1117,9 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Execute the documented `PLAT-ROLE-02` local human smoke against exact `5e551938`. Stop before
-staging. After acceptance, reconcile and run the separate exact-commit staging lifecycle.
+Execute the documented replacement `PLAT-ROLE-02` local human smoke against exact
+`7e453665`. Stop before staging. After acceptance, reconcile and run the separate
+exact-commit staging lifecycle.
 ```
 
 Goal:

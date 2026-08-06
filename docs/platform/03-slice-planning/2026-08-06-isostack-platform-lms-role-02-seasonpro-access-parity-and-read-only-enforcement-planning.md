@@ -34,9 +34,10 @@ module entitlement
 - ensure tenant Owners receive any default module-administrator role explicitly and
   auditably through provisioning, not through a hidden runtime bypass;
 - align administration-card visibility with the exact server procedure guard;
-- route League-only users to C1 presentation, Club-only users to their exact C2 node and
-  users with separate valid League and Club roles plus exact Club to the deliberate context
-  choice, using the same validated resolver;
+- route Owner/Admin users with a League role to C1 presentation, Member users with a Club
+  role and exact Club to their C2 node, and Owner/Admin users with separate valid League and
+  Club roles plus exact Club to the deliberate context choice, using the same validated
+  resolver;
 - prove removing the League role, Club role or Club affiliation removes combined routing;
   never treat standalone `BOTH` as the canonical business persona;
 - enforce read-only on every selected mutation and not only in the browser;
@@ -50,8 +51,8 @@ The inventory must nominate a bounded first set of user-management/role-manageme
 components and procedures. Do not attempt every SeasonPro route in one diff. Each later
 component family requires the same matrix and may become a follow-on slice.
 
-Tests cover Owner with explicit module role, Admin/Member with bounded League role, Club
-Member, Unassigned, read-only, wrong Club, expired seasonal gate, copied URL and direct API.
+Tests cover Owner/Admin with explicit League roles, Member with Club role and exact Club,
+hat-swap, Unassigned, read-only, wrong Club, expired seasonal gate, copied URL and direct API.
 P1 impersonation equivalence remains governed by `PLAT-REFINE-04`; this slice must not claim
 that wider contract complete.
 

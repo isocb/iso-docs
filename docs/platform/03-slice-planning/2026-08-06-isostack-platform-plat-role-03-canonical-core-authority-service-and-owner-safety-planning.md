@@ -53,8 +53,9 @@ same actor-to-requested-role matrix before creating a pending account.
 
 SeasonPro remains unable to decide or write Core role directly. Its C1 Owner user-management
 workflow may request Organisation Admin or additional Owner through this Platform-owned
-service after that combined surface passes its own review. Ordinary module-user creation
-defaults to literal Organisation Member.
+service after that combined surface passes its own review. SeasonPro provisioning must form
+a complete valid persona: C1 Owner/Admin plus League role, or C2 Member plus Club role and
+exact Club. A generic unassigned Platform account remains a separate no-context outcome.
 
 ## 4. Acceptance Direction
 

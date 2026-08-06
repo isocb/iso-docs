@@ -2,8 +2,9 @@
 
 Date: 2026-08-06
 
-Status: **IMPLEMENTED LOCALLY AT `5e551938`; AUTOMATED GATES PASS; AWAITING LOCAL HUMAN
-SMOKE; NO STAGING OR PRODUCTION PROMOTION**
+Status: **CORRECTIVE ITERATION IMPLEMENTED LOCALLY AT `7e453665` AFTER THE FIRST HUMAN GATE
+EXPOSED AN INVALID MEMBER+LEAGUE ACCEPTANCE CRITERION; TECHNICAL GATES PASS; REPLACEMENT
+LOCAL HUMAN SMOKE REQUIRED; NO STAGING OR PRODUCTION CHANGE**
 
 Accepted triage:
 
@@ -23,6 +24,11 @@ separately named `organizationAuthority` request, but the shared Platform-owned 
 service alone validates, persists and audits Organisation authority. Module provisioning
 and that controlled authority action either commit together or fail together.
 
+Implementation checkpoint `5e551938` reached the first local human gate but was not
+promotable: its first test revealed that both the test and implementation permitted an
+invalid Member + League persona. Corrective child `7e453665` applies the complete accepted
+persona contract consistently and is the only commit eligible for the replacement gate.
+
 ## 1. Objective
 
 Remove the confirmed ways in which non-Owner/module procedures can create or assign Core
@@ -35,7 +41,8 @@ Admins and additional C1 Owners through a Platform-owned authority contract.
 
 - remove independent Core-role policy and direct persistence from
   `lmspro.users.create/update`;
-- create an ordinary module-only user as literal Organisation `MEMBER`;
+- enforce the complete SeasonPro persona atomically: C1 is Owner/Admin + League role; C2 is
+  Member + Club role + exact current Club; no Member + League role;
 - permit a C1 Owner to request Organisation `ADMIN` or `OWNER` only through the bounded
   Platform-owned same-tenant authority contract selected by the amended plan;
 - reject legacy/new callers which continue to submit that field rather than silently
@@ -104,8 +111,10 @@ Prove direct procedure calls cannot:
 
 Also prove:
 
-- ordinary SeasonPro user creation produces literal Organisation Member plus the accepted
-  module role/affiliation;
+- C1 creation produces Owner/Admin plus a League role;
+- C2 creation produces Member plus Club-only role and exact current Club;
+- Member + League role, Member + `BOTH`, Member + Club role without exact Club, and
+  Owner/Admin + Club-only without a League role fail before persistence;
 - an authorised C1 Owner can deliberately create an Organisation Admin and additional
   Owner through the accepted Platform-owned path;
 - current Owner-only Core `updateRole` behaviour remains unchanged by containment;
@@ -122,8 +131,8 @@ build, Security Scans and exact staging smoke.
 
 ## 5. Human Local And Later Staging Smoke
 
-- create ordinary League and Club users and confirm both are Organisation Members with
-  their intended module roles/affiliations;
+- create C1 League users and confirm they are Organisation Owner/Admin plus League role;
+- create C2 Club users and confirm they are Member plus Club role and exact current Club;
 - edit their SeasonPro roles/affiliations and confirm Core authority is unchanged;
 - confirm no editable Organisation-authority control appears for a non-Owner in SeasonPro;
 - as Core Admin, confirm ordinary Member invitation works and elevated invitation is
@@ -142,7 +151,7 @@ build, Security Scans and exact staging smoke.
 Application revert is the rollback. No data rollback should exist. Any requirement to
 rewrite live roles, add schema or change P1/impersonation authority stops this slice.
 
-Before implementation, review whether the source-confirmed `canAccessClub` rule—currently
-treating any `lmsproRoleIds` value as League access—requires a separate immediate
-data-scope containment slice. Do not silently fold broad access-parity redesign into this
-Core-role release.
+The source-confirmed `canAccessClub` finding was contained inside the implementation because
+the same invalid persona otherwise retained League-wide data access. The correction is
+bounded to the shared persona/runtime-scope rule; broad access-parity redesign remains out
+of scope.

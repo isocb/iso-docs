@@ -3,8 +3,9 @@
 Date: 2026-08-06
 
 Status: **COMPLETE — STATIC READ-ONLY DELIVERY AT APPLICATION `72c02d92`; ALL 13 HUMAN
-MATRIX ITEMS ACCEPTED 2026-08-06; OPTIONAL LIVE AGGREGATE INVENTORY NOT AUTHORISED OR RUN;
-NO APPLICATION, SCHEMA, CONFIGURATION OR DATA CHANGE**
+MATRIX ITEMS ACCEPTED AND THE C1/C2 PERSONA WORDING CORRECTED AFTER THE FIRST PLAT-ROLE-02
+LOCAL GATE ON 2026-08-06; OPTIONAL LIVE AGGREGATE INVENTORY NOT AUTHORISED OR RUN; NO
+APPLICATION, SCHEMA, CONFIGURATION OR DATA CHANGE**
 
 Accepted plan:
 
@@ -112,7 +113,6 @@ means the target contract, not a claim about current source.
 | P1 impersonating a tenant user | No additional Core mutation from the impersonated surface | Exactly the effective user's module capability unless an explicitly labelled support override is invoked | Cards, routes, API and RLS use one effective-subject result while retaining real-actor audit |
 | Tenant Owner | Create Member/Admin/additional Owner through a Platform-owned same-tenant authority contract; manage roles subject to last-Owner rules | Assign same-tenant active roles/affiliation when explicitly authorised | Needs explicit module-administrator assignment; Core Owner alone is not module capability |
 | Tenant Admin | Create Members only; no Owner/Admin grant, self-change or owner-state change | Assign bounded same-tenant module roles/affiliation if the accepted matrix permits | No blanket module bypass |
-| Limited League Member | No Core role/status authority | Only explicitly granted module user-management actions; never Core mutation | League data/actions named by active role and component grants |
 | C2 Club Member | Literal Organisation Member; no Core elevation | When explicitly granted, create/manage Organisation Members with eligible Club-only roles inside the actor's exact current Club; never choose another node | Club dashboard and data for the exact Club only; never League/other-Club access |
 | Read-only module user | No Core authority | No module mutation even if a card/control is reachable | Reads only inside entitlement, role and scope |
 | Unassigned user | Profile/self-service only | No module role or inferred affiliation | Clear handled Unassigned outcome; no business actions/data |
@@ -142,12 +142,10 @@ Human acceptance is still required for:
 2. exact self-change, last-active-Owner, suspension and deactivation rules;
 3. whether Organisation Admin is strictly Member-create only or can request elevation for
    Owner approval;
-4. which explicit module permission lets a limited League Member assign module roles or
-   Club affiliation;
-5. the exact module permission enabling the accepted C2 same-node Member creation contract;
-6. session revocation/reauthentication requirements for Core role, status, module role and
+4. the exact module permission enabling the accepted C2 same-node Member creation contract;
+5. session revocation/reauthentication requirements for Core role, status, module role and
    affiliation changes; and
-7. the explicit support override, if any, during P1 impersonation.
+6. the explicit support override, if any, during P1 impersonation.
 
 The business owner has settled the C2 boundary in principle: suitably module-authorised C2
 Members may create C2 Members only inside their own node. The remaining decision is which

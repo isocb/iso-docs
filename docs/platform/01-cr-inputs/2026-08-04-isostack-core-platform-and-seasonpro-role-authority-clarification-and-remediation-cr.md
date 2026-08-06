@@ -4,8 +4,9 @@ Date: 2026-08-04
 
 Owning lane: IsoStack Platform, with a bounded SeasonPro / LMSPro consumer outcome
 
-Status: **ACTIVE PROJECT; PLAT-ROLE-01 MATRIX ACCEPTED; PLAT-ROLE-02 IMPLEMENTED LOCALLY AT
-`5e551938` AND AWAITING HUMAN SMOKE; NO STAGING, PRODUCTION OR DATA CHANGE**
+Status: **ACTIVE PROJECT; PLAT-ROLE-01 MATRIX CORRECTED AND ACCEPTED; PLAT-ROLE-02
+CORRECTIVE IMPLEMENTATION COMPLETE LOCALLY AT `7e453665` AND AWAITING REPLACEMENT HUMAN
+SMOKE; NO STAGING, PRODUCTION OR DATA CHANGE**
 
 Application source reviewed:
 
@@ -95,8 +96,9 @@ C2 = a client node inside that tenant, for example one Club
 
 A C2 SeasonPro user is therefore a composite: Organisation `MEMBER`, a node-scoped
 SeasonPro role, and affiliation to the exact Club node. That combination routes the person
-to the Club dashboard and limits data to that Club. `MEMBER` by itself is insufficient to
-choose a dashboard because a bounded C1/League worker may also be an Organisation Member.
+to the Club dashboard and limits data to that Club. A SeasonPro `MEMBER` never receives a
+League role or C1 dashboard. `MEMBER` without a valid Club role and exact Club is not a valid
+SeasonPro C2 persona and receives no SeasonPro operating context.
 
 In plain English, the intended sequence is:
 
@@ -131,16 +133,15 @@ Platform authority which creates the tenant organisation and its initial C1 Owne
 | P1 Platform operator | Separate `PlatformAdmin` authority | Controlled Platform support/administration; not an ordinary tenant persona |
 | C1 tenant owner | `OWNER` | An appropriate `LEAGUE` SeasonPro role, normally League Administrator |
 | Additional C1 tenant administrator | `ADMIN` | An appropriate `LEAGUE` role; add a separate `CLUB` role and exact Club only when hat swapping is required |
-| League worker without tenant-administration responsibility | `MEMBER` | A deliberately bounded `LEAGUE` role |
 | C2 Club user | `MEMBER` | A node-bounded `CLUB` role plus the exact current Club affiliation |
-| Unassigned user | Normally `MEMBER` | No valid module role; visible and repairable through the controlled unassigned-user outcome |
+| Unassigned/incomplete account | Any retained Organisation authority | No valid SeasonPro persona; no SeasonPro dashboard/data; visible only to authorised repair workflow |
 
 The intended principles are:
 
 1. The actual tenant owner is a Core `OWNER`.
 2. An ordinary C2 Club user is normally a Core `MEMBER`.
-3. Not every League user is automatically a Core Owner or Admin. A limited League worker may
-   remain a Member while receiving only the SeasonPro capabilities required for their job.
+3. Every SeasonPro C1 League user is an Organisation Owner or Admin with an explicit League
+   role. A Member cannot receive a League role or C1 context.
 4. Core `ADMIN` is for delegated organisation-wide administration, not simply a higher
    SeasonPro job title.
 5. A Core role must not be inferred only from a SeasonPro role name or from whether the user
@@ -159,10 +160,11 @@ The intended principles are:
 11. A C1 Owner may deliberately create C1 Admins and additional C1 Owners. That combined
     SeasonPro workflow must call a Platform-owned, same-tenant organisation-authority
     contract rather than making SeasonPro the owner of Core-role policy or persistence.
-12. C1/C2 is a module operating-context distinction. Dashboard routing must derive from
-    valid module-role scope plus node affiliation, never from Organisation `MEMBER` alone.
-    The combined state requires both a separate League role and a separate Club role plus the
-    exact Club; `BOTH` is not a user role or independently assigned persona.
+12. C1/C2 is a composite authority and module-context distinction. C1 requires Organisation
+    `OWNER` or `ADMIN` plus a League role. C2 requires Organisation `MEMBER` plus a Club role
+    and exact current Club. The combined hat state is available only to a C1 Owner/Admin and
+    requires a separate League role, separate Club role and exact Club; `BOTH` is not a user
+    role or independently assigned persona.
 13. A suitably permitted C2 Member may create other C2 Members only inside the actor's own
     Club node. The target remains Organisation `MEMBER`, receives only node-scoped roles and
     cannot be affiliated to another Club.
@@ -469,8 +471,8 @@ deletion is authorised by the inventory.
 
 1. Accepted: `C1` is the tenant-side module context and `C2` is a client node within that
    tenant; Core authority remains explicitly Owner/Admin/Member.
-2. Confirm whether additional C1 League administrators who manage users and configuration
-   should normally be Core `ADMIN`, while limited League workers remain Core `MEMBER`.
+2. Accepted: every SeasonPro C1 League user is Organisation `OWNER` or `ADMIN` plus an exact
+   League role. There is no limited Member + League persona.
 3. Confirm that Core Owner/Admin should not receive blanket module capability merely because
    of Core status; the preferred outcome is explicit automatic assignment of an auditable
    module-administrator role.
@@ -515,7 +517,7 @@ module consumer must remain independently testable and reversible.
 
 Future accepted plans should require automated and human evidence proving at least:
 
-- P1, tenant Owner, tenant Admin, limited League Member, Club Member and Unassigned outcomes;
+- P1, C1 tenant Owner, C1 tenant Admin, C2 Club Member and Unassigned outcomes;
 - identical direct-login and properly constrained impersonation results;
 - visible cards agree with permitted direct navigation and mutations;
 - League-only users route to the C1 dashboard, Club-only users route to their C2 node
@@ -551,11 +553,13 @@ This CR input does not:
 - reopen completed SeasonPro business-status remediation; or
 - assume that every current role assignment is wrong.
 
-Platform-led triage and the accepted `PLAT-ROLE-01` matrix are complete. `PLAT-ROLE-02` was
-separately authorised and its bounded Critical containment is implemented locally at
-`5e551938`. The current stop is its human local smoke gate; no staging, production, schema or
-live-data change is authorised by this record. Later plans remain conditional on their own
-recorded dependencies and decisions.
+Platform-led triage and the corrected accepted `PLAT-ROLE-01` matrix are complete.
+`PLAT-ROLE-02` was separately authorised. Checkpoint `5e551938` failed usefully at its first
+human test because it permitted Member + League; it was not promoted. Corrective child
+`7e453665` implements the complete C1/C2 persona contract and has passed technical gates.
+The current stop is its replacement human local smoke gate; no staging, production, schema
+or live-data change is authorised by this record. Later plans remain conditional on their
+own recorded dependencies and decisions.
 
 ## 14. Evidence And Orientation References
 
