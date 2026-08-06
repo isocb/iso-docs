@@ -30,25 +30,25 @@ Current application evidence:
 
 ```text
 dev = origin/dev = staging = origin/staging = 72c02d92
-main = origin/main = 83356030
-F3 tests/type/verify/build = PASS; dev/staging Security Scans = PASS
-staging public health = HTTP 200; database connected; RLS 11/11
-exact Render staging build and human smoke = pending; production promotion blocked
+main = origin/main = 72c02d92
+F3 tests/type/verify/build = PASS; dev/staging/main Security Scans = PASS
+F3 staging human smoke = 13/13 PASS; production promotion = COMPLETE
+staging and production public health = HTTP 200; database connected; RLS 11/11
+PLAT-ROLE-01 static inventory = COMPLETE; no database query or application change
 ```
 
 Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | LMSPro Email CR-Fix `F3 - Uploaded-File-Only Acknowledgement` | Complete the accepted bounded application slice through local review, staging human smoke and the explicit production gate. Uploaded files alone require acknowledgement; dedicated and ordinary links never do, while link validation/fingerprinting remains mandatory. |
-| **NEXT** | Platform/SeasonPro Role Authority bounded project | Formal cross-lane triage and five bounded plans are complete. After F3, explicitly select the read-only `PLAT-ROLE-01` inventory, then decide separate authority for the Critical `PLAT-ROLE-02` containment slice. No application authority is granted merely by occupying `Next`. |
+| **NOW** | Platform/SeasonPro `PLAT-ROLE-01` authority inventory and canonical matrix | Static source inventory is complete at application `72c02d92`; no live query or application change occurred. Obtain human acceptance of the matrix and retained authority decisions. |
+| **NEXT** | `PLAT-ROLE-02` Critical Core-role mutation containment | After matrix acceptance and explicit implementation authority, remove the four confirmed Core escalation/relink paths and review the Club-scope containment finding. Do not combine the wider authority service or live repair. |
 
 Registered and ordered work outside that pair:
 
-- Platform/SeasonPro role-authority clarification: mandatory bounded project selected as
-  root `Next`; triage and five plans are complete, with read-only inventory first and a
-  separately authorised Critical containment slice second; implementation authority remains
-  outstanding;
+- Platform/SeasonPro role-authority clarification: active root project. `PLAT-ROLE-01`
+  static delivery is complete and awaits human matrix acceptance; `PLAT-ROLE-02` is the
+  separately authorised Critical containment candidate and has no code authority yet;
 - Platform support-ticketing client readiness: privacy/security and client-enablement triage
   input selected as the mandatory self-contained project after Role Authority, with the
   internal-note and server-authority findings eligible for an explicit expedite proposal
@@ -59,9 +59,9 @@ Registered and ordered work outside that pair:
   the live deployment is triggered and public health is PASS, while exact Render-build
   identification and authenticated production smoke remain; this bounded UI release does
   not displace the portfolio `Now`/`Next` pair;
-- LMSPro cohort email draft persistence and audience selection `CR-Fix`: F1/F2.1/F2.2
-  corrections are delivered in the ancestry of current application `83356030`; F3 is now
-  the accepted bounded portfolio `Now`;
+- LMSPro cohort email draft persistence and audience selection `CR-Fix`: F1/F2.1/F2.2 and
+  F3 are delivered in the ancestry of current application `72c02d92`; F3 staging smoke
+  passed 13/13 and exact main promotion is complete;
 - FUND `1R-F-A`: deliberately parked at its exact pre-planning boundary until F3, Role
   Authority and Support Ticketing are completed; no application implementation is
   authorised;
@@ -660,18 +660,17 @@ different documentation lifecycles.
 
 ## 7. Current Parent Control Decision
 
-The 2026-08-06 reconciliation in Section 0 is the current decision: business priority moves
-portfolio `Now` to accepted LMSPro Email F3 implementation and selects the bounded Role
-Authority project as `Next`. Support Ticketing follows as its own project. FUND `1R-F-A`
-is preserved at its exact pre-planning boundary until all three housekeeping outcomes are
-complete. Role Authority triage and its five bounded plans are now prepared; the first
-read-only inventory and every later implementation slice still require their recorded
-explicit authority.
+The 2026-08-06 reconciliation in Section 0 is the current decision: F3 is complete at exact
+application `72c02d92`, and Role Authority is the active project. `PLAT-ROLE-01` static
+delivery is complete and awaits human matrix acceptance; `PLAT-ROLE-02` is the next Critical
+containment decision and has no code authority. Support Ticketing follows as its own project.
+FUND `1R-F-A` is preserved at its exact pre-planning boundary until the housekeeping
+outcomes are complete.
 R11-A is a separately authorised bounded UI release at `83356030`; local smoke is 18/18 and
 staging smoke is all green. The exact commit is aligned through `origin/main`, the live
 deployment is triggered and public live health is PASS. Exact Render live-build
 identification and authenticated production smoke remain. It does not alter the current
-F3/Role Authority `Now`/`Next` pair.
+`PLAT-ROLE-01`/`PLAT-ROLE-02` `Now`/`Next` pair.
 R10-A is complete after the control owner's totally-green production smoke. The detailed
 history below explains how the lanes reached that position and must not be read as a
 competing selector.

@@ -2,8 +2,8 @@
 
 Date: 2026-08-06
 
-Status: **PREPARED READ-ONLY SLICE; PENDING ROOT SELECTION AFTER F3; NO APPLICATION, DATABASE
-OR IMPLEMENTATION AUTHORITY**
+Status: **SELECTED AND STATIC READ-ONLY DELIVERY COMPLETE AT APPLICATION `72c02d92`; HUMAN
+MATRIX ACCEPTANCE PENDING; OPTIONAL LIVE AGGREGATE INVENTORY NOT AUTHORISED OR RUN**
 
 Accepted triage:
 
@@ -78,6 +78,14 @@ Required output:
    live-data concern.
 
 Review must prove all repository searches are reproducible and no mutation occurred.
+
+Delivery evidence:
+
+`docs/platform/04-implementation-confirmations/2026-08-06-isostack-platform-plat-role-01-static-authority-inventory-and-matrix-delivery.md`
+
+Review/human gate:
+
+`docs/platform/05-review-and-test/2026-08-06-isostack-platform-plat-role-01-review-and-human-matrix-gate.md`
 
 ## 6. Stop Boundary
 

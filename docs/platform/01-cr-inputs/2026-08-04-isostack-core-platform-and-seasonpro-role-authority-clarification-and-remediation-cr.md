@@ -4,8 +4,8 @@ Date: 2026-08-04
 
 Owning lane: IsoStack Platform, with a bounded SeasonPro / LMSPro consumer outcome
 
-Status: **TRIAGED 2026-08-06; MANDATORY PROJECT AFTER EMAIL F3; BOUNDED PLANS PREPARED;
-NO APPLICATION OR DATA IMPLEMENTATION AUTHORITY**
+Status: **ACTIVE PROJECT; PLAT-ROLE-01 STATIC INVENTORY COMPLETE; HUMAN MATRIX GATE
+PENDING; NO APPLICATION OR DATA MUTATION AUTHORISED**
 
 Application source reviewed:
 
@@ -36,6 +36,11 @@ Controlled outcome records:
 - [`PLAT-ROLE-03 canonical Core authority service and owner safety`](../03-slice-planning/2026-08-06-isostack-platform-plat-role-03-canonical-core-authority-service-and-owner-safety-planning.md);
 - [`LMS-ROLE-01 SeasonPro user-authority consumer alignment`](../03-slice-planning/2026-08-06-isostack-platform-lms-role-01-seasonpro-user-authority-consumer-alignment-planning.md); and
 - [`LMS-ROLE-02 SeasonPro access parity and read-only enforcement`](../03-slice-planning/2026-08-06-isostack-platform-lms-role-02-seasonpro-access-parity-and-read-only-enforcement-planning.md).
+
+Current delivery evidence:
+
+- [`PLAT-ROLE-01 static authority inventory and matrix delivery`](../04-implementation-confirmations/2026-08-06-isostack-platform-plat-role-01-static-authority-inventory-and-matrix-delivery.md); and
+- [`PLAT-ROLE-01 review and human matrix gate`](../05-review-and-test/2026-08-06-isostack-platform-plat-role-01-review-and-human-matrix-gate.md).
 
 ## 1. Human Introduction — What This CR Is About
 
@@ -470,12 +475,12 @@ This CR input does not:
 - reopen completed SeasonPro business-status remediation; or
 - assume that every current role assignment is wrong.
 
-Platform-led triage is complete. It confirms a Critical containment candidate within a
-larger High-severity consistency project and preserves Platform parent / SeasonPro consumer
-ownership. The next controlled action, after Email F3 closes, is explicit root selection of
-the read-only `PLAT-ROLE-01` inventory. `PLAT-ROLE-02` may receive separate implementation
-authority after that static writer boundary is confirmed. The remaining plans stay
-conditional on their recorded dependencies and the human decisions in section 10.
+Platform-led triage and the `PLAT-ROLE-01` static inventory are complete. They confirm four
+Critical containment paths within a larger High-severity consistency project and preserve
+Platform parent / SeasonPro consumer ownership. The current controlled action is human
+acceptance or amendment of the canonical matrix. `PLAT-ROLE-02` may receive separate
+implementation authority afterwards. The remaining plans stay conditional on their
+recorded dependencies and the human decisions in section 10.
 
 ## 14. Evidence And Orientation References
 

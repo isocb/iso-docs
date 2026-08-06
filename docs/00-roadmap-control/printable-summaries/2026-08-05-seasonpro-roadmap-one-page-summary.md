@@ -10,10 +10,10 @@ communications behaviour.
 
 ## Current Position
 
-- **Portfolio NOW:** SeasonPro Email F3 uploaded-file-only acknowledgement, through its
-  accepted bounded implementation and controlled release cycle.
-- F3 exact application `72c02d92` is aligned across dev/staging; both Security Scans and
-  public staging health pass. Exact Render identification and human staging smoke remain.
+- Email F3 exact application `72c02d92` passed its automated gates and 13/13 staging smoke,
+  is aligned through main, and is closed with public production health green.
+- **Portfolio NOW:** Platform/SeasonPro `PLAT-ROLE-01` human authority-matrix gate.
+- **Portfolio NEXT:** separately authorised `PLAT-ROLE-02` Critical Core-role containment.
 - F1 human staging smoke passes through the maximum available 440-recipient draft, with a
   341 ms broad-case server wait.
 - F2 failed because it treated C1/C2/hat-swap access context as independently selectable
@@ -39,10 +39,9 @@ communications behaviour.
   remain. It does not alter audience resolution, delivery or the portfolio `Now`/`Next`.
 - `R10-A Responsive C1 Club Management` is complete and closed after a totally-green
   control-owner production smoke.
-- **Portfolio NEXT:** the self-contained Platform/SeasonPro Role Authority project. Triage
-  and five plans are prepared; execution starts only when the root selects the read-only
-  authority inventory. Support Ticketing follows; FUND remains parked until all three
-  housekeeping outcomes are complete.
+- Role Authority static inventory confirms four Critical escalation/relink paths, plus
+  module-role, Club-scope, read-only and card/API consistency findings. No application or
+  database change occurred. Support Ticketing follows the Role project; FUND remains parked.
 
 ## Recently Completed
 
@@ -69,14 +68,13 @@ communications behaviour.
 
 ## Immediate Management Rule
 
-Complete F3 only inside its accepted file-only acknowledgement boundary. Do not weaken
-dedicated-link validation/fingerprinting or uploaded-file acknowledgement safety.
+Do not reopen completed F3 without a new production finding. Keep Role Authority work inside
+the selected matrix/containment boundaries; do not combine live repair or the wider service.
 
 ## Next Decision
 
-Complete F3 through staging and the explicit production gate, then select the first
-read-only Role Authority slice. Its Critical containment plan requires a separate explicit
-implementation decision. Support Ticketing follows before FUND resumes.
+Accept or amend the Role Authority matrix, then explicitly decide `PLAT-ROLE-02`. Support
+Ticketing follows the completed Role project before FUND resumes.
 
 Authoritative source:
 [`LMSPro / SeasonPro Roadmap And Slice Control`](../../modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md)

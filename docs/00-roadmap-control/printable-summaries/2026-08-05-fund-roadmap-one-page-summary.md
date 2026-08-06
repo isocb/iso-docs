@@ -11,12 +11,12 @@ payment contracts remain owned by Commerce Core.
 
 ## Current Position
 
-- **Portfolio NOW:** SeasonPro Email F3 accepted bounded implementation.
-- **Portfolio NEXT:** the Platform/SeasonPro Role Authority bounded project, followed by
-  Support Ticketing client readiness.
+- **Portfolio NOW:** Platform/SeasonPro `PLAT-ROLE-01` human authority-matrix gate.
+- **Portfolio NEXT:** `PLAT-ROLE-02` Critical containment, followed by the remaining Role
+  Authority slices and Support Ticketing client readiness.
 - No renderer implementation, later `1R-F` branch, `1R-G` work or production artwork system
   is authorised by the planning selection.
-- The current application is exact `83356030` across dev/staging/main. The selected planning
+- The current application is exact `72c02d92` across dev/staging/main. The selected planning
   work starts from that branch-aligned baseline.
 - `1R-F-A` remains the exact FUND resumption point, but all FUND planning and implementation
   is parked until F3, Role Authority and Support Ticketing are complete.
@@ -52,8 +52,8 @@ the exact resumption point and retain all existing inputs and gates unchanged.
 
 ## Next Decision
 
-Complete F3, Role Authority and Support Ticketing through their separate controlled
-lifecycles. Then restore `1R-F-A` to root selection for bounded planning.
+Complete Role Authority and Support Ticketing through their separate controlled lifecycles.
+F3 is closed. Then restore `1R-F-A` to root selection for bounded planning.
 
 Authoritative source:
 [`FUND Roadmap And Slice Control`](../../modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md)

@@ -11,16 +11,16 @@ infrastructure, security assurance and engineering controls.
 
 ## Current Position
 
-- The latest reconciled branch-aligned application baseline is `83356030`.
+- The latest reconciled branch-aligned application baseline is `72c02d92`.
 - The dependency advisory refresh is complete through live evidence.
-- Platform has no currently authorised application slice. Role Authority is root `NEXT`
-  after the active Email F3 cycle.
+- Platform has no currently authorised application-code slice. Role Authority is active;
+  the `PLAT-ROLE-01` static inventory is complete and awaits human matrix acceptance.
 
 ## Open Management Inputs
 
-- **Role authority clarification:** mandatory self-contained project after F3. Formal
-  triage and five bounded plans are complete. Start with the read-only authority inventory,
-  then make a separate decision on the Critical Core-role mutation containment slice.
+- **Role authority clarification:** active self-contained project. Static inventory confirms
+  four Critical Core escalation/relink paths and several High access-consistency findings.
+  The human matrix gate is `NOW`; `PLAT-ROLE-02` containment is `NEXT` but not authorised.
 - **Support ticketing client readiness:** mandatory self-contained project after Role
   Authority, still awaiting Platform triage. Client enablement is
   blocked on tenant scope, server-side lifecycle authority, internal-note privacy,
@@ -44,10 +44,10 @@ expedite; it is not automatically an expedite.
 
 ## Next Decision
 
-After F3, explicitly select the first read-only Role Authority slice; the plans themselves
-do not authorise code or data access. Complete Role Authority as a bounded project, then run
-Support Ticketing as a separate client-readiness project. Keep client support enablement off
-until its security/privacy and notification-operability boundaries are accepted and tested.
+Accept or amend the `PLAT-ROLE-01` authority matrix, then explicitly decide the bounded
+`PLAT-ROLE-02` Critical containment release. Complete the later Role Authority slices before
+Support Ticketing. Keep client support enablement off until its security/privacy and
+notification-operability boundaries are accepted and tested.
 
 Authoritative source:
 [`IsoStack Platform Roadmap And Slice Control`](../../platform/00-roadmap-control/2026-07-22-isostack-platform-roadmap-and-slice-control.md)

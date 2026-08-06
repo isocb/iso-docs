@@ -2,9 +2,8 @@
 
 Date: 2026-08-06
 
-Status: **ACCEPTED AS THE MANDATORY SELF-CONTAINED PROJECT AFTER EMAIL F3; CRITICAL
-AUTHORIZATION CONTAINMENT CANDIDATE IDENTIFIED; PLANS PREPARED; NO APPLICATION OR DATA
-IMPLEMENTATION AUTHORITY**
+Status: **ACTIVE PORTFOLIO PROJECT; PLAT-ROLE-01 STATIC INVENTORY COMPLETE; HUMAN MATRIX
+GATE PENDING; CRITICAL PLAT-ROLE-02 CONTAINMENT NOT YET IMPLEMENTATION-AUTHORISED**
 
 Source CR:
 
@@ -31,10 +30,10 @@ Schema     No schema need established
 Release    Multiple exact, reversible slices; no combined big-bang release
 ```
 
-Email F3 remains portfolio `Now` while its staging human gate is open. Role Authority remains
-root `Next`. This document does not silently interrupt F3 or authorise Role Authority code.
-Credible exploitation evidence or a control-owner expedite decision may promote the
-containment slice sooner under the ordinary CR-Fix/security process.
+Email F3 is closed at exact application `72c02d92`. Role Authority is now the root project
+and `PLAT-ROLE-01` has executed inside its read-only boundary. This document does not
+authorise containment code. The human matrix gate and an explicit `PLAT-ROLE-02` decision
+remain required.
 
 ## 2. Confirmed Authority Layers
 
@@ -67,10 +66,12 @@ The 2026-08-06 static source recheck confirms broader risk than the original UI 
    defaults creation to Member.
 5. the shared `users.invite` procedure admits Core Admin and Owner callers while accepting
    every Core role, so an Admin can request an Owner invitation.
-6. the ordinary Core `updateRole` path is Owner-only and rejects self-change, but Core role
+6. the active invitation-acceptance server action changes an existing User's organisation
+   and Core role when the invitation belongs to another tenant, instead of failing closed.
+7. the ordinary Core `updateRole` path is Owner-only and rejects self-change, but Core role
    writers remain duplicated across Core, P1 and SeasonPro procedures and do not share one
    owner-safety/session/audit contract.
-7. component-list resolution, individual component checks and direct Core-role checks do
+8. component-list resolution, individual component checks and direct Core-role checks do
    not currently produce one explainable card/route/API result.
 
 These are source-confirmed authorization defects. No exploitation, live user change or
@@ -80,8 +81,8 @@ cross-tenant disclosure is asserted by this triage.
 
 | Order | Slice | Purpose | Current authority |
 | --- | --- | --- | --- |
-| 1 | `PLAT-ROLE-01` | Complete writer/consumer/static assignment inventory and settle the canonical matrix | Plan prepared; read-only execution requires explicit selection after F3 |
-| 2 | `PLAT-ROLE-02` | Remove unauthorized Core-role mutation from SeasonPro and ordinary Admin invitation paths | Critical containment plan prepared; no code authority |
+| 1 | `PLAT-ROLE-01` | Complete writer/consumer/static assignment inventory and settle the canonical matrix | Static delivery complete; human matrix acceptance pending; no live query run |
+| 2 | `PLAT-ROLE-02` | Remove unauthorized Core-role mutation from SeasonPro, ordinary Admin invitation and cross-tenant invitation acceptance paths | Critical containment plan requires amendment/explicit code authority |
 | 3 | `PLAT-ROLE-03` | Introduce one audited Platform Core-authority service with owner/session safety | Conditional plan prepared; business decisions and explicit authority required |
 | 4 | `LMS-ROLE-01` | Align SeasonPro provisioning, module-role assignment, Club affiliation and Unassigned repairability | Conditional consumer plan prepared |
 | 5 | `LMS-ROLE-02` | Align SeasonPro component/card/direct-action and read-only enforcement | Conditional consumer plan prepared; inventory controls exact file list |

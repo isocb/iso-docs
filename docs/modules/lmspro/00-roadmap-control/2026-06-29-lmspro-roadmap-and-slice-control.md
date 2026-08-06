@@ -33,14 +33,14 @@ authority. Later disposition changes must update the existing row.
 | [`2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md`](../01-cr-inputs/2026-07-27-lmspro-consolidated-four-item-remediation-planning-refinement.md) | Consumed by the same R9 programme and its bounded plans | Completed/superseded as active planning by the delivered R9 lifecycle; retained as decision provenance |
 | [`2026-07-30-lmspro-responsive-c1-club-management-cr-input.md`](../01-cr-inputs/2026-07-30-lmspro-responsive-c1-club-management-cr-input.md) | R10-A implemented, staging-smoked, included by ancestry in live application `7154937` and reported totally green in the control-owner production smoke | Completed and closed on 2026-08-05; no remaining resumption action |
 | [`2026-08-05-lmspro-500-recipient-email-operating-envelope-refinement.md`](../01-cr-inputs/2026-08-05-lmspro-500-recipient-email-operating-envelope-refinement.md) | Captured planning input; awaiting formal triage | Registered standard communications/capacity candidate; no limit change, implementation or displacement of `Now`/`Next` authorised |
-| [`CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md`](../01-cr-inputs/CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md) | F1 PASS; F2 superseded; F2.1/F2.2 delivered in `83356030` ancestry; F3 implemented/reviewed at `72c02d92`, aligned across dev/staging, both Security Scans and public staging health PASS; no schema/migration; exact Render identification and human staging smoke pending | F3 remains portfolio `Now`; production is blocked pending human evidence and explicit promotion authority |
-| [`2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md`](../01-cr-inputs/2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md) | R11-A implemented with corrected combined Division/Age Group recipient-type widget, session disclosure and responsive layout; focused/full tests, type, verification, lint and 131-page build PASS; authenticated local UI smoke 18/18 and staging smoke all green; exact `83356030` aligned through dev, staging and main; public live health PASS with database connected and RLS 11/11; no schema/API/provider/configuration change | Live branch promotion complete; exact Render live-build identification and focused authenticated production smoke remain before closure; does not displace the current F3/Role Authority `Now`/`Next` |
+| [`CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md`](../01-cr-inputs/CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md) | F1 PASS; F2 superseded; F2.1/F2.2 delivered; F3 exact `72c02d92` automated gates and staging smoke 13/13 PASS; dev/staging/main aligned; public production health PASS; no schema/migration | F3 complete and closed; any later regression requires a new CR-Fix |
+| [`2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md`](../01-cr-inputs/2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md) | R11-A implemented with corrected combined Division/Age Group recipient-type widget, session disclosure and responsive layout; focused/full tests, type, verification, lint and 131-page build PASS; authenticated local UI smoke 18/18 and staging smoke all green; exact `83356030` is retained by ancestry in current `72c02d92`; public live health PASS; no schema/API/provider/configuration change | Live branch promotion complete; retained exact Render/live-smoke evidence boundary does not displace the current Role Authority `Now`/`Next` |
 
 Current LMSPro portfolio disposition:
 
 ```text
-NOW  -> LMSPro Email CR-Fix F3 accepted bounded implementation
-NEXT -> Platform/SeasonPro Role Authority bounded project
+NOW  -> Platform/SeasonPro PLAT-ROLE-01 human authority-matrix gate
+NEXT -> PLAT-ROLE-02 Critical Core-role mutation containment decision
 THEN -> Platform Support Ticketing client-readiness project
 PARKED -> FUND 1R-F-A at its exact pre-planning boundary
 ```
@@ -49,18 +49,17 @@ The control owner completed the displaced R10-A smoke as totally green. The curr
 pair is therefore:
 
 ```text
-NOW  -> LMSPro Email CR-Fix F3 accepted bounded implementation
-NEXT -> Platform/SeasonPro Role Authority bounded project
+NOW  -> Platform/SeasonPro PLAT-ROLE-01 human authority-matrix gate
+NEXT -> PLAT-ROLE-02 Critical Core-role mutation containment decision
 THEN -> Platform Support Ticketing client-readiness project
 PARKED -> FUND 1R-F-A bounded planning
 ```
 
-R10-A is complete and closed. Revised business priority selects F3 as formal root `Now`,
-Role Authority as `Next`, and Support Ticketing as the required following project. FUND
-`1R-F-A` is preserved at its exact pre-planning boundary until those housekeeping outcomes
-are complete. Role Authority triage and five independently bounded plans are prepared under
-the Platform parent; execution still starts only after F3 closes and the root explicitly
-selects the read-only `PLAT-ROLE-01` inventory.
+F3 and R10-A are complete and closed. Role Authority is the active root project and Support
+Ticketing remains the required following project. FUND `1R-F-A` is preserved at its exact
+pre-planning boundary until those housekeeping outcomes are complete. `PLAT-ROLE-01` static
+delivery is complete under the Platform parent and awaits human matrix acceptance; no
+application or database mutation occurred.
 
 ## Purpose
 
@@ -142,12 +141,13 @@ Current work should remain on dev/remediation branches until reviewed and explic
 Current app alignment:
 
 ```text
-dev = origin/dev = staging = origin/staging = main = origin/main = 83356030
-R11-A staging authenticated smoke = all green
-Render live public health = PASS; exact-build identification and authenticated production smoke pending
+dev = origin/dev = staging = origin/staging = main = origin/main = 72c02d92
+F3 staging smoke = 13/13 PASS; exact main promotion = COMPLETE
+Render live public health = PASS; database connected; RLS 11/11
+PLAT-ROLE-01 = static read-only delivery complete; human matrix gate pending
 ```
 
-Application `83356030` is the current branch-aligned baseline and includes prior LMSPro,
+Application `72c02d92` is the current branch-aligned baseline and includes prior LMSPro,
 FUND and Commerce work by ancestry.
 The control owner reported the final R10-A production smoke totally green on 2026-08-05.
 After all ten F2.1 staging checks passed, the control owner authorised its promotion. F2.2
@@ -1115,10 +1115,9 @@ Do not implement these until slice planning accepts them:
 ## Recommended Next Controlled Action
 
 ```text
-Complete the accepted Email F3 bounded implementation through staging human smoke and the
-explicit production gate. Then explicitly select the read-only `PLAT-ROLE-01` inventory as
-the first Role Authority slice; its Critical containment plan and later consumer plans are
-not implementation-authorised by their preparation.
+Obtain human acceptance or amendment of the `PLAT-ROLE-01` canonical matrix. Then explicitly
+decide the bounded `PLAT-ROLE-02` Critical containment slice. No Role Authority application
+implementation is authorised by the static inventory alone.
 ```
 
 Goal:
