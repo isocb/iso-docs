@@ -107,7 +107,10 @@ Also prove:
 - explicit P1 procedures remain separately protected; and
 - existing user listing/editing does not demote a Core role merely by saving module fields;
 - containment does not broaden C2 creation, role assignment or Club selection while removing
-  the unsafe Core-role fields from the shared SeasonPro procedures.
+  the unsafe Core-role fields from the shared SeasonPro procedures; and
+- the currently working separate-League-role plus separate-Club-role plus exact-Club routing
+  state survives create/edit/reopen unchanged; containment does not introduce a standalone
+  `BOTH` persona.
 
 Run focused router/UI tests, full tests, type-check, changed lint, verification, production
 build, Security Scans and exact staging smoke.
@@ -121,7 +124,9 @@ build, Security Scans and exact staging smoke.
 - as Core Admin, confirm ordinary Member invitation works and elevated invitation is
   refused;
 - as a C1 Owner, confirm deliberate creation of a C1 Admin and an additional C1 Owner uses
-  the Platform-owned contract and preserves the intended SeasonPro role/affiliation; and
+  the Platform-owned contract and preserves the intended SeasonPro role/affiliation;
+- with an existing known dual-context user, confirm the separate League role, separate Club
+  role and exact Club still produce the working League/Club context choice after containment;
 - use a copied/direct procedure test account to confirm refused escalation without altering
   a real user; and
 - with disposable tenant fixtures only, confirm a cross-tenant existing email cannot be

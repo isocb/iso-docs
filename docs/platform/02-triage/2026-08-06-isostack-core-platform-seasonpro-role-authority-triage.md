@@ -45,7 +45,7 @@ The project must preserve distinct concepts:
 | P1 Platform operator | Separate `PlatformAdmin` authority and real-actor audit identity |
 | Core tenant authority | Exactly one `User.role`: `OWNER`, `ADMIN` or `MEMBER` |
 | Module authority | Tenant/module `ModuleRole` assignments and component/action grants |
-| Module scope | `LEAGUE`, `CLUB` or `BOTH` role scope |
+| Module scope | `LEAGUE`, `CLUB` or legacy-compatible `BOTH` role scope; canonical combined routing is derived from separate League and Club roles plus exact Club |
 | Club data context | Same-tenant/current Club affiliation and assignments |
 | C1/C2 module context | Derived tenant-side or exact client-node dashboard/data context |
 | Seasonal presentation | Key Dates and visibility rules applied after underlying authority |
@@ -112,7 +112,8 @@ silently close route-entitlement or impersonation work outside the accepted slic
 - C1 is the tenant-side module context; C2 is a client node inside that tenant. They are not
   synonyms for Core Owner/Admin/Member.
 - dashboard routing derives from validated module scope and node affiliation: League-only to
-  C1, Club-only to the exact C2 node, valid combined scope to a deliberate context choice.
+  C1, Club-only to the exact C2 node, and separate League plus Club roles plus exact Club to
+  a deliberate context choice. `BOTH` is not an independently assigned business persona.
 - a suitably permitted C2 Organisation Member may create other Organisation Members only
   inside the actor's own node; target role, affiliation and all reads/writes remain
   server-bounded to that node.

@@ -66,7 +66,9 @@ The second description is the person's **SeasonPro module role or roles**. Examp
 League Administrator, League Secretary, Club Secretary and other roles deliberately created
 for the tenant. These roles carry component permissions which determine the ordinary cards,
 screens and workflows presented inside SeasonPro. Each role is scoped as `LEAGUE`, `CLUB` or
-`BOTH` and may be read-only.
+legacy-compatible `BOTH` and may be read-only. The accepted combined-dashboard persona is
+not a single `BOTH` role: it is derived from a separate League role, a separate Club role and
+the specific Club affiliation.
 
 For a Club user there is a third important fact: **which Club the person is affiliated with**.
 Club affiliation is separate from the role. A role can say what a Club user may do; the
@@ -127,7 +129,7 @@ Platform authority which creates the tenant organisation and its initial C1 Owne
 | --- | --- | --- |
 | P1 Platform operator | Separate `PlatformAdmin` authority | Controlled Platform support/administration; not an ordinary tenant persona |
 | C1 tenant owner | `OWNER` | An appropriate `LEAGUE` SeasonPro role, normally League Administrator |
-| Additional C1 tenant administrator | `ADMIN` | An appropriate `LEAGUE` or `BOTH` SeasonPro role |
+| Additional C1 tenant administrator | `ADMIN` | An appropriate `LEAGUE` role; add a separate `CLUB` role and exact Club only when hat swapping is required |
 | League worker without tenant-administration responsibility | `MEMBER` | A deliberately bounded `LEAGUE` role |
 | C2 Club user | `MEMBER` | A node-bounded `CLUB` role plus the exact current Club affiliation |
 | Unassigned user | Normally `MEMBER` | No valid module role; visible and repairable through the controlled unassigned-user outcome |
@@ -158,6 +160,8 @@ The intended principles are:
     contract rather than making SeasonPro the owner of Core-role policy or persistence.
 12. C1/C2 is a module operating-context distinction. Dashboard routing must derive from
     valid module-role scope plus node affiliation, never from Organisation `MEMBER` alone.
+    The combined state requires both a separate League role and a separate Club role plus the
+    exact Club; `BOTH` is not a user role or independently assigned persona.
 13. A suitably permitted C2 Member may create other C2 Members only inside the actor's own
     Club node. The target remains Organisation `MEMBER`, receives only node-scoped roles and
     cannot be affiliated to another Club.
@@ -315,10 +319,12 @@ shared provisioning contract rather than corrected independently in multiple UIs
 
 ### 5.7 C2 dashboard routing and same-node user delegation are not one enforced contract
 
-The welcome route currently attempts to choose League, Club or combined presentation from
-module-role scope and Club association. That direction matches the accepted model, but the
+The welcome route currently chooses League, Club or combined presentation from module-role
+scope and Club association. The proven working combined path—separate League role plus
+separate Club role plus exact Club affiliation—is the accepted non-regression baseline. The
 queries do not yet apply every tenant/module/active-role constraint in one canonical
-resolver.
+resolver, and legacy `roleScope = BOTH` compatibility must not be mistaken for the business
+persona or allow a combined context without an exact Club.
 
 The C2 creation contract is also inconsistent. The browser fixes a Club-only creator's Club
 selector to their current Club, while the server `canManageUsers` guard excludes Organisation
@@ -367,6 +373,9 @@ This has the following cross-module implications:
    and node affiliation. Core `MEMBER` is not a dashboard-routing flag.
 10. Node-scoped user delegation must force the actor's exact node server-side and must not
     accept another same-tenant node or a tenant-wide/combined role.
+11. SeasonPro combined routing must preserve the conjunctive contract: at least one valid
+    League role, at least one valid Club role and the exact Club affiliation. Removing any
+    one of those facts removes the combined context.
 
 ## 7. Requested Combined Outcome
 
@@ -388,7 +397,8 @@ The combined Platform-parent and SeasonPro-consumer remediation should deliver:
 10. preservation of tenant and Club isolation, including copied-URL and direct-procedure
     refusal;
 11. explicit C1 tenant-context and C2 node-context dashboard routing, including a handled
-    combined-context choice where both scopes are valid;
+    combined-context choice only when separate League and Club roles plus exact Club
+    affiliation are valid;
 12. same-node C2 Member creation when granted by module role, with cross-node and
     tenant-wide-role assignment refused server-side; and
 13. a controlled retirement plan for conflicting legacy C1/C2/C3 wording and remaining legacy role
@@ -508,7 +518,10 @@ Future accepted plans should require automated and human evidence proving at lea
 - identical direct-login and properly constrained impersonation results;
 - visible cards agree with permitted direct navigation and mutations;
 - League-only users route to the C1 dashboard, Club-only users route to their C2 node
-  dashboard, and valid combined-scope users receive the deliberate context choice;
+  dashboard, and users holding separate valid League and Club roles plus an exact Club
+  receive the deliberate context choice;
+- removing the League role, Club role or exact Club from that combined user removes the
+  combined context without changing Core authority;
 - a Club user cannot obtain League or another Club's data;
 - a permitted C2 Member can create an Organisation Member only for their own Club, while a
   copied/direct request for another Club or a League/Both role is refused;

@@ -35,7 +35,10 @@ module entitlement
   auditably through provisioning, not through a hidden runtime bypass;
 - align administration-card visibility with the exact server procedure guard;
 - route League-only users to C1 presentation, Club-only users to their exact C2 node and
-  valid combined users to the deliberate context choice, using the same validated resolver;
+  users with separate valid League and Club roles plus exact Club to the deliberate context
+  choice, using the same validated resolver;
+- prove removing the League role, Club role or Club affiliation removes combined routing;
+  never treat standalone `BOTH` as the canonical business persona;
 - enforce read-only on every selected mutation and not only in the browser;
 - preserve copied-URL/direct-procedure refusal and exact Club isolation; and
 - distinguish no Product entitlement, no module role and seasonal closure as different

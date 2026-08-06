@@ -28,6 +28,9 @@ tenant-owned functional module roles, scope and Club affiliation.
 - require a valid same-tenant Club affiliation when selected role scope requires Club;
 - derive C1 tenant-side versus C2 node-side presentation from validated role scope and
   affiliation; never use Core `MEMBER` alone as the dashboard switch;
+- preserve combined routing as a derived conjunction of a separate valid League role,
+  separate valid Club role and exact current Club affiliation; do not create or depend on a
+  standalone `BOTH` persona;
 - allow a C2 Member to create another C2 Member only when the actor's module role grants the
   user-management action, force the target to literal Organisation `MEMBER`, force the
   actor's exact current Club node and accept only eligible active `CLUB` roles;
@@ -49,8 +52,10 @@ missing/wrong-tenant Club, Unassigned repair and other-module preservation.
 
 Human smoke must prove the displayed Core authority, SeasonPro roles, scope and affiliation
 remain distinct and survive create/edit/reopen without silent elevation or demotion.
-It must also prove League-only, Club-only and combined users reach the intended dashboard,
-and that a C2 creator cannot alter or escape the locked node through a direct request.
+It must also prove League-only and Club-only users reach the intended dashboard, a user with
+separate League and Club roles plus exact Club receives the context choice, removal of any
+one of those three combined facts removes that choice, and a C2 creator cannot alter or
+escape the locked node through a direct request.
 
 ## 4. Non-Goals And Stop
 

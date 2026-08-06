@@ -76,9 +76,9 @@ Module role + permissions + scope/affiliation
 Within a module, C1/C2 describes operating context rather than Core role:
 
 ```text
-C1 tenant context (League) + LEAGUE scope -> League dashboard
-C2 client node (Club) + MEMBER + CLUB scope + exact Club -> Club dashboard
-valid LEAGUE and CLUB contexts -> explicit context/hat choice
+C1 tenant context (League) + League role -> League dashboard
+C2 client node (Club) + MEMBER + Club role + exact Club -> Club dashboard
+separate League role + separate Club role + exact Club -> explicit context/hat choice
 no valid module context -> handled no-access/unassigned outcome
 ```
 
@@ -86,6 +86,8 @@ An Organisation Member is not automatically C2. A bounded C1 League worker can a
 Member. The module scope and node affiliation therefore select presentation and data scope;
 module permissions decide actions/read-only behaviour. A C2 dashboard may expose the Club's
 own child records, such as Teams and Communications, but never another Club's records.
+The combined state is derived and conjunctive: `BOTH` is not a standalone user role or
+persona, and removing the League role, Club role or Club link removes the combined context.
 
 Core role and module role are related by controlled provisioning and permission checks, but
 one must not be inferred from the other. A SeasonPro C1 Owner is therefore normally both:
@@ -121,6 +123,8 @@ Confirm or amend these statements:
 11. **Accepted:** C1 is the tenant-side module context and C2 is a client node within it;
     dashboard routing derives from validated module scope and node affiliation, not Core
     `MEMBER` alone.
+    Combined routing specifically requires a separate League role, separate Club role and
+    exact Club affiliation; preserve this currently working behaviour without regression.
 12. **Accepted:** a suitably permitted C2 Member may create other C2 Members only inside the
     actor's exact node. The target remains Organisation `MEMBER`, receives only eligible
     node-scoped roles, and cannot be attached to another node.

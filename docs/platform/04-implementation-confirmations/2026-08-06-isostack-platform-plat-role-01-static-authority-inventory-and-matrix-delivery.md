@@ -36,9 +36,9 @@ Reproducible searches covered:
 | Core tenant authority | Literal `User.role`: Owner, Admin or Member | Organisation-wide administration under the accepted owner-safety matrix | A SeasonPro job, role scope or automatic module capability |
 | Product entitlement | Active/trial `OrganizationProduct` path to an enabled module | Whether the tenant may use the module | Which individual may see or mutate module data |
 | Module authority | Same-tenant, active `ModuleRole` IDs and component/action grants | Which module capabilities the person has | Core elevation or access to another module/tenant |
-| Module scope | `LEAGUE`, `CLUB` or `BOTH` | Breadth of module data context | A Core Owner/Admin/Member state |
+| Module scope | `LEAGUE`, `CLUB` or legacy-compatible `BOTH` | Breadth of one assigned module role | A combined user persona by itself; canonical combined routing requires separate League and Club roles plus exact Club |
 | Club context | Same-tenant/current Club affiliation and assignments | Exact Club data boundary | League-wide authority |
-| C1/C2 presentation context | Derived from valid module scope plus node affiliation | Tenant-side, exact-node or combined dashboard route | Core authority or an independent security grant |
+| C1/C2 presentation context | Derived from valid module roles plus node affiliation | Tenant-side or exact-node route; combined choice only from separate League and Club roles plus exact Club | Core authority, standalone `BOTH` persona or an independent security grant |
 | Read-only | Effective assigned module-role policy | Refusal of module mutations | A browser-only presentation hint |
 | Seasonal visibility | Key Dates and visibility rules | When an already-authorised action is presented/actionable | Underlying authority |
 
@@ -93,7 +93,7 @@ ordinary recovery path. Any future execution needs its own exact-environment aut
 | `components.listForUser` | Uses real session user/org, not effective impersonated identity; no Core bypass | Cards can disagree with direct component checks and impersonated context | `LMS-ROLE-02` plus `PLAT-REFINE-04` |
 | Dashboard `adminOnly` cards | Uses Core Owner/Admin from the browser session | Core authority is used as a module UI capability outside the role/component contract | `LMS-ROLE-02` |
 | `user-context.getUserContext` | Uses effective identity, but role query omits tenant/active constraints and legacy facts still affect scope | Scope may be derived from stale or invalid role facts | `LMS-ROLE-01/02` |
-| Welcome dashboard routing | Derives League/Club/combined route from role scope and Club association | Direction matches C1/C2 intent, but resolution lacks one canonical tenant/module/active-role contract | `LMS-ROLE-01/02` |
+| Welcome dashboard routing | Working combined route derives from separate League and Club roles plus exact Club association; compatibility code also recognises `roleScope = BOTH` | Preserve the working conjunctive route; legacy `BOTH` must not become the canonical persona or create Club context without an exact Club | `LMS-ROLE-01/02` |
 | C2 user creation/delegation | UI fixes a Club-only creator to their Club; server `canManageUsers` excludes Member, `canAssignRoles` admits `BOTH`, and create checks a supplied Club only as same-tenant | Legitimate same-node delegation is blocked while the adjacent server contract would not safely constrain it if enabled alone | `LMS-ROLE-01` |
 | `user-context.canAccessClub` | Treats any `lmsproRoleIds` value as League-wide access | A Club-only assigned role can be misclassified as League authority | `LMS-ROLE-02` Critical data-scope containment consideration |
 | Read-only role calculation | `user-context` exposes a display flag when all roles are read-only | No shared server mutation guard consumes that flag | `LMS-ROLE-02` |
