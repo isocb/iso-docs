@@ -36,7 +36,7 @@ default.
 | --- | --- | --- |
 | [`2026-07-22-isostack-platform-node-middleware-request-body-finalisation-defect-cr.md`](../01-cr-inputs/2026-07-22-isostack-platform-node-middleware-request-body-finalisation-defect-cr.md) | Completed through `PLAT-RUNTIME-01`; subsequently included in the completed LMSPro R8-A production release | Closed historical corrective input; do not reopen without a new finding |
 | [`2026-07-27-isostack-platform-auth-dependency-and-audit-gate-security-remediation-cr-input.md`](../01-cr-inputs/2026-07-27-isostack-platform-auth-dependency-and-audit-gate-security-remediation-cr-input.md) | Completed through the documented `PLAT-ASSURE-03` dev/staging lifecycle and human gate; no separate production claim is added by this reconciliation | Closed at its recorded evidence boundary; `PLAT-REFINE-03` and `PLAT-REFINE-04` retain separate follow-up concerns |
-| [`2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md`](../01-cr-inputs/2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md) | Active root project; `PLAT-ROLE-01` static writer/consumer inventory complete at `72c02d92`; human matrix gate pending; four Critical containment paths confirmed | Root `Now` is the `PLAT-ROLE-01` human matrix gate; `PLAT-ROLE-02` is `Next` but has no code authority; no live query/data change occurred |
+| [`2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md`](../01-cr-inputs/2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md) | Active root project; `PLAT-ROLE-01` static writer/consumer inventory complete at `72c02d92`; Core terminology, multiple Owners and C1 Owner create-Admin/additional-Owner authority accepted; remaining human matrix items pending; four Critical containment paths confirmed | Root `Now` remains the `PLAT-ROLE-01` human matrix gate; `PLAT-ROLE-02` is `Next` but has no code authority; no live query/data change occurred |
 | [`2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md`](../01-cr-inputs/2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md) | Captured; selected as the mandatory self-contained project after Role Authority; awaiting formal Platform triage | Client-enablement and privacy/security project; internal-note privacy, server lifecycle authority and notification operability precede client enablement; Platform Notice remains separable and non-expedite |
 
 Current Platform portfolio disposition:
@@ -44,16 +44,17 @@ Current Platform portfolio disposition:
 - application dev, staging and main are aligned at `72c02d92`; the later root/application
   evidence remains authoritative for exact deployment status;
 - no Platform application implementation slice is currently authorised;
-- Role Authority is active. `PLAT-ROLE-01` static delivery is complete and awaiting human
-  matrix acceptance; `PLAT-ROLE-02` is the next Critical containment decision and is not
-  implementation-authorised. Support Ticketing remains the mandatory following
+- Role Authority is active. `PLAT-ROLE-01` static delivery is complete; Core terminology,
+  the multiple-Owner model and C1 Owner create-Admin/additional-Owner authority are accepted,
+  while the remaining human matrix items are pending. `PLAT-ROLE-02` is the next Critical
+  containment decision and is not implementation-authorised. Support Ticketing remains the mandatory following
   self-contained project and still requires triage and bounded planning; and
 - an evidenced live security/privacy failure may still be proposed to the root as an
   expedite candidate under the ordinary control process.
 
 Prepared Role Authority sequence:
 
-1. [`PLAT-ROLE-01 — Authority Inventory And Canonical Matrix`](../03-slice-planning/2026-08-06-isostack-platform-plat-role-01-authority-inventory-and-canonical-matrix-planning.md) — static delivery complete; human matrix gate pending;
+1. [`PLAT-ROLE-01 — Authority Inventory And Canonical Matrix`](../03-slice-planning/2026-08-06-isostack-platform-plat-role-01-authority-inventory-and-canonical-matrix-planning.md) — static delivery complete; terminology and C1 Owner authority accepted; remaining human matrix gate pending;
 2. [`PLAT-ROLE-02 — Core-Role Mutation Containment`](../03-slice-planning/2026-08-06-isostack-platform-plat-role-02-core-role-mutation-containment-planning.md) — next separate Critical containment decision, expanded to cross-tenant invitation acceptance;
 3. [`PLAT-ROLE-03 — Canonical Core Authority Service And Owner Safety`](../03-slice-planning/2026-08-06-isostack-platform-plat-role-03-canonical-core-authority-service-and-owner-safety-planning.md) — conditional Platform service;
 4. [`LMS-ROLE-01 — SeasonPro User Authority Consumer Alignment`](../03-slice-planning/2026-08-06-isostack-platform-lms-role-01-seasonpro-user-authority-consumer-alignment-planning.md) — conditional consumer alignment; and

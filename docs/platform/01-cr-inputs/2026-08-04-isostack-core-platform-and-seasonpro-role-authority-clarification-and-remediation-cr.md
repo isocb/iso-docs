@@ -4,8 +4,9 @@ Date: 2026-08-04
 
 Owning lane: IsoStack Platform, with a bounded SeasonPro / LMSPro consumer outcome
 
-Status: **ACTIVE PROJECT; PLAT-ROLE-01 STATIC INVENTORY COMPLETE; HUMAN MATRIX GATE
-PENDING; NO APPLICATION OR DATA MUTATION AUTHORISED**
+Status: **ACTIVE PROJECT; PLAT-ROLE-01 STATIC INVENTORY COMPLETE; CORE TERMINOLOGY AND C1
+OWNER AUTHORITY ACCEPTED; REMAINING HUMAN MATRIX ITEMS PENDING; NO APPLICATION OR DATA
+MUTATION AUTHORISED**
 
 Application source reviewed:
 
@@ -103,6 +104,11 @@ The following is the understandable operating model confirmed as the triage base
 records the control owner's stated expectation without pretending that every detailed
 authority decision required by `PLAT-ROLE-03` has already been accepted.
 
+Here, `Core` is the technical name for the shared tenant/organisation authority layer. It
+does not mean a separate product or route. `Core Member` means the literal `User.role =
+MEMBER`; human-facing UI should normally say `Organisation Member`. P1 remains the separate
+Platform authority which creates the tenant organisation and its initial C1 Owner.
+
 | Person | Proposed Core authority | Proposed SeasonPro authority |
 | --- | --- | --- |
 | P1 Platform operator | Separate `PlatformAdmin` authority | Controlled Platform support/administration; not an ordinary tenant persona |
@@ -133,6 +139,9 @@ The intended principles are:
 10. P1 support access and impersonation must preserve the real Platform actor while applying
     the selected tenant user's effective organisation, Core role, module roles, scope and
     affiliations consistently.
+11. A C1 Owner may deliberately create C1 Admins and additional C1 Owners. That combined
+    SeasonPro workflow must call a Platform-owned, same-tenant organisation-authority
+    contract rather than making SeasonPro the owner of Core-role policy or persistence.
 
 ## 3. Why The Current Language Is Ambiguous
 
@@ -408,10 +417,10 @@ deletion is authorised by the inventory.
    module-administrator role.
 4. Confirm which Core roles may create ordinary users, assign module roles and assign Club
    affiliations.
-5. Confirm whether the tenant Owner may create another Owner directly, or whether a controlled
-   invitation/acceptance or P1 recovery path is required.
-6. Confirm whether multiple Owners are intentionally supported and define the last-Owner
-   protection and ownership-transfer process.
+5. Multiple Owners and the C1 Owner's authority to create an additional Owner are accepted;
+   confirm whether the safe workflow is direct creation, invitation/acceptance or a controlled
+   combined workflow.
+6. Define the last-Owner protection and ownership-transfer/recovery process.
 7. Confirm how a direct C1 creation form should ask for the new person's intended persona
    without exposing confusing technical terminology.
 8. Confirm whether legacy C1/C2/C3 wording is corrected in place or retained only in a clearly
@@ -478,7 +487,7 @@ This CR input does not:
 Platform-led triage and the `PLAT-ROLE-01` static inventory are complete. They confirm four
 Critical containment paths within a larger High-severity consistency project and preserve
 Platform parent / SeasonPro consumer ownership. The current controlled action is human
-acceptance or amendment of the canonical matrix. `PLAT-ROLE-02` may receive separate
+completion of the remaining canonical-matrix decisions. `PLAT-ROLE-02` may receive separate
 implementation authority afterwards. The remaining plans stay conditional on their
 recorded dependencies and the human decisions in section 10.
 

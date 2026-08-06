@@ -2,8 +2,9 @@
 
 Date: 2026-08-06
 
-Status: **ACTIVE PORTFOLIO PROJECT; PLAT-ROLE-01 STATIC INVENTORY COMPLETE; HUMAN MATRIX
-GATE PENDING; CRITICAL PLAT-ROLE-02 CONTAINMENT NOT YET IMPLEMENTATION-AUTHORISED**
+Status: **ACTIVE PORTFOLIO PROJECT; PLAT-ROLE-01 STATIC INVENTORY COMPLETE; CORE TERMINOLOGY
+AND C1 OWNER AUTHORITY ACCEPTED; REMAINING MATRIX ITEMS PENDING; CRITICAL PLAT-ROLE-02
+CONTAINMENT NOT YET IMPLEMENTATION-AUTHORISED**
 
 Source CR:
 
@@ -32,8 +33,8 @@ Release    Multiple exact, reversible slices; no combined big-bang release
 
 Email F3 is closed at exact application `72c02d92`. Role Authority is now the root project
 and `PLAT-ROLE-01` has executed inside its read-only boundary. This document does not
-authorise containment code. The human matrix gate and an explicit `PLAT-ROLE-02` decision
-remain required.
+authorise containment code. The remaining human matrix items and an explicit `PLAT-ROLE-02`
+decision remain required.
 
 ## 2. Confirmed Authority Layers
 
@@ -81,7 +82,7 @@ cross-tenant disclosure is asserted by this triage.
 
 | Order | Slice | Purpose | Current authority |
 | --- | --- | --- | --- |
-| 1 | `PLAT-ROLE-01` | Complete writer/consumer/static assignment inventory and settle the canonical matrix | Static delivery complete; human matrix acceptance pending; no live query run |
+| 1 | `PLAT-ROLE-01` | Complete writer/consumer/static assignment inventory and settle the canonical matrix | Static delivery complete; terminology and C1 Owner authority accepted; remaining matrix items pending; no live query run |
 | 2 | `PLAT-ROLE-02` | Remove unauthorized Core-role mutation from SeasonPro, ordinary Admin invitation and cross-tenant invitation acceptance paths | Critical containment plan requires amendment/explicit code authority |
 | 3 | `PLAT-ROLE-03` | Introduce one audited Platform Core-authority service with owner/session safety | Conditional plan prepared; business decisions and explicit authority required |
 | 4 | `LMS-ROLE-01` | Align SeasonPro provisioning, module-role assignment, Club affiliation and Unassigned repairability | Conditional consumer plan prepared |
@@ -97,9 +98,13 @@ silently close route-entitlement or impersonation work outside the accepted slic
 - Core Owner/Admin/Member authority is organisation-wide and Platform-owned.
 - SeasonPro roles, scope and Club affiliation do not grant or redefine Core authority.
 - P1 remains a separate Platform authority, not a fourth tenant role.
-- SeasonPro procedures must not independently write Core role.
-- ordinary new SeasonPro users default safely to Core Member until an authorised Platform
-  authority process deliberately changes that fact.
+- Core means the shared Organisation authority layer; `Core Member` is literal
+  `User.role = MEMBER`, not membership of a separate Core product.
+- SeasonPro procedures must not independently decide or directly persist Core role.
+- ordinary module users default safely to literal Member, while a C1 Owner retains the
+  accepted ability to create C1 Admins and additional C1 Owners through a Platform-owned
+  same-tenant authority contract.
+- P1 creates/manages tenant organisations and the initial C1 Owner.
 - Core Owner/Admin must not receive unexplained blanket module capability; module access is
   explicit and auditable.
 - documentation and UI must qualify C-number language and name actual authority in security
@@ -109,10 +114,10 @@ silently close route-entitlement or impersonation work outside the accepted slic
 
 ## 6. Decisions Required Before `PLAT-ROLE-03`
 
-1. Whether ordinary tenant ownership supports multiple active Owners.
-2. Whether a tenant Owner may appoint another Owner directly, or only through a controlled
-   transfer/invitation/recovery flow.
-3. The last-active-Owner, self-change, suspension and deactivation rules.
+1. The exact direct/invitation/acceptance workflow for the confirmed multiple-Owner model.
+2. The last-active-Owner, self-change, suspension and deactivation rules.
+3. How the accepted C1 Owner capability to create Admin/additional Owner is exposed through
+   a Platform-owned service without returning policy ownership to SeasonPro.
 4. The exact matrix for who may create ordinary users, assign module roles and assign Club
    affiliations.
 5. Whether Core Admin may create users only as Members or may request Admin subject to Owner

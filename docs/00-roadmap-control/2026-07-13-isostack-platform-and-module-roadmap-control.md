@@ -41,7 +41,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Platform/SeasonPro `PLAT-ROLE-01` authority inventory and canonical matrix | Static source inventory is complete at application `72c02d92`; no live query or application change occurred. Obtain human acceptance of the matrix and retained authority decisions. |
+| **NOW** | Platform/SeasonPro `PLAT-ROLE-01` authority inventory and canonical matrix | Static source inventory is complete at application `72c02d92`; no live query or application change occurred. Core terminology, multiple Owners and C1 Owner create-Admin/additional-Owner authority are accepted; settle the remaining matrix decisions. |
 | **NEXT** | `PLAT-ROLE-02` Critical Core-role mutation containment | After matrix acceptance and explicit implementation authority, remove the four confirmed Core escalation/relink paths and review the Club-scope containment finding. Do not combine the wider authority service or live repair. |
 
 Registered and ordered work outside that pair:

@@ -9,7 +9,9 @@ Accepted triage:
 
 `docs/platform/02-triage/2026-08-06-isostack-core-platform-seasonpro-role-authority-triage.md`
 
-Dependencies: `PLAT-ROLE-01` accepted matrix and `PLAT-ROLE-02` containment.
+Dependencies: `PLAT-ROLE-01` accepted matrix and `PLAT-ROLE-02` containment. The multiple-
+Owner model and the C1 Owner's authority to create C1 Admins/additional C1 Owners are
+accepted; the exact direct/invitation workflow and last-Owner rules remain to be selected.
 
 ## 1. Objective
 
@@ -49,8 +51,10 @@ Route through the service only the inventoried Core writers, including ordinary 
 change and authorised P1 tenant-user management. Invitations/provisioning must validate the
 same actor-to-requested-role matrix before creating a pending account.
 
-SeasonPro remains unable to write Core role directly. It may link to or display the
-authorised Platform surface after that surface passes its own review.
+SeasonPro remains unable to decide or write Core role directly. Its C1 Owner user-management
+workflow may request Organisation Admin or additional Owner through this Platform-owned
+service after that combined surface passes its own review. Ordinary module-user creation
+defaults to literal Organisation Member.
 
 ## 4. Acceptance Direction
 

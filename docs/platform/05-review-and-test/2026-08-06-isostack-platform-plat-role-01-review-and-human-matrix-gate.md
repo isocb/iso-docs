@@ -2,8 +2,8 @@
 
 Date: 2026-08-06
 
-Status: **STATIC INVENTORY REVIEW PASS; NO BROWSER SMOKE APPLICABLE; HUMAN AUTHORITY-MATRIX
-ACCEPTANCE PENDING; STOPPED BEFORE PLAT-ROLE-02 IMPLEMENTATION**
+Status: **STATIC INVENTORY REVIEW PASS; CORE TERMINOLOGY ACCEPTED AND C1 OWNER AUTHORITY
+CLARIFIED 2026-08-06; REMAINING HUMAN MATRIX ITEMS PENDING; STOPPED BEFORE PLAT-ROLE-02**
 
 Delivery record:
 
@@ -32,22 +32,69 @@ The appropriate human gate is review of the canonical matrix and retained decisi
 | `RA-H04` | Confirmed High defect | Module-role IDs are not uniformly tenant/module/active/template validated | `LMS-ROLE-01` |
 | `RA-H05` | Confirmed High design gap | Most SeasonPro procedures lack one canonical module-entitlement gate | `PLAT-REFINE-03` / `LMS-ROLE-02` |
 | `RA-H06` | Confirmed High design gap | Real/effective identity differs across component, router and RLS consumers | `PLAT-REFINE-04` |
-| `RA-D01` | Human decision | Owner appointment, multiple Owner and last-Owner contract | Before `PLAT-ROLE-03` |
+| `RA-D01` | Part-settled human decision | Multiple Owners and C1 Owner authority to create Admin/additional Owner are confirmed; exact workflow and last-Owner contract remain | Before `PLAT-ROLE-02/03` |
 | `RA-D02` | Human decision | Exact module user-management and Club-management delegation | Before `LMS-ROLE-01` |
 | `RA-L01` | Conditional live concern | Invalid/orphaned/cross-module assignments may already exist | Aggregate query only with separate database authority |
 
 No exploitation or live invalid assignment is claimed by the source findings.
 
-## 3. Human Review Checklist
+## 3. Terms In Plain English
+
+`Core` means the shared **tenant/organisation authority layer** below P1 Platform authority
+and above any individual product module. It is not another route and it does not mean that
+the person “belongs to Core”.
+
+The literal database field is `User.role`, with exactly three values:
+
+```text
+OWNER
+ADMIN
+MEMBER
+```
+
+Therefore, **Core Member means the literal `MEMBER` value**. It is clearer in human UI and
+guidance to say **Organisation Member** unless the technical layer itself is being discussed.
+
+The complete relationship is:
+
+```text
+P1 Platform operator
+-> creates/manages tenant organisations and the initial tenant Owner
+
+Organisation Owner/Admin/Member (shared Core role)
+-> governs shared organisation-level authority
+
+Product attribution/entitlement
+-> says which modules the organisation has
+
+Module role + permissions + scope/affiliation
+-> says what that user can do inside SeasonPro or another module
+```
+
+Core role and module role are related by controlled provisioning and permission checks, but
+one must not be inferred from the other. A SeasonPro C1 Owner is therefore normally both:
+
+```text
+Organisation role: OWNER
+SeasonPro role: an explicit League/C1 module role
+```
+
+## 4. Human Review Checklist
 
 Confirm or amend these statements:
 
-1. Core Owner/Admin/Member remains Platform-owned and separate from SeasonPro roles.
-2. SeasonPro never writes Core role; new SeasonPro users are Core Members.
-3. Core Admin creates Members only and cannot elevate Core authority.
-4. Core Owner may create Admin, subject to accepted owner safety and audit.
-5. Owner creation/transfer remains blocked from ordinary invitation until its dedicated
-   contract is accepted.
+1. **Accepted:** Core Owner/Admin/Member means the shared Organisation authority layer and
+   remains separate from P1 and SeasonPro roles.
+2. **Clarified target:** SeasonPro module procedures must not independently decide or directly persist
+   Organisation role. An ordinary module user defaults to literal `MEMBER`; a C1 Owner may
+   deliberately create an Organisation Admin or additional Owner through the shared
+   Platform-owned authority contract.
+3. Organisation Admin creates Members only and cannot elevate Organisation authority.
+4. **Accepted:** a C1 Owner may create C1 Admins and additional C1 Owners, subject to
+   explicit same-tenant, audit, session and last-Owner safeguards.
+5. The exact safe workflow—direct creation, invitation/acceptance or a controlled combined
+   workflow—still needs confirmation. Containment must not remove the accepted C1 Owner
+   capability before its Platform-owned replacement is available.
 6. Module roles must be same-tenant, correct-module, active and non-template.
 7. Core Owner/Admin receives module administration only through an explicit assigned module
    role, not a runtime bypass.
@@ -56,7 +103,7 @@ Confirm or amend these statements:
 10. P1 impersonation uses the effective user's permissions unless a separately labelled,
     audited support override is deliberately invoked.
 
-## 4. Next Decision
+## 5. Next Decision
 
 If the matrix is accepted, explicitly authorise `PLAT-ROLE-02` as the next bounded Critical
 containment slice, incorporating `RA-C04` and a containment review of `RA-H02`. Do not combine

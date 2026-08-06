@@ -21,7 +21,9 @@ tenant-owned functional module roles, scope and Club affiliation.
 
 - consume the shared Platform provisioning/completion boundary rather than independently
   creating a second Core account lifecycle;
-- keep Core role read-only and clearly separate from SeasonPro roles;
+- keep Organisation authority clearly separate from SeasonPro roles; ordinary module-user
+  workflows treat it as read-only, while the C1 Owner's deliberate Admin/additional-Owner
+  request is routed through the Platform-owned authority contract;
 - validate every selected ModuleRole as same-tenant, LMSPro, active and non-template;
 - require a valid same-tenant Club affiliation when selected role scope requires Club;
 - do not infer Core role from League/Club/Both scope or role name;

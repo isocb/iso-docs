@@ -21,15 +21,18 @@ required.
 ## 1. Objective
 
 Remove the confirmed ways in which non-Owner/module procedures can create or assign Core
-Owner/Admin authority, without waiting for the broader shared authority-service redesign.
+Owner/Admin authority, while preserving the accepted ability of a C1 Owner to create C1
+Admins and additional C1 Owners through a Platform-owned authority contract.
 
 ## 2. Containment Contract
 
 ### SeasonPro procedures
 
-- remove Core `role` from `lmspro.users.create` input;
-- always create an ordinary SeasonPro user as Core `MEMBER`;
-- remove Core `role` from `lmspro.users.update` input and persistence;
+- remove independent Core-role policy and direct persistence from
+  `lmspro.users.create/update`;
+- create an ordinary module-only user as literal Organisation `MEMBER`;
+- permit a C1 Owner to request Organisation `ADMIN` or `OWNER` only through the bounded
+  Platform-owned same-tenant authority contract selected by the amended plan;
 - reject legacy/new callers which continue to submit that field rather than silently
   accepting or ignoring an elevation request;
 - retain same-tenant module-role and Club-affiliation management inside its existing
@@ -40,9 +43,11 @@ Owner/Admin authority, without waiting for the broader shared authority-service 
 ### Shared ordinary invitation
 
 - a Core `ADMIN` may invite only Core `MEMBER`;
-- an ordinary tenant invitation may not create `OWNER` while the ownership-appointment
-  decision remains unresolved;
-- a Core `OWNER` may invite `MEMBER` or `ADMIN` under the interim containment matrix; and
+- a Core `OWNER` may create/invite `MEMBER`, `ADMIN` or an additional `OWNER`, but only after
+  the Platform-owned path enforces same-tenant, self-change, last-Owner, audit and session
+  rules;
+- the current generic path must not accept `OWNER` merely because its schema accepts every
+  enum value; and
 - invalid escalation requests fail server-side with `FORBIDDEN` before user/invitation
   persistence.
 
@@ -58,16 +63,18 @@ Owner/Admin authority, without waiting for the broader shared authority-service 
 
 ### SeasonPro UI
 
-- remove the editable `Platform Role` control from the SeasonPro user modal;
-- do not send Core role in create/update payloads;
-- show neutral read-only guidance that Core tenant authority is managed through the
-  authorised organisation/Platform process; and
+- rename the business control to `Organisation Authority`; never label it `Platform Role`;
+- show it only to an authorised C1 Owner and route the request through the Platform-owned
+  contract, not the SeasonPro role payload;
+- for other actors, show neutral read-only guidance that Organisation authority is managed
+  by the tenant Owner; and
 - keep functional SeasonPro role and Club-affiliation controls visibly separate.
 
 ## 3. Explicit Non-Goals
 
-- no canonical shared service yet;
-- no new Owner appointment/transfer UI;
+- no broad canonical service migration beyond the minimum safe owner workflow required to
+  avoid removing accepted C1 Owner capability;
+- no wider Owner transfer/recovery redesign;
 - no schema, migration or data repair;
 - no change to existing user Core roles;
 - no redesign of account statuses, impersonation or module route entitlement;
@@ -82,14 +89,18 @@ Prove direct procedure calls cannot:
 2. let a module-authorised League/Club user change another person's Core role;
 3. let Core Admin create or update a Core Owner through SeasonPro;
 4. let Core Admin invite Admin or Owner through the ordinary invitation path;
-5. let Core Owner use the ordinary invitation path to create Owner;
+5. let Core Owner create another Owner through an unguarded generic enum path rather than
+   the accepted Platform-owned Owner workflow;
 6. relink or re-role an existing cross-tenant account during invitation acceptance;
 7. persist a partial User or Invitation after a refused request; or
 8. bypass exact tenant/module-role/Club validation for the fields still accepted.
 
 Also prove:
 
-- SeasonPro create produces Core Member plus the accepted module role/affiliation;
+- ordinary SeasonPro user creation produces literal Organisation Member plus the accepted
+  module role/affiliation;
+- an authorised C1 Owner can deliberately create an Organisation Admin and additional
+  Owner through the accepted Platform-owned path;
 - current Owner-only Core `updateRole` behaviour remains unchanged by containment;
 - explicit P1 procedures remain separately protected; and
 - existing user listing/editing does not demote a Core role merely by saving module fields.
@@ -99,14 +110,14 @@ build, Security Scans and exact staging smoke.
 
 ## 5. Human Staging Smoke
 
-- create League and Club users and confirm both are Core Members with their intended module
-  roles/affiliations;
+- create ordinary League and Club users and confirm both are Organisation Members with
+  their intended module roles/affiliations;
 - edit their SeasonPro roles/affiliations and confirm Core authority is unchanged;
-- confirm no editable Core-role control appears in SeasonPro;
+- confirm no editable Organisation-authority control appears for a non-Owner in SeasonPro;
 - as Core Admin, confirm ordinary Member invitation works and elevated invitation is
   refused;
-- as Core Owner, confirm the existing authorised Core role-management surface still works
-  only within its current boundary; and
+- as a C1 Owner, confirm deliberate creation of a C1 Admin and an additional C1 Owner uses
+  the Platform-owned contract and preserves the intended SeasonPro role/affiliation; and
 - use a copied/direct procedure test account to confirm refused escalation without altering
   a real user; and
 - with disposable tenant fixtures only, confirm a cross-tenant existing email cannot be

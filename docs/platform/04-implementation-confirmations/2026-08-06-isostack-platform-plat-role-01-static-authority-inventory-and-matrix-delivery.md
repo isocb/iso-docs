@@ -33,7 +33,7 @@ Reproducible searches covered:
 | Layer | Stored/derived fact | What it may decide | What it must not imply |
 | --- | --- | --- | --- |
 | P1 Platform authority | `PlatformAdmin` related to a dedicated Platform user | Explicit cross-tenant Platform operations and support entry | A fourth Core role or silent tenant persona |
-| Core tenant authority | `User.role`: Owner, Admin or Member | Organisation-wide administration under the accepted owner-safety matrix | A SeasonPro job, role scope or automatic module capability |
+| Core tenant authority | Literal `User.role`: Owner, Admin or Member | Organisation-wide administration under the accepted owner-safety matrix | A SeasonPro job, role scope or automatic module capability |
 | Product entitlement | Active/trial `OrganizationProduct` path to an enabled module | Whether the tenant may use the module | Which individual may see or mutate module data |
 | Module authority | Same-tenant, active `ModuleRole` IDs and component/action grants | Which module capabilities the person has | Core elevation or access to another module/tenant |
 | Module scope | `LEAGUE`, `CLUB` or `BOTH` | Breadth of module data context | A Core Owner/Admin/Member state |
@@ -99,13 +99,15 @@ ordinary recovery path. Any future execution needs its own exact-environment aut
 
 ## 5. Canonical Matrix For Human Acceptance
 
-`Allowed` below means the target contract, not a claim about current source.
+`Core` in this technical matrix means shared Organisation authority. `Core Member` is the
+literal `User.role = MEMBER`, not membership of a separate Core product. `Allowed` below
+means the target contract, not a claim about current source.
 
 | Actor/context | Core user authority | SeasonPro role/affiliation authority | Module/data result |
 | --- | --- | --- | --- |
 | P1 in Platform context | Allowed only through explicit P1 procedures with real-actor audit, owner safety and session action | Allowed through explicit same-tenant Platform support/provisioning service | No ordinary tenant module persona or hidden bypass |
 | P1 impersonating a tenant user | No additional Core mutation from the impersonated surface | Exactly the effective user's module capability unless an explicitly labelled support override is invoked | Cards, routes, API and RLS use one effective-subject result while retaining real-actor audit |
-| Tenant Owner | Create Member/Admin; manage Core roles subject to accepted owner appointment and last-Owner rules | Assign same-tenant active roles/affiliation when explicitly authorised | Needs explicit module-administrator assignment; Core Owner alone is not module capability |
+| Tenant Owner | Create Member/Admin/additional Owner through a Platform-owned same-tenant authority contract; manage roles subject to last-Owner rules | Assign same-tenant active roles/affiliation when explicitly authorised | Needs explicit module-administrator assignment; Core Owner alone is not module capability |
 | Tenant Admin | Create Members only; no Owner/Admin grant, self-change or owner-state change | Assign bounded same-tenant module roles/affiliation if the accepted matrix permits | No blanket module bypass |
 | Limited League Member | No Core role/status authority | Only explicitly granted module user-management actions; never Core mutation | League data/actions named by active role and component grants |
 | Club Member | No Core authority | At most bounded management inside the affiliated current Club when explicitly granted | Exact Club only; never League/other-Club access |
@@ -117,10 +119,10 @@ ordinary recovery path. Any future execution needs its own exact-environment aut
 
 The containment plan must cover four source-confirmed paths:
 
-1. remove Core role from `lmspro.users.create`;
-2. remove Core role from `lmspro.users.update`;
-3. restrict ordinary Core Admin invitation to Member and prohibit ordinary Owner invitation
-   until the ownership contract is accepted; and
+1. remove independent Core-role policy and direct persistence from `lmspro.users.create`;
+2. remove independent Core-role policy and direct persistence from `lmspro.users.update`;
+3. restrict Organisation Admin creation/invitation to Member while preserving a C1 Owner's
+   accepted ability to create Admin/additional Owner through a Platform-owned contract; and
 4. make invitation acceptance fail closed for an email already attached to another tenant;
    it must never relink or re-role that account.
 
@@ -132,9 +134,11 @@ change.
 
 Human acceptance is still required for:
 
-1. multiple Owner support and the controlled Owner appointment/transfer method;
+1. the exact direct/invitation/acceptance workflow by which a C1 Owner creates an Admin or
+   additional Owner;
 2. exact self-change, last-active-Owner, suspension and deactivation rules;
-3. whether Owner may create Admin directly and whether Admin is strictly Member-create only;
+3. whether Organisation Admin is strictly Member-create only or can request elevation for
+   Owner approval;
 4. which explicit module permission lets a limited League Member assign module roles or
    Club affiliation;
 5. whether Club-scoped user management exists and its exact target/Club boundary;
