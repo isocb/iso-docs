@@ -2,8 +2,8 @@
 
 Date: 2026-08-06
 
-Status: **AUTOMATED REVIEW, DEV/STAGING SECURITY SCANS AND PUBLIC STAGING HEALTH PASS;
-EXACT RENDER IDENTIFICATION AND HUMAN SMOKE PENDING; PRODUCTION PROMOTION BLOCKED**
+Status: **CLOSED — AUTOMATED REVIEW, DEV/STAGING SECURITY SCANS, PUBLIC HEALTH AND
+CONTROL-OWNER STAGING SMOKE 13/13 PASS; EXACT `72c02d92` PROMOTED TO MAIN 2026-08-06**
 
 Reviewed application commit:
 
@@ -20,6 +20,12 @@ Implementation confirmation:
 ## 1. Review Conclusion
 
 No blocking defect was found in the bounded diff.
+
+The control-owner staging smoke is accepted as 13/13 PASS. Step 10's clarification is the
+intended contract: Save Draft does not require acknowledgement; an attachment-bearing email
+must have current acknowledgement only before Send. The sole staging branch candidate was
+exact `72c02d92`, public staging health was green, and the control owner explicitly
+authorised promotion after completing the smoke.
 
 The review confirms:
 
@@ -59,42 +65,52 @@ Use controlled non-sensitive content and a controlled mailbox. Save Draft unless
 explicitly says Send.
 
 1. Fresh email with no files or dedicated links: confirm no responsibility panel appears.
-2. Add a normal hyperlink in the body: confirm no responsibility panel appears.
-3. Apply a template/footer containing a hyperlink: confirm no responsibility panel appears.
+   **PASS**
+2. Add a normal hyperlink in the body: confirm no responsibility panel appears. **PASS**
+3. Apply a template/footer containing a hyperlink: confirm no responsibility panel appears. PASS
 4. Add one valid dedicated HTTPS document link: confirm neutral external-link guidance
-   remains, no responsibility checkbox appears, and Save Draft/reopen succeeds.
+   remains, no responsibility checkbox appears, and Save Draft/reopen succeeds. **PASS**
 5. With a controlled single recipient, Send that links-only draft; confirm successful
-   no-attachment delivery.
+   no-attachment delivery. **PASS**
 6. Add one uploaded file: confirm the file-specific responsibility checkbox appears and
-   Send is blocked until it is accepted.
+   Send is blocked until it is accepted. **PASS**
 7. Add a dedicated link while retaining the file: confirm acknowledgement remains required
-   because the uploaded file exists.
+   because the uploaded file exists. **PASS**
 8. Accept the checkbox, remove the final uploaded file while retaining the link: confirm
-   the responsibility panel disappears.
-9. Add a new uploaded file: confirm fresh acceptance is required.
+   the responsibility panel disappears. **PASS**
+9. Add a new uploaded file: confirm fresh acceptance is required. **PASS**
 10. Save/reopen an accepted attachment draft: confirm the current acknowledgement is
-    represented accurately.
+    represented accurately. **PASS** — Save Draft is also intentionally permitted without
+    acknowledgement; Send remains blocked until current acknowledgement is accepted.
 11. If an older attachment draft is available, reopen it and confirm the superseded
-    combined notice does not appear accepted; re-accept and Save.
+    combined notice does not appear accepted; re-accept and Save. **PASS**
 12. Duplicate a links-only email and an attachment email: confirm only the attachment
-    duplicate requires fresh acknowledgement.
-13. Confirm Save Draft steps create no provider Send event.
+    duplicate requires fresh acknowledgement. **PASS**
+13. Confirm Save Draft steps create no provider Send event. **PASS**
 
-## 4. Required Evidence
+## 4. Recorded Evidence
 
-Record:
+- local/remote staging tip: `72c02d92bf7222793f70b24a1d13e541eb215efa`;
+- public staging health: HTTP 200, database connected, RLS 11/11;
+- human smoke: 13/13 PASS;
+- controlled provider receipt: PASS for the links-only Send in step 5;
+- Save Draft provider isolation: PASS; and
+- browser/server disagreement or unexpected resource error: none reported.
 
-- Render staging exact commit;
-- staging public health;
-- PASS/FAIL for steps 1–13;
-- controlled provider receipt for step 5 only; and
-- any browser/server disagreement or unexpected resource error.
+The Render UI's short exact-build label was not copied into this record. The control owner
+accepted attribution to the sole staging candidate by completing the focused staging smoke
+and explicitly authorising its promotion. No unresolved functional failure is hidden by
+that evidentiary substitution.
 
 Do not include real recipient addresses, message content, private object keys, session
 tokens or uploaded filenames in the evidence record.
 
-## 5. Promotion Decision
+## 5. Promotion And Closure
 
-All staging steps must pass before production promotion. A failure involving missing
-attachment acknowledgement, lost link validation/fingerprint protection, unexpected
-provider Send, or links-only blockage stops promotion and returns F3 to implementation.
+Local `main` was fast-forwarded from `83356030` to the exact staging tip `72c02d92` and
+pushed to `origin/main` on 2026-08-06. No schema, migration, environment or data action was
+required. Exact main Security Scan run `31095151929` passed. Public production health
+returned HTTP 200 with database connected and RLS 11/11.
+
+F3 is closed at this recorded release boundary. Any later production regression requires a
+new CR-Fix finding rather than silently reopening this completed slice.

@@ -19,7 +19,9 @@ accepted; its corrected additive-source/restrictive-eligibility plan was authori
 implemented at `ec7e0cc4`. All 15 staging human-smoke checks passed, the control owner
 authorised promotion, and dev/staging/main are exact at that commit. Render live exact-build
 confirmation remains pending. Existing saved drafts remain outside scope. The
-uploaded-file-only acknowledgement correction retains identifier F3 and follows F2.2.**
+uploaded-file-only acknowledgement correction retained identifier F3, passed its 13/13
+staging smoke and was promoted through main at exact `72c02d92` on 2026-08-06. F3 is
+closed.**
 
 Application baseline reviewed: `7154937c`
 

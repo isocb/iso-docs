@@ -2,8 +2,8 @@
 
 Date: 2026-08-06
 
-Status: **ACCEPTED REQUIRED FOLLOW-ON; SELECTED AS PORTFOLIO NOW; BOUNDED PLANNING AND
-IMPLEMENTATION AUTHORISED THROUGH THE NORMAL CONTROLLED CORRIDOR**
+Status: **COMPLETE AND CLOSED AT EXACT APPLICATION `72c02d92`; STAGING SMOKE 13/13 PASS;
+PROMOTED TO MAIN 2026-08-06**
 
 Parent CR-Fix:
 
@@ -97,6 +97,7 @@ rollback is expected because F3 introduces no schema or bulk data mutation.
 
 ## 7. Exit
 
-F3 exits only after automated review, exact staging deployment, controlled human smoke and
-the subsequent production gate. Its completion makes Role Authority the next portfolio
-project; it does not automatically authorise that project's application implementation.
+F3 exited after automated review, controlled staging smoke and the explicit production
+gate. Exact `72c02d92` is aligned through main and public production health is green. Role
+Authority is now the portfolio project; its first read-only slice receives only the
+separate authority recorded in its own lifecycle.

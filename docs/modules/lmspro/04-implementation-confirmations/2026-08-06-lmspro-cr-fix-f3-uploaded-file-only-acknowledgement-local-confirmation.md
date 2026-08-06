@@ -2,8 +2,8 @@
 
 Date: 2026-08-06
 
-Status: **IMPLEMENTATION/AUTOMATED GATES PASS AT EXACT APPLICATION `72c02d92`; DEV AND
-STAGING BRANCHES ALIGNED; SECURITY SCANS AND PUBLIC STAGING HEALTH PASS; HUMAN SMOKE PENDING**
+Status: **COMPLETE AT EXACT APPLICATION `72c02d92`; AUTOMATED GATES AND STAGING SMOKE PASS;
+DEV, STAGING AND MAIN ALIGNED; PUBLIC PRODUCTION HEALTH PASS**
 
 Accepted plan:
 
@@ -85,16 +85,18 @@ evidence. No historic sent record or stored resource is rewritten by deployment.
 
 Rollback is a bounded application revert. There is no migration or data rollback.
 
-## 6. Promotion Checkpoint And Remaining Gate
+## 6. Completed Promotion
 
 Exact application `72c02d92` is aligned across local dev, `origin/dev`, local staging and
 `origin/staging`. GitHub Security Scan runs `31093600886` (dev) and `31093614885` (staging)
 passed. At 2026-08-06 10:32:11 UTC, the public staging health endpoint returned HTTP 200,
 database connected and RLS enabled on 11/11 expected tables.
 
-Exact Render `Live at 72c02d9` identification and the control-owner human staging smoke
-remain pending. Production remains blocked until that evidence is supplied and the control
-owner explicitly authorises live promotion.
+The control-owner human staging smoke subsequently passed 13/13 and explicitly authorised
+promotion. Local `main` was fast-forwarded from `83356030` and pushed to `origin/main` at
+exact `72c02d92`. Exact main Security Scan run `31095151929` passed. Public production
+health is HTTP 200 with database connected and RLS enabled on 11/11 expected tables. No
+migration, environment or data action was required.
 
 Exact application commit:
 
