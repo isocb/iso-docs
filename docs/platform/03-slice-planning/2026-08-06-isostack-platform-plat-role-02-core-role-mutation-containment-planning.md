@@ -2,8 +2,8 @@
 
 Date: 2026-08-06
 
-Status: **CRITICAL CONTAINMENT PLAN PREPARED; NO IMPLEMENTATION AUTHORITY; PRODUCTION REMAINS
-UNCHANGED**
+Status: **IMPLEMENTED LOCALLY AT `5e551938`; AUTOMATED GATES PASS; AWAITING LOCAL HUMAN
+SMOKE; NO STAGING OR PRODUCTION PROMOTION**
 
 Accepted triage:
 
@@ -15,8 +15,13 @@ Dependency:
 required to close source-confirmed escalation paths.
 
 `PLAT-ROLE-01` completed that static boundary and added the active invitation-acceptance
-route to this plan. Human matrix acceptance and explicit implementation authority remain
-required.
+route to this plan. The complete 13-item matrix and this bounded implementation were
+accepted on 2026-08-06.
+
+Selected containment workflow: a controlled combined transaction. SeasonPro can submit a
+separately named `organizationAuthority` request, but the shared Platform-owned authority
+service alone validates, persists and audits Organisation authority. Module provisioning
+and that controlled authority action either commit together or fail together.
 
 ## 1. Objective
 
@@ -115,7 +120,7 @@ Also prove:
 Run focused router/UI tests, full tests, type-check, changed lint, verification, production
 build, Security Scans and exact staging smoke.
 
-## 5. Human Staging Smoke
+## 5. Human Local And Later Staging Smoke
 
 - create ordinary League and Club users and confirm both are Organisation Members with
   their intended module roles/affiliations;

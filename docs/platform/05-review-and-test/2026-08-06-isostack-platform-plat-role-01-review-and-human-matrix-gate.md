@@ -2,9 +2,8 @@
 
 Date: 2026-08-06
 
-Status: **STATIC INVENTORY REVIEW PASS; CORE AND C1/C2 CONTEXT TERMINOLOGY ACCEPTED; C1
-OWNER AND C2 SAME-NODE AUTHORITY CLARIFIED 2026-08-06; REMAINING MATRIX ITEMS PENDING;
-STOPPED BEFORE PLAT-ROLE-02**
+Status: **COMPLETE — STATIC INVENTORY REVIEW PASS; ALL 13 CANONICAL MATRIX ITEMS ACCEPTED
+2026-08-06; PLAT-ROLE-02 SEPARATELY AUTHORISED**
 
 Delivery record:
 
@@ -99,26 +98,26 @@ SeasonPro role: an explicit League/C1 module role
 
 ## 4. Human Review Checklist
 
-Confirm or amend these statements:
+Accepted canonical statements:
 
 1. **Accepted:** Core Owner/Admin/Member means the shared Organisation authority layer and
    remains separate from P1 and SeasonPro roles.
-2. **Clarified target:** SeasonPro module procedures must not independently decide or directly persist
+2. **Accepted:** SeasonPro module procedures must not independently decide or directly persist
    Organisation role. An ordinary module user defaults to literal `MEMBER`; a C1 Owner may
    deliberately create an Organisation Admin or additional Owner through the shared
    Platform-owned authority contract.
-3. Organisation Admin creates Members only and cannot elevate Organisation authority.
+3. **Accepted:** Organisation Admin creates Members only and cannot elevate Organisation authority.
 4. **Accepted:** a C1 Owner may create C1 Admins and additional C1 Owners, subject to
    explicit same-tenant, audit, session and last-Owner safeguards.
-5. The exact safe workflow—direct creation, invitation/acceptance or a controlled combined
-   workflow—still needs confirmation. Containment must not remove the accepted C1 Owner
-   capability before its Platform-owned replacement is available.
-6. Module roles must be same-tenant, correct-module, active and non-template.
-7. Core Owner/Admin receives module administration only through an explicit assigned module
+5. **Accepted:** the bounded controlled-combined workflow may be used for containment: the
+   SeasonPro form may request Organisation Authority, but the shared Platform-owned contract
+   alone validates, persists and audits it atomically with module provisioning.
+6. **Accepted:** Module roles must be same-tenant, correct-module, active and non-template.
+7. **Accepted:** Core Owner/Admin receives module administration only through an explicit assigned module
    role, not a runtime bypass.
-8. Club scope always requires an eligible same-tenant/current Club context.
-9. Read-only means server-refused mutations, not merely hidden controls.
-10. P1 impersonation uses the effective user's permissions unless a separately labelled,
+8. **Accepted:** Club scope always requires an eligible same-tenant/current Club context.
+9. **Accepted:** Read-only means server-refused mutations, not merely hidden controls.
+10. **Accepted:** P1 impersonation uses the effective user's permissions unless a separately labelled,
     audited support override is deliberately invoked.
 11. **Accepted:** C1 is the tenant-side module context and C2 is a client node within it;
     dashboard routing derives from validated module scope and node affiliation, not Core
@@ -128,11 +127,12 @@ Confirm or amend these statements:
 12. **Accepted:** a suitably permitted C2 Member may create other C2 Members only inside the
     actor's exact node. The target remains Organisation `MEMBER`, receives only eligible
     node-scoped roles, and cannot be attached to another node.
-13. C2 read-only and other capabilities come from module roles and are enforced server-side.
+13. **Accepted:** C2 read-only and other capabilities come from module roles and are enforced server-side.
 
 ## 5. Next Decision
 
-If the matrix is accepted, explicitly authorise `PLAT-ROLE-02` as the next bounded Critical
-containment slice, incorporating `RA-C04` and a containment review of `RA-H02`. Do not combine
-the canonical service, the fail-closed `RA-H07` C2 feature repair, live repair, every
-component family or impersonation redesign into that release.
+Decision completed 2026-08-06: the matrix was accepted and `PLAT-ROLE-02` was explicitly
+authorised as the next bounded Critical containment slice, incorporating `RA-C04` and the
+bounded `RA-H02` containment. The canonical-service expansion, fail-closed `RA-H07` C2
+feature repair, live repair, wider component families and impersonation redesign remain
+outside this release.

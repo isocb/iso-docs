@@ -11,16 +11,16 @@ infrastructure, security assurance and engineering controls.
 
 ## Current Position
 
-- The latest reconciled branch-aligned application baseline is `72c02d92`.
+- Deployed/remote branches remain `72c02d92`; local dev is `5e551938` for `PLAT-ROLE-02`.
 - The dependency advisory refresh is complete through live evidence.
-- Platform has no currently authorised application-code slice. Role Authority is active;
-  the `PLAT-ROLE-01` static inventory is complete and awaits human matrix acceptance.
+- Role Authority is active. All 13 `PLAT-ROLE-01` matrix items are accepted.
+- `PLAT-ROLE-02` is implemented locally; technical gates pass and human local smoke is due.
 
 ## Open Management Inputs
 
 - **Role authority clarification:** active self-contained project. Static inventory confirms
   four Critical Core escalation/relink paths and several High access-consistency findings.
-  The human matrix gate is `NOW`; `PLAT-ROLE-02` containment is `NEXT` but not authorised.
+  The `PLAT-ROLE-02` local human gate is `NOW`; exact-commit staging is `NEXT` after a pass.
 - **Support ticketing client readiness:** mandatory self-contained project after Role
   Authority, still awaiting Platform triage. Client enablement is
   blocked on tenant scope, server-side lifecycle authority, internal-note privacy,
@@ -44,8 +44,8 @@ expedite; it is not automatically an expedite.
 
 ## Next Decision
 
-Accept or amend the `PLAT-ROLE-01` authority matrix, then explicitly decide the bounded
-`PLAT-ROLE-02` Critical containment release. Complete the later Role Authority slices before
+Complete the `PLAT-ROLE-02` local human smoke at `5e551938`, then decide its exact-commit
+staging lifecycle. Complete the later Role Authority slices before
 Support Ticketing. Keep client support enablement off until its security/privacy and
 notification-operability boundaries are accepted and tested.
 

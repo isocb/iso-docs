@@ -29,26 +29,27 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application evidence:
 
 ```text
-dev = origin/dev = staging = origin/staging = 72c02d92
-main = origin/main = 72c02d92
+local dev = 5e551938 (PLAT-ROLE-02; not pushed)
+origin/dev = staging = origin/staging = main = origin/main = 72c02d92
 F3 tests/type/verify/build = PASS; dev/staging/main Security Scans = PASS
 F3 staging human smoke = 13/13 PASS; production promotion = COMPLETE
 staging and production public health = HTTP 200; database connected; RLS 11/11
-PLAT-ROLE-01 static inventory = COMPLETE; no database query or application change
+PLAT-ROLE-01 matrix = COMPLETE and all 13 items accepted
+PLAT-ROLE-02 automated/type/verify/build/security gates = PASS; local human smoke pending
 ```
 
 Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Platform/SeasonPro `PLAT-ROLE-01` authority inventory and canonical matrix | Static source inventory is complete at application `72c02d92`; no live query or application change occurred. Core/C1/C2 context, multiple Owners, C1 Owner authority and C2 same-node delegation are accepted; settle the remaining matrix decisions. |
-| **NEXT** | `PLAT-ROLE-02` Critical Core-role mutation containment | After matrix acceptance and explicit implementation authority, remove the four confirmed Core escalation/relink paths and review the Club-scope containment finding. Do not combine the wider authority service or live repair. |
+| **NOW** | `PLAT-ROLE-02` local human containment gate | Exact local `5e551938` has passed automated, regression, type, verification, build and security gates. Execute the disposable-account Organisation Authority, invitation and League/Club-context smoke matrix; no staging yet. |
+| **NEXT** | `PLAT-ROLE-02` exact-commit staging lifecycle | Only after the local gate passes, align/push the accepted exact commit and conduct the documented staging security/deployment/human gate. Do not begin `PLAT-ROLE-03` or live repair implicitly. |
 
 Registered and ordered work outside that pair:
 
-- Platform/SeasonPro role-authority clarification: active root project. `PLAT-ROLE-01`
-  static delivery is complete and awaits human matrix acceptance; `PLAT-ROLE-02` is the
-  separately authorised Critical containment candidate and has no code authority yet;
+- Platform/SeasonPro role-authority clarification: active root project. `PLAT-ROLE-01` is
+  accepted and complete; `PLAT-ROLE-02` is implemented only on local dev at `5e551938` and
+  awaits the explicit local human gate;
 - Platform support-ticketing client readiness: privacy/security and client-enablement triage
   input selected as the mandatory self-contained project after Role Authority, with the
   internal-note and server-authority findings eligible for an explicit expedite proposal
@@ -661,16 +662,17 @@ different documentation lifecycles.
 ## 7. Current Parent Control Decision
 
 The 2026-08-06 reconciliation in Section 0 is the current decision: F3 is complete at exact
-application `72c02d92`, and Role Authority is the active project. `PLAT-ROLE-01` static
-delivery is complete and awaits human matrix acceptance; `PLAT-ROLE-02` is the next Critical
-containment decision and has no code authority. Support Ticketing follows as its own project.
+deployed application `72c02d92`, and Role Authority is the active project. `PLAT-ROLE-01` is
+accepted and complete. `PLAT-ROLE-02` is implemented locally at `5e551938`; its human local
+gate is `Now` and its exact-commit staging lifecycle is `Next`. Support Ticketing follows the
+completed Role Authority project.
 FUND `1R-F-A` is preserved at its exact pre-planning boundary until the housekeeping
 outcomes are complete.
 R11-A is a separately authorised bounded UI release at `83356030`; local smoke is 18/18 and
 staging smoke is all green. The exact commit is aligned through `origin/main`, the live
 deployment is triggered and public live health is PASS. Exact Render live-build
 identification and authenticated production smoke remain. It does not alter the current
-`PLAT-ROLE-01`/`PLAT-ROLE-02` `Now`/`Next` pair.
+`PLAT-ROLE-02` local/staging `Now`/`Next` pair.
 R10-A is complete after the control owner's totally-green production smoke. The detailed
 history below explains how the lanes reached that position and must not be read as a
 competing selector.

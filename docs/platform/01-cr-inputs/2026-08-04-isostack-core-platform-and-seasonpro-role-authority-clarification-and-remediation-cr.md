@@ -4,9 +4,8 @@ Date: 2026-08-04
 
 Owning lane: IsoStack Platform, with a bounded SeasonPro / LMSPro consumer outcome
 
-Status: **ACTIVE PROJECT; PLAT-ROLE-01 STATIC INVENTORY COMPLETE; CORE AND C1/C2 CONTEXT
-TERMINOLOGY, C1 OWNER AUTHORITY AND C2 SAME-NODE DELEGATION ACCEPTED; REMAINING HUMAN
-MATRIX ITEMS PENDING; NO APPLICATION OR DATA MUTATION AUTHORISED**
+Status: **ACTIVE PROJECT; PLAT-ROLE-01 MATRIX ACCEPTED; PLAT-ROLE-02 IMPLEMENTED LOCALLY AT
+`5e551938` AND AWAITING HUMAN SMOKE; NO STAGING, PRODUCTION OR DATA CHANGE**
 
 Application source reviewed:
 
@@ -41,7 +40,9 @@ Controlled outcome records:
 Current delivery evidence:
 
 - [`PLAT-ROLE-01 static authority inventory and matrix delivery`](../04-implementation-confirmations/2026-08-06-isostack-platform-plat-role-01-static-authority-inventory-and-matrix-delivery.md); and
-- [`PLAT-ROLE-01 review and human matrix gate`](../05-review-and-test/2026-08-06-isostack-platform-plat-role-01-review-and-human-matrix-gate.md).
+- [`PLAT-ROLE-01 review and human matrix gate`](../05-review-and-test/2026-08-06-isostack-platform-plat-role-01-review-and-human-matrix-gate.md);
+- [`PLAT-ROLE-02 implementation confirmation`](../04-implementation-confirmations/2026-08-06-isostack-platform-plat-role-02-core-role-mutation-containment-implementation.md); and
+- [`PLAT-ROLE-02 local review and human smoke gate`](../05-review-and-test/2026-08-06-isostack-platform-plat-role-02-review-and-local-human-smoke-gate.md).
 
 ## 1. Human Introduction — What This CR Is About
 
@@ -550,12 +551,11 @@ This CR input does not:
 - reopen completed SeasonPro business-status remediation; or
 - assume that every current role assignment is wrong.
 
-Platform-led triage and the `PLAT-ROLE-01` static inventory are complete. They confirm four
-Critical containment paths within a larger High-severity consistency project and preserve
-Platform parent / SeasonPro consumer ownership. The current controlled action is human
-completion of the remaining canonical-matrix decisions. `PLAT-ROLE-02` may receive separate
-implementation authority afterwards. The remaining plans stay conditional on their
-recorded dependencies and the human decisions in section 10.
+Platform-led triage and the accepted `PLAT-ROLE-01` matrix are complete. `PLAT-ROLE-02` was
+separately authorised and its bounded Critical containment is implemented locally at
+`5e551938`. The current stop is its human local smoke gate; no staging, production, schema or
+live-data change is authorised by this record. Later plans remain conditional on their own
+recorded dependencies and decisions.
 
 ## 14. Evidence And Orientation References
 

@@ -2,9 +2,9 @@
 
 Date: 2026-08-06
 
-Status: **ACTIVE PORTFOLIO PROJECT; PLAT-ROLE-01 STATIC INVENTORY COMPLETE; CORE AND C1/C2
-CONTEXT TERMINOLOGY, C1 OWNER AUTHORITY AND C2 SAME-NODE DELEGATION ACCEPTED; REMAINING
-MATRIX ITEMS PENDING; CRITICAL PLAT-ROLE-02 CONTAINMENT NOT YET IMPLEMENTATION-AUTHORISED**
+Status: **ACTIVE PORTFOLIO PROJECT; PLAT-ROLE-01 MATRIX ACCEPTED; PLAT-ROLE-02 IMPLEMENTED
+LOCALLY AT `5e551938`, AUTOMATED GATES PASS, AWAITING LOCAL HUMAN SMOKE; NO STAGING OR LIVE
+PROMOTION**
 
 Source CR:
 
@@ -31,10 +31,10 @@ Schema     No schema need established
 Release    Multiple exact, reversible slices; no combined big-bang release
 ```
 
-Email F3 is closed at exact application `72c02d92`. Role Authority is now the root project
-and `PLAT-ROLE-01` has executed inside its read-only boundary. This document does not
-authorise containment code. The remaining human matrix items and an explicit `PLAT-ROLE-02`
-decision remain required.
+Email F3 is closed at exact application `72c02d92`. Role Authority is now the root project.
+The complete `PLAT-ROLE-01` matrix was accepted and `PLAT-ROLE-02` was explicitly
+authorised. Its bounded containment is implemented locally at `5e551938`; human local smoke
+is the current stop gate.
 
 ## 2. Confirmed Authority Layers
 
@@ -86,8 +86,8 @@ cross-tenant disclosure is asserted by this triage.
 
 | Order | Slice | Purpose | Current authority |
 | --- | --- | --- | --- |
-| 1 | `PLAT-ROLE-01` | Complete writer/consumer/static assignment inventory and settle the canonical matrix | Static delivery complete; terminology and C1 Owner authority accepted; remaining matrix items pending; no live query run |
-| 2 | `PLAT-ROLE-02` | Remove unauthorized Core-role mutation from SeasonPro, ordinary Admin invitation and cross-tenant invitation acceptance paths | Critical containment plan requires amendment/explicit code authority |
+| 1 | `PLAT-ROLE-01` | Complete writer/consumer/static assignment inventory and settle the canonical matrix | Complete; all 13 matrix items accepted; no live query run |
+| 2 | `PLAT-ROLE-02` | Remove unauthorized Core-role mutation from SeasonPro, ordinary Admin invitation and cross-tenant invitation acceptance paths | Implemented locally at `5e551938`; automated/build/security gates pass; awaiting human local smoke |
 | 3 | `PLAT-ROLE-03` | Introduce one audited Platform Core-authority service with owner/session safety | Conditional plan prepared; business decisions and explicit authority required |
 | 4 | `LMS-ROLE-01` | Align SeasonPro provisioning, module-role assignment, Club affiliation and Unassigned repairability | Conditional consumer plan prepared |
 | 5 | `LMS-ROLE-02` | Align SeasonPro component/card/direct-action and read-only enforcement | Conditional consumer plan prepared; inventory controls exact file list |
