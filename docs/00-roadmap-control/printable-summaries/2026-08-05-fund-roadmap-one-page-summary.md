@@ -1,6 +1,6 @@
 # FUND Roadmap — One-Page Summary
 
-Snapshot: 2026-08-06
+Snapshot: 2026-08-09
 Status: Printable management summary — **not delivery authority**
 
 ## Purpose
@@ -13,12 +13,16 @@ payment contracts remain owned by Commerce Core.
 
 - **Portfolio NOW:** corrected `PLAT-ROLE-02` replacement local human containment gate at
   `7e453665`.
-- **Portfolio NEXT:** `PLAT-ROLE-02` exact-commit staging lifecycle, followed by the
-  remaining Role Authority slices and Support Ticketing client readiness.
+- **Portfolio NEXT:** restore the newly failed protected-branch dependency gate and conduct
+  the `PLAT-ROLE-02` exact-commit staging lifecycle, followed by the remaining Role
+  Authority slices and Support Ticketing client readiness.
 - No renderer implementation, later `1R-F` branch, `1R-G` work or production artwork system
   is authorised by the planning selection.
 - Remote dev/staging/main remain exact `72c02d92`; local dev contains the unpromoted
   corrective `PLAT-ROLE-02` commit `7e453665`.
+- The unchanged protected lockfile now has two new High advisory findings. Local Role smoke
+  may continue, but the next remote promotion is blocked pending explicit CR-Fix acceptance
+  and a passing exact Security Scan.
 - `1R-F-A` remains the exact FUND resumption point, but all FUND planning and implementation
   is parked until F3, Role Authority and Support Ticketing are complete.
 

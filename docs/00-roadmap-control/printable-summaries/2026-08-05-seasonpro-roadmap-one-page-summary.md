@@ -1,6 +1,6 @@
 # SeasonPro Roadmap — One-Page Summary
 
-Snapshot: 2026-08-06
+Snapshot: 2026-08-09
 Status: Printable management summary — **not delivery authority**
 
 ## Purpose
@@ -14,7 +14,8 @@ communications behaviour.
   is aligned through main, and is closed with public production health green.
 - **Portfolio NOW:** corrected `PLAT-ROLE-02` replacement local human containment gate at
   `7e453665`.
-- **Portfolio NEXT:** exact-commit `PLAT-ROLE-02` staging lifecycle after local acceptance.
+- **Portfolio NEXT:** exact-commit `PLAT-ROLE-02` staging lifecycle after local acceptance
+  and restoration of the newly failed protected-branch dependency gate.
 - F1 human staging smoke passes through the maximum available 440-recipient draft, with a
   341 ms broad-case server wait.
 - F2 failed because it treated C1/C2/hat-swap access context as independently selectable
@@ -45,6 +46,9 @@ communications behaviour.
   `7e453665` contains the four Critical paths, complete persona enforcement and bounded
   Club-access finding locally; technical gates pass, with no staging/live/data change.
   Support Ticketing follows the Role project; FUND remains parked.
+- Two newly published/reviewed High dependency advisories now fail Security Scan against
+  unchanged protected branches. The correction is a separate Platform CR-Fix candidate and
+  does not invalidate local SeasonPro smoke, but no remote promotion may bypass it.
 
 ## Recently Completed
 
@@ -76,8 +80,9 @@ the selected matrix/containment boundaries; do not combine live repair or the wi
 
 ## Next Decision
 
-Complete the replacement `PLAT-ROLE-02` local human gate, then decide its staging lifecycle. Support
-Ticketing follows the completed Role project before FUND resumes.
+Complete the replacement `PLAT-ROLE-02` local human gate, then restore the protected-branch
+Security Scan before its staging lifecycle. Support Ticketing follows the completed Role
+project before FUND resumes.
 
 Authoritative source:
 [`LMSPro / SeasonPro Roadmap And Slice Control`](../../modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md)

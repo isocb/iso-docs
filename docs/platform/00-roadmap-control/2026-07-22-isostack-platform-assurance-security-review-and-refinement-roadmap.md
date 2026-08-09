@@ -458,7 +458,33 @@ elevate it if the inventory finds cross-tenant data exposure, unauthorised mutat
 another security-boundary failure. Registration does not authorise application, schema,
 migration, deployment or data changes and does not reopen `PLAT-ASSURE-03`.
 
-## 8. Open Planning Questions
+## 8. 2026-08-09 Protected-Branch Dependency-Gate Finding
+
+The control owner reported failed GitHub Security Scan runs while local `PLAT-ROLE-02`
+human testing was in progress. Read-only investigation confirms that all three protected
+branches remain aligned at exact `72c02d92` and share a lockfile which now produces two
+High npm audit findings:
+
+- `js-yaml@4.3.0`, development-only through ESLint, affected by
+  `GHSA-5p4m-2wfm-xmqj`; and
+- `nanoid@3.3.16`, below PostCSS, affected by `GHSA-2v37-7h3g-55p8` /
+  `CVE-2026-67213`.
+
+The repository fail-closed audit validator correctly refuses the report. Static source and
+dependency-tree review found no application import or exposed vulnerable call pattern, so
+reviewed live exploitability is Low. The known-High dependency posture and certain
+protected-branch promotion failure make release-gate impact High.
+
+The registered source and full triage are:
+
+- `docs/platform/01-cr-inputs/CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md`; and
+- `docs/platform/02-triage/2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh-triage.md`.
+
+This is an urgent remedial expedite candidate requiring explicit acceptance. It does not
+displace the active local Role Authority smoke automatically, but it blocks the next remote
+promotion until a bounded patched dependency commit passes the exact Security Scan.
+
+## 9. Open Planning Questions
 
 The bounded slice plan must determine:
 
@@ -473,7 +499,7 @@ The bounded slice plan must determine:
 5. which CI workflow becomes the authoritative lint gate and how branch protection will
    consume it.
 
-## 9. Promotion And Monthly Reconciliation Rule
+## 10. Promotion And Monthly Reconciliation Rule
 
 At each monthly review:
 

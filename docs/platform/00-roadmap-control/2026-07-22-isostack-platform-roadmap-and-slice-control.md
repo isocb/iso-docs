@@ -2,7 +2,7 @@
 
 Date: 2026-07-22
 
-Last reconciled: 2026-08-06
+Last reconciled: 2026-08-09
 
 Status: Active authoritative Platform child roadmap; no implementation authorised by
 this document alone
@@ -19,7 +19,7 @@ Application routing reference:
 
 `isostack-bedrock/src/app/README.md`
 
-## 0. Authoritative CR Inventory And Current Platform Disposition — 2026-08-05
+## 0. Authoritative CR Inventory And Current Platform Disposition — 2026-08-09
 
 This file is confirmed as the one authoritative Platform child roadmap. The Platform
 Assurance, Security Review And Refinement Roadmap remains a subordinate finding/register
@@ -38,6 +38,7 @@ default.
 | [`2026-07-27-isostack-platform-auth-dependency-and-audit-gate-security-remediation-cr-input.md`](../01-cr-inputs/2026-07-27-isostack-platform-auth-dependency-and-audit-gate-security-remediation-cr-input.md) | Completed through the documented `PLAT-ASSURE-03` dev/staging lifecycle and human gate; no separate production claim is added by this reconciliation | Closed at its recorded evidence boundary; `PLAT-REFINE-03` and `PLAT-REFINE-04` retain separate follow-up concerns |
 | [`2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md`](../01-cr-inputs/2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md) | Active root project; all 13 `PLAT-ROLE-01` matrix items accepted with corrected C1/C2 persona wording; first `PLAT-ROLE-02` checkpoint `5e551938` failed usefully and was not promoted; corrective `7e453665` passes technical gates locally; no staging/live/data change | Root `Now` is the replacement `PLAT-ROLE-02` local human gate and `Next` is its exact-commit staging lifecycle; `LMS-ROLE-01` retains later C2 same-node delegation |
 | [`2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md`](../01-cr-inputs/2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md) | Captured; selected as the mandatory self-contained project after Role Authority; awaiting formal Platform triage | Client-enablement and privacy/security project; internal-note privacy, server lifecycle authority and notification operability precede client enablement; Platform Notice remains separable and non-expedite |
+| [`CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md`](../01-cr-inputs/CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md) | Triage complete: unchanged protected branches at `72c02d92` now reproduce two High advisories in `js-yaml@4.3.0` and `nanoid@3.3.16`; reviewed live exploitability Low, release-gate impact High; no implementation yet | Urgent remedial expedite candidate requiring explicit acceptance; local Role smoke continues, but the next push/promotion is blocked until an exact correction passes Security Scan |
 
 Current Platform portfolio disposition:
 
@@ -46,7 +47,10 @@ Current Platform portfolio disposition:
   `PLAT-ROLE-02` has been corrected and technically verified locally at `7e453665`; it
   awaits replacement human local smoke and has not been pushed or promoted. Support
   Ticketing remains the mandatory following
-  self-contained project and still requires triage and bounded planning; and
+  self-contained project and still requires triage and bounded planning;
+- the 2026-08-09 dependency CR-Fix is an urgent remedial candidate, not yet authorised;
+  every protected branch shares the failing dependency resolution, so the candidate must
+  receive an explicit passing disposition before the next staging lifecycle can begin;
 - an evidenced live security/privacy failure may still be proposed to the root as an
   expedite candidate under the ordinary control process.
 

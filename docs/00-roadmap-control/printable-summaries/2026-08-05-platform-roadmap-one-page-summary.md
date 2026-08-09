@@ -1,6 +1,6 @@
 # Platform Roadmap — One-Page Summary
 
-Snapshot: 2026-08-06
+Snapshot: 2026-08-09
 Status: Printable management summary — **not delivery authority**
 
 ## Purpose
@@ -18,13 +18,18 @@ infrastructure, security assurance and engineering controls.
   C1/C2 persona wording.
 - First `PLAT-ROLE-02` checkpoint `5e551938` failed usefully and was not promoted.
   Corrective `7e453665` passes technical gates; replacement human local smoke is due.
+- The unchanged protected-branch lockfile now reports two new High advisories in `js-yaml`
+  and `nanoid`. Reviewed live exploitability is Low, but the Security Scan and next remote
+  promotion are blocked. A bounded dependency CR-Fix awaits explicit expedite acceptance.
 
 ## Open Management Inputs
 
 - **Role authority clarification:** active self-contained project. Static inventory confirms
   four Critical Core escalation/relink paths and several High access-consistency findings.
   The replacement `PLAT-ROLE-02` local human gate is `NOW`; exact-commit staging is `NEXT`
-  after a pass.
+  after a pass and a restored Security Scan.
+- **Security Scan advisory refresh:** urgent remedial expedite candidate. Patch two
+  transitive dependencies only; do not suppress audit findings or absorb unrelated updates.
 - **Support ticketing client readiness:** mandatory self-contained project after Role
   Authority, still awaiting Platform triage. Client enablement is
   blocked on tenant scope, server-side lifecycle authority, internal-note privacy,
@@ -48,8 +53,9 @@ expedite; it is not automatically an expedite.
 
 ## Next Decision
 
-Complete the replacement `PLAT-ROLE-02` local human smoke at `7e453665`, then decide its
-exact-commit staging lifecycle. Complete the later Role Authority slices before
+Complete the replacement `PLAT-ROLE-02` local human smoke at `7e453665`, explicitly accept
+or reject the bounded dependency CR-Fix, and restore Security Scan before staging. Complete
+the later Role Authority slices before
 Support Ticketing. Keep client support enablement off until its security/privacy and
 notification-operability boundaries are accepted and tested.
 

@@ -2,11 +2,11 @@
 
 Date: 2026-07-27
 
-Last portfolio reconciliation: 2026-08-06
+Last portfolio reconciliation: 2026-08-09
 
 Status: Active parent roadmap
 
-## 0. Current Portfolio Control — 2026-08-06
+## 0. Current Portfolio Control — 2026-08-09
 
 This section is the current cross-lane control and supersedes older global `single next`
 wording later in this document. Older statements remain evidence of the sequence at the
@@ -31,25 +31,30 @@ Current application evidence:
 ```text
 local dev = 7e453665 (corrected PLAT-ROLE-02; not pushed)
 origin/dev = staging = origin/staging = main = origin/main = 72c02d92
-F3 tests/type/verify/build = PASS; dev/staging/main Security Scans = PASS
+F3 tests/type/verify/build and promotion-time dev/staging/main Security Scans = PASS
 F3 staging human smoke = 13/13 PASS; production promotion = COMPLETE
 staging and production public health = HTTP 200; database connected; RLS 11/11
 PLAT-ROLE-01 matrix = COMPLETE; all 13 items accepted with corrected C1/C2 persona wording
-PLAT-ROLE-02 corrective automated/type/verify/build/security gates = PASS; replacement local human smoke pending
+PLAT-ROLE-02 corrective automated/type/verify/build gates = PASS; replacement local human smoke pending
+current protected-branch dependency gate = FAIL on 2 new High advisories; no Role code causation
 ```
 
 Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | `PLAT-ROLE-02` replacement local human containment gate | First checkpoint `5e551938` failed usefully because its test exposed the invalid Member + League model and was not promoted. Corrective exact local `7e453665` has passed automated, regression, type, verification, build and security gates. Execute the corrected C1 Owner/Admin, C2 Member, invitation and hat-swap smoke matrix; no staging yet. |
-| **NEXT** | `PLAT-ROLE-02` exact-commit staging lifecycle | Only after the local gate passes, align/push the accepted exact commit and conduct the documented staging security/deployment/human gate. Do not begin `PLAT-ROLE-03` or live repair implicitly. |
+| **NOW** | `PLAT-ROLE-02` replacement local human containment gate | First checkpoint `5e551938` failed usefully because its test exposed the invalid Member + League model and was not promoted. Corrective exact local `7e453665` passed its implementation-time automated, regression, type, verification and build gates. The later independent dependency-advisory failure does not invalidate local persona smoke, but blocks remote promotion. Execute the corrected C1 Owner/Admin, C2 Member, invitation and hat-swap smoke matrix; no staging yet. |
+| **NEXT** | `PLAT-ROLE-02` exact-commit staging lifecycle | Only after the local gate passes and the new protected-branch dependency failure has an accepted, passing disposition, align/push the accepted exact commit and conduct the documented staging security/deployment/human gate. Do not bypass Security Scan or begin `PLAT-ROLE-03`/live repair implicitly. |
 
 Registered and ordered work outside that pair:
 
 - Platform/SeasonPro role-authority clarification: active root project. `PLAT-ROLE-01` is
   corrected, accepted and complete; `PLAT-ROLE-02` is implemented only on local dev at
   `7e453665` and awaits the replacement local human gate;
+- Platform protected-branch Security Scan advisory refresh: new `CR-Fix` triaged as an urgent
+  remedial expedite candidate after the unchanged `72c02d92` lockfile began reporting
+  `js-yaml` and `nanoid` High advisories; local Role smoke may continue, but the next remote
+  promotion is blocked until an explicitly accepted correction restores the gate;
 - Platform support-ticketing client readiness: privacy/security and client-enablement triage
   input selected as the mandatory self-contained project after Role Authority, with the
   internal-note and server-authority findings eligible for an explicit expedite proposal

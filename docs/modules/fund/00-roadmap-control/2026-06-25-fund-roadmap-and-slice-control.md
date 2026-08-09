@@ -2,7 +2,7 @@
 
 Created: 2026-06-25
 
-Last consolidated: 2026-08-06
+Last consolidated: 2026-08-09
 
 Status: Active authoritative control for the FUND lane
 
@@ -42,7 +42,7 @@ This document is planning/documentation only. It does not implement code, change
 This FUND roadmap controls the FUND lane only. It records Commerce dependencies but does not
 own or sequence Commerce Core implementation.
 
-## 0. Authoritative CR Inventory And Current FUND Disposition — 2026-08-06
+## 0. Authoritative CR Inventory And Current FUND Disposition — 2026-08-09
 
 This file is confirmed as the one authoritative FUND child roadmap. The strategic
 completion overview and refinement/pilot-placement register remain subordinate. The root
@@ -69,16 +69,18 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> LMSPro Email CR-Fix F3 accepted bounded implementation
-ROOT NEXT -> Platform/SeasonPro Role Authority bounded project
+ROOT NOW  -> PLAT-ROLE-02 replacement local human containment gate at 7e453665
+ROOT NEXT -> PLAT-ROLE-02 exact-commit staging lifecycle after local acceptance and a restored Security Scan
 THEN      -> Platform Support Ticketing client-readiness project
 FUND      -> 1R-F-A preserved at its exact pre-planning boundary
 ```
 
-Revised business priority creates a bounded housekeeping sequence before FUND resumes:
-Email F3, Role Authority, then Support Ticketing. `1R-F-A` remains the exact FUND resumption
-point, but its planning and executable proof are no longer root `Now`/`Next`. No FUND
-implementation is authorised while those three prerequisite projects remain open.
+Email F3 is complete. Revised business priority retains Role Authority and then Support
+Ticketing as the remaining bounded housekeeping sequence before FUND resumes. A new Platform
+dependency CR-Fix is an urgent remedial candidate and blocks the next remote promotion until
+the Security Scan is restored. `1R-F-A` remains the exact FUND resumption point, but its
+planning and executable proof are not root `Now`/`Next`. No FUND implementation is authorised
+while those prerequisite projects remain open.
 
 ## 1. Control Authority And Reading Rule
 
@@ -105,24 +107,24 @@ the position when that material was written and must not select new work.
 Current application repository state:
 
 ```text
-application dev/origin dev: 83356030
-application staging/origin staging: 83356030
-application main/origin main: 83356030
-live branch promotion/public health: PASS at 83356030 branch tip; exact Render identity and authenticated production smoke remain separate
-IsoDocs baseline for this reconciliation: 0a97b0d plus the current documentation changes
+application local dev: 7e453665 (corrective PLAT-ROLE-02; unpushed)
+application origin/dev, staging, origin/staging, main and origin/main: 72c02d92
+live public health at the recorded promoted baseline: PASS
+current protected-branch dependency gate: FAIL on 2 new High advisories
 ```
 
 Current consolidated delivery state:
 
 - Commerce `A1` through `A7`, FUND `1R-C1` through `1R-D` and Project Intake/creation
   `1P-G-R3-A` through `R3-D` are included in the promoted application ancestry;
-- application dev, staging and main are aligned at `83356030`; its ancestry includes E-D
-  and the previously promoted FUND/Commerce application work;
+- protected application dev, staging and main are aligned at `72c02d92`; its ancestry
+  includes `83356030`, E-D and the previously promoted FUND/Commerce application work;
 - E-D adds no migration and performed no shared database action; shared database state
   remains governed by the preceding promotion records;
-- E-D secret detection, schema security and TypeScript CI gates passed. The overall dev
-  Security Scan remains red only on the same two high dependency advisories already present
-  on the preceding `e850c47b` baseline; dependency manifests are unchanged by E-D;
+- the historical E-D secret detection, schema security and TypeScript CI evidence remains
+  unchanged. On 2026-08-09 the current protected lockfile began reproducing two different
+  new High advisories in `js-yaml` and `nanoid`; these do not originate in FUND work but
+  block the next protected-branch promotion;
 - the staging application health check passed with its database connected and RLS enabled
   on all 11 expected tables;
 - prior human FUND administrator login and pre-existing UI smoke testing passed; E-B/E-C

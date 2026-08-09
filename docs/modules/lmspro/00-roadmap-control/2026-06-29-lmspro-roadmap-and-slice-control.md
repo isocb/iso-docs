@@ -1,7 +1,7 @@
 # LMSPro / SeasonPro Roadmap And Slice Control
 
 Date: 2026-06-29
-Last updated: 2026-08-06
+Last updated: 2026-08-09
 Module: LMSPro / SeasonPro
 Control status: Active authoritative LMSPro / SeasonPro child roadmap and delivery-cycle control
 
@@ -9,7 +9,7 @@ Parent portfolio control:
 
 `docs/00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md`
 
-## 0. Authoritative CR Inventory And Current LMSPro Disposition — 2026-08-06
+## 0. Authoritative CR Inventory And Current LMSPro Disposition — 2026-08-09
 
 This file is confirmed as the one authoritative LMSPro / SeasonPro child roadmap. The root
 Platform/module roadmap owns the one serial cross-lane `Now` and `Next`. CR inputs, triage,
@@ -40,7 +40,7 @@ Current LMSPro portfolio disposition:
 
 ```text
 NOW  -> PLAT-ROLE-02 replacement local human containment gate at 7e453665
-NEXT -> PLAT-ROLE-02 exact-commit staging lifecycle after local acceptance
+NEXT -> PLAT-ROLE-02 exact-commit staging lifecycle after local acceptance and restored Security Scan
 THEN -> Platform Support Ticketing client-readiness project
 PARKED -> FUND 1R-F-A at its exact pre-planning boundary
 ```
@@ -50,7 +50,7 @@ pair is therefore:
 
 ```text
 NOW  -> PLAT-ROLE-02 replacement local human containment gate at 7e453665
-NEXT -> PLAT-ROLE-02 exact-commit staging lifecycle after local acceptance
+NEXT -> PLAT-ROLE-02 exact-commit staging lifecycle after local acceptance and restored Security Scan
 THEN -> Platform Support Ticketing client-readiness project
 PARKED -> FUND 1R-F-A bounded planning
 ```
@@ -60,7 +60,9 @@ Ticketing remains the required following project. FUND `1R-F-A` is preserved at 
 pre-planning boundary until those housekeeping outcomes are complete. `PLAT-ROLE-01` is
 corrected, accepted and complete. First `PLAT-ROLE-02` checkpoint `5e551938` failed usefully
 and was not promoted; corrective `7e453665` awaits replacement human smoke and has not
-changed staging, production or live data.
+changed staging, production or live data. A separate 2026-08-09 Platform dependency CR-Fix
+is an urgent remedial candidate after two new High advisories appeared against unchanged
+protected branches. It does not stop local Role smoke but blocks the next remote promotion.
 
 ## Purpose
 
@@ -147,6 +149,7 @@ F3 staging smoke = 13/13 PASS; exact main promotion = COMPLETE
 Render live public health = PASS; database connected; RLS 11/11
 PLAT-ROLE-01 = complete; all 13 matrix items accepted with corrected C1/C2 persona wording
 PLAT-ROLE-02 = corrective local technical gates PASS; replacement human local smoke pending
+protected-branch dependency gate = FAIL on 2 new High advisories; remediation not yet authorised
 ```
 
 Application `72c02d92` is the current branch-aligned baseline and includes prior LMSPro,
@@ -1118,8 +1121,8 @@ Do not implement these until slice planning accepts them:
 
 ```text
 Execute the documented replacement `PLAT-ROLE-02` local human smoke against exact
-`7e453665`. Stop before staging. After acceptance, reconcile and run the separate
-exact-commit staging lifecycle.
+`7e453665`. Stop before staging. After acceptance, explicitly dispose of the Platform
+dependency CR-Fix and restore the Security Scan before the exact-commit staging lifecycle.
 ```
 
 Goal:
