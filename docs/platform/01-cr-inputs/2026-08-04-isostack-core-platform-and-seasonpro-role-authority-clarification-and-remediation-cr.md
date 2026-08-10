@@ -567,10 +567,11 @@ This CR input does not:
 Platform-led triage and the corrected accepted `PLAT-ROLE-01` matrix are complete.
 `PLAT-ROLE-02` was separately authorised. Checkpoint `5e551938` failed usefully at its first
 human test because it permitted Member + League; it was not promoted. Corrective child
-`7e453665` implements the complete C1/C2 persona contract and has passed technical gates.
-The current stop is its replacement human local smoke gate; no staging, production, schema
-or live-data change is authorised by this record. Later plans remain conditional on their
-own recorded dependencies and decisions.
+`7e453665` implements the complete C1/C2 persona contract. Its complete local matrix and
+bounded children pass; exact combined `60ac76c1` is now on dev and staging with both branch
+Security Scans and public staging health green. The current stop is the indicative staging
+human smoke; no production, schema or live-data change is authorised by this record. Later
+plans remain conditional on their own recorded dependencies and decisions.
 
 ## 14. Evidence And Orientation References
 

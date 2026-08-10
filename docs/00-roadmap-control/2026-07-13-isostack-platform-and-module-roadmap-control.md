@@ -29,23 +29,24 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application evidence:
 
 ```text
-local dev = combined exact candidate 60ac76c1 (Role child b1ede26f + dependency child 60ac76c1; not pushed)
-origin/dev = staging = origin/staging = main = origin/main = 72c02d92
+local dev = origin/dev = local staging = origin/staging = exact combined candidate 60ac76c1
+main = origin/main = 72c02d92
 F3 tests/type/verify/build and promotion-time dev/staging/main Security Scans = PASS
 F3 staging human smoke = 13/13 PASS; production promotion = COMPLETE
 staging and production public health = HTTP 200; database connected; RLS 11/11
 PLAT-ROLE-01 matrix = COMPLETE; all 13 items accepted with corrected C1/C2 persona wording
 PLAT-ROLE-02A = PASS; complete PLAT-ROLE-02 parent 1–18 human matrix = PASS
 PLAT-ROLE-02B item-7 focused retest/read-only Derby exact-junction proof = PASS; local Role gate complete
-dependency correction = local PASS at js-yaml 4.3.1/nanoid 3.3.18; exact online dev Security Scan pending
+exact dev Security Scan 31384553388 and staging Security Scan 31384766945 = PASS
+staging public health = HTTP 200; database connected; RLS 11/11; indicative human smoke pending
 ```
 
 Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Explicitly authorised dev alignment of combined exact `60ac76c1` and online Security Scan | Role child `b1ede26f` and dependency child `60ac76c1` are locally committed and all local gates pass. No staging promotion yet. |
-| **NEXT** | Exact combined dev Security Scan PASS and staging decision | Require every Security Scan job to pass for `60ac76c1`. Only then consider a separately authorised staging promotion. |
+| **NOW** | Indicative staging Role/security smoke on exact `60ac76c1` | Dev/staging exact scans and public staging health pass. Confirm Render exact build, then execute the eight environment-sensitive checks; do not replay the complete 18-item local matrix. |
+| **NEXT** | Main promotion decision | Only after indicative staging PASS, reconcile evidence and obtain separate authority for exact main promotion, scan, health and post-deploy smoke. |
 
 Registered and ordered work outside that pair:
 
@@ -55,8 +56,8 @@ Registered and ordered work outside that pair:
   retest plus read-only Derby exact-junction proof pass. The local Role gate is complete;
 - Platform protected-branch Security Scan advisory refresh: expedite accepted and exact
   `js-yaml@4.3.1`/`nanoid@3.3.18` correction technically accepted locally with zero audit
-  findings. It remains a separate child commit in the combined Role release; the next
-  staging promotion is blocked until the combined exact dev SHA passes Security Scan;
+  findings. It remains a separate child commit in exact staging `60ac76c1`; dev/staging
+  scans and public health pass, with indicative staging human smoke now required;
 - Platform support-ticketing client readiness: privacy/security and client-enablement triage
   input selected as the mandatory self-contained project after Role Authority, with the
   internal-note and server-authority findings eligible for an explicit expedite proposal

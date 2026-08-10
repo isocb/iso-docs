@@ -36,26 +36,27 @@ default.
 | --- | --- | --- |
 | [`2026-07-22-isostack-platform-node-middleware-request-body-finalisation-defect-cr.md`](../01-cr-inputs/2026-07-22-isostack-platform-node-middleware-request-body-finalisation-defect-cr.md) | Completed through `PLAT-RUNTIME-01`; subsequently included in the completed LMSPro R8-A production release | Closed historical corrective input; do not reopen without a new finding |
 | [`2026-07-27-isostack-platform-auth-dependency-and-audit-gate-security-remediation-cr-input.md`](../01-cr-inputs/2026-07-27-isostack-platform-auth-dependency-and-audit-gate-security-remediation-cr-input.md) | Completed through the documented `PLAT-ASSURE-03` dev/staging lifecycle and human gate; no separate production claim is added by this reconciliation | Closed at its recorded evidence boundary; `PLAT-REFINE-03` and `PLAT-REFINE-04` retain separate follow-up concerns |
-| [`2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md`](../01-cr-inputs/2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md) | Active root project; complete local Role gate committed as exact child `b1ede26f`; no staging/live change | Role child precedes dependency child `60ac76c1` in the combined exact dev candidate |
+| [`2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md`](../01-cr-inputs/2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md) | Active root project; exact combined `60ac76c1` promoted through dev to staging after dev Security PASS; staging scan/health PASS; human smoke pending; no live change | Indicative staging gate is `Now`; main decision is later |
 | [`2026-08-10-isostack-platform-plat-role-02a-seasonpro-owner-user-type-control-correction-sub-cr.md`](../01-cr-inputs/2026-08-10-isostack-platform-plat-role-02a-seasonpro-owner-user-type-control-correction-sub-cr.md) | Corrective child of active `PLAT-ROLE-02`; authoritative-profile correction technically and human-accepted on the uncommitted local working tree based on `7e453665` | Complete at local acceptance boundary; returned control to parent smoke item 4; no independent staging lifecycle |
-| [`CR-Fix-2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity.md`](../01-cr-inputs/CR-Fix-2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity.md) | Implemented and accepted locally; complete Role child `b1ede26f`; no push/promotion | Combined with separate dependency child in exact local candidate `60ac76c1` |
+| [`CR-Fix-2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity.md`](../01-cr-inputs/CR-Fix-2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity.md) | Implemented/accepted as Role child `b1ede26f`, now retained in exact staging `60ac76c1`; indicative human smoke pending | No main promotion before staging human PASS |
 | [`2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md`](../01-cr-inputs/2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md) | Captured; selected as the mandatory self-contained project after Role Authority; awaiting formal Platform triage | Client-enablement and privacy/security project; internal-note privacy, server lifecycle authority and notification operability precede client enablement; Platform Notice remains separable and non-expedite |
-| [`CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md`](../01-cr-inputs/CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md) | Expedite accepted; local dependency child `60ac76c1` passes exact two-package, clean-install, zero-audit, full-regression and build gates | Combined exact candidate `60ac76c1`; exact dev Security Scan mandatory before staging |
+| [`CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md`](../01-cr-inputs/CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md) | Dependency child `60ac76c1`; exact dev/staging scans and staging health PASS; main pending | Staging human gate now; exact main Security Scan required after later authority |
 
 Current Platform portfolio disposition:
 
-- local dev is exact combined candidate `60ac76c1`: Role child `b1ede26f` followed by
-  dependency child `60ac76c1`; remote dev, staging and main remain `72c02d92`;
+- local dev, origin/dev, local staging and origin/staging are exact combined candidate
+  `60ac76c1`: Role child `b1ede26f` followed by dependency child `60ac76c1`; main remains
+  `72c02d92`;
 - Role Authority is active. `PLAT-ROLE-01` is corrected, accepted and complete.
   `PLAT-ROLE-02` has been corrected locally at `7e453665`; `PLAT-ROLE-02A` is technically
   and human-accepted on the local working tree. The complete parent 1–18 human matrix now
   passes. `PLAT-ROLE-02B` is implemented and technically accepted and its exact disposable
   fixture is repaired. The item-7 focused retest and read-only Derby exact-junction proof
-  pass, completing the local Role gate. Nothing has been pushed or promoted. Support
+  pass, completing the local Role gate. Exact `60ac76c1` is now on dev and staging. Support
   Ticketing remains the mandatory following
   self-contained project and still requires triage and bounded planning;
-- the 2026-08-09 dependency CR-Fix is accepted and technically green locally. Preserve its
-  separate child commit, then require an exact combined dev Security Scan before staging;
+- exact dev Security Scan `31384553388`, staging Security Scan `31384766945` and public
+  staging health pass. The accepted indicative staging human smoke is the current gate;
 - an evidenced live security/privacy failure may still be proposed to the root as an
   expedite candidate under the ordinary control process.
 

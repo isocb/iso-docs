@@ -11,8 +11,7 @@ infrastructure, security assurance and engineering controls.
 
 ## Current Position
 
-- Deployed/remote branches remain `72c02d92`; local dev contains the uncommitted
-  `PLAT-ROLE-02A` + `PLAT-ROLE-02B` corrections based on `7e453665`.
+- Dev and staging are exact `60ac76c1`; main remains `72c02d92`.
 - The dependency advisory refresh is complete through live evidence.
 - Role Authority is active. All 13 `PLAT-ROLE-01` matrix items are accepted with corrected
   C1/C2 persona wording.
@@ -24,8 +23,8 @@ infrastructure, security assurance and engineering controls.
   one stale former current-season Club junction beneath an otherwise passing exact-Club
   edit; its focused retest and read-only Derby junction proof now pass.
 - The dependency expedite is accepted and locally green at exact `js-yaml@4.3.1` and
-  `nanoid@3.3.18`, with zero audit findings. It remains a separate child commit and the
-  combined exact dev Security Scan still blocks staging.
+  `nanoid@3.3.18`, with zero audit findings. Exact dev and staging Security Scans plus
+  public staging health pass; indicative staging human smoke remains.
 
 ## Open Management Inputs
 
@@ -33,8 +32,8 @@ infrastructure, security assurance and engineering controls.
   four Critical Core escalation/relink paths and several High access-consistency findings.
   `PLAT-ROLE-02B` technical delivery, controlled repair, parent 18/18 and focused item-7
   exact-junction gate are complete. Combined exact candidate `60ac76c1` contains separate
-  Role `b1ede26f` and dependency child commits. Its authorised dev alignment/scan is `NOW`;
-  exact scan PASS and a later staging decision are `NEXT`.
+  Role `b1ede26f` and dependency child commits. Its indicative staging smoke is `NOW`; a
+  separately authorised exact main decision is `NEXT` after PASS.
 - **Security Scan advisory refresh:** expedite accepted and locally green. Exact patched
   overrides produce zero audit findings without unrelated churn; retain their own child
   commit in the combined release candidate.
@@ -61,8 +60,8 @@ expedite; it is not automatically an expedite.
 
 ## Next Decision
 
-Align exact combined candidate `60ac76c1` to dev only when authorised and require every
-Security Scan job to pass before staging. Complete
+Complete the indicative staging human smoke on exact `60ac76c1`. Dev/staging scans and
+public health already pass. Complete
 the later Role Authority slices before
 Support Ticketing. Keep client support enablement off until its security/privacy and
 notification-operability boundaries are accepted and tested.

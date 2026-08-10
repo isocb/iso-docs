@@ -11,15 +11,13 @@ payment contracts remain owned by Commerce Core.
 
 ## Current Position
 
-- **Portfolio NOW:** explicitly authorised dev alignment and Security Scan of combined exact
-  `60ac76c1`; Role parent 18/18, focused item 7 and exact Derby junction proof pass.
-- **Portfolio NEXT:** require the combined exact dev Security Scan to pass, then make a
-  separately authorised staging decision before completing Role Authority and Support
-  Ticketing client readiness.
+- **Portfolio NOW:** indicative staging Role/security smoke on exact `60ac76c1`; dev/staging
+  scans and public health pass.
+- **Portfolio NEXT:** separately authorised exact main decision after staging PASS, then
+  complete Role Authority and Support Ticketing client readiness.
 - No renderer implementation, later `1R-F` branch, `1R-G` work or production artwork system
   is authorised by the planning selection.
-- Remote dev/staging/main remain exact `72c02d92`; local dev contains the uncommitted
-  `PLAT-ROLE-02A` + `PLAT-ROLE-02B` corrections based on `7e453665`.
+- Dev/staging are exact `60ac76c1`; main remains exact `72c02d92`.
 - The two High advisory findings are corrected locally at exact patched versions with zero
   audit findings, full regression and build PASS. The next staging promotion remains
   blocked pending the exact combined dev Security Scan.

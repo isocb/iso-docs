@@ -39,8 +39,8 @@ authority. Later disposition changes must update the existing row.
 Current LMSPro portfolio disposition:
 
 ```text
-NOW  -> explicitly authorised dev alignment of combined exact 60ac76c1 and Security Scan
-NEXT -> exact dev Security Scan PASS, then separately authorised staging decision
+NOW  -> indicative staging Role/security smoke on exact 60ac76c1
+NEXT -> separately authorised exact main promotion decision after staging PASS
 THEN -> Platform Support Ticketing client-readiness project
 PARKED -> FUND 1R-F-A at its exact pre-planning boundary
 ```
@@ -49,8 +49,8 @@ The control owner completed the displaced R10-A smoke as totally green. The curr
 pair is therefore:
 
 ```text
-NOW  -> explicitly authorised dev alignment of combined exact 60ac76c1 and Security Scan
-NEXT -> exact dev Security Scan PASS, then separately authorised staging decision
+NOW  -> indicative staging Role/security smoke on exact 60ac76c1
+NEXT -> separately authorised exact main promotion decision after staging PASS
 THEN -> Platform Support Ticketing client-readiness project
 PARKED -> FUND 1R-F-A bounded planning
 ```
@@ -67,7 +67,8 @@ Club edit. Its focused retest and read-only Derby exact-junction proof pass, com
 local Role gate. Staging and production are unchanged. The separate 2026-08-09 Platform
 dependency CR-Fix is accepted and technically green locally at
 `js-yaml@4.3.1`/`nanoid@3.3.18`. It follows the Role child as a separate commit in one
-release candidate; exact combined dev Security Scan blocks staging.
+release candidate. Exact dev/staging Security Scans and public health pass; indicative
+staging human smoke is now the control gate.
 
 ## Purpose
 
@@ -154,7 +155,7 @@ F3 staging smoke = 13/13 PASS; exact main promotion = COMPLETE
 Render live public health = PASS; database connected; RLS 11/11
 PLAT-ROLE-01 = complete; all 13 matrix items accepted with corrected C1/C2 persona wording
 PLAT-ROLE-02 = complete parent 1–18 plus focused item-7/read-only exact-junction PASS
-dependency correction = local zero-audit/full-regression/build PASS; exact combined dev Security Scan pending
+dev/staging Security Scans = PASS; staging public health PASS; indicative human smoke pending
 ```
 
 Application `72c02d92` is the current branch-aligned baseline and includes prior LMSPro,

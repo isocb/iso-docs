@@ -2,8 +2,8 @@
 
 Date: 2026-08-10
 
-Status: **LOCAL REVIEW PASS; COMBINED EXACT `60ac76c1` TECHNICALLY GREEN WITH SEPARATE ROLE
-`b1ede26f` AND DEPENDENCY CHILD COMMITS; EXACT DEV SECURITY SCAN/PROMOTION EVIDENCE PENDING**
+Status: **LOCAL REVIEW PASS; EXACT `60ac76c1` DEV AND STAGING SECURITY SCANS PASS; PUBLIC
+STAGING HEALTH PASS; INDICATIVE STAGING HUMAN SMOKE AND MAIN LIFECYCLE PENDING**
 
 Implementation:
 
@@ -47,15 +47,19 @@ It fails the three scheduled protected-branch dependency validators and passes T
 secret, schema and final-report jobs. The corrected candidate has not yet been pushed, so it
 does not yet have an online PASS claim.
 
-## 3. Online Stop Gate
+## 3. Online Evidence And Remaining Stop Gate
 
-Local audit success does not clear the protected-branch incident. Completion still requires:
+The combined candidate is aligned to dev and staging with passing exact scans:
 
-1. explicit authority to push exact combined `60ac76c1` to dev;
-2. every exact dev Security Scan job passing, with run ID and audit artifact reviewed;
-3. explicit staging authority followed by exact staging scan/health and proportionate Role
-   smoke; and
-4. the separately authorised main scan, health and smoke lifecycle.
+- dev Security Scan [`31384553388`](https://github.com/isocb/isostack-bedrock/actions/runs/31384553388): PASS;
+- staging Security Scan [`31384766945`](https://github.com/isocb/isostack-bedrock/actions/runs/31384766945): PASS; and
+- staging public health: HTTP 200, database connected, RLS 11/11.
 
-Current decision: **LOCAL COMBINED CANDIDATE PASS; DO NOT PROMOTE TO STAGING UNTIL THE
-EXACT COMBINED DEV SHA PASSES THE ONLINE SECURITY SCAN**.
+Completion still requires:
+
+1. Render confirmation that staging is Live at exact `60ac76c1`;
+2. the accepted indicative staging Role smoke; and
+3. the separately authorised main scan, health and smoke lifecycle.
+
+Current decision: **EXACT DEV/STAGING SECURITY GATES PASS; COMPLETE INDICATIVE STAGING
+HUMAN SMOKE BEFORE ANY MAIN DECISION**.
