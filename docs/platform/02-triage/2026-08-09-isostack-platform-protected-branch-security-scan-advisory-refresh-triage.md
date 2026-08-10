@@ -2,8 +2,9 @@
 
 Date: 2026-08-09
 
-Status: **TRIAGE COMPLETE; URGENT REMEDIAL EXPEDITE CANDIDATE; BOUNDED DEPENDENCY
-CORRECTION RECOMMENDED; IMPLEMENTATION AND PROMOTION REQUIRE EXPLICIT AUTHORITY**
+Status: **TRIAGE COMPLETE; EXPEDITE ACCEPTED; BOUNDED DEPENDENCY CORRECTION IMPLEMENTED
+AND TECHNICALLY ACCEPTED LOCALLY; COMBINED ROLE/SECURITY EXACT DEV GATE NEXT; NO STAGING
+AUTHORITY**
 
 Source CR-Fix:
 
@@ -110,17 +111,37 @@ make the dependency fix wait on feature correction. Start it from protected base
 `72c02d92`, promote it independently, and then rebase or reconstruct the unpromoted Role
 Authority work on the new protected baseline through the normal non-destructive process.
 
-## 6. Evidence Limitation And Next Read-Only Check
+## 6. Exact Online Failure Evidence
 
-The GitHub CLI currently reports its stored `isocb` token as invalid. Anonymous access returns
-`404` because the repository is private. Before declaring the incident closed, restore
-authorised read access and collect:
+Authenticated read access is restored. Security Scan history records four consecutive
+scheduled failures against exact `72c02d92`:
 
-- all failed Security Scan run IDs since the last known pass;
-- event type and exact commit for each run;
-- failed job/step names and timestamps;
-- dependency artifacts for each protected branch; and
-- confirmation that Prisma, TypeScript and Gitleaks did not independently fail.
+```text
+2026-08-07  31157895565  FAIL
+2026-08-08  31245943318  FAIL
+2026-08-09  31300958300  FAIL
+2026-08-10  31366209496  FAIL
+```
 
-The reproduced dependency failure is sufficient to plan remediation, but those online facts
-must remain explicitly unresolved until inspected.
+In latest run
+[`31366209496`](https://github.com/isocb/isostack-bedrock/actions/runs/31366209496),
+the dev, staging and main `Check ... for high or critical vulnerabilities` steps fail after
+successful install, audit generation and artifact upload. TypeScript Type Safety, Secret
+Detection, Database Schema Security Check and Generate Security Report all pass. No second
+source, schema or secret failure is hidden behind the dependency result.
+
+The remaining online evidence is future-facing: run IDs and artifacts for the corrected
+combined exact dev, staging and main SHAs.
+
+## 7. Delivery Update
+
+The control owner accepted combination with the completed local Role Authority outcome
+before the next promotion. The correction remains its own dependency child commit and adds
+only exact `js-yaml@4.3.1` and `nanoid@3.3.18` overrides plus their lock records. Isolated
+Node 22/npm 10 clean-install, resolved-tree, audit-validator, full regression, TypeScript,
+critical verification and production-build gates pass.
+
+The two local child commits are now formed: Role `b1ede26f`, followed by dependency and
+combined candidate `60ac76c1`. The next boundary is an explicitly authorised push of exact
+`60ac76c1` to dev. Corrected online run IDs and job-level evidence remain unresolved until
+that push.

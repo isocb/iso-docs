@@ -4,9 +4,12 @@ Date: 2026-08-04
 
 Owning lane: IsoStack Platform, with a bounded SeasonPro / LMSPro consumer outcome
 
-Status: **ACTIVE PROJECT; PLAT-ROLE-01 MATRIX CORRECTED AND ACCEPTED; PLAT-ROLE-02
-CORRECTIVE IMPLEMENTATION COMPLETE LOCALLY AT `7e453665` AND AWAITING REPLACEMENT HUMAN
-SMOKE; NO STAGING, PRODUCTION OR DATA CHANGE**
+Status: **ACTIVE PROJECT; PLAT-ROLE-01 MATRIX ACCEPTED; PLAT-ROLE-02A OWNER-CONTROL
+CORRECTION HUMAN-ACCEPTED; COMPLETE PLAT-ROLE-02 ITEM-1-THROUGH-ITEM-18 LOCAL MATRIX
+ACCEPTED; PLAT-ROLE-02B TECHNICALLY ACCEPTED AND FIXTURE REPAIRED; ITEM-7 EXACT
+CURRENT-CLUB JUNCTION FOCUSED RETEST AND READ-ONLY DERBY PROOF PASS; LOCAL ROLE GATE
+COMPLETE AND COMMITTED AS ROLE CHILD `b1ede26f`; COMBINED ROLE/SECURITY CANDIDATE
+`60ac76c1` AWAITS EXACT DEV SCAN; NO STAGING OR PRODUCTION CHANGE**
 
 Application source reviewed:
 
@@ -43,7 +46,15 @@ Current delivery evidence:
 - [`PLAT-ROLE-01 static authority inventory and matrix delivery`](../04-implementation-confirmations/2026-08-06-isostack-platform-plat-role-01-static-authority-inventory-and-matrix-delivery.md); and
 - [`PLAT-ROLE-01 review and human matrix gate`](../05-review-and-test/2026-08-06-isostack-platform-plat-role-01-review-and-human-matrix-gate.md);
 - [`PLAT-ROLE-02 implementation confirmation`](../04-implementation-confirmations/2026-08-06-isostack-platform-plat-role-02-core-role-mutation-containment-implementation.md); and
-- [`PLAT-ROLE-02 local review and human smoke gate`](../05-review-and-test/2026-08-06-isostack-platform-plat-role-02-review-and-local-human-smoke-gate.md).
+- [`PLAT-ROLE-02 local review and human smoke gate`](../05-review-and-test/2026-08-06-isostack-platform-plat-role-02-review-and-local-human-smoke-gate.md);
+- [`PLAT-ROLE-02A Owner user-type control sub-CR`](2026-08-10-isostack-platform-plat-role-02a-seasonpro-owner-user-type-control-correction-sub-cr.md);
+- [`PLAT-ROLE-02A implementation confirmation`](../04-implementation-confirmations/2026-08-10-isostack-platform-plat-role-02a-seasonpro-owner-user-type-control-correction-implementation.md); and
+- [`PLAT-ROLE-02A local human gate`](../05-review-and-test/2026-08-10-isostack-platform-plat-role-02a-seasonpro-owner-user-type-control-correction-local-gate.md);
+- [`PLAT-ROLE-02B Club Officials authority-integrity CR-Fix`](CR-Fix-2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity.md);
+- [`PLAT-ROLE-02B triage`](../02-triage/2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity-triage.md); and
+- [`PLAT-ROLE-02B planning`](../03-slice-planning/2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity-planning.md);
+- [`PLAT-ROLE-02B implementation`](../04-implementation-confirmations/2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity-implementation.md); and
+- [`PLAT-ROLE-02B local gate`](../05-review-and-test/2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity-local-gate.md).
 
 ## 1. Human Introduction — What This CR Is About
 

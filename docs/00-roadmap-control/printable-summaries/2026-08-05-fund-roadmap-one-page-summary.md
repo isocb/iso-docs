@@ -1,6 +1,6 @@
 # FUND Roadmap — One-Page Summary
 
-Snapshot: 2026-08-09
+Snapshot: 2026-08-10
 Status: Printable management summary — **not delivery authority**
 
 ## Purpose
@@ -11,18 +11,18 @@ payment contracts remain owned by Commerce Core.
 
 ## Current Position
 
-- **Portfolio NOW:** corrected `PLAT-ROLE-02` replacement local human containment gate at
-  `7e453665`.
-- **Portfolio NEXT:** restore the newly failed protected-branch dependency gate and conduct
-  the `PLAT-ROLE-02` exact-commit staging lifecycle, followed by the remaining Role
-  Authority slices and Support Ticketing client readiness.
+- **Portfolio NOW:** explicitly authorised dev alignment and Security Scan of combined exact
+  `60ac76c1`; Role parent 18/18, focused item 7 and exact Derby junction proof pass.
+- **Portfolio NEXT:** require the combined exact dev Security Scan to pass, then make a
+  separately authorised staging decision before completing Role Authority and Support
+  Ticketing client readiness.
 - No renderer implementation, later `1R-F` branch, `1R-G` work or production artwork system
   is authorised by the planning selection.
-- Remote dev/staging/main remain exact `72c02d92`; local dev contains the unpromoted
-  corrective `PLAT-ROLE-02` commit `7e453665`.
-- The unchanged protected lockfile now has two new High advisory findings. Local Role smoke
-  may continue, but the next remote promotion is blocked pending explicit CR-Fix acceptance
-  and a passing exact Security Scan.
+- Remote dev/staging/main remain exact `72c02d92`; local dev contains the uncommitted
+  `PLAT-ROLE-02A` + `PLAT-ROLE-02B` corrections based on `7e453665`.
+- The two High advisory findings are corrected locally at exact patched versions with zero
+  audit findings, full regression and build PASS. The next staging promotion remains
+  blocked pending the exact combined dev Security Scan.
 - `1R-F-A` remains the exact FUND resumption point, but all FUND planning and implementation
   is parked until F3, Role Authority and Support Ticketing are complete.
 

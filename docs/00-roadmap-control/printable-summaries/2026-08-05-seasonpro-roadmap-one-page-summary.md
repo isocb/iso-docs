@@ -1,6 +1,6 @@
 # SeasonPro Roadmap — One-Page Summary
 
-Snapshot: 2026-08-09
+Snapshot: 2026-08-10
 Status: Printable management summary — **not delivery authority**
 
 ## Purpose
@@ -12,10 +12,10 @@ communications behaviour.
 
 - Email F3 exact application `72c02d92` passed its automated gates and 13/13 staging smoke,
   is aligned through main, and is closed with public production health green.
-- **Portfolio NOW:** corrected `PLAT-ROLE-02` replacement local human containment gate at
-  `7e453665`.
-- **Portfolio NEXT:** exact-commit `PLAT-ROLE-02` staging lifecycle after local acceptance
-  and restoration of the newly failed protected-branch dependency gate.
+- **Portfolio NOW:** explicitly authorised dev alignment and Security Scan of combined exact
+  `60ac76c1`, containing separate Role `b1ede26f` and dependency child commits.
+- **Portfolio NEXT:** require the exact combined dev Security Scan to pass, then make a
+  separately authorised staging decision.
 - F1 human staging smoke passes through the maximum available 440-recipient draft, with a
   341 ms broad-case server wait.
 - F2 failed because it treated C1/C2/hat-swap access context as independently selectable
@@ -45,10 +45,13 @@ communications behaviour.
   `PLAT-ROLE-02` checkpoint `5e551938` failed usefully and was not promoted. Corrective
   `7e453665` contains the four Critical paths, complete persona enforcement and bounded
   Club-access finding locally; technical gates pass, with no staging/live/data change.
-  Support Ticketing follows the Role project; FUND remains parked.
-- Two newly published/reviewed High dependency advisories now fail Security Scan against
-  unchanged protected branches. The correction is a separate Platform CR-Fix candidate and
-  does not invalidate local SeasonPro smoke, but no remote promotion may bypass it.
+  Club Officials subsequently proved two consumer defects, both corrected by
+  `PLAT-ROLE-02B`. The complete 18-item human matrix now passes. An item-7 Club edit exposed
+  one retained former current-season junction; its focused retest and read-only exact
+  junction proof pass. Support Ticketing follows the Role project; FUND remains parked.
+- The two newly published High dependency advisories are corrected locally with exact
+  patched overrides, zero audit findings, full regression and build PASS. The dependency
+  correction remains a separate child commit; staging still requires exact dev scan PASS.
 
 ## Recently Completed
 
@@ -80,8 +83,8 @@ the selected matrix/containment boundaries; do not combine live repair or the wi
 
 ## Next Decision
 
-Complete the replacement `PLAT-ROLE-02` local human gate, then restore the protected-branch
-Security Scan before its staging lifecycle. Support Ticketing follows the completed Role
+Align exact `60ac76c1` to dev only when authorised; require its exact Security Scan before
+any staging lifecycle. Support Ticketing follows the completed Role
 project before FUND resumes.
 
 Authoritative source:

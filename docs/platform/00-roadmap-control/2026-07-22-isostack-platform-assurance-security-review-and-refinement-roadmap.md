@@ -480,9 +480,18 @@ The registered source and full triage are:
 - `docs/platform/01-cr-inputs/CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md`; and
 - `docs/platform/02-triage/2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh-triage.md`.
 
-This is an urgent remedial expedite candidate requiring explicit acceptance. It does not
-displace the active local Role Authority smoke automatically, but it blocks the next remote
-promotion until a bounded patched dependency commit passes the exact Security Scan.
+The expedite is now accepted. Exact `js-yaml@4.3.1` and `nanoid@3.3.18` overrides plus only
+their lock records pass isolated Node 22/npm 10 clean-install, zero-finding audit validator,
+full regression, TypeScript, critical verification and production build gates. The
+dependency work remains a separate child commit following the completed local Role child
+in one release candidate. Staging remains blocked until the combined exact dev SHA passes
+the online Security Scan.
+
+Accepted delivery records:
+
+- `docs/platform/03-slice-planning/2026-08-10-isostack-platform-protected-branch-security-scan-advisory-refresh-planning.md`;
+- `docs/platform/04-implementation-confirmations/2026-08-10-isostack-platform-protected-branch-security-scan-advisory-refresh-implementation.md`; and
+- `docs/platform/05-review-and-test/2026-08-10-isostack-platform-protected-branch-security-scan-advisory-refresh-local-gate.md`.
 
 ## 9. Open Planning Questions
 

@@ -2,9 +2,10 @@
 
 Date: 2026-08-06
 
-Status: **CORRECTIVE IMPLEMENTATION COMPLETE LOCALLY ON `dev` AT `7e453665`; AUTOMATED,
-BUILD AND SECURITY GATES PASS; REPLACEMENT HUMAN LOCAL SMOKE REQUIRED; NOT PUSHED OR
-PROMOTED**
+Status: **PARENT IMPLEMENTATION COMPLETE AT `7e453665`; `PLAT-ROLE-02A` HUMAN-ACCEPTED;
+COMPLETE PARENT 1–18 LOCAL MATRIX ACCEPTED; `PLAT-ROLE-02B` TECHNICALLY ACCEPTED AND
+FIXTURE REPAIRED; ITEM-7 FOCUSED RETEST AND READ-ONLY DERBY EXACT-JUNCTION PROOF PASS;
+LOCAL ROLE GATE COMPLETE AND COMMITTED IN CHILD `b1ede26f`; NOT PUSHED OR PROMOTED**
 
 Plan:
 
@@ -100,6 +101,17 @@ rollback exists or is needed because neither commit has left local dev.
 
 ## 5. Current Stop
 
-Stop on local `dev` for the replacement human matrix smoke against exact `7e453665`. Do not
-push `origin/dev`, promote to staging, or claim environment completion until the corrected
-review gate is accepted.
+The bounded
+[`PLAT-ROLE-02A` Owner-control human gate](../05-review-and-test/2026-08-10-isostack-platform-plat-role-02a-seasonpro-owner-user-type-control-correction-local-gate.md)
+passes. The displaced parent run subsequently discovered the item-3 legacy read/error-mask
+defect and item-15 destructive whole-role replacement. The urgent-remedial
+[`PLAT-ROLE-02B` plan](../03-slice-planning/2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity-planning.md)
+combines both as mandatory acceptance gates. Its separate implementation confirmation now
+records the completed local correction, automated gates and exact fixture repair without
+changing this parent's original delivered-code evidence.
+
+The complete parent item-1-through-item-18 matrix now passes. Item 7 exposed one adjacent
+stale-current-Club junction defect after its stated persona/reopen assertion passed; the
+bounded correction, focused edit/reopen and read-only exact Derby junction proof all pass.
+The local Role gate is complete. Package it separately from the accepted dependency child;
+do not promote to staging until their combined exact dev SHA passes Security Scan.

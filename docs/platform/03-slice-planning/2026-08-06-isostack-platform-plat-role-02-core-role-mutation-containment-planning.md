@@ -2,9 +2,10 @@
 
 Date: 2026-08-06
 
-Status: **CORRECTIVE ITERATION IMPLEMENTED LOCALLY AT `7e453665` AFTER THE FIRST HUMAN GATE
-EXPOSED AN INVALID MEMBER+LEAGUE ACCEPTANCE CRITERION; TECHNICAL GATES PASS; REPLACEMENT
-LOCAL HUMAN SMOKE REQUIRED; NO STAGING OR PRODUCTION CHANGE**
+Status: **PARENT SLICE ACTIVE; `PLAT-ROLE-02A` HUMAN-ACCEPTED; COMPLETE PARENT 1–18 LOCAL
+MATRIX ACCEPTED; `PLAT-ROLE-02B` TECHNICALLY ACCEPTED WITH FIXTURE REPAIRED; ITEM-7 EXACT
+CURRENT-CLUB JUNCTION FOCUSED RETEST AND READ-ONLY DERBY PROOF PASS; LOCAL PARENT GATE
+COMPLETE AND COMMITTED IN ROLE CHILD `b1ede26f`; NO STAGING/PRODUCTION CHANGE**
 
 Accepted triage:
 
@@ -28,6 +29,33 @@ Implementation checkpoint `5e551938` reached the first local human gate but was 
 promotable: its first test revealed that both the test and implementation permitted an
 invalid Member + League persona. Corrective child `7e453665` applies the complete accepted
 persona contract consistently and is the only commit eligible for the replacement gate.
+
+The replacement gate then exposed a separate presentation defect before persistence: the
+Owner-only SeasonPro User Type input was selected from a JWT-backed client-session role and
+the confirmed Acme Owner received the fixed C2 badge. Bounded corrective child
+[`PLAT-ROLE-02A`](2026-08-10-isostack-platform-plat-role-02a-seasonpro-owner-user-type-control-correction-planning.md)
+uses the existing server-backed current/effective-user profile, fails closed while it is
+unresolved, and has passed its corrected actor/target human gate. The parent matrix resumed,
+but item 3 exposed a separate first-component-family `LMS-ROLE-02` candidate: a valid C2
+Club user reaches the Club dashboard and Profile but the Officials route still depends on
+deprecated `lmsproClubRole` text and masks its refusal as an empty list. Item 4 does not begin
+until that finding receives a bounded disposition.
+
+Human testing nevertheless continued through items 4–14 successfully. Item 15 then proved
+the higher-risk sibling mutation failure: `clubOfficials.update` replaced a valid Admin's
+League-plus-Club role set with only the Club role, bypassed the composite-persona validator
+and removed effective SeasonPro access without deleting the Core account. All further
+testing stops. The item-3 read defect and item-15 integrity defect require one bounded
+Club Officials authority-integrity/repair disposition before this parent can resume.
+
+That disposition is now the accepted urgent-remedial child
+[`PLAT-ROLE-02B`](2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity-planning.md).
+Its plan fixes item 3 in the same correction as item 15, performs only the evidenced local
+fixture repair after technical acceptance, and then requires the complete parent matrix to
+restart at item 1 and run through item 18. That complete matrix is now accepted. A bounded
+item-7 follow-through removes a stale former current-season Club junction discovered during
+an otherwise passing exact-Club edit. Its focused local retest and read-only Derby
+exact-junction proof now pass.
 
 ## 1. Objective
 

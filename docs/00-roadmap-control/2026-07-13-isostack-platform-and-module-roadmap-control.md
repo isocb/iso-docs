@@ -2,11 +2,11 @@
 
 Date: 2026-07-27
 
-Last portfolio reconciliation: 2026-08-09
+Last portfolio reconciliation: 2026-08-10
 
 Status: Active parent roadmap
 
-## 0. Current Portfolio Control — 2026-08-09
+## 0. Current Portfolio Control — 2026-08-10
 
 This section is the current cross-lane control and supersedes older global `single next`
 wording later in this document. Older statements remain evidence of the sequence at the
@@ -29,32 +29,34 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application evidence:
 
 ```text
-local dev = 7e453665 (corrected PLAT-ROLE-02; not pushed)
+local dev = combined exact candidate 60ac76c1 (Role child b1ede26f + dependency child 60ac76c1; not pushed)
 origin/dev = staging = origin/staging = main = origin/main = 72c02d92
 F3 tests/type/verify/build and promotion-time dev/staging/main Security Scans = PASS
 F3 staging human smoke = 13/13 PASS; production promotion = COMPLETE
 staging and production public health = HTTP 200; database connected; RLS 11/11
 PLAT-ROLE-01 matrix = COMPLETE; all 13 items accepted with corrected C1/C2 persona wording
-PLAT-ROLE-02 corrective automated/type/verify/build gates = PASS; replacement local human smoke pending
-current protected-branch dependency gate = FAIL on 2 new High advisories; no Role code causation
+PLAT-ROLE-02A = PASS; complete PLAT-ROLE-02 parent 1–18 human matrix = PASS
+PLAT-ROLE-02B item-7 focused retest/read-only Derby exact-junction proof = PASS; local Role gate complete
+dependency correction = local PASS at js-yaml 4.3.1/nanoid 3.3.18; exact online dev Security Scan pending
 ```
 
 Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | `PLAT-ROLE-02` replacement local human containment gate | First checkpoint `5e551938` failed usefully because its test exposed the invalid Member + League model and was not promoted. Corrective exact local `7e453665` passed its implementation-time automated, regression, type, verification and build gates. The later independent dependency-advisory failure does not invalidate local persona smoke, but blocks remote promotion. Execute the corrected C1 Owner/Admin, C2 Member, invitation and hat-swap smoke matrix; no staging yet. |
-| **NEXT** | `PLAT-ROLE-02` exact-commit staging lifecycle | Only after the local gate passes and the new protected-branch dependency failure has an accepted, passing disposition, align/push the accepted exact commit and conduct the documented staging security/deployment/human gate. Do not bypass Security Scan or begin `PLAT-ROLE-03`/live repair implicitly. |
+| **NOW** | Explicitly authorised dev alignment of combined exact `60ac76c1` and online Security Scan | Role child `b1ede26f` and dependency child `60ac76c1` are locally committed and all local gates pass. No staging promotion yet. |
+| **NEXT** | Exact combined dev Security Scan PASS and staging decision | Require every Security Scan job to pass for `60ac76c1`. Only then consider a separately authorised staging promotion. |
 
 Registered and ordered work outside that pair:
 
 - Platform/SeasonPro role-authority clarification: active root project. `PLAT-ROLE-01` is
-  corrected, accepted and complete; `PLAT-ROLE-02` is implemented only on local dev at
-  `7e453665` and awaits the replacement local human gate;
-- Platform protected-branch Security Scan advisory refresh: new `CR-Fix` triaged as an urgent
-  remedial expedite candidate after the unchanged `72c02d92` lockfile began reporting
-  `js-yaml` and `nanoid` High advisories; local Role smoke may continue, but the next remote
-  promotion is blocked until an explicitly accepted correction restores the gate;
+  complete; `PLAT-ROLE-02A` is locally accepted; the complete parent 1–18 matrix passes;
+  `PLAT-ROLE-02B` is technically accepted, its fixture is repaired, and the focused item-7
+  retest plus read-only Derby exact-junction proof pass. The local Role gate is complete;
+- Platform protected-branch Security Scan advisory refresh: expedite accepted and exact
+  `js-yaml@4.3.1`/`nanoid@3.3.18` correction technically accepted locally with zero audit
+  findings. It remains a separate child commit in the combined Role release; the next
+  staging promotion is blocked until the combined exact dev SHA passes Security Scan;
 - Platform support-ticketing client readiness: privacy/security and client-enablement triage
   input selected as the mandatory self-contained project after Role Authority, with the
   internal-note and server-authority findings eligible for an explicit expedite proposal
@@ -666,12 +668,13 @@ different documentation lifecycles.
 
 ## 7. Current Parent Control Decision
 
-The 2026-08-06 reconciliation in Section 0 is the current decision: F3 is complete at exact
-deployed application `72c02d92`, and Role Authority is the active project. `PLAT-ROLE-01` is
-corrected, accepted and complete. First PLAT-ROLE-02 checkpoint `5e551938` failed usefully
-and was not promoted; corrective `7e453665` is local only. Its replacement human local gate
-is `Now` and its exact-commit staging lifecycle is `Next`. Support Ticketing follows the
-completed Role Authority project.
+Section 0 is the current decision: F3 is complete at exact deployed application `72c02d92`,
+and Role Authority is the active project. `PLAT-ROLE-01` is complete; the corrected
+`PLAT-ROLE-02` parent 18/18, focused item 7 and read-only Derby exact-junction proof pass
+locally. The accepted two-package dependency child is also technically green locally.
+Separate Role and dependency child commits as one dev candidate are `Now`; its exact online
+Security Scan and later staging decision are `Next`. Support Ticketing follows the completed
+Role Authority project.
 FUND `1R-F-A` is preserved at its exact pre-planning boundary until the housekeeping
 outcomes are complete.
 R11-A is a separately authorised bounded UI release at `83356030`; local smoke is 18/18 and

@@ -4,12 +4,19 @@ Date: 2026-08-09
 
 Owning lane: IsoStack Platform assurance
 
-Status: **CAPTURED AND TRIAGED AS AN URGENT REMEDIAL EXPEDITE CANDIDATE; NO APPLICATION,
-LOCKFILE, WORKFLOW, BRANCH OR ENVIRONMENT CHANGE AUTHORISED**
+Status: **EXPEDITE ACCEPTED; BOUNDED DEPENDENCY CORRECTION IMPLEMENTED AND TECHNICALLY
+ACCEPTED LOCALLY; SEPARATE CHILD COMMIT IN THE COMBINED PLAT-ROLE-02 RELEASE CANDIDATE;
+EXACT DEV SECURITY SCAN AND PROMOTION EVIDENCE PENDING**
 
 Triage and remediation advice:
 
 [`2026-08-09 protected-branch Security Scan triage`](../02-triage/2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh-triage.md)
+
+Accepted delivery records:
+
+- [`bounded planning`](../03-slice-planning/2026-08-10-isostack-platform-protected-branch-security-scan-advisory-refresh-planning.md);
+- [`local implementation`](../04-implementation-confirmations/2026-08-10-isostack-platform-protected-branch-security-scan-advisory-refresh-implementation.md); and
+- [`local review gate`](../05-review-and-test/2026-08-10-isostack-platform-protected-branch-security-scan-advisory-refresh-local-gate.md).
 
 ## 1. Reported Problem
 
@@ -35,11 +42,14 @@ At 2026-08-09:
 - `scripts/security/check-npm-audit-report.mjs` correctly refuses that report with
   `Dependency security gate failed`.
 
-The configured GitHub CLI credential has expired, and the private Actions API cannot be read
-anonymously. Exact run IDs, job timestamps and confirmation that no second job also failed
-therefore remain unresolved. That evidence limitation does not invalidate the dependency
-diagnosis: the protected branches share the reproduced failing lockfile and the authoritative
-gate is designed to fail on either High advisory.
+The earlier GitHub CLI credential limitation is now resolved. Exact Actions review confirms
+four consecutive scheduled failures against unchanged `72c02d92` from 2026-08-07 through
+2026-08-10. Latest run
+[`31366209496`](https://github.com/isocb/isostack-bedrock/actions/runs/31366209496)
+shows only the scheduled dev, staging and main dependency validators failing. TypeScript,
+Secret Detection, Database Schema Security Check and final report generation pass. This
+confirms the two-advisory lockfile diagnosis and excludes a concurrent source/schema/secret
+gate failure at that exact run.
 
 ## 3. Confirmed Advisories
 
@@ -80,17 +90,18 @@ Use the established bounded dependency-maintenance method:
 8. promote through dev, staging and main only under the normal exact-commit and human-control
    process.
 
-## 6. Portfolio And Expedite Request
+## 6. Portfolio And Expedite Decision
 
-This is an **urgent remedial expedite candidate**, not a self-authorising emergency release.
-Local `PLAT-ROLE-02` human smoke can continue because the finding is independent of its
-persona behaviour. The next remote push or staging promotion cannot pass the mandatory
-Security Scan until this CR-Fix is resolved.
+The urgent remedial expedite is **accepted as the immediate pre-promotion dependency
+child**. Local `PLAT-ROLE-02` human smoke is complete and independent of its dependency
+behaviour. The Role child and this dependency child form one release candidate while
+remaining separate commits. The next staging promotion cannot proceed until the combined
+exact dev SHA passes the mandatory Security Scan.
 
 Recommended control decision:
 
-- finish or reach a safe stopping point in the current local human smoke;
-- accept this bounded dependency correction as the immediate pre-promotion prerequisite;
+- retain the completed local Role human evidence;
+- keep this bounded dependency correction as the immediate pre-promotion prerequisite;
 - keep it as a separate application commit so dependency evidence remains reviewable; and
 - if Role Authority testing becomes prolonged or fails again, prepare the dependency commit
   independently from protected baseline `72c02d92` rather than leaving known High findings
@@ -109,5 +120,12 @@ Closure requires:
 - explicit branch/promotion hashes; and
 - public health plus proportionate staging/live smoke evidence.
 
-Until then, no Security Scan failure may be described as cleared merely because the reviewed
-application appears unlikely to expose the vulnerable functions.
+Local implementation update: the exact two-package override/lockfile correction, isolated
+Node 22/npm 10 clean install, zero-finding audit validator, 372-test regression, TypeScript,
+critical verification and 131-page production build all pass. The Role human matrix and
+focused exact-Club retest also pass. The work is packaged as two separately reviewable child
+commits in one release candidate.
+
+The protected-branch incident is not yet closed: no Security Scan failure may be described
+as cleared until the combined exact dev SHA passes every online Security Scan job and the
+later branch evidence is recorded.

@@ -1,7 +1,7 @@
 # LMSPro / SeasonPro Roadmap And Slice Control
 
 Date: 2026-06-29
-Last updated: 2026-08-09
+Last updated: 2026-08-10
 Module: LMSPro / SeasonPro
 Control status: Active authoritative LMSPro / SeasonPro child roadmap and delivery-cycle control
 
@@ -39,8 +39,8 @@ authority. Later disposition changes must update the existing row.
 Current LMSPro portfolio disposition:
 
 ```text
-NOW  -> PLAT-ROLE-02 replacement local human containment gate at 7e453665
-NEXT -> PLAT-ROLE-02 exact-commit staging lifecycle after local acceptance and restored Security Scan
+NOW  -> explicitly authorised dev alignment of combined exact 60ac76c1 and Security Scan
+NEXT -> exact dev Security Scan PASS, then separately authorised staging decision
 THEN -> Platform Support Ticketing client-readiness project
 PARKED -> FUND 1R-F-A at its exact pre-planning boundary
 ```
@@ -49,8 +49,8 @@ The control owner completed the displaced R10-A smoke as totally green. The curr
 pair is therefore:
 
 ```text
-NOW  -> PLAT-ROLE-02 replacement local human containment gate at 7e453665
-NEXT -> PLAT-ROLE-02 exact-commit staging lifecycle after local acceptance and restored Security Scan
+NOW  -> explicitly authorised dev alignment of combined exact 60ac76c1 and Security Scan
+NEXT -> exact dev Security Scan PASS, then separately authorised staging decision
 THEN -> Platform Support Ticketing client-readiness project
 PARKED -> FUND 1R-F-A bounded planning
 ```
@@ -59,10 +59,15 @@ F3 and R10-A are complete and closed. Role Authority is the active root project 
 Ticketing remains the required following project. FUND `1R-F-A` is preserved at its exact
 pre-planning boundary until those housekeeping outcomes are complete. `PLAT-ROLE-01` is
 corrected, accepted and complete. First `PLAT-ROLE-02` checkpoint `5e551938` failed usefully
-and was not promoted; corrective `7e453665` awaits replacement human smoke and has not
-changed staging, production or live data. A separate 2026-08-09 Platform dependency CR-Fix
-is an urgent remedial candidate after two new High advisories appeared against unchanged
-protected branches. It does not stop local Role smoke but blocks the next remote promotion.
+and was not promoted; corrective `7e453665` passed technical gates. `PLAT-ROLE-02A` passed
+its corrected Owner-control gate, `PLAT-ROLE-02B` corrected the Club Officials read and
+whole-role replacement defects, and the complete parent 1–18 matrix is accepted. Item 7
+then exposed one stale former current-season Club junction beneath an otherwise correct C2
+Club edit. Its focused retest and read-only Derby exact-junction proof pass, completing the
+local Role gate. Staging and production are unchanged. The separate 2026-08-09 Platform
+dependency CR-Fix is accepted and technically green locally at
+`js-yaml@4.3.1`/`nanoid@3.3.18`. It follows the Role child as a separate commit in one
+release candidate; exact combined dev Security Scan blocks staging.
 
 ## Purpose
 
@@ -144,12 +149,12 @@ Current work should remain on dev/remediation branches until reviewed and explic
 Current app alignment:
 
 ```text
-local dev = 7e453665; origin/dev = staging = origin/staging = main = origin/main = 72c02d92
+local dev = uncommitted PLAT-ROLE-02A + PLAT-ROLE-02B corrections based on 7e453665; origin/dev = staging = origin/staging = main = origin/main = 72c02d92
 F3 staging smoke = 13/13 PASS; exact main promotion = COMPLETE
 Render live public health = PASS; database connected; RLS 11/11
 PLAT-ROLE-01 = complete; all 13 matrix items accepted with corrected C1/C2 persona wording
-PLAT-ROLE-02 = corrective local technical gates PASS; replacement human local smoke pending
-protected-branch dependency gate = FAIL on 2 new High advisories; remediation not yet authorised
+PLAT-ROLE-02 = complete parent 1–18 plus focused item-7/read-only exact-junction PASS
+dependency correction = local zero-audit/full-regression/build PASS; exact combined dev Security Scan pending
 ```
 
 Application `72c02d92` is the current branch-aligned baseline and includes prior LMSPro,
