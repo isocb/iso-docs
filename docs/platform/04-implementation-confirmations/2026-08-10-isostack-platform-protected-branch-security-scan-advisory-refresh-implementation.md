@@ -3,8 +3,8 @@
 Date: 2026-08-10
 
 Status: **IMPLEMENTED AS DEPENDENCY CHILD `60ac76c1` AFTER ROLE CHILD `b1ede26f`; EXACT
-DEV/STAGING SECURITY SCANS AND STAGING PUBLIC HEALTH PASS; INDICATIVE HUMAN SMOKE PENDING;
-MAIN UNCHANGED**
+DEV/STAGING/MAIN SECURITY SCANS, STAGING 8/8 AND STAGING/PRODUCTION PUBLIC HEALTH PASS;
+PRODUCTION RENDER IDENTITY AND NON-MUTATING ROUTE SMOKE REMAIN**
 
 Plan:
 
@@ -70,8 +70,11 @@ configured. No deployed configuration or security claim is inferred from those w
 
 ## 4. Release Packaging
 
-The Role Authority child `b1ede26f` and dependency child `60ac76c1` are committed separately
-and combined for the next release. Exact `60ac76c1`—not either earlier state—is the online
-dev Security Scan subject.
+The Role Authority child `b1ede26f` and dependency child `60ac76c1` remain separately
+reviewable in the combined release. Exact `60ac76c1` is aligned across local/remote dev,
+staging and main. Exact Security Scans pass on dev (`31384553388`), staging (`31384766945`)
+and main (`31387014370`). Staging human smoke passed 8/8 and both staging and production
+public health report HTTP 200, database connected and RLS 11/11.
 
-No branch, staging, main, Render or database state changed during this implementation.
+This record does not infer the live Render SHA from public health. Production exact-build
+identity and the bounded non-mutating route smoke remain in the combined promotion record.

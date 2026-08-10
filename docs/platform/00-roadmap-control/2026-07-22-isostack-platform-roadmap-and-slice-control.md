@@ -36,36 +36,37 @@ default.
 | --- | --- | --- |
 | [`2026-07-22-isostack-platform-node-middleware-request-body-finalisation-defect-cr.md`](../01-cr-inputs/2026-07-22-isostack-platform-node-middleware-request-body-finalisation-defect-cr.md) | Completed through `PLAT-RUNTIME-01`; subsequently included in the completed LMSPro R8-A production release | Closed historical corrective input; do not reopen without a new finding |
 | [`2026-07-27-isostack-platform-auth-dependency-and-audit-gate-security-remediation-cr-input.md`](../01-cr-inputs/2026-07-27-isostack-platform-auth-dependency-and-audit-gate-security-remediation-cr-input.md) | Completed through the documented `PLAT-ASSURE-03` dev/staging lifecycle and human gate; no separate production claim is added by this reconciliation | Closed at its recorded evidence boundary; `PLAT-REFINE-03` and `PLAT-REFINE-04` retain separate follow-up concerns |
-| [`2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md`](../01-cr-inputs/2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md) | Active root project; exact combined `60ac76c1` promoted through dev to staging after dev Security PASS; staging scan/health PASS; human smoke pending; no live change | Indicative staging gate is `Now`; main decision is later |
-| [`2026-08-10-isostack-platform-plat-role-02a-seasonpro-owner-user-type-control-correction-sub-cr.md`](../01-cr-inputs/2026-08-10-isostack-platform-plat-role-02a-seasonpro-owner-user-type-control-correction-sub-cr.md) | Corrective child of active `PLAT-ROLE-02`; authoritative-profile correction technically and human-accepted on the uncommitted local working tree based on `7e453665` | Complete at local acceptance boundary; returned control to parent smoke item 4; no independent staging lifecycle |
-| [`CR-Fix-2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity.md`](../01-cr-inputs/CR-Fix-2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity.md) | Implemented/accepted as Role child `b1ede26f`, now retained in exact staging `60ac76c1`; indicative human smoke pending | No main promotion before staging human PASS |
+| [`2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md`](../01-cr-inputs/2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md) | Active root project; delivered containment release `60ac76c1` is aligned through main; local matrix, staging 8/8, all exact branch scans and public health pass | Production exact-build/non-mutating smoke is `Now`; conditional `PLAT-ROLE-03` authority decision follows |
+| [`2026-08-10-isostack-platform-plat-role-02a-seasonpro-owner-user-type-control-correction-sub-cr.md`](../01-cr-inputs/2026-08-10-isostack-platform-plat-role-02a-seasonpro-owner-user-type-control-correction-sub-cr.md) | Corrective child of `PLAT-ROLE-02`; authoritative-profile correction is technically/human accepted and included in exact main `60ac76c1` | Complete bounded child; shared promotion evidence retained by the parent release |
+| [`CR-Fix-2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity.md`](../01-cr-inputs/CR-Fix-2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity.md) | Implemented/accepted as Role child `b1ede26f`, retained in exact main `60ac76c1`; staging 8/8 and exact-Club proof pass | Corrective child delivered; production non-mutating completion evidence remains with parent release |
 | [`2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md`](../01-cr-inputs/2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md) | Captured; selected as the mandatory self-contained project after Role Authority; awaiting formal Platform triage | Client-enablement and privacy/security project; internal-note privacy, server lifecycle authority and notification operability precede client enablement; Platform Notice remains separable and non-expedite |
-| [`CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md`](../01-cr-inputs/CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md) | Dependency child `60ac76c1`; exact dev/staging scans and staging health PASS; main pending | Staging human gate now; exact main Security Scan required after later authority |
+| [`CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md`](../01-cr-inputs/CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md) | Dependency child `60ac76c1`; exact dev/staging/main scans, staging smoke and staging/production health PASS | Delivered through main; retain exact scan evidence with the combined release |
 
 Current Platform portfolio disposition:
 
-- local dev, origin/dev, local staging and origin/staging are exact combined candidate
-  `60ac76c1`: Role child `b1ede26f` followed by dependency child `60ac76c1`; main remains
-  `72c02d92`;
+- local and remote dev, staging and main are exact combined candidate `60ac76c1`: Role
+  child `b1ede26f` followed by dependency child `60ac76c1`;
 - Role Authority is active. `PLAT-ROLE-01` is corrected, accepted and complete.
-  `PLAT-ROLE-02` has been corrected locally at `7e453665`; `PLAT-ROLE-02A` is technically
-  and human-accepted on the local working tree. The complete parent 1–18 human matrix now
+  `PLAT-ROLE-02` was corrected at `7e453665`; `PLAT-ROLE-02A` is technically and
+  human-accepted. The complete parent 1–18 human matrix now
   passes. `PLAT-ROLE-02B` is implemented and technically accepted and its exact disposable
   fixture is repaired. The item-7 focused retest and read-only Derby exact-junction proof
-  pass, completing the local Role gate. Exact `60ac76c1` is now on dev and staging. Support
-  Ticketing remains the mandatory following
+  pass, completing the local Role gate. The staging gate then passed 8/8, including a
+  read-only exact-current-Club junction proof, and `60ac76c1` is aligned through main.
+  Support Ticketing remains the mandatory following
   self-contained project and still requires triage and bounded planning;
-- exact dev Security Scan `31384553388`, staging Security Scan `31384766945` and public
-  staging health pass. The accepted indicative staging human smoke is the current gate;
+- exact dev Security Scan `31384553388`, staging `31384766945`, main `31387014370`, staging
+  smoke 8/8 and staging/production public health pass. Production Render exact-build
+  confirmation and the bounded non-mutating C1/C2 route smoke are the current gate;
 - an evidenced live security/privacy failure may still be proposed to the root as an
   expedite candidate under the ordinary control process.
 
 Prepared Role Authority sequence:
 
 1. [`PLAT-ROLE-01 — Authority Inventory And Canonical Matrix`](../03-slice-planning/2026-08-06-isostack-platform-plat-role-01-authority-inventory-and-canonical-matrix-planning.md) — complete; all 13 matrix items accepted with corrected C1/C2 persona wording;
-2. [`PLAT-ROLE-02 — Core-Role Mutation Containment`](../03-slice-planning/2026-08-06-isostack-platform-plat-role-02-core-role-mutation-containment-planning.md) — parent implementation local at `7e453665`; complete item-1-through-item-18 matrix accepted;
-3. [`PLAT-ROLE-02A — SeasonPro Owner User-Type Control Correction`](../03-slice-planning/2026-08-10-isostack-platform-plat-role-02a-seasonpro-owner-user-type-control-correction-planning.md) — technically and human-accepted locally; complete at its bounded boundary;
-4. [`PLAT-ROLE-02B — Club Officials Authority Integrity`](../03-slice-planning/2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity-planning.md) — complete local pass including parent 18/18, focused item 7 and read-only exact Derby junction;
+2. [`PLAT-ROLE-02 — Core-Role Mutation Containment`](../03-slice-planning/2026-08-06-isostack-platform-plat-role-02-core-role-mutation-containment-planning.md) — complete item-1-through-item-18 matrix accepted and included in exact main `60ac76c1`;
+3. [`PLAT-ROLE-02A — SeasonPro Owner User-Type Control Correction`](../03-slice-planning/2026-08-10-isostack-platform-plat-role-02a-seasonpro-owner-user-type-control-correction-planning.md) — technically/human accepted and delivered with the parent release;
+4. [`PLAT-ROLE-02B — Club Officials Authority Integrity`](../03-slice-planning/2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity-planning.md) — complete local/staging pass including parent 18/18, focused item 7 and read-only exact-current-Club junction proofs; delivered with the parent release;
 5. [`PLAT-ROLE-03 — Canonical Core Authority Service And Owner Safety`](../03-slice-planning/2026-08-06-isostack-platform-plat-role-03-canonical-core-authority-service-and-owner-safety-planning.md) — conditional Platform service;
 6. [`LMS-ROLE-01 — SeasonPro User Authority Consumer Alignment`](../03-slice-planning/2026-08-06-isostack-platform-lms-role-01-seasonpro-user-authority-consumer-alignment-planning.md) — conditional consumer alignment; and
 7. [`LMS-ROLE-02 — SeasonPro Access Parity And Read-Only Enforcement`](../03-slice-planning/2026-08-06-isostack-platform-lms-role-02-seasonpro-access-parity-and-read-only-enforcement-planning.md) — conditional UI/server parity.

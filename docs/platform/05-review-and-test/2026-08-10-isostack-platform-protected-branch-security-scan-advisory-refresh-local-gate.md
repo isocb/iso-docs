@@ -2,8 +2,9 @@
 
 Date: 2026-08-10
 
-Status: **LOCAL REVIEW PASS; EXACT `60ac76c1` DEV AND STAGING SECURITY SCANS PASS; PUBLIC
-STAGING HEALTH PASS; INDICATIVE STAGING HUMAN SMOKE AND MAIN LIFECYCLE PENDING**
+Status: **LOCAL REVIEW PASS; EXACT `60ac76c1` DEV, STAGING AND MAIN SECURITY SCANS PASS;
+STAGING 8/8 AND STAGING/PRODUCTION PUBLIC HEALTH PASS; PRODUCTION RENDER IDENTITY AND
+NON-MUTATING ROUTE SMOKE REMAIN**
 
 Implementation:
 
@@ -47,19 +48,21 @@ It fails the three scheduled protected-branch dependency validators and passes T
 secret, schema and final-report jobs. The corrected candidate has not yet been pushed, so it
 does not yet have an online PASS claim.
 
-## 3. Online Evidence And Remaining Stop Gate
+## 3. Online Evidence And Remaining Completion Gate
 
-The combined candidate is aligned to dev and staging with passing exact scans:
+The combined candidate is aligned across local/remote dev, staging and main with passing
+exact scans:
 
 - dev Security Scan [`31384553388`](https://github.com/isocb/isostack-bedrock/actions/runs/31384553388): PASS;
-- staging Security Scan [`31384766945`](https://github.com/isocb/isostack-bedrock/actions/runs/31384766945): PASS; and
-- staging public health: HTTP 200, database connected, RLS 11/11.
+- staging Security Scan [`31384766945`](https://github.com/isocb/isostack-bedrock/actions/runs/31384766945): PASS;
+- main Security Scan [`31387014370`](https://github.com/isocb/isostack-bedrock/actions/runs/31387014370): PASS;
+- staging indicative human smoke: PASS, 8/8, including exact-current-Club junction proof;
+- staging public health: HTTP 200, database connected, RLS 11/11; and
+- production public health: HTTP 200, database connected, RLS 11/11.
 
-Completion still requires:
+The dependency remediation and protected-branch scan gates are complete. The combined Role
+release still requires Render confirmation that production is Live at exact `60ac76c1`
+and the documented non-mutating C1/C2 route smoke; public health alone does not expose SHA.
 
-1. Render confirmation that staging is Live at exact `60ac76c1`;
-2. the accepted indicative staging Role smoke; and
-3. the separately authorised main scan, health and smoke lifecycle.
-
-Current decision: **EXACT DEV/STAGING SECURITY GATES PASS; COMPLETE INDICATIVE STAGING
-HUMAN SMOKE BEFORE ANY MAIN DECISION**.
+Current decision: **DEPENDENCY SECURITY CORRECTION IS DELIVERED THROUGH MAIN; RETAIN THE
+PRODUCTION EXACT-BUILD/ROUTE CHECK AS COMBINED RELEASE EVIDENCE**.

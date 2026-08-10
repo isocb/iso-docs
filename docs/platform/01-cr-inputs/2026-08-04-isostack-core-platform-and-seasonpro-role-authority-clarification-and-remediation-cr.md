@@ -4,12 +4,11 @@ Date: 2026-08-04
 
 Owning lane: IsoStack Platform, with a bounded SeasonPro / LMSPro consumer outcome
 
-Status: **ACTIVE PROJECT; PLAT-ROLE-01 MATRIX ACCEPTED; PLAT-ROLE-02A OWNER-CONTROL
-CORRECTION HUMAN-ACCEPTED; COMPLETE PLAT-ROLE-02 ITEM-1-THROUGH-ITEM-18 LOCAL MATRIX
-ACCEPTED; PLAT-ROLE-02B TECHNICALLY ACCEPTED AND FIXTURE REPAIRED; ITEM-7 EXACT
-CURRENT-CLUB JUNCTION FOCUSED RETEST AND READ-ONLY DERBY PROOF PASS; LOCAL ROLE GATE
-COMPLETE AND COMMITTED AS ROLE CHILD `b1ede26f`; COMBINED ROLE/SECURITY CANDIDATE
-`60ac76c1` AWAITS EXACT DEV SCAN; NO STAGING OR PRODUCTION CHANGE**
+Status: **ACTIVE PROJECT; PLAT-ROLE-01 AND DELIVERED PLAT-ROLE-02/02A/02B CONTAINMENT
+ACCEPTED; LOCAL 1–18, FOCUSED ITEM 7, STAGING 8/8 AND LOCAL/STAGING EXACT-JUNCTION
+PROOFS PASS; COMBINED ROLE/SECURITY `60ac76c1` IS ALIGNED THROUGH MAIN WITH ALL THREE
+EXACT SECURITY SCANS AND PUBLIC HEALTH GREEN; PRODUCTION RENDER/ROUTE COMPLETION GATE
+REMAINS, THEN PLAT-ROLE-03, LMS-ROLE-01 AND BOUNDED LMS-ROLE-02 CONTINUE THE PROJECT**
 
 Application source reviewed:
 
@@ -490,14 +489,16 @@ deletion is authorised by the inventory.
 4. Accepted in part: a suitably module-authorised C2 Member may create C2 Members only in
    their own node. Confirm the exact module permission and the remaining C1/Admin delegation
    matrix.
-5. Multiple Owners and the C1 Owner's authority to create an additional Owner are accepted;
-   confirm whether the safe workflow is direct creation, invitation/acceptance or a controlled
-   combined workflow.
-6. Define the last-Owner protection and ownership-transfer/recovery process.
-7. Confirm how a direct C1 creation form should ask for the new person's intended persona
-   without exposing confusing technical terminology.
-8. Confirm whether legacy C1/C2/C3 wording is corrected in place or retained only in a clearly
-   marked historical glossary section.
+5. Confirmed: multiple Owners are supported and a C1 Owner may create an additional Owner
+   directly through the controlled creation workflow.
+6. Accepted and tested: the last active Owner cannot be demoted; with another active Owner
+   present, a deliberate non-self change is allowed. Define any additional ownership-
+   transfer and recovery process required by `PLAT-ROLE-03`.
+7. Confirmed: the direct creation form should use the user-facing labels `Owner` and
+   `Admin Delegate`, not `C1 Owner` or `C1 Admin`; the underlying Organisation authorities
+   remain literal `OWNER` and `ADMIN`.
+8. Confirm whether legacy C1/C2/C3 wording is corrected in place or retained only in a
+   clearly marked historical glossary section.
 
 No other business decision should be invented during implementation. Technical ambiguities
 found by the inventory must be reported for the planning decision.

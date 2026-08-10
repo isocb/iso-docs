@@ -29,35 +29,37 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application evidence:
 
 ```text
-local dev = origin/dev = local staging = origin/staging = exact combined candidate 60ac76c1
-main = origin/main = 72c02d92
+local/remote dev = staging = main = exact combined candidate 60ac76c1
 F3 tests/type/verify/build and promotion-time dev/staging/main Security Scans = PASS
 F3 staging human smoke = 13/13 PASS; production promotion = COMPLETE
 staging and production public health = HTTP 200; database connected; RLS 11/11
 PLAT-ROLE-01 matrix = COMPLETE; all 13 items accepted with corrected C1/C2 persona wording
 PLAT-ROLE-02A = PASS; complete PLAT-ROLE-02 parent 1–18 human matrix = PASS
 PLAT-ROLE-02B item-7 focused retest/read-only Derby exact-junction proof = PASS; local Role gate complete
-exact dev Security Scan 31384553388 and staging Security Scan 31384766945 = PASS
-staging public health = HTTP 200; database connected; RLS 11/11; indicative human smoke pending
+exact dev Security Scan 31384553388, staging 31384766945 and main 31387014370 = PASS
+staging indicative human smoke = 8/8 PASS; exact-Club read-only junction proof = PASS
+staging and production public health = HTTP 200; database connected; RLS 11/11
+production Render exact-build confirmation and non-mutating route smoke = pending
 ```
 
 Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Indicative staging Role/security smoke on exact `60ac76c1` | Dev/staging exact scans and public staging health pass. Confirm Render exact build, then execute the eight environment-sensitive checks; do not replay the complete 18-item local matrix. |
-| **NEXT** | Main promotion decision | Only after indicative staging PASS, reconcile evidence and obtain separate authority for exact main promotion, scan, health and post-deploy smoke. |
+| **NOW** | Complete the exact `60ac76c1` Role/security production gate | Branch alignment, exact main scan and public health pass. Confirm Render production identity and perform only the documented non-mutating C1/C2 route smoke. |
+| **NEXT** | Role Authority continuation decision | Close the delivered containment release, then settle the outstanding human authority matrix before explicitly accepting or declining conditional `PLAT-ROLE-03`; do not drift into implementation. |
 
 Registered and ordered work outside that pair:
 
 - Platform/SeasonPro role-authority clarification: active root project. `PLAT-ROLE-01` is
-  complete; `PLAT-ROLE-02A` is locally accepted; the complete parent 1–18 matrix passes;
-  `PLAT-ROLE-02B` is technically accepted, its fixture is repaired, and the focused item-7
-  retest plus read-only Derby exact-junction proof pass. The local Role gate is complete;
+  complete; `PLAT-ROLE-02A` is accepted; the complete parent 1–18 matrix passes;
+  `PLAT-ROLE-02B` is accepted, its fixture is repaired, and the focused item-7
+  retest plus local and staging read-only exact-junction proofs pass. Exact `60ac76c1` is
+  aligned through main with all three exact Security Scans and both public health checks
+  green; production Render identity and non-mutating route smoke remain;
 - Platform protected-branch Security Scan advisory refresh: expedite accepted and exact
-  `js-yaml@4.3.1`/`nanoid@3.3.18` correction technically accepted locally with zero audit
-  findings. It remains a separate child commit in exact staging `60ac76c1`; dev/staging
-  scans and public health pass, with indicative staging human smoke now required;
+  `js-yaml@4.3.1`/`nanoid@3.3.18` correction promoted as a separate child commit in
+  `60ac76c1`; dev, staging and main scans pass with zero high/critical findings;
 - Platform support-ticketing client readiness: privacy/security and client-enablement triage
   input selected as the mandatory self-contained project after Role Authority, with the
   internal-note and server-authority findings eligible for an explicit expedite proposal

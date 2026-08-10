@@ -39,9 +39,9 @@ authority. Later disposition changes must update the existing row.
 Current LMSPro portfolio disposition:
 
 ```text
-NOW  -> indicative staging Role/security smoke on exact 60ac76c1
-NEXT -> separately authorised exact main promotion decision after staging PASS
-THEN -> Platform Support Ticketing client-readiness project
+NOW  -> production exact-build confirmation and non-mutating Role/security route smoke on exact 60ac76c1
+NEXT -> settle and explicitly accept the conditional PLAT-ROLE-03 authority-service slice
+THEN -> LMS-ROLE-01 followed by bounded LMS-ROLE-02; Support Ticketing follows the completed Role project
 PARKED -> FUND 1R-F-A at its exact pre-planning boundary
 ```
 
@@ -49,9 +49,9 @@ The control owner completed the displaced R10-A smoke as totally green. The curr
 pair is therefore:
 
 ```text
-NOW  -> indicative staging Role/security smoke on exact 60ac76c1
-NEXT -> separately authorised exact main promotion decision after staging PASS
-THEN -> Platform Support Ticketing client-readiness project
+NOW  -> production exact-build confirmation and non-mutating Role/security route smoke on exact 60ac76c1
+NEXT -> settle and explicitly accept the conditional PLAT-ROLE-03 authority-service slice
+THEN -> LMS-ROLE-01 followed by bounded LMS-ROLE-02; Support Ticketing follows the completed Role project
 PARKED -> FUND 1R-F-A bounded planning
 ```
 
@@ -64,11 +64,13 @@ its corrected Owner-control gate, `PLAT-ROLE-02B` corrected the Club Officials r
 whole-role replacement defects, and the complete parent 1–18 matrix is accepted. Item 7
 then exposed one stale former current-season Club junction beneath an otherwise correct C2
 Club edit. Its focused retest and read-only Derby exact-junction proof pass, completing the
-local Role gate. Staging and production are unchanged. The separate 2026-08-09 Platform
+local Role gate. Staging then passed 8/8 and the read-only exact-current-Club proof; dev,
+staging and main are aligned at `60ac76c1`. The separate 2026-08-09 Platform
 dependency CR-Fix is accepted and technically green locally at
 `js-yaml@4.3.1`/`nanoid@3.3.18`. It follows the Role child as a separate commit in one
-release candidate. Exact dev/staging Security Scans and public health pass; indicative
-staging human smoke is now the control gate.
+release candidate. Exact dev/staging/main Security Scans and staging/production public
+health pass; production Render identity and non-mutating route smoke are now the control
+gate.
 
 ## Purpose
 
@@ -150,15 +152,16 @@ Current work should remain on dev/remediation branches until reviewed and explic
 Current app alignment:
 
 ```text
-local dev = uncommitted PLAT-ROLE-02A + PLAT-ROLE-02B corrections based on 7e453665; origin/dev = staging = origin/staging = main = origin/main = 72c02d92
+local/remote dev = staging = main = exact combined Role/security release 60ac76c1
 F3 staging smoke = 13/13 PASS; exact main promotion = COMPLETE
 Render live public health = PASS; database connected; RLS 11/11
 PLAT-ROLE-01 = complete; all 13 matrix items accepted with corrected C1/C2 persona wording
 PLAT-ROLE-02 = complete parent 1–18 plus focused item-7/read-only exact-junction PASS
-dev/staging Security Scans = PASS; staging public health PASS; indicative human smoke pending
+dev/staging/main Security Scans = PASS; staging smoke 8/8 PASS; staging/production public health PASS
+production Render exact-build confirmation and non-mutating C1/C2 route smoke = pending
 ```
 
-Application `72c02d92` is the current branch-aligned baseline and includes prior LMSPro,
+Application `60ac76c1` is the current branch-aligned baseline and includes prior LMSPro,
 FUND and Commerce work by ancestry.
 The control owner reported the final R10-A production smoke totally green on 2026-08-05.
 After all ten F2.1 staging checks passed, the control owner authorised its promotion. F2.2

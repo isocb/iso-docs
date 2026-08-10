@@ -12,9 +12,11 @@ communications behaviour.
 
 - Email F3 exact application `72c02d92` passed its automated gates and 13/13 staging smoke,
   is aligned through main, and is closed with public production health green.
-- **Portfolio NOW:** indicative staging Role/security smoke on exact `60ac76c1`; dev and
-  staging scans plus public health pass.
-- **Portfolio NEXT:** separately authorised exact main promotion decision after staging PASS.
+- **Portfolio NOW:** confirm production Render identity and complete the non-mutating
+  Role/security route smoke on exact `60ac76c1`; all branch scans, staging smoke and public
+  health checks pass.
+- **Portfolio NEXT:** settle and explicitly accept the conditional `PLAT-ROLE-03` slice,
+  followed by `LMS-ROLE-01` and bounded `LMS-ROLE-02`.
 - F1 human staging smoke passes through the maximum available 440-recipient draft, with a
   341 ms broad-case server wait.
 - F2 failed because it treated C1/C2/hat-swap access context as independently selectable
@@ -43,15 +45,15 @@ communications behaviour.
 - Role Authority matrix is accepted with corrected C1/C2 persona wording. First
   `PLAT-ROLE-02` checkpoint `5e551938` failed usefully and was not promoted. Corrective
   `7e453665` contains the four Critical paths, complete persona enforcement and bounded
-  Club-access finding; exact `60ac76c1` is on staging with scan/health green and human smoke
-  pending; no live/data change.
+  Club-access finding; exact `60ac76c1` is aligned through main, all exact scans pass,
+  staging smoke is 8/8 and staging/production health is green.
   Club Officials subsequently proved two consumer defects, both corrected by
   `PLAT-ROLE-02B`. The complete 18-item human matrix now passes. An item-7 Club edit exposed
   one retained former current-season junction; its focused retest and read-only exact
   junction proof pass. Support Ticketing follows the Role project; FUND remains parked.
 - The two newly published High dependency advisories are corrected locally with exact
   patched overrides, zero audit findings, full regression and build PASS. The dependency
-  correction remains a separate child commit; staging still requires exact dev scan PASS.
+  correction remains a separate child commit; exact dev, staging and main scans pass.
 
 ## Recently Completed
 
@@ -83,9 +85,10 @@ the selected matrix/containment boundaries; do not combine live repair or the wi
 
 ## Next Decision
 
-Align exact `60ac76c1` to dev only when authorised; require its exact Security Scan before
-any staging lifecycle. Support Ticketing follows the completed Role
-project before FUND resumes.
+Confirm production Render is live at exact `60ac76c1` and perform only the documented
+non-mutating production smoke. Then decide and deliver `PLAT-ROLE-03`, `LMS-ROLE-01` and
+bounded `LMS-ROLE-02` in order. Support Ticketing follows the completed Role project before
+FUND resumes.
 
 Authoritative source:
 [`LMSPro / SeasonPro Roadmap And Slice Control`](../../modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md)

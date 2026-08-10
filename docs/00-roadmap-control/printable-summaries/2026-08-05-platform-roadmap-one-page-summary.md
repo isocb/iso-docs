@@ -11,7 +11,7 @@ infrastructure, security assurance and engineering controls.
 
 ## Current Position
 
-- Dev and staging are exact `60ac76c1`; main remains `72c02d92`.
+- Local/remote dev, staging and main are exact `60ac76c1`.
 - The dependency advisory refresh is complete through live evidence.
 - Role Authority is active. All 13 `PLAT-ROLE-01` matrix items are accepted with corrected
   C1/C2 persona wording.
@@ -23,8 +23,8 @@ infrastructure, security assurance and engineering controls.
   one stale former current-season Club junction beneath an otherwise passing exact-Club
   edit; its focused retest and read-only Derby junction proof now pass.
 - The dependency expedite is accepted and locally green at exact `js-yaml@4.3.1` and
-  `nanoid@3.3.18`, with zero audit findings. Exact dev and staging Security Scans plus
-  public staging health pass; indicative staging human smoke remains.
+  `nanoid@3.3.18`, with zero audit findings. Exact dev, staging and main Security Scans,
+  staging smoke 8/8, exact-Club proof and staging/production public health pass.
 
 ## Open Management Inputs
 
@@ -32,8 +32,9 @@ infrastructure, security assurance and engineering controls.
   four Critical Core escalation/relink paths and several High access-consistency findings.
   `PLAT-ROLE-02B` technical delivery, controlled repair, parent 18/18 and focused item-7
   exact-junction gate are complete. Combined exact candidate `60ac76c1` contains separate
-  Role `b1ede26f` and dependency child commits. Its indicative staging smoke is `NOW`; a
-  separately authorised exact main decision is `NEXT` after PASS.
+  Role `b1ede26f` and dependency child commits. Production Render identity and a
+  non-mutating C1/C2 route smoke are `NOW`; the `PLAT-ROLE-03` authority decision is
+  `NEXT`, followed by `LMS-ROLE-01` and bounded `LMS-ROLE-02`.
 - **Security Scan advisory refresh:** expedite accepted and locally green. Exact patched
   overrides produce zero audit findings without unrelated churn; retain their own child
   commit in the combined release candidate.
@@ -60,10 +61,11 @@ expedite; it is not automatically an expedite.
 
 ## Next Decision
 
-Complete the indicative staging human smoke on exact `60ac76c1`. Dev/staging scans and
-public health already pass. Complete
-the later Role Authority slices before
-Support Ticketing. Keep client support enablement off until its security/privacy and
+Confirm production Render is live at exact `60ac76c1` and complete only the documented
+non-mutating production route smoke. Then settle and explicitly accept or decline
+`PLAT-ROLE-03`; if accepted, complete it before `LMS-ROLE-01` and bounded `LMS-ROLE-02`.
+Complete the Role Authority project before Support Ticketing. Keep client support
+enablement off until its security/privacy and
 notification-operability boundaries are accepted and tested.
 
 Authoritative source:

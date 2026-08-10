@@ -2,9 +2,9 @@
 
 Date: 2026-08-10
 
-Status: **COMPLETE LOCAL PASS; EXACT ROLE/SECURITY CANDIDATE `60ac76c1` PROMOTED THROUGH
-DEV TO STAGING AFTER PASSING DEV SECURITY SCAN; STAGING SECURITY/HEALTH PASS; INDICATIVE
-STAGING HUMAN SMOKE PENDING; MAIN UNCHANGED**
+Status: **COMPLETE LOCAL PASS; EXACT ROLE/SECURITY CANDIDATE `60ac76c1` ALIGNED THROUGH
+DEV, STAGING AND MAIN; STAGING 8/8, ALL EXACT SECURITY SCANS AND PUBLIC HEALTH PASS;
+PRODUCTION RENDER IDENTITY AND NON-MUTATING ROUTE SMOKE REMAIN**
 
 Implementation:
 
@@ -95,11 +95,11 @@ Any persistence, routing or junction mismatch reopens only this bounded rectific
 
 ## 5. Promotion Decision
 
-Current decision: **PARENT 1–18 HUMAN MATRIX, ITEM-7 FOCUSED RETEST AND READ-ONLY
-EXACT-JUNCTION PROOF ALL PASS. THE PLAT-ROLE-02 LOCAL GATE IS COMPLETE. ROLE CHILD
-`b1ede26f` IS FOLLOWED BY SEPARATE DEPENDENCY CHILD/COMBINED CANDIDATE `60ac76c1`; DO NOT
-PROMOTE UNTIL EXACT `60ac76c1` PASSES DEV SECURITY SCAN**.
+Current decision: **PARENT 1–18 HUMAN MATRIX, ITEM-7 FOCUSED RETEST, LOCAL AND STAGING
+READ-ONLY EXACT-JUNCTION PROOFS, AND STAGING 8/8 ALL PASS. ROLE CHILD `b1ede26f` IS
+FOLLOWED BY SEPARATE DEPENDENCY CHILD/COMBINED RELEASE `60ac76c1`, NOW ALIGNED THROUGH
+MAIN WITH ALL THREE EXACT SECURITY SCANS AND PUBLIC HEALTH GREEN**.
 
-The two child commits may travel as one release candidate, but their diffs and evidence
-remain separately reviewable. Staging requires an explicit later decision after the exact
-combined dev SHA passes every Security Scan job.
+The two child commits remain separately reviewable. Production Render identity and the
+documented non-mutating C1/C2 route smoke complete the combined deployment record; they do
+not require repetition of the mutation-heavy local/staging matrices.
