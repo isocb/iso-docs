@@ -2,10 +2,10 @@
 
 Date: 2026-08-06
 
-Status: **PARENT IMPLEMENTATION COMPLETE AT `7e453665`; `PLAT-ROLE-02A` HUMAN-ACCEPTED;
-COMPLETE PARENT 1–18 LOCAL MATRIX ACCEPTED; `PLAT-ROLE-02B` TECHNICALLY ACCEPTED AND
-FIXTURE REPAIRED; ITEM-7 FOCUSED RETEST AND READ-ONLY DERBY EXACT-JUNCTION PROOF PASS;
-LOCAL ROLE GATE COMPLETE AND COMMITTED IN CHILD `b1ede26f`; NOT PUSHED OR PROMOTED**
+Status: **DELIVERED THROUGH PRODUCTION IN EXACT `60ac76c1`; PARENT 1–18, 02A/02B,
+FOCUSED ITEM 7, STAGING 8/8, EXACT-JUNCTION, SECURITY, HEALTH AND PRODUCTION C1/C2
+EVIDENCE PASS; SAME-CLUB C2 SIBLING CREATION/MAGIC-LINK AUTHENTICATION PROVEN; PROJECT
+CLOSED WITH EXACT RESIDUAL REVIEW PARKED AS `PLAT-ROLE-R1`**
 
 Plan:
 
@@ -88,18 +88,20 @@ is made.
 
 ## 4. Retained Boundaries And Risks
 
-- C2 same-node delegation by an existing C2 Member remains fail closed for `LMS-ROLE-01`;
-  this containment does not enable it prematurely.
-- Wider status/removal/Owner-recovery rules remain `PLAT-ROLE-03` decisions.
-- Wider component/read-only consistency and impersonation redesign remain outside this
-  slice.
+- C2 same-node delegation is delivered through the bounded Club Officials workflow:
+  `clubb@isodo.co.uk` created sibling C2 Member `clubc@isodo.co.uk`, which authenticated by
+  magic link. The generic League user-management router need not be opened to C2 actors.
+- The delivered operating Owner/status rules close this project. Any later recovery-policy
+  expansion activates a fresh review rather than mandatory `PLAT-ROLE-03`.
+- Wider component/read-only and legacy Core-writer consistency are outside this delivered
+  slice and retained only in trigger-based `PLAT-ROLE-R1`.
 - No existing live assignment has been inspected or repaired.
 - Stale clients sending the old `role` field now fail explicitly and must refresh.
 
-Application revert of `7e453665` and its parent `5e551938` is the code rollback. No data
-rollback exists or is needed because neither commit has left local dev.
+The delivered Role child is `b1ede26f`, retained in exact release `60ac76c1`. No schema or
+migration rollback exists or is needed.
 
-## 5. Current Stop
+## 5. Final Closure
 
 The bounded
 [`PLAT-ROLE-02A` Owner-control human gate](../05-review-and-test/2026-08-10-isostack-platform-plat-role-02a-seasonpro-owner-user-type-control-correction-local-gate.md)
@@ -113,5 +115,5 @@ changing this parent's original delivered-code evidence.
 The complete parent item-1-through-item-18 matrix now passes. Item 7 exposed one adjacent
 stale-current-Club junction defect after its stated persona/reopen assertion passed; the
 bounded correction, focused edit/reopen and read-only exact Derby junction proof all pass.
-The local Role gate is complete. Package it separately from the accepted dependency child;
-do not promote to staging until their combined exact dev SHA passes Security Scan.
+The local, staging and production gates are complete. The parent project is closed by
+[`Role Authority project closure and residual disposition`](../05-review-and-test/2026-08-10-isostack-platform-role-authority-project-closure-and-residual-disposition.md).

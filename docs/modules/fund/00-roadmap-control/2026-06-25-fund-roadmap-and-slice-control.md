@@ -2,7 +2,7 @@
 
 Created: 2026-06-25
 
-Last consolidated: 2026-08-09
+Last consolidated: 2026-08-10
 
 Status: Active authoritative control for the FUND lane
 
@@ -42,7 +42,7 @@ This document is planning/documentation only. It does not implement code, change
 This FUND roadmap controls the FUND lane only. It records Commerce dependencies but does not
 own or sequence Commerce Core implementation.
 
-## 0. Authoritative CR Inventory And Current FUND Disposition — 2026-08-09
+## 0. Authoritative CR Inventory And Current FUND Disposition — 2026-08-10
 
 This file is confirmed as the one authoritative FUND child roadmap. The strategic
 completion overview and refinement/pilot-placement register remain subordinate. The root
@@ -69,16 +69,16 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> PLAT-ROLE-02 replacement local human containment gate at 7e453665
-ROOT NEXT -> PLAT-ROLE-02 exact-commit staging lifecycle after local acceptance and a restored Security Scan
-THEN      -> Platform Support Ticketing client-readiness project
+ROOT NOW  -> Platform Support Ticketing client-readiness triage
+ROOT NEXT -> first bounded Support Ticketing security/privacy/operability prerequisite
+PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
 FUND      -> 1R-F-A preserved at its exact pre-planning boundary
 ```
 
-Email F3 is complete. Revised business priority retains Role Authority and then Support
-Ticketing as the remaining bounded housekeeping sequence before FUND resumes. A new Platform
-dependency CR-Fix is an urgent remedial candidate and blocks the next remote promotion until
-the Security Scan is restored. `1R-F-A` remains the exact FUND resumption point, but its
+Email F3 and Role Authority are complete. Support Ticketing is the remaining bounded
+housekeeping project before FUND resumes. `PLAT-ROLE-R1` is deferred trigger-based assurance
+and does not block FUND unless a recorded trigger fires. `1R-F-A` remains the exact FUND
+resumption point, but its
 planning and executable proof are not root `Now`/`Next`. No FUND implementation is authorised
 while those prerequisite projects remain open.
 
@@ -107,17 +107,17 @@ the position when that material was written and must not select new work.
 Current application repository state:
 
 ```text
-application local dev: 7e453665 (corrective PLAT-ROLE-02; unpushed)
-application origin/dev, staging, origin/staging, main and origin/main: 72c02d92
-live public health at the recorded promoted baseline: PASS
-current protected-branch dependency gate: FAIL on 2 new High advisories
+application local/remote dev, staging and main: exact 60ac76c1
+staging/production health and production Render/C1/C2 Role evidence: PASS
+protected-branch dev/staging/main Security Scans: PASS
+Role Authority: COMPLETE AND CLOSED
 ```
 
 Current consolidated delivery state:
 
 - Commerce `A1` through `A7`, FUND `1R-C1` through `1R-D` and Project Intake/creation
   `1P-G-R3-A` through `R3-D` are included in the promoted application ancestry;
-- protected application dev, staging and main are aligned at `72c02d92`; its ancestry
+- protected application dev, staging and main are aligned at `60ac76c1`; its ancestry
   includes `83356030`, E-D and the previously promoted FUND/Commerce application work;
 - E-D adds no migration and performed no shared database action; shared database state
   remains governed by the preceding promotion records;
@@ -161,7 +161,7 @@ Current E-A/E-B/E-C promotion state:
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is reviewed and accepted as
   the non-executable successor to the three governed CRs; and
 - `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the preserved FUND
-  resumption outcome after F3, Role Authority and Support Ticketing. No proof implementation,
+  resumption outcome after Support Ticketing; F3 and Role Authority are complete. No proof implementation,
   `1R-F-B` through `1R-F-I`, `1R-G` or artwork/template production implementation is
   authorised.
 - the 2026-07-20 refinement reconciliation is accepted as subordinate placement control:
@@ -394,7 +394,7 @@ COMMERCE-A1 (complete on dev)
         no E-D migration; consolidated E-B/C/D human schedule pending
   -> FUND 1R-F Project Offer And Artwork Readiness Reconciliation parent accepted
      -> FUND 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
-        preserved FUND resumption point after F3, Role Authority and Support Ticketing;
+        preserved FUND resumption point after Support Ticketing; F3 and Role Authority complete;
         planning and implementation are not authorised
         -> apply the accepted pilot/refinement placement before accepting later F/G work;
            this is a control gate, not an executable slice

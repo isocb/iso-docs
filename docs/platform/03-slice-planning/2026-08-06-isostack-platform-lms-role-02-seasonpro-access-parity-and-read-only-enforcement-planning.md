@@ -2,8 +2,16 @@
 
 Date: 2026-08-06
 
-Status: **CONDITIONAL CONSUMER PLAN PREPARED; EXACT COMPONENT/ACTION BOUNDARY DEPENDS ON
-PLAT-ROLE-01; NOT EXECUTABLE**
+Status: **SUPERSEDED AS AN AUTOMATIC DELIVERY SLICE; AFFECTED CLUB OFFICIALS FAMILY IS
+DELIVERED AND PRODUCTION-PROVEN; BROAD ALL-COMPONENT WORK IS NOT AUTHORISED; EXACT
+RESOLVER QUESTION MOVED TO DEFERRED TRIGGER-BASED `PLAT-ROLE-R1`; NOT EXECUTABLE**
+
+Final disposition:
+
+[`Role Authority project closure and residual disposition`](../05-review-and-test/2026-08-10-isostack-platform-role-authority-project-closure-and-residual-disposition.md)
+
+Do not use this conditional plan to initiate a SeasonPro-wide card/router rewrite. Only the
+two exact `PLAT-ROLE-R1` resolver boundaries remain available for triggered review.
 
 Accepted triage:
 

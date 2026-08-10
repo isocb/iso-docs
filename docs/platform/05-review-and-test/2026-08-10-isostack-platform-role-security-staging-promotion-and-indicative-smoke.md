@@ -2,10 +2,9 @@
 
 Date: 2026-08-10
 
-Status: **STAGING INDICATIVE SMOKE 8/8 PASS; DEV, STAGING AND MAIN ALIGNED AT EXACT
-`60ac76c1`; ALL THREE EXACT SECURITY SCANS PASS; STAGING AND PRODUCTION PUBLIC HEALTH
-PASS; PRODUCTION RENDER EXACT-BUILD CONFIRMATION AND PROPORTIONATE NON-MUTATING SMOKE
-REMAIN**
+Status: **COMPLETE PASS; DEV, STAGING AND MAIN ALIGNED AT EXACT `60ac76c1`; ALL THREE
+EXACT SECURITY SCANS, STAGING 8/8, STAGING/PRODUCTION HEALTH, PRODUCTION RENDER IDENTITY
+AND PRODUCTION C1/C2 AUTHENTICATION/ROUTING PASS; ROLE AUTHORITY RELEASE CLOSED**
 
 Role gate:
 
@@ -45,10 +44,13 @@ Promotion evidence:
 | Exact main Security Scan | PASS — [`31387014370`](https://github.com/isocb/isostack-bedrock/actions/runs/31387014370) |
 | Main dependency, secret, TypeScript, schema and consolidated-report jobs | PASS |
 | Public production `/api/health` | PASS — HTTP 200, database connected, RLS 11/11 at 2026-08-10 12:16 UTC |
+| Render production identity | PASS — control owner confirmed **Live at `60ac76c1`** |
+| Production authentication/routing | PASS — signed-out route, C1 route and exact C2 Club/Officials route |
+| Production same-node C2 creation | PASS — `clubb@isodo.co.uk` created sibling C2 Member `clubc@isodo.co.uk`; magic-link authentication succeeded |
 
-The control owner confirmed the staging Render identity before the human gate. Public health
-responses prove healthy services but do not expose a Git SHA; production Render must still
-display **Live at `60ac76c1`** before the release is recorded as deployment-complete.
+The control owner confirmed both staging and production Render identity. Public health does
+not expose Git SHA, so that explicit control-owner evidence completes the deployment
+identity gate.
 
 ## 2. Why An Indicative Smoke Is Proportionate
 
@@ -118,14 +120,18 @@ Do not repeat the staging mutation matrix in production. The unchanged exact SHA
 local matrix and successful staging gate make this non-mutating completion smoke
 proportionate:
 
-1. confirm Render production displays **Live at `60ac76c1`**;
-2. confirm `/api/health` remains healthy/database connected/RLS 11/11;
-3. confirm the signed-out login route loads without an Auth.js fetch error;
-4. sign in once as an existing non-disposable C1 actor and confirm one permitted C1 route;
-5. sign in once as an existing non-disposable C2 actor and confirm its exact permitted Club
-   route and Officials read; and
-6. do not create, edit, relink or delete a production user merely to repeat staging evidence.
+1. **PASS** — control owner confirmed Render production displays **Live at `60ac76c1`**.
+2. **PASS** — `/api/health` is healthy/database connected/RLS 11/11.
+3. **PASS** — the signed-out login route loads without an Auth.js fetch error.
+4. **PASS** — an existing C1 actor authenticated and reached a permitted C1 route.
+5. **PASS** — C2 Member `clubb@isodo.co.uk` created sibling C2 Member
+   `clubc@isodo.co.uk`; the new same-Club Member authenticated successfully by magic link
+   and reached the permitted C2 context. This is stronger evidence than the planned
+   non-mutating C2 route check and proves the desired same-node delegation outcome.
+6. **PASS** — no cross-Club, cross-tenant, Owner/Admin elevation or unrelated user change
+   was included in that bounded evidence.
 
-Any failure reopens this release as a bounded production finding. Until item 1 and the
-non-mutating route checks are recorded, branch alignment and public health are complete but
-the Render deployment/human-smoke evidence remains pending.
+All completion items pass. Any later regression requires a new bounded production finding;
+historical conditional plans do not reopen this release. The final project disposition is
+recorded in
+[`Role Authority project closure and residual disposition`](2026-08-10-isostack-platform-role-authority-project-closure-and-residual-disposition.md).

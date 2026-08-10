@@ -97,6 +97,7 @@ accepted noise and cannot reliably prevent regressions.
 | `PLAT-REFINE-02` | Unified Tenant-User Provisioning And Account-Status Contract | Shared tenancy/authentication remediation with LMSPro consumer adoption | High | Registered wishlist/finding; CR, triage and bounded planning required |
 | `PLAT-REFINE-03` | Shared Module Route Entitlement Guard And Access-Denied Contract | Shared product/module entitlement and defence-in-depth routing refinement | Medium; elevate if read-path audit finds data disclosure | Registered from staging smoke; CR, triage and bounded planning required |
 | `PLAT-REFINE-04` | Impersonation Effective-Principal And Tenant-View Contract | Shared support impersonation correctness, authorization and audit refinement | Medium; elevate if inventory finds data exposure or unsafe mutation | Registered from staging smoke; CR, triage and bounded planning required |
+| `PLAT-ROLE-R1` | Residual Authority Consistency Review | Two-boundary authority assurance: legacy Settings Team writer and component resolver | Medium; trigger-based, elevate only on proved reachability/security failure | Deferred; explicit triggers recorded; not `Now`/`Next`; no implementation authorised |
 
 ## 5. PLAT-ASSURE-01 — Repository-wide Lint, Typed-Test Coverage And CI Gate Remediation
 

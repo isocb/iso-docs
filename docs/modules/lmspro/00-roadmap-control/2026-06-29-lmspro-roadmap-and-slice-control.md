@@ -9,7 +9,7 @@ Parent portfolio control:
 
 `docs/00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md`
 
-## 0. Authoritative CR Inventory And Current LMSPro Disposition — 2026-08-09
+## 0. Authoritative CR Inventory And Current LMSPro Disposition — 2026-08-10
 
 This file is confirmed as the one authoritative LMSPro / SeasonPro child roadmap. The root
 Platform/module roadmap owns the one serial cross-lane `Now` and `Next`. CR inputs, triage,
@@ -34,14 +34,14 @@ authority. Later disposition changes must update the existing row.
 | [`2026-07-30-lmspro-responsive-c1-club-management-cr-input.md`](../01-cr-inputs/2026-07-30-lmspro-responsive-c1-club-management-cr-input.md) | R10-A implemented, staging-smoked, included by ancestry in live application `7154937` and reported totally green in the control-owner production smoke | Completed and closed on 2026-08-05; no remaining resumption action |
 | [`2026-08-05-lmspro-500-recipient-email-operating-envelope-refinement.md`](../01-cr-inputs/2026-08-05-lmspro-500-recipient-email-operating-envelope-refinement.md) | Captured planning input; awaiting formal triage | Registered standard communications/capacity candidate; no limit change, implementation or displacement of `Now`/`Next` authorised |
 | [`CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md`](../01-cr-inputs/CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md) | F1 PASS; F2 superseded; F2.1/F2.2 delivered; F3 exact `72c02d92` automated gates and staging smoke 13/13 PASS; dev/staging/main aligned; public production health PASS; no schema/migration | F3 complete and closed; any later regression requires a new CR-Fix |
-| [`2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md`](../01-cr-inputs/2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md) | R11-A implemented with corrected combined Division/Age Group recipient-type widget, session disclosure and responsive layout; focused/full tests, type, verification, lint and 131-page build PASS; authenticated local UI smoke 18/18 and staging smoke all green; exact `83356030` is retained by ancestry in current `72c02d92`; public live health PASS; no schema/API/provider/configuration change | Live branch promotion complete; retained exact Render/live-smoke evidence boundary does not displace the current Role Authority `Now`/`Next` |
+| [`2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md`](../01-cr-inputs/2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md) | R11-A implemented with corrected combined Division/Age Group recipient-type widget, session disclosure and responsive layout; focused/full tests, type, verification, lint and 131-page build PASS; authenticated local UI smoke 18/18 and staging smoke all green; exact `83356030` is retained by ancestry in current `60ac76c1`; public live health PASS; no schema/API/provider/configuration change | Live branch promotion complete; retained evidence does not displace the current Support Ticketing `Now`/`Next` |
 
 Current LMSPro portfolio disposition:
 
 ```text
-NOW  -> production exact-build confirmation and non-mutating Role/security route smoke on exact 60ac76c1
-NEXT -> settle and explicitly accept the conditional PLAT-ROLE-03 authority-service slice
-THEN -> LMS-ROLE-01 followed by bounded LMS-ROLE-02; Support Ticketing follows the completed Role project
+NOW  -> Platform Support Ticketing client-readiness triage
+NEXT -> first bounded Support Ticketing security/privacy/operability prerequisite
+PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; historical PLAT-ROLE-03/LMS-ROLE-01/02 are not next slices
 PARKED -> FUND 1R-F-A at its exact pre-planning boundary
 ```
 
@@ -49,14 +49,14 @@ The control owner completed the displaced R10-A smoke as totally green. The curr
 pair is therefore:
 
 ```text
-NOW  -> production exact-build confirmation and non-mutating Role/security route smoke on exact 60ac76c1
-NEXT -> settle and explicitly accept the conditional PLAT-ROLE-03 authority-service slice
-THEN -> LMS-ROLE-01 followed by bounded LMS-ROLE-02; Support Ticketing follows the completed Role project
+NOW  -> Platform Support Ticketing client-readiness triage
+NEXT -> first bounded Support Ticketing security/privacy/operability prerequisite
+PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; historical PLAT-ROLE-03/LMS-ROLE-01/02 are not next slices
 PARKED -> FUND 1R-F-A bounded planning
 ```
 
-F3 and R10-A are complete and closed. Role Authority is the active root project and Support
-Ticketing remains the required following project. FUND `1R-F-A` is preserved at its exact
+F3, R10-A and Role Authority are complete and closed. Support Ticketing is the active root
+project. FUND `1R-F-A` is preserved at its exact
 pre-planning boundary until those housekeeping outcomes are complete. `PLAT-ROLE-01` is
 corrected, accepted and complete. First `PLAT-ROLE-02` checkpoint `5e551938` failed usefully
 and was not promoted; corrective `7e453665` passed technical gates. `PLAT-ROLE-02A` passed
@@ -69,8 +69,10 @@ staging and main are aligned at `60ac76c1`. The separate 2026-08-09 Platform
 dependency CR-Fix is accepted and technically green locally at
 `js-yaml@4.3.1`/`nanoid@3.3.18`. It follows the Role child as a separate commit in one
 release candidate. Exact dev/staging/main Security Scans and staging/production public
-health pass; production Render identity and non-mutating route smoke are now the control
-gate.
+health, production Render identity and production C1/C2 evidence pass. A C2 Member created
+a sibling same-Club C2 Member which authenticated successfully by magic link. Historical
+`PLAT-ROLE-03`/`LMS-ROLE-01`/`LMS-ROLE-02` plans are superseded as next work; only exact
+trigger-based `PLAT-ROLE-R1` remains parked and it does not block Support Ticketing or FUND.
 
 ## Purpose
 
@@ -158,7 +160,9 @@ Render live public health = PASS; database connected; RLS 11/11
 PLAT-ROLE-01 = complete; all 13 matrix items accepted with corrected C1/C2 persona wording
 PLAT-ROLE-02 = complete parent 1–18 plus focused item-7/read-only exact-junction PASS
 dev/staging/main Security Scans = PASS; staging smoke 8/8 PASS; staging/production public health PASS
-production Render exact-build confirmation and non-mutating C1/C2 route smoke = pending
+production Render identity and C1/C2 route/authentication = PASS
+same-Club C2 sibling creation and magic-link authentication = PASS
+Role Authority project = COMPLETE AND CLOSED
 ```
 
 Application `60ac76c1` is the current branch-aligned baseline and includes prior LMSPro,

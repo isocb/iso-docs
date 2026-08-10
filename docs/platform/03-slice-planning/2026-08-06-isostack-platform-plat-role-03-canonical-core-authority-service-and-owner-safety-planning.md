@@ -2,8 +2,16 @@
 
 Date: 2026-08-06
 
-Status: **CONDITIONAL PLAN PREPARED; HUMAN AUTHORITY MATRIX AND EXPLICIT IMPLEMENTATION
-DECISION REQUIRED; NOT EXECUTABLE**
+Status: **SUPERSEDED AS AN AUTOMATIC DELIVERY SLICE; REQUIRED BOUNDED AUTHORITY SERVICE
+AND OWNER SAFETY DELIVERED BY PLAT-ROLE-02; RETAINED AS HISTORICAL PLANNING ONLY; EXACT
+RESIDUAL REVIEW MOVED TO DEFERRED TRIGGER-BASED `PLAT-ROLE-R1`; NOT EXECUTABLE**
+
+Final disposition:
+
+[`Role Authority project closure and residual disposition`](../05-review-and-test/2026-08-10-isostack-platform-role-authority-project-closure-and-residual-disposition.md)
+
+Do not use this maximum-scope plan to reopen the closed project. The remaining legacy
+writer question is limited by `PLAT-ROLE-R1`; all other content below is provenance.
 
 Accepted triage:
 

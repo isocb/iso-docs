@@ -12,11 +12,9 @@ communications behaviour.
 
 - Email F3 exact application `72c02d92` passed its automated gates and 13/13 staging smoke,
   is aligned through main, and is closed with public production health green.
-- **Portfolio NOW:** confirm production Render identity and complete the non-mutating
-  Role/security route smoke on exact `60ac76c1`; all branch scans, staging smoke and public
-  health checks pass.
-- **Portfolio NEXT:** settle and explicitly accept the conditional `PLAT-ROLE-03` slice,
-  followed by `LMS-ROLE-01` and bounded `LMS-ROLE-02`.
+- **Portfolio NOW:** Platform Support Ticketing client-readiness triage.
+- **Portfolio NEXT:** select the first bounded Support Ticketing
+  security/privacy/operability prerequisite.
 - F1 human staging smoke passes through the maximum available 440-recipient draft, with a
   341 ms broad-case server wait.
 - F2 failed because it treated C1/C2/hat-swap access context as independently selectable
@@ -50,7 +48,9 @@ communications behaviour.
   Club Officials subsequently proved two consumer defects, both corrected by
   `PLAT-ROLE-02B`. The complete 18-item human matrix now passes. An item-7 Club edit exposed
   one retained former current-season junction; its focused retest and read-only exact
-  junction proof pass. Support Ticketing follows the Role project; FUND remains parked.
+  junction proof pass. Production Render/C1/C2 evidence also passes, including same-Club
+  sibling C2 creation and magic-link authentication. Role Authority is complete and closed;
+  Support Ticketing is active and FUND remains parked.
 - The two newly published High dependency advisories are corrected locally with exact
   patched overrides, zero audit findings, full regression and build PASS. The dependency
   correction remains a separate child commit; exact dev, staging and main scans pass.
@@ -85,10 +85,10 @@ the selected matrix/containment boundaries; do not combine live repair or the wi
 
 ## Next Decision
 
-Confirm production Render is live at exact `60ac76c1` and perform only the documented
-non-mutating production smoke. Then decide and deliver `PLAT-ROLE-03`, `LMS-ROLE-01` and
-bounded `LMS-ROLE-02` in order. Support Ticketing follows the completed Role project before
-FUND resumes.
+Proceed with Support Ticketing client-readiness triage. Historical `PLAT-ROLE-03`,
+`LMS-ROLE-01` and `LMS-ROLE-02` plans are not next slices. Their exact remaining assurance
+questions are parked as trigger-based `PLAT-ROLE-R1` and do not block Support Ticketing or
+the later FUND resumption.
 
 Authoritative source:
 [`LMSPro / SeasonPro Roadmap And Slice Control`](../../modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md)

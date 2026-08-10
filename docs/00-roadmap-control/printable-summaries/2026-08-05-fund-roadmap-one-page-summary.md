@@ -14,7 +14,7 @@ payment contracts remain owned by Commerce Core.
 - **Portfolio NOW:** indicative staging Role/security smoke on exact `60ac76c1`; dev/staging
   scans and public health pass.
 - **Portfolio NEXT:** separately authorised exact main decision after staging PASS, then
-  complete Role Authority and Support Ticketing client readiness.
+  complete Support Ticketing client readiness; Role Authority is now complete and closed.
 - No renderer implementation, later `1R-F` branch, `1R-G` work or production artwork system
   is authorised by the planning selection.
 - Dev/staging are exact `60ac76c1`; main remains exact `72c02d92`.
@@ -22,7 +22,7 @@ payment contracts remain owned by Commerce Core.
   audit findings, full regression and build PASS. The next staging promotion remains
   blocked pending the exact combined dev Security Scan.
 - `1R-F-A` remains the exact FUND resumption point, but all FUND planning and implementation
-  is parked until F3, Role Authority and Support Ticketing are complete.
+  is parked until Support Ticketing is complete; F3 and Role Authority are complete.
 
 ## Foundation Already In Place
 
@@ -55,7 +55,9 @@ the exact resumption point and retain all existing inputs and gates unchanged.
 
 ## Next Decision
 
-Complete Role Authority and Support Ticketing through their separate controlled lifecycles.
+Complete Support Ticketing through its controlled lifecycle. The parked trigger-based
+`PLAT-ROLE-R1` assurance review does not block FUND unless one of its explicit security or
+product triggers fires.
 F3 is closed. Then restore `1R-F-A` to root selection for bounded planning.
 
 Authoritative source:

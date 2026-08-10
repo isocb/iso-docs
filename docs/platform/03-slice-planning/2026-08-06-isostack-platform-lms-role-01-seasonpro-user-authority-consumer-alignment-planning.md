@@ -2,8 +2,17 @@
 
 Date: 2026-08-06
 
-Status: **CONDITIONAL CONSUMER PLAN PREPARED; DEPENDS ON PLATFORM AUTHORITY/PROVISIONING
-CONTRACT; NOT EXECUTABLE**
+Status: **SUPERSEDED AS AN AUTOMATIC DELIVERY SLICE; REQUIRED C1/C2, EXACT-ROLE/CLUB,
+HAT-SWAP AND SAME-CLUB C2 CREATION OUTCOMES DELIVERED AND PRODUCTION-PROVEN; RETAINED AS
+HISTORICAL PLANNING ONLY; NOT EXECUTABLE**
+
+Final disposition:
+
+[`Role Authority project closure and residual disposition`](../05-review-and-test/2026-08-10-isostack-platform-role-authority-project-closure-and-residual-disposition.md)
+
+The production Club Officials workflow proves the accepted same-node outcome:
+`clubb@isodo.co.uk` created sibling C2 Member `clubc@isodo.co.uk`, which authenticated by
+magic link. Do not interpret the broader conditional text below as outstanding work.
 
 Accepted triage:
 

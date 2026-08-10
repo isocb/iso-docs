@@ -13,8 +13,8 @@ infrastructure, security assurance and engineering controls.
 
 - Local/remote dev, staging and main are exact `60ac76c1`.
 - The dependency advisory refresh is complete through live evidence.
-- Role Authority is active. All 13 `PLAT-ROLE-01` matrix items are accepted with corrected
-  C1/C2 persona wording.
+- Role Authority is complete and closed. All 13 `PLAT-ROLE-01` matrix items are accepted
+  with corrected C1/C2 persona wording.
 - First `PLAT-ROLE-02` checkpoint `5e551938` failed usefully and was not promoted.
   Corrective `7e453665` passed technical gates; `PLAT-ROLE-02A` then corrected the Owner
   input and passes its corrected actor/target human gate. `PLAT-ROLE-02B` corrected the C2
@@ -24,17 +24,22 @@ infrastructure, security assurance and engineering controls.
   edit; its focused retest and read-only Derby junction proof now pass.
 - The dependency expedite is accepted and locally green at exact `js-yaml@4.3.1` and
   `nanoid@3.3.18`, with zero audit findings. Exact dev, staging and main Security Scans,
-  staging smoke 8/8, exact-Club proof and staging/production public health pass.
+  staging smoke 8/8, exact-Club proof, staging/production public health and production
+  Render/C1/C2 evidence pass. Same-Club sibling C2 creation and magic-link authentication
+  are production-proven.
 
 ## Open Management Inputs
 
-- **Role authority clarification:** active self-contained project. Static inventory confirms
+- **Role authority clarification:** complete and closed self-contained project. Static inventory confirmed
   four Critical Core escalation/relink paths and several High access-consistency findings.
   `PLAT-ROLE-02B` technical delivery, controlled repair, parent 18/18 and focused item-7
   exact-junction gate are complete. Combined exact candidate `60ac76c1` contains separate
-  Role `b1ede26f` and dependency child commits. Production Render identity and a
-  non-mutating C1/C2 route smoke are `NOW`; the `PLAT-ROLE-03` authority decision is
-  `NEXT`, followed by `LMS-ROLE-01` and bounded `LMS-ROLE-02`.
+  Role `b1ede26f` and dependency child commits. All production gates pass. Historical
+  `PLAT-ROLE-03`, `LMS-ROLE-01` and `LMS-ROLE-02` plans are superseded as next slices.
+- **Residual authority assurance (`PLAT-ROLE-R1`):** exactly one legacy Core writer and one
+  bounded component-resolver question; deferred until a recorded product/security trigger
+  or the next deliberate housekeeping window after Support Ticketing and the selected FUND
+  cycle. It is not `NOW`/`NEXT`.
 - **Security Scan advisory refresh:** expedite accepted and locally green. Exact patched
   overrides produce zero audit findings without unrelated churn; retain their own child
   commit in the combined release candidate.
@@ -61,10 +66,8 @@ expedite; it is not automatically an expedite.
 
 ## Next Decision
 
-Confirm production Render is live at exact `60ac76c1` and complete only the documented
-non-mutating production route smoke. Then settle and explicitly accept or decline
-`PLAT-ROLE-03`; if accepted, complete it before `LMS-ROLE-01` and bounded `LMS-ROLE-02`.
-Complete the Role Authority project before Support Ticketing. Keep client support
+Begin Support Ticketing client-readiness triage and select its first bounded
+security/privacy/operability prerequisite. Keep client support
 enablement off until its security/privacy and
 notification-operability boundaries are accepted and tested.
 

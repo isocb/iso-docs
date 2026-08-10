@@ -4,7 +4,8 @@ Date: 2026-08-06
 
 Status: **COMPLETE — STATIC INVENTORY REVIEW PASS; ALL 13 CANONICAL MATRIX ITEMS ACCEPTED
 AND C1/C2 PERSONA WORDING CORRECTED AFTER THE FIRST PLAT-ROLE-02 LOCAL GATE ON 2026-08-06;
-PLAT-ROLE-02 SEPARATELY AUTHORISED**
+PLAT-ROLE-02 SUBSEQUENTLY DELIVERED THROUGH PRODUCTION; PROJECT CLOSED; THIS REGISTER IS
+HISTORICAL PROVENANCE AND CURRENT RESIDUALS ARE LIMITED TO TRIGGER-BASED `PLAT-ROLE-R1`**
 
 Delivery record:
 
@@ -23,19 +24,19 @@ The appropriate human gate is review of the canonical matrix and retained decisi
 
 | ID | Classification | Finding | Disposition |
 | --- | --- | --- | --- |
-| `RA-C01` | Confirmed Critical defect | SeasonPro create accepts/persists arbitrary Core role for actors including Core Admin | `PLAT-ROLE-02` |
-| `RA-C02` | Confirmed Critical defect | SeasonPro update plus self-first/module user authority permits direct Core-role mutation | `PLAT-ROLE-02` |
-| `RA-C03` | Confirmed Critical defect | Ordinary Core Admin invitation accepts Owner | `PLAT-ROLE-02` |
-| `RA-C04` | Confirmed Critical defect | Invitation acceptance can relink an existing cross-tenant account and replace Core role | `PLAT-ROLE-02` |
-| `RA-H01` | Confirmed High defect | Component list, single check and direct Core bypasses disagree | `LMS-ROLE-02` |
-| `RA-H02` | Confirmed High defect | `canAccessClub` treats any module-role ID as League access | `LMS-ROLE-02` containment review |
-| `RA-H03` | Confirmed High defect | Read-only is calculated for presentation but not enforced by a shared server mutation guard | `LMS-ROLE-02` |
-| `RA-H04` | Confirmed High defect | Module-role IDs are not uniformly tenant/module/active/template validated | `LMS-ROLE-01` |
+| `RA-C01` | Confirmed Critical defect | SeasonPro create accepts/persists arbitrary Core role for actors including Core Admin | Delivered by `PLAT-ROLE-02` |
+| `RA-C02` | Confirmed Critical defect | SeasonPro update plus self-first/module user authority permits direct Core-role mutation | Delivered by `PLAT-ROLE-02` |
+| `RA-C03` | Confirmed Critical defect | Ordinary Core Admin invitation accepts Owner | Delivered by `PLAT-ROLE-02` |
+| `RA-C04` | Confirmed Critical defect | Invitation acceptance can relink an existing cross-tenant account and replace Core role | Delivered by `PLAT-ROLE-02` |
+| `RA-H01` | Confirmed High defect | Component list, single check and direct Core bypasses disagree | Narrow residual review parked in `PLAT-ROLE-R1` |
+| `RA-H02` | Confirmed High defect | `canAccessClub` treats any module-role ID as League access | Delivered by `PLAT-ROLE-02` |
+| `RA-H03` | Confirmed High defect | Read-only is calculated for presentation but not enforced by a shared server mutation guard | Affected Club Officials family delivered; bounded resolver review in `PLAT-ROLE-R1` |
+| `RA-H04` | Confirmed High defect | Module-role IDs are not uniformly tenant/module/active/template validated | Delivered for accepted user/Officials workflows; resolver boundary retained in `PLAT-ROLE-R1` |
 | `RA-H05` | Confirmed High design gap | Most SeasonPro procedures lack one canonical module-entitlement gate | `PLAT-REFINE-03` / `LMS-ROLE-02` |
 | `RA-H06` | Confirmed High design gap | Real/effective identity differs across component, router and RLS consumers | `PLAT-REFINE-04` |
-| `RA-H07` | Confirmed High functional/security gap | C2 Member creation is blocked by one guard while adjacent role/Club checks do not enforce the complete exact-node contract | `LMS-ROLE-01` |
-| `RA-D01` | Part-settled human decision | Multiple Owners and C1 Owner authority to create Admin/additional Owner are confirmed; exact workflow and last-Owner contract remain | Before `PLAT-ROLE-02/03` |
-| `RA-D02` | Part-settled human decision | C2 same-node Member creation is accepted; exact enabling permission and remaining C1/Admin delegation matrix remain | Before `LMS-ROLE-01` |
+| `RA-H07` | Historical High functional/security gap | At the reviewed baseline, the generic League user router did not provide a complete exact-node C2 delegation contract | Desired same-Club outcome delivered through Club Officials and production-proven |
+| `RA-D01` | Part-settled human decision | Multiple Owners and C1 Owner authority to create Admin/additional Owner are confirmed; exact workflow and last-Owner contract remain | Settled and delivered by `PLAT-ROLE-02` |
+| `RA-D02` | Part-settled human decision | C2 same-node Member creation is accepted; exact enabling permission and remaining C1/Admin delegation matrix remain | Settled and production-proven through Club Officials |
 | `RA-L01` | Conditional live concern | Invalid/orphaned/cross-module assignments may already exist | Aggregate query only with separate database authority |
 
 No exploitation or live invalid assignment is claimed by the source findings.
@@ -129,10 +130,9 @@ Accepted canonical statements:
     node-scoped roles, and cannot be attached to another node.
 13. **Accepted:** C2 read-only and other capabilities come from module roles and are enforced server-side.
 
-## 5. Next Decision
+## 5. Final Disposition
 
-Decision completed 2026-08-06: the matrix was accepted and `PLAT-ROLE-02` was explicitly
-authorised as the next bounded Critical containment slice, incorporating `RA-C04` and the
-bounded `RA-H02` containment. The canonical-service expansion, fail-closed `RA-H07` C2
-feature repair, live repair, wider component families and impersonation redesign remain
-outside this release.
+The accepted matrix led to delivered `PLAT-ROLE-02/02A/02B`. Production proves the desired
+same-Club C2 creation outcome. The project is closed; only the exact legacy writer/resolver
+review in `PLAT-ROLE-R1` remains parked. Wider component families, live repair and
+impersonation redesign are neither implied nor authorised by this historical register.

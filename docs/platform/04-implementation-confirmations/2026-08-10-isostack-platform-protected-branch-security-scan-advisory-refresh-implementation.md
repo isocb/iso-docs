@@ -2,9 +2,9 @@
 
 Date: 2026-08-10
 
-Status: **IMPLEMENTED AS DEPENDENCY CHILD `60ac76c1` AFTER ROLE CHILD `b1ede26f`; EXACT
-DEV/STAGING/MAIN SECURITY SCANS, STAGING 8/8 AND STAGING/PRODUCTION PUBLIC HEALTH PASS;
-PRODUCTION RENDER IDENTITY AND NON-MUTATING ROUTE SMOKE REMAIN**
+Status: **IMPLEMENTED AND COMPLETE AS DEPENDENCY CHILD `60ac76c1` AFTER ROLE CHILD
+`b1ede26f`; EXACT DEV/STAGING/MAIN SECURITY SCANS, STAGING 8/8,
+STAGING/PRODUCTION HEALTH AND PRODUCTION RENDER/C1/C2 EVIDENCE PASS; CLOSED**
 
 Plan:
 
@@ -76,5 +76,5 @@ staging and main. Exact Security Scans pass on dev (`31384553388`), staging (`31
 and main (`31387014370`). Staging human smoke passed 8/8 and both staging and production
 public health report HTTP 200, database connected and RLS 11/11.
 
-This record does not infer the live Render SHA from public health. Production exact-build
-identity and the bounded non-mutating route smoke remain in the combined promotion record.
+The combined promotion record contains the control owner's production Render identity and
+C1/C2 evidence. The dependency child is complete and closed.

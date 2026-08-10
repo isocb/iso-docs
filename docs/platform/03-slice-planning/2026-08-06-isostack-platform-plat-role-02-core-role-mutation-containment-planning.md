@@ -2,10 +2,13 @@
 
 Date: 2026-08-06
 
-Status: **PARENT SLICE ACTIVE; `PLAT-ROLE-02A` HUMAN-ACCEPTED; COMPLETE PARENT 1–18 LOCAL
-MATRIX ACCEPTED; `PLAT-ROLE-02B` TECHNICALLY ACCEPTED WITH FIXTURE REPAIRED; ITEM-7 EXACT
-CURRENT-CLUB JUNCTION FOCUSED RETEST AND READ-ONLY DERBY PROOF PASS; LOCAL PARENT GATE
-COMPLETE AND COMMITTED IN ROLE CHILD `b1ede26f`; NO STAGING/PRODUCTION CHANGE**
+Status: **COMPLETE AND DELIVERED THROUGH PRODUCTION AT EXACT `60ac76c1`; PARENT 1–18,
+02A/02B, FOCUSED ITEM 7, STAGING 8/8, SECURITY/HEALTH AND PRODUCTION C1/C2 EVIDENCE PASS;
+SAME-CLUB C2 SIBLING CREATION/MAGIC-LINK AUTHENTICATION PROVEN; PROJECT CLOSED**
+
+Final disposition:
+
+[`Role Authority project closure and residual disposition`](../05-review-and-test/2026-08-10-isostack-platform-role-authority-project-closure-and-residual-disposition.md)
 
 Accepted triage:
 
@@ -119,8 +122,9 @@ Admins and additional C1 Owners through a Platform-owned authority contract.
 - no change to existing user Core roles;
 - no redesign of account statuses, impersonation or module route entitlement;
 - no broad component/card/read-only alignment;
-- no enablement or redesign of C2 same-node user creation; keep that path fail closed until
-  `LMS-ROLE-01` implements role permission plus exact-node enforcement together; and
+- no generic C2 access to the League user-management router. The desired same-node creation
+  outcome was subsequently delivered through the bounded Club Officials workflow and
+  production-proven; no `LMS-ROLE-01` expansion remains required; and
 - no automatic module role assignment based on Core role.
 
 ## 4. Automated Acceptance

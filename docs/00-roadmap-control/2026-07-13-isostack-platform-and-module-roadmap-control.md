@@ -39,29 +39,35 @@ PLAT-ROLE-02B item-7 focused retest/read-only Derby exact-junction proof = PASS;
 exact dev Security Scan 31384553388, staging 31384766945 and main 31387014370 = PASS
 staging indicative human smoke = 8/8 PASS; exact-Club read-only junction proof = PASS
 staging and production public health = HTTP 200; database connected; RLS 11/11
-production Render exact-build confirmation and non-mutating route smoke = pending
+production Render identity, C1 route and same-Club C2 sibling creation/authentication = PASS
+Role Authority project = COMPLETE AND CLOSED
 ```
 
 Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Complete the exact `60ac76c1` Role/security production gate | Branch alignment, exact main scan and public health pass. Confirm Render production identity and perform only the documented non-mutating C1/C2 route smoke. |
-| **NEXT** | Role Authority continuation decision | Close the delivered containment release, then settle the outstanding human authority matrix before explicitly accepting or declining conditional `PLAT-ROLE-03`; do not drift into implementation. |
+| **NOW** | Platform Support Ticketing client-readiness triage | Confirm tenant/privacy/server-authority/notification boundaries and split the accepted CR into bounded delivery candidates; no client enablement yet. |
+| **NEXT** | First Support Ticketing client-readiness slice decision | Select only the smallest security/privacy/operability prerequisite proved by triage; FUND remains protected until the self-contained Support project completes. |
 
 Registered and ordered work outside that pair:
 
-- Platform/SeasonPro role-authority clarification: active root project. `PLAT-ROLE-01` is
+- Platform/SeasonPro role-authority clarification: complete and closed. `PLAT-ROLE-01` is
   complete; `PLAT-ROLE-02A` is accepted; the complete parent 1–18 matrix passes;
   `PLAT-ROLE-02B` is accepted, its fixture is repaired, and the focused item-7
   retest plus local and staging read-only exact-junction proofs pass. Exact `60ac76c1` is
   aligned through main with all three exact Security Scans and both public health checks
-  green; production Render identity and non-mutating route smoke remain;
+  green. Production Render/C1/C2 evidence passes, including same-Club sibling C2 creation
+  and magic-link authentication. Historical conditional `PLAT-ROLE-03`/`LMS-ROLE-01/02`
+  plans are superseded as next work;
+- Platform `PLAT-ROLE-R1`: exactly one legacy Core-writer and one bounded component-resolver
+  consistency review, captured and parked behind explicit product/security/housekeeping
+  triggers; it is not `Now`/`Next` and does not block Support Ticketing or FUND;
 - Platform protected-branch Security Scan advisory refresh: expedite accepted and exact
   `js-yaml@4.3.1`/`nanoid@3.3.18` correction promoted as a separate child commit in
   `60ac76c1`; dev, staging and main scans pass with zero high/critical findings;
-- Platform support-ticketing client readiness: privacy/security and client-enablement triage
-  input selected as the mandatory self-contained project after Role Authority, with the
+- Platform support-ticketing client readiness: selected portfolio `Now` for
+  privacy/security and client-enablement triage, with the
   internal-note and server-authority findings eligible for an explicit expedite proposal
   if triage confirms the risk;
 - LMSPro 500-recipient operating envelope: standard communications/capacity triage input;
@@ -71,11 +77,11 @@ Registered and ordered work outside that pair:
   identification and authenticated production smoke remain; this bounded UI release does
   not displace the portfolio `Now`/`Next` pair;
 - LMSPro cohort email draft persistence and audience selection `CR-Fix`: F1/F2.1/F2.2 and
-  F3 are delivered in the ancestry of current application `72c02d92`; F3 staging smoke
+  F3 are delivered in the ancestry of current application `60ac76c1`; F3 staging smoke
   passed 13/13 and exact main promotion is complete;
-- FUND `1R-F-A`: deliberately parked at its exact pre-planning boundary until F3, Role
-  Authority and Support Ticketing are completed; no application implementation is
-  authorised;
+- FUND `1R-F-A`: deliberately parked at its exact pre-planning boundary until Support
+  Ticketing is completed; F3 and Role Authority prerequisites are now complete; no
+  application implementation is authorised;
 - Platform `PLAT-REFINE-02` through `PLAT-REFINE-04`: registered non-executable findings;
   and
 - all parked FUND and LMSPro candidates recorded in their child CR inventories.
@@ -103,9 +109,8 @@ Remedial `CR-Fix` control:
 5. closure/re-disposition of the `CR-Fix` must explicitly resume the interrupted outcome
    and restore or reconsider the prior sequence.
 
-The email `CR-Fix` expedite was accepted and its incident-ending corrections were delivered.
-Its required F3 policy follow-on is now selected as portfolio `Now`. The source, earlier
-triage and delivered F1/F2 slice plan are:
+The email `CR-Fix` expedite and its F3 policy follow-on are complete and closed. The source,
+earlier triage and delivered F1/F2 slice plan remain historical navigation:
 
 - `docs/modules/lmspro/01-cr-inputs/CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md`;
 - `docs/modules/lmspro/02-triage/2026-08-05-lmspro-cr-fix-f1-f2-cohort-email-draft-persistence-and-audience-selection-triage.md`; and
@@ -671,20 +676,18 @@ different documentation lifecycles.
 
 ## 7. Current Parent Control Decision
 
-Section 0 is the current decision: F3 is complete at exact deployed application `72c02d92`,
-and Role Authority is the active project. `PLAT-ROLE-01` is complete; the corrected
-`PLAT-ROLE-02` parent 18/18, focused item 7 and read-only Derby exact-junction proof pass
-locally. The accepted two-package dependency child is also technically green locally.
-Separate Role and dependency child commits as one dev candidate are `Now`; its exact online
-Security Scan and later staging decision are `Next`. Support Ticketing follows the completed
-Role Authority project.
-FUND `1R-F-A` is preserved at its exact pre-planning boundary until the housekeeping
-outcomes are complete.
+Section 0 is the current decision: F3 and Role Authority are complete. Exact `60ac76c1` is
+aligned through dev, staging and main; all Security Scans, health, staging and production
+Role evidence pass. Same-Club sibling C2 creation and authentication are production-proven.
+Support Ticketing triage is `Now`; selection of its first bounded client-readiness
+prerequisite is `Next`. `PLAT-ROLE-R1` is trigger-based parked assurance, not active work.
+FUND `1R-F-A` is preserved at its exact pre-planning boundary until Support Ticketing is
+complete.
 R11-A is a separately authorised bounded UI release at `83356030`; local smoke is 18/18 and
 staging smoke is all green. The exact commit is aligned through `origin/main`, the live
 deployment is triggered and public live health is PASS. Exact Render live-build
 identification and authenticated production smoke remain. It does not alter the current
-`PLAT-ROLE-02` local/staging `Now`/`Next` pair.
+Support Ticketing `Now`/`Next` pair.
 R10-A is complete after the control owner's totally-green production smoke. The detailed
 history below explains how the lanes reached that position and must not be read as a
 competing selector.

@@ -2,9 +2,10 @@
 
 Date: 2026-08-06
 
-Status: **ACTIVE PORTFOLIO PROJECT; PLAT-ROLE-01 MATRIX CORRECTED AND ACCEPTED;
-PLAT-ROLE-02 CORRECTIVE IMPLEMENTATION COMPLETE LOCALLY AT `7e453665`, TECHNICAL GATES
-PASS, AWAITING REPLACEMENT LOCAL HUMAN SMOKE; NO STAGING OR LIVE PROMOTION**
+Status: **HISTORICAL TRIAGE — PROJECT COMPLETE AND CLOSED AT EXACT `60ac76c1`; CRITICAL
+CONTAINMENT, C1/C2/HAT-SWAP, EXACT-CLUB, SAME-CLUB C2 CREATION AND CLUB OFFICIALS
+OUTCOMES PASS THROUGH PRODUCTION; CONDITIONAL LATER PLANS SUPERSEDED; EXACT RESIDUAL
+REVIEW PARKED AS TRIGGER-BASED `PLAT-ROLE-R1`**
 
 Source CR:
 
@@ -13,6 +14,14 @@ Source CR:
 Source evidence rechecked against application:
 
 `72c02d92bf7222793f70b24a1d13e541eb215efa`
+
+Closure supersession:
+
+[`Role Authority project closure and residual disposition`](../05-review-and-test/2026-08-10-isostack-platform-role-authority-project-closure-and-residual-disposition.md)
+
+Sections 1–3 below retain the source state and risk assessment that justified the project.
+They are historical evidence, not current application status. The delivered disposition is
+controlled by Sections 4–6 as reconciled below and the closure record.
 
 ## 1. Triage Decision
 
@@ -87,12 +96,12 @@ cross-tenant disclosure is asserted by this triage.
 
 | Order | Slice | Purpose | Current authority |
 | --- | --- | --- | --- |
-| 1 | `PLAT-ROLE-01` | Complete writer/consumer/static assignment inventory and settle the canonical matrix | Complete; all 13 matrix items accepted; no live query run |
-| 2 | `PLAT-ROLE-02` | Remove unauthorized Core-role mutation from SeasonPro, ordinary Admin invitation and cross-tenant invitation acceptance paths | Corrective implementation local at `7e453665`; first `5e551938` gate usefully rejected Member + League; technical gates pass; replacement human smoke required |
-| 3 | `PLAT-ROLE-03` | Introduce one audited Platform Core-authority service with owner/session safety | Conditional plan prepared; business decisions and explicit authority required |
-| 4 | `LMS-ROLE-01` | Align SeasonPro provisioning, module-role assignment, Club affiliation and Unassigned repairability | Conditional consumer plan prepared |
-| 5 | `LMS-ROLE-02` | Align SeasonPro component/card/direct-action and read-only enforcement | Conditional consumer plan prepared; inventory controls exact file list |
-| 6 | Conditional reconciliation | Dry-run and separately authorised repair only if inventory proves live invalid states | Not planned or authorised |
+| 1 | `PLAT-ROLE-01` | Complete writer/consumer/static assignment inventory and settle the canonical matrix | Complete; all 13 matrix items accepted |
+| 2 | `PLAT-ROLE-02/02A/02B` | Contain Core-role paths and deliver the accepted SeasonPro persona/Club Officials outcomes | Complete through production at exact `60ac76c1`; all recorded gates pass |
+| 3 | `PLAT-ROLE-03` | Original conditional maximum-scope shared-service plan | Superseded as an automatic next slice; required bounded service/safeguards delivered in order 2 |
+| 4 | `LMS-ROLE-01` | Original conditional consumer plan | Superseded as an automatic next slice; C1/C2, exact-role/Club and same-Club C2 creation outcomes pass |
+| 5 | `LMS-ROLE-02` | Original conditional access-parity plan | Affected Club Officials family delivered; broad plan not authorised |
+| 6 | `PLAT-ROLE-R1` | Review exactly one legacy Core writer and the bounded component-resolver consistency question | Captured and deferred; opens only on an explicit trigger |
 
 `PLAT-REFINE-02`, `PLAT-REFINE-03`, `PLAT-REFINE-04` and `LMS-W-USERS-01` remain traceable
 inputs. This project consumes their relevant authority/provisioning evidence but does not
@@ -125,26 +134,17 @@ silently close route-entitlement or impersonation work outside the accepted slic
 - every server read/mutation remains authoritative regardless of UI visibility.
 - no live repair, role change, status change, relinking or deletion occurs during inventory.
 
-## 6. Decisions Required Before `PLAT-ROLE-03`
+## 6. Closed Decisions And Deferred Trigger
 
-1. The exact direct/invitation/acceptance workflow for the confirmed multiple-Owner model.
-2. The last-active-Owner, self-change, suspension and deactivation rules.
-3. How the accepted C1 Owner capability to create Admin/additional Owner is exposed through
-   a Platform-owned service without returning policy ownership to SeasonPro.
-4. The remaining C1/Admin creation matrix and the exact module permission enabling the
-   accepted C2 same-node Member creation capability.
-5. Whether Core Admin may create users only as Members or may request Admin subject to Owner
-   approval.
-6. The intended C1 League persona choices presented during user creation without conflating
-   them with Core roles.
-7. Session refresh/revocation behaviour for Core role, module role, affiliation and status
-   changes.
-8. The migration treatment for legacy C1/C2/C3 comments which conflict with the accepted
-   C1-tenant/C2-node meaning.
+The delivered release settles the operating decisions required by this project: direct
+Owner creation, Admin-Delegate Member-only creation, non-self/last-active-Owner safety,
+audited/session-revoking authority change, exact C1/C2/hat-swap personas and bounded
+same-Club C2 creation. Current terminology uses `Owner` and `Admin Delegate` in the product
+while retaining literal Organisation `OWNER`/`ADMIN` in technical evidence.
 
-Planning recommendation: support multiple active Owners, prohibit self-demotion and loss of
-the last active Owner, let ordinary Admin create Members only, and require an Owner/P1
-controlled action for every Core elevation. These remain recommendations until accepted.
+No broad `PLAT-ROLE-03` decision gate remains. The exact residual review and all activation
+triggers are recorded in
+[`PLAT-ROLE-R1`](../01-cr-inputs/CR-Fix-2026-08-10-isostack-platform-residual-authority-consistency-review.md).
 
 ## 7. Global Stop Conditions
 

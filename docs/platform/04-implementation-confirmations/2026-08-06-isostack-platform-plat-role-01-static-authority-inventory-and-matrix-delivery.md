@@ -2,10 +2,10 @@
 
 Date: 2026-08-06
 
-Status: **COMPLETE — STATIC READ-ONLY DELIVERY AT APPLICATION `72c02d92`; ALL 13 HUMAN
-MATRIX ITEMS ACCEPTED AND THE C1/C2 PERSONA WORDING CORRECTED AFTER THE FIRST PLAT-ROLE-02
-LOCAL GATE ON 2026-08-06; OPTIONAL LIVE AGGREGATE INVENTORY NOT AUTHORISED OR RUN; NO
-APPLICATION, SCHEMA, CONFIGURATION OR DATA CHANGE**
+Status: **COMPLETE HISTORICAL SOURCE INVENTORY AT `72c02d92`; ALL 13 MATRIX ITEMS
+ACCEPTED; PLAT-ROLE-02/02A/02B SUBSEQUENTLY DELIVERED THROUGH PRODUCTION AT `60ac76c1`;
+PROJECT CLOSED; ROW-LEVEL ORIGINAL SLICE ASSIGNMENTS ARE SUPERSEDED BY THE FINAL CLOSURE
+AND TRIGGER-BASED `PLAT-ROLE-R1` RESIDUAL DISPOSITION**
 
 Accepted plan:
 
@@ -14,6 +14,14 @@ Accepted plan:
 Application source reviewed:
 
 `72c02d92bf7222793f70b24a1d13e541eb215efa`
+
+Current disposition:
+
+[`Role Authority project closure and residual disposition`](../05-review-and-test/2026-08-10-isostack-platform-role-authority-project-closure-and-residual-disposition.md)
+
+The tables below accurately record what source inspection found before remediation. Their
+original `PLAT-ROLE-03`/`LMS-ROLE-01`/`LMS-ROLE-02` routing is provenance, not outstanding
+delivery authority.
 
 ## 1. Delivery Boundary
 
@@ -95,7 +103,7 @@ ordinary recovery path. Any future execution needs its own exact-environment aut
 | Dashboard `adminOnly` cards | Uses Core Owner/Admin from the browser session | Core authority is used as a module UI capability outside the role/component contract | `LMS-ROLE-02` |
 | `user-context.getUserContext` | Uses effective identity, but role query omits tenant/active constraints and legacy facts still affect scope | Scope may be derived from stale or invalid role facts | `LMS-ROLE-01/02` |
 | Welcome dashboard routing | Working combined route derives from separate League and Club roles plus exact Club association; compatibility code also recognises `roleScope = BOTH` | Preserve the working conjunctive route; legacy `BOTH` must not become the canonical persona or create Club context without an exact Club | `LMS-ROLE-01/02` |
-| C2 user creation/delegation | UI fixes a Club-only creator to their Club; server `canManageUsers` excludes Member, `canAssignRoles` admits `BOTH`, and create checks a supplied Club only as same-tenant | Legitimate same-node delegation is blocked while the adjacent server contract would not safely constrain it if enabled alone | `LMS-ROLE-01` |
+| C2 user creation/delegation at reviewed baseline | Generic League user management excludes Member while adjacent legacy checks were incomplete | Subsequently resolved through the bounded same-Club Club Officials workflow; production sibling-C2 creation/authentication passes | Closed; no `LMS-ROLE-01` expansion required |
 | `user-context.canAccessClub` | Treats any `lmsproRoleIds` value as League-wide access | A Club-only assigned role can be misclassified as League authority | `LMS-ROLE-02` Critical data-scope containment consideration |
 | Read-only role calculation | `user-context` exposes a display flag when all roles are read-only | No shared server mutation guard consumes that flag | `LMS-ROLE-02` |
 | LMSPro layout/routers | Layout checks a recent organisation product state; most routers use `protectedProcedure` plus local guards | No single server module-entitlement guard proves active LMSPro entitlement before every operation | `PLAT-REFINE-03` / `LMS-ROLE-02` |
