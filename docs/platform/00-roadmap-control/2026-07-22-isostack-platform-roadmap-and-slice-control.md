@@ -2,7 +2,7 @@
 
 Date: 2026-07-22
 
-Last reconciled: 2026-08-10
+Last reconciled: 2026-08-11
 
 Status: Active authoritative Platform child roadmap; no implementation authorised by
 this document alone
@@ -19,7 +19,7 @@ Application routing reference:
 
 `isostack-bedrock/src/app/README.md`
 
-## 0. Authoritative CR Inventory And Current Platform Disposition — 2026-08-10
+## 0. Authoritative CR Inventory And Current Platform Disposition — 2026-08-11
 
 This file is confirmed as the one authoritative Platform child roadmap. The Platform
 Assurance, Security Review And Refinement Roadmap remains a subordinate finding/register
@@ -40,13 +40,14 @@ default.
 | [`2026-08-10-isostack-platform-plat-role-02a-seasonpro-owner-user-type-control-correction-sub-cr.md`](../01-cr-inputs/2026-08-10-isostack-platform-plat-role-02a-seasonpro-owner-user-type-control-correction-sub-cr.md) | Corrective child of `PLAT-ROLE-02`; authoritative-profile correction is technically/human accepted and included in exact main `60ac76c1` | Complete bounded child; shared promotion evidence retained by the parent release |
 | [`CR-Fix-2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity.md`](../01-cr-inputs/CR-Fix-2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity.md) | Implemented/accepted as Role child `b1ede26f`, retained in exact main `60ac76c1`; all parent production evidence passes | Corrective child complete and closed with parent |
 | [`CR-Fix-2026-08-10-isostack-platform-residual-authority-consistency-review.md`](../01-cr-inputs/CR-Fix-2026-08-10-isostack-platform-residual-authority-consistency-review.md) | `PLAT-ROLE-R1`: exactly one legacy Core writer and bounded component-resolver consistency review | Captured and deferred; trigger-based assurance only; not `Now`/`Next` and no implementation authorised |
-| [`2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md`](../01-cr-inputs/2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md) | Selected portfolio `Now` after Role Authority closure; formal Platform triage required | Client-enablement and privacy/security project; internal-note privacy, server lifecycle authority and notification operability precede client enablement; Platform Notice remains separable and non-expedite |
+| [`2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md`](../01-cr-inputs/2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md) | `PLAT-SUPPORT-01` through `03` plus corrective `03A/03B` are committed at exact `cde4eaff`; technical gates and local 24/24 human smoke pass; dev/staging exact scans and public health pass | Staging Render identity and concise ten-item human smoke pending; no main promotion yet |
+| [`CR-Fix-2026-08-11-isostack-platform-support-p1-workbench-editing-and-case-tracking.md`](../01-cr-inputs/CR-Fix-2026-08-11-isostack-platform-support-p1-workbench-editing-and-case-tracking.md) | Corrected-route workbench, triage, queue and operational case tracking delivered in exact `cde4eaff`; combined local human smoke 24/24 PASS | Accepted child on dev/staging; complete the shared Support staging gate |
 | [`CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md`](../01-cr-inputs/CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md) | Dependency child `60ac76c1`; all exact scans and combined staging/production evidence pass | Complete and closed; retain exact scan evidence with the combined release |
 
 Current Platform portfolio disposition:
 
-- local and remote dev, staging and main are exact combined candidate `60ac76c1`: Role
-  child `b1ede26f` followed by dependency child `60ac76c1`;
+- local `dev`, `origin/dev` and `origin/staging` are exact Support candidate `cde4eaff`;
+  `origin/main` remains `60ac76c1`;
 - Role Authority is complete and closed. `PLAT-ROLE-01` is corrected, accepted and complete.
   `PLAT-ROLE-02` was corrected at `7e453665`; `PLAT-ROLE-02A` is technically and
   human-accepted. The complete parent 1–18 human matrix now
@@ -56,8 +57,11 @@ Current Platform portfolio disposition:
   read-only exact-current-Club junction proof, and `60ac76c1` is aligned through main.
   Production Render/C1/C2 evidence passes, including creation of sibling C2 Member
   `clubc@isodo.co.uk` by `clubb@isodo.co.uk` and successful magic-link authentication.
-  Support Ticketing is now the selected self-contained project and requires triage and
-  bounded planning;
+  Support Ticketing is the selected self-contained project. The original three bounded
+  slices and corrective `03A/03B` are delivered at exact `cde4eaff`. Technical gates,
+  retained privacy/routing evidence and the corrected P1 workbench human gate all pass;
+  exact dev scan `31494574593`, staging scan `31494804070` and public health pass. Render
+  exact identity and the concise staging human gate remain pending;
 - exact dev Security Scan `31384553388`, staging `31384766945`, main `31387014370`, staging
   smoke 8/8, staging/production public health, production Render identity and production
   C1/C2 authentication/routing pass;
@@ -82,6 +86,22 @@ Historical controlling triage:
 
 Final closure:
 [`Role Authority project closure and residual disposition`](../05-review-and-test/2026-08-10-isostack-platform-role-authority-project-closure-and-residual-disposition.md).
+
+Support Ticketing sequence and disposition:
+
+1. [`Support Ticketing client-readiness triage`](../02-triage/2026-08-10-isostack-platform-support-ticketing-client-readiness-triage.md) — complete; existing transport retained and the project bounded into three reviewable slices;
+2. [`PLAT-SUPPORT-01 — Client Privacy And Lifecycle Authority Gate`](../03-slice-planning/2026-08-10-isostack-platform-plat-support-01-client-privacy-and-lifecycle-authority-gate-planning.md) — delivered in exact `cde4eaff`; requester-aware server privacy, internal-note protection and bounded client transitions pass the local gate;
+3. [`PLAT-SUPPORT-02 — Notification Routing And Event Coverage`](../03-slice-planning/2026-08-10-isostack-platform-plat-support-02-notification-routing-and-event-coverage-planning.md) — delivered in exact `cde4eaff`; deterministic routing, configuration health/test evidence and local event coverage pass;
+4. [`PLAT-SUPPORT-03 — P1 Operational Dashboard And Classification`](../03-slice-planning/2026-08-10-isostack-platform-plat-support-03-p1-operational-dashboard-and-classification-planning.md) — delivered and corrected by `03A/03B` in exact `cde4eaff`; counts, aging, classification, filters and search pass local human verification; and
+5. [`Original combined local review and smoke gate`](../05-review-and-test/2026-08-10-isostack-platform-support-ticketing-combined-local-review-and-smoke-gate.md) — partial human pass; green privacy/routing evidence retained and corrected-route P1 failures transferred to the child CR-Fix;
+6. [`PLAT-SUPPORT-03A — P1 Workbench Entry, Editing And Queue`](../03-slice-planning/2026-08-11-isostack-platform-plat-support-03a-p1-workbench-entry-editing-and-queue-planning.md) — delivered in exact `cde4eaff` with stable draft editing, correct navigation and responsive paginated queue;
+7. [`PLAT-SUPPORT-03B — Operational Case Dates And Activity`](../03-slice-planning/2026-08-11-isostack-platform-plat-support-03b-operational-case-dates-and-activity-planning.md) — delivered in exact `cde4eaff` with nullable server-owned evidence, P1-only chronology and next-action queue controls;
+8. [`Corrective combined local human gate`](../05-review-and-test/2026-08-11-isostack-platform-plat-support-03a-03b-combined-local-review-and-smoke-gate.md) — complete 24/24 PASS; and
+9. [`Staging promotion and indicative smoke`](../05-review-and-test/2026-08-11-isostack-platform-support-ticketing-staging-promotion-and-indicative-smoke.md) — exact dev/staging alignment, protected scans and public health pass; Render identity and ten human items pending.
+
+Platform Notice/ALL-client announcement design and generic delivery retry infrastructure are
+not hidden fourth slices. They remain separate trigger-based candidates and do not delay the
+three accepted client-readiness outcomes.
 
 ## 1. Purpose
 

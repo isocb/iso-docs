@@ -2,11 +2,11 @@
 
 Date: 2026-07-27
 
-Last portfolio reconciliation: 2026-08-10
+Last portfolio reconciliation: 2026-08-11
 
 Status: Active parent roadmap
 
-## 0. Current Portfolio Control — 2026-08-10
+## 0. Current Portfolio Control — 2026-08-11
 
 This section is the current cross-lane control and supersedes older global `single next`
 wording later in this document. Older statements remain evidence of the sequence at the
@@ -29,7 +29,10 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application evidence:
 
 ```text
-local/remote dev = staging = main = exact combined candidate 60ac76c1
+local dev = origin/dev = origin/staging = exact Support candidate cde4eaff
+origin/main = 60ac76c1 (unchanged)
+Support exact dev Security Scan 31494574593 and staging Security Scan 31494804070 = PASS
+Support staging public health = HTTP 200; database connected; RLS 11/11
 F3 tests/type/verify/build and promotion-time dev/staging/main Security Scans = PASS
 F3 staging human smoke = 13/13 PASS; production promotion = COMPLETE
 staging and production public health = HTTP 200; database connected; RLS 11/11
@@ -47,11 +50,14 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Platform Support Ticketing client-readiness triage | Confirm tenant/privacy/server-authority/notification boundaries and split the accepted CR into bounded delivery candidates; no client enablement yet. |
-| **NEXT** | First Support Ticketing client-readiness slice decision | Select only the smallest security/privacy/operability prerequisite proved by triage; FUND remains protected until the self-contained Support project completes. |
+| **NOW** | Combined staging acceptance at exact `cde4eaff` | R12-A is retained in ancestry and Support local smoke is 24/24 green. Exact dev/staging scans and public health pass. Confirm Render displays `Live at cde4eaff`, then complete the bounded R12-A six-item and Support ten-item staging gates; no main promotion yet. |
+| **NEXT** | Main-promotion decision, then FUND | If both staging gates pass, record acceptance and decide the exact combined main promotion. Once housekeeping is closed, resume FUND `1R-F-A` from its documented pre-planning boundary. |
 
 Registered and ordered work outside that pair:
 
+- LMSPro R12-A Free Day owner-notice authority: complete green local human pass; exact
+  `39a25d99` is aligned through staging; exact dev/staging scans and public health pass.
+  Render identity/human acceptance is `Now`; main remains unchanged;
 - Platform/SeasonPro role-authority clarification: complete and closed. `PLAT-ROLE-01` is
   complete; `PLAT-ROLE-02A` is accepted; the complete parent 1–18 matrix passes;
   `PLAT-ROLE-02B` is accepted, its fixture is repaired, and the focused item-7
@@ -66,10 +72,15 @@ Registered and ordered work outside that pair:
 - Platform protected-branch Security Scan advisory refresh: expedite accepted and exact
   `js-yaml@4.3.1`/`nanoid@3.3.18` correction promoted as a separate child commit in
   `60ac76c1`; dev, staging and main scans pass with zero high/critical findings;
-- Platform support-ticketing client readiness: selected portfolio `Now` for
-  privacy/security and client-enablement triage, with the
-  internal-note and server-authority findings eligible for an explicit expedite proposal
-  if triage confirms the risk;
+- Platform support-ticketing client readiness: `PLAT-SUPPORT-01/02/03` plus corrective
+  `03A/03B` are committed at exact `cde4eaff`. Technical gates and retained privacy/routing
+  human evidence pass. P1 navigation, stable triage editing, responsive queue, next actions
+  and truthful activity evidence are delivered, and combined local human smoke is 24/24
+  green. `origin/dev` and `origin/staging` are exact, both protected scans pass, and public
+  staging health is green. Render identity and the concise ten-item staging smoke remain
+  inside portfolio `Now`.
+  Existing Resend transport is retained; generic retry
+  infrastructure and Platform Notice remain separate trigger-based work;
 - LMSPro 500-recipient operating envelope: standard communications/capacity triage input;
 - LMSPro R11-A recipient-tab presentation: automated/build and authenticated local smoke
   18/18 PASS and staging smoke all green; exact `83356030` is aligned through `origin/main`;
@@ -657,8 +668,8 @@ COMMERCE-A1 complete
         separate E-B/E-C real-workflow human acceptance is not inferred
   -> FUND 1R-F Project Offer And Artwork Readiness Reconciliation parent accepted
      -> FUND 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
-        formal portfolio NOW for bounded planning; conditional executable proof is NEXT
-        and remains unauthorised until the plan is explicitly accepted
+        preserved at its exact pre-planning boundary while Support Ticketing occupies the
+        portfolio; no FUND implementation is authorised
 
 FUND 1R-C1 -> C2 -> C3 -> C4 -> C5 -> C6 complete
 FUND 1P-G-R3-A -> R3-B -> R3-C -> R3-D complete
@@ -679,15 +690,17 @@ different documentation lifecycles.
 Section 0 is the current decision: F3 and Role Authority are complete. Exact `60ac76c1` is
 aligned through dev, staging and main; all Security Scans, health, staging and production
 Role evidence pass. Same-Club sibling C2 creation and authentication are production-proven.
-Support Ticketing triage is `Now`; selection of its first bounded client-readiness
-prerequisite is `Next`. `PLAT-ROLE-R1` is trigger-based parked assurance, not active work.
+Support Ticketing triage, planning and all three bounded local implementations are complete.
+The combined 30-item authenticated/real-mail local smoke is `Now`; an explicitly authorised
+commit and exact dev Security Scan are conditional `Next` before any staging proposal.
+`PLAT-ROLE-R1` is trigger-based parked assurance, not active work.
 FUND `1R-F-A` is preserved at its exact pre-planning boundary until Support Ticketing is
 complete.
 R11-A is a separately authorised bounded UI release at `83356030`; local smoke is 18/18 and
 staging smoke is all green. The exact commit is aligned through `origin/main`, the live
 deployment is triggered and public live health is PASS. Exact Render live-build
 identification and authenticated production smoke remain. It does not alter the current
-Support Ticketing `Now`/`Next` pair.
+Support Ticketing local-gate/conditional-security sequence.
 R10-A is complete after the control owner's totally-green production smoke. The detailed
 history below explains how the lanes reached that position and must not be read as a
 competing selector.

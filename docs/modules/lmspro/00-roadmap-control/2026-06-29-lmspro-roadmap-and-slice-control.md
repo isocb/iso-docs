@@ -1,7 +1,7 @@
 # LMSPro / SeasonPro Roadmap And Slice Control
 
 Date: 2026-06-29
-Last updated: 2026-08-10
+Last updated: 2026-08-11
 Module: LMSPro / SeasonPro
 Control status: Active authoritative LMSPro / SeasonPro child roadmap and delivery-cycle control
 
@@ -9,7 +9,7 @@ Parent portfolio control:
 
 `docs/00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md`
 
-## 0. Authoritative CR Inventory And Current LMSPro Disposition — 2026-08-10
+## 0. Authoritative CR Inventory And Current LMSPro Disposition — 2026-08-11
 
 This file is confirmed as the one authoritative LMSPro / SeasonPro child roadmap. The root
 Platform/module roadmap owns the one serial cross-lane `Now` and `Next`. CR inputs, triage,
@@ -34,13 +34,14 @@ authority. Later disposition changes must update the existing row.
 | [`2026-07-30-lmspro-responsive-c1-club-management-cr-input.md`](../01-cr-inputs/2026-07-30-lmspro-responsive-c1-club-management-cr-input.md) | R10-A implemented, staging-smoked, included by ancestry in live application `7154937` and reported totally green in the control-owner production smoke | Completed and closed on 2026-08-05; no remaining resumption action |
 | [`2026-08-05-lmspro-500-recipient-email-operating-envelope-refinement.md`](../01-cr-inputs/2026-08-05-lmspro-500-recipient-email-operating-envelope-refinement.md) | Captured planning input; awaiting formal triage | Registered standard communications/capacity candidate; no limit change, implementation or displacement of `Now`/`Next` authorised |
 | [`CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md`](../01-cr-inputs/CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md) | F1 PASS; F2 superseded; F2.1/F2.2 delivered; F3 exact `72c02d92` automated gates and staging smoke 13/13 PASS; dev/staging/main aligned; public production health PASS; no schema/migration | F3 complete and closed; any later regression requires a new CR-Fix |
-| [`2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md`](../01-cr-inputs/2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md) | R11-A implemented with corrected combined Division/Age Group recipient-type widget, session disclosure and responsive layout; focused/full tests, type, verification, lint and 131-page build PASS; authenticated local UI smoke 18/18 and staging smoke all green; exact `83356030` is retained by ancestry in current `60ac76c1`; public live health PASS; no schema/API/provider/configuration change | Live branch promotion complete; retained evidence does not displace the current Support Ticketing `Now`/`Next` |
+| [`2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md`](../01-cr-inputs/2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md) | R11-A implemented with corrected combined Division/Age Group recipient-type widget, session disclosure and responsive layout; focused/full tests, type, verification, lint and 131-page build PASS; authenticated local UI smoke 18/18 and staging smoke all green; exact `83356030` is retained by ancestry in current `60ac76c1`; public live health PASS; no schema/API/provider/configuration change | Live branch promotion complete; retained evidence does not displace the reconciled R12-A/Support Ticketing `Now`/`Next` |
+| [`CR-Fix-2026-08-11-lmspro-free-day-owner-notice-authority.md`](../01-cr-inputs/CR-Fix-2026-08-11-lmspro-free-day-owner-notice-authority.md) | Complete green local smoke; exact R12-A `39a25d99` is retained in current staging head `cde4eaff`; R12-A exact scans and public health passed at its promotion boundary; Render identity/human staging smoke pending | Complete the six-item R12-A check against current exact staging head; no main authority |
 
 Current LMSPro portfolio disposition:
 
 ```text
-NOW  -> Platform Support Ticketing client-readiness triage
-NEXT -> first bounded Support Ticketing security/privacy/operability prerequisite
+NOW  -> Combined exact cde4eaff staging identity and bounded R12-A/Support acceptance
+NEXT -> Main-promotion decision, then FUND 1R-F-A from its documented boundary
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; historical PLAT-ROLE-03/LMS-ROLE-01/02 are not next slices
 PARKED -> FUND 1R-F-A at its exact pre-planning boundary
 ```
@@ -49,14 +50,17 @@ The control owner completed the displaced R10-A smoke as totally green. The curr
 pair is therefore:
 
 ```text
-NOW  -> Platform Support Ticketing client-readiness triage
-NEXT -> first bounded Support Ticketing security/privacy/operability prerequisite
+NOW  -> Combined exact cde4eaff staging identity and bounded R12-A/Support acceptance
+NEXT -> Main-promotion decision, then FUND 1R-F-A from its documented boundary
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; historical PLAT-ROLE-03/LMS-ROLE-01/02 are not next slices
 PARKED -> FUND 1R-F-A bounded planning
 ```
 
-F3, R10-A and Role Authority are complete and closed. Support Ticketing is the active root
-project. FUND `1R-F-A` is preserved at its exact
+F3, R10-A and Role Authority are complete and closed. R12-A local smoke is complete and its
+exact code remains in the ancestry of current staging head `cde4eaff`. Support Ticketing is
+also delivered in that staging head after a 24/24 local human pass and exact green dev and
+staging scans. The bounded R12-A and Support staging gates now form one deployment-identity
+acceptance boundary. FUND `1R-F-A` is preserved at its exact
 pre-planning boundary until those housekeeping outcomes are complete. `PLAT-ROLE-01` is
 corrected, accepted and complete. First `PLAT-ROLE-02` checkpoint `5e551938` failed usefully
 and was not promoted; corrective `7e453665` passed technical gates. `PLAT-ROLE-02A` passed

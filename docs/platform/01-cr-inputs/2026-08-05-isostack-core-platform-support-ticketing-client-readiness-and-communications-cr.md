@@ -4,7 +4,9 @@ Date: 2026-08-05
 
 Owning lane: IsoStack Platform
 
-Status: CR INPUT CAPTURED — AWAITING TRIAGE; NO IMPLEMENTATION AUTHORITY
+Status: **PLAT-SUPPORT-01/02/03 PLUS CORRECTIVE 03A/03B COMMITTED AT EXACT `cde4eaff`;
+LOCAL HUMAN GATE 24/24 PASS; DEV/STAGING ALIGNED AND EXACT SECURITY SCANS PASS; STAGING
+HUMAN ACCEPTANCE PENDING**
 
 Source: Client-readiness testing and requested code/document review of the shared Support
 Centre and P1 Support Tickets dashboard
@@ -26,6 +28,34 @@ Controlling documents:
 - `docs/00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md`
 - `docs/platform/00-roadmap-control/2026-07-22-isostack-platform-roadmap-and-slice-control.md`
 - `docs/platform/01-cr-inputs/README.md`
+
+Accepted triage and bounded plans:
+
+- [`Support Ticketing client-readiness triage`](../02-triage/2026-08-10-isostack-platform-support-ticketing-client-readiness-triage.md);
+- [`PLAT-SUPPORT-01 — Client Privacy And Lifecycle Authority Gate`](../03-slice-planning/2026-08-10-isostack-platform-plat-support-01-client-privacy-and-lifecycle-authority-gate-planning.md);
+- [`PLAT-SUPPORT-02 — Notification Routing And Event Coverage`](../03-slice-planning/2026-08-10-isostack-platform-plat-support-02-notification-routing-and-event-coverage-planning.md); and
+- [`PLAT-SUPPORT-03 — P1 Operational Dashboard And Classification`](../03-slice-planning/2026-08-10-isostack-platform-plat-support-03-p1-operational-dashboard-and-classification-planning.md).
+
+Local implementation and current gate:
+
+- [`PLAT-SUPPORT-01 implementation`](../04-implementation-confirmations/2026-08-10-isostack-platform-plat-support-01-client-privacy-and-lifecycle-authority-implementation.md);
+- [`PLAT-SUPPORT-02 implementation`](../04-implementation-confirmations/2026-08-10-isostack-platform-plat-support-02-notification-routing-and-event-coverage-implementation.md);
+- [`PLAT-SUPPORT-03 implementation`](../04-implementation-confirmations/2026-08-10-isostack-platform-plat-support-03-p1-operational-dashboard-and-classification-implementation.md); and
+- [`combined local review and smoke gate`](../05-review-and-test/2026-08-10-isostack-platform-support-ticketing-combined-local-review-and-smoke-gate.md).
+
+Corrected-route child lifecycle:
+
+- [`P1 workbench editing and case tracking CR-Fix`](CR-Fix-2026-08-11-isostack-platform-support-p1-workbench-editing-and-case-tracking.md);
+- [`PLAT-SUPPORT-03A`](../03-slice-planning/2026-08-11-isostack-platform-plat-support-03a-p1-workbench-entry-editing-and-queue-planning.md);
+- [`PLAT-SUPPORT-03B`](../03-slice-planning/2026-08-11-isostack-platform-plat-support-03b-operational-case-dates-and-activity-planning.md); and
+- [`corrective combined local human gate`](../05-review-and-test/2026-08-11-isostack-platform-plat-support-03a-03b-combined-local-review-and-smoke-gate.md).
+
+The triage rechecked current application `60ac76c1` and refined the notification finding:
+observed delivery and source confirm an existing functioning Resend transport. The immediate
+unmonitored-mailbox issue is primarily deployed destination configuration, but canonical
+category/module routing and missing event coverage still require `PLAT-SUPPORT-02`. Generic
+delivery queue/retry replacement is not part of that minimum slice and remains trigger-based
+hardening.
 
 ## 1. Purpose And Authority Boundary
 
@@ -73,12 +103,14 @@ The static application review supports the following conclusions.
    without requiring P1. A client capable of calling or inspecting the API may therefore see
    internal content or submit an internal-labelled comment. This is a serious pre-enablement
    finding.
-5. **The notification model is incomplete and its routing is fragile.** New-ticket email is
-   intended for a configured support destination, not as an acknowledgment to the requester.
-   Requester notifications cover only a subset of P1 status changes and public P1 replies.
-   Failures are logged but are not represented as durable delivery evidence or retryable
-   work. Several identifier and category inconsistencies may also prevent the intended
-   support destination from resolving.
+5. **The email transport exists and has observed working delivery, while notification
+   routing and event coverage remain incomplete.** New-ticket email is intended for a
+   configured support destination, which may presently be an unmonitored seeded/deployed
+   address. It is not an acknowledgment to the requester. Requester notifications cover only
+   a subset of P1 status changes and public P1 replies. Category/module inconsistencies may
+   prevent C1 routing even when P1 delivery works. Minimum remediation retains Resend,
+   installs deterministic canonical routing and fills the essential event matrix; durable
+   automatic retry is separately triggered operational hardening.
 6. **The P1 dashboard counts are not platform-wide live lifecycle counts.** The statistics
    query is always scoped to the P1 user's own organisation, omits `waiting-response`, and
    derives `closed` as a remainder. It can therefore report the wrong population and
@@ -617,7 +649,15 @@ after read-only inventory and accepted planning.
 12. No code, schema, roadmap, lifecycle, deployment or test-status change is authorised by
     this document.
 
-## 15. Open Questions For Triage And Control-Owner Decision
+The final statement above records the original CR authority boundary. Later explicit user
+authority produced the three local implementations and their combined gate; it does not
+retroactively make this CR itself implementation authority.
+
+## 15. Historical Open Questions At Capture
+
+The following questions record the CR capture boundary. The 2026-08-10 accepted triage now
+settles or explicitly defers the implementation decisions needed by `PLAT-SUPPORT-01` through
+`03`; this historical list must not override those bounded plans.
 
 1. Should a C1 Tenant Owner/Admin see every ticket in its organisation while Core Members see
    only tickets they requested, or should another explicit support-viewer permission govern
