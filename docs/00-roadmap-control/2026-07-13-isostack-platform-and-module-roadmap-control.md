@@ -51,8 +51,8 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Exact `cde4eaff` production identity confirmation | Dev/staging/main alignment, all three exact protected scans and both public health checks pass. Confirm Render production displays `Live at cde4eaff`; this is the sole remaining Support closure item. |
-| **NEXT** | FUND `1R-F-A` | Once production identity closes the housekeeping release, resume FUND from its documented pre-planning boundary. |
+| **NOW** | FUND `1R-F-A` bounded planning | Support Ticketing is complete and closed at exact production `cde4eaff`. Resume FUND from its preserved pre-planning boundary; no implementation is authorised merely by selection. |
+| **NEXT** | Accepted `1R-F-A` executable proof | Only after bounded planning/review explicitly accepts the proof scope; later `1R-F-B` onward remains parked. |
 
 Registered and ordered work outside that pair:
 
@@ -80,8 +80,9 @@ Registered and ordered work outside that pair:
   green. `origin/dev` and `origin/staging` are exact, both protected scans pass, public
   staging health is green, staging Render identity is confirmed and the concise staging
   smoke is 10/10 PASS. Exact `cde4eaff` is now aligned through main; main scan
-  `31496940138` and production public health pass. Production Render identity is the sole
-  remaining portfolio `Now` evidence item.
+  `31496940138`, production public health and exact Render production identity pass. The
+  Support project is complete and closed; FUND `1R-F-A` bounded planning is portfolio
+  `Now`.
   Existing Resend transport is retained; generic retry
   infrastructure and Platform Notice remain separate trigger-based work;
 - LMSPro 500-recipient operating envelope: standard communications/capacity triage input;

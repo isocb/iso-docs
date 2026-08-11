@@ -48,5 +48,5 @@ scan or health check.
 The control owner subsequently fully accepted the exact `cde4eaff` staging head and
 authorised its main promotion. This records acceptance of the combined deployment boundary;
 it does not manufacture separate item-by-item R12-A annotations that were not added here.
-Exact `cde4eaff` is now aligned through main and its main Security Scan/public health pass;
-production Render identity remains controlled by the combined release closure record.
+Exact `cde4eaff` is now aligned through main; its main Security Scan, public health and
+control-owner-confirmed Render production identity pass. The combined release is closed.

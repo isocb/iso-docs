@@ -2,7 +2,7 @@
 
 Created: 2026-06-25
 
-Last consolidated: 2026-08-10
+Last consolidated: 2026-08-11
 
 Status: Active authoritative control for the FUND lane
 
@@ -69,18 +69,17 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> Platform Support Ticketing client-readiness triage
-ROOT NEXT -> first bounded Support Ticketing security/privacy/operability prerequisite
+ROOT NOW  -> FUND 1R-F-A bounded planning from the preserved pre-planning boundary
+ROOT NEXT -> accepted 1R-F-A executable proof only after explicit plan/review authority
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
-FUND      -> 1R-F-A preserved at its exact pre-planning boundary
+FUND      -> 1R-F-A selected for planning; no implementation yet authorised
 ```
 
-Email F3 and Role Authority are complete. Support Ticketing is the remaining bounded
-housekeeping project before FUND resumes. `PLAT-ROLE-R1` is deferred trigger-based assurance
-and does not block FUND unless a recorded trigger fires. `1R-F-A` remains the exact FUND
-resumption point, but its
-planning and executable proof are not root `Now`/`Next`. No FUND implementation is authorised
-while those prerequisite projects remain open.
+Email F3, Role Authority and Support Ticketing are complete and closed. `PLAT-ROLE-R1` is
+deferred trigger-based assurance and does not block FUND unless a recorded trigger fires.
+`1R-F-A` is now the exact FUND resumption point and is selected for bounded planning. This
+selection does not itself authorise implementation; an executable proof becomes `Next` only
+after its plan/review explicitly accepts the scope.
 
 ## 1. Control Authority And Reading Rule
 
@@ -107,17 +106,18 @@ the position when that material was written and must not select new work.
 Current application repository state:
 
 ```text
-application local/remote dev, staging and main: exact 60ac76c1
-staging/production health and production Render/C1/C2 Role evidence: PASS
+application local/remote dev, staging and main: exact cde4eaff
+staging/production health and production Render evidence: PASS
 protected-branch dev/staging/main Security Scans: PASS
 Role Authority: COMPLETE AND CLOSED
+Support Ticketing: COMPLETE AND CLOSED
 ```
 
 Current consolidated delivery state:
 
 - Commerce `A1` through `A7`, FUND `1R-C1` through `1R-D` and Project Intake/creation
   `1P-G-R3-A` through `R3-D` are included in the promoted application ancestry;
-- protected application dev, staging and main are aligned at `60ac76c1`; its ancestry
+- protected application dev, staging and main are aligned at `cde4eaff`; its ancestry
   includes `83356030`, E-D and the previously promoted FUND/Commerce application work;
 - E-D adds no migration and performed no shared database action; shared database state
   remains governed by the preceding promotion records;

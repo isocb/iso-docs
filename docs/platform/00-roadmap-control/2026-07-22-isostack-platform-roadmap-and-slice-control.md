@@ -40,8 +40,8 @@ default.
 | [`2026-08-10-isostack-platform-plat-role-02a-seasonpro-owner-user-type-control-correction-sub-cr.md`](../01-cr-inputs/2026-08-10-isostack-platform-plat-role-02a-seasonpro-owner-user-type-control-correction-sub-cr.md) | Corrective child of `PLAT-ROLE-02`; authoritative-profile correction is technically/human accepted and included in exact main `60ac76c1` | Complete bounded child; shared promotion evidence retained by the parent release |
 | [`CR-Fix-2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity.md`](../01-cr-inputs/CR-Fix-2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity.md) | Implemented/accepted as Role child `b1ede26f`, retained in exact main `60ac76c1`; all parent production evidence passes | Corrective child complete and closed with parent |
 | [`CR-Fix-2026-08-10-isostack-platform-residual-authority-consistency-review.md`](../01-cr-inputs/CR-Fix-2026-08-10-isostack-platform-residual-authority-consistency-review.md) | `PLAT-ROLE-R1`: exactly one legacy Core writer and bounded component-resolver consistency review | Captured and deferred; trigger-based assurance only; not `Now`/`Next` and no implementation authorised |
-| [`2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md`](../01-cr-inputs/2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md) | Exact `cde4eaff` is aligned through main; local 24/24 and staging 10/10 human smoke, all three exact scans and both public health checks pass | Production branch promotion complete; close after Render confirms exact production identity |
-| [`CR-Fix-2026-08-11-isostack-platform-support-p1-workbench-editing-and-case-tracking.md`](../01-cr-inputs/CR-Fix-2026-08-11-isostack-platform-support-p1-workbench-editing-and-case-tracking.md) | Corrected-route workbench, triage, queue and operational case tracking delivered in exact `cde4eaff`; local 24/24 and staging 10/10 gates pass; exact main scan and health pass | Accepted child; close with parent after production Render identity |
+| [`2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md`](../01-cr-inputs/2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md) | Exact `cde4eaff` aligned through main; local 24/24 and staging 10/10 human smoke, all exact scans, public health and production Render identity pass | Complete and closed; future regression/capability requires a new CR/CR-Fix |
+| [`CR-Fix-2026-08-11-isostack-platform-support-p1-workbench-editing-and-case-tracking.md`](../01-cr-inputs/CR-Fix-2026-08-11-isostack-platform-support-p1-workbench-editing-and-case-tracking.md) | Corrected workbench and case tracking delivered in exact production `cde4eaff`; all gates pass | Corrective child complete and closed with parent |
 | [`CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md`](../01-cr-inputs/CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md) | Dependency child `60ac76c1`; all exact scans and combined staging/production evidence pass | Complete and closed; retain exact scan evidence with the combined release |
 
 Current Platform portfolio disposition:
@@ -62,8 +62,8 @@ Current Platform portfolio disposition:
   retained privacy/routing evidence and the corrected P1 workbench human gate all pass;
   exact dev scan `31494574593`, staging scan `31494804070`, public health and Render exact
   identity pass. The concise staging human gate is 10/10 PASS. Exact main scan
-  `31496940138` and production health pass; production Render identity is the sole
-  remaining closure item;
+  `31496940138`, production health and exact production Render identity pass. Support
+  Ticketing is complete and closed;
 - exact dev Security Scan `31384553388`, staging `31384766945`, main `31387014370`, staging
   smoke 8/8, staging/production public health, production Render identity and production
   C1/C2 authentication/routing pass;
@@ -100,7 +100,7 @@ Support Ticketing sequence and disposition:
 7. [`PLAT-SUPPORT-03B — Operational Case Dates And Activity`](../03-slice-planning/2026-08-11-isostack-platform-plat-support-03b-operational-case-dates-and-activity-planning.md) — delivered in exact `cde4eaff` with nullable server-owned evidence, P1-only chronology and next-action queue controls;
 8. [`Corrective combined local human gate`](../05-review-and-test/2026-08-11-isostack-platform-plat-support-03a-03b-combined-local-review-and-smoke-gate.md) — complete 24/24 PASS; and
 9. [`Staging promotion and indicative smoke`](../05-review-and-test/2026-08-11-isostack-platform-support-ticketing-staging-promotion-and-indicative-smoke.md) — exact dev/staging alignment, protected scans, public health and Render identity pass; human staging smoke 10/10 PASS and exact main promotion authorised.
-10. [`Production promotion and closure`](../05-review-and-test/2026-08-11-isostack-platform-support-ticketing-production-promotion-and-closure.md) — exact main alignment, protected main scan and production public health pass; production Render identity pending.
+10. [`Production promotion and closure`](../05-review-and-test/2026-08-11-isostack-platform-support-ticketing-production-promotion-and-closure.md) — exact main alignment, protected main scan, production public health and Render identity pass; project complete and closed.
 
 Platform Notice/ALL-client announcement design and generic delivery retry infrastructure are
 not hidden fourth slices. They remain separate trigger-based candidates and do not delay the
