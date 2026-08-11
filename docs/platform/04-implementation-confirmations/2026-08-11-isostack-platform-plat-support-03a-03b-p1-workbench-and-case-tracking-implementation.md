@@ -2,8 +2,8 @@
 
 Date: 2026-08-11
 
-Status: **IMPLEMENTED AND COMMITTED AT EXACT `cde4eaff`; LOCAL HUMAN SMOKE 24/24 PASS;
-DEV/STAGING ALIGNED AND EXACT SECURITY SCANS PASS; STAGING HUMAN GATE PENDING**
+Status: **IMPLEMENTED AND COMMITTED AT EXACT `cde4eaff`; LOCAL 24/24 AND STAGING 10/10
+HUMAN GATES PASS; DEV/STAGING SECURITY, IDENTITY AND HEALTH PASS; MAIN PROMOTION AUTHORISED**
 
 Baseline: application `dev` at `39a25d996da2ce24d717d11a754636c31435d517`
 
@@ -142,5 +142,5 @@ Support migrations were then committed as exact
 `1july2026.code-workspace` edit. `origin/dev` and `origin/staging` are aligned to that exact
 commit. Dev Security Scan `31494574593` and staging Security Scan `31494804070` pass.
 Public staging health returns HTTP 200 with database connected and RLS 11/11. Render exact
-deployment identity and the concise ten-item human staging gate remain pending; no main
-promotion is authorised by this implementation record.
+deployment identity and the concise ten-item human staging gate pass. The control owner
+authorises exact main promotion subject to its protected scan and production evidence.

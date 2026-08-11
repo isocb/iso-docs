@@ -50,8 +50,8 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Combined staging acceptance at exact `cde4eaff` | R12-A is retained in ancestry and Support local smoke is 24/24 green. Exact dev/staging scans and public health pass. Confirm Render displays `Live at cde4eaff`, then complete the bounded R12-A six-item and Support ten-item staging gates; no main promotion yet. |
-| **NEXT** | Main-promotion decision, then FUND | If both staging gates pass, record acceptance and decide the exact combined main promotion. Once housekeeping is closed, resume FUND `1R-F-A` from its documented pre-planning boundary. |
+| **NOW** | Exact `cde4eaff` main promotion and production closure | Control owner confirms the exact staging Render identity and fully accepts the current staging head after a 10/10 Support smoke. Promote only exact `cde4eaff`, require the protected main Security Scan, then record production identity and health. |
+| **NEXT** | FUND `1R-F-A` | Once exact production evidence closes the housekeeping release, resume FUND from its documented pre-planning boundary. |
 
 Registered and ordered work outside that pair:
 
@@ -76,9 +76,9 @@ Registered and ordered work outside that pair:
   `03A/03B` are committed at exact `cde4eaff`. Technical gates and retained privacy/routing
   human evidence pass. P1 navigation, stable triage editing, responsive queue, next actions
   and truthful activity evidence are delivered, and combined local human smoke is 24/24
-  green. `origin/dev` and `origin/staging` are exact, both protected scans pass, and public
-  staging health is green. Render identity and the concise ten-item staging smoke remain
-  inside portfolio `Now`.
+  green. `origin/dev` and `origin/staging` are exact, both protected scans pass, public
+  staging health is green, Render identity is confirmed and the concise staging smoke is
+  10/10 PASS. Exact main promotion and production evidence are portfolio `Now`.
   Existing Resend transport is retained; generic retry
   infrastructure and Platform Notice remain separate trigger-based work;
 - LMSPro 500-recipient operating envelope: standard communications/capacity triage input;
