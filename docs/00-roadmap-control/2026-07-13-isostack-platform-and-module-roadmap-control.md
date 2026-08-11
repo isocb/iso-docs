@@ -29,10 +29,11 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application evidence:
 
 ```text
-local dev = origin/dev = origin/staging = exact Support candidate cde4eaff
-origin/main = 60ac76c1 (unchanged)
+local dev = origin/dev = origin/staging = origin/main = exact Support release cde4eaff
 Support exact dev Security Scan 31494574593 and staging Security Scan 31494804070 = PASS
+Support exact main Security Scan 31496940138 = PASS
 Support staging public health = HTTP 200; database connected; RLS 11/11
+Support production public health = HTTP 200; database connected; RLS 11/11
 F3 tests/type/verify/build and promotion-time dev/staging/main Security Scans = PASS
 F3 staging human smoke = 13/13 PASS; production promotion = COMPLETE
 staging and production public health = HTTP 200; database connected; RLS 11/11
@@ -50,8 +51,8 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Exact `cde4eaff` main promotion and production closure | Control owner confirms the exact staging Render identity and fully accepts the current staging head after a 10/10 Support smoke. Promote only exact `cde4eaff`, require the protected main Security Scan, then record production identity and health. |
-| **NEXT** | FUND `1R-F-A` | Once exact production evidence closes the housekeeping release, resume FUND from its documented pre-planning boundary. |
+| **NOW** | Exact `cde4eaff` production identity confirmation | Dev/staging/main alignment, all three exact protected scans and both public health checks pass. Confirm Render production displays `Live at cde4eaff`; this is the sole remaining Support closure item. |
+| **NEXT** | FUND `1R-F-A` | Once production identity closes the housekeeping release, resume FUND from its documented pre-planning boundary. |
 
 Registered and ordered work outside that pair:
 
@@ -77,8 +78,10 @@ Registered and ordered work outside that pair:
   human evidence pass. P1 navigation, stable triage editing, responsive queue, next actions
   and truthful activity evidence are delivered, and combined local human smoke is 24/24
   green. `origin/dev` and `origin/staging` are exact, both protected scans pass, public
-  staging health is green, Render identity is confirmed and the concise staging smoke is
-  10/10 PASS. Exact main promotion and production evidence are portfolio `Now`.
+  staging health is green, staging Render identity is confirmed and the concise staging
+  smoke is 10/10 PASS. Exact `cde4eaff` is now aligned through main; main scan
+  `31496940138` and production public health pass. Production Render identity is the sole
+  remaining portfolio `Now` evidence item.
   Existing Resend transport is retained; generic retry
   infrastructure and Platform Notice remain separate trigger-based work;
 - LMSPro 500-recipient operating envelope: standard communications/capacity triage input;

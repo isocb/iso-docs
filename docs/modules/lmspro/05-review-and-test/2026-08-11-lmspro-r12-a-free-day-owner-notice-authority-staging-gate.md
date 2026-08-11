@@ -44,3 +44,9 @@ After the original R12-A-only promotion evidence above was recorded, exact Suppo
 `39a25d99` remains in its ancestry. Run this unchanged six-item R12-A smoke against the
 current exact `cde4eaff` staging deployment; do not infer its result from the later Support
 scan or health check.
+
+The control owner subsequently fully accepted the exact `cde4eaff` staging head and
+authorised its main promotion. This records acceptance of the combined deployment boundary;
+it does not manufacture separate item-by-item R12-A annotations that were not added here.
+Exact `cde4eaff` is now aligned through main and its main Security Scan/public health pass;
+production Render identity remains controlled by the combined release closure record.

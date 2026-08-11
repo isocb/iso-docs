@@ -2,8 +2,9 @@
 
 Date: 2026-08-10
 
-Status: **IMPLEMENTED IN EXACT `cde4eaff`; LOCAL COMBINED HUMAN GATE PASS; DEV/STAGING
-ALIGNED AND EXACT SECURITY SCANS PASS; STAGING HUMAN ACCEPTANCE PENDING**
+Status: **DELIVERED IN EXACT `cde4eaff` AND ALIGNED THROUGH MAIN; LOCAL/STAGING HUMAN
+GATES, ALL PROTECTED SCANS AND PUBLIC HEALTH CHECKS PASS; PRODUCTION RENDER IDENTITY
+PENDING FOR CLOSURE**
 
 Plan:
 
@@ -87,6 +88,6 @@ fail-closed discussion parsing. Full automated, TypeScript, repository verificat
 production build and changed-production-file lint gates pass at the combined record.
 
 Recovery is application rollback plus forward-compatible retention of the nullable requester
-columns. No destructive down migration is required or authorised. The combined local human
-privacy/authority matrix passes; staging human acceptance remains controlled by the shared
-Support staging gate.
+columns. No destructive down migration is required or authorised. The combined local and
+staging human privacy/authority gates pass; exact production identity remains controlled by
+the shared Support closure record.

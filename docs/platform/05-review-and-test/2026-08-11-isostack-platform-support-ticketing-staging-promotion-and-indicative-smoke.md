@@ -74,3 +74,6 @@ record is completed and explicitly accepted.
 Control-owner decision recorded 2026-08-11: **FULLY ACCEPTED — 10/10 PASS.** Exact
 `cde4eaff1e14b2f02ba0953fe8693e7feb02bb61` is authorised for main promotion, subject to
 the protected main Security Scan and production deployment/health documentation.
+
+Subsequent production evidence is controlled by
+[`Support Ticketing production promotion and closure`](2026-08-11-isostack-platform-support-ticketing-production-promotion-and-closure.md).
