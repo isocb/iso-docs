@@ -24,9 +24,9 @@ Most recently completed implementation lifecycle:
 Current integrated critical-path action:
 
 ```text
-Decide explicitly whether to authorise the remaining isolated `1R-F-A` Stage C temporary
-Render/private-object proof. Stage B Linux parity is green. Do not create Render
-infrastructure, use shared data or start a later slice before that authority decision.
+Execute the accepted isolated `1R-F-A` Stage C temporary Render/private-object proof once,
+capture the bounded evidence, prove credential/resource teardown and conclude `1R-F-A`.
+Do not use shared data, modify existing Render services or start a later slice first.
 ```
 
 Commerce A1-A7 and the retained FUND C1-C6/1R-D/R3 foundations are implemented/reviewed and
@@ -36,7 +36,9 @@ E-B and E-C add no migration. Corrective E-D is implemented/reviewed at `c45a41d
 also included by ancestry in `83356030`, with no E-D migration or shared database action.
 The real-workflow human schedule remains recorded in its review. The non-executable `1R-F`
 parent remains accepted. `1R-F-A-R1B` source/folding PDF review and Stage B Linux-container
-parity pass at exact dev `139d09c4`. Stage C and later children remain unauthorised.
+parity pass at exact dev `139d09c4`. The dedicated Stage C contract was accepted and
+authorised on 2026-08-12; its bounded implementation/execution is current. Later children
+remain unauthorised.
 
 Parked downstream policy plan, not selected:
 

@@ -5,8 +5,8 @@ Reconciled: 2026-07-20
 
 Current dependency note: 2026-08-11 - corrective `1R-E-D` remains in current ancestry.
 `1R-F-A-R1B` source/folding composition, PDF/physical review and Stage B Linux parity are
-green. The explicit Stage C authority decision is portfolio `Now`; Stage C remains
-unauthorised until that decision is made.
+green. The dedicated Stage C contract is accepted and its bounded implementation,
+exact-commit gates, one isolated execution and teardown are portfolio `Now`.
 
 Status: Active subordinate register of genuinely absent refinements; no next-slice authority
 

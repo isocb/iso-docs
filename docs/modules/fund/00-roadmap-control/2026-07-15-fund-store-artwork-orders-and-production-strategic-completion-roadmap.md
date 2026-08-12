@@ -9,7 +9,8 @@ Status: Subordinate strategic capability overview; planning coordination only
 Current control note: direct portrait and fold-aware landscape source inspection superseded
 inferred R1A before review. Source-faithful `1R-F-A-R1B` automation and 12/12 physical/PDF
 review pass. Stage B Linux parity and the exact dev Security Scan pass at `139d09c4`.
-The explicit Stage C authority decision is portfolio `Now`.
+The dedicated Stage C plan is accepted and its bounded implementation, exact-commit gates,
+one isolated Render/private-R2 execution and teardown are portfolio `Now`.
 
 Authoritative FUND roadmap and slice control:
 

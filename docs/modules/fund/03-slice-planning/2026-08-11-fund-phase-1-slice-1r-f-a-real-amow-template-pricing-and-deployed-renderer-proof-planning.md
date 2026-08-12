@@ -4,7 +4,8 @@ Date: 2026-08-11
 
 Status: **PLAN ACCEPTED; INFERRED R1/R1A COMPOSITIONS SUPERSEDED; R1B SOURCE-FAITHFUL
 AUTOMATION AND HUMAN/PHYSICAL REVIEW PASS; STAGE B LINUX PARITY AND EXACT SECURITY SCAN PASS
-AT DEV `139d09c4`; STAGE C AUTHORITY DECISION SELECTED; NO LATER SLICE AUTHORISED**
+AT DEV `139d09c4`; STAGE C ACCEPTED, IMPLEMENTED AND EXACT `328aadf0` LOCAL/LINUX/SECURITY
+GATES PASS; EXTERNAL RUN/TEARDOWN PENDING; NO LATER SLICE AUTHORISED**
 
 Owning lane: FUND
 
@@ -338,12 +339,20 @@ Outcome: **PASS** at exact application `139d09c4`; see the
 
 ### Stage C — Explicitly authorised temporary Render proof
 
+The dedicated accepted execution contract is:
+
+[`1R-F-A Stage C temporary Render/private-object proof`](2026-08-12-fund-phase-1-slice-1r-f-a-stage-c-temporary-render-private-object-proof-planning.md)
+
 - deploy the exact proof commit to the temporary isolated worker;
 - run the same fixture batch once;
 - record build/runtime identity, cold/warm generation time, peak RSS, PDF size and bounded
   retry behaviour;
 - perform private-object round-trip and zero-residue teardown; and
 - suspend/delete the worker after evidence is captured.
+
+Candidate outcome: exact application `328aadf0` is dev-aligned; local gates, Linux parity
+run `31599134487` and Security Scan `31599134488` pass. External execution and teardown
+remain pending and no Stage C PASS is yet claimed.
 
 ### Stage D — Human physical gate
 
