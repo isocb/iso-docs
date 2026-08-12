@@ -2,7 +2,9 @@
 
 Date: 2026-07-15
 
-Status: Draft refinement for review; planning and documentation only
+Status: Accepted governed input to the `1R-F` parent; bounded `1R-F-A` plan accepted and
+Stages A/B locally implemented for human review; no Stage C or production implementation
+authorised
 
 Source brief:
 
@@ -23,6 +25,38 @@ Authoritative roadmap:
 Accepted reconciliation successor:
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`
+
+Current bounded child plan:
+
+`docs/modules/fund/03-slice-planning/2026-08-11-fund-phase-1-slice-1r-f-a-real-amow-template-pricing-and-deployed-renderer-proof-planning.md`
+
+Parked downstream Store Order policy plan:
+
+`docs/modules/fund/03-slice-planning/2026-08-11-fund-phase-1-slice-1r-h-a-store-order-short-code-and-single-artwork-correlation-planning.md`
+
+Current design evidence supplied 2026-08-11 confirms portrait and occasional landscape
+composition, the C1 tenant logo, and a data-driven Project-selected Product table,
+School/Organisation name, Project name, Project number, Store closing date, Store URL and
+matching QR. Child First Name, Child Surname and Class/Group are three deliberately blank
+labelled spaces completed by the purchaser or school after the child finishes the artwork.
+The source landscape is a fold-aware composition: control and ordering content occupies the
+left panel, while Project number, closing date and C1 tenant logo sit above the right-hand
+artwork. The portrait preserves the same hierarchy in a compact top band above its artwork.
+Artwork guidance and ordering/return guidance are two independently data-driven rich-text
+regions. The
+bounded proof plan owns fidelity and capacity evidence. Control-owner clarification on
+2026-08-11 confirms six empty Store Order Code boxes, distinct from the printed Project
+number. A completed Store sale generates a short number displayed as six digits: ordinarily
+four significant digits with two leading zeroes, growing naturally to five or six
+significant digits as Event volume requires. The purchaser copies it from the
+confirmation/receipt so the returned sheet can be cross-referenced through school handling
+to AMOW production. The machine transaction identifier and idempotency authority remain
+separate.
+
+The same control decision confirms actual-size A4 without fit-to-page, explicit AMOW/C1
+orientation selection, Project closing date as Store closing date, and every selected
+Project Product exactly once in configured display order with the exact gross purchaser
+price and current Product/How Many/Price/Total/Grand Total structure.
 
 The successor preserves this CR as governed source evidence, resolves its cross-CR
 questions at parent level where safe and routes proof-dependent questions to bounded
@@ -150,17 +184,21 @@ Initial component types should include:
 - Project Store QR code;
 - printed Project Store URL;
 - Product/price/quantity/total grid;
-- child-name label and writable area;
-- five-digit handwritten Order Code area with one outlined box per digit; and
+- Child First Name label and writable area;
+- Child Surname label and writable area;
+- Class/Group label and writable area;
+- six-box purchaser-write-in Store Order Code area accepting the zero-padded six-digit
+  display value; and
 - protected artwork area.
 
 The approved variable registry supplies safe data to resolved-data components. It does not
 permit arbitrary database paths, expressions, HTML, CSS or scripting.
 
-The printed title, rich-text instructions and Order Code writing area are versioned
+The printed title, rich-text instructions and Store Order Code writing area are versioned
 Application Template components. They are not unrestricted page-builder content. The Order
-Code boxes are deliberately empty when the Artwork Template is generated because the parent
-writes the code after completing online checkout.
+Code boxes are deliberately empty when the Artwork Template is generated because the
+purchaser writes the six-digit display value after completing the Store sale and
+receiving the confirmation/receipt.
 
 ### 2.6 Project Product Selection Limits
 
@@ -332,6 +370,10 @@ Product data.
 | ordering                                      | locked Project/Store Product order, not live Catalogue ordering                            |
 | currency and tax display                      | accepted resolved consumer-price service output                                            |
 
+The displayed **Store Closing Date** is `FundProject.closesAt`; there is no separate Store
+closing-date authority in this contract. Every selected Project Product appears exactly
+once in configured display order with the exact gross purchaser price used by the Store.
+
 Catalogue membership explains why a Product is eligible. `FundProjectProduct` records the
 C2-selected subset. The resolved Store Product configuration version supplies the exact
 customer-facing Product and commercial evidence. One Product available through multiple
@@ -448,7 +490,7 @@ An Application Template Version should contain:
 - immutable branding asset references/configuration;
 - component configuration;
 - printed-title and controlled rich-text instruction content/configuration;
-- five-digit Order Code writing-area configuration;
+- six-box Store Order Code writing-area configuration;
 - protected artwork area configuration;
 - Product-grid configuration and capacity envelope;
 - validated Product-grid capacity;
@@ -578,18 +620,24 @@ The rich-text component requires:
 - preview using exact print typography and approved variable sample values; and
 - activation failure when content cannot fit legibly within the configured component.
 
-### 11.3 Five-Digit Order Code Writing Area
+### 11.3 Six-Box Human-Readable Store Order Code Writing Area
 
-The initial component registry should include a singleton **Order Code writing area** that
-renders a C1-configurable label and exactly five individual outlined boxes:
+The initial component registry should include a singleton **Store Order Code writing area**
+that renders a C1-configurable label and exactly six individual outlined boxes:
 
 ```text
-ORDER CODE: [ ] [ ] [ ] [ ] [ ]
+ORDER CODE: [ ] [ ] [ ] [ ] [ ] [ ]
 ```
 
 This is a physical write-in component, not a resolved Project variable and not an
-interactive PDF form field. The parent receives the Order Code after online checkout and
-copies one digit into each box on the printed Artwork Template.
+interactive PDF form field. It is distinct from the automatically printed data-driven
+Project number. The Child First Name, Child Surname and Class/Group spaces are also empty
+physical write-in components and are not resolved child data. A completed Store sale generates a short
+numeric Order Code and presents it as exactly six digits on the purchaser's
+confirmation/receipt: normally four significant digits with two leading zeroes, then one
+leading zero for five significant digits, and no padding for six. The purchaser copies all
+six displayed digits into the six-box area so the returned artwork can be cross-referenced
+through the school and into AMOW production.
 
 C1 should be able to configure, within safe limits:
 
@@ -600,26 +648,28 @@ C1 should be able to configure, within safe limits:
 - spacing between boxes;
 - outline colour, thickness and approved line style;
 - background/fill, normally white; and
-- alignment of the five-box group.
+- alignment of the six-box group.
 
-The first release fixes the box count at five so the physical component matches the
-accepted five-digit Order Code contract. It must not silently render fewer/more boxes or
-prefill a code at Artwork Template generation time.
+The first release fixes the physical box count and displayed code width at six. It must not
+silently render fewer/more boxes or prefill a code at Artwork Template generation time.
 
 Activation and finalisation validation must confirm that:
 
-- all five boxes are present and equal in size;
+- all six boxes are present and equal in size;
 - each box is large enough for legible handwriting;
 - outlines remain print-visible;
 - the group remains within the safe-print area;
-- it does not overlap the Product grid, QR/URL, child-name area or protected artwork area;
-  and
+- it does not overlap the Product grid, QR/URL, Child First Name, Child Surname,
+  Class/Group or protected
+  artwork areas; and
 - the instructional wording and Order Code writing area can be understood together in the
   final preview.
 
 The generated Order Code remains Commerce/Order evidence and is not an authentication
-secret. Its generation, uniqueness and emailed Order-confirmation contract are dependencies
-to resolve before the wording is operationally relied upon.
+secret, transaction identifier or idempotency key. Its six-character zero-padded purchaser
+presentation and physical cross-reference purpose are now confirmed. Its exact
+successful-sale allocation transition, concurrency, namespace and production validation
+surface remain later Commerce/Order dependencies.
 
 ### 11.4 Approved Variable Registry
 
@@ -648,12 +698,13 @@ Initial candidates are:
 - canonical Store URL;
 - Store QR code;
 - C1 tenant name/branding;
-- child-name label/writable area;
 - Product/price/quantity/total grid.
 
-The printed title, static instructional rich text and blank Order Code writing area are
-controlled component values, not ordinary resolved variables. Approved variable tokens may
-be inserted into rich text only through the registry-aware editor control.
+The printed title, two static instructional rich-text regions, blank Child First Name,
+Child Surname and Class/Group writing areas and blank Store Order Code writing area are
+controlled component values, not
+ordinary resolved variables. Approved variable tokens may be inserted into rich text only
+through the registry-aware editor control. No child identity is resolved or prefilled.
 
 ## 12. C1 Application Template Experience
 
@@ -669,7 +720,7 @@ C1 should be able to:
 - configure the printed title independently from the internal Application Template name;
 - author and format bounded instructional wording through the controlled rich-text editor;
 - insert only approved variable tokens into rich text;
-- add and configure the singleton five-digit Order Code writing area;
+- add and configure the singleton six-box Store Order Code writing area;
 - position/size components through drag interaction and numeric millimetre inputs;
 - configure the Product grid within safe limits;
 - see validated Product-grid capacity and configure maximum selected Project Products at
@@ -713,8 +764,9 @@ select eligible Project Products
 C2 may review resolved content but receives no layout, background, typography, component or
 Application Template selection controls.
 
-C2 can preview the C1-authored title, resolved/sanitised instructions and empty five-box
-Order Code writing area, but cannot edit their text, format, geometry or box count.
+C2 can preview the C1-authored title, resolved/sanitised instructions, empty Child First
+Name, Child Surname and Class/Group writing spaces and empty six-box Order Code writing area, but cannot edit
+their text, format, geometry or box count.
 
 The Project panel should show:
 
@@ -754,7 +806,7 @@ Before finalisation, FUND must prove at least:
 - required Project and Client variables resolve;
 - required printed title and rich-text instructions are nonblank, sanitised and fit their
   configured bounds;
-- the five-digit Order Code writing area is present where required and passes physical
+- the six-box Store Order Code writing area is present where required and passes physical
   component validation;
 - the Product grid fits;
 - all components remain within the A4 safe area;
@@ -942,16 +994,17 @@ Reasons:
 `pdf-lib` should support PDF inspection, page-size/page-count validation, stamping or later
 merging. It should not be the primary coordinate renderer for the variable grid/editor.
 
-The final tool decision remains gated by a pre-implementation proof using one genuine AMOW
-Application Template and representative Project data. The proof must exercise:
+The final tool decision remains gated by a pre-implementation proof using the supplied
+genuine AMOW portrait/landscape Application Template family and representative Project
+data. The proof must exercise:
 
-- portrait and/or landscape required by the real template;
-- optional background and explicit branding;
+- both portrait and landscape composition required by the real examples;
+- optional background, explicit AMOW/C1 branding and C1 tenant logo;
 - short and long Client/Project/Product values;
 - a distinct printed title;
 - the representative multi-paragraph rich-text instructions, including emphasis and line
   breaks;
-- five individually outlined empty Order Code boxes;
+- six individually outlined empty Store Order Code boxes;
 - minimum-size, at-maximum and deliberate overflow Product grids;
 - writable quantity/total cells;
 - protected artwork area;
@@ -1056,9 +1109,10 @@ Automated validation should cover:
 - quantity/total writing areas;
 - printed-title distinction from internal Application Template name;
 - rich-text allowlist, sanitisation, variable-token resolution and overflow refusal;
-- exact five-box Order Code rendering and physical-dimension validation;
-- Order Code area non-overlap with QR, Product grid, child-name and protected artwork
-  components;
+- exact six-box Store Order Code rendering and physical-dimension validation;
+- Child First Name, Child Surname, Class/Group and Order Code areas remain blank, legible,
+  writable and do not
+  overlap the QR, Product grid or protected artwork components;
 - finalisation atomicity;
 - Product selection mutation refusal while locked;
 - explicit unlock/revision/refinalisation;
@@ -1075,12 +1129,12 @@ Representative print/visual fixtures should cover:
 - long school/club and Project names;
 - short, long, at-maximum and deliberate over-maximum Product selections;
 - Product names wrapping to multiple lines;
-- writable child name, quantity and total spaces;
+- separate writable Child First Name, Child Surname, Class/Group, quantity and total spaces;
 - short and long instructional rich text with intentional line breaks and emphasis;
-- five equal, legible and individually outlined Order Code boxes;
+- six equal, legible and individually outlined Store Order Code boxes;
 - protected artwork area;
 - printed title and controlled rich-text instructions;
-- singleton five-digit Order Code writing area;
+- singleton six-box Store Order Code writing area;
 - office-printer safe area and actual-size printing;
 - QR scanning from multiple physical printers/devices; and
 - visual comparison of browser preview with generated PDF.
@@ -1145,7 +1199,8 @@ The first operational release should include:
 - C1-authored printed title distinct from the internal Application Template name;
 - bounded, sanitised rich-text instructions with approved formatting and optional approved
   variable tokens;
-- singleton five-digit Order Code writing area with separate outlined boxes;
+- separate blank Child First Name, Child Surname and Class/Group writing areas;
+- singleton six-box Store Order Code writing area with separate outlined boxes;
 - protected artwork area;
 - Product/unit-price/quantity/total grid;
 - validated Product-grid capacity and C1-configured maximum selected Project Products;
@@ -1199,8 +1254,11 @@ The capability is successful when:
 - Product, Quantity and Total columns provide a dependable physical/online checking tool;
 - C1 can create a distinct printed title and flexible, sanitised, bounded rich-text
   instructions for each Application Template Version;
-- every applicable Artwork Template renders five separate outlined Order Code boxes that a
-  parent can complete legibly after checkout;
+- every applicable Artwork Template presents separate blank labelled Child First Name,
+  Child Surname and Class/Group spaces for later handwriting and never prefills child
+  identity;
+- every applicable Artwork Template renders six separate outlined Store Order Code boxes
+  that a purchaser can complete legibly from the Store confirmation/receipt after sale;
 - finalisation locks Product membership and exact Store commercial configuration together;
 - the Store may remain unpublished without producing a broken QR destination;
 - changing the locked offer requires a conscious, warned and audited unlock;
@@ -1251,12 +1309,15 @@ This refinement records the following decisions as accepted inputs for later pla
     Application Template name.
 23. C1 authors Event/Standalone instructions through a constrained, sanitised rich-text
     editor with optional approved variable-token insertion.
-24. The Artwork Template includes a configurable physical Order Code writing-area component
-    with exactly five individually outlined empty boxes in the initial release.
-25. The Application Template, Artwork Template and template-capacity Product-selection
+24. The Artwork Template includes a configurable physical Store Order Code writing-area
+    component with exactly six individually outlined empty boxes in the initial release.
+25. The Artwork Template includes separate labelled Child First Name, Child Surname and
+    Class/Group writing areas that remain blank for the purchaser or school to complete after the child has
+    finished the artwork; no child identity is resolved into the generated sheet.
+26. The Application Template, Artwork Template and template-capacity Product-selection
     rules in this refinement apply only to `ARTWORK_FUNDRAISING` Individual Artwork
     Projects.
-26. Group personalised and applicable Bulk order/club-funded Projects use the separate
+27. Group personalised and applicable Bulk order/club-funded Projects use the separate
     collective Project artwork composition/approval contract; an unmodified Standard
     Product is not a Project type.
 
@@ -1282,17 +1343,25 @@ email-link issue/reissue and unlock.
 
 ### 27.2 Unlock After Orders Or Distribution
 
-What happens when an unlock is requested after:
+Control-owner decision on 2026-08-11: the effective template/offer is hard-locked after
+recorded physical printing/distribution or the first completed Store sale, whichever occurs
+first. Ordinary unlock is prohibited after either event. Existing generated Artwork
+Template Versions, printed sheets and Orders are always immutable.
+
+Before either event, the existing exact-organiser warned/audited unlock and complete
+refinalisation path remains available. A mere download cannot prove printing; the later UI
+must provide an explicit print/distribution confirmation if physical distribution is to
+become system authority.
+
+Later implementation must still define controlled behaviour when:
 
 - the Artwork Template has been downloaded;
-- the organiser has confirmed physical printing/distribution;
 - the Store has been published;
 - an unpaid basket/checkout exists; or
-- one or more paid Orders exist?
+- exceptional C1 reconciliation is required after the hard lock.
 
-The likely safe direction is a progressively stricter gate, with paid Orders prohibiting
-ordinary unlock and requiring a C1-controlled exception/reconciliation process. This needs
-an explicit business decision.
+Exceptional reconciliation may supersede only prospective evidence. It must never rewrite
+an existing generated version, printed copy or Order.
 
 ### 27.3 Lock Scope In Store And Checkout
 
@@ -1330,6 +1399,10 @@ through a second Project workflow.
 
 ### 27.7 Product Options And Price Modifiers
 
+Status: TBA for the later Store/Product-options slice. Products will have purchaser-selectable
+options and some may alter price, but `1R-F-A` uses controlled base Product rows and does not
+settle their printable summary.
+
 When an online Product has purchaser-selected options or price modifiers, does the Artwork
 Template:
 
@@ -1342,15 +1415,20 @@ This must remain reconcilable with handwritten quantities and the exact paid Ord
 
 ### 27.8 Quantity And Total Grid Detail
 
-Confirm whether the initial grid requires:
+Control-owner decision on 2026-08-11: retain the current
+`Product / How Many / Price / Total Price / Grand Total` structure. Every selected Project
+Product appears exactly once in configured display order with the exact gross purchaser
+price used by the Store. Quantity, row total and grand total remain blank handwriting
+fields. The bounded proof reproduces the current currency and Product-label presentation;
+Product-option/modifier presentation remains TBA under 27.7.
 
-- one handwritten total per Product row;
-- a final handwritten grand-total box;
-- currency symbol repeated per row or only in the header;
-- Product code in addition to Product name; and
-- a parent/order reference writing field separate from the child's name.
+The reference-writing question is now resolved separately from the Product grid: the sheet
+has distinct blank Child First Name, Child Surname and Class/Group fields plus the separate
+six-box Store Order Code writing area. None of these fields is a Product-grid value.
 
 ### 27.9 Finalisation And Email Trigger
+
+Status: TBA for the later generation/delivery slice; it does not block `1R-F-A`.
 
 Should organiser email be sent automatically when generation succeeds, or only through an
 explicit C2 `Email Artwork Template` action after previewing the final PDF?
@@ -1358,6 +1436,8 @@ explicit C2 `Email Artwork Template` action after previewing the final PDF?
 Define resend behaviour, recipient snapshot, delivery evidence and failure handling.
 
 ### 27.10 Secure-Link Policy
+
+Status: TBA for the later secure-delivery slice; it does not block `1R-F-A`.
 
 Confirm:
 
@@ -1393,7 +1473,17 @@ What exact public experience should the QR destination show before publication a
 the Project opens: coming soon, not yet available, Project dates, organiser guidance, or
 another controlled message?
 
+Recommendation awaiting control-owner acceptance: the stable canonical URL returns a
+branded, non-purchasable `Store not open yet` page showing the School/Organisation, Project
+and opening/closing dates. It exposes no ordering or checkout action, automatically becomes
+the live Store when the Project opens, and becomes a controlled `Store closed` information
+page after closing. It must never be a broken route or require the purchaser to obtain a new
+QR code.
+
 ### 27.15 Retention And Historic Access
+
+Status: TBA for the later secure-delivery/retention slice; it does not block the renderer
+proof.
 
 Define retention for:
 
@@ -1405,24 +1495,47 @@ Define retention for:
 
 ### 27.16 Physical Distribution Evidence
 
-Does C2 need a later optional action to record that an Artwork Template Version has been
-printed/distributed and approximately how many copies were produced? Such evidence may be
-important when deciding whether unlock is still safe, but it need not be part of the first
-generation implementation unless the business requires it.
+Control-owner decision on 2026-08-11: recorded printing/distribution is a hard-lock event.
+The later C2 workflow therefore needs an explicit confirmation action identifying the exact
+Artwork Template Version, actor and timestamp. Approximate copy quantity remains optional/TBA.
+Download alone is evidence of access, not proof of physical printing.
 
-### 27.17 Order Code Authority And Matching Scope
+### 27.17 Store Order Code Authority And Matching Scope
 
-Confirm the authoritative five-digit Order Code contract before Store/Order implementation:
+Control-owner clarification on 2026-08-11 resolves the physical and operational contract:
 
-- numeric-only format and whether leading zeroes are permitted;
-- whether uniqueness is global, tenant-scoped, Project-scoped or dependent on the printed
-  Project number;
-- whether the code is issued at checkout creation, successful payment or another Order
-  transition;
-- whether one Order containing several children's artworks has one Order Code or a separate
-  code per artwork/Order line;
-- how the code appears in the emailed Order confirmation; and
+- the printed Project number is separate, data-driven Project evidence;
+- a completed Store sale allocates a short numeric Store Order number;
+- the confirmation/receipt always displays it as exactly six digits, left-padded with
+  zeroes: normally four significant digits plus two zeroes, then five plus one, and later
+  six without padding where Event volume requires it;
+- the purchaser handwrites all six displayed digits into the six empty boxes on the already
+  printed Artwork Template; and
+- the reference allows the returned artwork to be cross-referenced through school handling
+  and into AMOW production against the Store sale.
+
+Each separate child's artwork requires its own Store Order. One Store Order cannot contain
+different children's artworks. Several Products associated with the same single artwork may
+remain lines within that artwork's Order under the later Order contract.
+
+The human Store Order Code is a lookup/transcription alias. A machine Order identifier,
+provider transaction reference and idempotency key may coexist and remain authoritative for
+their respective technical purposes; none should be printed into the handwriting boxes merely
+because it is globally unique.
+
+The short numeric value may be reused across Events/Projects. Human reconciliation uses the
+C1 tenant context plus the printed tenant-unique Project number plus the six-digit displayed
+Store Order Code. In the current schema this points toward a Project-scoped allocation and
+uniqueness contract on `FundOrderContext`, while `CommerceOrder.orderNumber` remains generic
+Commerce evidence. The composite is a business correlation key, not an idempotency key.
+
+Later Store/Order implementation must still determine:
+
+- the exact successful-sale/payment transition at which allocation becomes immutable;
+- transactional allocation, concurrency, retry and exhaustion behaviour inside the
+  Project/Event namespace;
+- the exact confirmation, receipt and transactional-email presentation; and
 - which C1 production screen validates the handwritten code against the paid online Order.
 
-The Application Template component assumes exactly five handwritten digit boxes but must
-not invent the code-generation or matching authority.
+The Application Template renders exactly six empty handwritten digit boxes but must not
+invent the later allocation, concurrency or matching implementation.

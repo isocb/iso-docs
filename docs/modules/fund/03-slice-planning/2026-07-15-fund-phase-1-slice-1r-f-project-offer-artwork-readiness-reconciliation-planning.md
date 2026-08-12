@@ -2,7 +2,9 @@
 
 Date: 2026-07-15
 
-Status: Parent reviewed and accepted; no child implementation authorised
+Status: Parent reviewed and accepted; `1R-F-A` child accepted and locally implemented
+through Stage A plus the pinned Stage B container definition; human and Linux-container
+evidence pending; no later child or Stage C authorised
 
 Naming correction: 2026-07-16 — restored alphabetical delivery order by assigning this
 parent `1R-F` and moving the previously reserved, unimplemented Public Store Presentation
@@ -261,8 +263,14 @@ review/test record unless explicitly described as a planning/proof-only child.
 
 ### 6.1 1R-F-A — Real AMOW Template, Pricing And Deployed Renderer Proof
 
-Selected root `Now` for bounded planning. The executable proof remains the conditional
-`Next` and is not yet authorised.
+The accepted bounded child plan is at:
+
+[`1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof`](2026-08-11-fund-phase-1-slice-1r-f-a-real-amow-template-pricing-and-deployed-renderer-proof-planning.md)
+
+Its local Stage A automation passes and the Stage B immutable container definition is
+implemented. Visual/physical human review is selected root `Now`; actual Linux container
+execution remains pending because the current Mac has no runtime. Temporary Render/private-
+object Stage C and all later children remain unauthorised.
 
 Bounded outcome:
 
@@ -270,8 +278,9 @@ Bounded outcome:
   commercial data;
 - prove controlled HTML/React-to-one-page-A4 PDF rendering with short, long, maximum and
   deliberate-overflow fixtures;
-- prove title, bounded rich text, five empty Order Code boxes, protected artwork area,
-  Product/price/blank quantity/total grid, canonical URL and scannable QR;
+- prove title, bounded rich text, blank Child's Name and Class/Group writing spaces, six
+  empty Store Order Code boxes, protected artwork area, Product/price/blank quantity/total
+  grid, canonical URL and scannable QR;
 - compare browser preview/PDF, inspect with `pdf-lib`, bundle fonts, and prove the pinned
   browser in a deployment-equivalent worker;
 - exercise private test-object write/read without defining the production storage model;
@@ -334,16 +343,17 @@ diagnostics, A7 non-trading consumption and the final converged policy needed by
 
 The parent does not invent visual or operational detail that requires proof:
 
-- A owns exact safe-print inset, font pack, grid capacities, long-content envelopes,
-  Product code/grand-total/currency presentation and printer/QR acceptance;
+- A owns exact safe-print inset, font pack, grid capacities, long-content envelopes and
+  printer/QR acceptance while reproducing the accepted current grid structure;
 - B/D own precise lock table shape and offer mutation chronology;
-- E owns organiser-email automatic-versus-explicit trigger, secure-link expiry/reissue,
-  retention and physical-distribution evidence;
+- E owns the TBA organiser-email, secure-link and retention contracts plus implementation of
+  the required explicit physical print/distribution confirmation;
 - F owns exact source-completion contracts and typed physical-sample evidence;
 - G owns exceptional post-publication/open-checkout/paid-Order reconciliation; and
-- the later consumer Order/Order Code lane owns numeric code uniqueness, issuance timing,
-  email and production matching. The template may render five empty boxes but cannot
-  invent Order Code authority.
+- the later consumer Order/Order Code lane owns Project/Event-scoped short-number
+  allocation, six-digit zero-padded display, exact issuance timing, confirmation/email and
+  production matching, separate from machine transaction/idempotency identifiers. The
+  template renders six empty purchaser-write-in boxes but cannot invent those authorities.
 
 Any child encountering a choice that changes the business workflow rather than its
 technical expression must stop and request user input before acceptance/implementation.
@@ -393,7 +403,10 @@ Because this is a non-executable parent reconciliation, no `04-implementation-co
 or `05-review-and-test` record is created. Each executable child receives the full
 lifecycle independently.
 
-## 10. Current Selected Planning Prompt
+## 10. Preserved Planning Prompt And Current Child
+
+The prompt below is retained as the authority used to create the bounded `1R-F-A` child
+plan. Current review must use that child document rather than generating a competing plan.
 
 ```text
 Continue only accepted FUND Phase 1 Slice 1R-F-A planning. Do not implement production
@@ -408,8 +421,9 @@ Plan an isolated proof using one genuine AMOW Individual Artwork design and repr
 resolved Store/A7 commercial fixtures. Resolve the exact proof inputs, controlled
 HTML/React composition, pinned Chromium/Playwright deployment-equivalent runtime, bundled
 fonts, pdf-lib inspection, QR generation/decode, one-page A4 portrait/landscape validation,
-safe-print inset, protected artwork area, bounded rich text, five empty Order Code boxes,
-Product/unit-price/blank quantity/total grid, short/long/maximum/overflow content,
+safe-print inset, protected artwork area, bounded rich text, blank Child's Name and
+Class/Group writing spaces, six empty Store Order Code boxes, Product/unit-price/blank
+quantity/total grid, short/long/maximum/overflow content,
 standard/compact capacity measurement, preview/PDF parity, resource/retry envelope and
 private test-object write/read boundary.
 

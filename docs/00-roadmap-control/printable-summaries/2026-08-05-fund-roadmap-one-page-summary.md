@@ -1,6 +1,6 @@
 # FUND Roadmap — One-Page Summary
 
-Snapshot: 2026-08-10
+Snapshot: 2026-08-12
 Status: Printable management summary — **not delivery authority**
 
 ## Purpose
@@ -11,18 +11,16 @@ payment contracts remain owned by Commerce Core.
 
 ## Current Position
 
-- **Portfolio NOW:** indicative staging Role/security smoke on exact `60ac76c1`; dev/staging
-  scans and public health pass.
-- **Portfolio NEXT:** separately authorised exact main decision after staging PASS, then
-  complete Support Ticketing client readiness; Role Authority is now complete and closed.
-- No renderer implementation, later `1R-F` branch, `1R-G` work or production artwork system
-  is authorised by the planning selection.
-- Dev/staging are exact `60ac76c1`; main remains exact `72c02d92`.
-- The two High advisory findings are corrected locally at exact patched versions with zero
-  audit findings, full regression and build PASS. The next staging promotion remains
-  blocked pending the exact combined dev Security Scan.
-- `1R-F-A` remains the exact FUND resumption point, but all FUND planning and implementation
-  is parked until Support Ticketing is complete; F3 and Role Authority are complete.
+- **Portfolio NOW:** run the exact pinned `1R-F-A` Linux container when a local runtime is available.
+- **Portfolio NEXT:** explicitly decide Stage C only after Linux parity passes.
+- Direct source inspection superseded inferred R1A. R1B preserves the physical landscape
+  fold/control panel and portrait top-band hierarchy. Automation, 12/12 human/physical
+  smoke and exact dev Security Scan pass at `6f9ef016`.
+  No later `1R-F` branch, `1R-G` or production artwork system is authorised.
+- Support Ticketing, email F3 and Role Authority are complete and no longer block FUND.
+- Application dev is exact FUND proof `6f9ef016`; staging/main remain `cde4eaff`.
+- `1R-H-A` preserves the accepted later Store Order short-code/single-artwork policy but is
+  parked after public Store work and does not displace `1R-F-A`.
 
 ## Foundation Already In Place
 
@@ -50,15 +48,14 @@ Commission aggregation, statements and settlement remain parked for later work.
 
 ## Immediate Management Rule
 
-Do not begin FUND implementation during the housekeeping sequence. Preserve `1R-F-A` as
-the exact resumption point and retain all existing inputs and gates unchanged.
+Review `1R-F-A` output as an isolated feasibility proof. Do not let it absorb production
+schema, public Store, collective/Standard artwork or later branch delivery.
 
 ## Next Decision
 
-Complete Support Ticketing through its controlled lifecycle. The parked trigger-based
-`PLAT-ROLE-R1` assurance review does not block FUND unless one of its explicit security or
-product triggers fires.
-F3 is closed. Then restore `1R-F-A` to root selection for bounded planning.
+Close the Linux-container evidence gap without substituting another macOS run. Temporary
+Render/private-object Stage C still needs separate
+authority. `PLAT-ROLE-R1` remains parked unless an explicit trigger fires.
 
 Authoritative source:
 [`FUND Roadmap And Slice Control`](../../modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md)

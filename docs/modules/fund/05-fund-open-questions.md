@@ -364,6 +364,42 @@ docs/core/commerce/isostack-commerce-core-planning.md
 
 Which real AMOW template should be used for the first proof?
 
+Current disposition, 2026-08-11: resolved for proof input. The control owner supplied one
+current portrait example and one current landscape example with C1 tenant logo. They
+form one AMOW A1 compositional template family. The Project-selected Product table,
+School/Organisation name, Project name, Project number, Store closing date, Store URL and
+matching QR are data-driven. Child First Name, Child Surname and Class/Group are three
+separate labelled spaces that remain empty for the purchaser or school to complete by hand
+after the child finishes the artwork. The supplied landscape is fold-aware: all control and
+ordering content remains in the left panel, while Project number, closing date and C1 logo
+sit above the right-hand artwork area. The portrait preserves the equivalent hierarchy in a
+compact top band above its artwork area. Artwork guidance and ordering/return guidance are
+two separate data-driven rich-text regions. No child identity data is required for
+controlled proof fixtures.
+
+Controlling plan:
+
+[`1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof`](03-slice-planning/2026-08-11-fund-phase-1-slice-1r-f-a-real-amow-template-pricing-and-deployed-renderer-proof-planning.md)
+
+Further control-owner decisions on 2026-08-11 confirm actual-size A4 without fit-to-page,
+explicit AMOW/C1 orientation selection, C1 tenant-logo identity, Project closing date as
+Store closing date, and the current Product/How Many/Price/Total/Grand Total structure.
+There is no remaining design-data business blocker for the proof. Source-fidelity and
+physical-folding acceptance remain subject to the `1R-F-A-R1B` PDF/physical human gate.
+
+Order Code clarification, 2026-08-11: the printed Project number is data-driven and distinct
+from the six empty Store Order Code boxes. A completed Store sale allocates a short number
+displayed as exactly six digits: ordinarily four significant digits with two leading
+zeroes, naturally growing to five and then six significant digits as volume requires. The
+purchaser copies all six displayed digits onto the physical artwork. The short number may
+be reused across Events/Projects; the C1 tenant plus tenant-unique Project number plus Store
+Order Code is the human correlation key. Machine Order, transaction and idempotency
+authorities remain separate.
+
+Parked downstream allocation/correlation plan:
+
+[`1R-H-A Store Order Short Code And Single-Artwork Correlation`](03-slice-planning/2026-08-11-fund-phase-1-slice-1r-h-a-store-order-short-code-and-single-artwork-correlation-planning.md)
+
 The first template should exercise:
 
 - project number;
@@ -383,6 +419,12 @@ Candidate options:
 - `@react-pdf/renderer`.
 
 Decision should follow a real template spike, not abstract preference.
+
+Current disposition, 2026-08-11: the bounded plan selects pinned Playwright/Chromium in an
+isolated Docker-based Render worker as the **proof candidate**, not the accepted production
+renderer. Local, container, deployed Render and physical-print evidence must pass before the
+tool/runtime direction can be accepted or rejected. CraftMyPDF and `@react-pdf/renderer`
+remain alternatives if the evidence fails.
 
 ---
 

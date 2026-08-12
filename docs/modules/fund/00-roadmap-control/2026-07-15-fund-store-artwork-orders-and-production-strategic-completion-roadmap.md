@@ -2,13 +2,14 @@
 
 Created: 2026-07-15
 
-Last consolidated: 2026-08-06
+Last consolidated: 2026-08-12
 
 Status: Subordinate strategic capability overview; planning coordination only
 
-Current control note: authoritative root/FUND control selects `1R-F-A` as portfolio `Now`
-for bounded planning. Its conditional executable proof is `Next` and remains unauthorised
-until the plan is explicitly accepted and separate implementation authority is given.
+Current control note: direct portrait and fold-aware landscape source inspection superseded
+inferred R1A before review. Source-faithful `1R-F-A-R1B` automation and 12/12 physical/PDF
+review pass; exact `6f9ef016` is dev-aligned with its Security Scan green. Stage B Linux
+execution is portfolio `Now`; Stage C remains a separate later authority decision.
 
 Authoritative FUND roadmap and slice control:
 
@@ -227,8 +228,10 @@ The authoritative controls currently establish:
   leaves its separately recorded human workflow acceptance pending.
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is reviewed/accepted as the
   non-executable parent; and
-- `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the single selected
-  bounded planning outcome; its conditional executable proof remains unauthorised.
+- `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is accepted and
+  implemented through Stage A plus the pinned Stage B container definition. R1B automation,
+  human/physical review and exact dev Security Scan pass; Linux-container evidence remains
+  pending.
 
 This baseline is a summary only. Commit, migration, deployment and current-next-action
 claims must be read from the authoritative controls.
@@ -544,6 +547,14 @@ checkout against stale, hidden, held or unready Store Product configuration.
 
 ## 13. Strategic Stage 4 — Consumer Order Completion And Communications
 
+Parked bounded planning input:
+
+- [`1R-H-A Store Order Short Code And Single-Artwork Correlation`](../03-slice-planning/2026-08-11-fund-phase-1-slice-1r-h-a-store-order-short-code-and-single-artwork-correlation-planning.md)
+
+This input preserves the accepted human code/physical matching contract but is not selected
+and cannot become executable before public Store `1R-G` and consumer-Order parent
+reconciliation.
+
 ### Outcome
 
 Complete the purchaser journey around the A7 payment invocation.
@@ -551,7 +562,8 @@ Complete the purchaser journey around the A7 payment invocation.
 ### Candidate workstreams
 
 - purchaser/contact evidence;
-- authoritative five-digit Order Code policy and generation;
+- authoritative Project/Event-scoped short Store Order number allocation and six-digit
+  zero-padded human display, separate from machine transaction/idempotency identifiers;
 - pending-payment, paid, failed, cancelled and expired experiences;
 - confirmation/receipt and Order summary;
 - transactional confirmation email containing the Order Code;
@@ -774,12 +786,14 @@ A6-D lifecycle complete
    no E-D migration; not promoted to staging
 -> 1R-F workflow-conditional Project Offer And Artwork Readiness parent accepted
 -> 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
-   selected bounded planning outcome; conditional proof implementation not authorised
+   plan accepted; R1B automation/human/physical/dev Security PASS at 6f9ef016;
+   Stage B container definition pinned and Linux execution pending; Stage C not authorised
 -> apply confirmed pilot gates: Intake confirmation/conditional embed and type fit,
    essential purchaser option/media authority, required messages and evidence-led
    Product duplication
 -> 1R-G public Store presentation
--> consumer Order completion and Order Code
+-> 1R-H consumer Order completion and communications parent reconciliation
+-> parked 1R-H-A Store Order short code/single-artwork correlation when selected
 -> C1/C2 Order operations
 -> upload/scanning and typed artwork intake
 -> production matching and authorisation
@@ -914,9 +928,10 @@ The reconciled
 
 It allocates separate Individual, collective and Standard Product readiness branches
 after `1R-E`; the formerly reserved Public Store slice moves to `1R-G`. E-D is
-implemented/reviewed at `c45a41d9` and integrated at `174dc8ac`. `1R-F-A - Real AMOW Template, Pricing And
-Deployed Renderer Proof` is the selected bounded planning outcome. This document authorises no
-proof implementation, `1R-G` or artwork/template production implementation.
+implemented/reviewed at `c45a41d9` and integrated at `174dc8ac`. `1R-F-A - Real AMOW Template,
+Pricing And Deployed Renderer Proof` is accepted and locally implemented through Stage A
+plus the pinned Stage B container definition. Human and Linux-container evidence remain
+pending. This document authorises no Stage C, `1R-G` or production implementation.
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-b-c1-store-portfolio-oversight-exceptional-intervention-surface-implementation-planning.md`
 

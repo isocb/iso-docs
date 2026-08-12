@@ -2,8 +2,9 @@
 
 Date: 2026-07-15
 
-Status: Draft change-request input for refinement and roadmap reconciliation; planning and
-documentation only
+Status: Accepted governed input to the `1R-F` parent; retained as the boundary excluding
+collective/Standard work from accepted local `1R-F-A`; no collective/Standard implementation
+authorised
 
 Related change requests by name:
 
@@ -19,6 +20,10 @@ Authoritative roadmap:
 Accepted reconciliation successor:
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`
+
+Current bounded Individual Artwork proof plan, linked for boundary control only:
+
+`docs/modules/fund/03-slice-planning/2026-08-11-fund-phase-1-slice-1r-f-a-real-amow-template-pricing-and-deployed-renderer-proof-planning.md`
 
 The successor preserves this CR as governed source evidence, confirms the separate
 collective/Standard branches and routes their typed evidence and service/UI work to

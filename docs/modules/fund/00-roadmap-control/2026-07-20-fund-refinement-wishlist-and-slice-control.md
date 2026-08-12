@@ -3,9 +3,9 @@
 Original document: 2026-06-30
 Reconciled: 2026-07-20
 
-Current dependency note: 2026-08-06 - corrective `1R-E-D` is included by ancestry in current
-application `83356030`; `1R-F-A` is selected as portfolio `Now` for bounded planning and its
-conditional executable proof is `Next` but remains unauthorised
+Current dependency note: 2026-08-11 - corrective `1R-E-D` remains in current ancestry.
+`1R-F-A-R1B` source/folding composition is locally automated-green and its PDF/physical
+review is portfolio `Now`; Linux execution is pending and Stage C remains unauthorised.
 
 Status: Active subordinate register of genuinely absent refinements; no next-slice authority
 
@@ -157,10 +157,11 @@ existing delivery chain as one of:
 3. an explicitly parked post-pilot refinement.
 
 This reconciliation does not authorise any implementation and does not replace the selected
-outcome in the authoritative roadmap. Corrective `1R-E-D` is included in current ancestry
-and `1R-F-A` is now the single selected planning outcome; this refinement register
-must be applied before accepting work beyond `1R-F-A`, so template and public Store contracts
-do not harden around avoidable pilot gaps.
+outcome in the authoritative roadmap. Corrective `1R-E-D` is included in current ancestry.
+The accepted `1R-F-A` plan is now at source-faithful R1B PDF/folding review after green
+automation; its Stage B container remains pinned but unexecuted. This register must be applied
+before accepting work beyond `1R-F-A`, so template and public Store contracts do not harden
+around avoidable pilot gaps.
 
 ### 5.1 Timing Classification
 

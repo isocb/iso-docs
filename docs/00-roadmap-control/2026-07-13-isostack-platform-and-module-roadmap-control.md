@@ -2,11 +2,11 @@
 
 Date: 2026-07-27
 
-Last portfolio reconciliation: 2026-08-11
+Last portfolio reconciliation: 2026-08-12
 
 Status: Active parent roadmap
 
-## 0. Current Portfolio Control — 2026-08-11
+## 0. Current Portfolio Control — 2026-08-12
 
 This section is the current cross-lane control and supersedes older global `single next`
 wording later in this document. Older statements remain evidence of the sequence at the
@@ -29,7 +29,9 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application evidence:
 
 ```text
-local dev = origin/dev = origin/staging = origin/main = exact Support release cde4eaff
+local dev = origin/dev = exact FUND proof 6f9ef016
+origin/staging = origin/main = exact Support release cde4eaff
+FUND R1B automation, physical/PDF smoke and exact dev Security Scan 31589031306 = PASS
 Support exact dev Security Scan 31494574593 and staging Security Scan 31494804070 = PASS
 Support exact main Security Scan 31496940138 = PASS
 Support staging public health = HTTP 200; database connected; RLS 11/11
@@ -51,8 +53,8 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | FUND `1R-F-A` bounded planning | Support Ticketing is complete and closed at exact production `cde4eaff`. Resume FUND from its preserved pre-planning boundary; no implementation is authorised merely by selection. |
-| **NEXT** | Accepted `1R-F-A` executable proof | Only after bounded planning/review explicitly accepts the proof scope; later `1R-F-B` onward remains parked. |
+| **NOW** | Close the FUND `1R-F-A` Stage B Linux-container evidence gap | R1B automation and 12/12 human/physical review pass; exact `6f9ef016` is aligned to dev and Security Scan `31589031306` passes. Execute the immutable pinned container only when a local runtime is available; stop if parity differs. |
+| **NEXT** | Explicit `1R-F-A` Stage C authority decision | Only after Stage B PASS, decide whether to authorise the temporary isolated Render/private-object proof. `1R-F-B`, `1R-G` and `1R-H-A` remain parked. |
 
 Registered and ordered work outside that pair:
 
@@ -81,8 +83,9 @@ Registered and ordered work outside that pair:
   staging health is green, staging Render identity is confirmed and the concise staging
   smoke is 10/10 PASS. Exact `cde4eaff` is now aligned through main; main scan
   `31496940138`, production public health and exact Render production identity pass. The
-  Support project is complete and closed; FUND `1R-F-A` bounded planning is portfolio
-  `Now`.
+  Support project is complete and closed. FUND `1R-F-A` planning is accepted, its local
+  R1B automation and physical review pass; exact proof `6f9ef016` is dev-aligned with its
+  Security Scan green. Actual Linux-container execution is portfolio `Now`.
   Existing Resend transport is retained; generic retry
   infrastructure and Platform Notice remain separate trigger-based work;
 - LMSPro 500-recipient operating envelope: standard communications/capacity triage input;
@@ -94,9 +97,14 @@ Registered and ordered work outside that pair:
 - LMSPro cohort email draft persistence and audience selection `CR-Fix`: F1/F2.1/F2.2 and
   F3 are delivered in the ancestry of current application `60ac76c1`; F3 staging smoke
   passed 13/13 and exact main promotion is complete;
-- FUND `1R-F-A`: deliberately parked at its exact pre-planning boundary until Support
-  Ticketing is completed; F3 and Role Authority prerequisites are now complete; no
-  application implementation is authorised;
+- FUND `1R-F-A`: direct inspection of the supplied portrait and fold-aware landscape sources
+  superseded inferred R1A before review. Source-faithful R1B is locally implemented and
+  automated-green with three handwritten fields, two rich-text blocks and `200 × 192 mm` /
+  `171 × 180 mm` artwork. Human/physical review passes 12/12 and exact `6f9ef016` is aligned
+  to dev with Security Scan `31589031306` green; Stage B Linux parity remains pending;
+- FUND `1R-H-A`: Store Order short-code and single-artwork correlation plan registered as a
+  parked downstream inventory item after public Store `1R-G`; it does not displace the
+  current `1R-F-A` pair or authorise Order implementation;
 - Platform `PLAT-REFINE-02` through `PLAT-REFINE-04`: registered non-executable findings;
   and
 - all parked FUND and LMSPro candidates recorded in their child CR inventories.
@@ -543,8 +551,10 @@ implemented/reviewed locally without a migration or shared deployment; its human
 schedule remains pending. `1R-F - Project Offer And Artwork Readiness Reconciliation` is
 reviewed/accepted at
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`.
-Its bounded `1R-F-A` real-template/renderer proof is selected as formal portfolio `Now` for
-planning; the conditional proof implementation is `Next`, and `1R-G` remains unauthorised.
+Its bounded `1R-F-A` real-template/renderer proof is accepted and implemented locally
+through the Stage A harness and Stage B container definition. Automated Stage A evidence is
+green; physical review and actual Linux container execution remain open, and `1R-G` remains
+unauthorised.
 
 ### Commerce Core
 
@@ -694,12 +704,13 @@ different documentation lifecycles.
 Section 0 is the current decision: F3 and Role Authority are complete. Exact `60ac76c1` is
 aligned through dev, staging and main; all Security Scans, health, staging and production
 Role evidence pass. Same-Club sibling C2 creation and authentication are production-proven.
-Support Ticketing triage, planning and all three bounded local implementations are complete.
-The combined 30-item authenticated/real-mail local smoke is `Now`; an explicitly authorised
-commit and exact dev Security Scan are conditional `Next` before any staging proposal.
+Support Ticketing is complete, accepted and promoted through production at exact
+`cde4eaff`, with the recorded security, health, Render-identity and human evidence green.
 `PLAT-ROLE-R1` is trigger-based parked assurance, not active work.
-FUND `1R-F-A` is preserved at its exact pre-planning boundary until Support Ticketing is
-complete.
+FUND `1R-F-A-R1B` source/folding PDF review is the active local outcome. R1A was superseded
+before review once the physical folding hierarchy was clarified and both source PDFs were
+inspected directly. The container cannot yet be executed on this Mac. Stage C and later
+FUND slices remain unauthorised.
 R11-A is a separately authorised bounded UI release at `83356030`; local smoke is 18/18 and
 staging smoke is all green. The exact commit is aligned through `origin/main`, the live
 deployment is triggered and public live health is PASS. Exact Render live-build
@@ -843,9 +854,11 @@ application `dev`/`origin/dev` at `174dc8ac` without an E-D migration or shared 
 change. Its application commit is now included by ancestry in live `7154937`; this does not
 invent separate E-B/E-C real-workflow human acceptance. The non-executable
 `1R-F - Project Offer And Artwork Readiness Reconciliation` parent is reviewed/accepted.
-`1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is selected as formal
-portfolio `Now` for bounded planning; its conditional executable proof is `Next`. No proof,
-`1R-G` or artwork/template production implementation is authorised.
+`1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is accepted and locally
+implemented through Stage A plus the Stage B immutable container definition. R1B automation,
+human/physical review and exact dev Security Scan pass; Linux container execution remains
+pending. No
+Stage C infrastructure, `1R-G` or artwork/template production implementation is authorised.
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-b-c1-store-portfolio-oversight-exceptional-intervention-surface-implementation-planning.md`
 
