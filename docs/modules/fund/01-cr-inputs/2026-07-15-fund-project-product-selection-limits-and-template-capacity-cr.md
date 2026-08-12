@@ -2,9 +2,9 @@
 
 Date: 2026-07-15
 
-Status: Accepted governed input to the `1R-F` parent; local `1R-F-A` automation records
-candidate capacities of ten STANDARD portrait and twelve COMPACT landscape rows, pending
-physical/container review; no schema, policy or production implementation authorised
+Status: Accepted governed input to the `1R-F` parent; `1R-F-A` automation, physical review
+and Linux parity accept proof capacities of ten STANDARD portrait and twelve COMPACT
+landscape rows; no schema, policy or production implementation authorised
 
 Related change requests by name:
 

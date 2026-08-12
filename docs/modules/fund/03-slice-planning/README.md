@@ -24,9 +24,9 @@ Most recently completed implementation lifecycle:
 Current integrated critical-path action:
 
 ```text
-Review only the source-faithful PDFs from `1R-F-A-R1B`. Direct source inspection superseded
-inferred R1A before review. Record the PDF/folding/artwork/QR gate. Do not commit, create
-Render infrastructure, use shared data or start a later slice without new authority.
+Decide explicitly whether to authorise the remaining isolated `1R-F-A` Stage C temporary
+Render/private-object proof. Stage B Linux parity is green. Do not create Render
+infrastructure, use shared data or start a later slice before that authority decision.
 ```
 
 Commerce A1-A7 and the retained FUND C1-C6/1R-D/R3 foundations are implemented/reviewed and
@@ -35,8 +35,8 @@ E-A was validated against the complete 141-migration disposable baseline with ze
 E-B and E-C add no migration. Corrective E-D is implemented/reviewed at `c45a41d9` and is
 also included by ancestry in `83356030`, with no E-D migration or shared database action.
 The real-workflow human schedule remains recorded in its review. The non-executable `1R-F`
-parent remains accepted. `1R-F-A-R1B` source/folding PDF review is current; Linux container
-execution remains the exact evidence gap. Stage C and later children remain unauthorised.
+parent remains accepted. `1R-F-A-R1B` source/folding PDF review and Stage B Linux-container
+parity pass at exact dev `139d09c4`. Stage C and later children remain unauthorised.
 
 Parked downstream policy plan, not selected:
 

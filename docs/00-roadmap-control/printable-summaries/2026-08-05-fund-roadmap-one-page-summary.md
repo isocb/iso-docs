@@ -11,14 +11,15 @@ payment contracts remain owned by Commerce Core.
 
 ## Current Position
 
-- **Portfolio NOW:** run the exact pinned `1R-F-A` Linux container when a local runtime is available.
-- **Portfolio NEXT:** explicitly decide Stage C only after Linux parity passes.
+- **Portfolio NOW:** make the explicit `1R-F-A` Stage C authority decision.
+- **Portfolio NEXT:** if authorised, run the isolated temporary Render/private-object proof
+  once, prove zero residue, tear it down and conclude `1R-F-A`.
 - Direct source inspection superseded inferred R1A. R1B preserves the physical landscape
   fold/control panel and portrait top-band hierarchy. Automation, 12/12 human/physical
-  smoke and exact dev Security Scan pass at `6f9ef016`.
+  smoke pass at `6f9ef016`. Linux parity and the exact dev Security Scan pass at `139d09c4`.
   No later `1R-F` branch, `1R-G` or production artwork system is authorised.
 - Support Ticketing, email F3 and Role Authority are complete and no longer block FUND.
-- Application dev is exact FUND proof `6f9ef016`; staging/main remain `cde4eaff`.
+- Application dev is exact FUND proof `139d09c4`; staging/main remain `cde4eaff`.
 - `1R-H-A` preserves the accepted later Store Order short-code/single-artwork policy but is
   parked after public Store work and does not displace `1R-F-A`.
 
@@ -53,9 +54,9 @@ schema, public Store, collective/Standard artwork or later branch delivery.
 
 ## Next Decision
 
-Close the Linux-container evidence gap without substituting another macOS run. Temporary
-Render/private-object Stage C still needs separate
-authority. `PLAT-ROLE-R1` remains parked unless an explicit trigger fires.
+Decide whether the temporary Render/private-object Stage C adds proportionate evidence
+beyond the now-green local, physical and Linux gates. It still needs separate authority.
+`PLAT-ROLE-R1` remains parked unless an explicit trigger fires.
 
 Authoritative source:
 [`FUND Roadmap And Slice Control`](../../modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md)

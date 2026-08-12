@@ -8,8 +8,8 @@ Status: Subordinate strategic capability overview; planning coordination only
 
 Current control note: direct portrait and fold-aware landscape source inspection superseded
 inferred R1A before review. Source-faithful `1R-F-A-R1B` automation and 12/12 physical/PDF
-review pass; exact `6f9ef016` is dev-aligned with its Security Scan green. Stage B Linux
-execution is portfolio `Now`; Stage C remains a separate later authority decision.
+review pass. Stage B Linux parity and the exact dev Security Scan pass at `139d09c4`.
+The explicit Stage C authority decision is portfolio `Now`.
 
 Authoritative FUND roadmap and slice control:
 
@@ -786,8 +786,8 @@ A6-D lifecycle complete
    no E-D migration; not promoted to staging
 -> 1R-F workflow-conditional Project Offer And Artwork Readiness parent accepted
 -> 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
-   plan accepted; R1B automation/human/physical/dev Security PASS at 6f9ef016;
-   Stage B container definition pinned and Linux execution pending; Stage C not authorised
+   plan accepted; R1B automation/human/physical and Stage B Linux parity/Security PASS;
+   exact dev 139d09c4; Stage C authority decision selected but not yet authorised
 -> apply confirmed pilot gates: Intake confirmation/conditional embed and type fit,
    essential purchaser option/media authority, required messages and evidence-led
    Product duplication
@@ -929,9 +929,9 @@ The reconciled
 It allocates separate Individual, collective and Standard Product readiness branches
 after `1R-E`; the formerly reserved Public Store slice moves to `1R-G`. E-D is
 implemented/reviewed at `c45a41d9` and integrated at `174dc8ac`. `1R-F-A - Real AMOW Template,
-Pricing And Deployed Renderer Proof` is accepted and locally implemented through Stage A
-plus the pinned Stage B container definition. Human and Linux-container evidence remain
-pending. This document authorises no Stage C, `1R-G` or production implementation.
+Pricing And Deployed Renderer Proof` has green Stage A, human/physical and Stage B Linux
+parity evidence at exact dev `139d09c4`. The Stage C authority decision is selected. This
+document authorises no Stage C, `1R-G` or production implementation.
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-b-c1-store-portfolio-oversight-exceptional-intervention-surface-implementation-planning.md`
 

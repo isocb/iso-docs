@@ -3,8 +3,8 @@
 Date: 2026-08-11
 
 Status: **PLAN ACCEPTED; INFERRED R1/R1A COMPOSITIONS SUPERSEDED; R1B SOURCE-FAITHFUL
-AUTOMATION AND HUMAN/PHYSICAL REVIEW PASS; PROOF `6f9ef016` ALIGNED TO DEV WITH EXACT
-SECURITY SCAN PASS; PINNED STAGE B CONTAINER EXECUTION PENDING; NO LATER SLICE AUTHORISED**
+AUTOMATION AND HUMAN/PHYSICAL REVIEW PASS; STAGE B LINUX PARITY AND EXACT SECURITY SCAN PASS
+AT DEV `139d09c4`; STAGE C AUTHORITY DECISION SELECTED; NO LATER SLICE AUTHORISED**
 
 Owning lane: FUND
 
@@ -291,10 +291,10 @@ Creating this temporary Render service is an external infrastructure action and 
 separate explicit control-owner authorisation during the executable proof cycle. Planning
 does not create it.
 
-Stages A/B implementation does not include a Render Blueprint. The accepted local cycle
-pins the future-compatible Linux container definition only. The current Studio Mac has no
-Docker, Podman or equivalent runtime, so the container has not been built or executed and
-no cross-platform parity result is claimed.
+Stages A/B implementation does not include a Render Blueprint. The Studio Mac has no Docker,
+Podman or equivalent runtime, so Stage B was executed in the isolated dev-only GitHub Actions
+Linux-container workflow. Exact run `31595635243` passes against accepted Mac evidence at
+application `139d09c4`. No deployment or Stage C claim is inferred from that result.
 
 ## 8. Private Proof-Object Boundary
 
@@ -332,6 +332,9 @@ decisions.
 - compare layout telemetry and raster output with the accepted local result;
 - record browser/font/tool identities; and
 - stop if platform output is not reproducible.
+
+Outcome: **PASS** at exact application `139d09c4`; see the
+[`Stage B Linux container parity gate`](../05-review-and-test/2026-08-12-fund-phase-1-slice-1r-f-a-stage-b-linux-container-parity-gate.md).
 
 ### Stage C — Explicitly authorised temporary Render proof
 

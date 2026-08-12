@@ -29,9 +29,10 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application evidence:
 
 ```text
-local dev = origin/dev = exact FUND proof 6f9ef016
+local dev = origin/dev = exact FUND Stage B proof 139d09c4
 origin/staging = origin/main = exact Support release cde4eaff
 FUND R1B automation, physical/PDF smoke and exact dev Security Scan 31589031306 = PASS
+FUND Stage B Linux parity 31595635243 and exact dev Security Scan 31595635276 = PASS
 Support exact dev Security Scan 31494574593 and staging Security Scan 31494804070 = PASS
 Support exact main Security Scan 31496940138 = PASS
 Support staging public health = HTTP 200; database connected; RLS 11/11
@@ -53,8 +54,8 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Close the FUND `1R-F-A` Stage B Linux-container evidence gap | R1B automation and 12/12 human/physical review pass; exact `6f9ef016` is aligned to dev and Security Scan `31589031306` passes. Execute the immutable pinned container only when a local runtime is available; stop if parity differs. |
-| **NEXT** | Explicit `1R-F-A` Stage C authority decision | Only after Stage B PASS, decide whether to authorise the temporary isolated Render/private-object proof. `1R-F-B`, `1R-G` and `1R-H-A` remain parked. |
+| **NOW** | Explicit `1R-F-A` Stage C authority decision | Stage B Linux parity and the exact `139d09c4` Security Scan pass. Decide whether the remaining temporary isolated Render/private-object proof is proportionate and authorised. |
+| **NEXT** | Execute and conclude the authorised Stage C proof | Only if authorised, run the exact isolated worker/private-object proof once, retain evidence, prove zero residue, tear it down and conclude `1R-F-A`. If declined, record that decision and deliberately reselect. `1R-F-B`, `1R-G` and `1R-H-A` remain parked. |
 
 Registered and ordered work outside that pair:
 
@@ -85,7 +86,8 @@ Registered and ordered work outside that pair:
   `31496940138`, production public health and exact Render production identity pass. The
   Support project is complete and closed. FUND `1R-F-A` planning is accepted, its local
   R1B automation and physical review pass; exact proof `6f9ef016` is dev-aligned with its
-  Security Scan green. Actual Linux-container execution is portfolio `Now`.
+  Security Scan green. Stage B Linux-container parity is now green at exact `139d09c4`;
+  the explicit Stage C authority decision is portfolio `Now`.
   Existing Resend transport is retained; generic retry
   infrastructure and Platform Notice remain separate trigger-based work;
 - LMSPro 500-recipient operating envelope: standard communications/capacity triage input;
@@ -101,7 +103,8 @@ Registered and ordered work outside that pair:
   superseded inferred R1A before review. Source-faithful R1B is locally implemented and
   automated-green with three handwritten fields, two rich-text blocks and `200 × 192 mm` /
   `171 × 180 mm` artwork. Human/physical review passes 12/12 and exact `6f9ef016` is aligned
-  to dev with Security Scan `31589031306` green; Stage B Linux parity remains pending;
+  to dev with Security Scan `31589031306` green. Stage B Linux parity run `31595635243`
+  and exact `139d09c4` Security Scan `31595635276` pass; Stage C remains unauthorised;
 - FUND `1R-H-A`: Store Order short-code and single-artwork correlation plan registered as a
   parked downstream inventory item after public Store `1R-G`; it does not displace the
   current `1R-F-A` pair or authorise Order implementation;

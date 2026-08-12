@@ -59,9 +59,9 @@ same row.
 | [`2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md) | Planned through `1Q-G-B` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md) | Planned through `1Q-G-A` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-13-fund-cr-commission-ladder-planner-input.md`](../01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md) | Policy/assignment foundation partly incorporated through `1R-C5`; aggregate calculation, statements and settlement remain absent | Parked later commission work, represented by subordinate `2R-PROD-05`; not selected |
-| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; exact `6f9ef016` dev scan passes; downstream short-code/single-artwork policy preserved in parked `1R-H-A` | Stage B Linux-container execution pending; `1R-H-A` inventory only; no Stage C or production implementation authorised |
+| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B Linux parity and exact `139d09c4` dev scan pass; downstream short-code/single-artwork policy preserved in parked `1R-H-A` | Stage C authority decision selected; `1R-H-A` inventory only; no Stage C or production implementation yet authorised |
 | [`2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md`](../01-cr-inputs/2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md) | Consumed as the boundary preventing `1R-F-A` from absorbing collective/Standard paths | `1R-F-F` through `I` remain parked; no implementation authority |
-| [`2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`](../01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md) | `1R-F-A` automation and physical review accept candidate capacities of ten STANDARD portrait and twelve COMPACT landscape rows; Linux parity remains pending and production selection policy remains later `1R-F-B/D` work | Proof evidence only; no schema/policy implementation authorised |
+| [`2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`](../01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md) | `1R-F-A` automation, physical review and Linux parity accept candidate capacities of ten STANDARD portrait and twelve COMPACT landscape rows; production selection policy remains later `1R-F-B/D` work | Proof evidence only; no schema/policy implementation authorised |
 | [`2026-07-15-fund-template-manager-brief.md`](../01-cr-inputs/2026-07-15-fund-template-manager-brief.md) | Retained source brief for the Application/Artwork Template input | Provenance only; not a fourth CR and its provisional `T` labels carry no slice authority |
 | [`2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md`](../01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md) | Implemented/reviewed as `1R-E-D`; application commit is included by ancestry in current `83356030` | Completed technical correction; E-B/E-C real-workflow human acceptance remains a separate recorded gate and is not invented here |
 | [`change-request-cmqt61xmf000612xt5ifl1mdn-2026-06-25.md`](../01-cr-inputs/change-request-cmqt61xmf000612xt5ifl1mdn-2026-06-25.md) | Original issue bundle was triaged and distributed across the historical `1P`/`1Q` lifecycle and later refinement controls | Superseded as a single active queue; retained as source evidence, with any genuinely absent outcome governed by its named current refinement/workstream |
@@ -69,19 +69,19 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> close FUND 1R-F-A pinned-Linux-container evidence
-ROOT NEXT -> explicit Stage C authority decision only after Stage B PASS
+ROOT NOW  -> explicit FUND 1R-F-A Stage C authority decision
+ROOT NEXT -> if authorised, execute isolated Stage C once, tear down and conclude 1R-F-A
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
-FUND      -> R1B automation/human/physical/dev Security PASS; Stage B Linux parity pending
+FUND      -> R1B automation/human/physical and Stage B Linux parity/Security PASS
 ```
 
 Email F3, Role Authority and Support Ticketing are complete and closed. `PLAT-ROLE-R1` is
 deferred trigger-based assurance and does not block FUND unless a recorded trigger fires.
 `1R-F-A` is the exact FUND active point. Direct portrait/landscape source inspection
 superseded inferred R1A before review. Source-faithful R1B automation and 12/12 PDF/physical
-review pass; exact `6f9ef016` is aligned to dev and Security Scan `31589031306` is green.
-The immutable Stage B container awaits a local runtime.
-Stage C still requires separate authority.
+review pass. Stage B Linux parity run `31595635243` and exact dev Security Scan
+`31595635276` pass at application `139d09c4`, aligned to local/remote dev. Stage C still
+requires separate authority.
 
 ## 1. Control Authority And Reading Rule
 
@@ -108,7 +108,8 @@ the position when that material was written and must not select new work.
 Current application repository state:
 
 ```text
-application local/remote dev, staging and main: exact cde4eaff
+application local/remote dev: exact 139d09c4
+application staging and main: exact cde4eaff
 staging/production health and production Render evidence: PASS
 protected-branch dev/staging/main Security Scans: PASS
 Role Authority: COMPLETE AND CLOSED
@@ -164,8 +165,8 @@ Current E-A/E-B/E-C promotion state:
   the non-executable successor to the three governed CRs; and
 - `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is accepted and locally
   implemented through Stage A plus the immutable Stage B Dockerfile. R1B automation,
-  human/physical review and exact dev Security Scan pass; Linux-container evidence remains
-  pending. No Stage C, `1R-F-B` through
+  human/physical review, Linux-container parity and exact dev Security Scan pass. No Stage
+  C, `1R-F-B` through
   `1R-F-I`, `1R-G` or artwork/template production implementation is authorised.
 - the 2026-07-20 refinement reconciliation is accepted as subordinate placement control:
   it must inform `1R-F-A` and be applied before accepting work beyond it, but it does not
@@ -445,9 +446,9 @@ Rules:
   non-executable parent at
   `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`;
 - [`1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof`](../03-slice-planning/2026-08-11-fund-phase-1-slice-1r-f-a-real-amow-template-pricing-and-deployed-renderer-proof-planning.md)
-  follows E-D; its plan and local Stages A/B implementation are accepted. Stage A automated
-  evidence passes and human review is current; Linux container execution is pending. This
-  does not authorise temporary Render infrastructure or production implementation;
+  follows E-D; its plan, Stage A evidence, human/physical review and Stage B Linux parity
+  pass at exact dev `139d09c4`. The Stage C authority decision is selected. This does not
+  itself authorise temporary Render infrastructure or production implementation;
 - [`1R-H-A - Store Order Short Code And Single-Artwork Correlation`](../03-slice-planning/2026-08-11-fund-phase-1-slice-1r-h-a-store-order-short-code-and-single-artwork-correlation-planning.md)
   is a parked downstream planning input after public Store `1R-G`; it records accepted
   policy only and is not `Now`/`Next` or implementation authority;
@@ -824,10 +825,10 @@ E-D is implemented/reviewed at `c45a41d9` and is included by ancestry in current
 in the E-D review. The
 non-executable `1R-F - Project Offer And Artwork Readiness Reconciliation` parent is
 reviewed/accepted and records the separate Individual, collective and Standard readiness
-branches. `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is the active
-local human-review outcome: Stage A automation passes and the Stage B container definition
-is pinned, while its Linux execution is pending. No Stage C, `1R-G` or artwork/template
-production implementation is authorised.
+branches. `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` has green Stage
+A, source/physical and Stage B Linux-container evidence at exact dev `139d09c4`. The Stage C
+authority decision is active. No Stage C, `1R-G` or artwork/template production
+implementation is authorised.
 ```
 
 ## 10. Roadmap Maintenance Rule

@@ -2,9 +2,9 @@
 
 Date: 2026-07-15
 
-Status: Accepted governed input to the `1R-F` parent; bounded `1R-F-A` plan accepted and
-Stages A/B locally implemented for human review; no Stage C or production implementation
-authorised
+Status: Accepted governed input to the `1R-F` parent; bounded `1R-F-A` source/physical and
+Stage B Linux parity gates pass at exact dev `139d09c4`; Stage C authority decision selected;
+no Stage C or production implementation authorised
 
 Source brief:
 

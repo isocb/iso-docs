@@ -3,8 +3,8 @@
 Date: 2026-08-11
 
 Status: **SOURCE-FAITHFUL IMPLEMENTATION, AUTOMATION AND PDF/PHYSICAL HUMAN REVIEW PASS;
-APPLICATION PROOF COMMIT `6f9ef016` ALIGNED TO DEV WITH EXACT SECURITY SCAN PASS; STAGE B
-LINUX CONTAINER EXECUTION PENDING; NO DEPLOYMENT**
+APPLICATION PROOF COMMIT `139d09c4` ALIGNED TO DEV; STAGE B LINUX PARITY AND EXACT SECURITY
+SCAN PASS; NO DEPLOYMENT**
 
 Source design evidence:
 
@@ -46,7 +46,7 @@ function. It does not invite a general redesign.
 | No remote resources or shared data | PASS |
 | Repeat determinism and bounded retry | PASS |
 | Node 22 proof suite | PASS — 3/3 |
-| Stage B Linux container execution | PENDING — no local runtime available; no parity claim made |
+| Stage B Linux container execution | PASS — exact run `31595635243` at application `139d09c4` |
 
 ## 3. Artefacts And Print Rule
 
@@ -103,5 +103,7 @@ The control owner then authorised the documented next gate. Exact proof commit `
 is aligned to `origin/dev`; exact Security Scan
 [`31589031306`](https://github.com/isocb/isostack-bedrock/actions/runs/31589031306) passes all
 secret, TypeScript, dependency, schema and consolidated-report jobs. This does not close the
-Stage B Linux-container parity gap and does not authorise Render infrastructure, shared
-data, `1R-F-B`, `1R-G` or `1R-H-A`.
+Stage B later passed in the dedicated
+[`Linux container parity gate`](2026-08-12-fund-phase-1-slice-1r-f-a-stage-b-linux-container-parity-gate.md).
+That result does not authorise Render infrastructure, shared data, `1R-F-B`, `1R-G` or
+`1R-H-A`.

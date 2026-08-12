@@ -3,8 +3,8 @@
 Date: 2026-08-11
 
 Status: **STAGES A/B LOCALLY IMPLEMENTED; R1B SOURCE-FAITHFUL AUTOMATION AND HUMAN/PHYSICAL
-GATES PASS; APPLICATION PROOF COMMIT `6f9ef016` ALIGNED TO DEV WITH EXACT SECURITY SCAN
-PASS; STAGE B LINUX CONTAINER EXECUTION PENDING**
+GATES PASS; STAGE B LINUX CONTAINER PARITY AND EXACT SECURITY SCAN PASS AT APPLICATION
+`139d09c4`, ALIGNED TO DEV; STAGE C REMAINS UNAUTHORISED**
 
 Planning authority:
 
@@ -16,8 +16,8 @@ Review gate:
 
 Application baseline: exact `cde4eaff1e14b2f02ba0953fe8693e7feb02bb61`
 
-Commit/promotion state: **APPLICATION PROOF `6f9ef016` ALIGNED TO LOCAL/REMOTE DEV; EXACT
-DEV SECURITY SCAN `31589031306` PASS; STAGING/MAIN UNCHANGED**
+Commit/promotion state: **APPLICATION PROOF `139d09c4` ALIGNED TO LOCAL/REMOTE DEV; STAGE B
+RUN `31595635243` AND EXACT DEV SECURITY SCAN `31595635276` PASS; STAGING/MAIN UNCHANGED**
 
 ## 1. Outcome
 
@@ -75,13 +75,13 @@ No Prisma schema/migration, application route, API, production FUND service, aut
 | Chromium | `151.0.7922.34` |
 | Font | `public/fonts/Geist-Regular.woff2`, SHA-256 `9f72423ca4ffaa679eaa7ee67068124966cbcbc7e8b171182d18fadf3b0f6da0` |
 | Linux container | `mcr.microsoft.com/playwright:v1.62.1-noble@sha256:dcc5531e97840b9b5e794f2814476b21571c5124a3fca2267d73041f56e7580e` |
+| Linux Node source | `node:22.23.2-bookworm-slim@sha256:d649c27dae7ba0137b3cef5dd75baa422c08dc3d9e3fc0c23dfb172dc3cc6436` |
 | PDF raster | macOS `sips`; Linux definition installs `poppler-utils` |
 
-The Microsoft registry returned that immutable multi-platform digest for the exact
-`v1.62.1-noble` tag on 2026-08-11. The current Studio Mac exposes no Docker, Podman, Colima
-or equivalent runtime. Consequently the Dockerfile is implemented and pinned, but its
-Linux build/run and macOS-to-Linux parity evidence remain pending. This is recorded as a
-Stage B evidence gap, not silently reported as a pass.
+The Studio Mac exposes no Docker, Podman, Colima or equivalent runtime. The immutable
+container therefore ran in the isolated dev-only GitHub Actions gate. Exact Linux parity run
+`31595635243` passes using Node `22.23.2`; the Playwright and Node source images are both
+digest-pinned.
 
 No Render Blueprint or Render service was created. Stage C remains unauthorised.
 
@@ -170,9 +170,10 @@ added to source control.
 - `1R-F-B`, `1R-G` and `1R-H-A` did not begin.
 
 The linked local visual/physical human gate passed completely. Exact dev alignment and
-Security Scan for `6f9ef016` also pass. Neither result invents Linux-container parity.
-Container execution requires an available runtime; Render/private-object evidence still
-requires separate explicit authority.
+Security Scan for `6f9ef016` also passed. At that local gate, neither result invented
+Linux-container parity.
+Stage B container parity is now independently recorded as green; Render/private-object
+evidence still requires separate explicit authority.
 
 ## 7. R1A Artwork-Area Composition Correction — 2026-08-11
 
@@ -240,3 +241,15 @@ No production content authority, schema, API, shared data or later slice was int
 R1B human review is controlled by:
 
 [`1R-F-A-R1B source-fidelity and folding local gate`](../05-review-and-test/2026-08-11-fund-phase-1-slice-1r-f-a-r1b-source-fidelity-and-folding-local-gate.md)
+
+## 9. Stage B Linux Container Parity — 2026-08-12
+
+The dev-only workflow, retained diagnostic evidence and immutable Node 22 runtime correction
+are recorded in the dedicated
+[`Stage B Linux container parity gate`](../05-review-and-test/2026-08-12-fund-phase-1-slice-1r-f-a-stage-b-linux-container-parity-gate.md).
+
+Exact application `139d09c4` is aligned to local/remote dev. Linux run `31595635243` passes
+all six accepted fixtures, all six refusals, exact normalised business/layout comparison,
+repeat determinism, QR and strict portrait monochrome checks. Exact Security Scan
+`31595635276` also passes. Staging/main are unchanged, no shared data or Render infrastructure
+was used, and Stage C remains unauthorised.

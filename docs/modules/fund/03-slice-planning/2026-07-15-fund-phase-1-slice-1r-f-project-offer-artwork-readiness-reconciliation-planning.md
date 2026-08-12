@@ -2,9 +2,9 @@
 
 Date: 2026-07-15
 
-Status: Parent reviewed and accepted; `1R-F-A` child accepted and locally implemented
-through Stage A plus the pinned Stage B container definition; human and Linux-container
-evidence pending; no later child or Stage C authorised
+Status: Parent reviewed and accepted; `1R-F-A` source/physical and Stage B Linux parity
+gates pass at exact dev `139d09c4`; Stage C authority decision selected; no later child or
+Stage C implementation authorised
 
 Naming correction: 2026-07-16 — restored alphabetical delivery order by assigning this
 parent `1R-F` and moving the previously reserved, unimplemented Public Store Presentation
@@ -267,10 +267,10 @@ The accepted bounded child plan is at:
 
 [`1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof`](2026-08-11-fund-phase-1-slice-1r-f-a-real-amow-template-pricing-and-deployed-renderer-proof-planning.md)
 
-Its local Stage A automation passes and the Stage B immutable container definition is
-implemented. Visual/physical human review is selected root `Now`; actual Linux container
-execution remains pending because the current Mac has no runtime. Temporary Render/private-
-object Stage C and all later children remain unauthorised.
+Its local Stage A automation, visual/physical review and immutable Stage B Linux-container
+execution pass. Exact `139d09c4` is aligned to local/remote dev with Linux parity run
+`31595635243` and Security Scan `31595635276` green. Temporary Render/private-object Stage C
+and all later children remain unauthorised; the Stage C authority decision is selected.
 
 Bounded outcome:
 
