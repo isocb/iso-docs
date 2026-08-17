@@ -2,11 +2,11 @@
 
 Date: 2026-07-27
 
-Last portfolio reconciliation: 2026-08-12
+Last portfolio reconciliation: 2026-08-17
 
 Status: Active parent roadmap
 
-## 0. Current Portfolio Control — 2026-08-12
+## 0. Current Portfolio Control — 2026-08-17
 
 This section is the current cross-lane control and supersedes older global `single next`
 wording later in this document. Older statements remain evidence of the sequence at the
@@ -29,7 +29,9 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application evidence:
 
 ```text
-local dev = origin/dev = exact FUND Stage C candidate 328aadf0
+origin/dev = exact PLAT-ROLE-04 staging candidate 250baf12
+origin/staging = exact PLAT-ROLE-04 staging candidate 250baf12
+local dev = 250baf12 plus one preserved user workspace edit
 origin/staging = origin/main = exact Support release cde4eaff
 FUND R1B automation, physical/PDF smoke and exact dev Security Scan 31589031306 = PASS
 FUND Stage B Linux parity 31595635243 and exact dev Security Scan 31595635276 = PASS
@@ -55,11 +57,26 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Execute the accepted `1R-F-A` Stage C proof | The control owner authorised the dedicated Stage C contract on 2026-08-12. Implement and gate the bounded runner, align the exact candidate to `dev`, execute one isolated temporary Render/private-R2 proof, retain redacted evidence and complete exact teardown. Existing auto-deploy services remain untouched. |
-| **NEXT** | Conclude `1R-F-A` and reselect deliberately | Only after the Stage C result, zero-object proof, resource absence and credential-revocation evidence are reconciled, close or record the precise residual disposition of `1R-F-A` and select the next FUND child. `1R-F-B`, `1R-G` and `1R-H-A` remain parked until that decision. |
+| **NOW** | Complete the accepted `CR-Fix-PLAT-ROLE-04` indicative staging human gate | Exact release candidate `250baf12` is aligned on `origin/dev` and `origin/staging`; dev/staging Security Scans, FUND Linux-parity, exact Render identity and post-deploy health pass. Run the concise indicative staging human gate. Main remains unchanged and unauthorised. |
+| **NEXT** | Resume accepted `1R-F-A` Stage C proof | Resume only from the recorded safe checkpoint after PLAT-ROLE-04 closure or explicit re-disposition: temporary Render worker suspended, no application secrets injected and private R2 proof bucket empty. Preserve the exact Stage C candidate and existing auto-deploy services. |
+
+The control owner explicitly accepted `CR-Fix-PLAT-ROLE-04` as the urgent remedial
+expedite. It is therefore the only portfolio `Now`; the present FUND Stage C proof is
+`Next` at its captured safe checkpoint. Local implementation and automated/human gates
+pass. Exact candidate `250baf12` is aligned through staging with both protected scans
+green. Render is live at exact `250baf12` and post-deploy health is green; indicative
+staging human acceptance is the current gate. Main remains separately gated.
 
 Registered and ordered work outside that pair:
 
+- Platform `CR-Fix-PLAT-ROLE-04` P1 tenant module persona recovery: accepted urgent
+  remedial expedite and portfolio `Now`. The authoritative P1 Client Users surface now
+  separates Core authority from exact SeasonPro persona, supports deliberate exact-default
+  catalogue recovery, and uses atomic tenant-scoped create/update/audit contracts. Local
+  technical and human gates pass; exact `250baf12` is aligned through staging while main
+  is not authorised. `PLAT-ROLE-04A` separately captures incomplete-user C1 discoverability and module
+  activation gating as a deferred, non-blocking plan; it is not in the accepted release and
+  does not displace FUND Stage C from `Next`;
 - LMSPro R12-A Free Day owner-notice authority: complete green local human pass; exact
   `39a25d99` is aligned through staging; exact dev/staging scans and public health pass.
   Render identity/human acceptance is `Now`; main remains unchanged;
