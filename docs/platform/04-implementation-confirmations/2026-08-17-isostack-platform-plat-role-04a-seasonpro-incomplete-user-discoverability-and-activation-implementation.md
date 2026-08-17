@@ -2,8 +2,8 @@
 
 Date: 2026-08-17
 
-Status: **IMPLEMENTED LOCALLY ON EXACT BASE `250baf12`; AUTOMATED GATES PASS — HUMAN LOCAL
-SMOKE, COMMIT AND PROMOTION PENDING**
+Status: **IMPLEMENTED AND LOCALLY ACCEPTED AS EXACT `fcd162db`; ORIGIN/DEV AND SECURITY
+SCAN PASS — STAGING NOT AUTHORISED**
 
 Plan:
 
@@ -16,9 +16,11 @@ Human gate:
 ## 1. Exact Boundary
 
 Implementation was performed locally on application branch `dev` from exact production
-baseline `250baf12556de082fa11d005a8709fee656d8cd3`. It is deliberately uncommitted and has
-not been pushed or deployed. The pre-existing user-owned edit to
-`1july2026.code-workspace` remains outside this slice and untouched.
+baseline `250baf12556de082fa11d005a8709fee656d8cd3`, accepted by the control owner and
+committed as `fcd162db60956858233821fd3f29c55e17d954dd`. Local `dev` and `origin/dev` are
+exact at that commit; `origin/staging` and `origin/main` remain exact `250baf12`. The
+pre-existing user-owned edit to `1july2026.code-workspace` remains outside this slice and
+untouched.
 
 No Prisma schema, migration, tenant data, credential, Render service, R2 object, FUND
 runtime or FUND proof file changed.
@@ -109,6 +111,6 @@ session revocation remains a human staging requirement after local acceptance.
 
 ## 6. Stop Condition
 
-The implementation is ready for the local human gate only. Do not commit, push to
-`origin/dev`, deploy to staging or combine it with FUND work until the control owner records
-the local result and explicitly accepts the next promotion step.
+The local gate is accepted and exact dev Security Scan `32018358354` passes. Do not deploy
+to staging or combine the slice with FUND work until the control owner explicitly
+authorises the separate staging promotion.

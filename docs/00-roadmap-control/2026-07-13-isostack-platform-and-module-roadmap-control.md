@@ -29,12 +29,15 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application evidence:
 
 ```text
-origin/dev = origin/staging = origin/main = exact PLAT-ROLE-04 release 250baf12
-local dev = 250baf12 plus uncommitted PLAT-ROLE-04A and one preserved user workspace edit
+local dev = origin/dev = exact locally accepted PLAT-ROLE-04A fcd162db
+origin/staging = origin/main = exact PLAT-ROLE-04 release 250baf12
+local dev also retains one preserved user workspace edit outside the commit
 PLAT-ROLE-04 main Security Scan 32015051267 = PASS
 PLAT-ROLE-04 production Render deploy dep-da1d6jh42hec73akbcp0 = LIVE at 250baf12
 PLAT-ROLE-04 production health = HTTP 200; database connected; RLS 11/11
 PLAT-ROLE-04A local automation = 441 tests PASS; type/verify/build PASS
+PLAT-ROLE-04A local human-applicable smoke = 14/14 PASS; bulk atomicity automated-only PASS
+PLAT-ROLE-04A exact dev Security Scan 32018358354 = PASS
 FUND R1B automation, physical/PDF smoke and exact dev Security Scan 31589031306 = PASS
 FUND Stage B Linux parity 31595635243 and exact dev Security Scan 31595635276 = PASS
 FUND Stage C candidate Linux parity 31599134487 and exact Security Scan 31599134488 = PASS
@@ -59,16 +62,16 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Complete the local human gate for bounded `CR-Fix-PLAT-ROLE-04A` | Implemented locally but uncommitted on exact live base `250baf12`; focused/full tests, type, verify and production build pass. Commit and staging remain separately controlled. |
+| **NOW** | Decide whether to promote accepted `CR-Fix-PLAT-ROLE-04A` to staging | Exact `fcd162db` is aligned on local/origin dev; automated gates, 14/14 human-applicable checks, automated-only bulk atomicity and dev Security Scan `32018358354` pass. Staging/main remain `250baf12`. |
 | **NEXT** | Resume accepted `1R-F-A` Stage C proof | Resume only from the recorded safe checkpoint after PLAT-ROLE-04A disposition: temporary Render worker suspended, no application secrets injected and private R2 proof bucket empty. Preserve the exact Stage C candidate and existing auto-deploy services. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
 promotion. Exact `250baf12` is aligned through main; all protected scans, Render identity,
 health and staging human evidence pass, while the deliberately small non-mutating
 production human smoke remains pending. The control owner then selected bounded
-`CR-Fix-PLAT-ROLE-04A`; its local implementation and automated gates pass and its human
-local smoke is the only portfolio `Now`. FUND Stage C remains `Next` at its captured safe
-checkpoint.
+`CR-Fix-PLAT-ROLE-04A`; exact `fcd162db` is locally accepted, aligned to dev and protected
+by a passing exact scan. Its staging-promotion decision is the only portfolio `Now`. FUND
+Stage C remains `Next` at its captured safe checkpoint.
 
 Registered and ordered work outside that pair:
 
@@ -80,8 +83,8 @@ Registered and ordered work outside that pair:
   through main with the exact main scan, production Render identity and health green. Staging also exposed a separate
   pre-existing audit-log consistency finding: the server is Owner-only while the Settings
   UI offers the tab to Admins. `PLAT-ROLE-04A` separately implements incomplete-user C1
-  discoverability and module activation gating locally; automated gates pass and the human
-  local gate is `Now`. It is not in the live release and does not displace FUND Stage C
+  discoverability and module activation gating in exact dev `fcd162db`; the local gate and
+  exact dev scan pass, and staging promotion is `Now`. It is not in the live release and does not displace FUND Stage C
   from `Next`;
 - LMSPro R12-A Free Day owner-notice authority: complete green local human pass; exact
   `39a25d99` is aligned through staging; exact dev/staging scans and public health pass.
