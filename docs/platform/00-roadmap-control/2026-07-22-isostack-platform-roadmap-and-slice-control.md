@@ -41,7 +41,7 @@ default.
 | [`CR-Fix-2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity.md`](../01-cr-inputs/CR-Fix-2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity.md) | Implemented/accepted as Role child `b1ede26f`, retained in exact main `60ac76c1`; all parent production evidence passes | Corrective child complete and closed with parent |
 | [`CR-Fix-2026-08-10-isostack-platform-residual-authority-consistency-review.md`](../01-cr-inputs/CR-Fix-2026-08-10-isostack-platform-residual-authority-consistency-review.md) | `PLAT-ROLE-R1`: exactly one legacy Core writer and bounded component-resolver consistency review | Captured and deferred; trigger-based assurance only; not `Now`/`Next` and no implementation authorised |
 | [`CR-Fix-2026-08-17-isostack-platform-p1-tenant-module-persona-recovery.md`](../01-cr-inputs/CR-Fix-2026-08-17-isostack-platform-p1-tenant-module-persona-recovery.md) | `CR-Fix-PLAT-ROLE-04`: implementation commit `28aa1ca3` and bounded build-boundary correction `250baf12`; all local/staging gates and staging human smoke 8/8 pass | Exact `250baf12` is aligned through main; exact main scan, production Render identity, health and login redirect pass. Minimum non-mutating production human smoke remains pending |
-| [`CR-Fix-2026-08-17-isostack-platform-plat-role-04a-seasonpro-incomplete-user-discoverability-and-activation.md`](../01-cr-inputs/CR-Fix-2026-08-17-isostack-platform-plat-role-04a-seasonpro-incomplete-user-discoverability-and-activation.md) | C1 repair inventory, separate derived module state and direct/bulk complete-persona activation gate are delivered in exact dev `fcd162db`; local human-applicable and automated gates pass | Portfolio `Now` at staging decision. Exact dev scan `32018358354` passes; staging/main remain `250baf12`; FUND Stage C remains `Next` |
+| [`CR-Fix-2026-08-17-isostack-platform-plat-role-04a-seasonpro-incomplete-user-discoverability-and-activation.md`](../01-cr-inputs/CR-Fix-2026-08-17-isostack-platform-plat-role-04a-seasonpro-incomplete-user-discoverability-and-activation.md) | C1 repair inventory, separate derived module state and direct/bulk complete-persona activation gate are delivered in exact `fcd162db`; local human-applicable and automated gates pass | Portfolio `Now` at minimum staging human smoke. Exact dev/staging scans, Render identity and health pass; main remains `250baf12`; FUND Stage C remains `Next` |
 | [`2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md`](../01-cr-inputs/2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md) | Exact `cde4eaff` aligned through main; local 24/24 and staging 10/10 human smoke, all exact scans, public health and production Render identity pass | Complete and closed; future regression/capability requires a new CR/CR-Fix |
 | [`CR-Fix-2026-08-11-isostack-platform-support-p1-workbench-editing-and-case-tracking.md`](../01-cr-inputs/CR-Fix-2026-08-11-isostack-platform-support-p1-workbench-editing-and-case-tracking.md) | Corrected workbench and case tracking delivered in exact production `cde4eaff`; all gates pass | Corrective child complete and closed with parent |
 | [`CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md`](../01-cr-inputs/CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md) | Dependency child `60ac76c1`; all exact scans and combined staging/production evidence pass | Complete and closed; retain exact scan evidence with the combined release |
@@ -60,10 +60,11 @@ Current Platform portfolio disposition:
   pre-existing fail-closed consistency finding is not part of the accepted candidate;
 - `CR-Fix-PLAT-ROLE-04A` separately implements C1 discoverability and activation gating for
   incomplete SeasonPro personas. It retains Core status separately from derived module
-  state. Exact `fcd162db` is locally accepted and aligned to dev with scan
-  `32018358354` green; staging promotion is `Now` and it is not part of the live 04 release;
-- the current Platform production baseline remains exact `250baf12` on `origin/staging`
-  and `origin/main`. Local/origin `dev` is exact `fcd162db`; the local application also
+  state. Exact `fcd162db` is locally accepted and live through staging with both exact
+  scans, Render identity and health green; its minimum human staging smoke is `Now` and it
+  is not part of the live 04 release;
+- the current Platform production baseline remains exact `250baf12` on `origin/main`.
+  Local/origin `dev` and remote staging are exact `fcd162db`; the local application also
   retains the preserved pre-existing user workspace-file edit outside the commit;
 - Role Authority is complete and closed. `PLAT-ROLE-01` is corrected, accepted and complete.
   `PLAT-ROLE-02` was corrected at `7e453665`; `PLAT-ROLE-02A` is technically and

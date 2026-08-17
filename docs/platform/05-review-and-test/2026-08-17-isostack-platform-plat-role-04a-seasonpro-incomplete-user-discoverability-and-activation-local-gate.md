@@ -90,6 +90,7 @@ Exact accepted application commit: `fcd162db60956858233821fd3f29c55e17d954dd`
 
 Exact dev Security Scan: `32018358354` — **PASS**
 
-The accepted commit is aligned to `origin/dev`. This local result and dev scan do not by
-themselves authorise staging; staging remains exact `250baf12` pending a separate promotion
-decision.
+The accepted commit was first aligned to `origin/dev`; this local result and dev scan did
+not by themselves authorise staging. The control owner subsequently authorised the
+separate promotion recorded in
+[`PLAT-ROLE-04A staging promotion and minimum smoke`](2026-08-17-isostack-platform-plat-role-04a-staging-promotion-and-minimum-smoke.md).

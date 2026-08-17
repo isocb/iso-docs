@@ -2,8 +2,8 @@
 
 Date: 2026-08-17
 
-Status: **IMPLEMENTED AND LOCALLY ACCEPTED AS EXACT `fcd162db`; ORIGIN/DEV AND SECURITY
-SCAN PASS — STAGING NOT AUTHORISED**
+Status: **IMPLEMENTED AND LOCALLY ACCEPTED AS EXACT `fcd162db`; DEV/STAGING TECHNICAL
+GATES PASS — MINIMUM STAGING HUMAN SMOKE PENDING**
 
 Plan:
 
@@ -17,8 +17,8 @@ Human gate:
 
 Implementation was performed locally on application branch `dev` from exact production
 baseline `250baf12556de082fa11d005a8709fee656d8cd3`, accepted by the control owner and
-committed as `fcd162db60956858233821fd3f29c55e17d954dd`. Local `dev` and `origin/dev` are
-exact at that commit; `origin/staging` and `origin/main` remain exact `250baf12`. The
+committed as `fcd162db60956858233821fd3f29c55e17d954dd`. Local `dev`, `origin/dev` and
+`origin/staging` are exact at that commit; `origin/main` remains exact `250baf12`. The
 pre-existing user-owned edit to `1july2026.code-workspace` remains outside this slice and
 untouched.
 
@@ -111,6 +111,7 @@ session revocation remains a human staging requirement after local acceptance.
 
 ## 6. Stop Condition
 
-The local gate is accepted and exact dev Security Scan `32018358354` passes. Do not deploy
-to staging or combine the slice with FUND work until the control owner explicitly
-authorises the separate staging promotion.
+The local gate is accepted and exact dev Security Scan `32018358354` passes. The control
+owner then authorised staging: exact `fcd162db` is live through `origin/staging`, staging
+Security Scan `32018776885`, Render deploy `dep-da1drj5g1s2s73c6pge0` and public health
+pass. Complete the minimum five-check human staging smoke before any main decision.
