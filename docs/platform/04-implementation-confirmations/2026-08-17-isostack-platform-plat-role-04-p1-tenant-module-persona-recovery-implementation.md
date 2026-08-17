@@ -3,8 +3,8 @@
 Date: 2026-08-17
 
 Status: **IMPLEMENTED AND LOCALLY ACCEPTED AT `28aa1ca3`; EXACT RELEASE CANDIDATE
-`250baf12` LIVE ON STAGING WITH GREEN PROTECTED SCANS, HEALTH AND 8/8 HUMAN SMOKE; MAIN
-AWAITS EXPLICIT AUTHORITY**
+`250baf12` LIVE THROUGH MAIN; ALL EXACT TECHNICAL GATES AND STAGING 8/8 HUMAN SMOKE PASS;
+MINIMUM PRODUCTION HUMAN SMOKE PENDING**
 
 Plan:
 
@@ -29,8 +29,9 @@ contain its proof-only packages. No PLAT-ROLE-04 runtime code executed in that f
 
 The bounded correction `250baf12556de082fa11d005a8709fee656d8cd3` excludes all
 `scripts/proofs/**` paths from the application root TypeScript project and explicitly keeps
-the FUND proof files in their dedicated project. Local `dev`, `origin/dev` and
-`origin/staging` are now exact `250baf12`; `origin/main` remains unchanged at `cde4eaff`.
+the FUND proof files in their dedicated project. Local `dev`, `origin/dev`,
+`origin/staging` and `origin/main` are now exact `250baf12` before the uncommitted 04A
+working changes.
 
 The pre-existing user-owned edit to `1july2026.code-workspace` was not altered or included
 in this slice. No FUND source, proof artefact, environment value, credential, Render Stage C
@@ -187,8 +188,10 @@ exact release candidate `250baf12`. Dev Security Scan `32011557075`, staging Sec
 `32011784475` and FUND Linux-parity run `32011557112` pass. Public staging health returns
 HTTP 200, database connected and RLS 11/11 after Render deploy
 `dep-da1cjovavr4c73fmm5r0` became live at exact `250baf12`. The control owner subsequently
-reported the indicative staging smoke 8/8 PASS. Main remains unchanged pending explicit
-promotion authority.
+reported the indicative staging smoke 8/8 PASS. The control owner then explicitly
+authorised the normal main promotion. Exact main Security Scan `32015051267`, Render production deploy
+`dep-da1d6jh42hec73akbcp0`, post-deploy health and the signed-out login redirect pass. The
+minimum non-mutating production human smoke remains pending.
 
 FUND Stage C remains preserved at its recorded suspended no-secret/no-object checkpoint.
 The agreed incomplete-user discoverability/activation refinement is separately captured as

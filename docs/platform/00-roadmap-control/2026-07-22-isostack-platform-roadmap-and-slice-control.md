@@ -40,8 +40,8 @@ default.
 | [`2026-08-10-isostack-platform-plat-role-02a-seasonpro-owner-user-type-control-correction-sub-cr.md`](../01-cr-inputs/2026-08-10-isostack-platform-plat-role-02a-seasonpro-owner-user-type-control-correction-sub-cr.md) | Corrective child of `PLAT-ROLE-02`; authoritative-profile correction is technically/human accepted and included in exact main `60ac76c1` | Complete bounded child; shared promotion evidence retained by the parent release |
 | [`CR-Fix-2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity.md`](../01-cr-inputs/CR-Fix-2026-08-10-isostack-platform-plat-role-02b-club-officials-authority-integrity.md) | Implemented/accepted as Role child `b1ede26f`, retained in exact main `60ac76c1`; all parent production evidence passes | Corrective child complete and closed with parent |
 | [`CR-Fix-2026-08-10-isostack-platform-residual-authority-consistency-review.md`](../01-cr-inputs/CR-Fix-2026-08-10-isostack-platform-residual-authority-consistency-review.md) | `PLAT-ROLE-R1`: exactly one legacy Core writer and bounded component-resolver consistency review | Captured and deferred; trigger-based assurance only; not `Now`/`Next` and no implementation authorised |
-| [`CR-Fix-2026-08-17-isostack-platform-p1-tenant-module-persona-recovery.md`](../01-cr-inputs/CR-Fix-2026-08-17-isostack-platform-p1-tenant-module-persona-recovery.md) | `CR-Fix-PLAT-ROLE-04`: implementation commit `28aa1ca3` and bounded build-boundary correction `250baf12`; all local/staging technical gates and staging human smoke 8/8 pass | Portfolio `Now` at explicit main-promotion decision. `origin/dev`/`origin/staging` and Render are exact `250baf12`; main remains `cde4eaff`. Suspended FUND Stage C remains `Next` at its exact no-secret/no-object checkpoint |
-| [`CR-Fix-2026-08-17-isostack-platform-plat-role-04a-seasonpro-incomplete-user-discoverability-and-activation.md`](../01-cr-inputs/CR-Fix-2026-08-17-isostack-platform-plat-role-04a-seasonpro-incomplete-user-discoverability-and-activation.md) | C1 cannot see same-tenant Users whose SeasonPro effective scope is `NONE`; status-only/direct bulk activation also needs an explicit complete-persona gate | Captured, triaged and bounded plan accepted as a separate deferred follow-on. Fail-closed today; not in PLAT-ROLE-04 staging candidate, not `Now`/`Next`, and does not displace FUND Stage C |
+| [`CR-Fix-2026-08-17-isostack-platform-p1-tenant-module-persona-recovery.md`](../01-cr-inputs/CR-Fix-2026-08-17-isostack-platform-p1-tenant-module-persona-recovery.md) | `CR-Fix-PLAT-ROLE-04`: implementation commit `28aa1ca3` and bounded build-boundary correction `250baf12`; all local/staging gates and staging human smoke 8/8 pass | Exact `250baf12` is aligned through main; exact main scan, production Render identity, health and login redirect pass. Minimum non-mutating production human smoke remains pending |
+| [`CR-Fix-2026-08-17-isostack-platform-plat-role-04a-seasonpro-incomplete-user-discoverability-and-activation.md`](../01-cr-inputs/CR-Fix-2026-08-17-isostack-platform-plat-role-04a-seasonpro-incomplete-user-discoverability-and-activation.md) | C1 repair inventory, separate derived module state and direct/bulk complete-persona activation gate are implemented locally on `250baf12`; automated gates pass | Portfolio `Now` at local human smoke. Uncommitted and not deployed; FUND Stage C remains `Next` |
 | [`2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md`](../01-cr-inputs/2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md) | Exact `cde4eaff` aligned through main; local 24/24 and staging 10/10 human smoke, all exact scans, public health and production Render identity pass | Complete and closed; future regression/capability requires a new CR/CR-Fix |
 | [`CR-Fix-2026-08-11-isostack-platform-support-p1-workbench-editing-and-case-tracking.md`](../01-cr-inputs/CR-Fix-2026-08-11-isostack-platform-support-p1-workbench-editing-and-case-tracking.md) | Corrected workbench and case tracking delivered in exact production `cde4eaff`; all gates pass | Corrective child complete and closed with parent |
 | [`CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md`](../01-cr-inputs/CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md) | Dependency child `60ac76c1`; all exact scans and combined staging/production evidence pass | Complete and closed; retain exact scan evidence with the combined release |
@@ -52,19 +52,19 @@ Current Platform portfolio disposition:
   exact SeasonPro League role still correctly receives no C1 module scope; P1 can now
   repair or create the complete exact module persona from the authoritative Client Users
   surface. The local technical and human gates pass with no reported application errors.
-  Exact candidate `250baf12` is aligned on `origin/dev` and `origin/staging`; both protected
-  scans and the dedicated FUND Linux-parity run pass. Render is live at exact `250baf12`
-  with post-deploy health green; the indicative staging human smoke is 8/8 PASS. Main
-  awaits explicit promotion authority. The staging audit check separately found that the
+  Exact candidate `250baf12` is aligned through main; all protected scans and the dedicated
+  FUND Linux-parity run pass. Staging and production Render identity and post-deploy health
+  are green; the indicative staging human smoke is 8/8 PASS. The minimum non-mutating
+  production human smoke remains pending. The staging audit check separately found that the
   server enforces Owner-only log access while the UI shows the tab to Admins; this
   pre-existing fail-closed consistency finding is not part of the accepted candidate;
-- `CR-Fix-PLAT-ROLE-04A` separately captures C1 discoverability and activation gating for
+- `CR-Fix-PLAT-ROLE-04A` separately implements C1 discoverability and activation gating for
   incomplete SeasonPro personas. It retains Core status separately from derived module
-  state and is accepted as a deferred plan only. It is not part of the tested 04 release;
-- the current Platform production baseline remains the exact Support release `cde4eaff` on
-  `origin/main`. Local/remote `dev` and remote `staging` are exact candidate `250baf12`;
-  local application `dev` retains only one pre-existing user workspace-file edit outside
-  the release;
+  state. Local automated gates pass and human smoke is `Now`; it is uncommitted and is not
+  part of the live 04 release;
+- the current Platform production baseline is exact `250baf12` on `origin/dev`,
+  `origin/staging` and `origin/main`. Local application `dev` additionally contains only
+  uncommitted PLAT-ROLE-04A and the preserved pre-existing user workspace-file edit;
 - Role Authority is complete and closed. `PLAT-ROLE-01` is corrected, accepted and complete.
   `PLAT-ROLE-02` was corrected at `7e453665`; `PLAT-ROLE-02A` is technically and
   human-accepted. The complete parent 1–18 human matrix now

@@ -2,7 +2,8 @@
 
 Date: 2026-08-17
 
-Status: **BOUNDED PLAN ACCEPTED BUT DEFERRED — NO CODE, COMMIT OR PROMOTION AUTHORISED**
+Status: **SELECTED AND IMPLEMENTED LOCALLY — AUTOMATED GATES PASS; HUMAN LOCAL SMOKE,
+COMMIT AND PROMOTION PENDING**
 
 Source:
 
@@ -70,6 +71,7 @@ it in the appropriate League or Club tab. Confirm another module's Core access i
 
 ## 6. Stop Condition
 
-This plan is registered but deferred. It must be deliberately selected by the root roadmap
-before implementation. It does not amend, block or ride with exact PLAT-ROLE-04 staging
-promotion, and it does not displace suspended FUND Stage C from `Next`.
+The control owner deliberately selected this plan after PLAT-ROLE-04 production promotion.
+Implementation is locally complete on exact base `250baf12`, but remains uncommitted for
+human smoke. It does not amend or ride with the already-live PLAT-ROLE-04 release and does
+not displace suspended FUND Stage C from `Next`.

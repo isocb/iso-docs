@@ -2,8 +2,8 @@
 
 Date: 2026-08-17
 
-Status: **TRIAGE COMPLETE — BOUNDED NON-BLOCKING FOLLOW-ON; DEFERRED AND NOT PORTFOLIO
-NOW/NEXT**
+Status: **TRIAGE ACCEPTED AND SELECTED — BOUNDED IMPLEMENTATION LOCALLY COMPLETE;
+HUMAN LOCAL GATE PENDING**
 
 Source:
 
@@ -17,7 +17,7 @@ Class       Remedial discoverability and activation-integrity follow-on
 Severity    Medium operational; high if activation bypass grants scope
 Current     Runtime remains fail-closed; duplicate creation remains blocked
 Release     Separate later commit; never amend the accepted PLAT-ROLE-04 candidate
-Portfolio   Registered/deferred; FUND Stage C remains the controlled Next
+Portfolio   PLAT-ROLE-04A local human gate is Now; FUND Stage C remains controlled Next
 ```
 
 The defect is the C1 presentation and activation contract, not the P1 recovery mutation.

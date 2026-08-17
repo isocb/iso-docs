@@ -2,8 +2,8 @@
 
 Date: 2026-08-17
 
-Status: **LOCAL AND STAGING GATES PASS — EXACT `250baf12` LIVE ON STAGING; MAIN AWAITS
-EXPLICIT AUTHORITY**
+Status: **LOCAL AND STAGING GATES PASS — EXACT `250baf12` LIVE THROUGH MAIN; PRODUCTION
+TECHNICAL GATE PASS AND MINIMUM HUMAN SMOKE PENDING**
 
 Plan:
 
@@ -202,7 +202,13 @@ Production promotion and production account recovery are separate decisions. Rec
 main commit/scan/Render identity/health first. Only then may an explicitly authorised
 single-user P1 repair be recorded.
 
-Overall production result: **PENDING**
+Overall production result: **TECHNICAL PASS — MINIMUM HUMAN SMOKE PENDING**
+
+Exact `250baf12` is aligned through main. Main Security Scan `32015051267`, Render deploy
+`dep-da1d6jh42hec73akbcp0`, post-deploy health and signed-out login redirect pass. The
+separate minimum non-mutating human schedule is recorded at:
+
+[`PLAT-ROLE-04 production promotion and minimum smoke`](2026-08-17-isostack-platform-plat-role-04-production-promotion-and-minimum-smoke.md)
 
 ## 6. Closure And Resumption
 
