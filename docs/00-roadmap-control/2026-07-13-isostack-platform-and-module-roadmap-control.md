@@ -64,16 +64,18 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Complete the minimum five-check staging smoke for `CR-Fix-PLAT-ROLE-04A` | Exact `fcd162db` is live through staging; dev/staging scans, Render identity and health pass. Main remains `250baf12`; no main decision before the concise human result. |
+| **NOW** | Decide whether to promote staging-accepted `CR-Fix-PLAT-ROLE-04A` to main | Exact `fcd162db` passes all dev/staging technical gates; 3/3 staging-applicable human checks pass and two malformed-fixture checks are accepted through retained local/automated evidence. Main remains `250baf12`. |
 | **NEXT** | Resume accepted `1R-F-A` Stage C proof | Resume only from the recorded safe checkpoint after PLAT-ROLE-04A disposition: temporary Render worker suspended, no application secrets injected and private R2 proof bucket empty. Preserve the exact Stage C candidate and existing auto-deploy services. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
 promotion. Exact `250baf12` is aligned through main; all protected scans, Render identity,
 health and staging human evidence pass, while the deliberately small non-mutating
 production human smoke remains pending. The control owner then selected bounded
-`CR-Fix-PLAT-ROLE-04A`; exact `fcd162db` is locally accepted and live through staging with
-both exact scans, Render identity and health green. Its minimum human staging smoke is the
-only portfolio `Now`. FUND Stage C remains `Next` at its captured safe checkpoint.
+`CR-Fix-PLAT-ROLE-04A`; exact `fcd162db` is accepted through staging with both exact scans,
+Render identity and health green. Every staging-applicable human check passes; manufacturing
+malformed fixture data was correctly avoided and retained local/automated evidence closes
+those two checks. Its main-promotion decision is the only portfolio `Now`. FUND Stage C
+remains `Next` at its captured safe checkpoint.
 
 Registered and ordered work outside that pair:
 
@@ -86,7 +88,7 @@ Registered and ordered work outside that pair:
   pre-existing audit-log consistency finding: the server is Owner-only while the Settings
   UI offers the tab to Admins. `PLAT-ROLE-04A` separately implements incomplete-user C1
   discoverability and module activation gating in exact `fcd162db`; the local gate and
-  dev/staging technical gates pass, and the five-check staging smoke is `Now`. It is not in
+  dev/staging technical gates and applicable human smoke pass; main promotion is `Now`. It is not in
   the live release and does not displace FUND Stage C
   from `Next`;
 - LMSPro R12-A Free Day owner-notice authority: complete green local human pass; exact

@@ -2,8 +2,8 @@
 
 Date: 2026-08-17
 
-Status: **IMPLEMENTED AND LOCALLY ACCEPTED AS EXACT `fcd162db`; DEV/STAGING TECHNICAL
-GATES PASS — MINIMUM STAGING HUMAN SMOKE PENDING**
+Status: **EXACT `fcd162db` IMPLEMENTED AND ACCEPTED THROUGH STAGING — MAIN PROMOTION
+DECISION PENDING**
 
 Plan:
 
@@ -114,4 +114,6 @@ session revocation remains a human staging requirement after local acceptance.
 The local gate is accepted and exact dev Security Scan `32018358354` passes. The control
 owner then authorised staging: exact `fcd162db` is live through `origin/staging`, staging
 Security Scan `32018776885`, Render deploy `dep-da1drj5g1s2s73c6pge0` and public health
-pass. Complete the minimum five-check human staging smoke before any main decision.
+pass. All three staging-applicable human checks pass. The two malformed-fixture checks are
+not applicable because staging has no invalid record and the UI prevents creating one;
+the accepted local/automated evidence closes them. Main remains a separate decision.

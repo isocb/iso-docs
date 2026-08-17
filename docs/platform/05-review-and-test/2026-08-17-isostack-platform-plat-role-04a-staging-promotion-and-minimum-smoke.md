@@ -2,8 +2,8 @@
 
 Date: 2026-08-17
 
-Status: **EXACT `fcd162db` LIVE ON STAGING; SECURITY, RENDER AND HEALTH GATES PASS —
-MINIMUM 5-CHECK HUMAN SMOKE PENDING**
+Status: **STAGING ACCEPTED — EXACT `fcd162db`; 3/3 HUMAN-APPLICABLE CHECKS PASS AND TWO
+MALFORMED-FIXTURE CHECKS ACCEPTED THROUGH RETAINED LOCAL/AUTOMATED EVIDENCE**
 
 Local source:
 
@@ -43,19 +43,21 @@ migration, data correction, credential, FUND Stage C, worker or R2 action accomp
 Use existing non-sensitive staging fixtures. Make no Save/Create/Delete request. Record
 each item `PASS`, `FAIL` or `BLOCKED`.
 
-1. **PENDING** — Sign in as a valid staging C1 Owner and open
+1. **PASS** — Sign in as a valid staging C1 Owner and open
    `/app/lmspro/admin/users`. Confirm League Users, Club Users and Needs repair tabs load,
    and the initial Core-status filter is `All`.
-2. **PENDING** — Open one existing incomplete same-tenant record. Confirm it appears in
-   Needs repair, not in a valid League/Club population, and raw Core status is visibly
-   separate from `SeasonPro access: Deactivated — persona repair required`.
-3. **PENDING** — With that record still incomplete and Core `ACTIVE`, confirm Save is
-   disabled. Close the modal without saving and confirm no visible update/audit event was
-   created by read/open alone.
-4. **PENDING** — Open one existing valid League user and one existing valid Club user.
+2. **NOT APPLICABLE — NO MALFORMED STAGING FIXTURE** — Staging contains no incomplete
+   same-tenant record, and the UI correctly prevents creating an invalid composite. The
+   accepted local checks 2–5 and automated read-model test retain evidence that such a
+   record appears only in Needs repair with Core status separate from module access.
+3. **NOT APPLICABLE — NO MALFORMED STAGING FIXTURE** — The staging UI validation prevents
+   constructing the incomplete `ACTIVE` state needed for this check. Accepted local check
+   6 and the direct/bulk server tests prove activation refusal before persistence; the
+   read-only/no-write contract is also automated-green.
+4. **PASS** — Open one existing valid League user and one existing valid Club user.
    Confirm they remain in their correct populations with their current exact roles/Club;
    close both without saving.
-5. **PENDING** — Confirm staging `/api/health` is healthy after the exact deploy and no
+5. **PASS** — Confirm staging `/api/health` is healthy after the exact deploy and no
    unexpected authority, tenant, navigation or application error occurred during checks
    1–4.
 
@@ -67,7 +69,13 @@ response.
 
 Technical staging result: **PASS**
 
-Human staging result: **PENDING**
+Human staging result: **ACCEPTED — 3/3 APPLICABLE CHECKS PASS; 2 FIXTURE-DEPENDENT CHECKS
+NOT APPLICABLE WITH RETAINED EVIDENCE**
 
-Five green human checks after exact scan/Render/health evidence permit a separate main
-promotion decision. They do not themselves promote main.
+The absence of malformed staging data is the intended steady state. Manufacturing an
+invalid User through direct database/API action would bypass the controls under test and
+add unnecessary data risk. The control owner reported every available staging check green
+on 2026-08-17; the accepted local and automated evidence closes the two unavailable checks.
+
+This accepted staging result permits a separate main promotion decision. It does not
+itself promote main.
