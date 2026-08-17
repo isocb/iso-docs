@@ -57,15 +57,15 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Complete the accepted `CR-Fix-PLAT-ROLE-04` indicative staging human gate | Exact release candidate `250baf12` is aligned on `origin/dev` and `origin/staging`; dev/staging Security Scans, FUND Linux-parity, exact Render identity and post-deploy health pass. Run the concise indicative staging human gate. Main remains unchanged and unauthorised. |
+| **NOW** | Decide and, only if explicitly authorised, promote accepted `CR-Fix-PLAT-ROLE-04` to main | Exact `250baf12` is aligned on `origin/dev` and `origin/staging`; dev/staging Security Scans, FUND Linux-parity, exact Render identity, post-deploy health and 8/8 staging human smoke pass. Main remains unchanged pending explicit authority. |
 | **NEXT** | Resume accepted `1R-F-A` Stage C proof | Resume only from the recorded safe checkpoint after PLAT-ROLE-04 closure or explicit re-disposition: temporary Render worker suspended, no application secrets injected and private R2 proof bucket empty. Preserve the exact Stage C candidate and existing auto-deploy services. |
 
 The control owner explicitly accepted `CR-Fix-PLAT-ROLE-04` as the urgent remedial
 expedite. It is therefore the only portfolio `Now`; the present FUND Stage C proof is
 `Next` at its captured safe checkpoint. Local implementation and automated/human gates
 pass. Exact candidate `250baf12` is aligned through staging with both protected scans
-green. Render is live at exact `250baf12` and post-deploy health is green; indicative
-staging human acceptance is the current gate. Main remains separately gated.
+green. Render is live at exact `250baf12`, post-deploy health is green and the indicative
+staging human gate is 8/8 PASS. Explicit main-promotion authority is the current gate.
 
 Registered and ordered work outside that pair:
 
@@ -73,8 +73,10 @@ Registered and ordered work outside that pair:
   remedial expedite and portfolio `Now`. The authoritative P1 Client Users surface now
   separates Core authority from exact SeasonPro persona, supports deliberate exact-default
   catalogue recovery, and uses atomic tenant-scoped create/update/audit contracts. Local
-  technical and human gates pass; exact `250baf12` is aligned through staging while main
-  is not authorised. `PLAT-ROLE-04A` separately captures incomplete-user C1 discoverability and module
+  technical and human gates pass locally and on staging; exact `250baf12` is aligned
+  through staging while main is not authorised. Staging also exposed a separate
+  pre-existing audit-log consistency finding: the server is Owner-only while the Settings
+  UI offers the tab to Admins. `PLAT-ROLE-04A` separately captures incomplete-user C1 discoverability and module
   activation gating as a deferred, non-blocking plan; it is not in the accepted release and
   does not displace FUND Stage C from `Next`;
 - LMSPro R12-A Free Day owner-notice authority: complete green local human pass; exact

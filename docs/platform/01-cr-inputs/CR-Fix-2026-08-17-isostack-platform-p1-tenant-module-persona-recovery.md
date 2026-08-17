@@ -4,8 +4,8 @@ Date: 2026-08-17
 
 Identifier: `CR-Fix-PLAT-ROLE-04`
 
-Status: **URGENT REMEDIAL EXPEDITE ACCEPTED — EXACT `250baf12` LIVE ON STAGING; PROTECTED
-SCANS AND POST-DEPLOY HEALTH PASS; STAGING HUMAN GATE PENDING**
+Status: **URGENT REMEDIAL EXPEDITE ACCEPTED — EXACT `250baf12` LIVE AND HUMAN-ACCEPTED ON
+STAGING; MAIN AWAITS EXPLICIT AUTHORITY**
 
 Related completed authority project:
 
@@ -210,5 +210,6 @@ private R2 bucket remains empty. Acceptance authorised implementation on local d
 staging and production remain separately gated. The bounded implementation and local human
 smoke now pass. Implementation commit `28aa1ca3` plus bounded application/proof TypeScript
 build isolation commit `250baf12` form the exact staging candidate. Dev and staging
-Security Scans pass. Render is live at exact `250baf12` and post-deploy health passes;
-indicative staging human acceptance remains open, and main is unchanged.
+Security Scans pass. Render is live at exact `250baf12`, post-deploy health passes and the
+indicative staging human gate is 8/8 PASS. Main is unchanged and requires explicit
+promotion authority.

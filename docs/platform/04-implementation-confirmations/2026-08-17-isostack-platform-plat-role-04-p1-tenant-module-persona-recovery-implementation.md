@@ -3,8 +3,8 @@
 Date: 2026-08-17
 
 Status: **IMPLEMENTED AND LOCALLY ACCEPTED AT `28aa1ca3`; EXACT RELEASE CANDIDATE
-`250baf12` LIVE ON STAGING WITH GREEN PROTECTED SCANS AND HEALTH; STAGING HUMAN GATE
-PENDING**
+`250baf12` LIVE ON STAGING WITH GREEN PROTECTED SCANS, HEALTH AND 8/8 HUMAN SMOKE; MAIN
+AWAITS EXPLICIT AUTHORITY**
 
 Plan:
 
@@ -186,8 +186,9 @@ implementation commit and deployment-boundary correction are aligned through sta
 exact release candidate `250baf12`. Dev Security Scan `32011557075`, staging Security Scan
 `32011784475` and FUND Linux-parity run `32011557112` pass. Public staging health returns
 HTTP 200, database connected and RLS 11/11 after Render deploy
-`dep-da1cjovavr4c73fmm5r0` became live at exact `250baf12`. The indicative human staging
-smoke remains pending.
+`dep-da1cjovavr4c73fmm5r0` became live at exact `250baf12`. The control owner subsequently
+reported the indicative staging smoke 8/8 PASS. Main remains unchanged pending explicit
+promotion authority.
 
 FUND Stage C remains preserved at its recorded suspended no-secret/no-object checkpoint.
 The agreed incomplete-user discoverability/activation refinement is separately captured as

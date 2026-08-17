@@ -2,8 +2,8 @@
 
 Date: 2026-08-17
 
-Status: **LOCAL GATE PASS; EXACT `250baf12` LIVE ON STAGING WITH GREEN TECHNICAL GATES —
-INDICATIVE STAGING HUMAN SMOKE PENDING**
+Status: **LOCAL AND STAGING GATES PASS — EXACT `250baf12` LIVE ON STAGING; MAIN AWAITS
+EXPLICIT AUTHORITY**
 
 Plan:
 
@@ -108,7 +108,7 @@ Do not repeat the entire local mutation matrix on staging unless implementation 
 exposes a materially different environment dependency. The focused Northgate recovery,
 session, audit, isolation and runtime checks are the staging purpose.
 
-Overall staging result: **DEPLOYMENT AND TECHNICAL GATES PASS — HUMAN ACCEPTANCE PENDING**
+Overall staging result: **PASS — DEPLOYMENT, TECHNICAL GATES AND 8/8 HUMAN SMOKE**
 
 ```text
 feature commit           28aa1ca37b0072b9b200bf4c076adec5c9099c60
@@ -121,7 +121,7 @@ staging Security Scan    32011784475 — PASS
 FUND Linux parity        32011557112 — PASS
 staging public health    PASS — 08:51:39Z; database connected; RLS 11/11
 Render exact identity    PASS — deploy dep-da1cjovavr4c73fmm5r0 live at 250baf12
-indicative human smoke   PENDING
+indicative human smoke   PASS — 8/8, control owner, 2026-08-17
 ```
 
 The staging fast-forward necessarily includes the already-recorded inert FUND proof/tooling
@@ -182,6 +182,19 @@ Core account status separate, and prohibit activation until the complete persona
 
 This finding is fail-closed today and did not invalidate the P1 recovery matrix. It is not
 part of the tested PLAT-ROLE-04 commit and must not be slipped into the staging promotion.
+
+## 4.3 Audit-Log Admin Visibility Observation
+
+Staging item 7 passed through an Organisation Owner: successful create/update evidence,
+failed-request disposition and absence of secrets were verified. A C1 Admin could not view
+any audit logs. Static review confirms this is the current server contract: organisation
+audit-log retrieval is explicitly `OWNER`-only. The Settings UI nevertheless exposes the
+Audit Logs tab to both `ADMIN` and `OWNER`.
+
+This is a pre-existing fail-closed UI/policy consistency finding. It does not show missing
+PLAT-ROLE-04 audit persistence, does not invalidate the staging pass and does not authorise
+changing audit visibility. A later decision must either retain Owner-only access and hide
+or explain the Admin tab, or explicitly design a safe delegated Admin read capability.
 
 ## 5. Production Evidence
 

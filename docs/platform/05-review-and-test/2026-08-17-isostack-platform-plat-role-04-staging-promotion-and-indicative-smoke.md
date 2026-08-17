@@ -2,8 +2,8 @@
 
 Date: 2026-08-17
 
-Status: **EXACT `250baf12` LIVE ON STAGING; BRANCH, SECURITY, LINUX-PARITY AND HEALTH
-GATES PASS — HUMAN SMOKE PENDING; MAIN BLOCKED**
+Status: **STAGING ACCEPTED — EXACT `250baf12` LIVE; BRANCH, SECURITY, LINUX-PARITY,
+HEALTH AND 8/8 HUMAN SMOKE PASS; MAIN AWAITS EXPLICIT AUTHORITY**
 
 Parent gate:
 
@@ -58,28 +58,35 @@ This is intentionally shorter than the accepted 15-item local matrix. Use P1 and
 staging fixtures. Do not alter production and do not repeat the Northgate direct SQL repair.
 Record each item `PASS`, `FAIL` or `BLOCKED`.
 
-1. **PENDING** — Open Northgate Vale Youth Football League in P1 Client > Users. Confirm
+1. **PASS** — Open Northgate Vale Youth Football League in P1 Client > Users. Confirm
    `nvy@isodo.co.uk` is visible as Core `OWNER`, with exact `League Admin`, exact `Club
    Secretary`, current `Alderwick Athletic`, and `C1 + Club hat`; no legacy `BOTH` role is
    selected.
-2. **PENDING** — Reopen the record without changing it. Confirm the same exact composite is
+2. **PASS** — Reopen the record without changing it. Confirm the same exact composite is
    stable and the League/Club selectors contain only active exact roles owned by Northgate.
-3. **PENDING** — Authenticate or impersonate afresh as the recovered user. Confirm C1
+3. **PASS** — Authenticate or impersonate afresh as the recovered user. Confirm C1
    League routing and the Club hat are both available; confirm the user is not gated as C2
    only.
-4. **PENDING** — Create one disposable C1 Admin/Owner with one exact League role. Confirm
+4. **PASS** — Create one disposable C1 Admin/Owner with one exact League role. Confirm
    creation is atomic, reopening is stable, and fresh routing is C1 League. Do not retain
    the disposable account beyond the agreed staging-test policy.
-5. **PENDING** — On that disposable account, add one exact Club role and one current Club.
+5. **PASS** — On that disposable account, add one exact Club role and one current Club.
    Confirm the League role is preserved, the persona becomes `C1 + Club hat`, the target
    session is revoked, and the UI truthfully reports the revocation outcome.
-6. **PENDING** — Submit one controlled invalid foreign-role or foreign/old-Club request.
+6. **PASS** — Submit one controlled invalid foreign-role or foreign/old-Club request.
    Confirm refusal and no partial User, current-Club junction, reset-token or success-audit
    persistence.
-7. **PENDING** — Inspect audit evidence for the successful create/update and the failed
+7. **PASS** — Inspect audit evidence for the successful create/update and the failed
    request. Confirm before/after tenant, exact role and Club context is present and no secret
    value is stored.
-8. **PENDING** — Open one non-SeasonPro tenant and confirm its P1 user flow remains
+
+   The control owner verified the required evidence through an Organisation Owner. A C1
+   Admin cannot retrieve any organisation audit logs. Static review confirms the server
+   deliberately permits `settings.getAuditLogs` only for Core `OWNER`, while the Settings
+   navigation currently displays the Audit Logs tab to both `ADMIN` and `OWNER`. This is a
+   pre-existing fail-closed UI/policy-consistency finding, not missing PLAT-ROLE-04 audit
+   persistence and not a release blocker. No decision to broaden Admin access is inferred.
+8. **PASS** — Open one non-SeasonPro tenant and confirm its P1 user flow remains
    Core-only. Recheck public health remains green after the test.
 
 Any cross-tenant selector, partial persistence, false revocation claim, loss of C1 access,
@@ -87,9 +94,11 @@ incorrect C2-only routing, or unexpected Core-only regression is a release block
 
 ## 4. Decision Boundary
 
-Overall staging human result: **PENDING**
+Overall staging human result: **PASS — 8/8, CONTROL OWNER, 2026-08-17**
 
-Main remains exact `cde4eaff` and is not authorised by this document. A complete eight-item
-PASS plus exact Render identity authorises the control owner to request main promotion; it
-does not perform or imply that promotion. `CR-Fix-PLAT-ROLE-04A` remains a separate deferred
-follow-on and is not part of this candidate.
+Main remains exact `cde4eaff` and is not authorised by this document. The complete
+eight-item PASS plus exact Render identity makes exact `250baf12` eligible for an explicit
+main-promotion instruction; it does not perform or imply that promotion.
+`CR-Fix-PLAT-ROLE-04A` remains a separate deferred follow-on and is not part of this
+candidate. The audit-log Admin/Owner observation is retained as a separate pre-existing
+finding and must not be folded into this accepted candidate.
