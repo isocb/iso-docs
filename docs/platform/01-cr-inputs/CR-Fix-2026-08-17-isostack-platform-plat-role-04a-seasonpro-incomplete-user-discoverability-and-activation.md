@@ -4,8 +4,8 @@ Date: 2026-08-17
 
 Identifier: `CR-Fix-PLAT-ROLE-04A`
 
-Status: **EXACT `fcd162db` LIVE THROUGH MAIN; ALL TECHNICAL GATES PASS — MINIMUM
-PRODUCTION HUMAN SMOKE PENDING**
+Status: **COMPLETE AND CLOSED — EXACT `fcd162db` LIVE THROUGH MAIN; ALL TECHNICAL AND
+HUMAN GATES PASS**
 
 Parent:
 
@@ -50,7 +50,7 @@ from a read/list query.
 | Core and module deactivation become conflated | Separate labels and derived module state; no read-time write |
 | Direct/bulk activation bypasses persona policy | Server validates the final exact persona whenever module activation is requested |
 | Cross-tenant email existence is leaked | Generic duplicate response outside the actor's tenant; repair navigation only for visible same-tenant records |
-| Accepted PLAT-ROLE-04 release changes after smoke | 04A remains a separate later commit and is excluded from the current staging candidate |
+| Accepted PLAT-ROLE-04 release changes after smoke | 04A remained a separate later commit and was promoted only after its own local/staging gates |
 
 ## 5. Non-Goals
 

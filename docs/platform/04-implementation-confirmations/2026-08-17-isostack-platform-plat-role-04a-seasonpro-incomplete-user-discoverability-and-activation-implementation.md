@@ -2,8 +2,8 @@
 
 Date: 2026-08-17
 
-Status: **EXACT `fcd162db` LIVE THROUGH MAIN; ALL TECHNICAL AND STAGING HUMAN GATES PASS —
-MINIMUM PRODUCTION HUMAN SMOKE PENDING**
+Status: **COMPLETE — EXACT `fcd162db` LIVE THROUGH MAIN; ALL TECHNICAL, STAGING AND 3/3
+PRODUCTION HUMAN GATES PASS**
 
 Plan:
 
@@ -118,4 +118,5 @@ pass. All three staging-applicable human checks pass. The two malformed-fixture 
 not applicable because staging has no invalid record and the UI prevents creating one;
 the accepted local/automated evidence closes them. The control owner then authorised main:
 exact main Security Scan `32019884264`, Render deploy `dep-da1e1ve7bikc73ckt9eg`, public
-health and signed-out routing pass. The minimum production human smoke remains pending.
+health and signed-out routing pass. The control owner's three-check read-only production
+smoke then passed completely; the slice is closed.

@@ -65,8 +65,8 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Complete the three-check read-only production smoke for `CR-Fix-PLAT-ROLE-04A` | Exact `fcd162db` is aligned through main; all protected scans, Render identity, health and staging acceptance pass. No production mutation or malformed fixture is required. |
-| **NEXT** | Resume accepted `1R-F-A` Stage C proof | Resume only from the recorded safe checkpoint after PLAT-ROLE-04A disposition: temporary Render worker suspended, no application secrets injected and private R2 proof bucket empty. Preserve the exact Stage C candidate and existing auto-deploy services. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Resume only from the recorded safe checkpoint: temporary Render worker suspended, no application secrets injected and private R2 proof bucket empty. Preserve the exact Stage C candidate and existing auto-deploy services. |
+| **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
 promotion. Exact `250baf12` is aligned through main; all protected scans, Render identity,
@@ -75,8 +75,8 @@ production human smoke remains pending. The control owner then selected bounded
 `CR-Fix-PLAT-ROLE-04A`; exact `fcd162db` is live through main with all three exact scans,
 staging/production Render identity and health green. Every staging-applicable human check passes; manufacturing
 malformed fixture data was correctly avoided and retained local/automated evidence closes
-those two checks. Its three-check read-only production smoke is the only portfolio `Now`.
-FUND Stage C remains `Next` at its captured safe checkpoint.
+those two checks. Its three-check read-only production smoke also passes, closing the
+CR-Fix. FUND Stage C resumes as portfolio `Now`; its result reconciliation is `Next`.
 
 Registered and ordered work outside that pair:
 
@@ -90,8 +90,8 @@ Registered and ordered work outside that pair:
   UI offers the tab to Admins. `PLAT-ROLE-04A` separately implements incomplete-user C1
   discoverability and module activation gating in exact `fcd162db`; the local gate and
   dev/staging technical gates and applicable human smoke pass; exact `fcd162db` is now live
-  through main and minimum production smoke is `Now`. It does not displace FUND Stage C
-  from `Next`;
+  through main and 3/3 production smoke passes. The CR-Fix is complete and closed; Fund
+  Stage C resumes as portfolio `Now`;
 - LMSPro R12-A Free Day owner-notice authority: complete green local human pass; exact
   `39a25d99` is aligned through staging; exact dev/staging scans and public health pass.
   Render identity/human acceptance is `Now`; main remains unchanged;

@@ -2,8 +2,8 @@
 
 Date: 2026-08-17
 
-Status: **TRIAGE DELIVERED THROUGH EXACT MAIN `fcd162db`; ALL TECHNICAL GATES PASS —
-MINIMUM PRODUCTION HUMAN SMOKE PENDING**
+Status: **DELIVERED AND CLOSED THROUGH EXACT MAIN `fcd162db`; ALL TECHNICAL AND HUMAN
+GATES PASS**
 
 Source:
 
@@ -15,9 +15,9 @@ Source:
 Owner       Platform authority contract with SeasonPro C1 UI consumer
 Class       Remedial discoverability and activation-integrity follow-on
 Severity    Medium operational; high if activation bypass grants scope
-Current     Runtime remains fail-closed; duplicate creation remains blocked
-Release     Separate later commit; never amend the accepted PLAT-ROLE-04 candidate
-Portfolio   PLAT-ROLE-04A local human gate is Now; FUND Stage C remains controlled Next
+Current     Exact fcd162db live through main; all technical/human gates pass
+Release     Separate bounded follow-on delivered after accepted PLAT-ROLE-04
+Portfolio   Complete and closed; FUND Stage C resumed as Now
 ```
 
 The defect is the C1 presentation and activation contract, not the P1 recovery mutation.

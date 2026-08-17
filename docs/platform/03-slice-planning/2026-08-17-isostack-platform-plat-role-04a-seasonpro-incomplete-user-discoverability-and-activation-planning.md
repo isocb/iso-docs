@@ -2,8 +2,8 @@
 
 Date: 2026-08-17
 
-Status: **EXACT `fcd162db` LIVE THROUGH MAIN; ALL TECHNICAL GATES PASS — MINIMUM
-PRODUCTION HUMAN SMOKE PENDING**
+Status: **COMPLETE AND CLOSED — EXACT `fcd162db` LIVE THROUGH MAIN; ALL TECHNICAL AND
+HUMAN GATES PASS**
 
 Source:
 
@@ -72,6 +72,7 @@ it in the appropriate League or Club tab. Confirm another module's Core access i
 ## 6. Stop Condition
 
 The control owner deliberately selected this plan after PLAT-ROLE-04 production promotion.
-Implementation is locally complete on exact base `250baf12`, but remains uncommitted for
-human smoke. It does not amend or ride with the already-live PLAT-ROLE-04 release and does
-not displace suspended FUND Stage C from `Next`.
+It was implemented as a separate commit `fcd162db`, passed its own local, dev-scan,
+staging-scan/Render/human and main-scan/Render/human gates, and is complete through
+production. It did not amend the earlier accepted release candidate. On closure, FUND
+Stage C resumed as portfolio `Now`.
