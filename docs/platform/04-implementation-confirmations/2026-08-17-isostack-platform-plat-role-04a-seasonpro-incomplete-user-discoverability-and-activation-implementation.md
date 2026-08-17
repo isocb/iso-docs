@@ -2,8 +2,8 @@
 
 Date: 2026-08-17
 
-Status: **EXACT `fcd162db` IMPLEMENTED AND ACCEPTED THROUGH STAGING — MAIN PROMOTION
-DECISION PENDING**
+Status: **EXACT `fcd162db` LIVE THROUGH MAIN; ALL TECHNICAL AND STAGING HUMAN GATES PASS —
+MINIMUM PRODUCTION HUMAN SMOKE PENDING**
 
 Plan:
 
@@ -17,8 +17,8 @@ Human gate:
 
 Implementation was performed locally on application branch `dev` from exact production
 baseline `250baf12556de082fa11d005a8709fee656d8cd3`, accepted by the control owner and
-committed as `fcd162db60956858233821fd3f29c55e17d954dd`. Local `dev`, `origin/dev` and
-`origin/staging` are exact at that commit; `origin/main` remains exact `250baf12`. The
+committed as `fcd162db60956858233821fd3f29c55e17d954dd`. Local `dev`, `origin/dev`,
+`origin/staging` and `origin/main` are exact at that commit. The
 pre-existing user-owned edit to `1july2026.code-workspace` remains outside this slice and
 untouched.
 
@@ -116,4 +116,6 @@ owner then authorised staging: exact `fcd162db` is live through `origin/staging`
 Security Scan `32018776885`, Render deploy `dep-da1drj5g1s2s73c6pge0` and public health
 pass. All three staging-applicable human checks pass. The two malformed-fixture checks are
 not applicable because staging has no invalid record and the UI prevents creating one;
-the accepted local/automated evidence closes them. Main remains a separate decision.
+the accepted local/automated evidence closes them. The control owner then authorised main:
+exact main Security Scan `32019884264`, Render deploy `dep-da1e1ve7bikc73ckt9eg`, public
+health and signed-out routing pass. The minimum production human smoke remains pending.

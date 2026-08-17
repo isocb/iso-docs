@@ -29,8 +29,7 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application evidence:
 
 ```text
-local dev = origin/dev = origin/staging = exact PLAT-ROLE-04A fcd162db
-origin/main = exact PLAT-ROLE-04 release 250baf12
+local dev = origin/dev = origin/staging = origin/main = exact PLAT-ROLE-04A fcd162db
 local dev also retains one preserved user workspace edit outside the commit
 PLAT-ROLE-04 main Security Scan 32015051267 = PASS
 PLAT-ROLE-04 production Render deploy dep-da1d6jh42hec73akbcp0 = LIVE at 250baf12
@@ -40,6 +39,8 @@ PLAT-ROLE-04A local human-applicable smoke = 14/14 PASS; bulk atomicity automate
 PLAT-ROLE-04A exact dev Security Scan 32018358354 = PASS
 PLAT-ROLE-04A exact staging Security Scan 32018776885 = PASS
 PLAT-ROLE-04A staging Render/health = exact fcd162db LIVE; DB connected; RLS 11/11
+PLAT-ROLE-04A exact main Security Scan 32019884264 = PASS
+PLAT-ROLE-04A production Render/health = exact fcd162db LIVE; DB connected; RLS 11/11
 FUND R1B automation, physical/PDF smoke and exact dev Security Scan 31589031306 = PASS
 FUND Stage B Linux parity 31595635243 and exact dev Security Scan 31595635276 = PASS
 FUND Stage C candidate Linux parity 31599134487 and exact Security Scan 31599134488 = PASS
@@ -64,18 +65,18 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Decide whether to promote staging-accepted `CR-Fix-PLAT-ROLE-04A` to main | Exact `fcd162db` passes all dev/staging technical gates; 3/3 staging-applicable human checks pass and two malformed-fixture checks are accepted through retained local/automated evidence. Main remains `250baf12`. |
+| **NOW** | Complete the three-check read-only production smoke for `CR-Fix-PLAT-ROLE-04A` | Exact `fcd162db` is aligned through main; all protected scans, Render identity, health and staging acceptance pass. No production mutation or malformed fixture is required. |
 | **NEXT** | Resume accepted `1R-F-A` Stage C proof | Resume only from the recorded safe checkpoint after PLAT-ROLE-04A disposition: temporary Render worker suspended, no application secrets injected and private R2 proof bucket empty. Preserve the exact Stage C candidate and existing auto-deploy services. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
 promotion. Exact `250baf12` is aligned through main; all protected scans, Render identity,
 health and staging human evidence pass, while the deliberately small non-mutating
 production human smoke remains pending. The control owner then selected bounded
-`CR-Fix-PLAT-ROLE-04A`; exact `fcd162db` is accepted through staging with both exact scans,
-Render identity and health green. Every staging-applicable human check passes; manufacturing
+`CR-Fix-PLAT-ROLE-04A`; exact `fcd162db` is live through main with all three exact scans,
+staging/production Render identity and health green. Every staging-applicable human check passes; manufacturing
 malformed fixture data was correctly avoided and retained local/automated evidence closes
-those two checks. Its main-promotion decision is the only portfolio `Now`. FUND Stage C
-remains `Next` at its captured safe checkpoint.
+those two checks. Its three-check read-only production smoke is the only portfolio `Now`.
+FUND Stage C remains `Next` at its captured safe checkpoint.
 
 Registered and ordered work outside that pair:
 
@@ -88,8 +89,8 @@ Registered and ordered work outside that pair:
   pre-existing audit-log consistency finding: the server is Owner-only while the Settings
   UI offers the tab to Admins. `PLAT-ROLE-04A` separately implements incomplete-user C1
   discoverability and module activation gating in exact `fcd162db`; the local gate and
-  dev/staging technical gates and applicable human smoke pass; main promotion is `Now`. It is not in
-  the live release and does not displace FUND Stage C
+  dev/staging technical gates and applicable human smoke pass; exact `fcd162db` is now live
+  through main and minimum production smoke is `Now`. It does not displace FUND Stage C
   from `Next`;
 - LMSPro R12-A Free Day owner-notice authority: complete green local human pass; exact
   `39a25d99` is aligned through staging; exact dev/staging scans and public health pass.
