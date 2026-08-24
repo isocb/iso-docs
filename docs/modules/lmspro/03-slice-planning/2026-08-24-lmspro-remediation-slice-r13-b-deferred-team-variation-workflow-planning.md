@@ -11,11 +11,11 @@ Control depth: **High** — schema migration, workflow transitions, tenant/Club/
 and C2 cancellation require complete migration, rollback, negative and human evidence.
 
 ```text
-Current state: R13-A accepted and closed at staging; R13-B selected as sole portfolio Now; local implementation authorised and not yet begun
-Last proven commit: e7a756cc39eac65b71729490f8c6c26f30435eb6
-Current environment: clean local remediation work branch at exact e7a756cc; local application and local DevData only; no R13-B migration applied
-Next human decision/test: controlled local C1/C2 human acceptance after isolated migration and automated gates pass
-Safe resumption point: implement the additive enum/nullable-field migration and failing-first transition/authority coverage; do not migrate a shared database, push, promote or deploy
+Current state: Exact local R13-B candidate 06811784 committed; additive DevData migration, focused/full automation, type/verify/lint/build and local health pass; B1-B10 human smoke pending
+Last proven commit: 068117848bc66739a2794c596621f372344a9209
+Current environment: local remediation work branch one commit ahead of remote; port 3000 healthy against validated migrated DevData; local RLS reports disabled; no shared migration/push/promotion/deployment
+Next human decision/test: controlled local C1/C2 B1-B10 human acceptance using disposable requests and non-sensitive reasons
+Safe resumption point: use the paired 04/05 records at exact 06811784; correct any failed B item before security/promotion consideration; do not migrate a shared database, push, promote or deploy
 ```
 
 Source CR-Fix:

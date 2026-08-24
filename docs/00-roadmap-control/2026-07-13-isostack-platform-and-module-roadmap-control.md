@@ -35,7 +35,9 @@ R13-A exact runtime commit = 71ed589b; e7a756cc adds only root-AGENTS shared-met
 R13-A local evidence = focused 35/35, full 471 pass/12 skip, type/verify/lint/build and C1/C2 H1-H11 PASS
 R13-A exact work-branch/dev/staging Security Scans 32742731175/32743079768/32743397739 = PASS
 R13-A public staging health = HTTP 200; database connected; RLS 11/11; exact Render e7a756c and S1-S4 PASS
-R13-B implementation baseline = exact accepted R13-A closure tip e7a756cc; local work branch only
+R13-B exact local candidate = 06811784 from accepted R13-A closure tip e7a756cc; local work branch only
+R13-B DevData migration/read-only verification, focused 13/13, full 484 pass/12 skip, type/verify/lint/build = PASS
+R13-B local port 3000 health = HTTP 200/database connected; existing local RLS 0/11; B1-B10 human smoke pending
 PLAT-ROLE-04 main Security Scan 32015051267 = PASS
 PLAT-ROLE-04 production Render deploy dep-da1d6jh42hec73akbcp0 = LIVE at 250baf12
 PLAT-ROLE-04 production health = HTTP 200; database connected; RLS 11/11
@@ -70,7 +72,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | LMSPro `R13-B` Deferred Team Variation workflow | R13-A is accepted and closed at the authorised staging boundary: runtime `71ed589b` in corridor tip `e7a756cc`, local H1-H11, all three Security Scans, public health, exact Render identity and S1-S4 pass. The control owner explicitly selected and authorised bounded local R13-B implementation from exact `e7a756cc`; no shared migration, push, promotion or deployment is authorised. |
+| **NOW** | LMSPro `R13-B` Deferred Team Variation workflow | Exact local candidate `06811784` is committed from accepted baseline `e7a756cc`; additive DevData migration/read-only proof, focused/full automation, type/verify/lint/build and local health pass. Controlled C1/C2 B1-B10 human acceptance remains. The work branch is one commit ahead of remote; no shared migration, push, promotion or deployment is authorised. |
 | **NEXT** | Resume accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Resume only from the recorded safe checkpoint: exact candidate `328aadf0` preserved, temporary Render worker suspended, no application secrets injected, private R2 proof bucket empty and existing auto-deploy services untouched. Reconcile Stage C only after the complete LMSPro CR-Fix closes. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -93,7 +95,8 @@ Registered and ordered work outside that pair:
   management presentation `R13-A` exact runtime `71ed589b` is promoted through
   `origin/staging` in corridor tip `e7a756cc`; local, Security, public-health, exact Render
   identity and S1-S4 gates pass, closing R13-A at staging. Deferred Team Variation `R13-B`
-  is now the sole active child and carries a distinct additive-migration gate.
+  is now the sole active child; exact local candidate `06811784` has passed its additive DevData
+  migration verification and automated/build gates, with B1-B10 human acceptance pending.
   Existing data repair and new Deferred notifications are excluded. The accepted
   [triage](../modules/lmspro/02-triage/2026-08-24-lmspro-cr-fix-free-day-and-team-variation-request-remediation-triage.md)
   and subsequent control-owner instructions authorised both `03` records, bounded R13-A
