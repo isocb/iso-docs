@@ -4,9 +4,9 @@ Purpose: define the durable human-and-AI method for turning an idea, fault or ob
 into a controlled IsoStack release without allowing the portfolio to become an unranked
 list of competing work.
 
-Version: 4.1
+Version: 4.2
 
-Last updated: 2026-08-05
+Last updated: 2026-08-24
 
 Status: Authoritative working-method protocol. Product and Platform roadmap authority is
 held by the root and child roadmap files named below, not by this method document.
@@ -197,6 +197,67 @@ Trivial corrections may use a proportionate abbreviated record only when the own
 roadmap already authorises them and no tenancy, permission, schema, security, privacy or
 deployment risk is involved.
 
+### 5.1 Proportionate Control Depth
+
+IsoStack uses one lifecycle with three evidence depths. These are not new lanes, statuses,
+priorities, documents or sources of implementation authority.
+
+Control depth is independent of business priority, CR-Fix severity and expedite treatment.
+A `High`-depth slice is not automatically urgent, and an urgent or expedited correction
+cannot use `Low` to bypass evidence required by its actual risk.
+
+| Control depth | Use when | Minimum treatment |
+| --- | --- | --- |
+| `Low` | A tightly bounded presentation, wording or local interaction correction has no material authority, tenancy, privacy, security, schema, live-data, bulk-operation, finance, integration or environment consequence | Keep the authorised scope and ordinary lifecycle, but make the plan, confirmation and review concise. Run focused automated checks and one direct human proof where the behaviour is visible. |
+| `Standard` | Ordinary product behaviour with bounded and understood application impact | Use the normal slice plan, implementation confirmation, automated checks, human smoke where applicable and controlled promotion evidence. This is the default when classification is uncertain. |
+| `High` | Authentication, organisation authority, roles/permissions, tenant isolation, privacy/security, schema/migration/live data, payments, bulk communication, destructive action, credentials/runtime configuration or a material external-service contract is involved | Record explicit failure, rollback and negative-test boundaries; use the relevant full automated, tenant/role, migration, environment and human gates. |
+
+Record the selected depth in the existing triage or slice plan with one sentence explaining
+why. It controls the amount of evidence, not whether required evidence can be skipped. A
+human or later finding may raise the depth at any time. Reducing `High` requires an explicit
+reason in the same controlling record.
+
+Do not create a separate risk-assessment file, workflow branch or approval state merely to
+apply this table. If a low-risk correction is already inside an accepted active slice,
+record it there rather than creating a parallel lifecycle.
+
+### 5.2 Compact Active-Slice Checkpoint
+
+The currently controlling slice plan or review record must keep one compact checkpoint near
+its top while work is active:
+
+```text
+Current state:
+Last proven commit:
+Current environment:
+Next human decision/test:
+Safe resumption point:
+```
+
+Use `not yet applicable` where evidence does not yet exist. Update this checkpoint rather
+than copying it into another status document. It is a restart aid for the human and the
+next AI session, not a new lifecycle stage. Completed historical records do not need
+retrospective checkpoints.
+
+### 5.3 Evidence-First Confirmation And Review
+
+Implementation confirmations and review/test records lead with this compact evidence
+summary before any longer narrative:
+
+```text
+Exact commit:
+Files/change boundary:
+Automated checks:
+Human evidence:
+Environment proven:
+Known residual risk:
+Next authorised action:
+```
+
+Use explicit `not applicable`, `not run` or `pending` statements instead of silently
+omitting a field. Existing detailed evidence follows only where it assists review,
+reproduction or safe resumption.
+
 ## 6. Defects Discovered During Active Work
 
 When a defect is found while completing `Now`:
@@ -288,6 +349,16 @@ At the start of a new AI work session, the assistant must:
 5. follow capability ownership, not merely the UI route or source-file location; and
 6. work only within the requested and authorised boundary.
 
+For an implementation turn, the assistant must repeat back the five-point entry contract:
+
+```text
+Authorised outcome
+Do Not Build boundary
+Owning roadmap and selected slice
+Current branch and environment
+Required stopping point
+```
+
 For a `CR-Fix`, the assistant must additionally state whether it is capturing evidence,
 proposing/recording an expedite, implementing an already accepted remedial slice or closing
 the interrupt. It must not interpret the `CR-Fix` prefix as implementation authority.
@@ -302,7 +373,8 @@ or claim a deployment it has not verified.
 
 ## 8. AI Session Completion Contract
 
-Before handing work back, the assistant should record or report:
+Before handing work back, the assistant should use the Section 5.3 evidence summary and
+record or report:
 
 - the outcome achieved and exact boundary;
 - files or records changed;
@@ -333,6 +405,20 @@ into a completion claim.
 - Never record secrets, access tokens, complete personal data or sensitive database output
   in lifecycle documents.
 
+Apply test effort by environment:
+
+- local work proves the detailed functional, negative and regression boundary;
+- staging proves deployment, configuration, integration, realistic-data/scale and the
+  representative critical path affected by that environment;
+- live uses the minimum safe, non-destructive verification needed to prove service health
+  and the released critical path; and
+- repeat the full staging matrix only when schema, configuration, security, permissions,
+  integrations, realistic scale or another environment-specific risk makes repetition
+  material.
+
+An environment promotion never inherits an unproved claim, but it also does not require
+mechanical repetition of evidence that cannot vary between environments.
+
 ## 10. Branch And Promotion Language
 
 Use the plain-English corridor:
@@ -349,16 +435,28 @@ See `docs/core/how-we-work-addendum.md` and `docs/guides/git-workflow.md`.
 
 ## 11. Human Control Cadence
 
-Use a brief portfolio control review to:
+At the end of a release, or once per working week when no release completes, use a
+time-boxed 15-minute portfolio control review to:
 
-1. close or accurately re-dispose finished work;
-2. confirm one `Now` and one `Next`;
-3. triage only enough captured CRs to protect the next decision;
-4. identify blocked human evidence separately from unimplemented work; and
-5. refresh the printable summaries when their source roadmap materially changes.
+1. confirm every active/open CR has an explicit current disposition;
+2. close or accurately re-dispose finished work;
+3. confirm one `Now` and one `Next` and identify anything waiting only for a human action;
+4. confirm the active checkpoint and latest production commit/environment evidence;
+5. triage only enough captured CRs to protect the next decision; and
+6. refresh printable summaries only when their authoritative source materially changed.
 
 The full portfolio does not need to be held in working memory. The root and child roadmap
-inventories are the memory system.
+inventories are the memory system. Update those existing records directly; a routine review
+does not require a meeting, minutes or a new reconciliation document when nothing changed.
+
+### 11.1 Deliberate Non-Additions
+
+The solo human/AI method does not add Scrum ceremonies or artificial sprints, story points
+or velocity, another development ticket system, a separate remedial roadmap, extra approval
+statuses, a document for every minor decision or more persistent Git branches.
+
+Future process additions require a specific unresolved control failure and explicit control
+owner acceptance. Convenience or methodological fashion alone is not sufficient.
 
 ## 12. Companion Plain-English Guide
 

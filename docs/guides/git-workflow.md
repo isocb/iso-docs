@@ -4,7 +4,7 @@ Purpose: define the plain-English branch and promotion model used for day-to-day
 
 Scope: applies to collaborative development, AI-assisted work, staging promotion, and live release discussion.
 
-Last updated: 2026-07-22
+Last updated: 2026-08-24
 
 ---
 
@@ -45,6 +45,10 @@ not replace the controlled local target-branch merge with a direct remote ref pu
 6. Promote `dev` to `staging` when online testing is needed.
 7. Smoke test the staging environment.
 8. Promote to `live` only after explicit approval.
+
+Promote the accepted exact commit through the corridor. Do not recreate or selectively
+reimplement the change for each environment. Record the commit and any separately controlled
+migration/configuration bundle so environment evidence remains traceable.
 
 Database/schema changes must also follow the safe database workflow:
 
@@ -88,6 +92,22 @@ Before live promotion:
 Environment records must contain variable names, service names, environment ownership and
 PASS/FAIL evidence only. They must never contain passwords, access keys, complete database
 URLs, signed object URLs or provider secrets.
+
+### Proportionate Environment Proof
+
+Use environment testing to answer different questions rather than mechanically repeating
+the complete local matrix:
+
+- `local work branch`/`dev`: detailed functional, negative and regression proof;
+- `staging`: deployment, migration, configuration, integration, realistic-data/scale and
+  representative critical-path proof; and
+- `live`: minimum safe, non-destructive health and released-critical-path verification.
+
+Repeat the full staging matrix when schema, runtime configuration, authentication,
+permissions/tenant isolation, security, external integrations, realistic bulk scale or a
+similar environment-specific risk could change the result. A tightly bounded low-risk UI
+change may use a correspondingly narrow staging and live smoke, but no promotion may claim
+evidence that was never obtained.
 
 ---
 
@@ -143,3 +163,6 @@ Before promotion, answer these questions:
 6. Is any database change covered by the safe database workflow?
 7. Does the change introduce or alter environment variables for any web, worker or cron
    service, and is the separate staging/live environment gate documented?
+8. Is the exact commit and any migration/configuration bundle identified?
+9. Is the staging proof deliberately proportionate to the environment-specific risk?
+10. Is the minimum safe live smoke and subsequent roadmap reconciliation clear?

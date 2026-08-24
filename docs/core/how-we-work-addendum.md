@@ -6,7 +6,7 @@ portfolio and promotion method.
 Scope: developers, maintainers, contractors and AI assistants working with IsoStack
 repositories.
 
-Last updated: 2026-08-05
+Last updated: 2026-08-24
 
 ## Authoritative Working Method
 
@@ -38,6 +38,24 @@ documentation change.
 
 The root control changes only when cross-lane ownership/dependency, expedite status or the
 single `Now`/`Next` pair changes.
+
+## Proportionate Control In One Minute
+
+The lifecycle does not grow for small work. Record one control depth in the existing triage
+or slice plan:
+
+- `Low` for a tightly bounded non-sensitive presentation or local-interaction correction;
+- `Standard` for ordinary product work and whenever classification is uncertain; or
+- `High` for authority, tenancy, privacy/security, schema/live data, finance, bulk
+  communication, destructive work, credentials/configuration or material integrations.
+
+The depth changes evidence detail, not priority, authority, lifecycle stages or document
+count. Confirmations and reviews lead with exact commit, change boundary, automated and
+human evidence, proven environment, residual risk and next authorised action.
+
+The active controlling record also carries one in-place restart checkpoint: current state,
+last proven commit, current environment, next human decision/test and safe resumption point.
+Do not create a separate status document for it.
 
 ## Branch Corridor Model
 
@@ -72,7 +90,13 @@ child roadmap, the exact selected lifecycle records and the current worktree. It
 select work from an old chat, CR, plan or printable summary.
 
 At handoff, it states the achieved boundary, checks, pending human/environment gates,
-current disposition and whether child/root controls changed.
+current disposition and whether child/root controls changed. Detailed functional and
+negative proof belongs locally; staging concentrates on environment-specific proof and a
+representative critical path; live uses minimum safe non-destructive verification.
+
+No Scrum ceremony, artificial sprint, story point, velocity measure, additional ticket
+system, remedial roadmap, approval status, minor-decision document or persistent branch is
+introduced by this method.
 
 ## Related Guidance
 

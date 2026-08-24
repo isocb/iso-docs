@@ -2,6 +2,8 @@
 
 Date: 2026-08-05
 
+Last updated: 2026-08-24
+
 Purpose: explain, in plain English, how a new idea, defect or improvement enters the
 IsoStack development process without taking over the current work.
 
@@ -175,6 +177,34 @@ should define:
 
 Large CRs may produce several slices. Only the selected slice is active.
 
+### Choose Evidence Depth, Not Another Process
+
+Use the same lifecycle for all work and select only how much evidence it needs:
+
+| Depth | Plain-English rule |
+| --- | --- |
+| `Low` | A tightly bounded presentation, wording or local interaction change with no authority, tenancy, privacy, security, schema, live-data, bulk-operation, financial, integration or environment impact. Keep its existing records short and prove the directly changed behaviour. |
+| `Standard` | Normal bounded product work. This is the default. Use the ordinary plan, confirmation, checks, relevant human smoke and promotion proof. |
+| `High` | Authority/permissions, tenant isolation, security/privacy, schema/live data, payment, bulk communication, destructive work, credentials/configuration or material external integrations. State failure/rollback boundaries and use the relevant complete negative, role/tenant, environment and human gates. |
+
+Put the depth and one-line reason in the existing triage or slice plan. It does not add a
+lane, status, document or approval. It is separate from priority and CR-Fix urgency: a
+`High`-depth change is not automatically urgent, and an expedite cannot use `Low` to weaken
+its required proof. If uncertain, use `Standard`.
+
+While the slice is active, keep this restart checkpoint near the top of its controlling
+plan or review record:
+
+```text
+Current state:
+Last proven commit:
+Current environment:
+Next human decision/test:
+Safe resumption point:
+```
+
+Update it in place. Do not create a separate status document.
+
 ## Building, Proving And Releasing
 
 Implementation changes only the accepted slice. Then:
@@ -191,6 +221,26 @@ Implementation changes only the accepted slice. Then:
 
 5. Promotion and live operation are not claimed without evidence.
 
+Lead confirmations and reviews with the evidence that matters:
+
+```text
+Exact commit:
+Files/change boundary:
+Automated checks:
+Human evidence:
+Environment proven:
+Known residual risk:
+Next authorised action:
+```
+
+Detailed explanation follows only when it helps another person reproduce, review or safely
+resume the work.
+
+Use detailed functional and negative testing locally. In staging, concentrate on
+deployment, configuration, integrations, realistic data/scale and the representative
+critical path. In live, use the minimum safe non-destructive verification. Repeat a full
+matrix in staging only where an environment-specific risk makes it meaningful.
+
 ## Closing The Loop
 
 At the end of a cycle:
@@ -202,6 +252,12 @@ At the end of a cycle:
 - refresh the relevant printable summary; and
 - choose new work only after the previous control state is clear.
 
+At release completion, or once per working week, spend no more than 15 minutes confirming
+that open CRs have dispositions, `Now`/`Next` are truthful, human waits are visible, the
+active restart checkpoint is current and the latest production evidence is recorded.
+Update the authoritative records directly. If nothing changed, do not create minutes or a
+new reconciliation document.
+
 ## When Another Fault Appears Mid-Work
 
 - Inside the accepted outcome: correct it within the active slice and record it.
@@ -210,6 +266,10 @@ At the end of a cycle:
 - Everything else: register a CR, give it a disposition and return to `Now`.
 
 This is the protection against being swamped: **capture broadly, work narrowly**.
+
+The method deliberately does not add Scrum ceremonies, artificial sprints, story points,
+velocity, another development ticket system, a remedial roadmap, extra approval statuses,
+a document for every minor decision or more persistent Git branches.
 
 ## Worked Example: SeasonPro Cohort Email Draft Failure
 
