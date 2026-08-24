@@ -1,6 +1,6 @@
 # FUND Roadmap — One-Page Summary
 
-Snapshot: 2026-08-12
+Snapshot: 2026-08-24
 Status: Printable management summary — **not delivery authority**
 
 ## Purpose
@@ -11,15 +11,21 @@ payment contracts remain owned by Commerce Core.
 
 ## Current Position
 
-- **Portfolio NOW:** make the explicit `1R-F-A` Stage C authority decision.
-- **Portfolio NEXT:** if authorised, run the isolated temporary Render/private-object proof
-  once, prove zero residue, tear it down and conclude `1R-F-A`.
+- **Portfolio NOW:** LMSPro `R13-A` Free Day integrity and management presentation. It is
+  the only active child; accepted `R13-B` remains locked until R13-A closes and is
+  explicitly reselected.
+- **Portfolio NEXT:** resume the already accepted `1R-F-A` Stage C isolated temporary
+  Render/private-object proof from its preserved safe checkpoint.
 - Direct source inspection superseded inferred R1A. R1B preserves the physical landscape
   fold/control panel and portrait top-band hierarchy. Automation, 12/12 human/physical
   smoke pass at `6f9ef016`. Linux parity and the exact dev Security Scan pass at `139d09c4`.
   No later `1R-F` branch, `1R-G` or production artwork system is authorised.
-- Support Ticketing, email F3 and Role Authority are complete and no longer block FUND.
-- Application dev is exact FUND proof `139d09c4`; staging/main remain `cde4eaff`.
+- Support Ticketing, email F3 and Role Authority are complete and no longer block FUND. The
+  later LMSPro operational expedite temporarily displaces Stage C.
+- Application dev/staging/main are aligned at exact `fcd162db`. Exact Stage C candidate
+  `328aadf0` and its green Linux/security gates remain preserved by ancestry/evidence.
+- The temporary Render worker remains suspended, no application secrets are injected, the
+  private R2 proof bucket remains empty and existing auto-deploy services remain untouched.
 - `1R-H-A` preserves the accepted later Store Order short-code/single-artwork policy but is
   parked after public Store work and does not displace `1R-F-A`.
 
@@ -49,14 +55,17 @@ Commission aggregation, statements and settlement remain parked for later work.
 
 ## Immediate Management Rule
 
-Review `1R-F-A` output as an isolated feasibility proof. Do not let it absorb production
-schema, public Store, collective/Standard artwork or later branch delivery.
+Do not execute or modify Stage C while the LMSPro remediation is active. Preserve the exact
+candidate, suspended worker, no-secret/empty-bucket checkpoint and existing auto-deploy
+services. When resumed, keep `1R-F-A` as an isolated feasibility proof and do not let it
+absorb production schema, public Store, collective/Standard artwork or later branch delivery.
 
 ## Next Decision
 
-Decide whether the temporary Render/private-object Stage C adds proportionate evidence
-beyond the now-green local, physical and Linux gates. It still needs separate authority.
-`PLAT-ROLE-R1` remains parked unless an explicit trigger fires.
+After both ordered LMSPro remediation children and the parent CR-Fix close, re-verify the
+preserved Stage C checkpoint and restore `1R-F-A` as portfolio `Now`. Do not infer
+`1R-F-B`, `1R-G` or `1R-H-A`. `PLAT-ROLE-R1` remains parked unless an explicit trigger
+fires.
 
 Authoritative source:
 [`FUND Roadmap And Slice Control`](../../modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md)

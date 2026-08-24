@@ -15,6 +15,18 @@ Historical plans may remain in `planning/` until they are next touched. New acti
 
 Current boundary:
 
+- Active accepted plan: `R13-A` Free Day integrity and management presentation:
+  `2026-08-24-lmspro-remediation-slice-r13-a-free-day-integrity-and-management-presentation-planning.md`.
+- R13-A implementation has not started and requires an explicit control-owner instruction.
+- Sequential accepted but implementation-locked plan: `R13-B` Deferred Team Variation
+  workflow:
+  `2026-08-24-lmspro-remediation-slice-r13-b-deferred-team-variation-workflow-planning.md`.
+- R13-B cannot begin until R13-A implementation/review/test/roadmap closure and an explicit
+  reselection decision. FUND `1R-F-A` Stage C remains root portfolio `Next` throughout both
+  children.
+
+Recent historical boundary:
+
 - Historical implemented F1/F2 plan:
   `2026-08-05-lmspro-cr-fix-f1-f2-cohort-email-draft-persistence-and-audience-selection-planning.md`.
 - F1 human staging smoke passes; F2 fails and its independent-`BOTH` role contract is

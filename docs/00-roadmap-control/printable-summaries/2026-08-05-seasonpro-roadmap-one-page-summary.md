@@ -1,6 +1,6 @@
 # SeasonPro Roadmap — One-Page Summary
 
-Snapshot: 2026-08-10
+Snapshot: 2026-08-24
 Status: Printable management summary — **not delivery authority**
 
 ## Purpose
@@ -10,62 +10,35 @@ communications behaviour.
 
 ## Current Position
 
-- Email F3 exact application `72c02d92` passed its automated gates and 13/13 staging smoke,
-  is aligned through main, and is closed with public production health green.
-- **Portfolio NOW:** Platform Support Ticketing client-readiness triage.
-- **Portfolio NEXT:** select the first bounded Support Ticketing
-  security/privacy/operability prerequisite.
-- F1 human staging smoke passes through the maximum available 440-recipient draft, with a
-  341 ms broad-case server wait.
-- F2 failed because it treated C1/C2/hat-swap access context as independently selectable
-  roles. F2.1 replaces it and has passed final staging smoke.
-- F2.1 separates access context, functional roles and structural-cohort recipient types.
-  Local and final staging human smoke pass; exact commit `9974eed5` is aligned across
-  dev/staging/main after both pre-main Security Scans and public staging health passed.
-- Production review found that status controls are acting as recipient-producing cohorts
-  and Age Group/Division resolvers do not explicitly default Team/Club status to Current.
-  The corrected model unions selected Age Group/Division/Club and functional-role audience
-  sources, while season/status filters only restrict sources to which they apply.
-- F2.2 was implemented at `ec7e0cc4`; its corrections are retained by ancestry in current
-  branch-aligned application `83356030`. F3 is now implementation-authorised under its
-  dedicated 2026-08-06 triage and bounded plan.
-- F2.2 also includes two bounded UI fixes: show the complete recipient count in the tab
-  badge, and return to an unfiltered Email list after successful Send while retaining the
-  status filter.
-- `R11-A` refines the recipient picker with closed-by-default accordions, stored-selection
-  disclosure, clearer Division/Age Group recipient-type grouping and responsive mobile
-  presentation. Automated/build and local human smoke 18/18 PASS; exact `83356030` is
-  all green in staging and aligned through main. Live deployment is triggered and public
-  health is green; exact Render-build identification and authenticated production smoke
-  remain. It does not alter audience resolution, delivery or the portfolio `Now`/`Next`.
-- `R10-A Responsive C1 Club Management` is complete and closed after a totally-green
-  control-owner production smoke.
-- Role Authority matrix is accepted with corrected C1/C2 persona wording. First
-  `PLAT-ROLE-02` checkpoint `5e551938` failed usefully and was not promoted. Corrective
-  `7e453665` contains the four Critical paths, complete persona enforcement and bounded
-  Club-access finding; exact `60ac76c1` is aligned through main, all exact scans pass,
-  staging smoke is 8/8 and staging/production health is green.
-  Club Officials subsequently proved two consumer defects, both corrected by
-  `PLAT-ROLE-02B`. The complete 18-item human matrix now passes. An item-7 Club edit exposed
-  one retained former current-season junction; its focused retest and read-only exact
-  junction proof pass. Production Render/C1/C2 evidence also passes, including same-Club
-  sibling C2 creation and magic-link authentication. Role Authority is complete and closed;
-  Support Ticketing is active and FUND remains parked.
-- The two newly published High dependency advisories are corrected locally with exact
-  patched overrides, zero audit findings, full regression and build PASS. The dependency
-  correction remains a separate child commit; exact dev, staging and main scans pass.
+- **Portfolio NOW:** accepted `R13-A` Free Day integrity and management presentation plan.
+- **Portfolio NEXT:** resume FUND `1R-F-A` Stage C from its preserved safe checkpoint.
+- The remediation is one tactical project with two ordered bounded lifecycles:
+  Free Day integrity/management presentation first, Deferred Team Variation second.
+- Both `03` records are accepted. `R13-A` is the only active child and its explicit
+  implementation decision is next. `R13-B` Deferred Variation is plan-ready but
+  implementation-locked until R13-A closure/reconciliation and a new explicit decision.
+- Exact application `fcd162db` is aligned through dev, staging and main, live and the
+  reproduction baseline. The local remediation branch is clean at that exact commit.
+- Existing R12-A Free Day notice authority remains accepted and must not be reopened.
+- Existing notification events, recipients and routing remain unchanged; Deferred
+  communication is manual.
+- Existing data requires no repair or rewrite.
+- F3, R10-A, R11-A, R12-A, Role Authority and Support Ticketing are complete at their
+  recorded evidence boundaries.
 
 ## Recently Completed
 
 - `R7`: small UI/count polish, live and closed.
 - `R8`: attachment-aware email delivery and bounded corrections, live and closed.
 - `R9`: email integrity, Club visibility and remedial programme, production-complete.
+- `R10-A`: responsive C1 Club management, production-smoked and closed.
+- `R11-A`: recipient-tab accordion/responsive layout, included in live ancestry.
+- `R12-A`: Free Day owner notice authority, included in live ancestry and preserved.
 
 ## Open Or Parked Inputs
 
-- **Urgent email draft-persistence `CR-Fix`:** expedite accepted. F1 corrects the former
-  5.92-second broad-cohort failure and now passes human staging smoke. F2's product model
-  failed review; F2.1 is the accepted replacement and is promoted to main.
+- **Current Free Day/Variation `CR-Fix`:** triage accepted the expedite and two-child order;
+  R13-A and R13-B plans are accepted, with only R13-A active.
 - **500-recipient email operating envelope:** evidence includes a successful real send to
   414 recipients without attachments. The CR is registered and awaits communications /
   capacity triage; no limit change is authorised. The new `CR-Fix` owns the separate live
@@ -80,15 +53,14 @@ communications behaviour.
 
 ## Immediate Management Rule
 
-Do not reopen completed F3 without a new production finding. Keep Role Authority work inside
-the selected matrix/containment boundaries; do not combine live repair or the wider service.
+Keep the two remediation children sequential. Do not implement from the CR or triage alone,
+rewrite existing data, change notification routing or run FUND Stage C in parallel.
 
 ## Next Decision
 
-Proceed with Support Ticketing client-readiness triage. Historical `PLAT-ROLE-03`,
-`LMS-ROLE-01` and `LMS-ROLE-02` plans are not next slices. Their exact remaining assurance
-questions are parked as trigger-based `PLAT-ROLE-R1` and do not block Support Ticketing or
-the later FUND resumption.
+Decide whether to begin bounded R13-A implementation. Keep R13-B implementation locked
+until R13-A closes and is reconciled. Resume FUND only after both children and the parent
+CR-Fix close and the root portfolio is reconciled.
 
 Authoritative source:
 [`LMSPro / SeasonPro Roadmap And Slice Control`](../../modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md)

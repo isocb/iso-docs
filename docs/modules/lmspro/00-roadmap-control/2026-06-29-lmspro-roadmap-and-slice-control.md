@@ -1,7 +1,7 @@
 # LMSPro / SeasonPro Roadmap And Slice Control
 
 Date: 2026-06-29
-Last updated: 2026-08-11
+Last updated: 2026-08-24
 Module: LMSPro / SeasonPro
 Control status: Active authoritative LMSPro / SeasonPro child roadmap and delivery-cycle control
 
@@ -9,7 +9,7 @@ Parent portfolio control:
 
 `docs/00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md`
 
-## 0. Authoritative CR Inventory And Current LMSPro Disposition — 2026-08-11
+## 0. Authoritative CR Inventory And Current LMSPro Disposition — 2026-08-24
 
 This file is confirmed as the one authoritative LMSPro / SeasonPro child roadmap. The root
 Platform/module roadmap owns the one serial cross-lane `Now` and `Next`. CR inputs, triage,
@@ -36,47 +36,32 @@ authority. Later disposition changes must update the existing row.
 | [`CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md`](../01-cr-inputs/CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md) | F1 PASS; F2 superseded; F2.1/F2.2 delivered; F3 exact `72c02d92` automated gates and staging smoke 13/13 PASS; dev/staging/main aligned; public production health PASS; no schema/migration | F3 complete and closed; any later regression requires a new CR-Fix |
 | [`2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md`](../01-cr-inputs/2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md) | R11-A implemented with corrected combined Division/Age Group recipient-type widget, session disclosure and responsive layout; focused/full tests, type, verification, lint and 131-page build PASS; authenticated local UI smoke 18/18 and staging smoke all green; exact `83356030` is retained by ancestry in current `60ac76c1`; public live health PASS; no schema/API/provider/configuration change | Live branch promotion complete; retained evidence does not displace the reconciled R12-A/Support Ticketing `Now`/`Next` |
 | [`CR-Fix-2026-08-11-lmspro-free-day-owner-notice-authority.md`](../01-cr-inputs/CR-Fix-2026-08-11-lmspro-free-day-owner-notice-authority.md) | Complete green local smoke; R12-A `39a25d99` is retained in exact accepted production head `cde4eaff`; all exact scans, public health and Render production identity pass | Production inclusion complete by ancestry; retain bounded evidence and close with the combined release |
+| [`CR-Fix-2026-08-24-lmspro-free-day-and-team-variation-request-remediation.md`](../01-cr-inputs/CR-Fix-2026-08-24-lmspro-free-day-and-team-variation-request-remediation.md) | [Formal triage](../02-triage/2026-08-24-lmspro-cr-fix-free-day-and-team-variation-request-remediation-triage.md) accepted an operational expedite with two ordered bounded lifecycles; [R13-A Free Day](../03-slice-planning/2026-08-24-lmspro-remediation-slice-r13-a-free-day-integrity-and-management-presentation-planning.md) and [R13-B Deferred Variation](../03-slice-planning/2026-08-24-lmspro-remediation-slice-r13-b-deferred-team-variation-workflow-planning.md) plans are accepted | Portfolio `Now` is R13-A only. Implementation has not started and requires explicit instruction. R13-B implementation is locked until R13-A closure/reconciliation and a new explicit decision; FUND Stage C remains root `Next` |
 
 Current LMSPro portfolio disposition:
 
 ```text
-NOW  -> Combined exact cde4eaff staging identity and bounded R12-A/Support acceptance
-NEXT -> Main-promotion decision, then FUND 1R-F-A from its documented boundary
+ROOT NOW -> accepted Free Day and Team Variation Request remediation CR-Fix
+LMS NOW  -> accepted R13-A Free Day plan; implementation decision is next
+LOCKED FOLLOW-ON -> accepted R13-B Deferred Team Variation plan; no implementation before R13-A closure/reselection
+ROOT NEXT -> resume FUND 1R-F-A Stage C from its preserved safe checkpoint
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; historical PLAT-ROLE-03/LMS-ROLE-01/02 are not next slices
-PARKED -> FUND 1R-F-A at its exact pre-planning boundary
+PARKED -> 500-recipient operating envelope, R5-C evidence reconciliation and other registered candidates
 ```
 
-The control owner completed the displaced R10-A smoke as totally green. The current root/child
-pair is therefore:
+The control owner accepted this operational expedite on 2026-08-24 and explicitly placed it
+before further FUND work. The application baseline is exact aligned `fcd162db`; the local
+application remediation branch is clean. Both `03` plans are now accepted. R13-A owns Free
+Day quota, list, sorting, summary navigation, date-only and Special-list correctness and is
+the only active child. R13-B owns the additive Deferred Variation state and transitions but
+remains implementation-locked until R13-A closure/reconciliation. They are sequential, not
+parallel, and neither application implementation has started.
 
-```text
-NOW  -> Combined exact cde4eaff staging identity and bounded R12-A/Support acceptance
-NEXT -> Main-promotion decision, then FUND 1R-F-A from its documented boundary
-PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; historical PLAT-ROLE-03/LMS-ROLE-01/02 are not next slices
-PARKED -> FUND 1R-F-A bounded planning
-```
-
-F3, R10-A and Role Authority are complete and closed. R12-A local smoke is complete and its
-exact code remains in the ancestry of current staging head `cde4eaff`. Support Ticketing is
-also delivered in that staging head after a 24/24 local human pass and exact green dev and
-staging scans. The bounded R12-A and Support staging gates now form one deployment-identity
-acceptance boundary. FUND `1R-F-A` is preserved at its exact
-pre-planning boundary until those housekeeping outcomes are complete. `PLAT-ROLE-01` is
-corrected, accepted and complete. First `PLAT-ROLE-02` checkpoint `5e551938` failed usefully
-and was not promoted; corrective `7e453665` passed technical gates. `PLAT-ROLE-02A` passed
-its corrected Owner-control gate, `PLAT-ROLE-02B` corrected the Club Officials read and
-whole-role replacement defects, and the complete parent 1–18 matrix is accepted. Item 7
-then exposed one stale former current-season Club junction beneath an otherwise correct C2
-Club edit. Its focused retest and read-only Derby exact-junction proof pass, completing the
-local Role gate. Staging then passed 8/8 and the read-only exact-current-Club proof; dev,
-staging and main are aligned at `60ac76c1`. The separate 2026-08-09 Platform
-dependency CR-Fix is accepted and technically green locally at
-`js-yaml@4.3.1`/`nanoid@3.3.18`. It follows the Role child as a separate commit in one
-release candidate. Exact dev/staging/main Security Scans and staging/production public
-health, production Render identity and production C1/C2 evidence pass. A C2 Member created
-a sibling same-Club C2 Member which authenticated successfully by magic link. Historical
-`PLAT-ROLE-03`/`LMS-ROLE-01`/`LMS-ROLE-02` plans are superseded as next work; only exact
-trigger-based `PLAT-ROLE-R1` remains parked and it does not block Support Ticketing or FUND.
+FUND `1R-F-A` Stage C is displaced to root `Next` at its preserved checkpoint: exact
+candidate `328aadf0` retained, temporary Render worker suspended, no application secrets,
+private R2 proof bucket empty and existing auto-deploy services untouched. No Stage C run,
+credential action, teardown claim or later FUND child may proceed until both LMSPro children
+close and the portfolio is reconciled.
 
 ## Purpose
 
@@ -158,7 +143,8 @@ Current work should remain on dev/remediation branches until reviewed and explic
 Current app alignment:
 
 ```text
-local/remote dev = staging = main = exact combined Role/security release 60ac76c1
+local/remote dev = staging = main = exact combined PLAT-ROLE-04A release fcd162db
+local fix/lmspro-free-day-variation-request-remediation = exact fcd162db and clean
 F3 staging smoke = 13/13 PASS; exact main promotion = COMPLETE
 Render live public health = PASS; database connected; RLS 11/11
 PLAT-ROLE-01 = complete; all 13 matrix items accepted with corrected C1/C2 persona wording
@@ -169,8 +155,9 @@ same-Club C2 sibling creation and magic-link authentication = PASS
 Role Authority project = COMPLETE AND CLOSED
 ```
 
-Application `60ac76c1` is the current branch-aligned baseline and includes prior LMSPro,
-FUND and Commerce work by ancestry.
+Application `fcd162db` is the current branch-aligned and live baseline and includes prior
+LMSPro, FUND and Commerce work by ancestry. It is the exact reproduction baseline accepted
+by the 2026-08-24 CR-Fix triage.
 The control owner reported the final R10-A production smoke totally green on 2026-08-05.
 After all ten F2.1 staging checks passed, the control owner authorised its promotion. F2.2
 subsequently passed automated/build gates and all 15 staging human-smoke checks. The control

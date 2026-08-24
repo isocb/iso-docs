@@ -2,11 +2,11 @@
 
 Date: 2026-07-27
 
-Last portfolio reconciliation: 2026-08-17
+Last portfolio reconciliation: 2026-08-24
 
 Status: Active parent roadmap
 
-## 0. Current Portfolio Control — 2026-08-17
+## 0. Current Portfolio Control — 2026-08-24
 
 This section is the current cross-lane control and supersedes older global `single next`
 wording later in this document. Older statements remain evidence of the sequence at the
@@ -30,7 +30,7 @@ Current application evidence:
 
 ```text
 local dev = origin/dev = origin/staging = origin/main = exact PLAT-ROLE-04A fcd162db
-local dev also retains one preserved user workspace edit outside the commit
+application remediation branch fix/lmspro-free-day-variation-request-remediation = exact fcd162db and clean
 PLAT-ROLE-04 main Security Scan 32015051267 = PASS
 PLAT-ROLE-04 production Render deploy dep-da1d6jh42hec73akbcp0 = LIVE at 250baf12
 PLAT-ROLE-04 production health = HTTP 200; database connected; RLS 11/11
@@ -65,8 +65,8 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Resume only from the recorded safe checkpoint: temporary Render worker suspended, no application secrets injected and private R2 proof bucket empty. Preserve the exact Stage C candidate and existing auto-deploy services. |
-| **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
+| **NOW** | LMSPro `R13-A` Free Day integrity and management presentation | Both ordered child plans are accepted. `R13-A` is the only active child at exact application baseline `fcd162db`; implementation has not started and requires an explicit control-owner instruction. `R13-B` planning is ready but its implementation remains locked until `R13-A` closure/reconciliation and a new explicit decision. |
+| **NEXT** | Resume accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Resume only from the recorded safe checkpoint: exact candidate `328aadf0` preserved, temporary Render worker suspended, no application secrets injected, private R2 proof bucket empty and existing auto-deploy services untouched. Reconcile Stage C only after the complete LMSPro CR-Fix closes. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
 promotion. Exact `250baf12` is aligned through main; all protected scans, Render identity,
@@ -76,10 +76,21 @@ production human smoke remains pending. The control owner then selected bounded
 staging/production Render identity and health green. Every staging-applicable human check passes; manufacturing
 malformed fixture data was correctly avoided and retained local/automated evidence closes
 those two checks. Its three-check read-only production smoke also passes, closing the
-CR-Fix. FUND Stage C resumes as portfolio `Now`; its result reconciliation is `Next`.
+CR-Fix. FUND Stage C then resumed until the control owner's 2026-08-24 LMSPro operational
+expedite decision. The accepted LMSPro CR-Fix is now the only portfolio `Now`; preserved
+FUND Stage C is `Next` at its exact safe checkpoint. The former Stage C-result
+reconciliation remains registered but temporarily loses formal `Next` position.
 
 Registered and ordered work outside that pair:
 
+- LMSPro Free Day and Team Variation Request remediation `CR-Fix`: accepted on 2026-08-24
+  as one operational expedite with two ordered bounded lifecycles. Free Day integrity and
+  management presentation is accepted as active plan `R13-A`; Deferred Team Variation is
+  accepted as sequential plan `R13-B` and carries a distinct additive-migration gate.
+  Existing data repair and new Deferred notifications are excluded. The accepted
+  [triage](../modules/lmspro/02-triage/2026-08-24-lmspro-cr-fix-free-day-and-team-variation-request-remediation-triage.md)
+  and subsequent control-owner planning instruction permit both `03` records, but do not
+  authorise application implementation. `R13-B` cannot begin in parallel;
 - Platform `CR-Fix-PLAT-ROLE-04` P1 tenant module persona recovery: accepted urgent
   remedial expedite delivered through exact main `250baf12`. The authoritative P1 Client Users surface now
   separates Core authority from exact SeasonPro persona, supports deliberate exact-default
@@ -91,10 +102,9 @@ Registered and ordered work outside that pair:
   discoverability and module activation gating in exact `fcd162db`; the local gate and
   dev/staging technical gates and applicable human smoke pass; exact `fcd162db` is now live
   through main and 3/3 production smoke passes. The CR-Fix is complete and closed; Fund
-  Stage C resumes as portfolio `Now`;
-- LMSPro R12-A Free Day owner-notice authority: complete green local human pass; exact
-  `39a25d99` is aligned through staging; exact dev/staging scans and public health pass.
-  Render identity/human acceptance is `Now`; main remains unchanged;
+  Stage C was restored before the later LMSPro expedite and is now preserved as `Next`;
+- LMSPro R12-A Free Day owner-notice authority: complete and retained by ancestry in exact
+  production application `fcd162db`; the new CR-Fix preserves that notice-period authority;
 - Platform/SeasonPro role-authority clarification: complete and closed. `PLAT-ROLE-01` is
   complete; `PLAT-ROLE-02A` is accepted; the complete parent 1–18 matrix passes;
   `PLAT-ROLE-02B` is accepted, its fixture is repaired, and the focused item-7
@@ -121,7 +131,8 @@ Registered and ordered work outside that pair:
   R1B automation and physical review pass; exact proof `6f9ef016` is dev-aligned with its
   Security Scan green. Stage B Linux-container parity is now green at exact `139d09c4`;
   the dedicated Stage C plan is accepted and its bounded implementation, exact-commit
-  gates, one-off isolated execution and teardown are portfolio `Now`.
+  gates, one-off isolated execution and teardown were selected before the LMSPro expedite
+  and are now preserved as portfolio `Next`.
   Existing Resend transport is retained; generic retry
   infrastructure and Platform Notice remain separate trigger-based work;
 - LMSPro 500-recipient operating envelope: standard communications/capacity triage input;
@@ -138,8 +149,10 @@ Registered and ordered work outside that pair:
   automated-green with three handwritten fields, two rich-text blocks and `200 × 192 mm` /
   `171 × 180 mm` artwork. Human/physical review passes 12/12 and exact `6f9ef016` is aligned
   to dev with Security Scan `31589031306` green. Stage B Linux parity run `31595635243`
-  and exact `139d09c4` Security Scan `31595635276` pass. Stage C is now accepted and
-  authorised under its dedicated 2026-08-12 contract; no external result is yet recorded;
+  and exact `139d09c4` Security Scan `31595635276` pass. Stage C is accepted and
+  authorised under its dedicated 2026-08-12 contract, but external execution is paused at
+  the preserved safe checkpoint behind the accepted LMSPro expedite; no external result is
+  yet recorded;
 - FUND `1R-H-A`: Store Order short-code and single-artwork correlation plan registered as a
   parked downstream inventory item after public Store `1R-G`; it does not displace the
   current `1R-F-A` pair or authorise Order implementation;
