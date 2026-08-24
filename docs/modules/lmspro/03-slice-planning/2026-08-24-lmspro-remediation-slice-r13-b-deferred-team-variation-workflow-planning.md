@@ -4,14 +4,19 @@ Date: 2026-08-24
 
 Module: LMSPro / SeasonPro
 
-Status: **ACCEPTED SEQUENTIAL PLAN; IMPLEMENTATION INACTIVE AND BLOCKED UNTIL R13-A
-CLOSURE/ROADMAP RECONCILIATION PLUS A NEW EXPLICIT CONTROL-OWNER IMPLEMENTATION DECISION**
+Status: **ACTIVE SOLE PORTFOLIO CHILD; LOCAL IMPLEMENTATION AUTHORISED FROM EXACT R13-A
+CLOSURE BASELINE; NO SHARED MIGRATION OR PROMOTION AUTHORISED**
 
 Control depth: **High** — schema migration, workflow transitions, tenant/Club/Team authority
-and C2 cancellation require complete migration, rollback, negative and human evidence. R13-B
-is inactive, so the active-slice restart checkpoint remains only in R13-A. When root control
-later activates R13-B, this plan must gain the five-field current-state, last-proven-commit,
-environment, next-human-gate and safe-resumption checkpoint before implementation begins.
+and C2 cancellation require complete migration, rollback, negative and human evidence.
+
+```text
+Current state: R13-A accepted and closed at staging; R13-B selected as sole portfolio Now; local implementation authorised and not yet begun
+Last proven commit: e7a756cc39eac65b71729490f8c6c26f30435eb6
+Current environment: clean local remediation work branch at exact e7a756cc; local application and local DevData only; no R13-B migration applied
+Next human decision/test: controlled local C1/C2 human acceptance after isolated migration and automated gates pass
+Safe resumption point: implement the additive enum/nullable-field migration and failing-first transition/authority coverage; do not migrate a shared database, push, promote or deploy
+```
 
 Source CR-Fix:
 
@@ -30,14 +35,14 @@ Planning baseline:
 ```text
 repository: isostack-bedrock
 branch: fix/lmspro-free-day-variation-request-remediation
-commit inspected: fcd162db60956858233821fd3f29c55e17d954dd
-implementation baseline: must be re-resolved to the exact accepted R13-A closure commit
+planning investigation commit: fcd162db60956858233821fd3f29c55e17d954dd
+implementation baseline: e7a756cc39eac65b71729490f8c6c26f30435eb6
 ```
 
 ## 1. Control Decision And Objective
 
-Accept `R13-B` as the second bounded child plan so its schema, transition, authority and
-acceptance contract is ready without starting parallel work.
+Activate `R13-B` as the second bounded child after accepted R13-A closure so its schema,
+transition, authority and presentation contract can be implemented locally.
 
 The objective is to add a durable `DEFERRED` Team Variation Request state with the exact
 workflow:
@@ -50,8 +55,7 @@ Deferral applies no Team change. Once returned to Pending, the existing normal
 approve/reject/reply workflow resumes. An authorised C2 submitter can see the Deferred state
 and optional reason and can cancel its own Deferred request.
 
-This record does not make `R13-B` active. No schema, migration, Prisma generation,
-application edit, database action or implementation test for this child may begin until:
+The following activation conditions are satisfied on 2026-08-24:
 
 1. `R13-A` has reached accepted implementation/review/test/roadmap closure;
 2. the root roadmap explicitly selects `R13-B` as the sole portfolio `Now` and reconciles
@@ -59,9 +63,14 @@ application edit, database action or implementation test for this child may begi
 3. the exact application baseline is re-recorded; and
 4. the control owner explicitly instructs `R13-B` implementation.
 
+That instruction authorises bounded schema/application/test changes, local Prisma generation,
+isolated/local migration proof and local evidence. It does not authorise applying the migration
+to a shared database, pushing, promotion or deployment.
+
 ## 2. Confirmed Source Boundary
 
-Read-only investigation at `fcd162db` established:
+Read-only investigation at `fcd162db`, revalidated against exact implementation baseline
+`e7a756cc`, established:
 
 - `TeamVariationRequestStatus` contains `PENDING`, `APPROVED`, `UPDATE_CONFIRMED`,
   `REJECTED` and `CANCELLED`, but no `DEFERRED`;
@@ -298,9 +307,9 @@ local and staging evidence.
 
 ## 9. Recovery And Stop Conditions
 
-Before implementation, rebase the plan's file inventory and migration assumptions against
-the exact accepted R13-A closure commit. Do not silently implement from `fcd162db` if that is
-no longer the branch head.
+The file inventory and migration assumptions were re-resolved against exact accepted R13-A
+closure commit `e7a756cc`. Implementation must not use the older `fcd162db` investigation
+commit as its branch head.
 
 Stop and return to triage if:
 

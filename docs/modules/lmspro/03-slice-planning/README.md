@@ -15,17 +15,17 @@ Historical plans may remain in `planning/` until they are next touched. New acti
 
 Current boundary:
 
-- Active accepted plan: `R13-A` Free Day integrity and management presentation:
+- Closed predecessor: `R13-A` Free Day integrity and management presentation:
   `2026-08-24-lmspro-remediation-slice-r13-a-free-day-integrity-and-management-presentation-planning.md`.
 - R13-A runtime `71ed589b` is retained in exact corridor tip `e7a756cc` through
-  `origin/staging`; local, Security and public-health gates pass. Render identity and focused
-  S1-S4 staging smoke are the remaining closure gate.
-- Sequential accepted but implementation-locked plan: `R13-B` Deferred Team Variation
+  `origin/staging`; local, Security, public-health, exact Render identity and focused S1-S4
+  staging gates pass. R13-A is closed at staging; no live promotion occurred.
+- Active accepted plan: `R13-B` Deferred Team Variation
   workflow:
   `2026-08-24-lmspro-remediation-slice-r13-b-deferred-team-variation-workflow-planning.md`.
-- R13-B cannot begin until R13-A implementation/review/test/roadmap closure and an explicit
-  reselection decision. FUND `1R-F-A` Stage C remains root portfolio `Next` throughout both
-  children.
+- R13-B bounded local implementation is authorised from exact `e7a756cc`; no shared migration,
+  push, promotion or deployment is authorised. FUND `1R-F-A` Stage C remains root portfolio
+  `Next` until the complete parent remediation closes.
 
 Recent historical boundary:
 

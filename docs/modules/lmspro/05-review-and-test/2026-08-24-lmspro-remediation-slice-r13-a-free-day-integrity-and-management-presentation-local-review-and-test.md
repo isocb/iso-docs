@@ -2,8 +2,8 @@
 
 Date: 2026-08-24
 
-Review status: **EXACT CANDIDATE PROMOTED TO ORIGIN/STAGING; LOCAL AND SECURITY GATES PASS;
-RENDER IDENTITY AND REPRESENTATIVE STAGING HUMAN GATE PENDING**
+Review status: **ACCEPTED AND CLOSED AT THE AUTHORISED STAGING BOUNDARY; LOCAL, SECURITY,
+EXACT RENDER IDENTITY AND REPRESENTATIVE STAGING GATES PASS**
 
 Exact commit: R13-A runtime `71ed589b9c6c55a8832fbfa1669de143236ec783`; promoted corridor
 tip `e7a756cc39eac65b71729490f8c6c26f30435eb6` includes only a later root-AGENTS path
@@ -16,21 +16,20 @@ Automated checks: **PASS** — focused 35/35; full repository 471 passed and 12 
 skipped; TypeScript, repository verification, targeted production lint, whitespace and the clean
 Node 22 production build pass. Work-branch/dev/staging Security Scans pass.
 
-Human evidence: **LOCAL PASS; STAGING PENDING.** The control owner records H1-H11 PASS using
+Human evidence: **LOCAL AND STAGING PASS.** The control owner records H1-H11 PASS using
 controlled local C1/C2 personas and non-sensitive fixtures. H8 first exposed the Special
 Team-selector quota defect; after correction, the control owner reran H8 and recorded PASS.
-The proportionate authenticated S1-S4 staging matrix has not yet been reported.
+The control owner confirmed exact Render identity and authenticated S1-S4 PASS.
 
 Environment proven: local application/DevData and exact Git alignment through
 `origin/staging`. Public staging health is HTTP 200 with database connected and RLS 11/11;
-exact Render deployment identity remains pending. No live claim.
+exact Render `e7a756c` identity and S1-S4 pass. No live claim.
 
-Known residual risk: public health cannot prove the deployed commit or authenticated C1/C2
-behaviour. R13-A is not closed and R13-B is not active until those focused staging checks pass.
+Known residual risk: no R13-A live promotion was requested or performed; production remains
+on its earlier baseline.
 
-Next authorised action: record Render Live at `e7a756c` and S1-S4 staging results. On PASS,
-close/reconcile R13-A and activate R13-B under the control owner's explicit instruction. Do not
-promote to live.
+Next authorised action: close/reconcile R13-A and implement active R13-B locally under the
+control owner's explicit instruction. Do not promote or migrate a shared environment.
 
 Implementation confirmation:
 
@@ -140,10 +139,10 @@ each row `PASS`, `FAIL` or `NOT RUN`:
 
 | Ref | Check | Status/evidence |
 | --- | --- | --- |
-| S1 | Render staging displays exact `Live at e7a756c`; public health is HTTP 200 with database connected and RLS 11/11. | PARTIAL — public health PASS at 2026-08-24T15:14:52Z; Render identity pending. |
-| S2 | C1 quota/list summaries agree; C2 shows the same configured seasonal allowance and a Special request Team remains selectable at standard quota. | NOT RUN. |
-| S3 | One existing GMT/BST Free Day displays the same calendar date in C1 and C2. | NOT RUN. |
-| S4 | One disposable status/request action refreshes the affected list, summary and Team quota without hard reload. | NOT RUN. |
+| S1 | Render staging displays exact `Live at e7a756c`; public health is HTTP 200 with database connected and RLS 11/11. | PASS — public health passed at 2026-08-24T15:14:52Z; control owner confirmed exact `e7a756c`. |
+| S2 | C1 quota/list summaries agree; C2 shows the same configured seasonal allowance and a Special request Team remains selectable at standard quota. | PASS — control-owner report. |
+| S3 | One existing GMT/BST Free Day displays the same calendar date in C1 and C2. | PASS — control-owner report. |
+| S4 | One disposable status/request action refreshes the affected list, summary and Team quota without hard reload. | PASS — control-owner report. |
 
 ## 6. Stop And Escalation Rules
 
@@ -165,10 +164,11 @@ production build: PASS under repository-required Node 22.23.2
 work-branch/dev/staging Security Scans: PASS
 dev and origin/dev: MATCH
 staging and origin/staging: MATCH; promoted
-public staging health: PASS; Render exact identity and S1-S4 human gate pending
+public staging health: PASS; Render exact identity and S1-S4 human gate PASS
 live promotion: not authorised and not performed
-R13-B: remains inactive
+R13-B: explicitly selected and activated after this closure
 ```
 
-Local acceptance and Git promotion through `origin/staging` pass. R13-A closure and R13-B
-activation remain gated only on Render identity and the proportionate S1-S4 staging evidence.
+Local acceptance, Git promotion through `origin/staging`, exact Render identity and the
+proportionate S1-S4 staging gate pass. R13-A is accepted and closed at the authorised staging
+boundary. No live promotion occurred; root/child control now activates R13-B.

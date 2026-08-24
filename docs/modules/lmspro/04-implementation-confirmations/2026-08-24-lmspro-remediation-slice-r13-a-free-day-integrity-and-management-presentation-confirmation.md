@@ -2,8 +2,8 @@
 
 Date: 2026-08-24
 
-Status: **EXACT RUNTIME CANDIDATE PROMOTED TO ORIGIN/STAGING; LOCAL GATES AND ALL SECURITY
-SCANS PASS; STAGING IDENTITY/HUMAN GATE PENDING**
+Status: **IMPLEMENTATION ACCEPTED AND CLOSED AT THE AUTHORISED STAGING BOUNDARY; LOCAL,
+SECURITY, EXACT RENDER IDENTITY AND REPRESENTATIVE STAGING GATES PASS**
 
 Exact commit: **R13-A runtime `71ed589b9c6c55a8832fbfa1669de143236ec783`.** The promoted
 corridor tip is `e7a756cc39eac65b71729490f8c6c26f30435eb6`, whose only later change clarifies the
@@ -25,15 +25,13 @@ owner reran H8 and recorded PASS.
 
 Environment proven: local application/DevData and the Git promotion corridor through
 `origin/staging`. Public staging health is HTTP 200 with database connected and RLS 11/11.
-Exact Render `Live at` identity and representative authenticated staging smoke remain pending.
+Exact Render `e7a756c` identity and representative authenticated S1-S4 staging smoke pass.
 
-Known residual risk: public health does not expose the deployed commit and cannot substitute
-for Render identity or the representative C1/C2 staging critical path. No live promotion is
-authorised or performed.
+Known residual risk: no R13-A live promotion was requested or performed; production remains
+on its earlier baseline.
 
-Next authorised action: record Render staging Live at `e7a756c` and the proportionate S1-S4
-staging smoke. If they pass, close/reconcile R13-A and activate R13-B under the control owner's
-2026-08-24 instruction. Do not promote to live.
+Next authorised action: close/reconcile R13-A and implement active R13-B locally under the
+control owner's 2026-08-24 instruction. Do not promote or migrate a shared environment.
 
 Accepted plan:
 
@@ -175,5 +173,5 @@ configuration produced the expected warning; no credential or configuration chan
 
 This is an application-only candidate. Recovery is a bounded revert of runtime commit
 `71ed589b`; there is no schema/data rollback. The exact corridor tip is consolidated through
-`dev`/`origin/dev` and promoted to `staging`/`origin/staging`. No live promotion or external
-provider Send was performed; the Render staging deployment identity remains to be confirmed.
+`dev`/`origin/dev` and promoted to `staging`/`origin/staging`. Exact Render identity and S1-S4
+pass. No live promotion or external provider Send was performed.

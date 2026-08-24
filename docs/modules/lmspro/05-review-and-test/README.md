@@ -1,11 +1,11 @@
 # LMSPro Review And Test
 
-Current local review:
+Most recent accepted staging review:
 
 - `2026-08-24-lmspro-remediation-slice-r13-a-free-day-integrity-and-management-presentation-local-review-and-test.md`
   records R13-A static/automated/build PASS and control-owner local C1/C2 H1-H11 PASS. It
-  records exact promotion through `origin/staging`, all Security Scans and public health PASS;
-  Render identity and focused S1-S4 staging smoke remain before R13-A closure/R13-B activation.
+  records exact promotion through `origin/staging`, all Security Scans, public health, Render
+  identity and focused S1-S4 staging smoke PASS. R13-A is closed at staging and R13-B is active.
 
 Current UI release review:
 

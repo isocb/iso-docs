@@ -1,12 +1,13 @@
 # LMSPro Implementation Confirmations
 
-Current local candidate:
+Most recent accepted staging confirmation:
 
 - `2026-08-24-lmspro-remediation-slice-r13-a-free-day-integrity-and-management-presentation-confirmation.md`
   records R13-A local implementation with focused/full automation, TypeScript, verifier,
   targeted lint, Node 22 build and C1/C2 H1-H11 PASS. Runtime `71ed589b` is retained in
   corridor tip `e7a756cc` through `origin/staging`; all three Security Scans and public health
-  pass, with Render identity and focused S1-S4 staging smoke pending.
+  pass, including exact Render identity and focused S1-S4 staging smoke. R13-A is closed at
+  staging and R13-B is active.
 
 Current live-promotion candidate:
 

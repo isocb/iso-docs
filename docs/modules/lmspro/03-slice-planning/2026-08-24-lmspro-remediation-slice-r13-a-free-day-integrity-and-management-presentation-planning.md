@@ -4,18 +4,18 @@ Date: 2026-08-24
 
 Module: LMSPro / SeasonPro
 
-Status: **EXACT RUNTIME CANDIDATE PROMOTED THROUGH ORIGIN/STAGING; LOCAL AND SECURITY GATES
-PASS; EXACT RENDER IDENTITY AND REPRESENTATIVE STAGING HUMAN GATE PENDING**
+Status: **ACCEPTED AND CLOSED AT THE AUTHORISED STAGING BOUNDARY; EXACT LOCAL, SECURITY,
+RENDER IDENTITY AND REPRESENTATIVE STAGING GATES PASS**
 
 Control depth: **High** — tenant/Club/Team authority, operational quota integrity and
 notification date rendering require complete negative, role/tenant and human evidence.
 
 ```text
-Current state: Exact R13-A runtime 71ed589b is retained in corridor tip e7a756cc; local gates, H1-H11 and work-branch/dev/staging Security Scans pass; origin/staging promotion and public health pass
+Current state: R13-A accepted and closed at staging; exact runtime 71ed589b is retained in corridor tip e7a756cc; local H1-H11, all Security Scans, public health, Render identity and S1-S4 pass
 Last proven commit: runtime 71ed589b9c6c55a8832fbfa1669de143236ec783; dev/origin-dev/staging/origin-staging tip e7a756cc39eac65b71729490f8c6c26f30435eb6
-Current environment: Local application/DevData proven; origin/staging promoted; public staging health HTTP 200, database connected, RLS 11/11; Render exact identity and authenticated S1-S4 pending; no live action
-Next human decision/test: Confirm Render Live at e7a756c and report proportionate staging S1-S4 PASS/FAIL
-Safe resumption point: Use the paired 04/05 records; on S1-S4 PASS close/reconcile R13-A and activate R13-B under the explicit 2026-08-24 instruction; do not promote live
+Current environment: Local application/DevData and origin/staging proven at e7a756cc; public health, exact Render identity and authenticated S1-S4 pass; no live action
+Next human decision/test: Not applicable; completed historical record
+Safe resumption point: R13-B is the active controlling record; do not resume R13-A or promote it live without a new decision
 ```
 
 Source CR-Fix:
@@ -331,6 +331,6 @@ acceptance, exact promotion evidence required by the control owner and roadmap r
 all pass with no open incident-ending defect.
 
 Planning, local evidence and Git promotion alone do not close the child or unlock `R13-B`.
-Local H1-H11, exact Security Scans, `origin/staging` promotion and public health pass; the
-immediate next action is exact Render identity plus the proportionate authenticated S1-S4
-staging gate.
+Local H1-H11, exact Security Scans, `origin/staging` promotion, public health, exact Render
+identity and proportionate authenticated S1-S4 staging evidence pass. R13-A is accepted and
+closed at staging; R13-B is activated by the reconciled root/child roadmaps.
