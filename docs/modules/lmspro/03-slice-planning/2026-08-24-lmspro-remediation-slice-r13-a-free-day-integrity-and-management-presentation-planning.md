@@ -11,11 +11,11 @@ Control depth: **High** — tenant/Club/Team authority, operational quota integr
 notification date rendering require complete negative, role/tenant and human evidence.
 
 ```text
-Current state: Accepted plan; implementation not started or authorised
-Last proven commit: fcd162db60956858233821fd3f29c55e17d954dd
-Current environment: Local documentation and clean local application baseline only
+Current state: Accepted plan; implementation not started or authorised; automatic agent bootstrap added
+Last proven commit: application fcd162db60956858233821fd3f29c55e17d954dd; instruction-only repository head 9b105d26
+Current environment: Clean local application branch at 9b105d26; runtime code remains exact fcd162db
 Next human decision/test: Explicit control-owner decision whether to begin R13-A implementation
-Safe resumption point: Start the Section 3 failing-first reproduction matrix at exact fcd162db
+Safe resumption point: Start the Section 3 failing-first matrix at 9b105d26, whose runtime code equals fcd162db
 ```
 
 Source CR-Fix:
@@ -35,8 +35,9 @@ Exact application baseline:
 ```text
 repository: isostack-bedrock
 branch: fix/lmspro-free-day-variation-request-remediation
-commit: fcd162db60956858233821fd3f29c55e17d954dd
-state at planning: clean
+application commit: fcd162db60956858233821fd3f29c55e17d954dd
+current repository head: 9b105d26 (root AGENTS.md only; no runtime-code delta)
+current state: clean
 ```
 
 ## 1. Control Decision And Objective

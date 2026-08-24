@@ -30,7 +30,8 @@ Current application evidence:
 
 ```text
 local dev = origin/dev = origin/staging = origin/main = exact PLAT-ROLE-04A fcd162db
-application remediation branch fix/lmspro-free-day-variation-request-remediation = exact fcd162db and clean
+application remediation branch fix/lmspro-free-day-variation-request-remediation = instruction-only 9b105d26 and clean
+R13 application/runtime baseline remains exact fcd162db; 9b105d26 adds only root AGENTS.md control
 PLAT-ROLE-04 main Security Scan 32015051267 = PASS
 PLAT-ROLE-04 production Render deploy dep-da1d6jh42hec73akbcp0 = LIVE at 250baf12
 PLAT-ROLE-04 production health = HTTP 200; database connected; RLS 11/11

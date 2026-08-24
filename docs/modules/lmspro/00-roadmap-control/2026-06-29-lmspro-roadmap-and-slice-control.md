@@ -50,12 +50,14 @@ PARKED -> 500-recipient operating envelope, R5-C evidence reconciliation and oth
 ```
 
 The control owner accepted this operational expedite on 2026-08-24 and explicitly placed it
-before further FUND work. The application baseline is exact aligned `fcd162db`; the local
-application remediation branch is clean. Both `03` plans are now accepted. R13-A owns Free
-Day quota, list, sorting, summary navigation, date-only and Special-list correctness and is
-the only active child. R13-B owns the additive Deferred Variation state and transitions but
-remains implementation-locked until R13-A closure/reconciliation. They are sequential, not
-parallel, and neither application implementation has started.
+before further FUND work. The application/runtime baseline remains exact aligned
+`fcd162db`; the clean local application-remediation branch is now at instruction-only
+`9b105d26`, which adds the root `AGENTS.md` and changes no runtime code. Both `03` plans are
+accepted. R13-A owns Free Day quota, list, sorting, summary navigation, date-only and
+Special-list correctness and is the only active child. R13-B owns the additive Deferred
+Variation state and transitions but remains implementation-locked until R13-A
+closure/reconciliation. They are sequential, not parallel, and neither application
+implementation has started.
 
 FUND `1R-F-A` Stage C is displaced to root `Next` at its preserved checkpoint: exact
 candidate `328aadf0` retained, temporary Render worker suspended, no application secrets,
@@ -144,7 +146,8 @@ Current app alignment:
 
 ```text
 local/remote dev = staging = main = exact combined PLAT-ROLE-04A release fcd162db
-local fix/lmspro-free-day-variation-request-remediation = exact fcd162db and clean
+local fix/lmspro-free-day-variation-request-remediation = instruction-only 9b105d26 and clean
+R13 application/runtime baseline = exact fcd162db; 9b105d26 adds only root AGENTS.md control
 F3 staging smoke = 13/13 PASS; exact main promotion = COMPLETE
 Render live public health = PASS; database connected; RLS 11/11
 PLAT-ROLE-01 = complete; all 13 matrix items accepted with corrected C1/C2 persona wording

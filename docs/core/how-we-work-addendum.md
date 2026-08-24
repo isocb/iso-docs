@@ -21,6 +21,19 @@ The human-readable CR-to-release guide is:
 
 `../00-roadmap-control/2026-08-05-human-guide-change-request-to-release.md`
 
+## Automatic Agent Bootstrap
+
+The root `AGENTS.md` files in `isostack-bedrock` and `isodocs` are concise automatic entry
+points for AI work. They require the assistant to start from this addendum, apply the
+`Low`/`Standard`/`High` risk model and read only the authoritative roadmap and lifecycle
+material needed for the requested stage.
+
+Those files do not replace or duplicate the working method, create implementation authority
+or add another governance layer. Keep them short. Amend the authoritative method first when
+the working agreement changes, then align the bootstrap wording only where necessary. A new
+AI run should be started after changing an `AGENTS.md` file because instruction discovery
+occurs when the run begins.
+
 ## Portfolio In One Minute
 
 IsoStack has three definitive product/Platform child roadmaps: Platform, LMSPro/SeasonPro
