@@ -4,18 +4,18 @@ Date: 2026-08-24
 
 Module: LMSPro / SeasonPro
 
-Status: **ACCEPTED BOUNDED PLAN; FIRST AND ONLY ACTIVE CHILD; IMPLEMENTATION NOT STARTED
-AND REQUIRES AN EXPLICIT CONTROL-OWNER IMPLEMENTATION INSTRUCTION**
+Status: **EXACT RUNTIME CANDIDATE PROMOTED THROUGH ORIGIN/STAGING; LOCAL AND SECURITY GATES
+PASS; EXACT RENDER IDENTITY AND REPRESENTATIVE STAGING HUMAN GATE PENDING**
 
 Control depth: **High** — tenant/Club/Team authority, operational quota integrity and
 notification date rendering require complete negative, role/tenant and human evidence.
 
 ```text
-Current state: Accepted plan; implementation not started or authorised; automatic agent bootstrap added
-Last proven commit: application fcd162db60956858233821fd3f29c55e17d954dd; instruction-only repository head 9b105d26
-Current environment: Clean local application branch at 9b105d26; runtime code remains exact fcd162db
-Next human decision/test: Explicit control-owner decision whether to begin R13-A implementation
-Safe resumption point: Start the Section 3 failing-first matrix at 9b105d26, whose runtime code equals fcd162db
+Current state: Exact R13-A runtime 71ed589b is retained in corridor tip e7a756cc; local gates, H1-H11 and work-branch/dev/staging Security Scans pass; origin/staging promotion and public health pass
+Last proven commit: runtime 71ed589b9c6c55a8832fbfa1669de143236ec783; dev/origin-dev/staging/origin-staging tip e7a756cc39eac65b71729490f8c6c26f30435eb6
+Current environment: Local application/DevData proven; origin/staging promoted; public staging health HTTP 200, database connected, RLS 11/11; Render exact identity and authenticated S1-S4 pending; no live action
+Next human decision/test: Confirm Render Live at e7a756c and report proportionate staging S1-S4 PASS/FAIL
+Safe resumption point: Use the paired 04/05 records; on S1-S4 PASS close/reconcile R13-A and activate R13-B under the explicit 2026-08-24 instruction; do not promote live
 ```
 
 Source CR-Fix:
@@ -35,9 +35,9 @@ Exact application baseline:
 ```text
 repository: isostack-bedrock
 branch: fix/lmspro-free-day-variation-request-remediation
-application commit: fcd162db60956858233821fd3f29c55e17d954dd
-current repository head: 9b105d26 (root AGENTS.md only; no runtime-code delta)
-current state: clean
+exact runtime candidate: 71ed589b9c6c55a8832fbfa1669de143236ec783
+promoted corridor tip: e7a756cc39eac65b71729490f8c6c26f30435eb6 (adds only the root AGENTS.md path clarification)
+current state: exact candidate committed and aligned through origin/dev and origin/staging; R13-B and live action remain unauthorised
 ```
 
 ## 1. Control Decision And Objective
@@ -50,10 +50,11 @@ application presentation and Free Day date-only behaviour truthful and mutually 
 without changing the already accepted R12-A notice-period policy or adding a schema/data
 repair.
 
-Creating this record moves the child into accepted slice planning. It does not authorise
-application edits, a commit, push, migration, database action, environment action or
-deployment. The control owner must explicitly instruct implementation before work begins in
-the application repository.
+Creating this record originally moved the child into accepted slice planning without
+authorising implementation. The control owner subsequently instructed local R13-A
+implementation and creation of the 04/05 evidence records on 2026-08-24. That instruction
+authorised the bounded local application/test work and local verification only; it did not
+authorise a commit, push, migration, staging/live action or deployment.
 
 ## 2. Confirmed Source Boundary
 
@@ -242,8 +243,8 @@ No automated test sends real email or mutates shared/staging/production data.
 
 ## 7. Human Acceptance Schedule
 
-Use controlled synthetic C1 and C2 accounts and a disposable season/Teams. At local before
-any promotion, and later on staging only if separately authorised:
+Use controlled synthetic C1 and C2 accounts and a disposable season/Teams. Complete the
+detailed functional, negative and regression matrix locally before any promotion:
 
 1. prove A1 and A2 counts, remaining values, C2 disabled state and direct refusal;
 2. load the C1 list fresh at its actual defaults, select every status and return to `All`;
@@ -262,6 +263,18 @@ any promotion, and later on staging only if separately authorised:
 Record exact commit, environment, role/component access, fixture identifiers and observed
 values. Delete disposable data only through an already accepted UI/API lifecycle; otherwise
 leave it identified for controlled cleanup rather than performing an unplanned direct edit.
+
+If staging promotion is separately authorised, do not mechanically repeat the complete
+local matrix. Prove exact deployment/configuration identity, the representative C1/C2 quota
+and tenant-scope critical path, one GMT/BST date-only path affected by runtime configuration,
+and the list/summary invalidation path against controlled staging fixtures. Repeat another
+local check only when staging data scale, configuration or permissions can materially change
+its outcome.
+
+If live promotion is separately authorised, use only the minimum safe, non-destructive
+verification of exact release identity, service health, authorised C1/C2 read access and the
+released Free Day critical path. Do not create, approve, reject, confirm or repair live rows
+merely to repeat evidence already proved locally and on staging.
 
 ## 8. Do Not Build
 
@@ -285,7 +298,7 @@ The child is intended to be an application-only correction with no data migratio
 is therefore a revert of the one bounded candidate, subject to confirmation that no
 incompatible state was introduced.
 
-If implementation is later authorised, the controlled sequence is:
+The authorised controlled sequence is:
 
 ```text
 exact fcd162db remediation baseline
@@ -294,7 +307,8 @@ exact fcd162db remediation baseline
 -> focused/full local gates
 -> 04 implementation confirmation
 -> independent 05 review-and-test plus human local acceptance
--> explicit promotion decision and exact-commit gates
+-> explicit promotion decision and exact-commit gates through origin/staging
+-> exact Render identity plus proportionate S1-S4 staging smoke
 -> explicit R13-A closure/reconciliation
 -> only then unlock R13-B implementation
 ```
@@ -316,6 +330,7 @@ Stop and return to triage if:
 acceptance, exact promotion evidence required by the control owner and roadmap reconciliation
 all pass with no open incident-ending defect.
 
-Planning completion alone does not close the child and does not unlock `R13-B` implementation.
-The immediate next action is an explicit control-owner decision whether to begin `R13-A`
-implementation.
+Planning, local evidence and Git promotion alone do not close the child or unlock `R13-B`.
+Local H1-H11, exact Security Scans, `origin/staging` promotion and public health pass; the
+immediate next action is exact Render identity plus the proportionate authenticated S1-S4
+staging gate.

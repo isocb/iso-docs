@@ -7,9 +7,10 @@ authoritative IsoStack method; it does not create a second process or documentat
 
 - For substantive CR, triage, planning, review, promotion-record or reconciliation work,
   first read `docs/core/how-we-work-addendum.md`.
-- Treat `docs/modules/<module>/work-method.md` as the full method authority. Read only the
-  sections relevant to the current lifecycle stage, then read the root roadmap, owning
-  child roadmap and active lifecycle record.
+- Treat `docs/modules/<module>/work-method.md` as the full method authority. The directory is
+  literally named `<module>`; do not replace it with `lmspro`, `fund` or another module name.
+  Read only the sections relevant to the current lifecycle stage, then read the root roadmap,
+  owning child roadmap and active lifecycle record.
 - Inspect the current branch and worktree and preserve unrelated human changes.
 - A CR records a need; a triage records disposition; a plan records an accepted boundary.
   None independently proves implementation, testing, promotion or live operation.

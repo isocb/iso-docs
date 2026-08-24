@@ -9,7 +9,9 @@ CLOSURE/ROADMAP RECONCILIATION PLUS A NEW EXPLICIT CONTROL-OWNER IMPLEMENTATION 
 
 Control depth: **High** — schema migration, workflow transitions, tenant/Club/Team authority
 and C2 cancellation require complete migration, rollback, negative and human evidence. R13-B
-is inactive, so the active-slice restart checkpoint remains only in R13-A.
+is inactive, so the active-slice restart checkpoint remains only in R13-A. When root control
+later activates R13-B, this plan must gain the five-field current-state, last-proven-commit,
+environment, next-human-gate and safe-resumption checkpoint before implementation begins.
 
 Source CR-Fix:
 
@@ -52,7 +54,8 @@ This record does not make `R13-B` active. No schema, migration, Prisma generatio
 application edit, database action or implementation test for this child may begin until:
 
 1. `R13-A` has reached accepted implementation/review/test/roadmap closure;
-2. the roadmap explicitly selects `R13-B` as LMSPro `Now`;
+2. the root roadmap explicitly selects `R13-B` as the sole portfolio `Now` and reconciles
+   the preserved FUND Stage C outcome as portfolio `Next`;
 3. the exact application baseline is re-recorded; and
 4. the control owner explicitly instructs `R13-B` implementation.
 
@@ -109,6 +112,11 @@ Existing rows remain valid and unchanged. The implementation/release plan must r
 PostgreSQL enum transaction constraints and the repository's Prisma migration conventions.
 Migration verification must prove the enum/column additions, null compatibility and absence
 of row updates.
+
+The controlled migration and promotion lifecycle must follow the canonical
+[Safe Database Workflow](../../../../SAFE_DATABASE_WORKFLOW.md): create and review the Prisma
+migration locally, use `npm run db:migrate` (`prisma migrate deploy`) in each separately
+authorised deployed environment, and never use `db:push` or `db:seed` for staging or live.
 
 Before shared deployment, record the exact expand/application ordering and a forward-fix
 posture. After a row is stored as `DEFERRED`, rolling application code back to a client that
@@ -233,12 +241,13 @@ npm run build
 git diff --check
 ```
 
-Use an isolated/local test database for migration proof. No shared database action is
-authorised by this planning record.
+Use an isolated/local test database for the detailed migration, failure, transition and
+negative proof. No shared database action is authorised by this planning record.
 
 ## 7. Human Acceptance Schedule
 
-With controlled synthetic C1/C2 users and a disposable Pending request:
+With controlled synthetic C1/C2 users and disposable Pending requests, complete this full
+functional, negative and regression schedule locally:
 
 1. C1 opens Pending, enters no reason, cancels the UI action and proves no change;
 2. C1 defers with a reason and sees Deferred immediately without a hard reload;
@@ -257,6 +266,19 @@ With controlled synthetic C1/C2 users and a disposable Pending request:
 
 Record exact application/schema commit, migration state, roles, fixture IDs, before/after
 Team/request snapshots, audit IDs and count/filter results.
+
+If staging promotion and migration are separately authorised, prove the exact deployed
+application/schema identity, successful migration ledger state, enum/column presence, null
+compatibility and absence of migration row updates. Then run the representative C1/C2
+critical path: Pending to Deferred, protected Deferred presentation/refusal, exact-submitter
+cancellation or return to Pending, tenant/Club negative access and audit evidence. Do not
+repeat the complete local matrix unless staging configuration, permissions or realistic data
+scale can materially change an outcome.
+
+If live promotion and migration are separately authorised, verify the exact release and
+migration identity, service/database health and the minimum safe, non-destructive authorised
+read path. Do not manufacture a live Deferred request or transition merely to duplicate the
+local and staging evidence.
 
 ## 8. Do Not Build
 

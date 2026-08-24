@@ -17,7 +17,9 @@ Current boundary:
 
 - Active accepted plan: `R13-A` Free Day integrity and management presentation:
   `2026-08-24-lmspro-remediation-slice-r13-a-free-day-integrity-and-management-presentation-planning.md`.
-- R13-A implementation has not started and requires an explicit control-owner instruction.
+- R13-A runtime `71ed589b` is retained in exact corridor tip `e7a756cc` through
+  `origin/staging`; local, Security and public-health gates pass. Render identity and focused
+  S1-S4 staging smoke are the remaining closure gate.
 - Sequential accepted but implementation-locked plan: `R13-B` Deferred Team Variation
   workflow:
   `2026-08-24-lmspro-remediation-slice-r13-b-deferred-team-variation-workflow-planning.md`.

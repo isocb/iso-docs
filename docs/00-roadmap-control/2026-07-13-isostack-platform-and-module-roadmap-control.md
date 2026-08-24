@@ -29,9 +29,12 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application evidence:
 
 ```text
-local dev = origin/dev = origin/staging = origin/main = exact PLAT-ROLE-04A fcd162db
-application remediation branch fix/lmspro-free-day-variation-request-remediation = instruction-only 9b105d26 and clean
-R13 application/runtime baseline remains exact fcd162db; 9b105d26 adds only root AGENTS.md control
+local dev = origin/dev = local staging = origin/staging = exact corridor tip e7a756cc
+origin/main = production application baseline fcd162db; no R13 live promotion
+R13-A exact runtime commit = 71ed589b; e7a756cc adds only root-AGENTS shared-method-path clarification
+R13-A local evidence = focused 35/35, full 471 pass/12 skip, type/verify/lint/build and C1/C2 H1-H11 PASS
+R13-A exact work-branch/dev/staging Security Scans 32742731175/32743079768/32743397739 = PASS
+R13-A public staging health = HTTP 200; database connected; RLS 11/11; Render identity and S1-S4 pending
 PLAT-ROLE-04 main Security Scan 32015051267 = PASS
 PLAT-ROLE-04 production Render deploy dep-da1d6jh42hec73akbcp0 = LIVE at 250baf12
 PLAT-ROLE-04 production health = HTTP 200; database connected; RLS 11/11
@@ -66,7 +69,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | LMSPro `R13-A` Free Day integrity and management presentation | Both ordered child plans are accepted. `R13-A` is the only active child at exact application baseline `fcd162db`; implementation has not started and requires an explicit control-owner instruction. `R13-B` planning is ready but its implementation remains locked until `R13-A` closure/reconciliation and a new explicit decision. |
+| **NOW** | LMSPro `R13-A` Free Day integrity and management presentation | Runtime `71ed589b` is retained in exact corridor tip `e7a756cc`, aligned through `origin/staging`; local gates, H1-H11, all three Security Scans and public staging health pass. Render identity and representative S1-S4 staging smoke remain. The control owner has instructed R13-B next, but it remains locked until R13-A closure/reconciliation. |
 | **NEXT** | Resume accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Resume only from the recorded safe checkpoint: exact candidate `328aadf0` preserved, temporary Render worker suspended, no application secrets injected, private R2 proof bucket empty and existing auto-deploy services untouched. Reconcile Stage C only after the complete LMSPro CR-Fix closes. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -86,12 +89,15 @@ Registered and ordered work outside that pair:
 
 - LMSPro Free Day and Team Variation Request remediation `CR-Fix`: accepted on 2026-08-24
   as one operational expedite with two ordered bounded lifecycles. Free Day integrity and
-  management presentation is accepted as active plan `R13-A`; Deferred Team Variation is
+  management presentation `R13-A` exact runtime `71ed589b` is promoted through
+  `origin/staging` in corridor tip `e7a756cc`; local, Security and public-health gates pass,
+  while exact Render identity and S1-S4 staging smoke remain. Deferred Team Variation is
   accepted as sequential plan `R13-B` and carries a distinct additive-migration gate.
   Existing data repair and new Deferred notifications are excluded. The accepted
   [triage](../modules/lmspro/02-triage/2026-08-24-lmspro-cr-fix-free-day-and-team-variation-request-remediation-triage.md)
-  and subsequent control-owner planning instruction permit both `03` records, but do not
-  authorise application implementation. `R13-B` cannot begin in parallel;
+  and subsequent control-owner instructions authorised both `03` records, bounded R13-A
+  implementation/evidence and promotion through `origin/staging`, then selected R13-B to follow
+  after truthful R13-A closure. No live promotion is authorised; `R13-B` cannot begin in parallel;
 - Platform `CR-Fix-PLAT-ROLE-04` P1 tenant module persona recovery: accepted urgent
   remedial expedite delivered through exact main `250baf12`. The authoritative P1 Client Users surface now
   separates Core authority from exact SeasonPro persona, supports deliberate exact-default
