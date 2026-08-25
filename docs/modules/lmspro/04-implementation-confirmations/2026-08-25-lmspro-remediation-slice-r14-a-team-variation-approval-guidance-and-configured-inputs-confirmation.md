@@ -2,39 +2,40 @@
 
 Date: 2026-08-25
 
-Status: **R1-R7 CONTROL-OWNER PASS; RESPONSIVE MODAL CORRECTION `B6C35992` PASSES
-FOCUSED AUTOMATION; R8 NOT RUN; NO PUSH, PROMOTION OR DEPLOYMENT AUTHORISED**
+Status: **EXACT `D78935D4` PASSES AUTOMATION AND CONTROL-OWNER R1-R9; LOCAL GATE
+COMPLETE; NO PUSH, PROMOTION OR DEPLOYMENT AUTHORISED BY THIS RECORD**
 
-Exact commit: **`b6c35992959bb2cbdc4c212291fd5be834959e7f`**, which supersedes wrong-target
-modal child `7fb6ad792f28d19b2a346b70ee93311b0a6b08e7`, restores the unrelated Assign Division
-modal and applies the width to the intended row-click Variation Request detail modal.
+Exact commit: **`d78935d407ace7ebe796a31a13adf3e17dafa758`**, test child of Free Day
+presentation implementation `06966d49106f30f7724d6293ac3c31da33de693a` and corrected Variation
+Request width parent `b6c35992959bb2cbdc4c212291fd5be834959e7f`.
 
 Files/change boundary: one shared six-type Team Variation policy; C2 configured Age Group/Division
 selectors without operational guidance; C1 Team Approval CRUD-modal plus Team Variations
 single/mixed-bulk guidance; tenant/season/Age-Group-scoped AGG options; numeric Age Group ordering;
-server-side configured target resolution; a responsive 660px Variation Request detail modal; focused
+server-side configured target resolution; responsive 660px Variation Request and Free Day detail
+modals; a demoted Free Day Save Changes control outside the workflow footer; focused
 policy/router/surface tests. No schema, migration, authority, notification, historic-row repair,
 automatic allocation or environment change.
 
-Automated checks: **PASS** — exact `b6c35992` focused surface 2/2, TypeScript, critical-file
-verifier, changed production-file ESLint with zero errors and whitespace. Parent `66104e35` passed
-focused 36/36; parent `0a6376a2` passed full 509 pass/12 skip and the 131-route build.
+Automated checks: **PASS** — exact `d78935d4` focused Free Day surface 2/2, TypeScript,
+critical-file verifier and whitespace. Parent `06966d49` passed combined focused 8/8 and changed
+production-file ESLint with zero errors; earlier parents retain focused/full/build evidence.
 
-Human evidence: **PASS R1-R7** — direct control-owner observation. The only R1-R6 remedial finding
+Human evidence: **PASS R1-R9** — direct control-owner observation. The only R1-R6 remedial finding
 was public display of internal role shorthand `C1`; exact `66104e35` renders `League Admin` and R7
-passes. Exact `b6c35992` makes the row-click Variation Request detail modal 50% wider on desktop
-while retaining the component's viewport cap. R8 is **NOT RUN**.
+passes. Exact `b6c35992` makes the row-click Variation Request detail modal 50% wider on desktop;
+R8 passes. Exact `06966d49` applies the same responsive width to the Free Day row-click modal and
+demotes Save Changes beneath League Notes; R9 passes.
 
 Environment proven: corrected source and automated behaviour on the local work branch. The
 control owner manages the browser-facing local server. Remote dev/staging/main remain at the prior
 exact `06811784` boundary.
 
-Known residual risk: only the responsive modal presentation requires R8. C1/C2 remain internal
-control notation for League Admin/Club Secretary respectively. Existing stored text remains
-backward-compatible; stale configured references are re-resolved at mutation time.
+Known residual risk: no local presentation blocker remains. C1/C2 remain internal control notation
+for League Admin/Club Secretary respectively. Existing stored text remains backward-compatible;
+stale configured references are re-resolved at mutation time.
 
-Next authorised action: run and record local R8 only. A green result may support a later explicit
-push/security/promotion decision; it does not itself authorise one.
+Next authorised action: request an explicit security/push/promotion decision for exact `d78935d4`.
 
 Accepted plan:
 
@@ -69,16 +70,20 @@ Review and test:
 - Increased only the row-click League Admin Variation Request detail modal from 440px to 660px.
   Mantine retains `max-width: 100%`, so narrower viewports constrain it responsively. The unrelated
   Assign Division modal retains its original `md` size.
+- Gave the Free Day row-click modal the same 660px responsive width. Moved the single Save Changes
+  control from the workflow footer to immediately below League Notes, retained its existing update
+  mutation, and rendered it compact/subtle so Cancel, Reject/Approve and Confirm remain the dominant
+  status actions.
 
 ## 2. Automated Evidence
 
 | Gate | Result |
 | --- | --- |
-| Exact `b6c35992` focused surface tests | PASS — 2/2 |
-| Exact `b6c35992` TypeScript | PASS |
-| Exact `b6c35992` critical-file verifier | PASS — pre-commit gate |
-| Exact `b6c35992` changed production-file ESLint | PASS — zero errors; six existing warnings |
-| Exact `b6c35992` diff whitespace | PASS |
+| Exact `d78935d4` focused Free Day surface tests | PASS — 2/2 |
+| Exact `d78935d4` TypeScript / critical-file verifier / whitespace | PASS |
+| Parent `06966d49` combined focused tests | PASS — 8/8 |
+| Parent `06966d49` changed production-file ESLint | PASS — zero errors; four existing warnings |
+| Parent `b6c35992` focused Variation surface tests | PASS — 2/2 |
 | Parent `66104e35` focused policy/router/surface tests | PASS — 36/36 |
 | Parent `0a6376a2` full repository Vitest | PASS — 509 passed; 12 intentionally skipped |
 | Parent `0a6376a2` production build | PASS — 131 routes; not repeated for presentation-only children |

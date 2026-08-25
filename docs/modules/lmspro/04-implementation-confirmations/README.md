@@ -5,10 +5,9 @@ Current R14 implementation confirmation:
 - `2026-08-25-lmspro-remediation-slice-r14-a-team-variation-approval-guidance-and-configured-inputs-confirmation.md`
   records the three initial `0700993b` human-smoke defects and corrected exact local candidate
   `0a6376a2`: C1-only guidance, non-empty scoped Division options and numeric Age Group ordering.
-  R1-R7 direct retest passed through role-name child `66104e35`; responsive modal child `b6c35992`
-  widens the row-click Variation Request detail modal and passes focused 2/2 plus
-  type/verify/lint/whitespace. R8
-  remains `NOT RUN`; no push or promotion is authorised.
+  Exact `d78935d4` passes automation and direct R1-R9, including responsive Variation/Free Day
+  modals and the demoted Free Day Save Changes hierarchy. The local gate is complete; no push or
+  promotion is authorised by the record.
 
 Current R13 implementation confirmation:
 

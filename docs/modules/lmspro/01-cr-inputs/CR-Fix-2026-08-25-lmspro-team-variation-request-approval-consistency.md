@@ -4,8 +4,8 @@ Date: 2026-08-25
 
 Owning lane: LMSPro / SeasonPro
 
-Planning status: **R1-R7 CONTROL-OWNER PASS; RESPONSIVE MODAL CORRECTION `B6C35992`
-PASSES FOCUSED AUTOMATION; R8 NOT RUN; NO PUSH, PROMOTION OR DEPLOYMENT AUTHORITY**
+Planning status: **EXACT `D78935D4` PASSES AUTOMATION AND CONTROL-OWNER R1-R9; LOCAL
+GATE COMPLETE; READY FOR AN EXPLICIT SECURITY/PUSH/PROMOTION DECISION**
 
 Control depth recommendation: **Standard** — this is a bounded UI-guidance and requested-value
 input correction using existing scoped configuration/CRUD sources. It does not propose changing
@@ -106,7 +106,7 @@ is excluded from R13-B.
 The accepted bounded R14-A plan was first implemented at `0700993b`; direct smoke found misplaced
 C2/C1 guidance, empty Division options and incorrect numeric Age Group ordering. Corrected exact
 local `0a6376a2` passed its automated gates and direct R1-R6 control-owner retest. The resulting
-role-name child `66104e35` says `League Admin`, passes its automated gate and direct R7. Responsive
-modal child `b6c35992` widens the row-click Variation Request detail from 440px to 660px and passes focused
-2/2, TypeScript, verifier, production-file lint and whitespace. R8 remains direct local proof; no
-push or promotion is authorised. FUND Stage C remains portfolio `Next` at its preserved checkpoint.
+role-name child `66104e35` says `League Admin` and passes R7. Responsive Variation and Free Day
+presentation children through exact `d78935d4` pass automation and direct R8-R9. The local gate is
+complete; no push or promotion is authorised without an explicit next decision. FUND Stage C
+remains portfolio `Next` at its preserved checkpoint.

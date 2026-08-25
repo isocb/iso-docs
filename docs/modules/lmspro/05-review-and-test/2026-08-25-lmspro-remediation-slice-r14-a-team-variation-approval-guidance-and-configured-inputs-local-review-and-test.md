@@ -2,10 +2,12 @@
 
 Date: 2026-08-25
 
-Review status: **R1-R7 CONTROL-OWNER PASS; RESPONSIVE MODAL CORRECTION `B6C35992` PASSES
-FOCUSED AUTOMATION; R8 NOT RUN; NOT READY FOR PUSH OR PROMOTION DECISION**
+Review status: **EXACT `D78935D4` PASSES AUTOMATION AND CONTROL-OWNER R1-R9; LOCAL
+STANDARD-DEPTH GATE COMPLETE; READY FOR AN EXPLICIT SECURITY/PUSH/PROMOTION DECISION**
 
-Exact candidate: `b6c35992959bb2cbdc4c212291fd5be834959e7f`; wrong-target modal candidate
+Exact candidate: `d78935d407ace7ebe796a31a13adf3e17dafa758`; Free Day presentation implementation
+parent `06966d49106f30f7724d6293ac3c31da33de693a`; Variation Request width parent
+`b6c35992959bb2cbdc4c212291fd5be834959e7f`; wrong-target modal candidate
 `7fb6ad792f28d19b2a346b70ee93311b0a6b08e7` is superseded; role-name parent
 `66104e3576b06c0a532557e44e9b983921dbd5ac`; behaviour-smoke candidate
 `0a6376a235dbb97109d894af574d9ef0546ead00` and initial failed candidate
@@ -13,32 +15,31 @@ Exact candidate: `b6c35992959bb2cbdc4c212291fd5be834959e7f`; wrong-target modal 
 
 Files/change boundary: the shared Team Variation policy, configured target input/resolution,
 C1-only operational guidance, C2 selectors, numeric Age Group sorting, Age-Group-scoped AGG list,
-a responsive 660px row-click Variation Request detail modal and focused tests recorded in the
-implementation confirmation. No schema, migration, authority, notification, automatic allocation
-or environment change.
+responsive 660px row-click Variation Request and Free Day detail modals, demoted Free Day Save
+Changes placement and focused tests recorded in the implementation confirmation. No schema,
+migration, authority, notification, automatic allocation or environment change.
 
-Automated checks: **PASS** — exact modal-width candidate focused surface 2/2, TypeScript, verifier,
-production-file lint with zero errors and whitespace. Parent `66104e35` passed focused 36/36; parent
-`0a6376a2` passed full 509 pass/12 skip and the 131-route build before these presentation-only
-corrections.
+Automated checks: **PASS** — exact candidate focused Free Day surface 2/2, TypeScript, verifier and
+whitespace; implementation parent `06966d49` passed combined focused 8/8 and production-file lint
+with zero errors. Earlier parents retain their recorded focused/full/build evidence.
 
-Human evidence: **PASS R1-R7** — direct control-owner observation, recorded row by row below. The
+Human evidence: **PASS R1-R9** — direct control-owner observation, recorded row by row below. The
 only R1-R6 finding was that internal shorthand `C1` was rendered to users; exact `66104e35`
 replaced it with `League Admin` and R7 passed. Exact `b6c35992` widens the row-click Variation
-Request detail modal by 50% on desktop while retaining Mantine's viewport cap. R8 remains **NOT
-RUN** and is not inferred from automation.
+Request detail modal by 50% on desktop while retaining Mantine's viewport cap; R8 passes. Exact
+`06966d49` gives the Free Day row-click modal the same width and moves its single link-style Save
+Changes control beneath League Notes, outside the workflow-action footer; R9 passes.
 
 Environment proven: corrected source and automation on local branch
 `fix/lmspro-variation-approval-guidance-inputs`. The control owner manages the browser-facing local
 DevData server. No remote environment contains R14-A.
 
-Known residual risk: only the responsive modal-width presentation requires direct UI proof. C1/C2
-remain valid only in internal control evidence, where C1 means League Admin and C2 means Club
-Secretary.
+Known residual risk: no local presentation blocker remains. C1/C2 remain valid only in internal
+control evidence, where C1 means League Admin and C2 means Club Secretary. Remote exact-build,
+Security and representative staging proof remain environment gates, not inferred local evidence.
 
-Next authorised action: refresh the control-owner-managed local application and run R8 only. Stop
-on failure and return the presentation delta to implementation. Do not push or promote without a
-later explicit instruction.
+Next authorised action: obtain an explicit security/push/promotion decision for exact `d78935d4`.
+Do not push or promote solely from this green local result.
 
 Implementation confirmation:
 
@@ -59,9 +60,12 @@ messages to `League Admin` without changing behaviour, and R7 passes. The first 
 `7fb6ad79` targeted the unrelated Assign Division modal and the control owner correctly reported no
 change at the row-click URL. Exact `b6c35992` restores Assign Division and changes only the intended
 Variation Request detail modal from Mantine `md` (440px) to 660px. Mantine caps modal content at the
-available viewport width, so the wider desktop presentation remains responsive.
+available viewport width, so the wider desktop presentation remains responsive. Exact `06966d49`
+then gives the Free Day row-click modal the same width and moves Save Changes beneath League Notes
+as a compact subtle control outside the status-action footer.
 
-The slice is not locally accepted until R8 directly confirms the modal presentation.
+The control owner reported the complete corrected local presentation all green. R1-R9 pass and the
+local gate is accepted.
 
 ## 2. Security And Integrity Findings
 
@@ -102,7 +106,8 @@ automation.
 | R5 | Approved manual management detail retains the named task until C1 completes it and selects `Confirm System Updated`; automatic detail states that the LMSPro change was already applied. | PASS |
 | R6 | Mixed bulk selection truthfully reports automatic/manual counts and tasks, preserves selection, and retains existing approval effects. | PASS |
 | R7 | User-facing guidance in both League Admin approval surfaces and the mixed-selection summary says `League Admin`, never the internal shorthand `C1` or `C2`. | PASS |
-| R8 | From `/app/lmspro/free-days?tab=variations`, row-clicking a Variation Request opens a detail modal about 50% wider on desktop so guidance wraps comfortably; at a narrow/mobile viewport it remains fully inside the viewport with no horizontal clipping and usable controls. | NOT RUN |
+| R8 | From `/app/lmspro/free-days?tab=variations`, row-clicking a Variation Request opens a detail modal about 50% wider on desktop so guidance wraps comfortably; at a narrow/mobile viewport it remains fully inside the viewport with no horizontal clipping and usable controls. | PASS |
+| R9 | From `/app/lmspro/free-days`, row-clicking a Free Day opens the same responsive 660px desktop width; Save Changes appears once as a compact link-style control immediately beneath League Notes, saves date/reason/notes without a status action, and is absent from the footer while the applicable Cancel Request, Reject/Approve or Confirm action remains clear and usable. | PASS |
 
 ## 5. Automated Evidence Detail
 
@@ -112,9 +117,11 @@ automation.
 | Configured create/negative router checks | PASS — resolved snapshots and no-side-effect refusals |
 | Single and mixed-bulk approval effects | PASS — two automatic, four non-mutating |
 | Guidance surfaces, numeric order and scoped AGG options | PASS |
-| Exact `b6c35992` focused surface suite | PASS — 2/2, including the explicit row-click modal 660px contract |
-| Exact `b6c35992` TypeScript / verifier / whitespace | PASS |
-| Exact `b6c35992` production-file ESLint | PASS — zero errors; six pre-existing warnings |
+| Exact `d78935d4` focused Free Day surface suite | PASS — 2/2, including width, position, subtle treatment, uniqueness and footer exclusion |
+| Exact `d78935d4` TypeScript / verifier / whitespace | PASS |
+| Parent `06966d49` combined focused suite | PASS — 8/8 |
+| Parent `06966d49` production-file ESLint | PASS — zero errors; four pre-existing warnings |
+| Parent `b6c35992` focused Variation surface suite | PASS — 2/2, including the explicit row-click modal 660px contract |
 | Parent `66104e35` focused suite | PASS — 36/36, including a policy assertion that public follow-up text contains no C1/C2 shorthand |
 | Parent `0a6376a2` full suite | PASS — 509 passed; 12 intentionally skipped |
 | Parent `0a6376a2` production build | PASS — 131 routes; not repeated for the presentation-only children while the control owner runs the local server |

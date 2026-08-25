@@ -27,9 +27,8 @@ Current boundary:
   Security Scan `32824479591` attempt 2 pass.
 - Active accepted/implemented plan:
   `2026-08-25-lmspro-remediation-slice-r14-a-team-variation-approval-guidance-and-configured-inputs-planning.md`.
-- R14-A is Standard depth. Direct R1-R7 pass through role-name child `66104e35`; responsive modal
-  child `b6c35992` widens the row-click Variation Request detail modal and passes focused
-  automation, awaiting R8.
+- R14-A is Standard depth and locally accepted at exact `d78935d4`: automation and direct R1-R9
+  pass, including responsive Variation/Free Day modals and the Free Day Save action hierarchy.
   It preserves manual Age Group/Division allocation and has no schema, migration, promotion or
   deployment authority. FUND `1R-F-A` Stage C remains portfolio `Next`.
 

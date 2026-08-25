@@ -4,9 +4,8 @@ Current R14 review:
 
 - `2026-08-25-lmspro-remediation-slice-r14-a-team-variation-approval-guidance-and-configured-inputs-local-review-and-test.md`
   records three direct human-smoke failures on superseded `0700993b`, their correction at exact
-  local `0a6376a2`, corrected static/automated/build PASS and direct R1-R7 PASS through role-name
-  child `66104e35`. Responsive modal child `b6c35992` passes focused automation; R8 remains `NOT
-  RUN`, so R14-A is not yet ready for push/promotion consideration.
+  local `0a6376a2`, subsequent presentation corrections and exact `d78935d4` automation/direct
+  R1-R9 PASS. The local gate is complete and ready for an explicit security/push/promotion decision.
 
 Current R13 review and release evidence:
 
