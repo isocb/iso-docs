@@ -2,8 +2,8 @@
 
 Date: 2026-08-25
 
-Status: **EXACT `D78935D4` IS ALIGNED THROUGH MAIN; LOCAL R1-R9, STAGING S1-S4, ALL
-SECURITY SCANS AND PUBLIC HEALTH PASS; PRODUCTION IDENTITY/L1-L2 PENDING**
+Status: **COMPLETE AND CLOSED — EXACT `D78935D4` PASSES LOCAL R1-R9, STAGING S1-S4,
+PRODUCTION L1-L2, ALL SECURITY SCANS AND PUBLIC HEALTH**
 
 Exact commit: **`d78935d407ace7ebe796a31a13adf3e17dafa758`**, test child of Free Day
 presentation implementation `06966d49106f30f7724d6293ac3c31da33de693a` and corrected Variation
@@ -23,25 +23,25 @@ focused 8/8 and changed production-file ESLint with zero errors; earlier parents
 focused/full/build evidence. Exact work-branch/dev/staging Security Scans
 `32835754829`/`32835986995`/`32836190860` all pass, including generated reports.
 
-Human evidence: **PASS R1-R9** — direct control-owner observation. The only R1-R6 remedial finding
+Human evidence: **PASS R1-R9, S1-S4 AND L1-L2** — direct control-owner observation. The only R1-R6 remedial finding
 was public display of internal role shorthand `C1`; exact `66104e35` renders `League Admin` and R7
 passes. Exact `b6c35992` makes the row-click Variation Request detail modal 50% wider on desktop;
 R8 passes. Exact `06966d49` applies the same responsive width to the Free Day row-click modal and
 demotes Save Changes beneath League Notes; R9 passes. The control owner subsequently confirmed
-exact staging identity and S1-S4 all green.
+exact staging identity and S1-S4 all green, followed by exact production identity and minimum
+non-destructive L1-L2 all green.
 
 Environment proven: corrected source and automated behaviour locally; exact refs align through
 origin work branch, dev, staging and main at `d78935d4`. Staging S1-S4 pass. Staging and production
 public health are HTTP 200 with database connected and RLS enabled on 11/11 tables. No schema
 migration or runtime-configuration action was required.
 
-Known residual risk: exact production Render build identity and minimum non-destructive L1-L2
-remain. C1/C2 remain internal control notation for League Admin/Club Secretary respectively.
-Existing stored text remains backward-compatible; stale configured references are re-resolved at
-mutation time.
+Known residual risk: no accepted R14-A gate remains. C1/C2 remain internal control notation for
+League Admin/Club Secretary respectively. Existing stored text remains backward-compatible; stale
+configured references are re-resolved at mutation time.
 
-Next authorised action: confirm exact production Render `d78935d4` identity and run minimum
-non-destructive L1-L2 in the paired review record; then reconcile closure only if both pass.
+Next authorised action: none for R14-A. Resume FUND Stage C under its existing exact-candidate and
+zero-resource checkpoint; do not extend this closed slice.
 
 Accepted plan:
 
@@ -101,6 +101,7 @@ Review and test:
 | Staging human smoke | PASS — direct control-owner S1-S4 all green |
 | Main Security Scan | PASS — `32838343535` at exact `d78935d4` |
 | Public production health | PASS — HTTP 200; database connected; RLS 11/11 |
+| Production human smoke | PASS — direct control-owner L1-L2 all green at exact `d78935d4` |
 
 ## 3. Recovery Position
 

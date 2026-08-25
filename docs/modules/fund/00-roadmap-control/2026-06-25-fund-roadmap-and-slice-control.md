@@ -59,7 +59,7 @@ same row.
 | [`2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md) | Planned through `1Q-G-B` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md) | Planned through `1Q-G-A` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-13-fund-cr-commission-ladder-planner-input.md`](../01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md) | Policy/assignment foundation partly incorporated through `1R-C5`; aggregate calculation, statements and settlement remain absent | Parked later commission work, represented by subordinate `2R-PROD-05`; not selected |
-| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B Linux parity and exact `139d09c4` dev scan pass; dedicated Stage C contract accepted and authorised on 2026-08-12; downstream short-code/single-artwork policy preserved in parked `1R-H-A` | Stage C exact candidate and gates remain accepted, but external execution is root `Next` behind the selected minimal LMSPro Team Variation guidance/configured-input CR-Fix. Preserve the exact safe checkpoint; `1R-H-A` remains inventory only and no production implementation is authorised |
+| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B Linux parity and exact `139d09c4` dev scan pass; dedicated Stage C contract accepted and authorised on 2026-08-12; downstream short-code/single-artwork policy preserved in parked `1R-H-A` | Stage C resumes as root `Now` only from exact candidate `328aadf0` and its recorded zero-resource checkpoint. External execution/teardown remain governed by the accepted gate; `1R-H-A` remains inventory only and no production implementation is authorised |
 | [`2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md`](../01-cr-inputs/2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md) | Consumed as the boundary preventing `1R-F-A` from absorbing collective/Standard paths | `1R-F-F` through `I` remain parked; no implementation authority |
 | [`2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`](../01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md) | `1R-F-A` automation, physical review and Linux parity accept candidate capacities of ten STANDARD portrait and twelve COMPACT landscape rows; production selection policy remains later `1R-F-B/D` work | Proof evidence only; no schema/policy implementation authorised |
 | [`2026-07-15-fund-template-manager-brief.md`](../01-cr-inputs/2026-07-15-fund-template-manager-brief.md) | Retained source brief for the Application/Artwork Template input | Provenance only; not a fourth CR and its provisional `T` labels carry no slice authority |
@@ -69,30 +69,29 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> LMSPro R14-A Team Variation guidance/configured inputs; Standard plan created, awaiting acceptance
-ROOT NEXT -> resume FUND 1R-F-A Stage C implementation/gates/run/teardown
+ROOT NOW  -> resume and execute FUND 1R-F-A Stage C from exact 328aadf0 and its preserved zero-resource checkpoint
+ROOT NEXT -> reconcile the Stage C result, conclude 1R-F-A and deliberately reselect
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
-FUND      -> PAUSED at preserved Stage C safe checkpoint; R1B human/physical, Stage B and exact candidate gates PASS
+FUND      -> ACTIVE at preserved Stage C gate; R1B human/physical, Stage B and exact candidate gates PASS; external execution/teardown pending
 ```
 
 Email F3, Role Authority and Support Ticketing are complete and closed. `PLAT-ROLE-R1` is
 deferred trigger-based assurance and does not block FUND unless a recorded trigger fires.
-The parent LMSPro R13 expedite is delivered and exact `06811784` is promoted to main, with exact
-production Render identity and minimum live L1-L2 confirmed green. Exact-main Security Scan
-`32824479591` attempt 2 passes in full. The control owner then selected the separate minimal LMSPro
-Team Variation guidance/configured-input CR-Fix as root `Now`; its R14-A Standard plan is created
-and awaits acceptance. `1R-F-A` remains the exact FUND
-resumption point as root `Next`.
+The parent LMSPro R13 expedite and follow-on R14-A are complete and closed. Exact R14-A
+`d78935d4` aligns through main with local R1-R9, staging S1-S4, production L1-L2, all four Security
+Scans and public health green. The control owner restored `1R-F-A` Stage C as root `Now` and its
+result reconciliation as root `Next`.
 Direct portrait/landscape source inspection
 superseded inferred R1A before review. Source-faithful R1B automation and 12/12 PDF/physical
 review pass. Stage B Linux parity run `31595635243` and exact dev Security Scan
-`31595635276` pass at application `139d09c4`. The accepted Stage C runner is now aligned to
-local/remote dev at exact `328aadf0`; candidate Linux parity `31599134487` and Security Scan
-`31599134488` pass. No external Stage C result has yet been recorded. Exact candidate
+`31595635276` pass at application `139d09c4`. The accepted Stage C runner was gated and
+dev-aligned at exact `328aadf0`; candidate Linux parity `31599134487` and Security Scan
+`31599134488` pass. That commit remains preserved in current `d78935d4` ancestry. No external
+Stage C result has yet been recorded. Exact candidate
 `328aadf0a360b4c65837327060302ddc525f6168` remains preserved, the temporary Render worker
 remains suspended, no application secrets are injected, the private R2 proof bucket remains
-empty and existing auto-deploy services remain untouched. No FUND execution resumes while the
-selected minimal LMSPro CR-Fix is root `Now`.
+empty and existing auto-deploy services remain untouched. Resume only from that checkpoint under
+the accepted Stage C gate.
 
 ## 1. Control Authority And Reading Rule
 
@@ -119,27 +118,26 @@ the position when that material was written and must not select new work.
 Current application repository state:
 
 ```text
-application local/remote dev/staging/main: exact 06811784
+application local/remote dev/staging/main: exact d78935d4
 preserved Stage C candidate: exact 328aadf0
-R13 staging exact Render/health and S1-S4: PASS
-production migration/schema, exact Render and authenticated read-only L1-L2: PASS
-protected dev/staging/main Security Scans: PASS; exact-main run 32824479591 attempt 2 complete
+R14-A local R1-R9, staging S1-S4 and production L1-L2: PASS; COMPLETE AND CLOSED
+protected work/dev/staging/main Security Scans: PASS; exact-main run 32838343535 complete
 Role Authority: COMPLETE AND CLOSED
 Support Ticketing: COMPLETE AND CLOSED
-FUND Stage C: accepted but paused as root NEXT behind the selected minimal LMSPro CR-Fix
+FUND Stage C: resumed as root NOW at exact 328aadf0 and its preserved zero-resource checkpoint
 ```
 
 Current consolidated delivery state:
 
 - Commerce `A1` through `A7`, FUND `1R-C1` through `1R-D` and Project Intake/creation
   `1P-G-R3-A` through `R3-D` are included in the promoted application ancestry;
-- protected application dev, staging and main are aligned at `06811784`; its ancestry
+- protected application dev, staging and main are aligned at `d78935d4`; its ancestry
   includes `83356030`, E-D and the previously promoted FUND/Commerce application work;
 - E-D adds no migration and performed no shared database action; shared database state
   remains governed by the preceding promotion records;
 - the historical E-D secret detection, schema security and TypeScript CI evidence remains
   unchanged; the later protected dependency correction is included by ancestry. Current
-  dev/staging scans and exact-main R13 scan `32824479591` attempt 2 pass in full;
+  work/dev/staging/main R14-A scans through exact-main `32838343535` pass in full;
 - the staging application health check passed with its database connected and RLS enabled
   on all 11 expected tables;
 - prior human FUND administrator login and pre-existing UI smoke testing passed; E-B/E-C

@@ -25,12 +25,13 @@ Current boundary:
 - R13-B exact `06811784` passed local and staging gates and is aligned through main;
   production migration/schema, exact Render identity, minimum live L1-L2 and exact-main
   Security Scan `32824479591` attempt 2 pass.
-- Active accepted/implemented plan:
+- Most recently completed plan:
   `2026-08-25-lmspro-remediation-slice-r14-a-team-variation-approval-guidance-and-configured-inputs-planning.md`.
 - R14-A is Standard depth and aligned through main at exact `d78935d4`: automation, local R1-R9,
   staging S1-S4, all four Security Scans and staging/production public health pass, including the
   responsive Variation/Free Day modals and Free Day Save hierarchy. Exact production Render
-  identity and minimum read-only L1-L2 remain. FUND `1R-F-A` Stage C remains portfolio `Next`.
+  identity and minimum read-only L1-L2 pass; R14-A is complete and closed. FUND `1R-F-A` Stage C
+  resumes as portfolio `Now` from exact `328aadf0` and its preserved checkpoint.
 
 Recent historical boundary:
 

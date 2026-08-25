@@ -4,8 +4,8 @@ Date: 2026-08-25
 
 Owning lane: LMSPro / SeasonPro
 
-Planning status: **EXACT `D78935D4` IS ALIGNED THROUGH MAIN; LOCAL R1-R9, STAGING S1-S4,
-ALL SECURITY SCANS AND PUBLIC HEALTH PASS; PRODUCTION IDENTITY/L1-L2 PENDING**
+Planning status: **COMPLETE AND CLOSED — EXACT `D78935D4` PASSES LOCAL R1-R9, STAGING
+S1-S4, PRODUCTION L1-L2, ALL SECURITY SCANS AND PUBLIC HEALTH**
 
 Control depth recommendation: **Standard** — this is a bounded UI-guidance and requested-value
 input correction using existing scoped configuration/CRUD sources. It does not propose changing
@@ -113,5 +113,6 @@ staging Security Scans `32835754829`/`32835986995`/`32836190860` pass; local/rem
 through staging, and public staging health is HTTP 200 with database connected and RLS 11/11.
 The control owner confirmed exact staging identity and S1-S4 all green and authorised normal live
 promotion. Exact `d78935d4` now aligns through main; exact-main Security Scan `32838343535` and
-production public health pass. Exact production Render identity and minimum read-only L1-L2 remain
-before closure. FUND Stage C remains portfolio `Next` at its preserved checkpoint.
+production public health pass. The control owner confirmed exact production Render identity and
+minimum read-only L1-L2 all green. This CR-Fix is complete and closed. FUND Stage C resumes as
+portfolio `Now` only from exact `328aadf0` and its preserved zero-resource checkpoint.

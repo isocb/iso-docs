@@ -2,8 +2,8 @@
 
 Date: 2026-08-12
 
-Status: **IN PROGRESS — EXACT `328aadf0` LOCAL, LINUX AND SECURITY GATES PASS AND DEV IS
-ALIGNED; RENDER/R2 EXECUTION AND TEARDOWN EVIDENCE PENDING**
+Status: **RESUMED AS ROOT NOW — EXACT `328aadf0` LOCAL, LINUX AND SECURITY GATES PASS;
+RENDER/R2 EXECUTION AND TEARDOWN EVIDENCE PENDING**
 
 Planning authority:
 
@@ -12,6 +12,14 @@ Planning authority:
 Implementation confirmation:
 
 [`1R-F-A Stage C implementation confirmation`](../04-implementation-confirmations/2026-08-12-fund-phase-1-slice-1r-f-a-stage-c-isolated-render-private-object-proof-implementation-confirmation.md)
+
+```text
+Current state: Stage C resumed as root Now after R14-A closure; exact candidate gates pass and no external Stage C result is claimed
+Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
+Current environment: candidate preserved in current ancestry; recorded temporary worker suspended, no application secrets injected, private proof bucket empty and existing auto-deploy services untouched
+Next human decision/test: revalidate the recorded zero-resource checkpoint and dedicated operator authorities before Phase 2
+Safe resumption point: use only exact 328aadf0 under the accepted one-window execution/teardown contract; stop before any broader resource, application or product work
+```
 
 ## 1. Gate Rule
 
@@ -96,6 +104,7 @@ authority. Neither value may enter Git, documentation, command output or shell h
 
 ## 6. Current Disposition
 
-Remain at this gate. Do not promote staging/main or start `1R-F-B`, `1R-G` or `1R-H-A`.
+Stage C is the restored root `Now`; resume only from the checkpoint above. Do not promote
+staging/main or start `1R-F-B`, `1R-G` or `1R-H-A`.
 The record may become PASS only when every pending exact-candidate, execution and teardown
 row is replaced by evidence.

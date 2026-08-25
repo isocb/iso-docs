@@ -4,8 +4,8 @@ Date: 2026-08-25
 
 Module: LMSPro / SeasonPro
 
-Status: **EXACT `D78935D4` IS ALIGNED THROUGH MAIN; LOCAL R1-R9, STAGING S1-S4, ALL
-SECURITY SCANS AND PUBLIC HEALTH PASS; PRODUCTION IDENTITY/L1-L2 PENDING**
+Status: **COMPLETE AND CLOSED — EXACT `D78935D4` PASSES LOCAL R1-R9, STAGING S1-S4,
+PRODUCTION L1-L2, ALL SECURITY SCANS AND PUBLIC HEALTH**
 
 Source CR-Fix:
 
@@ -89,8 +89,9 @@ The control owner then authorised the normal staging promotion. Work branch, dev
 Security Scans `32835754829`/`32835986995`/`32836190860` pass; exact refs align through staging and
 public staging health is green. The control owner confirmed exact staging identity and S1-S4 all
 green, then authorised live promotion. Exact `d78935d4` now aligns through main; exact-main
-Security Scan `32838343535` and production public health pass. Exact production Render identity
-and minimum read-only L1-L2 remain before closure.
+Security Scan `32838343535` and production public health pass. The control owner confirmed exact
+production Render identity and minimum read-only L1-L2 all green. R14-A is complete and closed;
+FUND Stage C resumes as root `Now` from exact `328aadf0` and its preserved checkpoint.
 
 If this CR-Fix closes or is re-disposed, resume FUND Stage C only from exact candidate
 `328aadf0a360b4c65837327060302ddc525f6168`: the recorded temporary worker is suspended, no

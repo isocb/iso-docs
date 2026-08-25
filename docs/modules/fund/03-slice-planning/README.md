@@ -30,15 +30,16 @@ Do not use shared data, modify existing Render services or start a later slice f
 ```
 
 Commerce A1-A7 and the retained FUND C1-C6/1R-D/R3 foundations are implemented/reviewed and
-included by ancestry in current application `83356030`, aligned through dev/staging/main.
+included by ancestry in current application `d78935d4`, aligned through dev/staging/main.
 E-A was validated against the complete 141-migration disposable baseline with zero residue;
 E-B and E-C add no migration. Corrective E-D is implemented/reviewed at `c45a41d9` and is
 also included by ancestry in `83356030`, with no E-D migration or shared database action.
 The real-workflow human schedule remains recorded in its review. The non-executable `1R-F`
 parent remains accepted. `1R-F-A-R1B` source/folding PDF review and Stage B Linux-container
 parity pass at exact dev `139d09c4`. The dedicated Stage C contract was accepted and
-authorised on 2026-08-12; its bounded implementation/execution is current. Later children
-remain unauthorised.
+authorised on 2026-08-12; its exact candidate `328aadf0` is preserved in current ancestry and the
+bounded Stage C gate has resumed as root `Now` from its recorded zero-resource checkpoint. Later
+children remain unauthorised.
 
 Parked downstream policy plan, not selected:
 

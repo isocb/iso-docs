@@ -4,19 +4,19 @@ Date: 2026-08-25
 
 Module: LMSPro / SeasonPro
 
-Status: **EXACT `D78935D4` IS ALIGNED THROUGH MAIN; LOCAL R1-R9, STAGING S1-S4, ALL
-SECURITY SCANS AND PUBLIC HEALTH PASS; PRODUCTION IDENTITY/L1-L2 PENDING**
+Status: **COMPLETE AND CLOSED — EXACT `D78935D4` PASSES LOCAL R1-R9, STAGING S1-S4,
+PRODUCTION L1-L2, ALL SECURITY SCANS AND PUBLIC HEALTH**
 
 Control depth: **Standard** — this is bounded ordinary product behaviour affecting C1/C2
 guidance, configured-value selection and server validation. Existing organisation, Club, Team and
 season authority remains unchanged; no schema, live-data or automatic allocation change is planned.
 
 ```text
-Current state: exact d78935d4 is aligned through origin work branch, dev, staging and main; local R1-R9, staging S1-S4, all four Security Scans and staging/production public health pass
+Current state: R14-A complete and closed; exact d78935d4 aligns through main and passes local R1-R9, staging S1-S4, production L1-L2, all four Security Scans and public health
 Last proven commit: d78935d407ace7ebe796a31a13adf3e17dafa758
-Current environment: exact refs align through main; production deployment triggered and public health green; no migration or runtime-configuration change
-Next human decision/test: confirm exact production Render d78935d4 identity and run minimum non-destructive L1-L2
-Safe resumption point: inspect production deployment identity and authenticated read-only guidance/selector path, record L1-L2 PASS/FAIL/NOT RUN, then close/reconcile R14-A only if both pass
+Current environment: exact refs and production Render align through main; no migration or runtime-configuration change
+Next human decision/test: none for R14-A; FUND Stage C resumes under its existing exact-candidate gate
+Safe resumption point: use the FUND Stage C checkpoint at exact 328aadf0; do not reopen or extend R14-A without a new accepted finding
 ```
 
 Source CR-Fix:
@@ -214,8 +214,8 @@ authorised the normal staging promotion on 2026-08-25. Exact work branch, dev an
 Scans `32835754829`/`32835986995`/`32836190860` pass; refs align through staging and public staging
 health is green. The control owner confirmed exact staging identity and S1-S4 all green and
 authorised live promotion. Exact `d78935d4` now aligns through main; exact-main Security Scan
-`32838343535` and production public health pass. Stop for exact production Render identity and
-minimum non-destructive L1-L2 before closing the slice.
+`32838343535` and production public health pass. The control owner confirmed exact production
+Render identity and minimum non-destructive L1-L2 all green. R14-A is complete and closed.
 
 If this CR-Fix closes or is re-disposed, resume FUND Stage C only from exact candidate
 `328aadf0a360b4c65837327060302ddc525f6168`: temporary worker suspended, no application secrets,

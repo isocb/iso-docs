@@ -29,7 +29,7 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application and R13 release evidence:
 
 ```text
-R14-A exact d78935d4 local R1-R9 and staging S1-S4 PASS; aligned through main; all four Security Scans and staging/production public health PASS; exact production Render identity and L1-L2 pending
+R14-A exact d78935d4 local R1-R9, staging S1-S4 and production L1-L2 PASS; aligned through main; all four Security Scans and staging/production public health PASS; COMPLETE AND CLOSED
 R13-B work branch/dev/staging/main and origins = exact 06811784
 R13-B staging exact Render identity and control-owner S1-S4 = PASS
 R13-B exact-main Security Scan 32824479591 attempt 2 = PASS at exact 06811784, including report summary
@@ -79,8 +79,8 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | LMSPro R14-A Team Variation approval guidance and configured inputs CR-Fix | Exact `d78935d4` is aligned through origin work branch, dev, staging and main. Local R1-R9, staging S1-S4, all four Security Scans and staging/production public health pass; exact production Render identity and minimum read-only L1-L2 remain. |
-| **NEXT** | Resume accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Resume only from the recorded safe checkpoint: exact candidate `328aadf0` preserved, temporary Render worker suspended, no application secrets injected, private R2 proof bucket empty and existing auto-deploy services untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Resume only from the recorded safe checkpoint: exact candidate `328aadf0` preserved in current ancestry, temporary Render worker suspended, no application secrets injected and private R2 proof bucket empty. Existing auto-deploy services remain untouched. |
+| **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
 promotion. Exact `250baf12` is aligned through main; all protected scans, Render identity,
@@ -102,11 +102,13 @@ dev and staging Security Scans `32835754829`/`32835986995`/`32836190860` pass, l
 align through staging and public staging health is HTTP 200 with database connected and RLS 11/11.
 The control owner confirmed exact staging Render identity and S1-S4 all green, then explicitly
 authorised live promotion. Main/origin/main now align at `d78935d4`; exact-main Security Scan
-`32838343535` and post-push production public health pass. Exact production Render identity and the
-minimum non-destructive L1-L2 remain. Preserved FUND Stage C remains `Next` at its exact safe
-checkpoint. Exact R13 staging candidate `06811784`
-was subsequently authorised for controlled live promotion as-is. Main and origin/main now
-match that exact commit, the production migration/schema proof passes and the substantive
+`32838343535` and post-push production public health pass. The control owner then confirmed exact
+production Render identity and minimum non-destructive L1-L2 all green. R14-A is complete and
+closed. FUND Stage C resumes as root `Now` at exact candidate `328aadf0` and its recorded
+zero-resource checkpoint; Stage C-result reconciliation is restored as `Next`. Exact R13 staging
+candidate `06811784`
+was subsequently authorised for controlled live promotion as-is. Main and origin/main then
+matched that exact commit, the production migration/schema proof passed and the substantive
 exact-main Security Scan attempt 2 passes in full after the first attempt's unassigned report job
 was force-cancelled and cleanly rerun. Production exact Render identity and the minimum authenticated
 read-only L1-L2 pass by control-owner confirmation. This
@@ -139,8 +141,9 @@ Registered and ordered work outside that pair:
   allocation. It is aligned through origin work branch, dev and staging with Security Scans
   `32835754829`/`32835986995`/`32836190860` and public staging health green; exact staging Render
   identity and focused S1-S4 human smoke pass. The exact candidate is aligned through main with
-  exact-main Security Scan `32838343535` and production public health green; exact production
-  Render identity and read-only L1-L2 remain;
+  exact-main Security Scan `32838343535`, production public health, exact production Render
+  identity and read-only L1-L2 green. R14-A is complete and closed; FUND Stage C resumes from its
+  exact preserved checkpoint;
 - Platform `CR-Fix-PLAT-ROLE-04` P1 tenant module persona recovery: accepted urgent
   remedial expedite delivered through exact main `250baf12`. The authoritative P1 Client Users surface now
   separates Core authority from exact SeasonPro persona, supports deliberate exact-default
