@@ -31,7 +31,7 @@ Current application and R13 release evidence:
 ```text
 R13-B work branch/dev/staging/main and origins = exact 06811784
 R13-B staging exact Render identity and control-owner S1-S4 = PASS
-R13-B main Security Scan 32824479591 exact head = 06811784; schema/secret/dependency/TypeScript jobs PASS; report-summary job still queued
+R13-B exact-main Security Scan 32824479591 attempt 2 = PASS at exact 06811784, including report summary
 R13-B production migration/schema = PASS; all 153 migrations applied, DEFERRED ledger/enum and nullable deferral_reason verified read-only
 R13-B unauthenticated public health probes = NOT PROVEN — core/app/season custom domains returned HTTP 403
 R13-B production exact Render identity and minimum authenticated read-only L1-L2 = PASS — control-owner report 2026-08-25
@@ -96,9 +96,9 @@ approval-guidance and configured-input CR-Fix as the only portfolio `Now`; prese
 Stage C remains `Next` at its exact safe checkpoint. Exact R13 staging candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main now
 match that exact commit, the production migration/schema proof passes and the substantive
-exact-main Security Scan jobs pass. The workflow summary is still queued with no runner assigned;
-production exact Render identity and the minimum authenticated read-only L1-L2 pass by control-owner
-confirmation. This
+exact-main Security Scan attempt 2 passes in full after the first attempt's unassigned report job
+was force-cancelled and cleanly rerun. Production exact Render identity and the minimum authenticated
+read-only L1-L2 pass by control-owner confirmation. This
 release evidence does not expand or displace the newly selected `Now`/`Next` pair.
 
 Registered and ordered work outside that pair:
@@ -120,9 +120,8 @@ Registered and ordered work outside that pair:
   migration/schema proof, public health/database/RLS, exact Render identity and S1-S4 pass.
   The later controlled live promotion aligned main/origin/main to the same exact commit and
   applied/verified the sole production migration. Exact production Render identity and the
-  non-destructive authenticated L1-L2 smoke pass. Exact-main substantive security jobs pass;
-  only the queued report-summary job remains open and is not inferred as an overall workflow
-  pass. A separate minimal Team Variation approval-guidance and configured-input
+  non-destructive authenticated L1-L2 smoke pass. Exact-main Security Scan `32824479591`
+  attempt 2 passes in full, including its generated report. A separate minimal Team Variation approval-guidance and configured-input
   CR was captured from the smoke, formally triaged and selected as root `Now` without
   proposing automatic Age Group/Division allocation;
 - Platform `CR-Fix-PLAT-ROLE-04` P1 tenant module persona recovery: accepted urgent

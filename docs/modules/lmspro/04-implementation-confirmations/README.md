@@ -6,7 +6,7 @@ Current R13 implementation confirmation:
   records exact `06811784`, additive migration verification, focused 13/13, full 484 pass/12
   skip, type/verify/lint/build, local B1-B10 and staging S1-S4 PASS. The same exact commit is
   live with production migration/schema, exact Render identity and minimum live L1-L2 green;
-  exact-main substantive security jobs pass while the report-summary job remains queued.
+  exact-main Security Scan `32824479591` attempt 2 passes in full.
 
 Most recent accepted staging confirmation:
 

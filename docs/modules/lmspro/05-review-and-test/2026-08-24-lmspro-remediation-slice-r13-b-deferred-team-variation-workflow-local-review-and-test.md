@@ -3,8 +3,8 @@
 Date: 2026-08-24
 
 Review status: **COMPLETE THROUGH LIVE AT EXACT `06811784`; LOCAL B1-B10, STAGING S1-S4,
-PRODUCTION MIGRATION/SCHEMA AND CONTROL-OWNER L1-L2 PASS; EXACT-MAIN SUBSTANTIVE SECURITY
-JOBS PASS WITH REPORT-SUMMARY QUEUED**
+PRODUCTION MIGRATION/SCHEMA AND CONTROL-OWNER L1-L2 PASS; EXACT-MAIN SECURITY SCAN
+`32824479591` ATTEMPT 2 PASSES IN FULL**
 
 Exact commit: `068117848bc66739a2794c596621f372344a9209`.
 
@@ -27,12 +27,12 @@ pass; public staging health is HTTP 200 with database connected and RLS `11/11`.
 
 Known residual risk: unauthenticated probes to the production custom domains returned HTTP 403, so
 public health is not claimed from that path; exact Render identity and the authenticated L1-L2 path
-were instead confirmed green by the control owner. The exact-main report-summary job remains queued
-with no runner assigned, although all substantive jobs pass. The local smoke exposed a pre-existing normal-approval consistency concern outside
+were instead confirmed green by the control owner. Exact-main Security Scan `32824479591` attempt 2
+passes in full. The local smoke exposed a pre-existing normal-approval consistency concern outside
 the Deferred slice; it is captured in the separately registered approval-consistency CR.
 
-Next authorised action: none within R13-B. Retain the separate selected follow-on CR as root `Now`,
-FUND Stage C as `Next` and the queued exact-main report-summary state truthfully.
+Next authorised action: none within R13-B. Retain the separate selected follow-on CR as root `Now`
+and FUND Stage C as `Next`.
 
 Implementation confirmation:
 
@@ -120,7 +120,7 @@ Technical evidence obtained on 2026-08-25:
 | Exact Git main | PASS — local main and origin/main are exact `068117848bc66739a2794c596621f372344a9209` |
 | Production migration preflight | PASS — only `20260824173000_lmspro_r13_b_deferred_team_variation_status` was pending |
 | Production migration/schema | PASS — all 153 migrations applied; successful ledger entry, `DEFERRED` enum and nullable text `deferral_reason` verified read-only |
-| Exact-main Security Scan | NOT RUN — run `32824479591` has exact head and schema/secret/dependency/TypeScript jobs PASS, but its report-summary job remains queued; the workflow conclusion is not inferred |
+| Exact-main Security Scan | PASS — run `32824479591` attempt 2 completed successfully at exact head, including dependency, schema, TypeScript, secret and generated-report jobs |
 | Unauthenticated public health | NOT RUN — the core/app/season custom domains returned HTTP 403 to this automation path; application health is not inferred |
 
 Use an existing authorised production C1 persona and perform only the following non-destructive
@@ -149,6 +149,6 @@ staging migration/schema/health: PASS — exact ledger/enum/column/null; databas
 exact Render build identity and staging S1-S4: PASS — control-owner report 2026-08-25
 main/origin main: exact 06811784
 production migration/schema: PASS — all 153 applied; ledger/enum/nullable column verified read-only
-main Security Scan 32824479591: substantive jobs PASS; report-summary queued, overall result not inferred
+main Security Scan 32824479591 attempt 2: PASS — complete including generated report
 production exact Render identity and authenticated read-only L1-L2: PASS — control-owner report 2026-08-25
 ```

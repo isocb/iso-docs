@@ -5,7 +5,7 @@ Current R13 review and release evidence:
 - `2026-08-24-lmspro-remediation-slice-r13-b-deferred-team-variation-workflow-local-review-and-test.md`
   records static/migration/automated/build, local B1-B10 and staging S1-S4 PASS for exact
   `06811784`. Main, production migration/schema, exact Render identity and minimum
-  non-destructive live L1-L2 pass; only the exact-main report-summary job remains queued.
+  non-destructive live L1-L2 and exact-main Security Scan `32824479591` attempt 2 pass.
 
 Most recent accepted staging review:
 

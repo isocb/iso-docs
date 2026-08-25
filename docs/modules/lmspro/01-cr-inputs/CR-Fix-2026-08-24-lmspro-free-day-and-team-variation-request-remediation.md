@@ -6,7 +6,7 @@ Owning lane: LMSPro / SeasonPro
 
 Planning status: **DELIVERY COMPLETE; EXACT R13-B `06811784` PASSED THE ACCEPTED STAGING
 BOUNDARY AND IS NOW LIVE; PRODUCTION MIGRATION/SCHEMA, EXACT RENDER IDENTITY AND L1-L2
-PASS; EXACT-MAIN SUBSTANTIVE SECURITY JOBS PASS WITH REPORT-SUMMARY QUEUED; SEPARATE
+PASS; EXACT-MAIN SECURITY SCAN `32824479591` ATTEMPT 2 PASSES IN FULL; SEPARATE
 MINIMAL FOLLOW-ON CR IS ROOT `NOW`, FUND STAGE C IS `NEXT`**
 
 Source request: the control owner identified current issues affecting “Free Date Requests”
@@ -61,8 +61,8 @@ Closure reconciliation on 2026-08-25: both accepted children completed their bou
 gates. R13-A closed at exact corridor tip `e7a756cc`; R13-B closed at exact `06811784` after local
 B1-B10, all Security/migration/health gates and control-owner staging S1-S4 passed. A later explicit
 release decision promoted the unchanged exact commit to main and production; migration/schema,
-exact Render identity and L1-L2 pass. The exact-main substantive security jobs pass while the
-report-summary job remains queued with no runner assigned; that workflow conclusion is not inferred.
+exact Render identity and L1-L2 pass. Exact-main Security Scan `32824479591` attempt 2 passes in
+full after the stuck first attempt was force-cancelled and cleanly rerun.
 The separate minimal approval-guidance/configured-input observation is formally triaged and selected
 as root `Now`; it does not reopen this tactical remediation.
 

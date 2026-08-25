@@ -16,8 +16,8 @@ Current queue:
 
 - The parent R13 `CR-Fix` and its ordered R13-A/R13-B children completed their accepted
   staging boundaries. Exact `06811784` is now live with production migration/schema, exact
-  Render identity and minimum L1-L2 green; its substantive exact-main security jobs pass
-  while the report-summary job remains queued in the R13-B review record.
+  Render identity and minimum L1-L2 green; exact-main Security Scan `32824479591` attempt 2
+  passes in full.
 - The Team Variation approval-guidance/configured-input CR-Fix is formally triaged and
   selected as root `Now` for one bounded Standard-depth plan only. FUND `1R-F-A` Stage C
   remains root `Next`; no implementation of the new LMSPro CR is yet authorised.

@@ -78,8 +78,8 @@ FUND      -> PAUSED at preserved Stage C safe checkpoint; R1B human/physical, St
 Email F3, Role Authority and Support Ticketing are complete and closed. `PLAT-ROLE-R1` is
 deferred trigger-based assurance and does not block FUND unless a recorded trigger fires.
 The parent LMSPro R13 expedite is delivered and exact `06811784` is promoted to main, with exact
-production Render identity and minimum live L1-L2 confirmed green. Its exact-main security report
-summary remains queued with no runner assigned. The control owner then selected the separate minimal LMSPro
+production Render identity and minimum live L1-L2 confirmed green. Exact-main Security Scan
+`32824479591` attempt 2 passes in full. The control owner then selected the separate minimal LMSPro
 Team Variation guidance/configured-input CR-Fix as root `Now`. `1R-F-A` remains the exact FUND
 resumption point as root `Next`.
 Direct portrait/landscape source inspection
@@ -122,7 +122,7 @@ application local/remote dev/staging/main: exact 06811784
 preserved Stage C candidate: exact 328aadf0
 R13 staging exact Render/health and S1-S4: PASS
 production migration/schema, exact Render and authenticated read-only L1-L2: PASS
-protected dev/staging Security Scans: PASS; exact-main substantive jobs PASS, report-summary queued
+protected dev/staging/main Security Scans: PASS; exact-main run 32824479591 attempt 2 complete
 Role Authority: COMPLETE AND CLOSED
 Support Ticketing: COMPLETE AND CLOSED
 FUND Stage C: accepted but paused as root NEXT behind the selected minimal LMSPro CR-Fix
@@ -138,8 +138,7 @@ Current consolidated delivery state:
   remains governed by the preceding promotion records;
 - the historical E-D secret detection, schema security and TypeScript CI evidence remains
   unchanged; the later protected dependency correction is included by ancestry. Current
-  dev/staging scans pass; exact-main R13 scan `32824479591` has green substantive jobs but
-  its report-summary job remains queued and is not claimed as a completed pass;
+  dev/staging scans and exact-main R13 scan `32824479591` attempt 2 pass in full;
 - the staging application health check passed with its database connected and RLS enabled
   on all 11 expected tables;
 - prior human FUND administrator login and pre-existing UI smoke testing passed; E-B/E-C
