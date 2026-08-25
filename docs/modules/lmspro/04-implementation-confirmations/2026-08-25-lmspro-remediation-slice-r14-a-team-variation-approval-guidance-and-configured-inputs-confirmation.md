@@ -2,8 +2,8 @@
 
 Date: 2026-08-25
 
-Status: **EXACT `D78935D4` PASSES AUTOMATION AND CONTROL-OWNER R1-R9; LOCAL GATE
-COMPLETE; NO PUSH, PROMOTION OR DEPLOYMENT AUTHORISED BY THIS RECORD**
+Status: **EXACT `D78935D4` IS PROMOTED THROUGH STAGING; LOCAL, SECURITY AND PUBLIC-HEALTH
+GATES PASS; EXACT RENDER IDENTITY AND S1-S4 STAGING SMOKE PENDING**
 
 Exact commit: **`d78935d407ace7ebe796a31a13adf3e17dafa758`**, test child of Free Day
 presentation implementation `06966d49106f30f7724d6293ac3c31da33de693a` and corrected Variation
@@ -17,9 +17,11 @@ modals; a demoted Free Day Save Changes control outside the workflow footer; foc
 policy/router/surface tests. No schema, migration, authority, notification, historic-row repair,
 automatic allocation or environment change.
 
-Automated checks: **PASS** — exact `d78935d4` focused Free Day surface 2/2, TypeScript,
-critical-file verifier and whitespace. Parent `06966d49` passed combined focused 8/8 and changed
-production-file ESLint with zero errors; earlier parents retain focused/full/build evidence.
+Automated checks: **PASS** — exact `d78935d4` focused Free Day surface 2/2, promotion-time
+safe-commit, TypeScript, critical-file verifier and whitespace. Parent `06966d49` passed combined
+focused 8/8 and changed production-file ESLint with zero errors; earlier parents retain
+focused/full/build evidence. Exact work-branch/dev/staging Security Scans
+`32835754829`/`32835986995`/`32836190860` all pass, including generated reports.
 
 Human evidence: **PASS R1-R9** — direct control-owner observation. The only R1-R6 remedial finding
 was public display of internal role shorthand `C1`; exact `66104e35` renders `League Admin` and R7
@@ -27,15 +29,18 @@ passes. Exact `b6c35992` makes the row-click Variation Request detail modal 50% 
 R8 passes. Exact `06966d49` applies the same responsive width to the Free Day row-click modal and
 demotes Save Changes beneath League Notes; R9 passes.
 
-Environment proven: corrected source and automated behaviour on the local work branch. The
-control owner manages the browser-facing local server. Remote dev/staging/main remain at the prior
-exact `06811784` boundary.
+Environment proven: corrected source and automated behaviour locally; exact refs align through
+origin work branch, dev and staging at `d78935d4`. Public staging health is HTTP 200 with database
+connected and RLS enabled on 11/11 tables. Main remains at exact `06811784`; no schema migration or
+runtime-configuration action was required.
 
-Known residual risk: no local presentation blocker remains. C1/C2 remain internal control notation
-for League Admin/Club Secretary respectively. Existing stored text remains backward-compatible;
-stale configured references are re-resolved at mutation time.
+Known residual risk: exact Render build identity and focused authenticated S1-S4 staging smoke
+remain. C1/C2 remain internal control notation for League Admin/Club Secretary respectively.
+Existing stored text remains backward-compatible; stale configured references are re-resolved at
+mutation time.
 
-Next authorised action: request an explicit security/push/promotion decision for exact `d78935d4`.
+Next authorised action: confirm exact Render `d78935d4` identity and run the focused S1-S4 staging
+smoke in the paired review record. Do not promote live.
 
 Accepted plan:
 
@@ -87,6 +92,11 @@ Review and test:
 | Parent `66104e35` focused policy/router/surface tests | PASS — 36/36 |
 | Parent `0a6376a2` full repository Vitest | PASS — 509 passed; 12 intentionally skipped |
 | Parent `0a6376a2` production build | PASS — 131 routes; not repeated for presentation-only children |
+| Promotion-time exact `d78935d4` safe-commit | PASS — TypeScript and critical-file verifier |
+| Work-branch Security Scan | PASS — `32835754829` at exact `d78935d4` |
+| Dev Security Scan | PASS — `32835986995` at exact `d78935d4` |
+| Staging Security Scan | PASS — `32836190860` at exact `d78935d4` |
+| Public staging health | PASS — HTTP 200; database connected; RLS 11/11 |
 
 ## 3. Recovery Position
 

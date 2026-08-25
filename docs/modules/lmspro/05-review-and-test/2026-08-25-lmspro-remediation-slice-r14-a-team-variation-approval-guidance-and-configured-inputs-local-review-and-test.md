@@ -2,8 +2,8 @@
 
 Date: 2026-08-25
 
-Review status: **EXACT `D78935D4` PASSES AUTOMATION AND CONTROL-OWNER R1-R9; LOCAL
-STANDARD-DEPTH GATE COMPLETE; READY FOR AN EXPLICIT SECURITY/PUSH/PROMOTION DECISION**
+Review status: **EXACT `D78935D4` IS PROMOTED THROUGH STAGING; LOCAL, SECURITY AND
+PUBLIC-HEALTH GATES PASS; EXACT RENDER IDENTITY AND S1-S4 STAGING SMOKE PENDING**
 
 Exact candidate: `d78935d407ace7ebe796a31a13adf3e17dafa758`; Free Day presentation implementation
 parent `06966d49106f30f7724d6293ac3c31da33de693a`; Variation Request width parent
@@ -19,9 +19,11 @@ responsive 660px row-click Variation Request and Free Day detail modals, demoted
 Changes placement and focused tests recorded in the implementation confirmation. No schema,
 migration, authority, notification, automatic allocation or environment change.
 
-Automated checks: **PASS** — exact candidate focused Free Day surface 2/2, TypeScript, verifier and
-whitespace; implementation parent `06966d49` passed combined focused 8/8 and production-file lint
-with zero errors. Earlier parents retain their recorded focused/full/build evidence.
+Automated checks: **PASS** — exact candidate focused Free Day surface 2/2, promotion-time
+safe-commit, TypeScript, verifier and whitespace; implementation parent `06966d49` passed combined
+focused 8/8 and production-file lint with zero errors. Earlier parents retain their recorded
+focused/full/build evidence. Exact work-branch/dev/staging Security Scans
+`32835754829`/`32835986995`/`32836190860` pass in full, including generated reports.
 
 Human evidence: **PASS R1-R9** — direct control-owner observation, recorded row by row below. The
 only R1-R6 finding was that internal shorthand `C1` was rendered to users; exact `66104e35`
@@ -30,16 +32,18 @@ Request detail modal by 50% on desktop while retaining Mantine's viewport cap; R
 `06966d49` gives the Free Day row-click modal the same width and moves its single link-style Save
 Changes control beneath League Notes, outside the workflow-action footer; R9 passes.
 
-Environment proven: corrected source and automation on local branch
-`fix/lmspro-variation-approval-guidance-inputs`. The control owner manages the browser-facing local
-DevData server. No remote environment contains R14-A.
+Environment proven: corrected source and automation locally; exact local/remote work branch, dev
+and staging refs align at `d78935d4`. Public `https://staging.seasonpro.co.uk/api/health` returned
+HTTP 200 with database connected and RLS enabled on 11/11 tables. Main remains exact `06811784`.
+No migration or runtime-configuration action was required.
 
-Known residual risk: no local presentation blocker remains. C1/C2 remain valid only in internal
-control evidence, where C1 means League Admin and C2 means Club Secretary. Remote exact-build,
-Security and representative staging proof remain environment gates, not inferred local evidence.
+Known residual risk: no local blocker or Security finding remains. C1/C2 remain valid only in
+internal control evidence, where C1 means League Admin and C2 means Club Secretary. Exact Render
+build identity and the representative authenticated S1-S4 staging path remain human gates and are
+not inferred from Git refs, automation or public health.
 
-Next authorised action: obtain an explicit security/push/promotion decision for exact `d78935d4`.
-Do not push or promote solely from this green local result.
+Next authorised action: confirm exact Render `d78935d4` identity and run S1-S4 below using
+controlled staging personas and disposable non-sensitive requests. Do not promote live.
 
 Implementation confirmation:
 
@@ -125,8 +129,27 @@ automation.
 | Parent `66104e35` focused suite | PASS — 36/36, including a policy assertion that public follow-up text contains no C1/C2 shorthand |
 | Parent `0a6376a2` full suite | PASS — 509 passed; 12 intentionally skipped |
 | Parent `0a6376a2` production build | PASS — 131 routes; not repeated for the presentation-only children while the control owner runs the local server |
+| Promotion-time exact `d78935d4` safe-commit | PASS — TypeScript and critical-file verifier |
+| Exact Git corridor | PASS — origin work branch, local/remote dev and local/remote staging align at `d78935d407ace7ebe796a31a13adf3e17dafa758`; main remains `06811784` |
+| Work-branch Security Scan | PASS — `32835754829` |
+| Dev Security Scan | PASS — `32835986995` |
+| Staging Security Scan | PASS — `32836190860` |
+| Public staging health | PASS — HTTP 200; database connected; RLS enabled 11/11 |
 
-## 6. Stop Rules
+## 6. Focused Staging Smoke
+
+Use controlled staging League Admin/Club Secretary personas, disposable requests and
+non-sensitive reasons. Record each row `PASS`, `FAIL` or `NOT RUN`; do not infer a pass from local
+testing, automation, Git alignment or public health.
+
+| Ref | Check | Status/evidence |
+| --- | --- | --- |
+| S1 | Render displays exact commit `d78935d407ace7ebe796a31a13adf3e17dafa758`; the authenticated League Admin Variation route loads without migration/runtime or console error. | NOT RUN — direct control-owner confirmation required |
+| S2 | Club Secretary creates one configured manual Age Group or Division request; the selected configured label survives both roles' displays, League Admin guidance names the required follow-up, approval does not mutate the Team, and the approved row retains `Confirm System Updated`. | NOT RUN |
+| S3 | On a disposable automatic Name Change or Withdrawal request, League Admin guidance says approval applies the change, approval performs that existing effect, and the detail reports that LMSPro already applied it. | NOT RUN |
+| S4 | A mixed automatic/manual selection reports truthful counts and named manual tasks without losing selection; row-click Variation and Free Day modals retain the accepted responsive width and Free Day Save/action hierarchy. | NOT RUN |
+
+## 7. Stop Rules
 
 Any misleading automatic/manual wording, current/retired/out-of-scope option, mismatched stored
 label, manual Team mutation, missing automatic mutation, lost selection, stale UI after action,

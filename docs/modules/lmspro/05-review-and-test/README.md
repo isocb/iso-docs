@@ -5,7 +5,8 @@ Current R14 review:
 - `2026-08-25-lmspro-remediation-slice-r14-a-team-variation-approval-guidance-and-configured-inputs-local-review-and-test.md`
   records three direct human-smoke failures on superseded `0700993b`, their correction at exact
   local `0a6376a2`, subsequent presentation corrections and exact `d78935d4` automation/direct
-  R1-R9 PASS. The local gate is complete and ready for an explicit security/push/promotion decision.
+  R1-R9 PASS. Exact `d78935d4` is promoted through staging with all three Security Scans and public
+  health green; exact Render identity and focused S1-S4 staging smoke remain.
 
 Current R13 review and release evidence:
 

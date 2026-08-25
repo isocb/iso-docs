@@ -4,8 +4,8 @@ Date: 2026-08-25
 
 Module: LMSPro / SeasonPro
 
-Status: **EXACT `D78935D4` PASSES AUTOMATION AND CONTROL-OWNER R1-R9; LOCAL GATE
-COMPLETE; READY FOR AN EXPLICIT SECURITY/PUSH/PROMOTION DECISION**
+Status: **EXACT `D78935D4` IS PROMOTED THROUGH STAGING; LOCAL, SECURITY AND PUBLIC-HEALTH
+GATES PASS; EXACT RENDER IDENTITY AND S1-S4 STAGING SMOKE PENDING**
 
 Source CR-Fix:
 
@@ -85,7 +85,10 @@ baseline `068117848bc66739a2794c596621f372344a9209`. Initial `0700993b` human sm
 bounded defects; corrected exact local candidate `0a6376a2` passed its automated gate and direct
 R1-R6 retest. Role-copy correction `66104e35` passes automation and direct R7. Responsive
 Variation/Free Day presentation children through `d78935d4` pass automation and direct R8-R9.
-Next action requires an explicit security/push/promotion decision; none is authorised here.
+The control owner then authorised the normal staging promotion. Work branch, dev and staging
+Security Scans `32835754829`/`32835986995`/`32836190860` pass; exact refs align through staging and
+public staging health is green. The next gate is exact Render identity and focused S1-S4 human
+staging smoke. No live promotion is authorised.
 
 If this CR-Fix closes or is re-disposed, resume FUND Stage C only from exact candidate
 `328aadf0a360b4c65837327060302ddc525f6168`: the recorded temporary worker is suspended, no

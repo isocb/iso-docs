@@ -4,19 +4,19 @@ Date: 2026-08-25
 
 Module: LMSPro / SeasonPro
 
-Status: **EXACT `D78935D4` PASSES AUTOMATION AND CONTROL-OWNER R1-R9; LOCAL GATE
-COMPLETE; READY FOR AN EXPLICIT SECURITY/PUSH/PROMOTION DECISION**
+Status: **EXACT `D78935D4` IS PROMOTED THROUGH STAGING; LOCAL, SECURITY AND PUBLIC-HEALTH
+GATES PASS; EXACT RENDER IDENTITY AND S1-S4 STAGING SMOKE PENDING**
 
 Control depth: **Standard** — this is bounded ordinary product behaviour affecting C1/C2
 guidance, configured-value selection and server validation. Existing organisation, Club, Team and
 season authority remains unchanged; no schema, live-data or automatic allocation change is planned.
 
 ```text
-Current state: exact d78935d4 passes automation and direct R1-R9; responsive Variation/Free Day modals and Free Day Save action hierarchy are locally accepted
+Current state: exact d78935d4 is aligned through origin work branch, dev and staging; local automation/R1-R9, all three Security Scans and public staging health pass
 Last proven commit: d78935d407ace7ebe796a31a13adf3e17dafa758
-Current environment: local work branch only, tested through automation; browser-facing server remains control-owner managed; remote dev/staging/main remain exact 06811784
-Next human decision/test: explicit security/push/promotion decision for exact d78935d4
-Safe resumption point: if promotion is authorised, begin with exact-candidate security and controlled dev/staging gates; otherwise retain the clean local candidate
+Current environment: origin work branch, dev and staging at exact d78935d4; main remains exact 06811784; no migration or runtime-configuration change
+Next human decision/test: confirm exact Render d78935d4 identity and run focused S1-S4 authenticated staging smoke
+Safe resumption point: inspect the staging deployment identity, run S1-S4 with controlled personas and disposable non-sensitive requests, then record every row PASS/FAIL/NOT RUN; do not promote live
 ```
 
 Source CR-Fix:
@@ -209,8 +209,11 @@ The control owner accepted this plan and explicitly authorised implementation/do
 2026-08-25. Exact local candidate `0700993b` has completed the automated Standard-depth gate; the
 paired `04`/`05` records hold the implementation and test evidence.
 
-The local stop is complete at exact `d78935d4` with R1-R9 passed. Do not push, migrate, promote or
-deploy without a later explicit decision.
+The local stop completed at exact `d78935d4` with R1-R9 passed. The control owner explicitly
+authorised the normal staging promotion on 2026-08-25. Exact work branch, dev and staging Security
+Scans `32835754829`/`32835986995`/`32836190860` pass; refs align through staging and public staging
+health is green. Stop for exact Render identity and S1-S4 human smoke. Do not promote live without
+a later explicit decision.
 
 If this CR-Fix closes or is re-disposed, resume FUND Stage C only from exact candidate
 `328aadf0a360b4c65837327060302ddc525f6168`: temporary worker suspended, no application secrets,

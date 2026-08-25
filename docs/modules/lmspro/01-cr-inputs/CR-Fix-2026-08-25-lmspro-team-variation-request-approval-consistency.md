@@ -4,8 +4,8 @@ Date: 2026-08-25
 
 Owning lane: LMSPro / SeasonPro
 
-Planning status: **EXACT `D78935D4` PASSES AUTOMATION AND CONTROL-OWNER R1-R9; LOCAL
-GATE COMPLETE; READY FOR AN EXPLICIT SECURITY/PUSH/PROMOTION DECISION**
+Planning status: **EXACT `D78935D4` IS PROMOTED THROUGH STAGING; LOCAL, SECURITY AND
+PUBLIC-HEALTH GATES PASS; EXACT RENDER IDENTITY AND S1-S4 STAGING SMOKE PENDING**
 
 Control depth recommendation: **Standard** — this is a bounded UI-guidance and requested-value
 input correction using existing scoped configuration/CRUD sources. It does not propose changing
@@ -107,6 +107,9 @@ The accepted bounded R14-A plan was first implemented at `0700993b`; direct smok
 C2/C1 guidance, empty Division options and incorrect numeric Age Group ordering. Corrected exact
 local `0a6376a2` passed its automated gates and direct R1-R6 control-owner retest. The resulting
 role-name child `66104e35` says `League Admin` and passes R7. Responsive Variation and Free Day
-presentation children through exact `d78935d4` pass automation and direct R8-R9. The local gate is
-complete; no push or promotion is authorised without an explicit next decision. FUND Stage C
-remains portfolio `Next` at its preserved checkpoint.
+presentation children through exact `d78935d4` pass automation and direct R8-R9. On 2026-08-25 the
+control owner explicitly authorised the normal staging promotion. Exact work branch, dev and
+staging Security Scans `32835754829`/`32835986995`/`32836190860` pass; local/remote refs align
+through staging, and public staging health is HTTP 200 with database connected and RLS 11/11.
+Exact Render identity and focused S1-S4 human staging smoke remain. No live promotion is
+authorised. FUND Stage C remains portfolio `Next` at its preserved checkpoint.
