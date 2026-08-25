@@ -25,10 +25,11 @@ Current boundary:
 - R13-B exact `06811784` passed local and staging gates and is aligned through main;
   production migration/schema, exact Render identity, minimum live L1-L2 and exact-main
   Security Scan `32824479591` attempt 2 pass.
-- Active proposed plan:
+- Active accepted/implemented plan:
   `2026-08-25-lmspro-remediation-slice-r14-a-team-variation-approval-guidance-and-configured-inputs-planning.md`.
-- R14-A is Standard depth and awaits control-owner acceptance. It preserves manual
-  Age Group/Division allocation and has no implementation, schema, migration, promotion or
+- R14-A is Standard depth. Direct R1-R6 pass at `0a6376a2`; wording-only child `66104e35`
+  replaces rendered internal `C1` with `League Admin`, passes focused automation and awaits R7.
+  It preserves manual Age Group/Division allocation and has no schema, migration, promotion or
   deployment authority. FUND `1R-F-A` Stage C remains portfolio `Next`.
 
 Recent historical boundary:

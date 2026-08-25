@@ -4,9 +4,9 @@ Date: 2026-08-25
 
 Owning lane: LMSPro / SeasonPro
 
-Planning status: **INITIAL `0700993B` HUMAN SMOKE FOUND THREE DEFECTS; CORRECTED EXACT
-LOCAL `0A6376A2` PASSES AUTOMATED STANDARD-DEPTH GATE; R1-R6 NOT RUN; NO PUSH,
-PROMOTION OR DEPLOYMENT AUTHORITY**
+Planning status: **R1-R6 CONTROL-OWNER RETEST PASS; PUBLIC ROLE-NAME CORRECTION
+`66104E35` PASSES FOCUSED AUTOMATION; R7 NOT RUN; NO PUSH, PROMOTION OR DEPLOYMENT
+AUTHORITY**
 
 Control depth recommendation: **Standard** — this is a bounded UI-guidance and requested-value
 input correction using existing scoped configuration/CRUD sources. It does not propose changing
@@ -106,7 +106,8 @@ is excluded from R13-B.
 
 The accepted bounded R14-A plan was first implemented at `0700993b`; direct smoke found misplaced
 C2/C1 guidance, empty Division options and incorrect numeric Age Group ordering. Corrected exact
-local `0a6376a2` passes focused/full automation, TypeScript, verifier, production-file lint,
-whitespace and production build. The next action is direct corrected R1-R6 local smoke; no pass is
-inferred and no push or promotion is authorised. FUND Stage C remains portfolio `Next` at its
-preserved checkpoint.
+local `0a6376a2` passed its automated gates and direct R1-R6 control-owner retest. The only resulting
+finding was rendered internal shorthand `C1`; wording-only child `66104e35` now says `League Admin`
+and passes focused 36/36, TypeScript, verifier, production-file lint and whitespace. R7 remains
+direct local proof; no push or promotion is authorised. FUND Stage C remains portfolio `Next` at
+its preserved checkpoint.

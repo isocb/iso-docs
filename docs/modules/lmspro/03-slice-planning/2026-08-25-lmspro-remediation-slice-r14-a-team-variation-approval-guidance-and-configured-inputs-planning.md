@@ -4,20 +4,19 @@ Date: 2026-08-25
 
 Module: LMSPro / SeasonPro
 
-Status: **INITIAL HUMAN SMOKE FOUND THREE DEFECTS AT `0700993B`; CORRECTED LOCAL CANDIDATE
-`0A6376A2` PASSES AUTOMATION; FOCUSED HUMAN RETEST NOT RUN; NO PUSH, PROMOTION OR
-DEPLOYMENT AUTHORITY**
+Status: **R1-R6 CONTROL-OWNER RETEST PASS; PUBLIC ROLE-NAME CORRECTION `66104E35` PASSES
+FOCUSED AUTOMATION; R7 NOT RUN; NO PUSH, PROMOTION OR DEPLOYMENT AUTHORITY**
 
 Control depth: **Standard** — this is bounded ordinary product behaviour affecting C1/C2
 guidance, configured-value selection and server validation. Existing organisation, Club, Team and
 season authority remains unchanged; no schema, live-data or automatic allocation change is planned.
 
 ```text
-Current state: initial smoke failures corrected at exact local 0a6376a2; focused/full/type/verify/lint/whitespace/build pass; R1-R6 retest not run
-Last proven commit: 0a6376a235dbb97109d894af574d9ef0546ead00
+Current state: R1-R6 pass at 0a6376a2; wording-only child 66104e35 replaces rendered C1 shorthand with League Admin and passes focused/type/verify/lint/whitespace; R7 not run
+Last proven commit: 66104e3576b06c0a532557e44e9b983921dbd5ac
 Current environment: local work branch only, tested through automation; browser-facing server remains control-owner managed; remote dev/staging/main remain exact 06811784
-Next human decision/test: run and record corrected local R1-R6 with controlled C1/C2 personas; do not infer a pass from automation
-Safe resumption point: if R1-R6 pass, request an explicit push/security/promotion decision; if any fail, return to bounded implementation
+Next human decision/test: run and record local R7; do not infer a pass from automation
+Safe resumption point: if R7 passes, request an explicit push/security/promotion decision; if it fails, return to the bounded wording implementation
 ```
 
 Source CR-Fix:
@@ -76,9 +75,11 @@ the Team.
   Team Approval CRUD modal; do not maintain separate effect matrices in those surfaces.
 - On C2 type selection, show only the meaningful input required to submit the request. Operational
   approval/follow-up guidance belongs to C1 and must not be shown to C2.
-- On both C1 approval surfaces, show `Applied on approval` or `C1 action required` with the exact
+- On both C1 approval surfaces, show `Applied on approval` or `League Admin action required` with the exact
   task before approval; retain the guidance while an Approved request awaits
   `Confirm System Updated` in the routed management detail.
+- Treat C1/C2 as internal lifecycle shorthand only. User-facing copy uses `League Admin` and `Club
+  Secretary` where a role name is required.
 - For bulk selection, show the selected automatic/manual counts and the distinct follow-up tasks
   before the existing Approve action. Preserve selection membership and existing atomic/stale
   refusal behaviour; do not redesign bulk approval effects.
@@ -151,6 +152,7 @@ Record each row `PASS`, `FAIL` or `NOT RUN`; do not infer a pass from automation
 | R4 | Both C1 Team Approval CRUD modal and Team Variations management detail show the exact effect/task before approval; one automatic disposable request changes the Team and one manual request does not. |
 | R5 | Approved manual management detail retains the named task until C1 completes it and selects `Confirm System Updated`; automatic detail states that the LMSPro change was already applied. |
 | R6 | Mixed bulk selection truthfully reports automatic/manual counts and tasks, preserves selection, and retains existing approval effects. |
+| R7 | User-facing guidance in both League Admin approval surfaces and the mixed-selection summary says `League Admin`, never internal shorthand `C1` or `C2`. |
 
 Server refusal of forged/stale references is automated negative evidence and must not be simulated
 by manipulating DevData through the browser.
@@ -195,8 +197,8 @@ The control owner accepted this plan and explicitly authorised implementation/do
 2026-08-25. Exact local candidate `0700993b` has completed the automated Standard-depth gate; the
 paired `04`/`05` records hold the implementation and test evidence.
 
-The required stop remains corrected local R1-R6. Do not push, migrate, promote or deploy without a later
-explicit decision.
+The required stop is local R7 after R1-R6 passed. Do not push, migrate, promote or deploy without a
+later explicit decision.
 
 If this CR-Fix closes or is re-disposed, resume FUND Stage C only from exact candidate
 `328aadf0a360b4c65837327060302ddc525f6168`: temporary worker suspended, no application secrets,

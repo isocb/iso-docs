@@ -2,13 +2,12 @@
 
 Date: 2026-08-25
 
-Status: **INITIAL HUMAN SMOKE FAILED THREE PRESENTATION/OPTION CHECKS; CORRECTED LOCAL
-IMPLEMENTATION `0A6376A2` PASSES AUTOMATED STANDARD-DEPTH GATE; R1-R6 RETEST NOT RUN;
-NO PUSH, PROMOTION OR DEPLOYMENT AUTHORISED**
+Status: **R1-R6 CONTROL-OWNER RETEST PASS; PUBLIC ROLE-NAME CORRECTION `66104E35` PASSES
+FOCUSED AUTOMATION; R7 NOT RUN; NO PUSH, PROMOTION OR DEPLOYMENT AUTHORISED**
 
-Exact commit: **`0a6376a235dbb97109d894af574d9ef0546ead00`**, superseding initial local
-candidate `0700993b16fa83902327eb9e91aa5889e968a383` and built from accepted exact baseline
-`068117848bc66739a2794c596621f372344a9209`.
+Exact commit: **`66104e3576b06c0a532557e44e9b983921dbd5ac`**, a presentation-only child of
+control-owner-smoked `0a6376a235dbb97109d894af574d9ef0546ead00`; initial local candidate
+`0700993b16fa83902327eb9e91aa5889e968a383` remains superseded.
 
 Files/change boundary: one shared six-type Team Variation policy; C2 configured Age Group/Division
 selectors without operational guidance; C1 Team Approval CRUD-modal plus Team Variations
@@ -17,24 +16,24 @@ server-side configured target resolution; focused policy/router/surface tests. N
 migration, authority, notification, historic-row repair, automatic allocation or environment
 change.
 
-Automated checks: **PASS** — corrected focused 35/35; full repository 509 pass and 12 intentionally
-skipped; TypeScript, critical-file verification, changed production-file ESLint with zero errors,
-whitespace and the 131-route production build pass.
+Automated checks: **PASS** — exact `66104e35` focused 36/36, TypeScript, critical-file verifier,
+changed production-file ESLint with zero errors and whitespace. Parent `0a6376a2` passed full 509
+pass/12 skip and the 131-route build before this wording-only delta.
 
-Human evidence: **FAIL on superseded `0700993b`** — control-owner smoke found misplaced C2
-guidance/missing C1 CRUD-modal guidance, an empty U10 Division selector and lexicographic Age Group
-ordering. Corrected candidate R1-R6 are **NOT RUN**; no pass is inferred from automation.
+Human evidence: **PASS R1-R6 on `0a6376a2`** — direct control-owner observation. The only remedial
+finding was public display of internal role shorthand `C1`. Exact `66104e35` renders `League Admin`
+instead; the focused R7 visual check is **NOT RUN**.
 
 Environment proven: corrected source and automated behaviour on the local work branch. The
 control owner manages the browser-facing local server. Remote dev/staging/main remain at the prior
 exact `06811784` boundary.
 
-Known residual risk: selector rendering, explanatory copy, post-action refresh and mixed-bulk
-presentation still require the controlled local human matrix. Existing stored text remains
+Known residual risk: only the rendered public role name requires R7. C1/C2 remain internal control
+notation for League Admin/Club Secretary respectively. Existing stored text remains
 backward-compatible; stale configured references are re-resolved at mutation time.
 
-Next authorised action: run and record corrected local R1-R6. A green matrix may support a later
-explicit push/security/promotion decision; it does not itself authorise one.
+Next authorised action: run and record local R7 only. A green result may support a later explicit
+push/security/promotion decision; it does not itself authorise one.
 
 Accepted plan:
 
@@ -64,18 +63,20 @@ Review and test:
 - Reused numeric Age Group ordering with a code-derived fallback for legacy null `ageValue` rows.
 - Retained C1 guidance before/after single approval and automatic/manual counts plus distinct manual
   tasks for mixed bulk selection.
+- Replaced all rendered `C1` shorthand in those guidance messages, headings and bulk counts with
+  the public role name `League Admin`; internal lifecycle/test labels retain C1/C2 notation.
 
 ## 2. Automated Evidence
 
 | Gate | Result |
 | --- | --- |
-| Focused policy/router/surface tests | PASS — 35/35 |
-| Full repository Vitest | PASS — 509 passed; 12 intentionally skipped |
-| TypeScript | PASS |
-| Critical-file verifier | PASS |
-| Changed production-file ESLint | PASS — zero errors; 16 existing warnings |
-| Diff whitespace | PASS |
-| Production build | PASS — 131 routes |
+| Exact `66104e35` focused policy/router/surface tests | PASS — 36/36 |
+| Exact `66104e35` TypeScript | PASS |
+| Exact `66104e35` critical-file verifier | PASS — pre-commit gate |
+| Exact `66104e35` changed production-file ESLint | PASS — zero errors; six existing warnings |
+| Exact `66104e35` diff whitespace | PASS |
+| Parent `0a6376a2` full repository Vitest | PASS — 509 passed; 12 intentionally skipped |
+| Parent `0a6376a2` production build | PASS — 131 routes; not repeated for presentation-only child |
 
 ## 3. Recovery Position
 

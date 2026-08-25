@@ -2,34 +2,39 @@
 
 Date: 2026-08-25
 
-Review status: **INITIAL HUMAN SMOKE FAILED THREE CHECKS AT `0700993B`; CORRECTED EXACT
-`0A6376A2` PASSES AUTOMATION; R1-R6 HUMAN RETEST NOT RUN; NOT READY FOR PUSH OR
+Review status: **R1-R6 CONTROL-OWNER RETEST PASS AT `0A6376A2`; PUBLIC ROLE-NAME CORRECTION
+`66104E35` PASSES FOCUSED AUTOMATION; R7 WORDING CHECK NOT RUN; NOT READY FOR PUSH OR
 PROMOTION DECISION**
 
-Exact commit: `0a6376a235dbb97109d894af574d9ef0546ead00`; initial failed candidate
-`0700993b16fa83902327eb9e91aa5889e968a383` is superseded.
+Exact candidate: `66104e3576b06c0a532557e44e9b983921dbd5ac`; behaviour-smoke candidate
+`0a6376a235dbb97109d894af574d9ef0546ead00` and initial failed candidate
+`0700993b16fa83902327eb9e91aa5889e968a383` are superseded.
 
 Files/change boundary: the shared Team Variation policy, configured target input/resolution,
 C1-only operational guidance, C2 selectors, numeric Age Group sorting, Age-Group-scoped AGG list
 and focused tests recorded in the implementation confirmation. No schema, migration, authority,
 notification, automatic allocation or environment change.
 
-Automated checks: **PASS** — corrected focused 35/35, full 509 pass/12 skip, TypeScript, verifier,
-production-file lint with zero errors, whitespace and 131-route build.
+Automated checks: **PASS** — exact wording candidate focused 36/36, TypeScript, verifier,
+production-file lint with zero errors and whitespace. Its exact parent `0a6376a2` passed full 509
+pass/12 skip and the 131-route build before the presentation-only role-name correction.
 
-Human evidence: **FAIL on initial `0700993b`** — the control owner directly observed three defects
-listed below. Corrected R1-R6 remain **NOT RUN**; no pass is inferred from automation.
+Human evidence: **PASS R1-R6 on `0a6376a2`** — direct control-owner observation, recorded row by
+row below. The only resulting finding was that internal shorthand `C1` was rendered to users. Exact
+`66104e35` replaces it with `League Admin`; R7 remains **NOT RUN** and is not inferred from
+automation.
 
 Environment proven: corrected source and automation on local branch
 `fix/lmspro-variation-approval-guidance-inputs`. The control owner manages the browser-facing local
 DevData server. No remote environment contains R14-A.
 
-Known residual risk: visible selector scope, wording comprehension, single-action refresh,
-`Confirm System Updated` guidance and mixed-bulk presentation require human UI proof.
+Known residual risk: the presentation-only replacement of internal `C1` shorthand with the public
+role name `League Admin` requires one direct UI check. C1/C2 remain valid only in internal control
+evidence, where C1 means League Admin and C2 means Club Secretary.
 
-Next authorised action: use local application/DevData with controlled C1/C2 personas and
-non-sensitive disposable requests to run corrected R1-R6. Stop on any failed row and return the slice to
-implementation. Do not push or promote without a later explicit instruction.
+Next authorised action: refresh the control-owner-managed local application and run R7 only. Stop
+on failure and return the wording delta to implementation. Do not push or promote without a later
+explicit instruction.
 
 Implementation confirmation:
 
@@ -44,10 +49,11 @@ Accepted plan:
 Initial smoke proved that the first surface assumption was incomplete: the C1 Team Approval CRUD
 modal also performs variation approval, while C2 does not need operational follow-up guidance. It
 also exposed an empty Division option list and legacy null-`ageValue` ordering. Exact `0a6376a2`
-corrects all three findings. The shared policy now drives C1 guidance, bulk summaries and router
-approval effects; C2 uses only its labels and input modes.
+corrected all three findings and passed direct R1-R6 retest. That retest exposed one remaining copy
+issue: the internal role code `C1` was visible to users. Exact `66104e35` changes those rendered
+messages to `League Admin` without changing behaviour.
 
-The slice is not locally accepted until corrected R1-R6 are directly observed.
+The slice is not locally accepted until R7 directly confirms the public role name.
 
 ## 2. Security And Integrity Findings
 
@@ -81,12 +87,13 @@ automation.
 
 | Ref | Check | Status/evidence |
 | --- | --- | --- |
-| R1 | C2 selects each request type and sees only the relevant request input, with no C1 operational approval/follow-up guidance. | NOT RUN |
-| R2 | Age Group uses a numerically ordered current-season selector (`U1`, `U2`, `U11`, `U111`) excluding the Team's current/retired group; the selected label survives create and C1/C2 display. | NOT RUN |
-| R3 | Division uses a required non-empty selector limited to the Team's current Age Group and excluding its current AGG; the selected label survives create and display. | NOT RUN |
-| R4 | Both C1 Team Approval CRUD modal and Team Variations management detail show the exact effect/task before approval; one automatic disposable request changes the Team and one manual request does not. | NOT RUN |
-| R5 | Approved manual management detail retains the named task until C1 completes it and selects `Confirm System Updated`; automatic detail states that the LMSPro change was already applied. | NOT RUN |
-| R6 | Mixed bulk selection truthfully reports automatic/manual counts and tasks, preserves selection, and retains existing approval effects. | NOT RUN |
+| R1 | C2 selects each request type and sees only the relevant request input, with no C1 operational approval/follow-up guidance. | PASS |
+| R2 | Age Group uses a numerically ordered current-season selector (`U1`, `U2`, `U11`, `U111`) excluding the Team's current/retired group; the selected label survives create and C1/C2 display. | PASS |
+| R3 | Division uses a required non-empty selector limited to the Team's current Age Group and excluding its current AGG; the selected label survives create and display. | PASS |
+| R4 | Both C1 Team Approval CRUD modal and Team Variations management detail show the exact effect/task before approval; one automatic disposable request changes the Team and one manual request does not. | PASS |
+| R5 | Approved manual management detail retains the named task until C1 completes it and selects `Confirm System Updated`; automatic detail states that the LMSPro change was already applied. | PASS |
+| R6 | Mixed bulk selection truthfully reports automatic/manual counts and tasks, preserves selection, and retains existing approval effects. | PASS |
+| R7 | User-facing guidance in both League Admin approval surfaces and the mixed-selection summary says `League Admin`, never the internal shorthand `C1` or `C2`. | NOT RUN |
 
 ## 5. Automated Evidence Detail
 
@@ -96,11 +103,11 @@ automation.
 | Configured create/negative router checks | PASS — resolved snapshots and no-side-effect refusals |
 | Single and mixed-bulk approval effects | PASS — two automatic, four non-mutating |
 | Guidance surfaces, numeric order and scoped AGG options | PASS |
-| Focused suite | PASS — 35/35 |
-| Full suite | PASS — 509 passed; 12 intentionally skipped |
-| TypeScript / verifier / whitespace | PASS |
-| Production-file ESLint | PASS — zero errors; warnings only |
-| Production build | PASS — 131 routes |
+| Exact `66104e35` focused suite | PASS — 36/36, including a policy assertion that public follow-up text contains no C1/C2 shorthand |
+| Exact `66104e35` TypeScript / verifier / whitespace | PASS |
+| Exact `66104e35` production-file ESLint | PASS — zero errors; six pre-existing warnings |
+| Parent `0a6376a2` full suite | PASS — 509 passed; 12 intentionally skipped |
+| Parent `0a6376a2` production build | PASS — 131 routes; not repeated for the wording-only child while the control owner runs the local server |
 
 ## 6. Stop Rules
 

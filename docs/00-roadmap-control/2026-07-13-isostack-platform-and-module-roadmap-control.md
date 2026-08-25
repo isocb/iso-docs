@@ -29,7 +29,7 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application and R13 release evidence:
 
 ```text
-R14-A initial 0700993b human smoke = FAIL on misplaced guidance, empty Division options and Age Group ordering; corrected exact local 0a6376a2 focused 35/35, full 509 pass/12 skip, type/verify/lint/whitespace/build PASS; R1-R6 NOT RUN
+R14-A initial 0700993b human smoke = FAIL on misplaced guidance, empty Division options and Age Group ordering; corrected exact local 0a6376a2 automated gate and direct R1-R6 PASS; public role-name child 66104e35 focused 36/36 plus type/verify/lint/whitespace PASS; R7 NOT RUN
 R13-B work branch/dev/staging/main and origins = exact 06811784
 R13-B staging exact Render identity and control-owner S1-S4 = PASS
 R13-B exact-main Security Scan 32824479591 attempt 2 = PASS at exact 06811784, including report summary
@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | LMSPro R14-A Team Variation approval guidance and configured inputs CR-Fix | Initial `0700993b` human smoke found three defects; corrected exact local `0a6376a2` passes the automated Standard-depth gate and focused R1-R6 remain `NOT RUN`. No push, promotion or deployment authority. |
+| **NOW** | LMSPro R14-A Team Variation approval guidance and configured inputs CR-Fix | Corrected exact local `0a6376a2` passes its automated gate and direct R1-R6; public role-name child `66104e35` passes the focused automated delta and R7 remains `NOT RUN`. No push, promotion or deployment authority. |
 | **NEXT** | Resume accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Resume only from the recorded safe checkpoint: exact candidate `328aadf0` preserved, temporary Render worker suspended, no application secrets injected, private R2 proof bucket empty and existing auto-deploy services untouched. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -95,7 +95,8 @@ expedite decision. The parent LMSPro R13 CR-Fix and both children completed thei
 staging boundaries. The control owner then selected the separate minimal Team Variation
 approval-guidance and configured-input CR-Fix as the only portfolio `Now`; its R14-A Standard plan
 was accepted; initial `0700993b` human smoke found three defects and corrected exact `0a6376a2`
-passes its automated gate. Direct R1-R6 remain pending. Preserved FUND
+passes its automated gate and direct R1-R6. Wording-only child `66104e35` replaces rendered `C1`
+with `League Admin`, passes its focused automated delta and awaits R7. Preserved FUND
 Stage C remains `Next` at its exact safe checkpoint. Exact R13 staging candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main now
 match that exact commit, the production migration/schema proof passes and the substantive
@@ -127,8 +128,8 @@ Registered and ordered work outside that pair:
   attempt 2 passes in full, including its generated report. A separate minimal Team Variation
   approval-guidance and configured-input CR was captured from the smoke, formally triaged and
   selected as root `Now`; initial `0700993b` human smoke found three bounded defects, corrected exact
-  `0a6376a2` passes automation, R1-R6 are not run, and it does not automate Age Group/Division
-  allocation;
+  `0a6376a2` passes automation and direct R1-R6, and wording-only child `66104e35` awaits R7; it does
+  not automate Age Group/Division allocation;
 - Platform `CR-Fix-PLAT-ROLE-04` P1 tenant module persona recovery: accepted urgent
   remedial expedite delivered through exact main `250baf12`. The authoritative P1 Client Users surface now
   separates Core authority from exact SeasonPro persona, supports deliberate exact-default

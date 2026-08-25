@@ -37,12 +37,12 @@ authority. Later disposition changes must update the existing row.
 | [`2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md`](../01-cr-inputs/2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md) | R11-A implemented with corrected combined Division/Age Group recipient-type widget, session disclosure and responsive layout; focused/full tests, type, verification, lint and 131-page build PASS; authenticated local UI smoke 18/18 and staging smoke all green; exact `83356030` is retained by ancestry in current `60ac76c1`; public live health PASS; no schema/API/provider/configuration change | Live branch promotion complete; retained evidence does not displace the reconciled R12-A/Support Ticketing `Now`/`Next` |
 | [`CR-Fix-2026-08-11-lmspro-free-day-owner-notice-authority.md`](../01-cr-inputs/CR-Fix-2026-08-11-lmspro-free-day-owner-notice-authority.md) | Complete green local smoke; R12-A `39a25d99` is retained in exact accepted production head `cde4eaff`; all exact scans, public health and Render production identity pass | Production inclusion complete by ancestry; retain bounded evidence and close with the combined release |
 | [`CR-Fix-2026-08-24-lmspro-free-day-and-team-variation-request-remediation.md`](../01-cr-inputs/CR-Fix-2026-08-24-lmspro-free-day-and-team-variation-request-remediation.md) | [Formal triage](../02-triage/2026-08-24-lmspro-cr-fix-free-day-and-team-variation-request-remediation-triage.md) delivered two ordered bounded lifecycles; [R13-A Free Day](../03-slice-planning/2026-08-24-lmspro-remediation-slice-r13-a-free-day-integrity-and-management-presentation-planning.md) and [R13-B Deferred Variation](../03-slice-planning/2026-08-24-lmspro-remediation-slice-r13-b-deferred-team-variation-workflow-planning.md) closed at staging with exact R13-B `06811784`, B1-B10, all Security/migration/health gates and S1-S4 PASS. The same exact commit is live; production migration/schema, exact Render identity, L1-L2 and exact-main Security Scan `32824479591` attempt 2 pass | Tactical parent delivery and controlled live release complete; no R13 action remains |
-| [`CR-Fix-2026-08-25-lmspro-team-variation-request-approval-consistency.md`](../01-cr-inputs/CR-Fix-2026-08-25-lmspro-team-variation-request-approval-consistency.md) | [Formally triaged](../02-triage/2026-08-25-lmspro-cr-fix-team-variation-request-approval-consistency-triage.md); initial R14-A `0700993b` human smoke found three bounded defects; corrected exact local `0a6376a2` passes focused 35/35, full 509 pass/12 skip, type/verify/lint/whitespace/build | Selected portfolio `Now`; awaiting corrected controlled local R1-R6. No push, promotion or deployment is authorised |
+| [`CR-Fix-2026-08-25-lmspro-team-variation-request-approval-consistency.md`](../01-cr-inputs/CR-Fix-2026-08-25-lmspro-team-variation-request-approval-consistency.md) | [Formally triaged](../02-triage/2026-08-25-lmspro-cr-fix-team-variation-request-approval-consistency-triage.md); initial R14-A `0700993b` human smoke found three bounded defects; corrected exact local `0a6376a2` passed automation and direct R1-R6; wording-only child `66104e35` passes focused 36/36 plus type/verify/lint/whitespace | Selected portfolio `Now`; awaiting local R7 public role-name proof. No push, promotion or deployment is authorised |
 
 Current LMSPro portfolio disposition:
 
 ```text
-ROOT NOW -> R14-A Team Variation approval guidance/configured inputs; corrected exact local 0a6376a2 automated gate PASS, human R1-R6 NOT RUN
+ROOT NOW -> R14-A Team Variation approval guidance/configured inputs; R1-R6 PASS at 0a6376a2, public role-name child 66104e35 automated PASS, R7 NOT RUN
 ROOT NEXT -> resume FUND 1R-F-A Stage C from its preserved exact checkpoint
 LMS R13 -> delivery/live proof complete at exact 06811784; production migration/schema, Render identity, L1-L2 and exact-main scan PASS
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; historical PLAT-ROLE-03/LMS-ROLE-01/02 are not next slices
@@ -66,9 +66,11 @@ force-cancelled and rerun. HTTP 403 blocked unauthenticated public health probes
 confirmed exact production Render `0681178` and L1-L2 completely green. The separate normal-approval
 guidance/input CR is formally triaged and selected as the new root `Now`; its R14-A Standard plan is
 accepted. Initial `0700993b` human smoke found misplaced guidance, empty Division options and
-incorrect Age Group ordering. Corrected exact `0a6376a2` passes focused/full automation,
-TypeScript, verification, production-file lint, whitespace and build; controlled local R1-R6 remain
-`NOT RUN`. It does not reopen R13, and no push or promotion is authorised.
+incorrect Age Group ordering. Corrected exact `0a6376a2` passed focused/full automation,
+TypeScript, verification, production-file lint, whitespace and build plus direct R1-R6. The only
+resulting finding was rendered internal shorthand `C1`; exact child `66104e35` now says `League
+Admin` and passes its focused automated delta. R7 remains `NOT RUN`. It does not reopen R13, and no
+push or promotion is authorised.
 
 FUND `1R-F-A` Stage C remains root `Next` at its preserved checkpoint: exact
 candidate `328aadf0` retained, temporary Render worker suspended, no application secrets,

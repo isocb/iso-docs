@@ -4,9 +4,8 @@ Date: 2026-08-25
 
 Module: LMSPro / SeasonPro
 
-Status: **INITIAL `0700993B` HUMAN SMOKE FOUND THREE DEFECTS; CORRECTED EXACT LOCAL
-`0A6376A2` PASSES AUTOMATED STANDARD-DEPTH GATE; R1-R6 NOT RUN; NO PUSH, PROMOTION OR
-DEPLOYMENT AUTHORITY**
+Status: **R1-R6 CONTROL-OWNER RETEST PASS; PUBLIC ROLE-NAME CORRECTION `66104E35`
+PASSES FOCUSED AUTOMATION; R7 NOT RUN; NO PUSH, PROMOTION OR DEPLOYMENT AUTHORITY**
 
 Source CR-Fix:
 
@@ -83,9 +82,9 @@ Do not plan or implement:
 
 The concise Standard-depth R14-A `03` plan was accepted and implemented from exact application
 baseline `068117848bc66739a2794c596621f372344a9209`. Initial `0700993b` human smoke found three
-bounded defects; corrected exact local candidate `0a6376a2` passes its automated gate. Next
-authorised action: run and record corrected local R1-R6; no push, promotion or deployment is
-authorised.
+bounded defects; corrected exact local candidate `0a6376a2` passed its automated gate and direct
+R1-R6 retest. The resulting role-copy correction is exact `66104e35` and passes focused automation.
+Next authorised action: run and record local R7; no push, promotion or deployment is authorised.
 
 If this CR-Fix closes or is re-disposed, resume FUND Stage C only from exact candidate
 `328aadf0a360b4c65837327060302ddc525f6168`: the recorded temporary worker is suspended, no

@@ -5,8 +5,9 @@ Current R14 implementation confirmation:
 - `2026-08-25-lmspro-remediation-slice-r14-a-team-variation-approval-guidance-and-configured-inputs-confirmation.md`
   records the three initial `0700993b` human-smoke defects and corrected exact local candidate
   `0a6376a2`: C1-only guidance, non-empty scoped Division options and numeric Age Group ordering.
-  Focused 35/35, full 509 pass/12 skip and type/verify/lint/whitespace/build pass; R1-R6 remain
-  `NOT RUN` and no push or promotion is authorised.
+  R1-R6 direct retest passed; wording-only child `66104e35` renders `League Admin` instead of
+  internal `C1` and passes focused 36/36 plus type/verify/lint/whitespace. R7 remains `NOT RUN`; no
+  push or promotion is authorised.
 
 Current R13 implementation confirmation:
 
