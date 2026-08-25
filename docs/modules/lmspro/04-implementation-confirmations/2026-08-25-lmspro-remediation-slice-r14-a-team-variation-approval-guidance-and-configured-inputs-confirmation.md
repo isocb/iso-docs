@@ -2,36 +2,39 @@
 
 Date: 2026-08-25
 
-Status: **LOCAL IMPLEMENTATION COMPLETE; AUTOMATED STANDARD-DEPTH GATE PASS; CONTROLLED
-C1/C2 HUMAN H1-H6 NOT RUN; NO PUSH, PROMOTION OR DEPLOYMENT AUTHORISED**
+Status: **INITIAL HUMAN SMOKE FAILED THREE PRESENTATION/OPTION CHECKS; CORRECTED LOCAL
+IMPLEMENTATION `0A6376A2` PASSES AUTOMATED STANDARD-DEPTH GATE; R1-R6 RETEST NOT RUN;
+NO PUSH, PROMOTION OR DEPLOYMENT AUTHORISED**
 
-Exact commit: **`0700993b16fa83902327eb9e91aa5889e968a383`**, built from accepted exact
-baseline `068117848bc66739a2794c596621f372344a9209`.
+Exact commit: **`0a6376a235dbb97109d894af574d9ef0546ead00`**, superseding initial local
+candidate `0700993b16fa83902327eb9e91aa5889e968a383` and built from accepted exact baseline
+`068117848bc66739a2794c596621f372344a9209`.
 
-Files/change boundary: one shared six-type Team Variation policy; C2 approval guidance and
-configured Age Group/Division selectors; C1 single and mixed-bulk guidance; server-side configured
-target resolution; focused policy/router tests. No schema, migration, authority, notification,
-historic-row repair, automatic allocation or environment change.
+Files/change boundary: one shared six-type Team Variation policy; C2 configured Age Group/Division
+selectors without operational guidance; C1 Team Approval CRUD-modal plus Team Variations
+single/mixed-bulk guidance; tenant/season/Age-Group-scoped AGG options; numeric Age Group ordering;
+server-side configured target resolution; focused policy/router/surface tests. No schema,
+migration, authority, notification, historic-row repair, automatic allocation or environment
+change.
 
-Automated checks: **PASS** — focused 31/31; full repository 505 pass and 12 intentionally skipped;
-TypeScript, critical-file verification, changed production-file ESLint with zero errors, whitespace
-and the 131-route production build pass. The first sandboxed full run had one infrastructure-only
-Chromium launch refusal in the unrelated FUND proof; the same full suite passed outside that
-sandbox.
+Automated checks: **PASS** — corrected focused 35/35; full repository 509 pass and 12 intentionally
+skipped; TypeScript, critical-file verification, changed production-file ESLint with zero errors,
+whitespace and the 131-route production build pass.
 
-Human evidence: **NOT RUN** — H1-H6 require direct observation with local DevData and controlled
-C1/C2 personas. No pass is inferred from automation.
+Human evidence: **FAIL on superseded `0700993b`** — control-owner smoke found misplaced C2
+guidance/missing C1 CRUD-modal guidance, an empty U10 Division selector and lexicographic Age Group
+ordering. Corrected candidate R1-R6 are **NOT RUN**; no pass is inferred from automation.
 
-Environment proven: exact candidate running on local port 3000/DevData; health reports healthy and
-database connected, with established local RLS `0/11`. Remote dev/staging/main remain at the prior
+Environment proven: corrected source and automated behaviour on the local work branch. The
+control owner manages the browser-facing local server. Remote dev/staging/main remain at the prior
 exact `06811784` boundary.
 
 Known residual risk: selector rendering, explanatory copy, post-action refresh and mixed-bulk
 presentation still require the controlled local human matrix. Existing stored text remains
 backward-compatible; stale configured references are re-resolved at mutation time.
 
-Next authorised action: run and record local H1-H6. A green matrix may support a later explicit
-push/security/promotion decision; it does not itself authorise one.
+Next authorised action: run and record corrected local R1-R6. A green matrix may support a later
+explicit push/security/promotion decision; it does not itself authorise one.
 
 Accepted plan:
 
@@ -55,18 +58,22 @@ Review and test:
   stale/out-of-scope, wrong-Age-Group and current Division targets before request/audit/email.
 - Stored the resolved configured code/name snapshot in the existing `requestedValue` field; raw
   configured labels supplied by a client are ignored.
-- Added truthful C2 guidance before submission, C1 guidance before/after single approval and
-  automatic/manual counts plus distinct manual tasks for mixed bulk selection.
+- Kept C2 focused on request inputs and moved operational approval/follow-up guidance to both C1
+  approval surfaces, including the Team Approval CRUD modal discovered during smoke.
+- Scoped the existing AGG list by the selected Team's Age Group and excluded the current Division.
+- Reused numeric Age Group ordering with a code-derived fallback for legacy null `ageValue` rows.
+- Retained C1 guidance before/after single approval and automatic/manual counts plus distinct manual
+  tasks for mixed bulk selection.
 
 ## 2. Automated Evidence
 
 | Gate | Result |
 | --- | --- |
-| Focused policy/router tests | PASS — 31/31 |
-| Full repository Vitest | PASS — 505 passed; 12 intentionally skipped |
+| Focused policy/router/surface tests | PASS — 35/35 |
+| Full repository Vitest | PASS — 509 passed; 12 intentionally skipped |
 | TypeScript | PASS |
 | Critical-file verifier | PASS |
-| Changed production-file ESLint | PASS — zero errors; 12 existing `any` warnings |
+| Changed production-file ESLint | PASS — zero errors; 16 existing warnings |
 | Diff whitespace | PASS |
 | Production build | PASS — 131 routes |
 

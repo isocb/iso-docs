@@ -4,19 +4,20 @@ Date: 2026-08-25
 
 Module: LMSPro / SeasonPro
 
-Status: **PLAN ACCEPTED AND IMPLEMENTED LOCALLY AT EXACT `0700993B`; AUTOMATED GATE PASS;
-CONTROLLED HUMAN H1-H6 NOT RUN; NO PUSH, PROMOTION OR DEPLOYMENT AUTHORITY**
+Status: **INITIAL HUMAN SMOKE FOUND THREE DEFECTS AT `0700993B`; CORRECTED LOCAL CANDIDATE
+`0A6376A2` PASSES AUTOMATION; FOCUSED HUMAN RETEST NOT RUN; NO PUSH, PROMOTION OR
+DEPLOYMENT AUTHORITY**
 
 Control depth: **Standard** — this is bounded ordinary product behaviour affecting C1/C2
 guidance, configured-value selection and server validation. Existing organisation, Club, Team and
 season authority remains unchanged; no schema, live-data or automatic allocation change is planned.
 
 ```text
-Current state: exact local R14-A candidate created; focused/full/type/verify/lint/whitespace/build pass; human H1-H6 not run
-Last proven commit: 0700993b16fa83902327eb9e91aa5889e968a383
-Current environment: exact candidate running locally on port 3000/DevData with health/database PASS and expected local RLS 0/11; remote dev/staging/main remain exact 06811784
-Next human decision/test: run and record controlled local C1/C2 H1-H6; do not infer a pass from automation
-Safe resumption point: if H1-H6 pass, request an explicit push/security/promotion decision; if any fail, return to bounded implementation
+Current state: initial smoke failures corrected at exact local 0a6376a2; focused/full/type/verify/lint/whitespace/build pass; R1-R6 retest not run
+Last proven commit: 0a6376a235dbb97109d894af574d9ef0546ead00
+Current environment: local work branch only, tested through automation; browser-facing server remains control-owner managed; remote dev/staging/main remain exact 06811784
+Next human decision/test: run and record corrected local R1-R6 with controlled C1/C2 personas; do not infer a pass from automation
+Safe resumption point: if R1-R6 pass, request an explicit push/security/promotion decision; if any fail, return to bounded implementation
 ```
 
 Source CR-Fix:
@@ -32,8 +33,8 @@ Accepted triage:
 Make the existing Team Variation workflow truthful and input-safe without changing its approval
 authority or lifecycle:
 
-1. tell C1 and C2 whether approval applies the requested change automatically or records approval
-   for a named C1 follow-up task; and
+1. tell C1, at each approval/review surface, whether approval applies the requested change
+   automatically or records approval for a named C1 follow-up task; and
 2. replace raw configured-value text with scoped selections for Age Group and Division/AGG,
    refusing stale or out-of-scope targets server-side.
 
@@ -71,12 +72,13 @@ the Team.
 
 - Add one shared Team Variation policy helper containing the six type labels, input mode,
   automatic/manual classification and concise follow-up text.
-- Use it in the C2 Club Teams request form and the routed C1 `TeamVariationsTab`; do not maintain
-  separate effect matrices in those surfaces.
-- On C2 type selection, show what approval will do and, for configured types, use a searchable
-  selector rather than free text.
-- On the C1 list/detail view, show `Applied on approval` or `C1 action required` with the exact task
-  before approval and while an Approved request awaits `Confirm System Updated`.
+- Use it for C2 labels/input modes and for guidance in the routed C1 `TeamVariationsTab` and the C1
+  Team Approval CRUD modal; do not maintain separate effect matrices in those surfaces.
+- On C2 type selection, show only the meaningful input required to submit the request. Operational
+  approval/follow-up guidance belongs to C1 and must not be shown to C2.
+- On both C1 approval surfaces, show `Applied on approval` or `C1 action required` with the exact
+  task before approval; retain the guidance while an Approved request awaits
+  `Confirm System Updated` in the routed management detail.
 - For bulk selection, show the selected automatic/manual counts and the distinct follow-up tasks
   before the existing Approve action. Preserve selection membership and existing atomic/stale
   refusal behaviour; do not redesign bulk approval effects.
@@ -109,8 +111,11 @@ the Team.
 ## 4. Likely Application Boundary
 
 - `src/modules/lmspro/lib/team-variation-request-policy.ts` — new shared matrix/resolver metadata;
-- `src/app/(app)/app/lmspro/club/teams/page.tsx` — C2 guidance and configured selectors;
+- `src/app/(app)/app/lmspro/club/teams/page.tsx` — C2 configured selectors and shared labels/input modes;
+- `src/app/(app)/app/lmspro/team-approval/page.tsx` — C1 Team Approval CRUD-modal guidance;
 - `src/modules/lmspro/components/dashboard/TeamVariationsTab.tsx` — C1 single/bulk guidance;
+- `src/modules/lmspro/routers/age-groups.router.ts` — existing AGG list receives an optional
+  tenant/season-scoped Age Group filter;
 - `src/modules/lmspro/routers/team-variation-requests.router.ts` — scoped reference resolution and
   normalised snapshot storage;
 - focused policy/router/component tests, including the existing
@@ -140,12 +145,12 @@ Record each row `PASS`, `FAIL` or `NOT RUN`; do not infer a pass from automation
 
 | Ref | Check |
 | --- | --- |
-| H1 | C2 selects each request type and sees truthful automatic/manual approval guidance. |
-| H2 | Age Group uses a current-season selector excluding the Team's current/retired group; the selected label survives create and C1/C2 display. |
-| H3 | Division uses a required selector limited to the Team's current Age Group and excluding its current AGG; the selected label survives create and display. |
-| H4 | C1 single approval shows the exact effect/task before action; one automatic disposable request changes the Team and one manual request does not. |
-| H5 | Approved manual detail retains the named task until C1 completes it and selects `Confirm System Updated`; automatic detail states that the LMSPro change was already applied. |
-| H6 | Mixed bulk selection truthfully reports automatic/manual counts and tasks, preserves selection, and retains existing approval effects. |
+| R1 | C2 selects each request type and sees only the relevant request input, with no C1 operational approval/follow-up guidance. |
+| R2 | Age Group uses a numerically ordered current-season selector (`U1`, `U2`, `U11`, `U111`) excluding the Team's current/retired group; the selected label survives create and C1/C2 display. |
+| R3 | Division uses a required non-empty selector limited to the Team's current Age Group and excluding its current AGG; the selected label survives create and display. |
+| R4 | Both C1 Team Approval CRUD modal and Team Variations management detail show the exact effect/task before approval; one automatic disposable request changes the Team and one manual request does not. |
+| R5 | Approved manual management detail retains the named task until C1 completes it and selects `Confirm System Updated`; automatic detail states that the LMSPro change was already applied. |
+| R6 | Mixed bulk selection truthfully reports automatic/manual counts and tasks, preserves selection, and retains existing approval effects. |
 
 Server refusal of forged/stale references is automated negative evidence and must not be simulated
 by manipulating DevData through the browser.
@@ -190,7 +195,7 @@ The control owner accepted this plan and explicitly authorised implementation/do
 2026-08-25. Exact local candidate `0700993b` has completed the automated Standard-depth gate; the
 paired `04`/`05` records hold the implementation and test evidence.
 
-The required stop remains local H1-H6. Do not push, migrate, promote or deploy without a later
+The required stop remains corrected local R1-R6. Do not push, migrate, promote or deploy without a later
 explicit decision.
 
 If this CR-Fix closes or is re-disposed, resume FUND Stage C only from exact candidate
