@@ -25,9 +25,11 @@ Current boundary:
 - R13-B exact `06811784` passed local and staging gates and is aligned through main;
   production migration/schema, exact Render identity, minimum live L1-L2 and exact-main
   Security Scan `32824479591` attempt 2 pass.
-- Active authority is the formally triaged minimal Team Variation approval-guidance and
-  configured-input CR-Fix. Its next gate is one bounded Standard-depth `03` plan only;
-  implementation is not yet authorised. FUND `1R-F-A` Stage C remains portfolio `Next`.
+- Active proposed plan:
+  `2026-08-25-lmspro-remediation-slice-r14-a-team-variation-approval-guidance-and-configured-inputs-planning.md`.
+- R14-A is Standard depth and awaits control-owner acceptance. It preserves manual
+  Age Group/Division allocation and has no implementation, schema, migration, promotion or
+  deployment authority. FUND `1R-F-A` Stage C remains portfolio `Next`.
 
 Recent historical boundary:
 

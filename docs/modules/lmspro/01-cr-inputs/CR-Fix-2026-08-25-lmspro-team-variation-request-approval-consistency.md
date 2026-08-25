@@ -4,9 +4,9 @@ Date: 2026-08-25
 
 Owning lane: LMSPro / SeasonPro
 
-Planning status: **FORMALLY TRIAGED AND SELECTED AS PORTFOLIO `NOW`; ACCEPTED FOR ONE
-BOUNDED STANDARD-DEPTH PLAN; NO IMPLEMENTATION, MIGRATION, PROMOTION OR DEPLOYMENT
-AUTHORITY**
+Planning status: **FORMALLY TRIAGED AND SELECTED AS PORTFOLIO `NOW`; BOUNDED
+STANDARD-DEPTH R14-A PLAN CREATED AND AWAITING CONTROL-OWNER ACCEPTANCE; NO
+IMPLEMENTATION, MIGRATION, PROMOTION OR DEPLOYMENT AUTHORITY**
 
 Control depth recommendation: **Standard** — this is a bounded UI-guidance and requested-value
 input correction using existing scoped configuration/CRUD sources. It does not propose changing
@@ -15,6 +15,10 @@ approval authority, Team mutation behavior, schema or the human allocation decis
 Accepted triage:
 
 - [Team Variation approval guidance and configured inputs triage](../02-triage/2026-08-25-lmspro-cr-fix-team-variation-request-approval-consistency-triage.md)
+
+Proposed bounded plan:
+
+- [R14-A Team Variation approval guidance and configured inputs](../03-slice-planning/2026-08-25-lmspro-remediation-slice-r14-a-team-variation-approval-guidance-and-configured-inputs-planning.md)
 
 ## 1. Source Observation
 
@@ -100,6 +104,7 @@ R13-B is complete and closed at staging. Its accepted Deferred boundary and gree
 evidence remain valid because this finding concerns the pre-existing normal approval workflow and
 is excluded from R13-B.
 
-Resume this CR from the accepted triage and exact application baseline `06811784`; the next action is
-one concise bounded plan covering the request-type/input matrix and existing CRUD option sources.
-FUND Stage C remains portfolio `Next` at its preserved checkpoint.
+The concise bounded R14-A plan now records the request-type/effect matrix, scoped configured-target
+resolution, human-readable `requestedValue` compatibility, Standard-depth evidence and `Do Not
+Build` boundary. The next action is control-owner acceptance, amendment or rejection; implementation
+is not authorised. FUND Stage C remains portfolio `Next` at its preserved checkpoint.

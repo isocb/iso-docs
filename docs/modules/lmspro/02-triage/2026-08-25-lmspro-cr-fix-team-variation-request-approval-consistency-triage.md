@@ -4,12 +4,17 @@ Date: 2026-08-25
 
 Module: LMSPro / SeasonPro
 
-Status: **ACCEPTED FOR BOUNDED PLANNING; SELECTED BY THE CONTROL OWNER AS PORTFOLIO `NOW`;
-STANDARD CONTROL; NO IMPLEMENTATION, SCHEMA, MIGRATION, PROMOTION OR DEPLOYMENT AUTHORITY**
+Status: **ACCEPTED FOR BOUNDED PLANNING; SELECTED AS PORTFOLIO `NOW`; STANDARD-DEPTH
+R14-A PLAN CREATED AND AWAITING CONTROL-OWNER ACCEPTANCE; NO IMPLEMENTATION, SCHEMA,
+MIGRATION, PROMOTION OR DEPLOYMENT AUTHORITY**
 
 Source CR-Fix:
 
 - [Team Variation Request approval consistency](../01-cr-inputs/CR-Fix-2026-08-25-lmspro-team-variation-request-approval-consistency.md)
+
+Proposed bounded plan:
+
+- [R14-A Team Variation approval guidance and configured inputs](../03-slice-planning/2026-08-25-lmspro-remediation-slice-r14-a-team-variation-approval-guidance-and-configured-inputs-planning.md)
 
 Authoritative controls:
 
@@ -76,8 +81,9 @@ Do not plan or implement:
 
 ## 5. Next Gate And Safe Resumption
 
-Next authorised action: produce one concise Standard-depth `03` plan against exact application
-baseline `068117848bc66739a2794c596621f372344a9209`. Planning is not implementation authority.
+The concise Standard-depth R14-A `03` plan has been produced against exact application baseline
+`068117848bc66739a2794c596621f372344a9209`. Next authorised action: the control owner accepts,
+amends or rejects that plan. Planning is not implementation authority.
 
 If this CR-Fix closes or is re-disposed, resume FUND Stage C only from exact candidate
 `328aadf0a360b4c65837327060302ddc525f6168`: the recorded temporary worker is suspended, no

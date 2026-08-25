@@ -78,7 +78,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | LMSPro Team Variation approval guidance and configured inputs CR-Fix | Formally triaged at Standard depth and accepted for one bounded `03` plan against exact application baseline `06811784`. Explain automatic versus manual approval effects and reuse scoped CRUD option sources for configured/reference values. Planning only: no implementation, schema, migration, promotion or deployment authority. |
+| **NOW** | LMSPro R14-A Team Variation approval guidance and configured inputs CR-Fix | The concise Standard-depth `03` plan is created against exact baseline `06811784` and awaits control-owner acceptance. It locks the six-type automatic/manual effect matrix and scoped configured-target resolution. Planning only: no implementation, schema, migration, promotion or deployment authority. |
 | **NEXT** | Resume accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Resume only from the recorded safe checkpoint: exact candidate `328aadf0` preserved, temporary Render worker suspended, no application secrets injected, private R2 proof bucket empty and existing auto-deploy services untouched. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -92,7 +92,8 @@ those two checks. Its three-check read-only production smoke also passes, closin
 CR-Fix. FUND Stage C then resumed until the control owner's 2026-08-24 LMSPro operational
 expedite decision. The parent LMSPro R13 CR-Fix and both children completed their accepted
 staging boundaries. The control owner then selected the separate minimal Team Variation
-approval-guidance and configured-input CR-Fix as the only portfolio `Now`; preserved FUND
+approval-guidance and configured-input CR-Fix as the only portfolio `Now`; its R14-A Standard plan
+is now created and awaits acceptance. Preserved FUND
 Stage C remains `Next` at its exact safe checkpoint. Exact R13 staging candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main now
 match that exact commit, the production migration/schema proof passes and the substantive
@@ -121,9 +122,10 @@ Registered and ordered work outside that pair:
   The later controlled live promotion aligned main/origin/main to the same exact commit and
   applied/verified the sole production migration. Exact production Render identity and the
   non-destructive authenticated L1-L2 smoke pass. Exact-main Security Scan `32824479591`
-  attempt 2 passes in full, including its generated report. A separate minimal Team Variation approval-guidance and configured-input
-  CR was captured from the smoke, formally triaged and selected as root `Now` without
-  proposing automatic Age Group/Division allocation;
+  attempt 2 passes in full, including its generated report. A separate minimal Team Variation
+  approval-guidance and configured-input CR was captured from the smoke, formally triaged and
+  selected as root `Now`; its R14-A plan awaits acceptance and does not propose automatic Age
+  Group/Division allocation;
 - Platform `CR-Fix-PLAT-ROLE-04` P1 tenant module persona recovery: accepted urgent
   remedial expedite delivered through exact main `250baf12`. The authoritative P1 Client Users surface now
   separates Core authority from exact SeasonPro persona, supports deliberate exact-default

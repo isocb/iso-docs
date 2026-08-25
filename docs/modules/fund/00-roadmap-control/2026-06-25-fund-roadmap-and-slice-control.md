@@ -69,7 +69,7 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> LMSPro Team Variation approval guidance and configured inputs CR-Fix; bounded Standard plan only
+ROOT NOW  -> LMSPro R14-A Team Variation guidance/configured inputs; Standard plan created, awaiting acceptance
 ROOT NEXT -> resume FUND 1R-F-A Stage C implementation/gates/run/teardown
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
 FUND      -> PAUSED at preserved Stage C safe checkpoint; R1B human/physical, Stage B and exact candidate gates PASS
@@ -80,7 +80,8 @@ deferred trigger-based assurance and does not block FUND unless a recorded trigg
 The parent LMSPro R13 expedite is delivered and exact `06811784` is promoted to main, with exact
 production Render identity and minimum live L1-L2 confirmed green. Exact-main Security Scan
 `32824479591` attempt 2 passes in full. The control owner then selected the separate minimal LMSPro
-Team Variation guidance/configured-input CR-Fix as root `Now`. `1R-F-A` remains the exact FUND
+Team Variation guidance/configured-input CR-Fix as root `Now`; its R14-A Standard plan is created
+and awaits acceptance. `1R-F-A` remains the exact FUND
 resumption point as root `Next`.
 Direct portrait/landscape source inspection
 superseded inferred R1A before review. Source-faithful R1B automation and 12/12 PDF/physical
