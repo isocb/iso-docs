@@ -4,19 +4,19 @@ Date: 2026-08-25
 
 Module: LMSPro / SeasonPro
 
-Status: **READY FOR CONTROL-OWNER ACCEPTANCE; STANDARD-DEPTH PLAN ONLY; NO IMPLEMENTATION,
-SCHEMA, MIGRATION, PUSH, PROMOTION OR DEPLOYMENT AUTHORITY**
+Status: **PLAN ACCEPTED AND IMPLEMENTED LOCALLY AT EXACT `0700993B`; AUTOMATED GATE PASS;
+CONTROLLED HUMAN H1-H6 NOT RUN; NO PUSH, PROMOTION OR DEPLOYMENT AUTHORITY**
 
 Control depth: **Standard** — this is bounded ordinary product behaviour affecting C1/C2
 guidance, configured-value selection and server validation. Existing organisation, Club, Team and
 season authority remains unchanged; no schema, live-data or automatic allocation change is planned.
 
 ```text
-Current state: bounded R14-A plan created from accepted triage; application unchanged
-Last proven commit: 068117848bc66739a2794c596621f372344a9209
-Current environment: local/remote dev, staging and main exact 06811784; R13 live and fully green; no R14 work branch or implementation
-Next human decision/test: accept, amend or reject this plan; implementation requires a separate explicit instruction
-Safe resumption point: if accepted, create a bounded application work branch from exact 06811784 and stop at the local Standard-depth gate
+Current state: exact local R14-A candidate created; focused/full/type/verify/lint/whitespace/build pass; human H1-H6 not run
+Last proven commit: 0700993b16fa83902327eb9e91aa5889e968a383
+Current environment: local work branch fix/lmspro-variation-approval-guidance-inputs only; remote dev/staging/main remain exact 06811784
+Next human decision/test: run and record controlled local C1/C2 H1-H6; do not infer a pass from automation
+Safe resumption point: if H1-H6 pass, request an explicit push/security/promotion decision; if any fail, return to bounded implementation
 ```
 
 Source CR-Fix:
@@ -186,12 +186,12 @@ Do not implement:
 
 ## 8. Acceptance And Stopping Point
 
-Acceptance of this `03` record authorises no code by itself. A separate explicit control-owner
-instruction is required before implementation.
+The control owner accepted this plan and explicitly authorised implementation/documentation on
+2026-08-25. Exact local candidate `0700993b` has completed the automated Standard-depth gate; the
+paired `04`/`05` records hold the implementation and test evidence.
 
-If implementation is authorised, start from exact `06811784`, create a bounded local work branch,
-implement only Sections 2–4, create the paired `04`/`05` evidence and stop after the local
-Standard-depth gate. Do not push, migrate, promote or deploy without a later explicit decision.
+The required stop remains local H1-H6. Do not push, migrate, promote or deploy without a later
+explicit decision.
 
 If this CR-Fix closes or is re-disposed, resume FUND Stage C only from exact candidate
 `328aadf0a360b4c65837327060302ddc525f6168`: temporary worker suspended, no application secrets,

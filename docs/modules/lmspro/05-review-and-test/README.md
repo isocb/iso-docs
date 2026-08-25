@@ -1,5 +1,12 @@
 # LMSPro Review And Test
 
+Current R14 review:
+
+- `2026-08-25-lmspro-remediation-slice-r14-a-team-variation-approval-guidance-and-configured-inputs-local-review-and-test.md`
+  records static/automated/build PASS for exact local `0700993b` and preserves direct human
+  H1-H6 as `NOT RUN`. R14-A remains local and is not ready for push/promotion consideration
+  until that controlled C1/C2 matrix is recorded.
+
 Current R13 review and release evidence:
 
 - `2026-08-24-lmspro-remediation-slice-r13-b-deferred-team-variation-workflow-local-review-and-test.md`
