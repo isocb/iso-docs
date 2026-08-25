@@ -17,8 +17,10 @@ production-file lint with zero errors, whitespace and 131-route build.
 Human evidence: **NOT RUN** — every H1-H6 row remains explicitly unproved pending direct local
 control-owner observation.
 
-Environment proven: source and automated behaviour on local branch
-`fix/lmspro-variation-approval-guidance-inputs`; no remote environment contains R14-A.
+Environment proven: exact candidate on local branch
+`fix/lmspro-variation-approval-guidance-inputs`, running on port 3000/DevData. Health is healthy with
+database connected; local RLS is the established development state `0/11`. No remote environment
+contains R14-A.
 
 Known residual risk: visible selector scope, wording comprehension, single-action refresh,
 `Confirm System Updated` guidance and mixed-bulk presentation require human UI proof.

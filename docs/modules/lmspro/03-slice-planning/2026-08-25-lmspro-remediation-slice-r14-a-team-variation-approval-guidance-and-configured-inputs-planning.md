@@ -14,7 +14,7 @@ season authority remains unchanged; no schema, live-data or automatic allocation
 ```text
 Current state: exact local R14-A candidate created; focused/full/type/verify/lint/whitespace/build pass; human H1-H6 not run
 Last proven commit: 0700993b16fa83902327eb9e91aa5889e968a383
-Current environment: local work branch fix/lmspro-variation-approval-guidance-inputs only; remote dev/staging/main remain exact 06811784
+Current environment: exact candidate running locally on port 3000/DevData with health/database PASS and expected local RLS 0/11; remote dev/staging/main remain exact 06811784
 Next human decision/test: run and record controlled local C1/C2 H1-H6; do not infer a pass from automation
 Safe resumption point: if H1-H6 pass, request an explicit push/security/promotion decision; if any fail, return to bounded implementation
 ```

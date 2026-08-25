@@ -22,8 +22,9 @@ sandbox.
 Human evidence: **NOT RUN** — H1-H6 require direct observation with local DevData and controlled
 C1/C2 personas. No pass is inferred from automation.
 
-Environment proven: local work branch `fix/lmspro-variation-approval-guidance-inputs` only. Remote
-dev/staging/main remain at the prior exact `06811784` boundary.
+Environment proven: exact candidate running on local port 3000/DevData; health reports healthy and
+database connected, with established local RLS `0/11`. Remote dev/staging/main remain at the prior
+exact `06811784` boundary.
 
 Known residual risk: selector rendering, explanatory copy, post-action refresh and mixed-bulk
 presentation still require the controlled local human matrix. Existing stored text remains

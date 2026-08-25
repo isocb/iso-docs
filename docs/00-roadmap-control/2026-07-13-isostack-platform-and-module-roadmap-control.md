@@ -29,7 +29,7 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application and R13 release evidence:
 
 ```text
-R14-A exact local candidate = 0700993b from baseline 06811784; focused 31/31, full 505 pass/12 skip, type/verify/lint/whitespace/build PASS; human H1-H6 NOT RUN
+R14-A exact local candidate = 0700993b from baseline 06811784; focused 31/31, full 505 pass/12 skip, type/verify/lint/whitespace/build and port 3000 health/database PASS; expected local RLS 0/11; human H1-H6 NOT RUN
 R13-B work branch/dev/staging/main and origins = exact 06811784
 R13-B staging exact Render identity and control-owner S1-S4 = PASS
 R13-B exact-main Security Scan 32824479591 attempt 2 = PASS at exact 06811784, including report summary
