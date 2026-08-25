@@ -37,12 +37,12 @@ authority. Later disposition changes must update the existing row.
 | [`2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md`](../01-cr-inputs/2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md) | R11-A implemented with corrected combined Division/Age Group recipient-type widget, session disclosure and responsive layout; focused/full tests, type, verification, lint and 131-page build PASS; authenticated local UI smoke 18/18 and staging smoke all green; exact `83356030` is retained by ancestry in current `60ac76c1`; public live health PASS; no schema/API/provider/configuration change | Live branch promotion complete; retained evidence does not displace the reconciled R12-A/Support Ticketing `Now`/`Next` |
 | [`CR-Fix-2026-08-11-lmspro-free-day-owner-notice-authority.md`](../01-cr-inputs/CR-Fix-2026-08-11-lmspro-free-day-owner-notice-authority.md) | Complete green local smoke; R12-A `39a25d99` is retained in exact accepted production head `cde4eaff`; all exact scans, public health and Render production identity pass | Production inclusion complete by ancestry; retain bounded evidence and close with the combined release |
 | [`CR-Fix-2026-08-24-lmspro-free-day-and-team-variation-request-remediation.md`](../01-cr-inputs/CR-Fix-2026-08-24-lmspro-free-day-and-team-variation-request-remediation.md) | [Formal triage](../02-triage/2026-08-24-lmspro-cr-fix-free-day-and-team-variation-request-remediation-triage.md) delivered two ordered bounded lifecycles; [R13-A Free Day](../03-slice-planning/2026-08-24-lmspro-remediation-slice-r13-a-free-day-integrity-and-management-presentation-planning.md) and [R13-B Deferred Variation](../03-slice-planning/2026-08-24-lmspro-remediation-slice-r13-b-deferred-team-variation-workflow-planning.md) closed at staging with exact R13-B `06811784`, B1-B10, all Security/migration/health gates and S1-S4 PASS. The same exact commit is live; production migration/schema, exact Render identity, L1-L2 and exact-main Security Scan `32824479591` attempt 2 pass | Tactical parent delivery and controlled live release complete; no R13 action remains |
-| [`CR-Fix-2026-08-25-lmspro-team-variation-request-approval-consistency.md`](../01-cr-inputs/CR-Fix-2026-08-25-lmspro-team-variation-request-approval-consistency.md) | [Formally triaged](../02-triage/2026-08-25-lmspro-cr-fix-team-variation-request-approval-consistency-triage.md); exact `d78935d4` passes local automation/direct R1-R9 and is aligned through origin work branch, dev and staging with all three Security Scans and public staging health green | Selected portfolio `Now`; exact Render identity and focused S1-S4 staging smoke remain. No live promotion is authorised |
+| [`CR-Fix-2026-08-25-lmspro-team-variation-request-approval-consistency.md`](../01-cr-inputs/CR-Fix-2026-08-25-lmspro-team-variation-request-approval-consistency.md) | [Formally triaged](../02-triage/2026-08-25-lmspro-cr-fix-team-variation-request-approval-consistency-triage.md); exact `d78935d4` passes local R1-R9 and staging S1-S4 and is aligned through main with all four Security Scans and staging/production public health green | Selected portfolio `Now`; exact production Render identity and minimum non-destructive L1-L2 remain before closure |
 
 Current LMSPro portfolio disposition:
 
 ```text
-ROOT NOW -> R14-A Team Variation approval guidance/configured inputs; exact d78935d4 through staging; automation/R1-R9/all Security Scans/public staging health PASS; Render identity and S1-S4 pending
+ROOT NOW -> R14-A Team Variation approval guidance/configured inputs; exact d78935d4 through main; R1-R9/S1-S4/all four Security Scans/staging+production health PASS; production Render identity and L1-L2 pending
 ROOT NEXT -> resume FUND 1R-F-A Stage C from its preserved exact checkpoint
 LMS R13 -> delivery/live proof complete at exact 06811784; production migration/schema, Render identity, L1-L2 and exact-main scan PASS
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; historical PLAT-ROLE-03/LMS-ROLE-01/02 are not next slices
@@ -70,10 +70,11 @@ incorrect Age Group ordering. Corrected exact `0a6376a2` passed focused/full aut
 TypeScript, verification, production-file lint, whitespace and build plus direct R1-R6. Exact child
 `66104e35` replaces rendered internal shorthand `C1` with `League Admin` and passes R7. Responsive
 Variation/Free Day presentation children through exact `d78935d4` pass automation and direct R8-R9.
-Exact refs now align through origin work branch, dev and staging; Security Scans
-`32835754829`/`32835986995`/`32836190860` and public staging health pass. Exact Render identity and
-focused S1-S4 human staging smoke remain. It does not reopen R13, and no live promotion is
-authorised.
+Exact refs aligned through staging; Security Scans `32835754829`/`32835986995`/`32836190860` and
+public staging health pass. The control owner confirmed exact staging identity and S1-S4 all green,
+then authorised live promotion. Exact `d78935d4` now aligns through main; exact-main Security Scan
+`32838343535` and production public health pass. Exact production Render identity and minimum
+read-only L1-L2 remain. It does not reopen R13.
 
 FUND `1R-F-A` Stage C remains root `Next` at its preserved checkpoint: exact
 candidate `328aadf0` retained, temporary Render worker suspended, no application secrets,

@@ -27,11 +27,10 @@ Current boundary:
   Security Scan `32824479591` attempt 2 pass.
 - Active accepted/implemented plan:
   `2026-08-25-lmspro-remediation-slice-r14-a-team-variation-approval-guidance-and-configured-inputs-planning.md`.
-- R14-A is Standard depth and promoted through staging at exact `d78935d4`: automation, direct
-  local R1-R9, work/dev/staging Security Scans and public staging health pass, including the
-  responsive Variation/Free Day modals and Free Day Save hierarchy. Exact Render identity and
-  focused S1-S4 staging smoke remain; no live promotion is authorised. FUND `1R-F-A` Stage C
-  remains portfolio `Next`.
+- R14-A is Standard depth and aligned through main at exact `d78935d4`: automation, local R1-R9,
+  staging S1-S4, all four Security Scans and staging/production public health pass, including the
+  responsive Variation/Free Day modals and Free Day Save hierarchy. Exact production Render
+  identity and minimum read-only L1-L2 remain. FUND `1R-F-A` Stage C remains portfolio `Next`.
 
 Recent historical boundary:
 

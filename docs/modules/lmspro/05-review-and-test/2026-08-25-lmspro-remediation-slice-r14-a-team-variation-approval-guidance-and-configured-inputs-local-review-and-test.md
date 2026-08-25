@@ -2,8 +2,8 @@
 
 Date: 2026-08-25
 
-Review status: **EXACT `D78935D4` IS PROMOTED THROUGH STAGING; LOCAL, SECURITY AND
-PUBLIC-HEALTH GATES PASS; EXACT RENDER IDENTITY AND S1-S4 STAGING SMOKE PENDING**
+Review status: **EXACT `D78935D4` IS ALIGNED THROUGH MAIN; LOCAL R1-R9, STAGING S1-S4,
+ALL SECURITY SCANS AND PUBLIC HEALTH PASS; PRODUCTION IDENTITY/L1-L2 PENDING**
 
 Exact candidate: `d78935d407ace7ebe796a31a13adf3e17dafa758`; Free Day presentation implementation
 parent `06966d49106f30f7724d6293ac3c31da33de693a`; Variation Request width parent
@@ -32,18 +32,20 @@ Request detail modal by 50% on desktop while retaining Mantine's viewport cap; R
 `06966d49` gives the Free Day row-click modal the same width and moves its single link-style Save
 Changes control beneath League Notes, outside the workflow-action footer; R9 passes.
 
-Environment proven: corrected source and automation locally; exact local/remote work branch, dev
-and staging refs align at `d78935d4`. Public `https://staging.seasonpro.co.uk/api/health` returned
-HTTP 200 with database connected and RLS enabled on 11/11 tables. Main remains exact `06811784`.
-No migration or runtime-configuration action was required.
+Staging human evidence: **PASS S1-S4** — direct control-owner observation at exact `d78935d4`.
 
-Known residual risk: no local blocker or Security finding remains. C1/C2 remain valid only in
-internal control evidence, where C1 means League Admin and C2 means Club Secretary. Exact Render
-build identity and the representative authenticated S1-S4 staging path remain human gates and are
-not inferred from Git refs, automation or public health.
+Environment proven: corrected source and automation locally; exact local/remote work branch, dev,
+staging and main refs align at `d78935d4`. Staging S1-S4 pass. Public staging and production health
+returned HTTP 200 with database connected and RLS enabled on 11/11 tables. No migration or
+runtime-configuration action was required.
 
-Next authorised action: confirm exact Render `d78935d4` identity and run S1-S4 below using
-controlled staging personas and disposable non-sensitive requests. Do not promote live.
+Known residual risk: no local, staging or Security blocker remains. C1/C2 remain valid only in
+internal control evidence, where C1 means League Admin and C2 means Club Secretary. Exact
+production Render identity and minimum non-destructive L1-L2 remain human gates and are not
+inferred from Git refs, automation or public health.
+
+Next authorised action: confirm exact production Render `d78935d4` identity and run L1-L2 below.
+Do not create or mutate production variation/free-day data solely for proof.
 
 Implementation confirmation:
 
@@ -130,11 +132,13 @@ automation.
 | Parent `0a6376a2` full suite | PASS — 509 passed; 12 intentionally skipped |
 | Parent `0a6376a2` production build | PASS — 131 routes; not repeated for the presentation-only children while the control owner runs the local server |
 | Promotion-time exact `d78935d4` safe-commit | PASS — TypeScript and critical-file verifier |
-| Exact Git corridor | PASS — origin work branch, local/remote dev and local/remote staging align at `d78935d407ace7ebe796a31a13adf3e17dafa758`; main remains `06811784` |
+| Exact Git corridor | PASS — origin work branch and local/remote dev, staging and main align at `d78935d407ace7ebe796a31a13adf3e17dafa758` |
 | Work-branch Security Scan | PASS — `32835754829` |
 | Dev Security Scan | PASS — `32835986995` |
 | Staging Security Scan | PASS — `32836190860` |
 | Public staging health | PASS — HTTP 200; database connected; RLS enabled 11/11 |
+| Main Security Scan | PASS — `32838343535` at exact `d78935d4`, including generated report |
+| Public production health | PASS — HTTP 200; database connected; RLS enabled 11/11 |
 
 ## 6. Focused Staging Smoke
 
@@ -144,12 +148,22 @@ testing, automation, Git alignment or public health.
 
 | Ref | Check | Status/evidence |
 | --- | --- | --- |
-| S1 | Render displays exact commit `d78935d407ace7ebe796a31a13adf3e17dafa758`; the authenticated League Admin Variation route loads without migration/runtime or console error. | NOT RUN — direct control-owner confirmation required |
-| S2 | Club Secretary creates one configured manual Age Group or Division request; the selected configured label survives both roles' displays, League Admin guidance names the required follow-up, approval does not mutate the Team, and the approved row retains `Confirm System Updated`. | NOT RUN |
-| S3 | On a disposable automatic Name Change or Withdrawal request, League Admin guidance says approval applies the change, approval performs that existing effect, and the detail reports that LMSPro already applied it. | NOT RUN |
-| S4 | A mixed automatic/manual selection reports truthful counts and named manual tasks without losing selection; row-click Variation and Free Day modals retain the accepted responsive width and Free Day Save/action hierarchy. | NOT RUN |
+| S1 | Render displays exact commit `d78935d407ace7ebe796a31a13adf3e17dafa758`; the authenticated League Admin Variation route loads without migration/runtime or console error. | PASS — direct control-owner confirmation, 2026-08-25 |
+| S2 | Club Secretary creates one configured manual Age Group or Division request; the selected configured label survives both roles' displays, League Admin guidance names the required follow-up, approval does not mutate the Team, and the approved row retains `Confirm System Updated`. | PASS |
+| S3 | On a disposable automatic Name Change or Withdrawal request, League Admin guidance says approval applies the change, approval performs that existing effect, and the detail reports that LMSPro already applied it. | PASS |
+| S4 | A mixed automatic/manual selection reports truthful counts and named manual tasks without losing selection; row-click Variation and Free Day modals retain the accepted responsive width and Free Day Save/action hierarchy. | PASS |
 
-## 7. Stop Rules
+## 7. Minimum Production Smoke
+
+Use only authenticated, non-destructive production inspection. Record each row `PASS`, `FAIL` or
+`NOT RUN`; do not infer a pass from staging, Git alignment, Security automation or public health.
+
+| Ref | Check | Status/evidence |
+| --- | --- | --- |
+| L1 | Render production displays exact commit `d78935d407ace7ebe796a31a13adf3e17dafa758`; the authenticated League Admin Variation route loads without migration/runtime or console error. | NOT RUN — direct control-owner confirmation required |
+| L2 | Without submitting or changing data, inspect the existing Variation guidance/configured selectors and the Free Day detail modal; public role wording, configured choices and accepted modal/action hierarchy are present. | NOT RUN |
+
+## 8. Stop Rules
 
 Any misleading automatic/manual wording, current/retired/out-of-scope option, mismatched stored
 label, manual Team mutation, missing automatic mutation, lost selection, stale UI after action,

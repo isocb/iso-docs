@@ -4,8 +4,8 @@ Date: 2026-08-25
 
 Owning lane: LMSPro / SeasonPro
 
-Planning status: **EXACT `D78935D4` IS PROMOTED THROUGH STAGING; LOCAL, SECURITY AND
-PUBLIC-HEALTH GATES PASS; EXACT RENDER IDENTITY AND S1-S4 STAGING SMOKE PENDING**
+Planning status: **EXACT `D78935D4` IS ALIGNED THROUGH MAIN; LOCAL R1-R9, STAGING S1-S4,
+ALL SECURITY SCANS AND PUBLIC HEALTH PASS; PRODUCTION IDENTITY/L1-L2 PENDING**
 
 Control depth recommendation: **Standard** — this is a bounded UI-guidance and requested-value
 input correction using existing scoped configuration/CRUD sources. It does not propose changing
@@ -111,5 +111,7 @@ presentation children through exact `d78935d4` pass automation and direct R8-R9.
 control owner explicitly authorised the normal staging promotion. Exact work branch, dev and
 staging Security Scans `32835754829`/`32835986995`/`32836190860` pass; local/remote refs align
 through staging, and public staging health is HTTP 200 with database connected and RLS 11/11.
-Exact Render identity and focused S1-S4 human staging smoke remain. No live promotion is
-authorised. FUND Stage C remains portfolio `Next` at its preserved checkpoint.
+The control owner confirmed exact staging identity and S1-S4 all green and authorised normal live
+promotion. Exact `d78935d4` now aligns through main; exact-main Security Scan `32838343535` and
+production public health pass. Exact production Render identity and minimum read-only L1-L2 remain
+before closure. FUND Stage C remains portfolio `Next` at its preserved checkpoint.

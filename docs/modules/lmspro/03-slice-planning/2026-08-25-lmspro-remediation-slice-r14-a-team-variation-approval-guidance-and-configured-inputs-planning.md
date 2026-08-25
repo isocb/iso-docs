@@ -4,19 +4,19 @@ Date: 2026-08-25
 
 Module: LMSPro / SeasonPro
 
-Status: **EXACT `D78935D4` IS PROMOTED THROUGH STAGING; LOCAL, SECURITY AND PUBLIC-HEALTH
-GATES PASS; EXACT RENDER IDENTITY AND S1-S4 STAGING SMOKE PENDING**
+Status: **EXACT `D78935D4` IS ALIGNED THROUGH MAIN; LOCAL R1-R9, STAGING S1-S4, ALL
+SECURITY SCANS AND PUBLIC HEALTH PASS; PRODUCTION IDENTITY/L1-L2 PENDING**
 
 Control depth: **Standard** — this is bounded ordinary product behaviour affecting C1/C2
 guidance, configured-value selection and server validation. Existing organisation, Club, Team and
 season authority remains unchanged; no schema, live-data or automatic allocation change is planned.
 
 ```text
-Current state: exact d78935d4 is aligned through origin work branch, dev and staging; local automation/R1-R9, all three Security Scans and public staging health pass
+Current state: exact d78935d4 is aligned through origin work branch, dev, staging and main; local R1-R9, staging S1-S4, all four Security Scans and staging/production public health pass
 Last proven commit: d78935d407ace7ebe796a31a13adf3e17dafa758
-Current environment: origin work branch, dev and staging at exact d78935d4; main remains exact 06811784; no migration or runtime-configuration change
-Next human decision/test: confirm exact Render d78935d4 identity and run focused S1-S4 authenticated staging smoke
-Safe resumption point: inspect the staging deployment identity, run S1-S4 with controlled personas and disposable non-sensitive requests, then record every row PASS/FAIL/NOT RUN; do not promote live
+Current environment: exact refs align through main; production deployment triggered and public health green; no migration or runtime-configuration change
+Next human decision/test: confirm exact production Render d78935d4 identity and run minimum non-destructive L1-L2
+Safe resumption point: inspect production deployment identity and authenticated read-only guidance/selector path, record L1-L2 PASS/FAIL/NOT RUN, then close/reconcile R14-A only if both pass
 ```
 
 Source CR-Fix:
@@ -212,8 +212,10 @@ paired `04`/`05` records hold the implementation and test evidence.
 The local stop completed at exact `d78935d4` with R1-R9 passed. The control owner explicitly
 authorised the normal staging promotion on 2026-08-25. Exact work branch, dev and staging Security
 Scans `32835754829`/`32835986995`/`32836190860` pass; refs align through staging and public staging
-health is green. Stop for exact Render identity and S1-S4 human smoke. Do not promote live without
-a later explicit decision.
+health is green. The control owner confirmed exact staging identity and S1-S4 all green and
+authorised live promotion. Exact `d78935d4` now aligns through main; exact-main Security Scan
+`32838343535` and production public health pass. Stop for exact production Render identity and
+minimum non-destructive L1-L2 before closing the slice.
 
 If this CR-Fix closes or is re-disposed, resume FUND Stage C only from exact candidate
 `328aadf0a360b4c65837327060302ddc525f6168`: temporary worker suspended, no application secrets,

@@ -2,8 +2,8 @@
 
 Date: 2026-08-25
 
-Status: **EXACT `D78935D4` IS PROMOTED THROUGH STAGING; LOCAL, SECURITY AND PUBLIC-HEALTH
-GATES PASS; EXACT RENDER IDENTITY AND S1-S4 STAGING SMOKE PENDING**
+Status: **EXACT `D78935D4` IS ALIGNED THROUGH MAIN; LOCAL R1-R9, STAGING S1-S4, ALL
+SECURITY SCANS AND PUBLIC HEALTH PASS; PRODUCTION IDENTITY/L1-L2 PENDING**
 
 Exact commit: **`d78935d407ace7ebe796a31a13adf3e17dafa758`**, test child of Free Day
 presentation implementation `06966d49106f30f7724d6293ac3c31da33de693a` and corrected Variation
@@ -27,20 +27,21 @@ Human evidence: **PASS R1-R9** — direct control-owner observation. The only R1
 was public display of internal role shorthand `C1`; exact `66104e35` renders `League Admin` and R7
 passes. Exact `b6c35992` makes the row-click Variation Request detail modal 50% wider on desktop;
 R8 passes. Exact `06966d49` applies the same responsive width to the Free Day row-click modal and
-demotes Save Changes beneath League Notes; R9 passes.
+demotes Save Changes beneath League Notes; R9 passes. The control owner subsequently confirmed
+exact staging identity and S1-S4 all green.
 
 Environment proven: corrected source and automated behaviour locally; exact refs align through
-origin work branch, dev and staging at `d78935d4`. Public staging health is HTTP 200 with database
-connected and RLS enabled on 11/11 tables. Main remains at exact `06811784`; no schema migration or
-runtime-configuration action was required.
+origin work branch, dev, staging and main at `d78935d4`. Staging S1-S4 pass. Staging and production
+public health are HTTP 200 with database connected and RLS enabled on 11/11 tables. No schema
+migration or runtime-configuration action was required.
 
-Known residual risk: exact Render build identity and focused authenticated S1-S4 staging smoke
+Known residual risk: exact production Render build identity and minimum non-destructive L1-L2
 remain. C1/C2 remain internal control notation for League Admin/Club Secretary respectively.
 Existing stored text remains backward-compatible; stale configured references are re-resolved at
 mutation time.
 
-Next authorised action: confirm exact Render `d78935d4` identity and run the focused S1-S4 staging
-smoke in the paired review record. Do not promote live.
+Next authorised action: confirm exact production Render `d78935d4` identity and run minimum
+non-destructive L1-L2 in the paired review record; then reconcile closure only if both pass.
 
 Accepted plan:
 
@@ -97,6 +98,9 @@ Review and test:
 | Dev Security Scan | PASS — `32835986995` at exact `d78935d4` |
 | Staging Security Scan | PASS — `32836190860` at exact `d78935d4` |
 | Public staging health | PASS — HTTP 200; database connected; RLS 11/11 |
+| Staging human smoke | PASS — direct control-owner S1-S4 all green |
+| Main Security Scan | PASS — `32838343535` at exact `d78935d4` |
+| Public production health | PASS — HTTP 200; database connected; RLS 11/11 |
 
 ## 3. Recovery Position
 

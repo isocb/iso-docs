@@ -5,10 +5,10 @@ Current R14 implementation confirmation:
 - `2026-08-25-lmspro-remediation-slice-r14-a-team-variation-approval-guidance-and-configured-inputs-confirmation.md`
   records the three initial `0700993b` human-smoke defects and corrected exact local candidate
   `0a6376a2`: C1-only guidance, non-empty scoped Division options and numeric Age Group ordering.
-  Exact `d78935d4` passes automation and direct local R1-R9 and is promoted through staging with
-  all three Security Scans and public health green, including responsive Variation/Free Day
-  modals and the demoted Free Day Save Changes hierarchy. Exact Render identity and focused S1-S4
-  staging smoke remain; no live promotion is authorised.
+  Exact `d78935d4` passes automation, local R1-R9 and staging S1-S4 and is aligned through main
+  with all four Security Scans and staging/production public health green, including responsive
+  Variation/Free Day modals and the demoted Free Day Save hierarchy. Exact production Render
+  identity and minimum read-only L1-L2 remain.
 
 Current R13 implementation confirmation:
 
