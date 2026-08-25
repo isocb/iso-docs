@@ -17,15 +17,17 @@ Current boundary:
 
 - Closed predecessor: `R13-A` Free Day integrity and management presentation:
   `2026-08-24-lmspro-remediation-slice-r13-a-free-day-integrity-and-management-presentation-planning.md`.
-- R13-A runtime `71ed589b` is retained in exact corridor tip `e7a756cc` through
-  `origin/staging`; local, Security, public-health, exact Render identity and focused S1-S4
-  staging gates pass. R13-A is closed at staging; no live promotion occurred.
-- Active accepted plan: `R13-B` Deferred Team Variation
-  workflow:
+- R13-A runtime `71ed589b` is retained in exact corridor tip `e7a756cc`; local, Security,
+  public-health, exact Render identity and focused S1-S4 staging gates pass. It is now
+  included by ancestry in exact main `06811784`.
+- Closed successor: `R13-B` Deferred Team Variation workflow:
   `2026-08-24-lmspro-remediation-slice-r13-b-deferred-team-variation-workflow-planning.md`.
-- R13-B bounded local implementation is authorised from exact `e7a756cc`; no shared migration,
-  push, promotion or deployment is authorised. FUND `1R-F-A` Stage C remains root portfolio
-  `Next` until the complete parent remediation closes.
+- R13-B exact `06811784` passed local and staging gates and is aligned through main;
+  production migration/schema proof passes, while its final scan summary and minimum live
+  human proof remain open in the paired `05` record.
+- Active authority is the formally triaged minimal Team Variation approval-guidance and
+  configured-input CR-Fix. Its next gate is one bounded Standard-depth `03` plan only;
+  implementation is not yet authorised. FUND `1R-F-A` Stage C remains portfolio `Next`.
 
 Recent historical boundary:
 

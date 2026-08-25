@@ -4,11 +4,10 @@ Date: 2026-08-24
 
 Module: LMSPro / SeasonPro
 
-Status: **ACCEPTED OPERATIONAL EXPEDITE AS ONE TACTICAL PROJECT WITH TWO ORDERED BOUNDED
-LIFECYCLES; R13-A AND R13-B PLANS NOW ACCEPTED BY SUBSEQUENT CONTROL-OWNER INSTRUCTION;
-R13-A IS THE ONLY ACTIVE CHILD; R13-B IMPLEMENTATION IS LOCKED UNTIL R13-A CLOSURE AND
-RESELECTION; NO APPLICATION, SCHEMA, MIGRATION, DATA, DEPLOYMENT OR EXTERNAL ACTION IS
-AUTHORISED BY THIS TRIAGE OR PLANNING UPDATE**
+Status: **ACCEPTED EXPEDITE DELIVERED — BOTH ORDERED CHILDREN PASS THEIR ACCEPTED STAGING
+GATES; EXACT R13-B `06811784` IS NOW ON MAIN WITH PRODUCTION MIGRATION/SCHEMA PASS; FINAL
+LIVE RELEASE PROOF REMAINS OPEN; SEPARATE MINIMAL FOLLOW-ON CR IS ROOT `NOW`, FUND STAGE C
+REMAINS `NEXT`**
 
 Source CR-Fix:
 
@@ -25,6 +24,14 @@ Displaced FUND authority:
 - [FUND Stage C exact-candidate and external-execution gate](../../fund/05-review-and-test/2026-08-12-fund-phase-1-slice-1r-f-a-stage-c-exact-candidate-and-external-execution-gate.md)
 
 ## 1. Control-Owner Decision
+
+Closure note: this accepted implementation decision has now been fulfilled. R13-A and R13-B are
+closed at their recorded staging boundaries and the parent delivery is closed. A later explicit
+decision promoted unchanged exact `06811784` to main; production migration/schema proof passes, with
+the exact-main scan summary and minimum live human confirmation still open in the review record. The
+control owner selected the separate minimal Team Variation approval-guidance/configured-input CR as
+portfolio `Now`, retaining preserved FUND Stage C as `Next`. The decision text below is retained as
+the historical authority and sequence under which delivery occurred.
 
 Accept the CR-Fix as an operational expedite that must complete before further FUND
 execution.

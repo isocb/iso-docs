@@ -2,9 +2,9 @@
 
 Date: 2026-08-24
 
-Status: **EXACT CANDIDATE `06811784` PROMOTED THROUGH STAGING; LOCAL B1-B10, ALL SECURITY
-SCANS, STAGING MIGRATION/SCHEMA AND PUBLIC HEALTH/RLS PASS; EXACT RENDER IDENTITY AND
-REPRESENTATIVE STAGING HUMAN SMOKE PENDING**
+Status: **IMPLEMENTATION ACCEPTED; EXACT `06811784` PASSED LOCAL/STAGING GATES AND IS NOW
+ON MAIN; PRODUCTION MIGRATION/SCHEMA PASS; FINAL MAIN-SCAN SUMMARY AND MINIMUM LIVE HUMAN
+PROOF REMAIN OPEN IN THE PAIRED REVIEW RECORD**
 
 Exact commit: **`068117848bc66739a2794c596621f372344a9209`** from accepted R13-A closure
 baseline `e7a756cc39eac65b71729490f8c6c26f30435eb6`.
@@ -12,33 +12,34 @@ baseline `e7a756cc39eac65b71729490f8c6c26f30435eb6`.
 Files/change boundary: one additive Prisma enum value and nullable reason column; atomic
 tenant-scoped defer/return/cancel and stale-action guards; Pending-only counts/bulk semantics;
 C1/C2 Deferred presentation; season-clone compatibility; read-only migration verification and
-focused tests. No Free Day, notification template/routing, historic-row repair or production
-change.
+focused tests. No Free Day, notification template/routing, historic-row repair or runtime
+configuration change.
 
 Automated checks: **PASS** — failing-first missing workflow module captured; Prisma validate and
 generate pass; focused 13/13; full repository 484 pass and 12 intentionally skipped; TypeScript,
 critical-file verifier, production-file ESLint with zero errors, whitespace and Node 22.23.2
 production build all pass.
 
-Human evidence: **PASS** — on 2026-08-25 the control owner reported all B1-B10 checks in the
-paired review record green from the controlled local C1/C2 smoke.
+Human evidence: **PASS** — on 2026-08-25 the control owner reported all local B1-B10 and staging
+S1-S4 checks in the paired review record green, including exact Render identity and the controlled
+C1/C2 critical path.
 
-Environment proven: local application/DevData plus the controlled work-branch -> dev -> staging
-corridor. Exact `06811784` is aligned on all three remote branches. Staging read-only verification
+Environment proven: local application/DevData plus the controlled work-branch -> dev -> staging ->
+main corridor. Exact `06811784` is aligned on all protected local/remote branches. Staging read-only verification
 confirms the successful migration ledger, `DEFERRED` enum, nullable text column and initial null
 compatibility. Public staging health is HTTP 200 with database connected and RLS `11/11`.
+Production read-only verification confirms the migration ledger, enum and nullable column.
 
-Known residual risk: public health and the database ledger do not expose the exact Render build,
-and environment-specific C1/C2 presentation and tenant-negative behavior still require the small
-representative staging human gate.
-The observed pre-existing inconsistency between automatic and manual normal approval effects is
+Known residual risk: exact production Render identity and the minimum authenticated read-only live
+path have not yet been human-confirmed; unauthenticated custom-domain health probes returned HTTP
+403 and are not treated as either an application failure or a pass. The observed pre-existing
+inconsistency between automatic and manual normal approval effects is
 captured separately in the registered approval-consistency CR and is not silently added to R13-B.
 After a Deferred value exists,
 recovery is forward-fix or a compatible application revert; destructive enum removal is excluded.
 
-Next authorised action: confirm Render displays exact `06811784` and record S1-S4 in the paired
-review using controlled C1/C2 users and non-sensitive reasons. Do not promote to or migrate
-production.
+Next authorised action: finish only the bounded live evidence in the paired review record. Do not
+manufacture production requests or repeat the full local/staging matrix.
 
 Accepted plan:
 
@@ -93,10 +94,15 @@ The safer read-only verifier then passed the exact R13-B ledger/enum/column/null
 
 ## 4. Recovery And Release Position
 
-Exact candidate `06811784` is aligned through origin work branch, dev and staging. Security Scans
+Exact candidate `06811784` is aligned through origin work branch, dev, staging and main. Security Scans
 `32822571678`, `32822798627` and `32823100732` pass. A preflight proved R13-B was the only pending
 staging migration; Render's migration-before-build path applied it, and bounded read-only checks
-proved its ledger/enum/column/null contract. Production is untouched. No Deferred notification was
-added. Do not remove the enum destructively. Before any compatible application revert, return or
+proved its ledger/enum/column/null contract. The control owner confirmed exact staging Render
+`06811784` and S1-S4 completely successful. The unchanged commit was then fast-forwarded to main;
+production now reports all 153 migrations applied and the bounded ledger/enum/column proof passes.
+Exact-main scan `32824479591` has green schema, secret, dependency and TypeScript jobs, while its
+report-summary job remains queued. Exact production Render identity and minimum authenticated
+read-only smoke are still required. No Deferred notification was added. Do not remove the enum
+destructively. Before any compatible application revert, return or
 cancel all disposable Deferred rows through accepted actions, then verify no stored Deferred values
 remain.

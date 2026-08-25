@@ -2,35 +2,36 @@
 
 Date: 2026-08-24
 
-Review status: **LOCAL B1-B10 PASS; EXACT `06811784` PROMOTED THROUGH STAGING; ALL
-SECURITY, STAGING MIGRATION/SCHEMA AND PUBLIC HEALTH/RLS GATES PASS; EXACT RENDER IDENTITY
-AND REPRESENTATIVE STAGING S1-S4 HUMAN SMOKE PENDING**
+Review status: **LOCAL AND STAGING COMPLETE; EXACT `06811784` IS NOW ON MAIN AND
+PRODUCTION MIGRATION/SCHEMA PASS; EXACT-MAIN SUBSTANTIVE SECURITY JOBS PASS BUT THE REPORT
+SUMMARY IS QUEUED; MINIMUM LIVE HUMAN L1-L2 NOT RUN**
 
 Exact commit: `068117848bc66739a2794c596621f372344a9209`.
 
 Files/change boundary: the bounded schema/migration, Team Variation router/policy, clone,
 C1/C2 presentation and test/verifier files recorded in the implementation confirmation. No
-Free Day, notification, repair, deployment-configuration or production change. The authorised
-staging migration/promotion evidence is recorded below.
+Free Day, notification, repair or deployment-configuration change. The authorised staging and
+production promotion evidence is recorded below.
 
 Automated checks: **PASS** — focused 13/13, full 484 pass/12 skip, Prisma validate/generate,
 read-only DevData migration proof, TypeScript, verifier, production lint, whitespace and Node 22
 build.
 
-Human evidence: **PASS** — on 2026-08-25 the control owner reported all B1-B10 checks below green
-from the local application/DevData smoke using controlled C1/C2 personas. These are human-reported
-observations, not inferred from automation.
+Human evidence: **PASS** — on 2026-08-25 the control owner reported local B1-B10 and staging S1-S4
+completely green using controlled C1/C2 personas. These are human-reported observations, not
+inferred from automation.
 
-Environment proven: local port 3000/DevData and the controlled work-branch/dev/staging corridor.
-Exact Git refs align at `06811784`; staging migration/schema verification passes; public staging
-health is HTTP 200 with database connected and RLS `11/11`.
+Environment proven: local port 3000/DevData and the controlled work-branch/dev/staging/main
+corridor. Exact Git refs align at `06811784`; staging and production migration/schema verification
+pass; public staging health is HTTP 200 with database connected and RLS `11/11`.
 
-Known residual risk: exact Render build identity and environment-specific tenant behavior are still
-human-unproved. The smoke also exposed a pre-existing normal-approval consistency concern outside
+Known residual risk: production exact Render identity and the minimum authenticated read-only live
+path are not yet human-confirmed. Unauthenticated probes to the production custom domains returned
+HTTP 403, so public health is not claimed. The local smoke exposed a pre-existing normal-approval consistency concern outside
 the Deferred slice; it is captured in the separately registered approval-consistency CR.
 
-Next authorised action: confirm Render displays exact `06811784` and record S1-S4 below using
-controlled C1/C2 users and non-sensitive reasons. Do not infer a pass from local or automated proof.
+Next authorised action: record L1-L2 only; do not create or transition live requests. Retain the
+separate selected follow-on CR as root `Now` and FUND Stage C as `Next`.
 
 Implementation confirmation:
 
@@ -101,15 +102,40 @@ row `PASS`, `FAIL` or `NOT RUN`; do not infer a pass from the green local matrix
 
 | Ref | Check | Status/evidence |
 | --- | --- | --- |
-| S1 | Render displays exact commit `068117848bc66739a2794c596621f372344a9209`; the authenticated C1 Variation route loads without migration/runtime or console errors. | NOT RUN |
-| S2 | C1 defers one disposable Pending request with a reason; the same row becomes Deferred, Team values remain unchanged, only Return to Pending/Close remain, and All/Deferred/Outstanding plus counts are truthful. | NOT RUN |
-| S3 | Authorised C2 sees the same Deferred status/reason; a non-submitter and another Club cannot cancel/access it; the exact submitter can cancel a disposable Deferred request. | NOT RUN |
-| S4 | On another disposable request, C1 returns Deferred to Pending; normal Pending controls return, audit evidence exists, and no defer/return email is queued or delivered. | NOT RUN |
+| S1 | Render displays exact commit `068117848bc66739a2794c596621f372344a9209`; the authenticated C1 Variation route loads without migration/runtime or console errors. | PASS — control-owner staging confirmation |
+| S2 | C1 defers one disposable Pending request with a reason; the same row becomes Deferred, Team values remain unchanged, only Return to Pending/Close remain, and All/Deferred/Outstanding plus counts are truthful. | PASS — control-owner staging smoke |
+| S3 | Authorised C2 sees the same Deferred status/reason; a non-submitter and another Club cannot cancel/access it; the exact submitter can cancel a disposable Deferred request. | PASS — control-owner staging smoke |
+| S4 | On another disposable request, C1 returns Deferred to Pending; normal Pending controls return, audit evidence exists, and no defer/return email is queued or delivered. | PASS — control-owner staging smoke |
 
 Any S1 identity mismatch, migration/runtime error, tenant/submitter escape, Team mutation, forbidden
 Deferred action or unplanned email blocks R13-B closure and live consideration.
 
-## 6. Promotion Position
+## 6. Production Promotion And Minimum Live Gate
+
+Technical evidence obtained on 2026-08-25:
+
+| Gate | Result |
+| --- | --- |
+| Exact Git main | PASS — local main and origin/main are exact `068117848bc66739a2794c596621f372344a9209` |
+| Production migration preflight | PASS — only `20260824173000_lmspro_r13_b_deferred_team_variation_status` was pending |
+| Production migration/schema | PASS — all 153 migrations applied; successful ledger entry, `DEFERRED` enum and nullable text `deferral_reason` verified read-only |
+| Exact-main Security Scan | NOT RUN — run `32824479591` has exact head and schema/secret/dependency/TypeScript jobs PASS, but its report-summary job remains queued; the workflow conclusion is not inferred |
+| Unauthenticated public health | NOT RUN — the core/app/season custom domains returned HTTP 403 to this automation path; application health is not inferred |
+
+Use an existing authorised production C1 persona and perform only the following non-destructive
+critical path. Do not manufacture a live Team Variation Request or change an existing request.
+Record each row `PASS`, `FAIL` or `NOT RUN`; do not infer a pass from staging or automation.
+
+| Ref | Check | Status/evidence |
+| --- | --- | --- |
+| L1 | Render production displays exact commit `068117848bc66739a2794c596621f372344a9209`; the authenticated application loads without migration/runtime error. | NOT RUN |
+| L2 | C1 opens the existing Team Variation list read-only; the route loads, the Deferred label/filter is present, and no application or browser-console error is observed. | NOT RUN |
+
+Any identity mismatch, migration/runtime error or inaccessible authenticated route blocks release
+closure. A UI-data absence is not a blocker by itself: do not create production data merely to prove
+the Deferred row state.
+
+## 7. Promotion Position
 
 ```text
 exact local candidate: 068117848bc66739a2794c596621f372344a9209
@@ -119,6 +145,9 @@ local human B1-B10: PASS — control-owner report 2026-08-25
 work branch/dev/staging refs: exact 06811784
 work branch/dev/staging Security Scans: PASS — 32822571678 / 32822798627 / 32823100732
 staging migration/schema/health: PASS — exact ledger/enum/column/null; database connected; RLS 11/11
-exact Render build identity and staging S1-S4: NOT RUN
-production migration/promotion/deployment: not authorised or performed
+exact Render build identity and staging S1-S4: PASS — control-owner report 2026-08-25
+main/origin main: exact 06811784
+production migration/schema: PASS — all 153 applied; ledger/enum/nullable column verified read-only
+main Security Scan 32824479591: substantive jobs PASS; report-summary queued, overall result not inferred
+production exact Render identity and authenticated read-only L1-L2: NOT RUN
 ```

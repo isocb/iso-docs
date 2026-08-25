@@ -13,9 +13,9 @@ notification date rendering require complete negative, role/tenant and human evi
 ```text
 Current state: R13-A accepted and closed at staging; exact runtime 71ed589b is retained in corridor tip e7a756cc; local H1-H11, all Security Scans, public health, Render identity and S1-S4 pass
 Last proven commit: runtime 71ed589b9c6c55a8832fbfa1669de143236ec783; dev/origin-dev/staging/origin-staging tip e7a756cc39eac65b71729490f8c6c26f30435eb6
-Current environment: Local application/DevData and origin/staging proven at e7a756cc; public health, exact Render identity and authenticated S1-S4 pass; no live action
+Current environment: Local application/DevData and origin/staging proven at e7a756cc; public health, exact Render identity and authenticated S1-S4 pass; later included by ancestry in exact main 06811784
 Next human decision/test: Not applicable; completed historical record
-Safe resumption point: R13-B is the active controlling record; do not resume R13-A or promote it live without a new decision
+Safe resumption point: retain R13-A as a closed child; the R13-B review owns the combined exact-main 06811784 release evidence
 ```
 
 Source CR-Fix:

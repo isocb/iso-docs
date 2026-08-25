@@ -1,11 +1,12 @@
 # LMSPro Implementation Confirmations
 
-Current local candidate:
+Current R13 implementation confirmation:
 
 - `2026-08-24-lmspro-remediation-slice-r13-b-deferred-team-variation-workflow-confirmation.md`
-  records exact local candidate `06811784`, additive DevData migration verification, focused
-  13/13, full 484 pass/12 skip, type/verify/lint/build PASS and local port-3000 health. Controlled
-  C1/C2 B1-B10 human acceptance remains pending; no push/shared migration/promotion occurred.
+  records exact `06811784`, additive migration verification, focused 13/13, full 484 pass/12
+  skip, type/verify/lint/build, local B1-B10 and staging S1-S4 PASS. The same exact commit is
+  aligned through main and production migration/schema proof passes; final main-scan summary
+  and minimum live human evidence remain in the paired review record.
 
 Most recent accepted staging confirmation:
 
@@ -13,8 +14,8 @@ Most recent accepted staging confirmation:
   records R13-A local implementation with focused/full automation, TypeScript, verifier,
   targeted lint, Node 22 build and C1/C2 H1-H11 PASS. Runtime `71ed589b` is retained in
   corridor tip `e7a756cc` through `origin/staging`; all three Security Scans and public health
-  pass, including exact Render identity and focused S1-S4 staging smoke. R13-A is closed at
-  staging and R13-B is active.
+  pass, including exact Render identity and focused S1-S4 staging smoke. R13-A is closed and
+  retained by ancestry in exact main `06811784`.
 
 Current live-promotion candidate:
 

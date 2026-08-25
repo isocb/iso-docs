@@ -14,12 +14,13 @@ Accepted issues should move into named slice planning before implementation.
 
 Current queue:
 
-- `CR-Fix` Free Day and Team Variation Request remediation is an accepted operational
-  expedite with two ordered bounded lifecycles. R13-A Free Day integrity/presentation and
-  R13-B Deferred Variation plans are accepted; R13-A is the only active child and R13-B
-  implementation remains locked until first-child closure/reconciliation. FUND `1R-F-A`
-  Stage C is preserved as root `Next`; no LMSPro implementation has started or is authorised
-  without a further explicit control-owner decision.
+- The parent R13 `CR-Fix` and its ordered R13-A/R13-B children completed their accepted
+  staging boundaries. Exact `06811784` is now on main with production migration/schema
+  proof green; its final scan summary and minimum live human proof remain in the R13-B
+  review record.
+- The Team Variation approval-guidance/configured-input CR-Fix is formally triaged and
+  selected as root `Now` for one bounded Standard-depth plan only. FUND `1R-F-A` Stage C
+  remains root `Next`; no implementation of the new LMSPro CR is yet authorised.
 - `CR-Fix F1/F2 - Cohort Email Draft Persistence And Audience Selection` delivered its
   incident-ending corrections in current application ancestry and no longer owns portfolio
   `Now`.

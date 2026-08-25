@@ -4,10 +4,10 @@ Date: 2026-08-24
 
 Owning lane: LMSPro / SeasonPro
 
-Planning status: **FORMALLY TRIAGED — ACCEPTED OPERATIONAL EXPEDITE WITH TWO ORDERED
-BOUNDED LIFECYCLES; R13-A AND R13-B PLANS ACCEPTED; R13-A IS THE ONLY ACTIVE CHILD;
-R13-B IMPLEMENTATION REMAINS LOCKED UNTIL R13-A CLOSURE/RESELECTION; NOT IMPLEMENTATION
-AUTHORITY**
+Planning status: **DELIVERY COMPLETE; EXACT R13-B `06811784` PASSED THE ACCEPTED STAGING
+BOUNDARY AND IS NOW ON MAIN; PRODUCTION MIGRATION/SCHEMA PASS; FINAL MAIN-SCAN SUMMARY AND
+MINIMUM LIVE HUMAN PROOF REMAIN; SEPARATE MINIMAL FOLLOW-ON CR IS ROOT `NOW`, FUND STAGE C
+IS `NEXT`**
 
 Source request: the control owner identified current issues affecting “Free Date Requests”
 and “Variation Request”, classified the response as a tactical remediation project and
@@ -57,6 +57,14 @@ local documentation change. The controlling decision is:
 This intake remains the source evidence and does not itself acquire implementation or
 deployment authority from that later decision.
 
+Closure reconciliation on 2026-08-25: both accepted children completed their bounded staging
+gates. R13-A closed at exact corridor tip `e7a756cc`; R13-B closed at exact `06811784` after local
+B1-B10, all Security/migration/health gates and control-owner staging S1-S4 passed. A later explicit
+release decision promoted the unchanged exact commit to main and production; migration/schema proof
+passes, while the exact-main scan summary and minimum live human confirmation remain open in the
+R13-B review record. The separate minimal approval-guidance/configured-input observation is formally
+triaged and selected as root `Now`; it does not reopen this tactical remediation.
+
 ## 2. Purpose And Strategic Decision
 
 Prepare one evidence-led tactical remediation project for faults in the current Free Day
@@ -93,6 +101,10 @@ Related FUND authority and pending gate:
 
 - [Stage C accepted plan](../../fund/03-slice-planning/2026-08-12-fund-phase-1-slice-1r-f-a-stage-c-temporary-render-private-object-proof-planning.md); and
 - [Stage C exact-candidate and external execution gate](../../fund/05-review-and-test/2026-08-12-fund-phase-1-slice-1r-f-a-stage-c-exact-candidate-and-external-execution-gate.md).
+
+The checkpoint remained preserved throughout the remediation. The control owner subsequently
+selected the separate minimal Team Variation approval-guidance/configured-input CR as portfolio
+`Now`; FUND Stage C therefore remains `Next` at this exact checkpoint.
 
 ## 4. Repository And Branch Preparation
 

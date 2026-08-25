@@ -1,17 +1,19 @@
 # LMSPro Review And Test
 
-Current local review:
+Current R13 review and release evidence:
 
 - `2026-08-24-lmspro-remediation-slice-r13-b-deferred-team-variation-workflow-local-review-and-test.md`
-  records static/migration/automated/build PASS for exact `06811784` and the controlled local
-  B1-B10 matrix as `NOT RUN`. No push, shared migration or promotion is claimed.
+  records static/migration/automated/build, local B1-B10 and staging S1-S4 PASS for exact
+  `06811784`. Main and production migration/schema proof pass; exact-main report-summary and
+  minimum non-destructive live L1-L2 remain explicitly open.
 
 Most recent accepted staging review:
 
 - `2026-08-24-lmspro-remediation-slice-r13-a-free-day-integrity-and-management-presentation-local-review-and-test.md`
   records R13-A static/automated/build PASS and control-owner local C1/C2 H1-H11 PASS. It
   records exact promotion through `origin/staging`, all Security Scans, public health, Render
-  identity and focused S1-S4 staging smoke PASS. R13-A is closed at staging and R13-B is active.
+  identity and focused S1-S4 staging smoke PASS. R13-A is closed and retained by ancestry in
+  exact main `06811784`.
 
 Current UI release review:
 

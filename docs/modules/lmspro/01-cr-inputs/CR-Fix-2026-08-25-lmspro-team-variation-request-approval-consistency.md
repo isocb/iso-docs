@@ -4,12 +4,17 @@ Date: 2026-08-25
 
 Owning lane: LMSPro / SeasonPro
 
-Planning status: **CAPTURED AND REGISTERED; AWAITING FORMAL TRIAGE; NO IMPLEMENTATION,
-MIGRATION, PROMOTION OR ROADMAP DISPLACEMENT AUTHORISED**
+Planning status: **FORMALLY TRIAGED AND SELECTED AS PORTFOLIO `NOW`; ACCEPTED FOR ONE
+BOUNDED STANDARD-DEPTH PLAN; NO IMPLEMENTATION, MIGRATION, PROMOTION OR DEPLOYMENT
+AUTHORITY**
 
 Control depth recommendation: **Standard** — this is a bounded UI-guidance and requested-value
 input correction using existing scoped configuration/CRUD sources. It does not propose changing
 approval authority, Team mutation behavior, schema or the human allocation decision.
+
+Accepted triage:
+
+- [Team Variation approval guidance and configured inputs triage](../02-triage/2026-08-25-lmspro-cr-fix-team-variation-request-approval-consistency-triage.md)
 
 ## 1. Source Observation
 
@@ -71,9 +76,10 @@ functional and its human allocation boundary is intentional. The gap is that fre
 meaningless and the C1 follow-up task is not explained. The existing manual validation/allocation
 route provides a safe workaround.
 
-Expedite decision: **not proposed at capture**. Finish the already accepted R13-B staging gate,
-then formally triage this CR against the restored portfolio queue. Registration does not displace
-R13-B or FUND Stage C and is not implementation authority.
+Expedite/selection decision: after R13-B closed successfully at staging, the control owner
+explicitly selected this CR-Fix as portfolio `Now` on 2026-08-25 and retained preserved FUND Stage C
+as `Next`. This is a sequencing decision, not a claim of higher severity. Formal triage authorises
+bounded planning only; implementation still requires an accepted `03` plan and explicit instruction.
 
 ## 5. Do Not Build
 
@@ -90,10 +96,10 @@ This intake does not authorise:
 
 ## 6. Safe Resumption And Registration
 
-R13-B remains the sole portfolio `Now` through its authorised staging evidence and closure. Its
-accepted Deferred boundary and green B1-B10 local evidence remain valid because this finding concerns
-the pre-existing normal approval workflow and is excluded from R13-B.
+R13-B is complete and closed at staging. Its accepted Deferred boundary and green local/staging
+evidence remain valid because this finding concerns the pre-existing normal approval workflow and
+is excluded from R13-B.
 
-Resume this CR only from formal triage after recording the then-current application baseline,
-request-type/input matrix, existing CRUD option sources and portfolio decision. The authoritative
-registration is the LMSPro child roadmap inventory.
+Resume this CR from the accepted triage and exact application baseline `06811784`; the next action is
+one concise bounded plan covering the request-type/input matrix and existing CRUD option sources.
+FUND Stage C remains portfolio `Next` at its preserved checkpoint.
