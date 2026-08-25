@@ -27,8 +27,9 @@ Current boundary:
   Security Scan `32824479591` attempt 2 pass.
 - Active accepted/implemented plan:
   `2026-08-25-lmspro-remediation-slice-r14-a-team-variation-approval-guidance-and-configured-inputs-planning.md`.
-- R14-A is Standard depth. Direct R1-R6 pass at `0a6376a2`; wording-only child `66104e35`
-  replaces rendered internal `C1` with `League Admin`, passes focused automation and awaits R7.
+- R14-A is Standard depth. Direct R1-R7 pass through role-name child `66104e35`; responsive modal
+  child `b6c35992` widens the row-click Variation Request detail modal and passes focused
+  automation, awaiting R8.
   It preserves manual Age Group/Division allocation and has no schema, migration, promotion or
   deployment authority. FUND `1R-F-A` Stage C remains portfolio `Next`.
 

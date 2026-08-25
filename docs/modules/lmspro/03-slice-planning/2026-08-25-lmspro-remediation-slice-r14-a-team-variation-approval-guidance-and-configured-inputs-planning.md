@@ -4,19 +4,19 @@ Date: 2026-08-25
 
 Module: LMSPro / SeasonPro
 
-Status: **R1-R6 CONTROL-OWNER RETEST PASS; PUBLIC ROLE-NAME CORRECTION `66104E35` PASSES
-FOCUSED AUTOMATION; R7 NOT RUN; NO PUSH, PROMOTION OR DEPLOYMENT AUTHORITY**
+Status: **R1-R7 CONTROL-OWNER PASS; RESPONSIVE MODAL CORRECTION `B6C35992` PASSES
+FOCUSED AUTOMATION; R8 NOT RUN; NO PUSH, PROMOTION OR DEPLOYMENT AUTHORITY**
 
 Control depth: **Standard** — this is bounded ordinary product behaviour affecting C1/C2
 guidance, configured-value selection and server validation. Existing organisation, Club, Team and
 season authority remains unchanged; no schema, live-data or automatic allocation change is planned.
 
 ```text
-Current state: R1-R6 pass at 0a6376a2; wording-only child 66104e35 replaces rendered C1 shorthand with League Admin and passes focused/type/verify/lint/whitespace; R7 not run
-Last proven commit: 66104e3576b06c0a532557e44e9b983921dbd5ac
+Current state: R1-R7 pass; exact b6c35992 restores the unrelated modal and makes the row-click Variation Request detail modal 660px responsively; focused/type/verify/lint/whitespace pass; R8 not run
+Last proven commit: b6c35992959bb2cbdc4c212291fd5be834959e7f
 Current environment: local work branch only, tested through automation; browser-facing server remains control-owner managed; remote dev/staging/main remain exact 06811784
-Next human decision/test: run and record local R7; do not infer a pass from automation
-Safe resumption point: if R7 passes, request an explicit push/security/promotion decision; if it fails, return to the bounded wording implementation
+Next human decision/test: run and record local R8; do not infer a pass from automation
+Safe resumption point: if R8 passes, request an explicit push/security/promotion decision; if it fails, return to the bounded presentation implementation
 ```
 
 Source CR-Fix:
@@ -153,6 +153,7 @@ Record each row `PASS`, `FAIL` or `NOT RUN`; do not infer a pass from automation
 | R5 | Approved manual management detail retains the named task until C1 completes it and selects `Confirm System Updated`; automatic detail states that the LMSPro change was already applied. |
 | R6 | Mixed bulk selection truthfully reports automatic/manual counts and tasks, preserves selection, and retains existing approval effects. |
 | R7 | User-facing guidance in both League Admin approval surfaces and the mixed-selection summary says `League Admin`, never internal shorthand `C1` or `C2`. |
+| R8 | From `/app/lmspro/free-days?tab=variations`, row-clicking a Variation Request opens a 660px desktop detail modal with reduced guidance wrapping; it remains inside a narrow/mobile viewport with usable controls and no horizontal clipping. |
 
 Server refusal of forged/stale references is automated negative evidence and must not be simulated
 by manipulating DevData through the browser.
@@ -197,7 +198,7 @@ The control owner accepted this plan and explicitly authorised implementation/do
 2026-08-25. Exact local candidate `0700993b` has completed the automated Standard-depth gate; the
 paired `04`/`05` records hold the implementation and test evidence.
 
-The required stop is local R7 after R1-R6 passed. Do not push, migrate, promote or deploy without a
+The required stop is local R8 after R1-R7 passed. Do not push, migrate, promote or deploy without a
 later explicit decision.
 
 If this CR-Fix closes or is re-disposed, resume FUND Stage C only from exact candidate

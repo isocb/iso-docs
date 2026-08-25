@@ -4,9 +4,9 @@ Current R14 review:
 
 - `2026-08-25-lmspro-remediation-slice-r14-a-team-variation-approval-guidance-and-configured-inputs-local-review-and-test.md`
   records three direct human-smoke failures on superseded `0700993b`, their correction at exact
-  local `0a6376a2`, corrected static/automated/build PASS and direct R1-R6 PASS. Wording-only child
-  `66104e35` replaces rendered internal `C1` with `League Admin` and passes focused automation; R7
-  remains `NOT RUN`, so R14-A is not yet ready for push/promotion consideration.
+  local `0a6376a2`, corrected static/automated/build PASS and direct R1-R7 PASS through role-name
+  child `66104e35`. Responsive modal child `b6c35992` passes focused automation; R8 remains `NOT
+  RUN`, so R14-A is not yet ready for push/promotion consideration.
 
 Current R13 review and release evidence:
 

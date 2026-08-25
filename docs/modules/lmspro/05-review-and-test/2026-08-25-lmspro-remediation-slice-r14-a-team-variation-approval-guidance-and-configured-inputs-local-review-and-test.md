@@ -2,39 +2,43 @@
 
 Date: 2026-08-25
 
-Review status: **R1-R6 CONTROL-OWNER RETEST PASS AT `0A6376A2`; PUBLIC ROLE-NAME CORRECTION
-`66104E35` PASSES FOCUSED AUTOMATION; R7 WORDING CHECK NOT RUN; NOT READY FOR PUSH OR
-PROMOTION DECISION**
+Review status: **R1-R7 CONTROL-OWNER PASS; RESPONSIVE MODAL CORRECTION `B6C35992` PASSES
+FOCUSED AUTOMATION; R8 NOT RUN; NOT READY FOR PUSH OR PROMOTION DECISION**
 
-Exact candidate: `66104e3576b06c0a532557e44e9b983921dbd5ac`; behaviour-smoke candidate
+Exact candidate: `b6c35992959bb2cbdc4c212291fd5be834959e7f`; wrong-target modal candidate
+`7fb6ad792f28d19b2a346b70ee93311b0a6b08e7` is superseded; role-name parent
+`66104e3576b06c0a532557e44e9b983921dbd5ac`; behaviour-smoke candidate
 `0a6376a235dbb97109d894af574d9ef0546ead00` and initial failed candidate
 `0700993b16fa83902327eb9e91aa5889e968a383` are superseded.
 
 Files/change boundary: the shared Team Variation policy, configured target input/resolution,
-C1-only operational guidance, C2 selectors, numeric Age Group sorting, Age-Group-scoped AGG list
-and focused tests recorded in the implementation confirmation. No schema, migration, authority,
-notification, automatic allocation or environment change.
+C1-only operational guidance, C2 selectors, numeric Age Group sorting, Age-Group-scoped AGG list,
+a responsive 660px row-click Variation Request detail modal and focused tests recorded in the
+implementation confirmation. No schema, migration, authority, notification, automatic allocation
+or environment change.
 
-Automated checks: **PASS** — exact wording candidate focused 36/36, TypeScript, verifier,
-production-file lint with zero errors and whitespace. Its exact parent `0a6376a2` passed full 509
-pass/12 skip and the 131-route build before the presentation-only role-name correction.
+Automated checks: **PASS** — exact modal-width candidate focused surface 2/2, TypeScript, verifier,
+production-file lint with zero errors and whitespace. Parent `66104e35` passed focused 36/36; parent
+`0a6376a2` passed full 509 pass/12 skip and the 131-route build before these presentation-only
+corrections.
 
-Human evidence: **PASS R1-R6 on `0a6376a2`** — direct control-owner observation, recorded row by
-row below. The only resulting finding was that internal shorthand `C1` was rendered to users. Exact
-`66104e35` replaces it with `League Admin`; R7 remains **NOT RUN** and is not inferred from
-automation.
+Human evidence: **PASS R1-R7** — direct control-owner observation, recorded row by row below. The
+only R1-R6 finding was that internal shorthand `C1` was rendered to users; exact `66104e35`
+replaced it with `League Admin` and R7 passed. Exact `b6c35992` widens the row-click Variation
+Request detail modal by 50% on desktop while retaining Mantine's viewport cap. R8 remains **NOT
+RUN** and is not inferred from automation.
 
 Environment proven: corrected source and automation on local branch
 `fix/lmspro-variation-approval-guidance-inputs`. The control owner manages the browser-facing local
 DevData server. No remote environment contains R14-A.
 
-Known residual risk: the presentation-only replacement of internal `C1` shorthand with the public
-role name `League Admin` requires one direct UI check. C1/C2 remain valid only in internal control
-evidence, where C1 means League Admin and C2 means Club Secretary.
+Known residual risk: only the responsive modal-width presentation requires direct UI proof. C1/C2
+remain valid only in internal control evidence, where C1 means League Admin and C2 means Club
+Secretary.
 
-Next authorised action: refresh the control-owner-managed local application and run R7 only. Stop
-on failure and return the wording delta to implementation. Do not push or promote without a later
-explicit instruction.
+Next authorised action: refresh the control-owner-managed local application and run R8 only. Stop
+on failure and return the presentation delta to implementation. Do not push or promote without a
+later explicit instruction.
 
 Implementation confirmation:
 
@@ -51,9 +55,13 @@ modal also performs variation approval, while C2 does not need operational follo
 also exposed an empty Division option list and legacy null-`ageValue` ordering. Exact `0a6376a2`
 corrected all three findings and passed direct R1-R6 retest. That retest exposed one remaining copy
 issue: the internal role code `C1` was visible to users. Exact `66104e35` changes those rendered
-messages to `League Admin` without changing behaviour.
+messages to `League Admin` without changing behaviour, and R7 passes. The first width child
+`7fb6ad79` targeted the unrelated Assign Division modal and the control owner correctly reported no
+change at the row-click URL. Exact `b6c35992` restores Assign Division and changes only the intended
+Variation Request detail modal from Mantine `md` (440px) to 660px. Mantine caps modal content at the
+available viewport width, so the wider desktop presentation remains responsive.
 
-The slice is not locally accepted until R7 directly confirms the public role name.
+The slice is not locally accepted until R8 directly confirms the modal presentation.
 
 ## 2. Security And Integrity Findings
 
@@ -93,7 +101,8 @@ automation.
 | R4 | Both C1 Team Approval CRUD modal and Team Variations management detail show the exact effect/task before approval; one automatic disposable request changes the Team and one manual request does not. | PASS |
 | R5 | Approved manual management detail retains the named task until C1 completes it and selects `Confirm System Updated`; automatic detail states that the LMSPro change was already applied. | PASS |
 | R6 | Mixed bulk selection truthfully reports automatic/manual counts and tasks, preserves selection, and retains existing approval effects. | PASS |
-| R7 | User-facing guidance in both League Admin approval surfaces and the mixed-selection summary says `League Admin`, never the internal shorthand `C1` or `C2`. | NOT RUN |
+| R7 | User-facing guidance in both League Admin approval surfaces and the mixed-selection summary says `League Admin`, never the internal shorthand `C1` or `C2`. | PASS |
+| R8 | From `/app/lmspro/free-days?tab=variations`, row-clicking a Variation Request opens a detail modal about 50% wider on desktop so guidance wraps comfortably; at a narrow/mobile viewport it remains fully inside the viewport with no horizontal clipping and usable controls. | NOT RUN |
 
 ## 5. Automated Evidence Detail
 
@@ -103,11 +112,12 @@ automation.
 | Configured create/negative router checks | PASS — resolved snapshots and no-side-effect refusals |
 | Single and mixed-bulk approval effects | PASS — two automatic, four non-mutating |
 | Guidance surfaces, numeric order and scoped AGG options | PASS |
-| Exact `66104e35` focused suite | PASS — 36/36, including a policy assertion that public follow-up text contains no C1/C2 shorthand |
-| Exact `66104e35` TypeScript / verifier / whitespace | PASS |
-| Exact `66104e35` production-file ESLint | PASS — zero errors; six pre-existing warnings |
+| Exact `b6c35992` focused surface suite | PASS — 2/2, including the explicit row-click modal 660px contract |
+| Exact `b6c35992` TypeScript / verifier / whitespace | PASS |
+| Exact `b6c35992` production-file ESLint | PASS — zero errors; six pre-existing warnings |
+| Parent `66104e35` focused suite | PASS — 36/36, including a policy assertion that public follow-up text contains no C1/C2 shorthand |
 | Parent `0a6376a2` full suite | PASS — 509 passed; 12 intentionally skipped |
-| Parent `0a6376a2` production build | PASS — 131 routes; not repeated for the wording-only child while the control owner runs the local server |
+| Parent `0a6376a2` production build | PASS — 131 routes; not repeated for the presentation-only children while the control owner runs the local server |
 
 ## 6. Stop Rules
 

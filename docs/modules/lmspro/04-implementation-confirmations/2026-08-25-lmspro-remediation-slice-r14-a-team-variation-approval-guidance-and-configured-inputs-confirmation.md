@@ -2,37 +2,38 @@
 
 Date: 2026-08-25
 
-Status: **R1-R6 CONTROL-OWNER RETEST PASS; PUBLIC ROLE-NAME CORRECTION `66104E35` PASSES
-FOCUSED AUTOMATION; R7 NOT RUN; NO PUSH, PROMOTION OR DEPLOYMENT AUTHORISED**
+Status: **R1-R7 CONTROL-OWNER PASS; RESPONSIVE MODAL CORRECTION `B6C35992` PASSES
+FOCUSED AUTOMATION; R8 NOT RUN; NO PUSH, PROMOTION OR DEPLOYMENT AUTHORISED**
 
-Exact commit: **`66104e3576b06c0a532557e44e9b983921dbd5ac`**, a presentation-only child of
-control-owner-smoked `0a6376a235dbb97109d894af574d9ef0546ead00`; initial local candidate
-`0700993b16fa83902327eb9e91aa5889e968a383` remains superseded.
+Exact commit: **`b6c35992959bb2cbdc4c212291fd5be834959e7f`**, which supersedes wrong-target
+modal child `7fb6ad792f28d19b2a346b70ee93311b0a6b08e7`, restores the unrelated Assign Division
+modal and applies the width to the intended row-click Variation Request detail modal.
 
 Files/change boundary: one shared six-type Team Variation policy; C2 configured Age Group/Division
 selectors without operational guidance; C1 Team Approval CRUD-modal plus Team Variations
 single/mixed-bulk guidance; tenant/season/Age-Group-scoped AGG options; numeric Age Group ordering;
-server-side configured target resolution; focused policy/router/surface tests. No schema,
-migration, authority, notification, historic-row repair, automatic allocation or environment
-change.
+server-side configured target resolution; a responsive 660px Variation Request detail modal; focused
+policy/router/surface tests. No schema, migration, authority, notification, historic-row repair,
+automatic allocation or environment change.
 
-Automated checks: **PASS** — exact `66104e35` focused 36/36, TypeScript, critical-file verifier,
-changed production-file ESLint with zero errors and whitespace. Parent `0a6376a2` passed full 509
-pass/12 skip and the 131-route build before this wording-only delta.
+Automated checks: **PASS** — exact `b6c35992` focused surface 2/2, TypeScript, critical-file
+verifier, changed production-file ESLint with zero errors and whitespace. Parent `66104e35` passed
+focused 36/36; parent `0a6376a2` passed full 509 pass/12 skip and the 131-route build.
 
-Human evidence: **PASS R1-R6 on `0a6376a2`** — direct control-owner observation. The only remedial
-finding was public display of internal role shorthand `C1`. Exact `66104e35` renders `League Admin`
-instead; the focused R7 visual check is **NOT RUN**.
+Human evidence: **PASS R1-R7** — direct control-owner observation. The only R1-R6 remedial finding
+was public display of internal role shorthand `C1`; exact `66104e35` renders `League Admin` and R7
+passes. Exact `b6c35992` makes the row-click Variation Request detail modal 50% wider on desktop
+while retaining the component's viewport cap. R8 is **NOT RUN**.
 
 Environment proven: corrected source and automated behaviour on the local work branch. The
 control owner manages the browser-facing local server. Remote dev/staging/main remain at the prior
 exact `06811784` boundary.
 
-Known residual risk: only the rendered public role name requires R7. C1/C2 remain internal control
-notation for League Admin/Club Secretary respectively. Existing stored text remains
+Known residual risk: only the responsive modal presentation requires R8. C1/C2 remain internal
+control notation for League Admin/Club Secretary respectively. Existing stored text remains
 backward-compatible; stale configured references are re-resolved at mutation time.
 
-Next authorised action: run and record local R7 only. A green result may support a later explicit
+Next authorised action: run and record local R8 only. A green result may support a later explicit
 push/security/promotion decision; it does not itself authorise one.
 
 Accepted plan:
@@ -65,18 +66,22 @@ Review and test:
   tasks for mixed bulk selection.
 - Replaced all rendered `C1` shorthand in those guidance messages, headings and bulk counts with
   the public role name `League Admin`; internal lifecycle/test labels retain C1/C2 notation.
+- Increased only the row-click League Admin Variation Request detail modal from 440px to 660px.
+  Mantine retains `max-width: 100%`, so narrower viewports constrain it responsively. The unrelated
+  Assign Division modal retains its original `md` size.
 
 ## 2. Automated Evidence
 
 | Gate | Result |
 | --- | --- |
-| Exact `66104e35` focused policy/router/surface tests | PASS — 36/36 |
-| Exact `66104e35` TypeScript | PASS |
-| Exact `66104e35` critical-file verifier | PASS — pre-commit gate |
-| Exact `66104e35` changed production-file ESLint | PASS — zero errors; six existing warnings |
-| Exact `66104e35` diff whitespace | PASS |
+| Exact `b6c35992` focused surface tests | PASS — 2/2 |
+| Exact `b6c35992` TypeScript | PASS |
+| Exact `b6c35992` critical-file verifier | PASS — pre-commit gate |
+| Exact `b6c35992` changed production-file ESLint | PASS — zero errors; six existing warnings |
+| Exact `b6c35992` diff whitespace | PASS |
+| Parent `66104e35` focused policy/router/surface tests | PASS — 36/36 |
 | Parent `0a6376a2` full repository Vitest | PASS — 509 passed; 12 intentionally skipped |
-| Parent `0a6376a2` production build | PASS — 131 routes; not repeated for presentation-only child |
+| Parent `0a6376a2` production build | PASS — 131 routes; not repeated for presentation-only children |
 
 ## 3. Recovery Position
 
