@@ -36,15 +36,15 @@ authority. Later disposition changes must update the existing row.
 | [`CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md`](../01-cr-inputs/CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md) | F1 PASS; F2 superseded; F2.1/F2.2 delivered; F3 exact `72c02d92` automated gates and staging smoke 13/13 PASS; dev/staging/main aligned; public production health PASS; no schema/migration | F3 complete and closed; any later regression requires a new CR-Fix |
 | [`2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md`](../01-cr-inputs/2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md) | R11-A implemented with corrected combined Division/Age Group recipient-type widget, session disclosure and responsive layout; focused/full tests, type, verification, lint and 131-page build PASS; authenticated local UI smoke 18/18 and staging smoke all green; exact `83356030` is retained by ancestry in current `60ac76c1`; public live health PASS; no schema/API/provider/configuration change | Live branch promotion complete; retained evidence does not displace the reconciled R12-A/Support Ticketing `Now`/`Next` |
 | [`CR-Fix-2026-08-11-lmspro-free-day-owner-notice-authority.md`](../01-cr-inputs/CR-Fix-2026-08-11-lmspro-free-day-owner-notice-authority.md) | Complete green local smoke; R12-A `39a25d99` is retained in exact accepted production head `cde4eaff`; all exact scans, public health and Render production identity pass | Production inclusion complete by ancestry; retain bounded evidence and close with the combined release |
-| [`CR-Fix-2026-08-24-lmspro-free-day-and-team-variation-request-remediation.md`](../01-cr-inputs/CR-Fix-2026-08-24-lmspro-free-day-and-team-variation-request-remediation.md) | [Formal triage](../02-triage/2026-08-24-lmspro-cr-fix-free-day-and-team-variation-request-remediation-triage.md) accepted two ordered bounded lifecycles; [R13-A Free Day](../03-slice-planning/2026-08-24-lmspro-remediation-slice-r13-a-free-day-integrity-and-management-presentation-planning.md) is closed at staging; [R13-B Deferred Variation](../03-slice-planning/2026-08-24-lmspro-remediation-slice-r13-b-deferred-team-variation-workflow-planning.md) exact local candidate `06811784` has DevData migration/automated/build and control-owner B1-B10 PASS | Portfolio `Now` remains R13-B while its authorised work-branch/dev/staging Security, migration, deployment and representative staging gates run. FUND Stage C remains root `Next`; no R13-B live promotion is authorised |
-| [`CR-Fix-2026-08-25-lmspro-team-variation-request-approval-consistency.md`](../01-cr-inputs/CR-Fix-2026-08-25-lmspro-team-variation-request-approval-consistency.md) | Captured from the R13-B local smoke observation that approval automatically applies some request types while Age Group and other placement-sensitive changes may remain manual and the C1/C2 status/UI does not explain the distinction | Registered High-control investigation candidate awaiting formal triage; no implementation, migration, expedite or displacement of R13-B/FUND `Now`/`Next` is authorised |
+| [`CR-Fix-2026-08-24-lmspro-free-day-and-team-variation-request-remediation.md`](../01-cr-inputs/CR-Fix-2026-08-24-lmspro-free-day-and-team-variation-request-remediation.md) | [Formal triage](../02-triage/2026-08-24-lmspro-cr-fix-free-day-and-team-variation-request-remediation-triage.md) accepted two ordered bounded lifecycles; [R13-A Free Day](../03-slice-planning/2026-08-24-lmspro-remediation-slice-r13-a-free-day-integrity-and-management-presentation-planning.md) is closed at staging; [R13-B Deferred Variation](../03-slice-planning/2026-08-24-lmspro-remediation-slice-r13-b-deferred-team-variation-workflow-planning.md) exact `06811784` has local B1-B10 plus work/dev/staging Security, migration/schema and public health/RLS PASS | Portfolio `Now` remains R13-B pending exact Render identity and representative staging S1-S4. FUND Stage C remains root `Next`; no R13-B live promotion is authorised |
+| [`CR-Fix-2026-08-25-lmspro-team-variation-request-approval-consistency.md`](../01-cr-inputs/CR-Fix-2026-08-25-lmspro-team-variation-request-approval-consistency.md) | Captured from the R13-B local smoke observation that intentionally mixed automatic/manual approval effects need C1 guidance and configured/reference requested values need the same meaningful inputs as their CRUD | Registered Standard minimal UI/input candidate awaiting formal triage; human Age Group/AGG/Division allocation is preserved and no implementation, migration, expedite or displacement of R13-B/FUND `Now`/`Next` is authorised |
 
 Current LMSPro portfolio disposition:
 
 ```text
 ROOT NOW -> accepted Free Day and Team Variation Request remediation CR-Fix
 LMS CLOSED PREDECESSOR -> R13-A accepted at staging; exact e7a756c and S1-S4 PASS; no live promotion
-LMS NOW  -> exact local R13-B candidate 06811784; automated/DevData and B1-B10 local human smoke PASS; authorised staging corridor/evidence next
+LMS NOW  -> R13-B exact 06811784 aligned through staging; local B1-B10 and technical staging gates PASS; exact Render identity and S1-S4 next
 ROOT NEXT -> resume FUND 1R-F-A Stage C from its preserved safe checkpoint
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; historical PLAT-ROLE-03/LMS-ROLE-01/02 are not next slices
 PARKED -> Variation approval-consistency CR awaiting triage, 500-recipient operating envelope, R5-C evidence reconciliation and other registered candidates
@@ -61,8 +61,11 @@ state and transitions and is now the only active child. Exact local candidate `0
 passed additive DevData migration verification, focused/full automation, type/verify/lint/build
 and local health. The control owner reported B1-B10 green on 2026-08-25 and authorised the
 security-gated work-branch/dev/staging corridor plus the reviewed additive staging migration.
-Those gates have not yet started at this checkpoint; no live action is authorised. The separate
-normal-approval consistency observation is registered as a new CR and does not expand R13-B.
+Exact `06811784` is now aligned on all three remote branches; Security Scans
+`32822571678`/`32822798627`/`32823100732`, the bounded staging migration/schema verification and
+public health/database/RLS `11/11` pass. Exact Render identity and representative S1-S4 remain;
+no live action is authorised. The separate normal-approval guidance/input observation is registered
+as a minimal Standard CR and does not expand R13-B.
 
 FUND `1R-F-A` Stage C is displaced to root `Next` at its preserved checkpoint: exact
 candidate `328aadf0` retained, temporary Render worker suspended, no application secrets,
@@ -155,7 +158,7 @@ main = exact combined PLAT-ROLE-04A production release fcd162db; no R13 live pro
 R13-A exact runtime candidate = 71ed589b; e7a756cc adds only root AGENTS.md path clarification
 R13-A local H1-H11, automated/build gates and work-branch/dev/staging Security Scans = PASS
 R13-A public staging health, exact Render e7a756c identity and authenticated S1-S4 staging smoke = PASS
-R13-B = exact local candidate 06811784; DevData/automated/build and control-owner B1-B10 PASS; staging corridor authorised/pending; no live promotion
+R13-B = exact 06811784 aligned through staging; DevData/automated/build/B1-B10 and all technical staging gates PASS; Render identity/S1-S4 pending; no live promotion
 F3 staging smoke = 13/13 PASS; exact main promotion = COMPLETE
 Render live public health = PASS; database connected; RLS 11/11
 PLAT-ROLE-01 = complete; all 13 matrix items accepted with corrected C1/C2 persona wording

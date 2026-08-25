@@ -2,14 +2,16 @@
 
 Date: 2026-08-24
 
-Review status: **STATIC, MIGRATION, AUTOMATED AND CONTROLLED LOCAL C1/C2 B1-B10
-ACCEPTANCE PASS; EXACT STAGING GATE AUTHORISED**
+Review status: **LOCAL B1-B10 PASS; EXACT `06811784` PROMOTED THROUGH STAGING; ALL
+SECURITY, STAGING MIGRATION/SCHEMA AND PUBLIC HEALTH/RLS GATES PASS; EXACT RENDER IDENTITY
+AND REPRESENTATIVE STAGING S1-S4 HUMAN SMOKE PENDING**
 
 Exact commit: `068117848bc66739a2794c596621f372344a9209`.
 
 Files/change boundary: the bounded schema/migration, Team Variation router/policy, clone,
 C1/C2 presentation and test/verifier files recorded in the implementation confirmation. No
-Free Day, notification, repair, shared migration or promotion change.
+Free Day, notification, repair, deployment-configuration or production change. The authorised
+staging migration/promotion evidence is recorded below.
 
 Automated checks: **PASS** — focused 13/13, full 484 pass/12 skip, Prisma validate/generate,
 read-only DevData migration proof, TypeScript, verifier, production lint, whitespace and Node 22
@@ -19,16 +21,16 @@ Human evidence: **PASS** — on 2026-08-25 the control owner reported all B1-B10
 from the local application/DevData smoke using controlled C1/C2 personas. These are human-reported
 observations, not inferred from automation.
 
-Environment proven: local port 3000 and validated DevData only; HTTP 200/database connected.
-DevData reports its existing RLS-disabled posture, so deployed tenant/RLS behavior is not claimed.
+Environment proven: local port 3000/DevData and the controlled work-branch/dev/staging corridor.
+Exact Git refs align at `06811784`; staging migration/schema verification passes; public staging
+health is HTTP 200 with database connected and RLS `11/11`.
 
-Known residual risk: staging schema/RLS/build identity and environment-specific tenant behavior are
-still unproved. The smoke also exposed a pre-existing normal-approval consistency concern outside
+Known residual risk: exact Render build identity and environment-specific tenant behavior are still
+human-unproved. The smoke also exposed a pre-existing normal-approval consistency concern outside
 the Deferred slice; it is captured in the separately registered approval-consistency CR.
 
-Next authorised action: retain exact candidate `06811784`, pass the work-branch/dev/staging Security
-Scans, promote through the controlled corridor, verify the additive staging migration and exact
-deployed application/RLS identity, and run only the representative staging critical path.
+Next authorised action: confirm Render displays exact `06811784` and record S1-S4 below using
+controlled C1/C2 users and non-sensitive reasons. Do not infer a pass from local or automated proof.
 
 Implementation confirmation:
 
@@ -80,14 +82,43 @@ Any cross-tenant/Club visibility, non-submitter cancellation, Team mutation on d
 duplicate active request, Deferred bulk/reply/approve/reject action, count inclusion, missing audit,
 unplanned email or migration discrepancy is a blocker and returns R13-B to implementation.
 
-## 5. Promotion Position
+## 5. Staging Technical And Representative Human Gate
+
+Technical evidence obtained on 2026-08-25:
+
+| Gate | Result |
+| --- | --- |
+| Exact Git corridor | PASS — origin work branch, dev and staging align at `068117848bc66739a2794c596621f372344a9209` |
+| Work-branch Security Scan | PASS — `32822571678` |
+| Dev Security Scan | PASS — `32822798627` |
+| Staging Security Scan | PASS — `32823100732` |
+| Pre-deploy pending-migration boundary | PASS — R13-B was the only pending staging migration |
+| Post-deploy migration/schema | PASS — ledger complete, `DEFERRED` present, nullable text column and initial null compatibility |
+| Public staging health | PASS — HTTP 200, database connected, RLS enabled `11/11` |
+
+Use controlled staging C1/C2 personas, disposable requests and non-sensitive reasons. Record every
+row `PASS`, `FAIL` or `NOT RUN`; do not infer a pass from the green local matrix.
+
+| Ref | Check | Status/evidence |
+| --- | --- | --- |
+| S1 | Render displays exact commit `068117848bc66739a2794c596621f372344a9209`; the authenticated C1 Variation route loads without migration/runtime or console errors. | NOT RUN |
+| S2 | C1 defers one disposable Pending request with a reason; the same row becomes Deferred, Team values remain unchanged, only Return to Pending/Close remain, and All/Deferred/Outstanding plus counts are truthful. | NOT RUN |
+| S3 | Authorised C2 sees the same Deferred status/reason; a non-submitter and another Club cannot cancel/access it; the exact submitter can cancel a disposable Deferred request. | NOT RUN |
+| S4 | On another disposable request, C1 returns Deferred to Pending; normal Pending controls return, audit evidence exists, and no defer/return email is queued or delivered. | NOT RUN |
+
+Any S1 identity mismatch, migration/runtime error, tenant/submitter escape, Team mutation, forbidden
+Deferred action or unplanned email blocks R13-B closure and live consideration.
+
+## 6. Promotion Position
 
 ```text
 exact local candidate: 068117848bc66739a2794c596621f372344a9209
 DevData migration: applied and read-only verified
 static/automated/build: PASS
 local human B1-B10: PASS — control-owner report 2026-08-25
-work branch push/security: authorised; not yet performed at this checkpoint
-staging migration/promotion/deployment: authorised; not yet performed at this checkpoint
+work branch/dev/staging refs: exact 06811784
+work branch/dev/staging Security Scans: PASS — 32822571678 / 32822798627 / 32823100732
+staging migration/schema/health: PASS — exact ledger/enum/column/null; database connected; RLS 11/11
+exact Render build identity and staging S1-S4: NOT RUN
 production migration/promotion/deployment: not authorised or performed
 ```

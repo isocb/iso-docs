@@ -2,8 +2,9 @@
 
 Date: 2026-08-24
 
-Status: **EXACT LOCAL CANDIDATE COMMITTED; ADDITIVE DEVDATA MIGRATION, AUTOMATED GATES
-AND CONTROLLED LOCAL C1/C2 B1-B10 ACCEPTANCE PASS; STAGING PROMOTION AUTHORISED**
+Status: **EXACT CANDIDATE `06811784` PROMOTED THROUGH STAGING; LOCAL B1-B10, ALL SECURITY
+SCANS, STAGING MIGRATION/SCHEMA AND PUBLIC HEALTH/RLS PASS; EXACT RENDER IDENTITY AND
+REPRESENTATIVE STAGING HUMAN SMOKE PENDING**
 
 Exact commit: **`068117848bc66739a2794c596621f372344a9209`** from accepted R13-A closure
 baseline `e7a756cc39eac65b71729490f8c6c26f30435eb6`.
@@ -11,8 +12,8 @@ baseline `e7a756cc39eac65b71729490f8c6c26f30435eb6`.
 Files/change boundary: one additive Prisma enum value and nullable reason column; atomic
 tenant-scoped defer/return/cancel and stale-action guards; Pending-only counts/bulk semantics;
 C1/C2 Deferred presentation; season-clone compatibility; read-only migration verification and
-focused tests. No Free Day, notification template/routing, historic-row repair, shared database,
-push, promotion or deployment change.
+focused tests. No Free Day, notification template/routing, historic-row repair or production
+change.
 
 Automated checks: **PASS** — failing-first missing workflow module captured; Prisma validate and
 generate pass; focused 13/13; full repository 484 pass and 12 intentionally skipped; TypeScript,
@@ -22,23 +23,22 @@ production build all pass.
 Human evidence: **PASS** — on 2026-08-25 the control owner reported all B1-B10 checks in the
 paired review record green from the controlled local C1/C2 smoke.
 
-Environment proven: local application on port 3000 and validated DevData identity only. Migration
-`20260824173000_lmspro_r13_b_deferred_team_variation_status` is applied; a read-only verifier
-confirms its successful ledger row, `DEFERRED` enum, nullable text column and initial null
-compatibility. Local health is HTTP 200/database connected; its existing RLS posture reports
-disabled (`0/11`).
+Environment proven: local application/DevData plus the controlled work-branch -> dev -> staging
+corridor. Exact `06811784` is aligned on all three remote branches. Staging read-only verification
+confirms the successful migration ledger, `DEFERRED` enum, nullable text column and initial null
+compatibility. Public staging health is HTTP 200 with database connected and RLS `11/11`.
 
-Known residual risk: local DevData does not prove deployed RLS/schema identity, so staging still
-requires separate migration-ledger, tenant-negative, exact-build and representative human gates.
+Known residual risk: public health and the database ledger do not expose the exact Render build,
+and environment-specific C1/C2 presentation and tenant-negative behavior still require the small
+representative staging human gate.
 The observed pre-existing inconsistency between automatic and manual normal approval effects is
 captured separately in the registered approval-consistency CR and is not silently added to R13-B.
 After a Deferred value exists,
 recovery is forward-fix or a compatible application revert; destructive enum removal is excluded.
 
-Next authorised action: preserve exact candidate `06811784`, run work-branch/dev/staging Security
-Scans, promote through the controlled corridor, apply the reviewed additive migration through the
-staging deployment path, and record exact deployment/schema/RLS plus representative C1/C2 evidence.
-Do not promote to or migrate production.
+Next authorised action: confirm Render displays exact `06811784` and record S1-S4 in the paired
+review using controlled C1/C2 users and non-sensitive reasons. Do not promote to or migrate
+production.
 
 Accepted plan:
 
@@ -93,9 +93,10 @@ The safer read-only verifier then passed the exact R13-B ledger/enum/column/null
 
 ## 4. Recovery And Release Position
 
-At this checkpoint the application candidate remains local and one commit ahead of its remote work
-branch. DevData has the additive migration; staging and production are untouched. The control owner
-has accepted B1-B10 and authorised security-gated staging promotion. No Deferred notification was
+Exact candidate `06811784` is aligned through origin work branch, dev and staging. Security Scans
+`32822571678`, `32822798627` and `32823100732` pass. A preflight proved R13-B was the only pending
+staging migration; Render's migration-before-build path applied it, and bounded read-only checks
+proved its ledger/enum/column/null contract. Production is untouched. No Deferred notification was
 added. Do not remove the enum destructively. Before any compatible application revert, return or
 cancel all disposable Deferred rows through accepted actions, then verify no stored Deferred values
 remain.

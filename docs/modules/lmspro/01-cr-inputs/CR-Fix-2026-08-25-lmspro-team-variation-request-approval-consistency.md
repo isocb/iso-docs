@@ -7,82 +7,69 @@ Owning lane: LMSPro / SeasonPro
 Planning status: **CAPTURED AND REGISTERED; AWAITING FORMAL TRIAGE; NO IMPLEMENTATION,
 MIGRATION, PROMOTION OR ROADMAP DISPLACEMENT AUTHORISED**
 
-Control depth recommendation: **High** — the investigation crosses League approval authority,
-Team status, Age Group/Division allocation, tenant scope, audit and notification truthfulness.
+Control depth recommendation: **Standard** — this is a bounded UI-guidance and requested-value
+input correction using existing scoped configuration/CRUD sources. It does not propose changing
+approval authority, Team mutation behavior, schema or the human allocation decision.
 
 ## 1. Source Observation
 
 During controlled local C1/C2 smoke of exact R13-B candidate
-`068117848bc66739a2794c596621f372344a9209`, the control owner observed that Team Variation
-Request approval does not have one truthful effect across request types.
+`068117848bc66739a2794c596621f372344a9209`, the control owner observed a small loophole in an
+otherwise functional Team Variation Request workflow: the implications of approval differ by
+request type but the UI does not explain the difference.
 
-In particular, `AGE_GROUP_CHANGE` accepts a free-text requested value. The value may not identify
-a valid configured Age Group and cannot safely be applied automatically. A real Age Group change
-may also require the Team to leave its current Division and current competition state until an
-authorised League user reallocates it. The current C1 approval UI does not explain that manual
-operational consequence.
+In particular, `AGE_GROUP_CHANGE` accepts a free-text requested value even though Age Group is
+configured data. The text can therefore be inaccurate or not match a valid current option. A real
+Age Group change is intentionally a human C1 task: it can require a multi-step decision to move the
+Team and select an appropriate Division/AGG. That decision is beyond automatic application approval.
 
 Read-only source inspection confirms the broader consistency gap:
 
 - `NAME_CHANGE` approval automatically updates the Team name;
 - `WITHDRAWAL` approval automatically changes the Team status to Cancelled;
-- `AGE_GROUP_CHANGE`, `DIVISION_CHANGE`, `REINSTATEMENT` and `OTHER` can become Approved without
-  an equivalent Team mutation;
-- single and bulk approval share that mixed behavior; and
-- the approval notification can describe the requested value as approved even when further manual
-  Team/competition work is still required.
+- placement-sensitive request types can become Approved while the required C1 operational change
+  remains manual; and
+- the UI does not currently tell C1 which follow-up task is required after approval.
 
 This is an observed local workflow/design gap, not evidence of a newly introduced R13-B defect or
 a confirmed production regression. R13-B changed Deferred handling, not existing approval effects.
 
-## 2. Required Investigation Outcome
+## 2. Required Minimal Outcome
 
-Establish and plan one explicit, request-type-specific approval contract so C1 can tell before
-approval whether the application will:
+Investigate and plan only these two corrections:
 
-1. apply the requested Team change atomically;
-2. record League approval but require a named manual follow-up process; or
-3. refuse approval until the requested value and allocation decision are valid.
+1. Add concise request-type-aware UI text explaining whether approval applies the variation or
+   records the decision and leaves a named C1 task. For Age Group/Division-style changes, explain
+   that C1 must complete the appropriate Team move and Division/AGG allocation after approval.
+2. For requested values backed by configured/reference values — including Age Group, AGG and
+   Division where applicable — replace free text with meaningful inputs sourced and scoped in the
+   same way as the existing CRUD inputs for those values. Preserve genuinely free-text inputs, such
+   as a proposed Team name, where they remain appropriate.
 
-The investigation must determine:
+Triage/planning should confirm the exact request-type matrix, reuse the existing CRUD option source,
+labels, identifiers, active/current-season and tenant scoping, and determine the smallest compatible
+way to retain the current `requestedValue` contract. It should cover invalid/stale option refusal,
+C1/C2 display, single and bulk approval presentation, focused automated checks and one controlled
+human create/approve proof for an automatic type and a manual-follow-up type.
 
-- whether Age Group and Division requests should select authoritative season configuration rather
-  than accept free text;
-- the correct Team status/current-state and Division-membership transitions for Age Group,
-  Division, Withdrawal and Reinstatement changes;
-- whether approval and any required reallocation can be one safe atomic operation or must remain a
-  deliberately staged manual workflow;
-- truthful C1 action labels, confirmation copy, post-approval state, next-action guidance and list
-  indicators for manual work;
-- truthful C2 status and notification wording so `Approved` is not mistaken for `Applied`;
-- whether bulk approval is safe for every request type or must exclude manual/placement-sensitive
-  types;
-- tenant/Club/Team/season authority, stale-write, audit, notification and failure/rollback behavior;
-- compatibility and reconciliation for existing Pending, Approved and Update Confirmed requests;
-  and
-- focused negative, migration/data, automated and controlled C1/C2 human evidence proportionate to
-  the accepted design.
-
-The planning outcome may define distinct `Approved`, `Awaiting manual update` and `Applied` concepts,
-but must first prove whether new persistence is necessary. It must not assume an enum/schema change
-before source and data investigation.
+The accepted design must preserve the existing human decision. It must not automate Age Group,
+AGG or Division allocation merely because a request is approved.
 
 ## 3. Immediate Containment And Workaround
 
-Until this CR is triaged and a plan is accepted, C1 should validate Age Group/Division requests
-against current season configuration and treat approval as an administrative decision that may
-still require the existing manual Team reallocation/update process. C1 should not assume the
-free-text requested value was applied merely because the request status says Approved.
+Until this CR is triaged and a plan is accepted, C1 should validate configured-value requests
+against current season data and complete the existing manual Team move/allocation task after
+approving a placement-sensitive variation. C1 should not infer that approval performed that task.
 
 This is a limited operational workaround, not a substitute for truthful UI or an accepted data
 contract. No automated repair, bulk processing or direct database editing is authorised.
 
 ## 4. Severity, Risk And Expedite Position
 
-Operational severity: **material workflow-integrity and communication ambiguity**. An inaccurate
-free-text target or an Approved-but-not-applied request can mislead C1/C2 and create inconsistent
-Team, Age Group, Division or current-status state. The existing manual validation/reallocation
-route provides containment while the issue is investigated.
+Operational severity: **bounded usability and input-quality ambiguity**. The underlying workflow is
+functional and its human allocation boundary is intentional. The gap is that free text can be
+meaningless and the C1 follow-up task is not explained. The existing manual validation/allocation
+route provides a safe workaround.
 
 Expedite decision: **not proposed at capture**. Finish the already accepted R13-B staging gate,
 then formally triage this CR against the restored portfolio queue. Registration does not displace
@@ -92,11 +79,12 @@ R13-B or FUND Stage C and is not implementation authority.
 
 This intake does not authorise:
 
-- automatic Age Group or Division reassignment from free text;
-- destructive removal of a Team from current competition data;
-- schema, migration, historic-row repair or direct database changes;
+- automatic Age Group, AGG or Division reassignment on approval;
+- a Team status, placement, fixture or competition-lifecycle redesign;
+- new approval states, schema, migration, historic-row repair or direct database changes unless
+  later investigation proves a specific unavoidable need and triage separately accepts it;
 - broad Team registration, fixture, season-rollover or Division-management redesign;
-- notification sending or wording changes before the status/effect contract is accepted;
+- broad notification, bulk workflow or approval-effect redesign;
 - weakening League, organisation, Club, Team or season authority; or
 - implementation, push, promotion or deployment.
 
@@ -107,5 +95,5 @@ accepted Deferred boundary and green B1-B10 local evidence remain valid because 
 the pre-existing normal approval workflow and is excluded from R13-B.
 
 Resume this CR only from formal triage after recording the then-current application baseline,
-request-type data examples, Team/Age Group/Division relationships, notification contract and
-portfolio decision. The authoritative registration is the LMSPro child roadmap inventory.
+request-type/input matrix, existing CRUD option sources and portfolio decision. The authoritative
+registration is the LMSPro child roadmap inventory.

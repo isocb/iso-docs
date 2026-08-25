@@ -4,18 +4,19 @@ Date: 2026-08-24
 
 Module: LMSPro / SeasonPro
 
-Status: **ACTIVE SOLE PORTFOLIO CHILD; LOCAL B1-B10 ACCEPTED; CONTROL OWNER AUTHORISED
-WORK-BRANCH/DEV/STAGING SECURITY AND PROMOTION GATES; NO LIVE PROMOTION AUTHORISED**
+Status: **ACTIVE SOLE PORTFOLIO CHILD; PROMOTED THROUGH STAGING AT EXACT `06811784`;
+TECHNICAL STAGING GATES PASS; EXACT RENDER IDENTITY AND REPRESENTATIVE HUMAN SMOKE PENDING;
+NO LIVE PROMOTION AUTHORISED**
 
 Control depth: **High** — schema migration, workflow transitions, tenant/Club/Team authority
 and C2 cancellation require complete migration, rollback, negative and human evidence.
 
 ```text
-Current state: Exact local R13-B candidate 06811784 committed; additive DevData migration, focused/full automation, type/verify/lint/build, local health and control-owner-observed B1-B10 human smoke pass
+Current state: Exact R13-B candidate 06811784 aligned on work branch/dev/staging; DevData/local gates and B1-B10 pass; exact work/dev/staging Security Scans, staging migration/schema and public health/RLS pass
 Last proven commit: 068117848bc66739a2794c596621f372344a9209
-Current environment: local remediation work branch one commit ahead of remote; port 3000 healthy against validated migrated DevData; local RLS reports disabled; no shared migration/push/promotion/deployment
-Next human decision/test: run exact-candidate Security Scans and the controlled work-branch -> dev -> staging corridor; then prove exact deployed application/migration/RLS identity and the representative staging C1/C2 critical path
-Safe resumption point: use the paired 04/05 records at exact 06811784; preserve the accepted local candidate, apply only its reviewed additive migration through the authorised staging deployment path, and stop before live promotion
+Current environment: work branch/dev/staging and origins exact 06811784; staging ledger/schema verified, public health HTTP 200/database connected/RLS 11/11; production untouched
+Next human decision/test: confirm Render displays exact 06811784 and run S1-S4 representative authenticated staging smoke with controlled C1/C2 personas and non-sensitive reasons
+Safe resumption point: use the paired 04/05 staging evidence at exact 06811784; record each S item PASS/FAIL/NOT RUN and stop before live promotion
 ```
 
 Source CR-Fix:
