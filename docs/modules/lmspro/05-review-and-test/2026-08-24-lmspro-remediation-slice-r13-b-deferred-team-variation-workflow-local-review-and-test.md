@@ -2,9 +2,9 @@
 
 Date: 2026-08-24
 
-Review status: **LOCAL AND STAGING COMPLETE; EXACT `06811784` IS NOW ON MAIN AND
-PRODUCTION MIGRATION/SCHEMA PASS; EXACT-MAIN SUBSTANTIVE SECURITY JOBS PASS BUT THE REPORT
-SUMMARY IS QUEUED; MINIMUM LIVE HUMAN L1-L2 NOT RUN**
+Review status: **COMPLETE THROUGH LIVE AT EXACT `06811784`; LOCAL B1-B10, STAGING S1-S4,
+PRODUCTION MIGRATION/SCHEMA AND CONTROL-OWNER L1-L2 PASS; EXACT-MAIN SUBSTANTIVE SECURITY
+JOBS PASS WITH REPORT-SUMMARY QUEUED**
 
 Exact commit: `068117848bc66739a2794c596621f372344a9209`.
 
@@ -25,13 +25,14 @@ Environment proven: local port 3000/DevData and the controlled work-branch/dev/s
 corridor. Exact Git refs align at `06811784`; staging and production migration/schema verification
 pass; public staging health is HTTP 200 with database connected and RLS `11/11`.
 
-Known residual risk: production exact Render identity and the minimum authenticated read-only live
-path are not yet human-confirmed. Unauthenticated probes to the production custom domains returned
-HTTP 403, so public health is not claimed. The local smoke exposed a pre-existing normal-approval consistency concern outside
+Known residual risk: unauthenticated probes to the production custom domains returned HTTP 403, so
+public health is not claimed from that path; exact Render identity and the authenticated L1-L2 path
+were instead confirmed green by the control owner. The exact-main report-summary job remains queued
+with no runner assigned, although all substantive jobs pass. The local smoke exposed a pre-existing normal-approval consistency concern outside
 the Deferred slice; it is captured in the separately registered approval-consistency CR.
 
-Next authorised action: record L1-L2 only; do not create or transition live requests. Retain the
-separate selected follow-on CR as root `Now` and FUND Stage C as `Next`.
+Next authorised action: none within R13-B. Retain the separate selected follow-on CR as root `Now`,
+FUND Stage C as `Next` and the queued exact-main report-summary state truthfully.
 
 Implementation confirmation:
 
@@ -128,8 +129,8 @@ Record each row `PASS`, `FAIL` or `NOT RUN`; do not infer a pass from staging or
 
 | Ref | Check | Status/evidence |
 | --- | --- | --- |
-| L1 | Render production displays exact commit `068117848bc66739a2794c596621f372344a9209`; the authenticated application loads without migration/runtime error. | NOT RUN |
-| L2 | C1 opens the existing Team Variation list read-only; the route loads, the Deferred label/filter is present, and no application or browser-console error is observed. | NOT RUN |
+| L1 | Render production displays exact commit `068117848bc66739a2794c596621f372344a9209`; the authenticated application loads without migration/runtime error. | PASS — control-owner production confirmation: `Live at 0681178` and all green |
+| L2 | C1 opens the existing Team Variation list read-only; the route loads, the Deferred label/filter is present, and no application or browser-console error is observed. | PASS — control-owner production smoke |
 
 Any identity mismatch, migration/runtime error or inaccessible authenticated route blocks release
 closure. A UI-data absence is not a blocker by itself: do not create production data merely to prove
@@ -149,5 +150,5 @@ exact Render build identity and staging S1-S4: PASS — control-owner report 202
 main/origin main: exact 06811784
 production migration/schema: PASS — all 153 applied; ledger/enum/nullable column verified read-only
 main Security Scan 32824479591: substantive jobs PASS; report-summary queued, overall result not inferred
-production exact Render identity and authenticated read-only L1-L2: NOT RUN
+production exact Render identity and authenticated read-only L1-L2: PASS — control-owner report 2026-08-25
 ```

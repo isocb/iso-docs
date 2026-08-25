@@ -5,9 +5,9 @@ Date: 2026-08-24
 Module: LMSPro / SeasonPro
 
 Status: **ACCEPTED EXPEDITE DELIVERED — BOTH ORDERED CHILDREN PASS THEIR ACCEPTED STAGING
-GATES; EXACT R13-B `06811784` IS NOW ON MAIN WITH PRODUCTION MIGRATION/SCHEMA PASS; FINAL
-LIVE RELEASE PROOF REMAINS OPEN; SEPARATE MINIMAL FOLLOW-ON CR IS ROOT `NOW`, FUND STAGE C
-REMAINS `NEXT`**
+GATES; EXACT R13-B `06811784` IS LIVE WITH PRODUCTION MIGRATION/SCHEMA, RENDER IDENTITY AND
+L1-L2 PASS; EXACT-MAIN SUBSTANTIVE SECURITY JOBS PASS WITH REPORT-SUMMARY QUEUED; SEPARATE
+MINIMAL FOLLOW-ON CR IS ROOT `NOW`, FUND STAGE C REMAINS `NEXT`**
 
 Source CR-Fix:
 
@@ -27,9 +27,10 @@ Displaced FUND authority:
 
 Closure note: this accepted implementation decision has now been fulfilled. R13-A and R13-B are
 closed at their recorded staging boundaries and the parent delivery is closed. A later explicit
-decision promoted unchanged exact `06811784` to main; production migration/schema proof passes, with
-the exact-main scan summary and minimum live human confirmation still open in the review record. The
-control owner selected the separate minimal Team Variation approval-guidance/configured-input CR as
+decision promoted unchanged exact `06811784` to main; production migration/schema, exact Render
+identity and minimum live L1-L2 pass. The exact-main substantive security jobs pass, with only its
+report-summary job still queued in the review record. The control owner selected the separate
+minimal Team Variation approval-guidance/configured-input CR as
 portfolio `Now`, retaining preserved FUND Stage C as `Next`. The decision text below is retained as
 the historical authority and sequence under which delivery occurred.
 

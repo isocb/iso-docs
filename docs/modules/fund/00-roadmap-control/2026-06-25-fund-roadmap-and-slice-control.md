@@ -77,8 +77,9 @@ FUND      -> PAUSED at preserved Stage C safe checkpoint; R1B human/physical, St
 
 Email F3, Role Authority and Support Ticketing are complete and closed. `PLAT-ROLE-R1` is
 deferred trigger-based assurance and does not block FUND unless a recorded trigger fires.
-The parent LMSPro R13 expedite is delivered and exact `06811784` is promoted to main, with its
-minimum live release proof still open. The control owner then selected the separate minimal LMSPro
+The parent LMSPro R13 expedite is delivered and exact `06811784` is promoted to main, with exact
+production Render identity and minimum live L1-L2 confirmed green. Its exact-main security report
+summary remains queued with no runner assigned. The control owner then selected the separate minimal LMSPro
 Team Variation guidance/configured-input CR-Fix as root `Now`. `1R-F-A` remains the exact FUND
 resumption point as root `Next`.
 Direct portrait/landscape source inspection
@@ -120,7 +121,7 @@ Current application repository state:
 application local/remote dev/staging/main: exact 06811784
 preserved Stage C candidate: exact 328aadf0
 R13 staging exact Render/health and S1-S4: PASS
-production migration/schema: PASS; exact Render/authenticated read-only smoke: NOT RUN
+production migration/schema, exact Render and authenticated read-only L1-L2: PASS
 protected dev/staging Security Scans: PASS; exact-main substantive jobs PASS, report-summary queued
 Role Authority: COMPLETE AND CLOSED
 Support Ticketing: COMPLETE AND CLOSED

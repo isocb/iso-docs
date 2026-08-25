@@ -3,8 +3,8 @@
 Date: 2026-08-24
 
 Status: **IMPLEMENTATION ACCEPTED; EXACT `06811784` PASSED LOCAL/STAGING GATES AND IS NOW
-ON MAIN; PRODUCTION MIGRATION/SCHEMA PASS; FINAL MAIN-SCAN SUMMARY AND MINIMUM LIVE HUMAN
-PROOF REMAIN OPEN IN THE PAIRED REVIEW RECORD**
+LIVE; PRODUCTION MIGRATION/SCHEMA, EXACT RENDER IDENTITY AND L1-L2 PASS; EXACT-MAIN
+SUBSTANTIVE SECURITY JOBS PASS WITH REPORT-SUMMARY QUEUED**
 
 Exact commit: **`068117848bc66739a2794c596621f372344a9209`** from accepted R13-A closure
 baseline `e7a756cc39eac65b71729490f8c6c26f30435eb6`.
@@ -30,16 +30,18 @@ confirms the successful migration ledger, `DEFERRED` enum, nullable text column 
 compatibility. Public staging health is HTTP 200 with database connected and RLS `11/11`.
 Production read-only verification confirms the migration ledger, enum and nullable column.
 
-Known residual risk: exact production Render identity and the minimum authenticated read-only live
-path have not yet been human-confirmed; unauthenticated custom-domain health probes returned HTTP
-403 and are not treated as either an application failure or a pass. The observed pre-existing
+Known residual risk: unauthenticated custom-domain health probes returned HTTP 403 and are not
+treated as either an application failure or a pass; the control owner independently confirmed exact
+production Render identity and the minimum authenticated read-only L1-L2 green. The exact-main
+report-summary job remains queued with no runner assigned, although all substantive security jobs
+pass. The observed pre-existing
 inconsistency between automatic and manual normal approval effects is
 captured separately in the registered approval-consistency CR and is not silently added to R13-B.
 After a Deferred value exists,
 recovery is forward-fix or a compatible application revert; destructive enum removal is excluded.
 
-Next authorised action: finish only the bounded live evidence in the paired review record. Do not
-manufacture production requests or repeat the full local/staging matrix.
+Next authorised action: none within R13-B. Retain the queued exact-main report-summary state
+truthfully; do not manufacture production requests or repeat the full local/staging matrix.
 
 Accepted plan:
 
@@ -101,8 +103,8 @@ proved its ledger/enum/column/null contract. The control owner confirmed exact s
 `06811784` and S1-S4 completely successful. The unchanged commit was then fast-forwarded to main;
 production now reports all 153 migrations applied and the bounded ledger/enum/column proof passes.
 Exact-main scan `32824479591` has green schema, secret, dependency and TypeScript jobs, while its
-report-summary job remains queued. Exact production Render identity and minimum authenticated
-read-only smoke are still required. No Deferred notification was added. Do not remove the enum
+report-summary job remains queued. The control owner confirmed production Render exact `0681178`
+and minimum authenticated read-only L1-L2 completely green. No Deferred notification was added. Do not remove the enum
 destructively. Before any compatible application revert, return or
 cancel all disposable Deferred rows through accepted actions, then verify no stored Deferred values
 remain.

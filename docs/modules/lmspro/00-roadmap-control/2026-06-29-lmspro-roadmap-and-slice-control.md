@@ -36,7 +36,7 @@ authority. Later disposition changes must update the existing row.
 | [`CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md`](../01-cr-inputs/CR-Fix-2026-08-05-lmspro-cohort-email-draft-persistence-and-audience-selection.md) | F1 PASS; F2 superseded; F2.1/F2.2 delivered; F3 exact `72c02d92` automated gates and staging smoke 13/13 PASS; dev/staging/main aligned; public production health PASS; no schema/migration | F3 complete and closed; any later regression requires a new CR-Fix |
 | [`2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md`](../01-cr-inputs/2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md) | R11-A implemented with corrected combined Division/Age Group recipient-type widget, session disclosure and responsive layout; focused/full tests, type, verification, lint and 131-page build PASS; authenticated local UI smoke 18/18 and staging smoke all green; exact `83356030` is retained by ancestry in current `60ac76c1`; public live health PASS; no schema/API/provider/configuration change | Live branch promotion complete; retained evidence does not displace the reconciled R12-A/Support Ticketing `Now`/`Next` |
 | [`CR-Fix-2026-08-11-lmspro-free-day-owner-notice-authority.md`](../01-cr-inputs/CR-Fix-2026-08-11-lmspro-free-day-owner-notice-authority.md) | Complete green local smoke; R12-A `39a25d99` is retained in exact accepted production head `cde4eaff`; all exact scans, public health and Render production identity pass | Production inclusion complete by ancestry; retain bounded evidence and close with the combined release |
-| [`CR-Fix-2026-08-24-lmspro-free-day-and-team-variation-request-remediation.md`](../01-cr-inputs/CR-Fix-2026-08-24-lmspro-free-day-and-team-variation-request-remediation.md) | [Formal triage](../02-triage/2026-08-24-lmspro-cr-fix-free-day-and-team-variation-request-remediation-triage.md) delivered two ordered bounded lifecycles; [R13-A Free Day](../03-slice-planning/2026-08-24-lmspro-remediation-slice-r13-a-free-day-integrity-and-management-presentation-planning.md) and [R13-B Deferred Variation](../03-slice-planning/2026-08-24-lmspro-remediation-slice-r13-b-deferred-team-variation-workflow-planning.md) closed at staging with exact R13-B `06811784`, B1-B10, all Security/migration/health gates and S1-S4 PASS. The same exact commit is now on main; production migration/schema proof passes, while the main scan summary and minimum live human proof remain open | Tactical parent delivery complete. Controlled live release is technically promoted but not yet claimed fully verified; retain the open release evidence in the R13-B `05` record without reopening implementation |
+| [`CR-Fix-2026-08-24-lmspro-free-day-and-team-variation-request-remediation.md`](../01-cr-inputs/CR-Fix-2026-08-24-lmspro-free-day-and-team-variation-request-remediation.md) | [Formal triage](../02-triage/2026-08-24-lmspro-cr-fix-free-day-and-team-variation-request-remediation-triage.md) delivered two ordered bounded lifecycles; [R13-A Free Day](../03-slice-planning/2026-08-24-lmspro-remediation-slice-r13-a-free-day-integrity-and-management-presentation-planning.md) and [R13-B Deferred Variation](../03-slice-planning/2026-08-24-lmspro-remediation-slice-r13-b-deferred-team-variation-workflow-planning.md) closed at staging with exact R13-B `06811784`, B1-B10, all Security/migration/health gates and S1-S4 PASS. The same exact commit is now on main; production migration/schema, exact Render identity and L1-L2 pass. The exact-main substantive security jobs pass, while its report-summary job remains queued | Tactical parent delivery and controlled live release complete; retain the queued non-security report-summary evidence in the R13-B `05` record without reopening implementation |
 | [`CR-Fix-2026-08-25-lmspro-team-variation-request-approval-consistency.md`](../01-cr-inputs/CR-Fix-2026-08-25-lmspro-team-variation-request-approval-consistency.md) | [Formally triaged](../02-triage/2026-08-25-lmspro-cr-fix-team-variation-request-approval-consistency-triage.md) from the R13-B smoke observation that intentionally mixed automatic/manual approval effects need C1 guidance and configured/reference requested values need the same meaningful inputs as their CRUD | Selected portfolio `Now` for one bounded Standard-depth plan against `06811784`; human Age Group/AGG/Division allocation is preserved and no implementation, migration, promotion or deployment is yet authorised |
 
 Current LMSPro portfolio disposition:
@@ -44,7 +44,7 @@ Current LMSPro portfolio disposition:
 ```text
 ROOT NOW -> minimal Team Variation approval-guidance/configured-input CR-Fix; accepted for one bounded Standard plan only
 ROOT NEXT -> resume FUND 1R-F-A Stage C from its preserved exact checkpoint
-LMS R13 -> parent implementation complete; exact 06811784 on main, production migration/schema PASS; main scan summary and minimum live human proof remain
+LMS R13 -> delivery/live proof complete at exact 06811784; production migration/schema, Render identity and L1-L2 PASS; main report-summary job queued
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; historical PLAT-ROLE-03/LMS-ROLE-01/02 are not next slices
 PARKED -> 500-recipient operating envelope, R5-C evidence reconciliation and other registered candidates
 ```
@@ -62,8 +62,8 @@ public health/database/RLS `11/11`, exact Render identity and control-owner S1-S
 and its tactical parent are closed at the implementation/staging boundary. The later authorised
 live release aligned main/origin/main to exact `06811784`; production migration/schema verification
 passes. Exact-main scan `32824479591` has green substantive jobs but its report-summary job remains
-queued, and HTTP 403 blocked unauthenticated public health probes, so exact production Render
-identity and the minimum authenticated read-only smoke remain unproved. The separate normal-approval
+queued, and HTTP 403 blocked unauthenticated public health probes. The control owner independently
+confirmed exact production Render `0681178` and L1-L2 completely green. The separate normal-approval
 guidance/input CR is formally triaged and selected as the new root `Now`; it does not reopen R13.
 
 FUND `1R-F-A` Stage C remains root `Next` at its preserved checkpoint: exact
@@ -157,7 +157,7 @@ R13-A exact runtime candidate = 71ed589b; e7a756cc adds only root AGENTS.md path
 R13-A local H1-H11, automated/build gates and work-branch/dev/staging Security Scans = PASS
 R13-A public staging health, exact Render e7a756c identity and authenticated S1-S4 staging smoke = PASS
 R13-B = complete at staging and promoted to main; DevData/automated/build/B1-B10, staging technical/human gates and production migration/schema PASS
-R13-B main Security Scan 32824479591 = substantive jobs PASS, report-summary queued; production Render identity/authenticated read-only smoke NOT RUN
+R13-B main Security Scan 32824479591 = substantive jobs PASS, report-summary queued; production Render identity/authenticated read-only L1-L2 PASS
 F3 staging smoke = 13/13 PASS; exact main promotion = COMPLETE
 Render live public health = PASS; database connected; RLS 11/11
 PLAT-ROLE-01 = complete; all 13 matrix items accepted with corrected C1/C2 persona wording

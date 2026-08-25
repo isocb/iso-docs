@@ -23,8 +23,8 @@ Current boundary:
 - Closed successor: `R13-B` Deferred Team Variation workflow:
   `2026-08-24-lmspro-remediation-slice-r13-b-deferred-team-variation-workflow-planning.md`.
 - R13-B exact `06811784` passed local and staging gates and is aligned through main;
-  production migration/schema proof passes, while its final scan summary and minimum live
-  human proof remain open in the paired `05` record.
+  production migration/schema, exact Render identity and minimum live L1-L2 pass. Its
+  exact-main substantive security jobs pass while the report-summary job remains queued.
 - Active authority is the formally triaged minimal Team Variation approval-guidance and
   configured-input CR-Fix. Its next gate is one bounded Standard-depth `03` plan only;
   implementation is not yet authorised. FUND `1R-F-A` Stage C remains portfolio `Next`.
