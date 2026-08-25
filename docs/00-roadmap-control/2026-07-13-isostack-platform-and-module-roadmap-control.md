@@ -2,11 +2,11 @@
 
 Date: 2026-07-27
 
-Last portfolio reconciliation: 2026-08-24
+Last portfolio reconciliation: 2026-08-25
 
 Status: Active parent roadmap
 
-## 0. Current Portfolio Control — 2026-08-24
+## 0. Current Portfolio Control — 2026-08-25
 
 This section is the current cross-lane control and supersedes older global `single next`
 wording later in this document. Older statements remain evidence of the sequence at the
@@ -37,7 +37,7 @@ R13-A exact work-branch/dev/staging Security Scans 32742731175/32743079768/32743
 R13-A public staging health = HTTP 200; database connected; RLS 11/11; exact Render e7a756c and S1-S4 PASS
 R13-B exact local candidate = 06811784 from accepted R13-A closure tip e7a756cc; local work branch only
 R13-B DevData migration/read-only verification, focused 13/13, full 484 pass/12 skip, type/verify/lint/build = PASS
-R13-B local port 3000 health = HTTP 200/database connected; existing local RLS 0/11; B1-B10 human smoke pending
+R13-B local port 3000 health = HTTP 200/database connected; existing local RLS 0/11; control-owner B1-B10 human smoke PASS
 PLAT-ROLE-04 main Security Scan 32015051267 = PASS
 PLAT-ROLE-04 production Render deploy dep-da1d6jh42hec73akbcp0 = LIVE at 250baf12
 PLAT-ROLE-04 production health = HTTP 200; database connected; RLS 11/11
@@ -72,7 +72,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | LMSPro `R13-B` Deferred Team Variation workflow | Exact local candidate `06811784` is committed from accepted baseline `e7a756cc`; additive DevData migration/read-only proof, focused/full automation, type/verify/lint/build and local health pass. Controlled C1/C2 B1-B10 human acceptance remains. The work branch is one commit ahead of remote; no shared migration, push, promotion or deployment is authorised. |
+| **NOW** | LMSPro `R13-B` Deferred Team Variation workflow | Exact local candidate `06811784` is committed from accepted baseline `e7a756cc`; additive DevData migration/read-only proof, focused/full automation, type/verify/lint/build, local health and control-owner B1-B10 human acceptance pass. Security-gated work-branch/dev/staging promotion and the reviewed additive staging migration are authorised; exact deployment/schema/RLS and representative staging proof remain. No live promotion is authorised. |
 | **NEXT** | Resume accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Resume only from the recorded safe checkpoint: exact candidate `328aadf0` preserved, temporary Render worker suspended, no application secrets injected, private R2 proof bucket empty and existing auto-deploy services untouched. Reconcile Stage C only after the complete LMSPro CR-Fix closes. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -96,13 +96,16 @@ Registered and ordered work outside that pair:
   `origin/staging` in corridor tip `e7a756cc`; local, Security, public-health, exact Render
   identity and S1-S4 gates pass, closing R13-A at staging. Deferred Team Variation `R13-B`
   is now the sole active child; exact local candidate `06811784` has passed its additive DevData
-  migration verification and automated/build gates, with B1-B10 human acceptance pending.
+  migration verification, automated/build gates and control-owner B1-B10 human acceptance.
   Existing data repair and new Deferred notifications are excluded. The accepted
   [triage](../modules/lmspro/02-triage/2026-08-24-lmspro-cr-fix-free-day-and-team-variation-request-remediation-triage.md)
   and subsequent control-owner instructions authorised both `03` records, bounded R13-A
   implementation/evidence and promotion through `origin/staging`, then selected and authorised
-  bounded local R13-B implementation after truthful R13-A closure. No shared migration, push,
-  promotion or live action is authorised for R13-B;
+  bounded local R13-B implementation after truthful R13-A closure. On 2026-08-25 the control owner
+  authorised security-gated work-branch/dev/staging promotion and the reviewed additive staging
+  migration. Exact deployment/schema/RLS and representative staging evidence remain; no live action
+  is authorised. A separate Team Variation approval-consistency CR was captured from the smoke and
+  registered awaiting triage without displacing `Now`/`Next`;
 - Platform `CR-Fix-PLAT-ROLE-04` P1 tenant module persona recovery: accepted urgent
   remedial expedite delivered through exact main `250baf12`. The authoritative P1 Client Users surface now
   separates Core authority from exact SeasonPro persona, supports deliberate exact-default

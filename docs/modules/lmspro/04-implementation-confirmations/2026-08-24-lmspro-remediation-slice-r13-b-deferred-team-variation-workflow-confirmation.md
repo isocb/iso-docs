@@ -2,8 +2,8 @@
 
 Date: 2026-08-24
 
-Status: **EXACT LOCAL CANDIDATE COMMITTED; ADDITIVE DEVDATA MIGRATION AND AUTOMATED GATES
-PASS; CONTROLLED C1/C2 HUMAN ACCEPTANCE PENDING**
+Status: **EXACT LOCAL CANDIDATE COMMITTED; ADDITIVE DEVDATA MIGRATION, AUTOMATED GATES
+AND CONTROLLED LOCAL C1/C2 B1-B10 ACCEPTANCE PASS; STAGING PROMOTION AUTHORISED**
 
 Exact commit: **`068117848bc66739a2794c596621f372344a9209`** from accepted R13-A closure
 baseline `e7a756cc39eac65b71729490f8c6c26f30435eb6`.
@@ -19,7 +19,8 @@ generate pass; focused 13/13; full repository 484 pass and 12 intentionally skip
 critical-file verifier, production-file ESLint with zero errors, whitespace and Node 22.23.2
 production build all pass.
 
-Human evidence: **PENDING** — B1-B10 in the paired review record are `NOT RUN`.
+Human evidence: **PASS** — on 2026-08-25 the control owner reported all B1-B10 checks in the
+paired review record green from the controlled local C1/C2 smoke.
 
 Environment proven: local application on port 3000 and validated DevData identity only. Migration
 `20260824173000_lmspro_r13_b_deferred_team_variation_status` is applied; a read-only verifier
@@ -27,13 +28,17 @@ confirms its successful ledger row, `DEFERRED` enum, nullable text column and in
 compatibility. Local health is HTTP 200/database connected; its existing RLS posture reports
 disabled (`0/11`).
 
-Known residual risk: detailed C1/C2 visible behavior remains human-pending. Because local DevData
-does not prove deployed RLS/schema identity, any later staging action requires separate migration,
-tenant-negative, exact-build and representative human gates. After a Deferred value exists,
+Known residual risk: local DevData does not prove deployed RLS/schema identity, so staging still
+requires separate migration-ledger, tenant-negative, exact-build and representative human gates.
+The observed pre-existing inconsistency between automatic and manual normal approval effects is
+captured separately in the registered approval-consistency CR and is not silently added to R13-B.
+After a Deferred value exists,
 recovery is forward-fix or a compatible application revert; destructive enum removal is excluded.
 
-Next authorised action: run B1-B10 locally using controlled C1/C2 users and non-sensitive reasons.
-Do not push, migrate a shared environment, promote or deploy.
+Next authorised action: preserve exact candidate `06811784`, run work-branch/dev/staging Security
+Scans, promote through the controlled corridor, apply the reviewed additive migration through the
+staging deployment path, and record exact deployment/schema/RLS plus representative C1/C2 evidence.
+Do not promote to or migrate production.
 
 Accepted plan:
 
@@ -88,7 +93,9 @@ The safer read-only verifier then passed the exact R13-B ledger/enum/column/null
 
 ## 4. Recovery And Release Position
 
-The application candidate is local and one commit ahead of its remote work branch. DevData has the
-additive migration; staging and production are untouched. No Deferred notification was added. Do
-not remove the enum destructively. Before any compatible application revert, return or cancel all
-disposable Deferred rows through accepted actions, then verify no stored Deferred values remain.
+At this checkpoint the application candidate remains local and one commit ahead of its remote work
+branch. DevData has the additive migration; staging and production are untouched. The control owner
+has accepted B1-B10 and authorised security-gated staging promotion. No Deferred notification was
+added. Do not remove the enum destructively. Before any compatible application revert, return or
+cancel all disposable Deferred rows through accepted actions, then verify no stored Deferred values
+remain.

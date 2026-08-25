@@ -4,18 +4,18 @@ Date: 2026-08-24
 
 Module: LMSPro / SeasonPro
 
-Status: **ACTIVE SOLE PORTFOLIO CHILD; LOCAL IMPLEMENTATION AUTHORISED FROM EXACT R13-A
-CLOSURE BASELINE; NO SHARED MIGRATION OR PROMOTION AUTHORISED**
+Status: **ACTIVE SOLE PORTFOLIO CHILD; LOCAL B1-B10 ACCEPTED; CONTROL OWNER AUTHORISED
+WORK-BRANCH/DEV/STAGING SECURITY AND PROMOTION GATES; NO LIVE PROMOTION AUTHORISED**
 
 Control depth: **High** — schema migration, workflow transitions, tenant/Club/Team authority
 and C2 cancellation require complete migration, rollback, negative and human evidence.
 
 ```text
-Current state: Exact local R13-B candidate 06811784 committed; additive DevData migration, focused/full automation, type/verify/lint/build and local health pass; B1-B10 human smoke pending
+Current state: Exact local R13-B candidate 06811784 committed; additive DevData migration, focused/full automation, type/verify/lint/build, local health and control-owner-observed B1-B10 human smoke pass
 Last proven commit: 068117848bc66739a2794c596621f372344a9209
 Current environment: local remediation work branch one commit ahead of remote; port 3000 healthy against validated migrated DevData; local RLS reports disabled; no shared migration/push/promotion/deployment
-Next human decision/test: controlled local C1/C2 B1-B10 human acceptance using disposable requests and non-sensitive reasons
-Safe resumption point: use the paired 04/05 records at exact 06811784; correct any failed B item before security/promotion consideration; do not migrate a shared database, push, promote or deploy
+Next human decision/test: run exact-candidate Security Scans and the controlled work-branch -> dev -> staging corridor; then prove exact deployed application/migration/RLS identity and the representative staging C1/C2 critical path
+Safe resumption point: use the paired 04/05 records at exact 06811784; preserve the accepted local candidate, apply only its reviewed additive migration through the authorised staging deployment path, and stop before live promotion
 ```
 
 Source CR-Fix:
@@ -63,9 +63,11 @@ The following activation conditions are satisfied on 2026-08-24:
 3. the exact application baseline is re-recorded; and
 4. the control owner explicitly instructs `R13-B` implementation.
 
-That instruction authorises bounded schema/application/test changes, local Prisma generation,
-isolated/local migration proof and local evidence. It does not authorise applying the migration
-to a shared database, pushing, promotion or deployment.
+That instruction authorised bounded schema/application/test changes, local Prisma generation,
+isolated/local migration proof and local evidence. On 2026-08-25 the control owner accepted all
+B1-B10 local checks and separately authorised security-gated promotion through staging, including
+the reviewed additive migration through the deployed migration path. Live promotion remains
+unauthorised.
 
 ## 2. Confirmed Source Boundary
 
