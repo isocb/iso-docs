@@ -59,7 +59,7 @@ same row.
 | [`2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md) | Planned through `1Q-G-B` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md) | Planned through `1Q-G-A` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-13-fund-cr-commission-ladder-planner-input.md`](../01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md) | Policy/assignment foundation partly incorporated through `1R-C5`; aggregate calculation, statements and settlement remain absent | Parked later commission work, represented by subordinate `2R-PROD-05`; not selected |
-| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B Linux parity and exact `139d09c4` dev scan pass; dedicated Stage C contract accepted and authorised on 2026-08-12; downstream short-code/single-artwork policy preserved in parked `1R-H-A` | Stage C resumes as root `Now` only from exact candidate `328aadf0` and its recorded pre-execution checkpoint. The control owner's 2026-08-26 read-only inspections found no matching Stage C Render service and confirmed the dedicated WEUR R2 bucket is empty/private; the stale non-expiring parent token is deleted and fresh exact-bucket R2 and dedicated Render operator authorities are retained outside Render. Phase 3 may create only the temporary no-secret worker in workspace `Isostack` before exact-candidate/inert-state proof. External execution/removal remain governed by the accepted assumption-test gate; `1R-H-A` remains inventory only and no production implementation is authorised |
+| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B Linux parity and exact `139d09c4` dev scan pass; dedicated Stage C contract accepted and authorised on 2026-08-12; downstream short-code/single-artwork policy preserved in parked `1R-H-A` | Stage C remains root `Now` at its Phase 3 stop gate. Accidental worker creation in workspace `Isostack` initially built wrong revision `d78935d4` before auto-deploy was set Off, followed by a reported suspend/resume. The log shows no proof/credential activity and no runtime credential/job exists. Re-suspend and inspect only the worker identity, command and empty environment before a bounded correct-or-delete decision. External execution/removal remain governed by the accepted assumption-test gate; `1R-H-A` remains inventory only and no production implementation is authorised |
 | [`2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md`](../01-cr-inputs/2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md) | Consumed as the boundary preventing `1R-F-A` from absorbing collective/Standard paths | `1R-F-F` through `I` remain parked; no implementation authority |
 | [`2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`](../01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md) | `1R-F-A` automation, physical review and Linux parity accept candidate capacities of ten STANDARD portrait and twelve COMPACT landscape rows; production selection policy remains later `1R-F-B/D` work | Proof evidence only; no schema/policy implementation authorised |
 | [`2026-07-15-fund-template-manager-brief.md`](../01-cr-inputs/2026-07-15-fund-template-manager-brief.md) | Retained source brief for the Application/Artwork Template input | Provenance only; not a fourth CR and its provisional `T` labels carry no slice authority |
@@ -69,7 +69,7 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> resume and execute FUND 1R-F-A Stage C from exact 328aadf0; R2 and Render operator authorities retained outside Render; create only the temporary no-secret worker in workspace Isostack and prove exact candidate/inert state
+ROOT NOW  -> contain FUND 1R-F-A Stage C Phase 3 mismatch: re-suspend accidental d78935d4 worker, prove identity/command/empty environment, then correct to exact 328aadf0 or delete/replace within the accepted gate
 ROOT NEXT -> reconcile the Stage C result, conclude 1R-F-A and deliberately reselect
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
 FUND      -> ACTIVE at preserved Stage C gate; R1B human/physical, Stage B and exact candidate gates PASS; external execution/teardown pending
@@ -108,6 +108,10 @@ authority remained pending. The control owner then created dedicated Stage C Ren
 macOS Keychain record from Terminal without sharing the value. Phase 3 may now create only
 the accepted no-secret background worker and must stop on any exact-commit, auto-deploy,
 routing or inert-state mismatch.
+The worker was then accidentally created before auto-deploy was set Off. Its supplied build
+log proves wrong revision `d78935d4` and no runtime proof or credential activity; a later
+suspend/resume leaves current suspension, command and environment unproved. Phase 3 is held
+at the planned mismatch stop gate and no runtime credential or one-off job is authorised.
 Resume only from that checkpoint under the accepted Stage C gate.
 
 ## 1. Control Authority And Reading Rule
@@ -141,7 +145,7 @@ R14-A local R1-R9, staging S1-S4 and production L1-L2: PASS; COMPLETE AND CLOSED
 protected work/dev/staging/main Security Scans: PASS; exact-main run 32838343535 complete
 Role Authority: COMPLETE AND CLOSED
 Support Ticketing: COMPLETE AND CLOSED
-FUND Stage C: resumed as root NOW at exact 328aadf0; matching Render service absent, dedicated WEUR R2 bucket empty/private and fresh R2/Render operator authorities retained outside Render; temporary no-secret worker creation and exact-candidate/inert-state proof next
+FUND Stage C: root NOW at Phase 3 stop gate; accidental d78935d4 worker exists with auto-deploy reported Off after creation, current suspension/command/environment unproved, and no runtime credential/job authorised
 ```
 
 Current consolidated delivery state:

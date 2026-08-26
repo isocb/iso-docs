@@ -5,7 +5,8 @@ Date: 2026-08-12
 Restart checkpoint reconciled: 2026-08-26
 
 Status: **RESUMED AS ROOT NOW — EXACT `328aadf0` LOCAL, LINUX AND SECURITY GATES PASS;
-RENDER/R2 EXECUTION AND TEARDOWN EVIDENCE PENDING**
+PHASE 3 STOP GATE ACTIVE AFTER WRONG-REVISION RENDER BUILD; RUNTIME CREDENTIAL/JOB NOT
+AUTHORISED**
 
 Control depth: **`High`** — dedicated credentials, runtime configuration, a material
 external-service contract, private-object handling and exact resource teardown require the
@@ -34,16 +35,16 @@ Implementation confirmation:
 Exact commit: 328aadf0a360b4c65837327060302ddc525f6168
 Files/change boundary: bounded proof runner/tests/script/docs only; no schema, route, shared R2 utility or render.yaml change
 Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
-Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 Render/R2 inspections found no matching Stage C service, confirmed the dedicated WEUR bucket is empty/private, replaced the stale R2 authority with a fresh 24-hour bucket-scoped parent token and created the dedicated Stage C Render API key, with all credential fields retained in macOS Keychain
-Environment proven: local and pinned Linux candidate; matching Stage C Render service absent; exact dedicated R2 bucket empty with no public-development URL, custom domain, CORS, lock or event notification
-Known residual risk: operator-key and parent-token usability, new exact worker/job execution, temporary credential, cleanup, revocation and resource absence remain pending
-Next authorised action: create the temporary no-secret background worker in Render workspace `Isostack`, deploy only exact candidate 328aadf0 with auto-deploy off and stop after proving the base artifact is exact and inert
+Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 provider inspections and credential-retention checks recorded; subsequent Render build log proves an accidental initial `d78935d4` worker build before auto-deploy was turned off, followed by a reported suspend/resume
+Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; attached Render log proves only the wrong-revision `d78935d4` image build through `Deploying...`, with no runtime, proof-runner, R2-operation or credential evidence
+Known residual risk: current worker suspension, exact service identity, Docker command and empty environment remain unverified; exact 328aadf0 artifact, runtime credentials/job, cleanup, revocation and resource absence remain pending
+Next authorised action: keep the accidental worker suspended and inspect only its exact service ID/name, current status, Docker command and environment/group/secret-file counts; do not deploy, add variables or create a job
 
-Current state: Stage C resumed as root Now after R14-A closure; exact candidate gates pass and no external Stage C result is claimed
+Current state: Stage C Phase 3 stop gate active; an accidental no-secret worker creation built wrong revision d78935d4 before auto-deploy was disabled, and the worker was suspended then resumed; no external Stage C result is claimed
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
-Current environment: candidate preserved in current ancestry; no matching Stage C Render service; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` is empty/private; exact stale token `FUND-1R-F-A-Stage-C-2026-08-12` deleted; fresh token `FUND-1R-F-A-Stage-C-2026-08-26` is Object Read & Write scoped only to the exact bucket with a 24-hour TTL and its three credential fields are retained in named macOS Keychain records; dedicated Render API key `FUND-1R-F-A-Stage-C-2026-08-26` is retained in a separate named Keychain record for workspace `Isostack`; no temporary credential or Render service exists; existing auto-deploy services were not changed
-Next human decision/test: create the temporary no-secret background worker with the accepted Phase 3 configuration, deploy exact 328aadf0 with auto-deploy off, and stop after recording its exact build and inert state
-Safe resumption point: use only exact 328aadf0 under the accepted one-window execution/teardown contract; stop before any broader resource, application or product work
+Current environment: candidate preserved in current ancestry; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` remains empty/private and both operator authorities remain in named Keychain records; a new Stage C Render worker exists in workspace `Isostack`, auto-deploy is now reported off, and its initial build used d78935d407ace7ebe796a31a13adf3e17dafa758; current suspension, command and environment are not yet proved; no temporary R2 credential or one-off job exists
+Next human decision/test: re-suspend the exact accidental worker, then report its non-secret service ID/name, status, Docker command and environment/group/secret-file counts without changing them
+Safe resumption point: do not resume or deploy until the worker is proved suspended, secret-free and inert; then decide within the accepted gate whether to correct it to exact 328aadf0 or delete and replace it
 ```
 
 ## 1. Gate Rule
@@ -157,6 +158,22 @@ authentication remains an objective gate. The key must never enter the worker en
 and must be revoked, rejected and removed from the local credential store after the
 temporary Render resource is proved absent.
 
+At 2026-08-26 09:20 UTC the control owner accidentally submitted the new background-worker
+form before setting auto-deploy to Off. The supplied Render log proves that the initial
+build checked out `d78935d407ace7ebe796a31a13adf3e17dafa758` from `dev`, built the accepted proof
+Dockerfile inputs and reached `Deploying...`. The log contains no worker-runtime line,
+proof-runner invocation, Stage C variable, R2 operation or credential value. Auto-deploy was
+then set to Off and the worker was suspended and resumed. Its current suspension, exact
+service identity, Docker command and empty environment remain to be proved.
+
+Local comparison also shows that `d78935d4` is not identical to accepted candidate
+`328aadf0` inside the proof build boundary: root `tsconfig.json` and
+`scripts/proofs/fund-1r-f-a/tsconfig.json` differ. The wrong-revision build therefore cannot
+be accepted by ancestry or treated as an equivalent exact artifact. Phase 3 is contained at
+its planned commit-mismatch stop gate. No runtime credential or one-off job is authorised
+until the worker is re-suspended and the control window records a safe correction or
+deletion path.
+
 ## 4. External Execution Evidence — Pending
 
 | Required evidence | Result |
@@ -164,8 +181,8 @@ temporary Render resource is proved absent.
 | Dedicated bucket identity, empty initial list, no `r2.dev`, domain or CORS | PASS — control-owner dashboard inspection; exact WEUR bucket recorded above |
 | Dedicated parent token scope retained outside Render | PASS — fresh exact token is Object Read & Write scoped only to the exact bucket, has a 24-hour TTL and is retained in the control owner's macOS Keychain; usability remains a later objective gate |
 | Dedicated Render operator key retained outside the service | PASS — control-owner Terminal verification of the named Keychain record for workspace `Isostack`; API authentication remains to be proved without exposing the value |
-| Temporary worker has no route/disk/database/env group and auto-deploy is off | PENDING |
-| Exact Render build commit and inert base process | PENDING |
+| Temporary worker has no route/disk/database/env group and auto-deploy is off | STOP — worker created and auto-deploy subsequently set Off; current suspension, command, environment and exact service identity still require read-only proof |
+| Exact Render build commit and inert base process | STOP — initial build log proves wrong revision `d78935d4`; exact 328aadf0 has not been deployed and no equivalence is claimed |
 | One-hour prefix-scoped temporary session credential | PENDING |
 | Out-of-prefix and anonymous access denied | PENDING |
 | Six PUT/HEAD/GET/checksum/DELETE/not-found/list-empty sequences | PENDING |

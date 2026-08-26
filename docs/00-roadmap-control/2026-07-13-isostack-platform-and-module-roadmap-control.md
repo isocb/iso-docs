@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Resume only from the recorded safe checkpoint: exact candidate `328aadf0` is preserved in current ancestry; the control owner's 2026-08-26 read-only inspections found no matching Stage C Render service and confirmed the dedicated WEUR R2 bucket is empty and private. The stale non-expiring parent token is deleted; fresh exact-bucket R2 and dedicated Render operator authorities are retained outside Render. Create only the temporary no-secret background worker in workspace `Isostack`, with auto-deploy off and exact-candidate/inert-state proof before any runtime credential or job. Existing auto-deploy services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Phase 3 stop gate is active: accidental worker creation in workspace `Isostack` initially built wrong revision `d78935d4` before auto-deploy was set Off, followed by a reported suspend/resume. The attached build log shows no proof execution, R2 operation or credential, and no temporary runtime credential/job exists. Re-suspend and read-only inspect the exact worker identity, command and empty environment before deciding whether to correct it to exact 328aadf0 or delete/replace it. Existing auto-deploy services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -121,6 +121,11 @@ The control owner then created the dedicated Stage C Render API key for workspac
 and verified its separate named macOS Keychain record without sharing the value. Both
 operator authorities now exist outside Render; Phase 3 must create only the accepted
 no-secret worker and stop on any exact-commit, auto-deploy, routing or inert-state mismatch.
+The control owner then accidentally created the worker before setting auto-deploy Off. Its
+initial log proves checkout/build of wrong revision `d78935d4` and stops at `Deploying...`;
+no runtime proof or credential activity is shown. Auto-deploy is now reported Off, but a
+subsequent suspend/resume leaves current suspension, command and environment unproved. The
+planned Phase 3 mismatch stop gate is active; no runtime credential or job is authorised.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then
