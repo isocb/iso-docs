@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | The control owner has authorised one corrected attempt and reports resume → manual exact `328aadf0` deploy → green → suspend complete. Before any credential/job action, prove read-only that the latest deployment is manual/live/exact, the worker is suspended, auto-deploy is `no`, and exactly the original failed job exists. If this passes, never resume again; create a fresh bounded credential/environment and one corrected job. Existing services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Corrected base gate passes read-only: latest deployment `dep-da7d78a3v7hc73eug70g` is manual/live at exact `328aadf0`, worker suspended, auto-deploy `no`, and exactly original failed job `job-da7cu29srm7s7385o5g0` exists. Never resume again. Create a fresh exact-prefix 3600-second credential, preflight zero/out-of-prefix denial, and update/read back the same twelve values without deploy/job; then stop before the corrected job. Existing services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -181,7 +181,10 @@ finished at `09:40:24Z`, then a later `service_resumed` action at `11:12:27Z` cr
 live `d78935d4`, finishing at `11:14:12Z`. Thus resume, not auto-deploy or the environment
 API, replaced the accepted artifact. The control owner then authorised one corrected attempt
 and reports resume once, manual exact `328aadf0` deployment green, then manual suspension.
-Read-only API base verification is required before credential/job action; no further resume.
+Read-only API verification then passes: latest deployment `dep-da7d78a3v7hc73eug70g` is
+manual/live at exact `328aadf0`, worker suspended, auto-deploy `no`, and only original failed
+job `job-da7cu29srm7s7385o5g0` exists. Never resume again. Refresh the bounded credential and
+exact twelve values without deploy/job, then stop before the corrected job.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then

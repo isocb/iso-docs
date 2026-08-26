@@ -37,14 +37,14 @@ Files/change boundary: bounded proof runner/tests/script/docs only; no schema, r
 Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
 Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 provider inspections and credential-retention checks recorded; initial wrong-build containment recorded; subsequent exact-deploy log proves full `328aadf0` checkout, pinned image identities and terminal live state
 Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; fresh run `8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd` passes exact-prefix-zero/out-of-prefix-403 preflight and exact twelve-name/value Render read-back with 3598 seconds; worker remains suspended with auto-deploy Off/no deployment/job
-Known residual risk: corrected base state requires API proof; execution remains unproved; credential removal/revocation and resource absence remain pending
-Next authorised action: read-only prove the newly reported manual exact/latest/live deployment, worker suspension, auto-deploy `no` and only the original failed job; if all pass, never resume again and create a fresh bounded credential/environment before one corrected job
+Known residual risk: corrected execution remains unproved; fresh credential/environment, corrected job, removal/revocation and resource absence remain pending
+Next authorised action: with no further resume, create a fresh exact-prefix 3600-second credential, repeat prefix-zero/out-of-prefix-denied preflight and exact twelve-value Render update/read-back without deployment/job; stop before corrected job
 
-Current state: first job failed closed/prefix zero; control owner newly authorised one corrected attempt and reports resume → manual exact deploy green → suspension complete; API base verification pending and no Stage C pass claimed
+Current state: corrected base API gate passes at manual/live/exact deployment `dep-da7d78a3v7hc73eug70g`, worker suspended/off and original failed job only; credential refresh pending and no Stage C pass claimed
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
 Current environment: candidate preserved in current ancestry; exact worker `srv-da7au58u01pc738qld00` remains suspended with auto-deploy Off; run `8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd` was configured with prefix zero/out-of-prefix 403; single Starter job `job-da7cu29srm7s7385o5g0`, accepted command, created `11:33:29.465286145Z`, started `11:33:29Z`, finished `11:34:30Z`, terminal `failed`; final job count one and no second job exists
-Next human decision/test: run the bounded corrected-base read-only verifier and report exact service/deployment/job fields
-Safe resumption point: only after latest manual/live/exact, suspended/off and original-job-only pass, refresh the credential/environment; never resume again
+Next human decision/test: run the bounded credential/environment refresh helper and report only non-secret run/scope/preflight/value-read-back/no-deploy/no-job evidence
+Safe resumption point: after fresh credential and twelve-value read-back pass, verify base remains exact/suspended/off and original-job-only, then create one corrected job; never resume
 ```
 
 ## 1. Gate Rule
