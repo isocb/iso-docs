@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Cause is fully reconciled: after accepted manual `328aadf0` completed at `09:40:24Z`, a second `service_resumed` deployment at `11:12:27Z` rebuilt current `dev` head `d78935d4` and made it latest live. Auto-deploy `no` does not preserve a manual artifact across resume. The job failed closed and exact prefix is zero. Stop for explicit human choice: controlled teardown, or newly authorise one corrected attempt with resume → exact manual deploy → suspend → no further resume → fresh credential/job. Existing services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | The control owner has authorised one corrected attempt and reports resume → manual exact `328aadf0` deploy → green → suspend complete. Before any credential/job action, prove read-only that the latest deployment is manual/live/exact, the worker is suspended, auto-deploy is `no`, and exactly the original failed job exists. If this passes, never resume again; create a fresh bounded credential/environment and one corrected job. Existing services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -179,8 +179,9 @@ the exact run prefix remains zero. Render read-back identifies latest deployment
 auto-deploy reports `no`. Seven-record history proves the accepted manual `328aadf0` deploy
 finished at `09:40:24Z`, then a later `service_resumed` action at `11:12:27Z` created latest
 live `d78935d4`, finishing at `11:14:12Z`. Thus resume, not auto-deploy or the environment
-API, replaced the accepted artifact. Stop for explicit human choice: controlled teardown,
-or newly authorise one corrected attempt with no resume after the exact manual deployment.
+API, replaced the accepted artifact. The control owner then authorised one corrected attempt
+and reports resume once, manual exact `328aadf0` deployment green, then manual suspension.
+Read-only API base verification is required before credential/job action; no further resume.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then

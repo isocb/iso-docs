@@ -37,14 +37,14 @@ Files/change boundary: bounded proof runner/tests/script/docs only; no schema, r
 Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
 Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 provider inspections and credential-retention checks recorded; initial wrong-build containment recorded; subsequent exact-deploy log proves full `328aadf0` checkout, pinned image identities and terminal live state
 Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; fresh run `8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd` passes exact-prefix-zero/out-of-prefix-403 preflight and exact twelve-name/value Render read-back with 3598 seconds; worker remains suspended with auto-deploy Off/no deployment/job
-Known residual risk: execution remains unproved; credential removal/revocation and resource absence remain pending; corrected execution would require new explicit authority
-Next authorised action: human explicitly chooses controlled teardown, or newly authorises one corrected attempt with resume → exact manual `328aadf0` deploy → suspend → verify latest exact → no further resume → fresh bounded credential/job
+Known residual risk: corrected base state requires API proof; execution remains unproved; credential removal/revocation and resource absence remain pending
+Next authorised action: read-only prove the newly reported manual exact/latest/live deployment, worker suspension, auto-deploy `no` and only the original failed job; if all pass, never resume again and create a fresh bounded credential/environment before one corrected job
 
-Current state: Stage C single job failed closed because a second resume replaced accepted exact artifact with current dev head; exact prefix zero, one job/no second job, cause fully reconciled, human disposition pending and no Stage C pass claimed
+Current state: first job failed closed/prefix zero; control owner newly authorised one corrected attempt and reports resume → manual exact deploy green → suspension complete; API base verification pending and no Stage C pass claimed
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
 Current environment: candidate preserved in current ancestry; exact worker `srv-da7au58u01pc738qld00` remains suspended with auto-deploy Off; run `8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd` was configured with prefix zero/out-of-prefix 403; single Starter job `job-da7cu29srm7s7385o5g0`, accepted command, created `11:33:29.465286145Z`, started `11:33:29Z`, finished `11:34:30Z`, terminal `failed`; final job count one and no second job exists
-Next human decision/test: choose teardown or explicitly authorise one corrected attempt; no external mutation until that decision
-Safe resumption point: if teardown, remove/revoke retained test resources; if corrected attempt, resume once, manually deploy exact `328aadf0`, suspend, verify latest exact and never resume again before fresh credential/job
+Next human decision/test: run the bounded corrected-base read-only verifier and report exact service/deployment/job fields
+Safe resumption point: only after latest manual/live/exact, suspended/off and original-job-only pass, refresh the credential/environment; never resume again
 ```
 
 ## 1. Gate Rule
@@ -246,9 +246,10 @@ deployment `dep-da7b87i3v7hc73et4ui0` at exact `328aadf0` finished at `09:40:24Z
 `service_resumed` deployment, `dep-da7ck6u7bikc73a9j7lg`, began at `11:12:27Z`, selected
 current `dev` head `d78935d4` and became live at `11:14:12Z`, deactivating the accepted
 artifact. The environment API did not trigger that deployment. Auto-deploy `no` does not
-prevent a deployment caused by resuming the service. A corrected attempt therefore requires
-an explicit new authorisation and the exact sequence resume once, manually deploy accepted
-commit, suspend, verify latest exact, then never resume again before credential/job execution.
+prevent a deployment caused by resuming the service. The control owner subsequently provided
+the explicit new authorisation and reports the sequence resume once, manually deploy accepted
+commit to green, then suspend complete. Read-only API proof of latest manual/live/exact,
+suspension, auto-deploy `no` and original-job-only is required before credential/job action.
 
 Local comparison also shows that `d78935d4` is not identical to accepted candidate
 `328aadf0` inside the proof build boundary: root `tsconfig.json` and
