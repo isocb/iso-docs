@@ -36,15 +36,15 @@ Exact commit: 328aadf0a360b4c65837327060302ddc525f6168
 Files/change boundary: bounded proof runner/tests/script/docs only; no schema, route, shared R2 utility or render.yaml change
 Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
 Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 provider inspections and credential-retention checks recorded; initial wrong-build containment recorded; subsequent exact-deploy log proves full `328aadf0` checkout, pinned image identities and terminal live state
-Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; first exact-prefix credential preflight passed; worker is suspended with auto-deploy Off/no deployment/job; two HTTP 200 API reads and hard-refreshed dashboard agree on exactly twelve accepted keys
-Known residual risk: first temporary credential expired safely before execution; fresh run credential/value update, single job, runtime execution, cleanup, revocation and resource absence remain pending
-Next authorised action: create one fresh UUID/exact-prefix 3600-second credential, repeat exact-prefix-zero/out-of-prefix-denied preflight, then replace/read back the same twelve accepted Render variables with fresh run/prefix/expiry/credential values; do not deploy or create the job during refresh
+Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; fresh run `8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd` passes exact-prefix-zero/out-of-prefix-403 preflight and exact twelve-name/value Render read-back with 3598 seconds; worker remains suspended with auto-deploy Off/no deployment/job
+Known residual risk: single job, runtime execution, cleanup, revocation and resource absence remain pending
+Next authorised action: preflight that no one-off job exists and at least twenty credential minutes remain, then create exactly one Starter (`plan-srv-006`) job with command `npm run proof:fund:1r-f-a:stage-c`; poll that exact job only to terminal state and never retry an ambiguous create
 
-Current state: Stage C Phase 3 and the environment-shape gate pass; the first bounded credential expired safely before execution, credential refresh and the single job remain pending, and no external Stage C result is claimed
+Current state: Stage C Phase 3 and all pre-execution gates pass; exactly one one-off job and its runtime/teardown evidence remain pending, and no external Stage C result is claimed
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
-Current environment: candidate preserved in current ancestry; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` remains empty/private; exact worker `srv-da7au58u01pc738qld00` is dashboard-proved suspended with auto-deploy Off and no unexpected deployment; two fresh HTTP 200 API reads and the hard-refreshed dashboard agree on exactly twelve accepted keys; run `ff63e2ec-528f-45f3-9505-ffe85bdbd59d` expired at `2026-08-26T10:59:48Z` without a job
-Next human decision/test: run one bounded combined credential-refresh/environment-update helper and report only new run/prefix/expiry, preflight result, exact key count/match, no-deploy mode, remaining life and job-created false
-Safe resumption point: do not resume or create the one-off job until the fresh credential preflight and exact twelve-value API read-back pass with at least twenty minutes remaining
+Current environment: candidate preserved in current ancestry; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` remains empty/private; exact worker `srv-da7au58u01pc738qld00` is suspended with auto-deploy Off and no unexpected deployment; fresh run `8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd`, prefix `fund/1r-f-a/stage-c/8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd/`, expiry `2026-08-26T12:22:56Z`, prefix zero/out-of-prefix 403 and exact twelve-value read-back pass with 3598 seconds; no job exists
+Next human decision/test: run the bounded single-job helper once and report only preflight count, job identity/plan/command/status/timestamps and terminal result; obtain `FUND_STAGE_C_EVIDENCE` separately from that exact job log
+Safe resumption point: never rerun an ambiguous create; after one job is identified, poll/read only that job through terminal state and preserve the worker suspension
 ```
 
 ## 1. Gate Rule

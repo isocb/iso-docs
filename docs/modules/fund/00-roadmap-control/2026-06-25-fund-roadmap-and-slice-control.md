@@ -59,7 +59,7 @@ same row.
 | [`2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md) | Planned through `1Q-G-B` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md) | Planned through `1Q-G-A` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-13-fund-cr-commission-ladder-planner-input.md`](../01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md) | Policy/assignment foundation partly incorporated through `1R-C5`; aggregate calculation, statements and settlement remain absent | Parked later commission work, represented by subordinate `2R-PROD-05`; not selected |
-| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B Linux parity and exact `139d09c4` dev scan pass; dedicated Stage C contract accepted and authorised on 2026-08-12; downstream short-code/single-artwork policy preserved in parked `1R-H-A` | Stage C remains root `Now`. Phase 3, credential preflight and environment-shape gates pass: two HTTP 200 API reads and the hard-refreshed dashboard agree on twelve keys; worker stays suspended/off with no deploy/job. The first credential expired safely. Create a fresh run/exact-prefix credential, repeat preflight and update/read-back before the single job. External execution/removal remain governed by the accepted assumption-test gate; `1R-H-A` remains inventory only and no production implementation is authorised |
+| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B Linux parity and exact `139d09c4` dev scan pass; dedicated Stage C contract accepted and authorised on 2026-08-12; downstream short-code/single-artwork policy preserved in parked `1R-H-A` | Stage C remains root `Now`. Phase 3 and all pre-execution gates pass. Fresh run `8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd` passes exact-prefix zero/out-of-prefix 403; exact twelve names/values read back with 3598 seconds remaining, no deploy/job. Create exactly one Starter job from the suspended worker and poll it only. External execution/removal remain governed by the accepted assumption-test gate; `1R-H-A` remains inventory only and no production implementation is authorised |
 | [`2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md`](../01-cr-inputs/2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md) | Consumed as the boundary preventing `1R-F-A` from absorbing collective/Standard paths | `1R-F-F` through `I` remain parked; no implementation authority |
 | [`2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`](../01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md) | `1R-F-A` automation, physical review and Linux parity accept candidate capacities of ten STANDARD portrait and twelve COMPACT landscape rows; production selection policy remains later `1R-F-B/D` work | Proof evidence only; no schema/policy implementation authorised |
 | [`2026-07-15-fund-template-manager-brief.md`](../01-cr-inputs/2026-07-15-fund-template-manager-brief.md) | Retained source brief for the Application/Artwork Template input | Provenance only; not a fourth CR and its provisional `T` labels carry no slice authority |
@@ -69,7 +69,7 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> refresh FUND 1R-F-A Stage C Phase 4 credential after safe expiry: API/dashboard agree on twelve-key shape; new run/exact-prefix credential, preflight and value update/read-back required before the single job
+ROOT NOW  -> execute FUND 1R-F-A Stage C single Starter one-off job: fresh run/prefix/scope and exact twelve-value read-back pass with 3598 seconds; suspended base worker stays suspended
 ROOT NEXT -> reconcile the Stage C result, conclude 1R-F-A and deliberately reselect
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
 FUND      -> ACTIVE at preserved Stage C gate; R1B human/physical, Stage B and exact candidate gates PASS; external execution/teardown pending
@@ -148,8 +148,10 @@ exactly the twelve accepted Stage C keys with 3200 credential seconds remaining,
 deployment or job. Dashboard re-proof of suspension, auto-deploy Off, count twelve and no
 unexpected deployment. Two no-cache HTTP 200 reads and a hard-refreshed Environment page
 then agreed on exactly twelve keys, resolving the display disagreement without mutation.
-The first one-hour credential expired safely before execution. Create a fresh run/exact-
-prefix credential, repeat preflight and update/read-back the same twelve keys before the job.
+The first one-hour credential expired safely before execution. Fresh run
+`8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd` passes exact-prefix zero/out-of-prefix 403 and exact
+twelve-name/value Render read-back with 3598 seconds remaining. Create exactly one Starter
+one-off job from the suspended worker and poll that job only to terminal state.
 
 ## 1. Control Authority And Reading Rule
 
