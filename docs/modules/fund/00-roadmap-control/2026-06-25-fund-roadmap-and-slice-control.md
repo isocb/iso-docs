@@ -69,10 +69,10 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> control-owner deliberate portfolio reselection after 1R-F-A Stage C closed at FAIL with zero residue
-ROOT NEXT -> not selected; do not infer a runner correction/rerun, 1R-F-B, 1R-G or 1R-H-A
+ROOT NOW  -> 1R-F-A Stage C-R1 bounded local runner correction and new exact candidate; High depth; no provider resource or credential
+ROOT NEXT -> one fresh isolated Stage C-R1 external assumption test only after exact local/Linux/security gates; complete removal required
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
-FUND      -> 1R-F-A Stage C COMPLETE at FAIL (assumption not proved); zero-residue/revocation PASS; awaiting deliberate portfolio selection
+FUND      -> prior Stage C COMPLETE at FAIL with zero residue; Stage C-R1 local correction/new-candidate work selected on 2026-08-26
 ```
 
 Email F3, Role Authority and Support Ticketing are complete and closed. `PLAT-ROLE-R1` is
@@ -86,9 +86,10 @@ superseded inferred R1A before review. Source-faithful R1B automation and 12/12 
 review pass. Stage B Linux parity run `31595635243` and exact dev Security Scan
 `31595635276` pass at application `139d09c4`. The accepted Stage C runner was gated and
 dev-aligned at exact `328aadf0`; candidate Linux parity `31599134487` and Security Scan
-`31599134488` pass. That commit remains preserved in current `d78935d4` ancestry. No external
-Stage C result has yet been recorded. Exact candidate
-`328aadf0a360b4c65837327060302ddc525f6168` remains preserved. The control owner's
+`31599134488` pass. That commit remains preserved in current `d78935d4` ancestry. The
+external Stage C result is FAIL because the accepted runner failed before behavioural
+proof; zero-residue/revocation passes. Exact candidate
+`328aadf0a360b4c65837327060302ddc525f6168` remains preserved as historical evidence. The control owner's
 2026-08-26 read-only Render dashboard inspection found no matching Stage C service,
 superseding the prior suspended-worker claim; existing auto-deploy services remain untouched.
 The control owner's subsequent read-only Cloudflare inspection confirmed account
@@ -175,8 +176,10 @@ the complete R2 bucket listed zero objects before control-owner deletion and ind
 404 proof. The Cloudflare parent token and Render operator key were deleted/revoked and
 subsequently returned HTTP 401; all seven named local credential records and temporary
 helpers are absent. Stage C therefore closes at FAIL because the assumption was not proved,
-while zero-residue/revocation passes. No runner correction, rerun or later FUND child is
-selected by that outcome.
+while zero-residue/revocation passes. On 2026-08-26 the control owner separately selected
+Stage C-R1 bounded local runner correction/new-candidate work as root `Now` and one fresh
+isolated external assumption test, conditional on every corrected candidate gate, as root
+`Next`. No later FUND child or production model is authorised.
 
 ## 1. Control Authority And Reading Rule
 

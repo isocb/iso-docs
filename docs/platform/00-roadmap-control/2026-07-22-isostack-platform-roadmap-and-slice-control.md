@@ -429,8 +429,8 @@ application code, schema, migration, infrastructure, deployment or promotion is 
 selected or authorised.
 
 ```text
-ROOT NOW  -> control-owner deliberate portfolio reselection after FUND Stage C closure
-ROOT NEXT -> not selected
+ROOT NOW  -> FUND 1R-F-A Stage C-R1 bounded local runner correction/new exact candidate
+ROOT NEXT -> one fresh isolated Stage C-R1 external assumption test after corrected gates only
 PLATFORM  -> no executable slice selected
 PARKED    -> PLAT-ROLE-R1 only on an explicit trigger; PLAT-REFINE findings remain non-executable
 ```

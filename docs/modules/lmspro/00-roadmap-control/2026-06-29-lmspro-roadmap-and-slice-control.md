@@ -43,8 +43,8 @@ authority. Later disposition changes must update the existing row.
 Current LMSPro portfolio disposition:
 
 ```text
-ROOT NOW -> control-owner deliberate portfolio reselection after FUND 1R-F-A Stage C closed at FAIL with zero residue
-ROOT NEXT -> not selected; do not infer LMSPro work, a Stage C correction/rerun or a later FUND child
+ROOT NOW -> FUND 1R-F-A Stage C-R1 bounded local runner correction/new exact candidate; no provider resource or credential in this boundary
+ROOT NEXT -> one fresh isolated Stage C-R1 external assumption test only after corrected exact-candidate gates; complete removal required
 LMS R13 -> delivery/live proof complete at exact 06811784; production migration/schema, Render identity, L1-L2 and exact-main scan PASS
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; historical PLAT-ROLE-03/LMS-ROLE-01/02 are not next slices
 PARKED -> 500-recipient operating envelope, R5-C evidence reconciliation and other registered candidates
@@ -52,9 +52,11 @@ PARKED -> 500-recipient operating envelope, R5-C evidence reconciliation and oth
 
 This current disposition supersedes the chronological resumption wording retained below.
 FUND Stage C subsequently executed, failed on a deterministic proof-runner defect before
-behavioural proof and completed zero-residue/revocation. LMSPro has no selected executable
-slice. Its registered operating-envelope, R5-C evidence and subscription/accounting inputs
-remain parked until the root control owner deliberately selects one.
+behavioural proof and completed zero-residue/revocation. The control owner selected bounded
+Stage C-R1 correction/new-candidate work as root `Now` and a conditional fresh isolated
+external assumption test as root `Next`. LMSPro has no selected executable slice. Its
+registered operating-envelope, R5-C evidence and subscription/accounting inputs remain
+parked.
 
 The control owner accepted this operational expedite on 2026-08-24 and explicitly placed it
 before further FUND work. The application refs are now aligned at exact R13-B `06811784`;
@@ -87,7 +89,8 @@ behavioural proof; zero-residue/revocation passes. This does not reopen R13 or s
 
 FUND `1R-F-A` Stage C is complete. Exact candidate `328aadf0` remains historical evidence;
 the temporary Render service, private R2 bucket, provider credentials, local credential
-records and helpers are absent. Root control now awaits deliberate reselection.
+records and helpers are absent. Root control now selects the bounded Stage C-R1 local
+correction/new candidate, followed conditionally by one fresh disposable external test.
 
 ## Purpose
 

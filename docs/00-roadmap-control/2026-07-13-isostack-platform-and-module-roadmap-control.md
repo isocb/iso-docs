@@ -79,8 +79,8 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Control-owner deliberate portfolio reselection after FUND `1R-F-A` Stage C closure | Stage C is complete at FAIL because the accepted runner failed deterministically before behavioural proof; zero-residue/revocation passes. No Render service/variables, R2 bucket, provider credential, local credential record or temporary helper remains. Select a separately reviewed runner-correction/new-candidate slice or another parked outcome; do not infer either. |
-| **NEXT** | Not selected pending the deliberate control-owner decision | Do not infer `1R-F-B`, `1R-G`, `1R-H-A` or a Stage C rerun automatically. Use the final Stage C evidence and authoritative child roadmaps for the next pair. |
+| **NOW** | FUND `1R-F-A Stage C-R1` bounded local runner correction and new exact candidate | The control owner accepted this selection on 2026-08-26. Correct only the deterministic Playwright browser-context serialization defect, retain `High` evidence depth, and prove the correction locally and in the pinned Linux container. Create no provider resource or credential during this local boundary. |
+| **NEXT** | One fresh isolated `1R-F-A Stage C-R1` external assumption test, conditional on the corrected exact candidate passing every local/Linux/security gate | Recreate a fresh disposable R2/Render test environment, run once, capture behavioural/private-object evidence and remove/revoke everything with proved absence. This is not a production build and does not authorise `1R-F-B`, `1R-G`, `1R-H-A` or permanent infrastructure. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
 promotion. Exact `250baf12` is aligned through main; all protected scans, Render identity,
@@ -911,8 +911,12 @@ passes. Application `d78935d4` remains the promoted product baseline, while exac
 candidate `328aadf0` remains historical proof evidence only. `PLAT-ROLE-R1` remains
 trigger-based parked assurance.
 
-No executable slice is selected. Root `Now` is the control-owner decision to choose the
-next bounded outcome, and root `Next` is intentionally not selected. The detailed history
+The control owner selected bounded FUND `1R-F-A Stage C-R1` runner correction/new-candidate
+work as root `Now` on 2026-08-26. One fresh isolated external assumption test is root
+`Next`, but only if the corrected exact candidate passes every local, pinned-Linux and
+security gate. The first boundary creates no provider resource or credential. The second
+reconstructs a wholly disposable test environment, runs once and proves complete removal;
+it does not build a production model or authorise a later FUND child. The detailed history
 below explains how the lanes reached this position and must not be read as a competing
 selector or resumption instruction.
 

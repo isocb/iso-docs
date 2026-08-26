@@ -6,7 +6,7 @@ Status: **PLAN ACCEPTED; INFERRED R1/R1A COMPOSITIONS SUPERSEDED; R1B SOURCE-FAI
 AUTOMATION AND HUMAN/PHYSICAL REVIEW PASS; STAGE B LINUX PARITY AND EXACT SECURITY SCAN PASS
 AT DEV `139d09c4`; STAGE C ACCEPTED, IMPLEMENTED AND EXACT `328aadf0` LOCAL/LINUX/SECURITY
 GATES PASS; EXTERNAL ASSUMPTION TEST FAILS ON DETERMINISTIC RUNNER DEFECT;
-ZERO-RESIDUE/REVOCATION PASS; NO LATER SLICE AUTHORISED**
+ZERO-RESIDUE/REVOCATION PASS; STAGE C-R1 LOCAL CORRECTION/NEW-CANDIDATE WORK ACCEPTED**
 
 Owning lane: FUND
 
@@ -18,6 +18,28 @@ Authoritative controls:
 
 - [`root portfolio roadmap`](../../../00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md)
 - [`FUND roadmap`](../00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md)
+
+Control depth: **`High` retained** — the immediate correction is local-only, but it exists
+to restore evidence for the credentialled external-service assumption test. Reducing the
+existing High depth would understate that evidence consequence.
+
+Work type: **ASSUMPTION-TEST CORRECTION — NOT A PRODUCTION BUILD**
+
+```text
+Question being tested: can the deterministic browser-context serialization defect be corrected without changing the accepted renderer/layout contract, so a new exact candidate can safely repeat the external assumption test?
+Temporary during the local correction: generated local proof artefacts only; no Cloudflare or Render resource or credential
+Removed and revoked at the end of the later external test: the fresh bucket, scoped credentials, Render worker/job configuration and named local operator records, with absence proved
+Retained result: the bounded runner correction, automated checks, exact candidate identity and redacted PASS/FAIL evidence
+Production consequence: even a PASS only supports later production planning; it creates no permanent renderer, storage, credential, backup, recovery or operating model
+```
+
+```text
+Current state: Stage C-R1 selected; bounded local runner correction/new exact candidate is active
+Last proven commit: Stage C failed candidate 328aadf0a360b4c65837327060302ddc525f6168; current application baseline d78935d407ace7ebe796a31a13adf3e17dafa758 plus agent-method documentation f48a2e0697a04b4819f1bd149dc9aa86cfa60dae
+Current environment: local repositories; no R2 bucket, Render proof service, provider credential or named local credential record exists
+Next human decision/test: none before the bounded local correction; external reconstruction proceeds only after the corrected exact candidate passes local/Linux/security review
+Safe resumption point: inspect collectLayout in scripts/proofs/fund-1r-f-a/renderer.ts, correct only the browser-context serialization boundary, and stop before provider mutation unless all candidate gates pass
+```
 - [`FUND strategic completion roadmap`](../00-roadmap-control/2026-07-15-fund-store-artwork-orders-and-production-strategic-completion-roadmap.md)
 - [`FUND refinement register`](../00-roadmap-control/2026-07-20-fund-refinement-wishlist-and-slice-control.md)
 
@@ -496,8 +518,14 @@ No cleanup command may target a shared bucket, broad prefix or production servic
 
 Plan acceptance and local Stages A/B implementation authority were given explicitly on
 2026-08-11. The separately authorised Stage C assumption test is complete at FAIL with
-zero-residue/revocation PASS. No later child, correction or rerun is authorised by that
-result.
+zero-residue/revocation PASS. On 2026-08-26 the control owner separately accepted
+`Stage C-R1`: correct only the deterministic `collectLayout` browser-context serialization
+defect, add focused regression evidence where necessary, and create a new exact candidate
+only after the existing local/Linux/security gates pass. No provider resource or credential
+may be created during that `Now` boundary. Root `Next` authorises one fresh isolated
+external assumption test only after those gates; it must use new disposable resources and
+finish with complete removal/revocation/absence proof. No production model or later FUND
+child is authorised.
 
 After execution:
 

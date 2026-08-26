@@ -11,9 +11,10 @@ payment contracts remain owned by Commerce Core.
 
 ## Current Position
 
-- **Portfolio NOW:** control-owner deliberate reselection after `1R-F-A` Stage C closure.
-- **Portfolio NEXT:** not selected. Do not infer a Stage C correction/rerun, `1R-F-B`,
-  `1R-G`, `1R-H-A` or another parked item.
+- **Portfolio NOW:** `1R-F-A Stage C-R1` bounded local runner correction and new exact
+  candidate; `High` evidence depth, with no provider resource or credential in this step.
+- **Portfolio NEXT:** one fresh isolated Stage C-R1 external assumption test only after the
+  corrected candidate passes every local/Linux/security gate; complete removal is required.
 - Direct source inspection superseded inferred R1A. R1B preserves the physical landscape
   fold/control panel and portrait top-band hierarchy. Automation, 12/12 human/physical
   smoke pass at `6f9ef016`. Linux parity and the exact dev Security Scan pass at `139d09c4`.

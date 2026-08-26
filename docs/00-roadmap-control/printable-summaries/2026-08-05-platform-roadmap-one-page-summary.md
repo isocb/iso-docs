@@ -11,8 +11,10 @@ infrastructure, security assurance and engineering controls.
 
 ## Current Position
 
-- **Portfolio NOW:** control-owner deliberate reselection after FUND Stage C closure.
-- **Portfolio NEXT:** not selected; no Platform item is implicitly next.
+- **Portfolio NOW:** FUND `1R-F-A Stage C-R1` bounded local runner correction/new exact
+  candidate.
+- **Portfolio NEXT:** one conditional fresh isolated Stage C-R1 external assumption test;
+  no Platform item is implicitly next.
 - Role Authority, Support Ticketing, the dependency advisory refresh, `PLAT-ROLE-04` and
   `PLAT-ROLE-04A` are delivered at their recorded evidence boundaries.
 - `PLAT-ROLE-R1` remains trigger-based assurance only. Assurance refinements remain
