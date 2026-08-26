@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Single job `job-da7cu29srm7s7385o5g0` failed closed because Render's latest live artifact is rejected `d78935d4`, while accepted deployment `dep-da7b87i3v7hc73et4ui0`/`328aadf0` is deactivated. Independent parent-authority listing proves exact run-prefix count zero; worker remains suspended/auto-deploy no. Do not rerun. Read-only inspect all seven deploy IDs/commits/triggers/timestamps, then explicitly decide teardown or a corrected, newly authorised attempt. Existing services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Cause is fully reconciled: after accepted manual `328aadf0` completed at `09:40:24Z`, a second `service_resumed` deployment at `11:12:27Z` rebuilt current `dev` head `d78935d4` and made it latest live. Auto-deploy `no` does not preserve a manual artifact across resume. The job failed closed and exact prefix is zero. Stop for explicit human choice: controlled teardown, or newly authorise one corrected attempt with resume → exact manual deploy → suspend → no further resume → fresh credential/job. Existing services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -176,8 +176,11 @@ no Stage C storage operation/result occurred. Independent parent-authority listi
 the exact run prefix remains zero. Render read-back identifies latest deployment
 `dep-da7ck6u7bikc73a9j7lg` as live at rejected `d78935d4`, while accepted deployment
 `dep-da7b87i3v7hc73et4ui0` is deactivated at exact `328aadf0`. Worker remains suspended and
-auto-deploy reports `no`. Do not rerun. Read-only inspect all seven deployment triggers and
-timestamps, then explicitly decide teardown or a corrected, newly authorised attempt.
+auto-deploy reports `no`. Seven-record history proves the accepted manual `328aadf0` deploy
+finished at `09:40:24Z`, then a later `service_resumed` action at `11:12:27Z` created latest
+live `d78935d4`, finishing at `11:14:12Z`. Thus resume, not auto-deploy or the environment
+API, replaced the accepted artifact. Stop for explicit human choice: controlled teardown,
+or newly authorise one corrected attempt with no resume after the exact manual deployment.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then
