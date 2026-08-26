@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Resume only from the recorded safe checkpoint: exact candidate `328aadf0` is preserved in current ancestry; the control owner's 2026-08-26 read-only inspections found no matching Stage C Render service and confirmed the dedicated WEUR R2 bucket is empty and private. The stale non-expiring parent token is deleted; the fresh exact-bucket parent token now has a 24-hour TTL and is retained outside Render. Establish the dedicated Render operator key before provisioning. Existing auto-deploy services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Resume only from the recorded safe checkpoint: exact candidate `328aadf0` is preserved in current ancestry; the control owner's 2026-08-26 read-only inspections found no matching Stage C Render service and confirmed the dedicated WEUR R2 bucket is empty and private. The stale non-expiring parent token is deleted; fresh exact-bucket R2 and dedicated Render operator authorities are retained outside Render. Create only the temporary no-secret background worker in workspace `Isostack`, with auto-deploy off and exact-candidate/inert-state proof before any runtime credential or job. Existing auto-deploy services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -115,7 +115,12 @@ the control owner deleted that exact token on 2026-08-26 before any replacement 
 service or temporary session was created. The control owner then created the fresh
 `FUND-1R-F-A-Stage-C-2026-08-26` token with Object Read & Write permission restricted to
 the exact bucket and a 24-hour TTL, retaining its three credential fields in macOS Keychain
-without sharing their values. Dedicated Render operator authority remains pending.
+without sharing their values. At that checkpoint, dedicated Render operator authority
+remained pending.
+The control owner then created the dedicated Stage C Render API key for workspace `Isostack`
+and verified its separate named macOS Keychain record without sharing the value. Both
+operator authorities now exist outside Render; Phase 3 must create only the accepted
+no-secret worker and stop on any exact-commit, auto-deploy, routing or inert-state mismatch.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then

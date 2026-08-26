@@ -34,15 +34,15 @@ Implementation confirmation:
 Exact commit: 328aadf0a360b4c65837327060302ddc525f6168
 Files/change boundary: bounded proof runner/tests/script/docs only; no schema, route, shared R2 utility or render.yaml change
 Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
-Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 Render/R2 inspections found no matching Stage C service, confirmed the dedicated WEUR bucket is empty/private, deleted the exact stale parent token and created the fresh 24-hour bucket-scoped parent token with all three credential fields retained in macOS Keychain
+Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 Render/R2 inspections found no matching Stage C service, confirmed the dedicated WEUR bucket is empty/private, replaced the stale R2 authority with a fresh 24-hour bucket-scoped parent token and created the dedicated Stage C Render API key, with all credential fields retained in macOS Keychain
 Environment proven: local and pinned Linux candidate; matching Stage C Render service absent; exact dedicated R2 bucket empty with no public-development URL, custom domain, CORS, lock or event notification
-Known residual risk: Render operator authority, parent-token usability, new exact worker/job execution, temporary credential, cleanup, revocation and resource absence remain pending
-Next authorised action: create and retain the dedicated Render operator key outside Render, then resume only the accepted one-window Phase 3-8 sequence
+Known residual risk: operator-key and parent-token usability, new exact worker/job execution, temporary credential, cleanup, revocation and resource absence remain pending
+Next authorised action: create the temporary no-secret background worker in Render workspace `Isostack`, deploy only exact candidate 328aadf0 with auto-deploy off and stop after proving the base artifact is exact and inert
 
 Current state: Stage C resumed as root Now after R14-A closure; exact candidate gates pass and no external Stage C result is claimed
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
-Current environment: candidate preserved in current ancestry; no matching Stage C Render service; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` is empty/private; exact stale token `FUND-1R-F-A-Stage-C-2026-08-12` deleted; fresh token `FUND-1R-F-A-Stage-C-2026-08-26` is Object Read & Write scoped only to the exact bucket with a 24-hour TTL and its three credential fields are retained in named macOS Keychain records; no temporary credential exists; existing auto-deploy services were not changed
-Next human decision/test: create and retain the dedicated Render operator key outside Render without sharing its value, then stop before service creation
+Current environment: candidate preserved in current ancestry; no matching Stage C Render service; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` is empty/private; exact stale token `FUND-1R-F-A-Stage-C-2026-08-12` deleted; fresh token `FUND-1R-F-A-Stage-C-2026-08-26` is Object Read & Write scoped only to the exact bucket with a 24-hour TTL and its three credential fields are retained in named macOS Keychain records; dedicated Render API key `FUND-1R-F-A-Stage-C-2026-08-26` is retained in a separate named Keychain record for workspace `Isostack`; no temporary credential or Render service exists; existing auto-deploy services were not changed
+Next human decision/test: create the temporary no-secret background worker with the accepted Phase 3 configuration, deploy exact 328aadf0 with auto-deploy off, and stop after recording its exact build and inert state
 Safe resumption point: use only exact 328aadf0 under the accepted one-window execution/teardown contract; stop before any broader resource, application or product work
 ```
 
@@ -149,12 +149,21 @@ Before Phase 3 begins, the control window still requires a dedicated operator-on
 API key retained outside Render. No secret value may enter Git, documentation, command
 output or shell history.
 
+The control owner then created dedicated Render API key
+`FUND-1R-F-A-Stage-C-2026-08-26` for workspace `Isostack` and verified its named macOS
+Keychain record from Terminal without sharing the value. The agent's isolated process did
+not retrieve the credential; this is control-owner retention evidence, while actual API
+authentication remains an objective gate. The key must never enter the worker environment
+and must be revoked, rejected and removed from the local credential store after the
+temporary Render resource is proved absent.
+
 ## 4. External Execution Evidence — Pending
 
 | Required evidence | Result |
 | --- | --- |
 | Dedicated bucket identity, empty initial list, no `r2.dev`, domain or CORS | PASS — control-owner dashboard inspection; exact WEUR bucket recorded above |
 | Dedicated parent token scope retained outside Render | PASS — fresh exact token is Object Read & Write scoped only to the exact bucket, has a 24-hour TTL and is retained in the control owner's macOS Keychain; usability remains a later objective gate |
+| Dedicated Render operator key retained outside the service | PASS — control-owner Terminal verification of the named Keychain record for workspace `Isostack`; API authentication remains to be proved without exposing the value |
 | Temporary worker has no route/disk/database/env group and auto-deploy is off | PENDING |
 | Exact Render build commit and inert base process | PENDING |
 | One-hour prefix-scoped temporary session credential | PENDING |
