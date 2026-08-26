@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Phases 3 and the Phase 4 credential gate pass. The Render API update/read-back reported exactly twelve accepted keys, 3200 credential seconds, no deploy and no job, but immediate dashboard inspection reports suspended, auto-deploy Off, no deployment and environment count zero. This API/dashboard disagreement is a stop gate: perform one read-only no-cache API re-query and refreshed dashboard comparison; do not resume or create the job. Existing services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Phases 3, credential preflight and the environment-shape gate pass: two read-only HTTP 200 API reads and the hard-refreshed dashboard agree on exactly twelve accepted keys; worker remains suspended, auto-deploy Off, with no deployment/job. The first one-hour credential expired safely before execution. Create a new run ID/exact-prefix one-hour credential, repeat preflight and update/read-back the same twelve-key environment before the single job. Existing services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -162,9 +162,11 @@ items. The bounded Render helper then replaced the previously empty direct envir
 exactly the twelve accepted Stage C keys, read them back successfully with 3200 credential
 seconds remaining and reported API-update-without-deploy plus `JOB_CREATED=false`. Stop for
 dashboard inspection then proved suspension, auto-deploy Off and no unexpected deployment
-but reported environment count zero. Treat that API/dashboard disagreement as a stop gate:
-perform one read-only no-cache API re-query and refreshed dashboard comparison; do not
-resume or create the job.
+but initially reported environment count zero. Two no-cache HTTP 200 API reads again proved
+the same twelve keys, and a hard-refreshed Environment page then agreed on count twelve.
+The environment-shape disagreement is resolved without mutation. Because the first one-hour
+credential expired before execution, create a fresh run ID/exact-prefix credential, repeat
+scope preflight and update/read-back the same twelve-key environment before the single job.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then

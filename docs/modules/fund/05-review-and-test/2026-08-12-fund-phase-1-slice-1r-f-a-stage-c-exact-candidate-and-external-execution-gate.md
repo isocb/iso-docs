@@ -36,15 +36,15 @@ Exact commit: 328aadf0a360b4c65837327060302ddc525f6168
 Files/change boundary: bounded proof runner/tests/script/docs only; no schema, route, shared R2 utility or render.yaml change
 Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
 Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 provider inspections and credential-retention checks recorded; initial wrong-build containment recorded; subsequent exact-deploy log proves full `328aadf0` checkout, pinned image identities and terminal live state
-Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; exact-prefix credential preflight passes; worker is dashboard-proved suspended with auto-deploy Off and no unexpected deployment, but API twelve-key read-back conflicts with dashboard environment count zero
-Known residual risk: Render API/dashboard environment disagreement, single job, runtime execution, cleanup, revocation and resource absence remain pending; temporary credential expires at 2026-08-26T10:59:48Z
-Next authorised action: perform one read-only no-cache API environment query and refresh the exact worker dashboard for comparison; do not mutate, resume, deploy or create a job while the counts disagree
+Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; first exact-prefix credential preflight passed; worker is suspended with auto-deploy Off/no deployment/job; two HTTP 200 API reads and hard-refreshed dashboard agree on exactly twelve accepted keys
+Known residual risk: first temporary credential expired safely before execution; fresh run credential/value update, single job, runtime execution, cleanup, revocation and resource absence remain pending
+Next authorised action: create one fresh UUID/exact-prefix 3600-second credential, repeat exact-prefix-zero/out-of-prefix-denied preflight, then replace/read back the same twelve accepted Render variables with fresh run/prefix/expiry/credential values; do not deploy or create the job during refresh
 
-Current state: Stage C Phase 3 and Phase 4 credential/preflight pass; Render environment gate is stopped on an API twelve/dashboard zero disagreement, the single job remains pending, and no external Stage C result is claimed
+Current state: Stage C Phase 3 and the environment-shape gate pass; the first bounded credential expired safely before execution, credential refresh and the single job remain pending, and no external Stage C result is claimed
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
-Current environment: candidate preserved in current ancestry; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` remains empty/private; exact worker `srv-da7au58u01pc738qld00` is dashboard-proved suspended with auto-deploy Off and no unexpected deployment; locally signed run `ff63e2ec-528f-45f3-9505-ffe85bdbd59d` expires `2026-08-26T10:59:48Z`; the Render API update/read-back reported exactly twelve accepted keys and 3200 seconds remaining, but immediate dashboard inspection reports environment count zero; no job exists
-Next human decision/test: run the read-only no-cache Render environment verifier, refresh the exact dashboard page and report both counts without changing any setting
-Safe resumption point: do not resume or create the one-off job until API and refreshed dashboard both prove the same twelve accepted keys/count, auto-deploy Off, no unexpected deployment and at least twenty minutes of temporary credential life
+Current environment: candidate preserved in current ancestry; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` remains empty/private; exact worker `srv-da7au58u01pc738qld00` is dashboard-proved suspended with auto-deploy Off and no unexpected deployment; two fresh HTTP 200 API reads and the hard-refreshed dashboard agree on exactly twelve accepted keys; run `ff63e2ec-528f-45f3-9505-ffe85bdbd59d` expired at `2026-08-26T10:59:48Z` without a job
+Next human decision/test: run one bounded combined credential-refresh/environment-update helper and report only new run/prefix/expiry, preflight result, exact key count/match, no-deploy mode, remaining life and job-created false
+Safe resumption point: do not resume or create the one-off job until the fresh credential preflight and exact twelve-value API read-back pass with at least twenty minutes remaining
 ```
 
 ## 1. Gate Rule
@@ -219,8 +219,10 @@ Stage C variables, and read back all twelve key names successfully. It reported 
 of credential life, API update without deployment and `JOB_CREATED=false`; no credential
 value was printed. Immediate dashboard inspection proved the worker remained suspended,
 auto-deploy remained Off and no unexpected deployment started, but reported environment
-count zero. That disagreement with the API twelve-key read-back is a stop gate; one read-only
-no-cache API re-query and refreshed dashboard comparison are required.
+count zero. Two subsequent no-cache HTTP 200 reads again proved all twelve keys without
+mutation; the hard-refreshed Environment page then agreed on count twelve. The disagreement
+was display staleness, not configuration loss. The one-hour credential nevertheless expired
+safely before execution, so fresh run/prefix/credential values are required before the job.
 
 Local comparison also shows that `d78935d4` is not identical to accepted candidate
 `328aadf0` inside the proof build boundary: root `tsconfig.json` and
@@ -237,7 +239,7 @@ deploy state.
 | Dedicated bucket identity, empty initial list, no `r2.dev`, domain or CORS | PASS — control-owner dashboard inspection; exact WEUR bucket recorded above |
 | Dedicated parent token scope retained outside Render | PASS — fresh exact token is Object Read & Write scoped only to the exact bucket, has a 24-hour TTL and is retained in the control owner's macOS Keychain; usability remains a later objective gate |
 | Dedicated Render operator key retained outside the service | PASS — control-owner Terminal verification of the named Keychain record for workspace `Isostack`; successful environment update/read-back proves API authentication without exposing the value |
-| Temporary worker has no route/disk/database/env group and auto-deploy is off | STOP — exact worker identity, manual suspension, auto-deploy Off, inert command, no linked environment group, no secret file, no disk and no unexpected deployment are proved; API read-back reports twelve accepted keys while dashboard reports zero, requiring read-only reconciliation |
+| Temporary worker has no route/disk/database/env group and auto-deploy is off | PASS — exact worker identity, manual suspension, auto-deploy Off, inert command, no linked environment group, no secret file, no disk and no unexpected deployment are proved; two HTTP 200 API reads and hard-refreshed dashboard agree on twelve accepted keys |
 | Exact Render build commit and inert base process | PASS — full exact `328aadf0` checkout, pinned build images, green/live state and inert command at service `srv-da7au58u01pc738qld00`, deployment `dep-da7b87i3v7hc73et4ui0`; accepted twelve-key API read-back now passes |
 | One-hour prefix-scoped temporary session credential | PASS — documented local signing; run `ff63e2ec-528f-45f3-9505-ffe85bdbd59d`, exact prefix, expiry `2026-08-26T10:59:48Z`, object-read-write/3600 seconds, prefix zero, out-of-prefix 403 and three verified temporary Keychain items |
 | Out-of-prefix and anonymous access denied | PENDING |
