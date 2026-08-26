@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | The single authorised Starter job `job-da7cu29srm7s7385o5g0` was created from the suspended worker with 2967 credential seconds and ran only command `npm run proof:fund:1r-f-a:stage-c`. It moved pending → running → failed from `11:33:29Z` to `11:34:30Z`; final job count is one and no second job exists. Do not rerun. Inspect only that exact job's log to identify the failure and confirm cleanup evidence. Existing services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Single job `job-da7cu29srm7s7385o5g0` failed closed on `Render commit differs from Stage C authority`. The runner checks this before renderer or R2-client creation, so no Stage C storage operation/result occurred; final job count is one/no second job. Do not rerun. Read-only prove exact-prefix zero and compare the base service's latest successful deploy identity with accepted deployment `dep-da7b87i3v7hc73et4ui0`, then proceed to teardown/disposition. Existing services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -170,8 +170,10 @@ created and now passes exact-prefix zero, out-of-prefix 403 and 3600-second scop
 twelve Render names and values read back exactly with 3598 seconds remaining, no deploy and
 no job. The single authorised Starter job `job-da7cu29srm7s7385o5g0` was then created with
 2967 seconds remaining and moved pending → running → failed from `11:33:29Z` to `11:34:30Z`.
-Final job count is one and no second job was created. Do not rerun; inspect only its log and
-confirm failure cause and cleanup evidence.
+Final job count is one and no second job was created. Its exact log reports `Render commit
+differs from Stage C authority`; validation occurs before renderer or R2-client creation, so
+no Stage C storage operation/result occurred. Do not rerun. Read-only prove exact-prefix
+zero and compare latest successful/accepted deploy identities before teardown/disposition.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then

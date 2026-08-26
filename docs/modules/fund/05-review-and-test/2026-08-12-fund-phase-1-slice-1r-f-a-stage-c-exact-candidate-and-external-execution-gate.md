@@ -37,14 +37,14 @@ Files/change boundary: bounded proof runner/tests/script/docs only; no schema, r
 Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
 Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 provider inspections and credential-retention checks recorded; initial wrong-build containment recorded; subsequent exact-deploy log proves full `328aadf0` checkout, pinned image identities and terminal live state
 Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; fresh run `8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd` passes exact-prefix-zero/out-of-prefix-403 preflight and exact twelve-name/value Render read-back with 3598 seconds; worker remains suspended with auto-deploy Off/no deployment/job
-Known residual risk: single job failed after 61 seconds; exact failure cause, object cleanup, credential removal/revocation and resource absence remain pending
-Next authorised action: inspect only job `job-da7cu29srm7s7385o5g0` logs and capture its non-secret terminal output/failure line; do not create or rerun any job
+Known residual risk: job failed at commit-authority guard; actual base latest-successful deployment identity, independent prefix-zero proof, credential removal/revocation and resource absence remain pending
+Next authorised action: using retained operator authorities read-only, list exact run prefix and retrieve Render service/deployment identities; report no values/secrets and do not create or rerun any job
 
-Current state: Stage C pre-execution gates pass; exactly one authorised job reached terminal `failed`, no second job exists, diagnosis/cleanup remain pending, and no Stage C pass is claimed
+Current state: Stage C single job failed closed at commit-authority validation before renderer/R2-client creation; exactly one job/no second job, read-only reconciliation/cleanup pending, and no Stage C pass is claimed
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
 Current environment: candidate preserved in current ancestry; exact worker `srv-da7au58u01pc738qld00` remains suspended with auto-deploy Off; run `8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd` was configured with prefix zero/out-of-prefix 403; single Starter job `job-da7cu29srm7s7385o5g0`, accepted command, created `11:33:29.465286145Z`, started `11:33:29Z`, finished `11:34:30Z`, terminal `failed`; final job count one and no second job exists
-Next human decision/test: open that exact job in Render's Jobs page and report its complete non-secret command output, especially the final failure line and any `FUND_STAGE_C_EVIDENCE` line
-Safe resumption point: do not rerun; after log diagnosis, independently prove exact run-prefix object count and continue to controlled teardown/disposition
+Next human decision/test: run the bounded read-only cleanup/deployment diagnostic and report exact-prefix count, service status/auto-deploy and latest/accepted deployment IDs/status/commit IDs
+Safe resumption point: do not rerun; after prefix-zero and deployment-identity evidence, continue only to controlled teardown/disposition unless a new execution is explicitly authorised
 ```
 
 ## 1. Gate Rule
@@ -224,6 +224,15 @@ mutation; the hard-refreshed Environment page then agreed on count twelve. The d
 was display staleness, not configuration loss. The one-hour credential nevertheless expired
 safely before execution, so fresh run/prefix/credential values are required before the job.
 
+Fresh run `8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd` then passed exact-prefix zero,
+out-of-prefix HTTP 403 and exact twelve-name/value Render read-back with 3598 seconds
+remaining. Exactly one Starter job, `job-da7cu29srm7s7385o5g0`, was created with the accepted
+command and 2967 seconds remaining. It moved pending to running to failed from `11:33:29Z`
+to `11:34:30Z`; final job count is one and no second job exists. Its log reports only
+`Render commit differs from Stage C authority`. The runner performs that validation before
+creating the renderer or R2 client, so it produced no Stage C storage operation or PASS
+evidence. No rerun is authorised.
+
 Local comparison also shows that `d78935d4` is not identical to accepted candidate
 `328aadf0` inside the proof build boundary: root `tsconfig.json` and
 `scripts/proofs/fund-1r-f-a/tsconfig.json` differ. The wrong-revision build therefore cannot
@@ -240,13 +249,13 @@ deploy state.
 | Dedicated parent token scope retained outside Render | PASS — fresh exact token is Object Read & Write scoped only to the exact bucket, has a 24-hour TTL and is retained in the control owner's macOS Keychain; usability remains a later objective gate |
 | Dedicated Render operator key retained outside the service | PASS — control-owner Terminal verification of the named Keychain record for workspace `Isostack`; successful environment update/read-back proves API authentication without exposing the value |
 | Temporary worker has no route/disk/database/env group and auto-deploy is off | PASS — exact worker identity, manual suspension, auto-deploy Off, inert command, no linked environment group, no secret file, no disk and no unexpected deployment are proved; two HTTP 200 API reads and hard-refreshed dashboard agree on twelve accepted keys |
-| Exact Render build commit and inert base process | PASS — full exact `328aadf0` checkout, pinned build images, green/live state and inert command at service `srv-da7au58u01pc738qld00`, deployment `dep-da7b87i3v7hc73et4ui0`; accepted twelve-key API read-back now passes |
-| One-hour prefix-scoped temporary session credential | PASS — documented local signing; run `ff63e2ec-528f-45f3-9505-ffe85bdbd59d`, exact prefix, expiry `2026-08-26T10:59:48Z`, object-read-write/3600 seconds, prefix zero, out-of-prefix 403 and three verified temporary Keychain items |
+| Exact Render build commit and inert base process | STOP — deployment `dep-da7b87i3v7hc73et4ui0` log proves exact `328aadf0`, pinned images and green/live state, but the one-off job's default `RENDER_GIT_COMMIT` failed equality; read-only latest-successful/accepted deployment reconciliation is pending |
+| One-hour prefix-scoped temporary session credential | PASS — documented local signing; fresh run `8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd`, exact prefix, expiry `2026-08-26T12:22:56Z`, object-read-write/3600 seconds, prefix zero, out-of-prefix 403 and three verified temporary Keychain items |
 | Out-of-prefix and anonymous access denied | PENDING |
 | Six PUT/HEAD/GET/checksum/DELETE/not-found/list-empty sequences | PENDING |
 | Node/Playwright/Chromium/font/container identity | PENDING |
 | Cold/warm/batch timing and peak memory below 80% | PENDING |
-| Job terminal success and final exact-prefix object count zero | PENDING |
+| Job terminal success and final exact-prefix object count zero | STOP — exactly one job `job-da7cu29srm7s7385o5g0` terminal `failed` at the pre-storage commit guard; independent exact-prefix-zero proof pending |
 
 ## 5. Teardown And Revocation Evidence — Pending
 
