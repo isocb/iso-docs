@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Phases 3 and the Phase 4 credential gate pass. Cloudflare-documented local signing created one object-read-write credential for exact prefix `fund/1r-f-a/stage-c/ff63e2ec-528f-45f3-9505-ffe85bdbd59d/`, expiring `2026-08-26T10:59:48Z`; exact-prefix count is zero, out-of-prefix HEAD is 403 and three values are verified in Keychain. Worker `srv-da7au58u01pc738qld00` is manually suspended with auto-deploy Off. Configure only the accepted twelve Stage C variables without deploying, then stop to re-prove the environment before creating the single job. Existing services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Phases 3 and the Phase 4 credential gate pass. The Render API update/read-back reported exactly twelve accepted keys, 3200 credential seconds, no deploy and no job, but immediate dashboard inspection reports suspended, auto-deploy Off, no deployment and environment count zero. This API/dashboard disagreement is a stop gate: perform one read-only no-cache API re-query and refreshed dashboard comparison; do not resume or create the job. Existing services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -158,9 +158,13 @@ configuring Render. The control owner then ran that bounded fallback successfull
 `ff63e2ec-528f-45f3-9505-ffe85bdbd59d`, exact matching prefix, permission
 `object-read-write`, TTL 3600 seconds, conservative expiry `2026-08-26T10:59:48Z`, exact-
 prefix object count zero, out-of-prefix HTTP 403, and three verified temporary Keychain
-items. The worker is now manually suspended with auto-deploy Off. Configure only the
-accepted twelve Stage C variables without deploying, then stop to re-prove their exact keys,
-service suspension and auto-deploy Off before creating the single job.
+items. The bounded Render helper then replaced the previously empty direct environment with
+exactly the twelve accepted Stage C keys, read them back successfully with 3200 credential
+seconds remaining and reported API-update-without-deploy plus `JOB_CREATED=false`. Stop for
+dashboard inspection then proved suspension, auto-deploy Off and no unexpected deployment
+but reported environment count zero. Treat that API/dashboard disagreement as a stop gate:
+perform one read-only no-cache API re-query and refreshed dashboard comparison; do not
+resume or create the job.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then

@@ -36,15 +36,15 @@ Exact commit: 328aadf0a360b4c65837327060302ddc525f6168
 Files/change boundary: bounded proof runner/tests/script/docs only; no schema, route, shared R2 utility or render.yaml change
 Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
 Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 provider inspections and credential-retention checks recorded; initial wrong-build containment recorded; subsequent exact-deploy log proves full `328aadf0` checkout, pinned image identities and terminal live state
-Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; isolated Render worker is manually suspended at exact `328aadf0` with auto-deploy Off, accepted inert command and zero user variables; exact-prefix credential preflight passes
-Known residual risk: Render environment contract/job, runtime execution, cleanup, revocation and resource absence remain pending; temporary credential expires at 2026-08-26T10:59:48Z
-Next authorised action: while `srv-da7au58u01pc738qld00` remains suspended, replace its currently empty direct environment with only the accepted twelve Stage C variables using an API update that does not deploy; read the Render API key and three temporary secrets only from their named Keychain records, then report only exact key names/count and provider status; do not create a job before environment re-proof
+Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; exact-prefix credential preflight passes; worker is dashboard-proved suspended with auto-deploy Off and no unexpected deployment, but API twelve-key read-back conflicts with dashboard environment count zero
+Known residual risk: Render API/dashboard environment disagreement, single job, runtime execution, cleanup, revocation and resource absence remain pending; temporary credential expires at 2026-08-26T10:59:48Z
+Next authorised action: perform one read-only no-cache API environment query and refresh the exact worker dashboard for comparison; do not mutate, resume, deploy or create a job while the counts disagree
 
-Current state: Stage C Phase 3 and Phase 4 credential/preflight pass; worker environment configuration and single job remain pending, and no external Stage C result is claimed
+Current state: Stage C Phase 3 and Phase 4 credential/preflight pass; Render environment gate is stopped on an API twelve/dashboard zero disagreement, the single job remains pending, and no external Stage C result is claimed
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
-Current environment: candidate preserved in current ancestry; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` remains empty/private; Render worker `srv-da7au58u01pc738qld00`, deployment `dep-da7b87i3v7hc73et4ui0`, is manually suspended at exact 328aadf0a360b4c65837327060302ddc525f6168 with auto-deploy Off, accepted inert command and zero variables; locally signed run `ff63e2ec-528f-45f3-9505-ffe85bdbd59d` has exact matching prefix, expiry `2026-08-26T10:59:48Z`, object-read-write scope, prefix count zero, out-of-prefix 403 and three verified temporary Keychain items; no Render variable or one-off job exists
-Next human decision/test: run the bounded Render environment helper, then report only API status, exact environment count/keys, no-deploy mode, remaining credential lifetime and dashboard suspension/auto-deploy/no-unexpected-deploy evidence
-Safe resumption point: do not create the one-off job until exactly twelve accepted keys, suspension, auto-deploy Off, no deployment and at least twenty minutes of temporary credential life are proved
+Current environment: candidate preserved in current ancestry; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` remains empty/private; exact worker `srv-da7au58u01pc738qld00` is dashboard-proved suspended with auto-deploy Off and no unexpected deployment; locally signed run `ff63e2ec-528f-45f3-9505-ffe85bdbd59d` expires `2026-08-26T10:59:48Z`; the Render API update/read-back reported exactly twelve accepted keys and 3200 seconds remaining, but immediate dashboard inspection reports environment count zero; no job exists
+Next human decision/test: run the read-only no-cache Render environment verifier, refresh the exact dashboard page and report both counts without changing any setting
+Safe resumption point: do not resume or create the one-off job until API and refreshed dashboard both prove the same twelve accepted keys/count, auto-deploy Off, no unexpected deployment and at least twenty minutes of temporary credential life
 ```
 
 ## 1. Gate Rule
@@ -213,6 +213,15 @@ count zero, out-of-prefix HTTP 403 and three verified temporary Keychain items. 
 value was printed or retained in evidence. The worker is manually suspended with auto-
 deploy Off; only the accepted environment may now be configured without deployment.
 
+The bounded Render environment helper then authenticated through the retained operator key,
+confirmed the direct environment was empty, replaced it with exactly the twelve accepted
+Stage C variables, and read back all twelve key names successfully. It reported 3200 seconds
+of credential life, API update without deployment and `JOB_CREATED=false`; no credential
+value was printed. Immediate dashboard inspection proved the worker remained suspended,
+auto-deploy remained Off and no unexpected deployment started, but reported environment
+count zero. That disagreement with the API twelve-key read-back is a stop gate; one read-only
+no-cache API re-query and refreshed dashboard comparison are required.
+
 Local comparison also shows that `d78935d4` is not identical to accepted candidate
 `328aadf0` inside the proof build boundary: root `tsconfig.json` and
 `scripts/proofs/fund-1r-f-a/tsconfig.json` differ. The wrong-revision build therefore cannot
@@ -227,9 +236,9 @@ deploy state.
 | --- | --- |
 | Dedicated bucket identity, empty initial list, no `r2.dev`, domain or CORS | PASS — control-owner dashboard inspection; exact WEUR bucket recorded above |
 | Dedicated parent token scope retained outside Render | PASS — fresh exact token is Object Read & Write scoped only to the exact bucket, has a 24-hour TTL and is retained in the control owner's macOS Keychain; usability remains a later objective gate |
-| Dedicated Render operator key retained outside the service | PASS — control-owner Terminal verification of the named Keychain record for workspace `Isostack`; API authentication remains to be proved without exposing the value |
-| Temporary worker has no route/disk/database/env group and auto-deploy is off | PASS — exact worker identity, manual suspension, auto-deploy Off, inert command, zero user variables, no linked environment group, no secret file and no disk are proved; removal used Save only and started no deploy |
-| Exact Render build commit and inert base process | PASS — full exact `328aadf0` checkout, pinned build images, green/live state, inert command, auto-deploy Off and zero variables at service `srv-da7au58u01pc738qld00`, deployment `dep-da7b87i3v7hc73et4ui0` |
+| Dedicated Render operator key retained outside the service | PASS — control-owner Terminal verification of the named Keychain record for workspace `Isostack`; successful environment update/read-back proves API authentication without exposing the value |
+| Temporary worker has no route/disk/database/env group and auto-deploy is off | STOP — exact worker identity, manual suspension, auto-deploy Off, inert command, no linked environment group, no secret file, no disk and no unexpected deployment are proved; API read-back reports twelve accepted keys while dashboard reports zero, requiring read-only reconciliation |
+| Exact Render build commit and inert base process | PASS — full exact `328aadf0` checkout, pinned build images, green/live state and inert command at service `srv-da7au58u01pc738qld00`, deployment `dep-da7b87i3v7hc73et4ui0`; accepted twelve-key API read-back now passes |
 | One-hour prefix-scoped temporary session credential | PASS — documented local signing; run `ff63e2ec-528f-45f3-9505-ffe85bdbd59d`, exact prefix, expiry `2026-08-26T10:59:48Z`, object-read-write/3600 seconds, prefix zero, out-of-prefix 403 and three verified temporary Keychain items |
 | Out-of-prefix and anonymous access denied | PENDING |
 | Six PUT/HEAD/GET/checksum/DELETE/not-found/list-empty sequences | PENDING |
