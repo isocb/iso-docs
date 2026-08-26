@@ -36,15 +36,15 @@ Exact commit: 328aadf0a360b4c65837327060302ddc525f6168
 Files/change boundary: bounded proof runner/tests/script/docs only; no schema, route, shared R2 utility or render.yaml change
 Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
 Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 provider inspections and credential-retention checks recorded; initial wrong-build containment recorded; subsequent exact-deploy log proves full `328aadf0` checkout, pinned image identities and terminal live state
-Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; isolated Render worker is live at exact `328aadf0` with auto-deploy Off, accepted inert command and zero user variables
-Known residual risk: the Temporary Credentials API refused an active matching parent token; locally signed runtime credential scope/usability, job, cleanup, revocation and resource absence remain pending
-Next authorised action: use Cloudflare's documented local-signing method with the named parent access-key-ID/secret Keychain records to derive one 3600-second object-read-write credential restricted to exact prefix fund/1r-f-a/stage-c/<new-run-id>/; read-only prove that prefix is empty and out-of-prefix HEAD is denied before storing the three temporary values; do not configure Render or create a job before that preflight passes
+Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; isolated Render worker is manually suspended at exact `328aadf0` with auto-deploy Off, accepted inert command and zero user variables; exact-prefix credential preflight passes
+Known residual risk: Render environment contract/job, runtime execution, cleanup, revocation and resource absence remain pending; temporary credential expires at 2026-08-26T10:59:48Z
+Next authorised action: while `srv-da7au58u01pc738qld00` remains suspended, replace its currently empty direct environment with only the accepted twelve Stage C variables using an API update that does not deploy; read the Render API key and three temporary secrets only from their named Keychain records, then report only exact key names/count and provider status; do not create a job before environment re-proof
 
-Current state: Stage C Phase 3 passes; Phase 4 parent authority is active/matching and the API refusal is contained, with documented same-scope local signing next; no external Stage C result is claimed
+Current state: Stage C Phase 3 and Phase 4 credential/preflight pass; worker environment configuration and single job remain pending, and no external Stage C result is claimed
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
-Current environment: candidate preserved in current ancestry; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` remains empty/private and both operator authorities remain in named Keychain records; Render worker `srv-da7au58u01pc738qld00`, deployment `dep-da7b87i3v7hc73et4ui0`, was last proved live at exact 328aadf0a360b4c65837327060302ddc525f6168 with auto-deploy Off, the accepted inert command and zero variables; suspension has been requested but not confirmed; Cloudflare returned HTTP 403/code 10000 before any temporary credential, local temporary record, Render variable or one-off job was created
-Next human decision/test: suspend the worker for cost control, then run the bounded local-signing/preflight helper and report only signing status, run ID, prefix, expiry, permission, TTL, bucket, exact-prefix object count, out-of-prefix status, preflight result and verified temporary Keychain item count
-Safe resumption point: after local-signing scope/expiry, exact-prefix zero, out-of-prefix denial and three temporary local records pass, configure only the accepted Stage C variables using Save only; do not create the job before environment re-proof
+Current environment: candidate preserved in current ancestry; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` remains empty/private; Render worker `srv-da7au58u01pc738qld00`, deployment `dep-da7b87i3v7hc73et4ui0`, is manually suspended at exact 328aadf0a360b4c65837327060302ddc525f6168 with auto-deploy Off, accepted inert command and zero variables; locally signed run `ff63e2ec-528f-45f3-9505-ffe85bdbd59d` has exact matching prefix, expiry `2026-08-26T10:59:48Z`, object-read-write scope, prefix count zero, out-of-prefix 403 and three verified temporary Keychain items; no Render variable or one-off job exists
+Next human decision/test: run the bounded Render environment helper, then report only API status, exact environment count/keys, no-deploy mode, remaining credential lifetime and dashboard suspension/auto-deploy/no-unexpected-deploy evidence
+Safe resumption point: do not create the one-off job until exactly twelve accepted keys, suspension, auto-deploy Off, no deployment and at least twenty minutes of temporary credential life are proved
 ```
 
 ## 1. Gate Rule
@@ -205,6 +205,14 @@ credential method. That path preserves the accepted parent/bucket/prefix/permiss
 boundary and avoids widening authority; it must pass exact-prefix-empty and out-of-prefix-
 denied preflight before its three derived values are retained or configured.
 
+The bounded local-signing fallback then passed with run ID
+`ff63e2ec-528f-45f3-9505-ffe85bdbd59d`, exact prefix
+`fund/1r-f-a/stage-c/ff63e2ec-528f-45f3-9505-ffe85bdbd59d/`, expiry
+`2026-08-26T10:59:48Z`, permission `object-read-write`, TTL 3600 seconds, exact-prefix object
+count zero, out-of-prefix HTTP 403 and three verified temporary Keychain items. No secret
+value was printed or retained in evidence. The worker is manually suspended with auto-
+deploy Off; only the accepted environment may now be configured without deployment.
+
 Local comparison also shows that `d78935d4` is not identical to accepted candidate
 `328aadf0` inside the proof build boundary: root `tsconfig.json` and
 `scripts/proofs/fund-1r-f-a/tsconfig.json` differ. The wrong-revision build therefore cannot
@@ -222,7 +230,7 @@ deploy state.
 | Dedicated Render operator key retained outside the service | PASS — control-owner Terminal verification of the named Keychain record for workspace `Isostack`; API authentication remains to be proved without exposing the value |
 | Temporary worker has no route/disk/database/env group and auto-deploy is off | PASS — exact worker identity, manual suspension, auto-deploy Off, inert command, zero user variables, no linked environment group, no secret file and no disk are proved; removal used Save only and started no deploy |
 | Exact Render build commit and inert base process | PASS — full exact `328aadf0` checkout, pinned build images, green/live state, inert command, auto-deploy Off and zero variables at service `srv-da7au58u01pc738qld00`, deployment `dep-da7b87i3v7hc73et4ui0` |
-| One-hour prefix-scoped temporary session credential | STOP — API mint returned HTTP 403/code 10000, then parent verification passed active/matching through `2026-08-27T08:23:56Z`; documented same-scope local-signing credential and preflight remain pending |
+| One-hour prefix-scoped temporary session credential | PASS — documented local signing; run `ff63e2ec-528f-45f3-9505-ffe85bdbd59d`, exact prefix, expiry `2026-08-26T10:59:48Z`, object-read-write/3600 seconds, prefix zero, out-of-prefix 403 and three verified temporary Keychain items |
 | Out-of-prefix and anonymous access denied | PENDING |
 | Six PUT/HEAD/GET/checksum/DELETE/not-found/list-empty sequences | PENDING |
 | Node/Playwright/Chromium/font/container identity | PENDING |

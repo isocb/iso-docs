@@ -59,7 +59,7 @@ same row.
 | [`2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md) | Planned through `1Q-G-B` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md) | Planned through `1Q-G-A` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-13-fund-cr-commission-ladder-planner-input.md`](../01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md) | Policy/assignment foundation partly incorporated through `1R-C5`; aggregate calculation, statements and settlement remain absent | Parked later commission work, represented by subordinate `2R-PROD-05`; not selected |
-| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B Linux parity and exact `139d09c4` dev scan pass; dedicated Stage C contract accepted and authorised on 2026-08-12; downstream short-code/single-artwork policy preserved in parked `1R-H-A` | Stage C remains root `Now`. Phase 3 passes at exact `328aadf0`, isolated worker `srv-da7au58u01pc738qld00` and deployment `dep-da7b87i3v7hc73et4ui0`. Phase 4's API mint stopped on Cloudflare 403/10000 before credential creation; verification then proved the parent active until `2026-08-27T08:23:56Z` with matching token/access-key IDs, excluding expiry/identity drift. Use Cloudflare's documented local signing at the same 60-minute bucket/prefix scope and read-only preflight before storing/configuring it. External execution/removal remain governed by the accepted assumption-test gate; `1R-H-A` remains inventory only and no production implementation is authorised |
+| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B Linux parity and exact `139d09c4` dev scan pass; dedicated Stage C contract accepted and authorised on 2026-08-12; downstream short-code/single-artwork policy preserved in parked `1R-H-A` | Stage C remains root `Now`. Phase 3 passes, and the Phase 4 local-signing fallback now passes at run `ff63e2ec-528f-45f3-9505-ffe85bdbd59d`: exact prefix zero, out-of-prefix 403, 3600-second object-read-write scope expiring `10:59:48Z`, and three verified temporary Keychain items. The worker is manually suspended with auto-deploy Off. Configure only the accepted twelve variables without deploying, then re-prove the environment before the single job. External execution/removal remain governed by the accepted assumption-test gate; `1R-H-A` remains inventory only and no production implementation is authorised |
 | [`2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md`](../01-cr-inputs/2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md) | Consumed as the boundary preventing `1R-F-A` from absorbing collective/Standard paths | `1R-F-F` through `I` remain parked; no implementation authority |
 | [`2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`](../01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md) | `1R-F-A` automation, physical review and Linux parity accept candidate capacities of ten STANDARD portrait and twelve COMPACT landscape rows; production selection policy remains later `1R-F-B/D` work | Proof evidence only; no schema/policy implementation authorised |
 | [`2026-07-15-fund-template-manager-brief.md`](../01-cr-inputs/2026-07-15-fund-template-manager-brief.md) | Retained source brief for the Application/Artwork Template input | Provenance only; not a fourth CR and its provisional `T` labels carry no slice authority |
@@ -69,7 +69,7 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> execute FUND 1R-F-A Stage C Phase 4 fallback: active matching parent verified after API endpoint refusal; locally sign the same 60-minute exact-prefix credential and prove empty-prefix/out-of-prefix boundaries before storing/configuring it
+ROOT NOW  -> complete FUND 1R-F-A Stage C Phase 4 environment gate: signed exact-prefix credential/preflight passes; configure only twelve accepted variables without deploy, then re-prove environment before the single job
 ROOT NEXT -> reconcile the Stage C result, conclude 1R-F-A and deliberately reselect
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
 FUND      -> ACTIVE at preserved Stage C gate; R1B human/physical, Stage B and exact candidate gates PASS; external execution/teardown pending
@@ -139,8 +139,12 @@ or Cloudflare's documented local-signing path. Read-only verification then retur
 and stored access-key ID. This excludes parent expiry/identity drift and confirms an endpoint
 refusal. Use documented local signing at the same 60-minute bucket/prefix scope, then
 read-only prove exact-prefix empty and out-of-prefix denial before storing/configuring the
-three values. The worker was last proved live; suspension was requested to limit cost but
-is not yet evidenced.
+three values. The bounded fallback then passed at run ID
+`ff63e2ec-528f-45f3-9505-ffe85bdbd59d`, exact matching prefix, permission
+`object-read-write`, 3600-second TTL, expiry `2026-08-26T10:59:48Z`, prefix object count zero,
+out-of-prefix HTTP 403, and three verified temporary Keychain items. The worker is manually
+suspended with auto-deploy Off. Configure only the accepted twelve Stage C variables
+without deploying, then re-prove exact keys/suspension/auto-deploy Off before the single job.
 
 ## 1. Control Authority And Reading Rule
 

@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Phase 3 passes at service `srv-da7au58u01pc738qld00`, deployment `dep-da7b87i3v7hc73et4ui0` and exact `328aadf0`. The API mint stopped safely at HTTP 403/code 10000, but read-only verification now proves the stored parent token is active until `2026-08-27T08:23:56Z` and its ID matches the stored access-key ID. This excludes expiry/identity drift and confirms an endpoint refusal. Use Cloudflare's documented local-signing method with the same parent and exact 60-minute bucket/prefix scope, then read-only prove exact-prefix empty and out-of-prefix denial before storing or configuring the result. Existing services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Phases 3 and the Phase 4 credential gate pass. Cloudflare-documented local signing created one object-read-write credential for exact prefix `fund/1r-f-a/stage-c/ff63e2ec-528f-45f3-9505-ffe85bdbd59d/`, expiring `2026-08-26T10:59:48Z`; exact-prefix count is zero, out-of-prefix HEAD is 403 and three values are verified in Keychain. Worker `srv-da7au58u01pc738qld00` is manually suspended with auto-deploy Off. Configure only the accepted twelve Stage C variables without deploying, then stop to re-prove the environment before creating the single job. Existing services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -154,8 +154,13 @@ parent access-key ID. This excludes parent expiry and identity drift; the 403 is
 an endpoint refusal. Cloudflare's documented local-signing method may now derive the same
 60-minute bucket/prefix-scoped credential without widening parent authority. Read-only
 prove the exact prefix empty and out-of-prefix denial before storing its three values or
-configuring Render. The worker was last proved live; a cost-limiting suspension was requested
-but is not yet evidenced.
+configuring Render. The control owner then ran that bounded fallback successfully: run ID
+`ff63e2ec-528f-45f3-9505-ffe85bdbd59d`, exact matching prefix, permission
+`object-read-write`, TTL 3600 seconds, conservative expiry `2026-08-26T10:59:48Z`, exact-
+prefix object count zero, out-of-prefix HTTP 403, and three verified temporary Keychain
+items. The worker is now manually suspended with auto-deploy Off. Configure only the
+accepted twelve Stage C variables without deploying, then stop to re-prove their exact keys,
+service suspension and auto-deploy Off before creating the single job.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then
