@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Corrected job `job-da7dbsh42hec73b401pg` passed inline exact-deploy/suspended/off/fresh-run/original-job-only preflight with 3387 credential seconds, then ran the accepted command on Starter and reached terminal `failed` from `12:02:58Z` to `12:03:51Z`. Final job count is two and no third job exists. No further attempt is authorised. Inspect only that exact job log, independently prove fresh prefix residue, then teardown/disposition. Existing services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Corrected exact job exposed a proof-runner defect: Playwright `page.evaluate` failed with `ReferenceError: __name is not defined`; the identical failure is locally reproduced at `renderer.ts:157` `collectLayout`, confirming deterministic application serialization rather than a provider issue. Two jobs/no third; no further external attempt. Prove fresh prefix zero, then teardown provider/local test resources. Retain the runner defect for separately reviewed correction/new candidate. Existing services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -188,8 +188,11 @@ job `job-da7cu29srm7s7385o5g0` exists. Never resume again. Fresh run
 3600-second scope and exact twelve-name/value read-back with 3598 seconds; no deploy/job.
 Corrected job `job-da7dbsh42hec73b401pg` then passed the full inline preflight with 3387
 seconds, ran the accepted Starter command and reached terminal `failed` from `12:02:58Z` to
-`12:03:51Z`. Final job count is two/no third job. No further attempt is authorised; inspect
-only that log, prove fresh-prefix residue independently, then teardown/disposition.
+`12:03:51Z`. Final job count is two/no third job. Its log identifies
+`page.evaluate: ReferenceError: __name is not defined`, a browser-context serialization
+defect in the proof runner. No further external attempt is authorised. Independently prove
+fresh-prefix zero, teardown temporary provider/local resources, and retain the defect for a
+separately reviewed local correction/new candidate.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then
