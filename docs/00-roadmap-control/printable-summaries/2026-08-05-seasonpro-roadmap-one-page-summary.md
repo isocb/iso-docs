@@ -1,6 +1,6 @@
 # SeasonPro Roadmap — One-Page Summary
 
-Snapshot: 2026-08-24
+Snapshot: 2026-08-26
 Status: Printable management summary — **not delivery authority**
 
 ## Purpose
@@ -10,15 +10,11 @@ communications behaviour.
 
 ## Current Position
 
-- **Portfolio NOW:** accepted `R13-A` Free Day integrity and management presentation plan.
-- **Portfolio NEXT:** resume FUND `1R-F-A` Stage C from its preserved safe checkpoint.
-- The remediation is one tactical project with two ordered bounded lifecycles:
-  Free Day integrity/management presentation first, Deferred Team Variation second.
-- Both `03` records are accepted. `R13-A` is the only active child and its explicit
-  implementation decision is next. `R13-B` Deferred Variation is plan-ready but
-  implementation-locked until R13-A closure/reconciliation and a new explicit decision.
-- Exact application `fcd162db` is aligned through dev, staging and main, live and the
-  reproduction baseline. The local remediation branch is clean at that exact commit.
+- **Portfolio NOW:** control-owner deliberate reselection after FUND Stage C closure.
+- **Portfolio NEXT:** not selected; no LMSPro item is implicitly next.
+- R13-A Free Day and R13-B Deferred Variation are delivered and closed through their
+  accepted live evidence. R14-A approval consistency/guidance is also complete and closed.
+- Exact application `d78935d4` is aligned through the recorded live R14-A evidence.
 - Existing R12-A Free Day notice authority remains accepted and must not be reopened.
 - Existing notification events, recipients and routing remain unchanged; Deferred
   communication is manual.
@@ -34,11 +30,11 @@ communications behaviour.
 - `R10-A`: responsive C1 Club management, production-smoked and closed.
 - `R11-A`: recipient-tab accordion/responsive layout, included in live ancestry.
 - `R12-A`: Free Day owner notice authority, included in live ancestry and preserved.
+- `R13-A`/`R13-B`: Free Day/Deferred Variation tactical remediation, live and closed.
+- `R14-A`: Team Variation approval consistency and configured inputs, live and closed.
 
 ## Open Or Parked Inputs
 
-- **Current Free Day/Variation `CR-Fix`:** triage accepted the expedite and two-child order;
-  R13-A and R13-B plans are accepted, with only R13-A active.
 - **500-recipient email operating envelope:** evidence includes a successful real send to
   414 recipients without attachments. The CR is registered and awaits communications /
   capacity triage; no limit change is authorised. The new `CR-Fix` owns the separate live
@@ -53,14 +49,14 @@ communications behaviour.
 
 ## Immediate Management Rule
 
-Keep the two remediation children sequential. Do not implement from the CR or triage alone,
-rewrite existing data, change notification routing or run FUND Stage C in parallel.
+Do not reopen completed R13/R14 work or implement a parked LMSPro input merely because the
+portfolio is awaiting selection. A new choice must come through the root pair.
 
 ## Next Decision
 
-Decide whether to begin bounded R13-A implementation. Keep R13-B implementation locked
-until R13-A closes and is reconciled. Resume FUND only after both children and the parent
-CR-Fix close and the root portfolio is reconciled.
+Choose the new root pair. LMSPro's 500-recipient envelope, R5-C evidence reconciliation and
+subscription/accounting input remain candidate choices, not authority; no LMSPro item is
+selected merely because the prior work closed.
 
 Authoritative source:
 [`LMSPro / SeasonPro Roadmap And Slice Control`](../../modules/lmspro/00-roadmap-control/2026-06-29-lmspro-roadmap-and-slice-control.md)

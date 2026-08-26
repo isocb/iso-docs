@@ -2,7 +2,7 @@
 
 Date: 2026-07-22
 
-Last reconciled: 2026-08-17
+Last reconciled: 2026-08-26
 
 Status: Active authoritative Platform child roadmap; no implementation authorised by
 this document alone
@@ -19,7 +19,7 @@ Application routing reference:
 
 `isostack-bedrock/src/app/README.md`
 
-## 0. Authoritative CR Inventory And Current Platform Disposition — 2026-08-17
+## 0. Authoritative CR Inventory And Current Platform Disposition — 2026-08-26
 
 This file is confirmed as the one authoritative Platform child roadmap. The Platform
 Assurance, Security Review And Refinement Roadmap remains a subordinate finding/register
@@ -47,6 +47,12 @@ default.
 | [`CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md`](../01-cr-inputs/CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md) | Dependency child `60ac76c1`; all exact scans and combined staging/production evidence pass | Complete and closed; retain exact scan evidence with the combined release |
 
 Current Platform portfolio disposition:
+
+The current root decision supersedes the chronological delivery narrative below. Role
+Authority, Support Ticketing, `PLAT-ROLE-04` and `PLAT-ROLE-04A` are delivered at their
+recorded evidence boundaries. `PLAT-ROLE-R1` remains trigger-based assurance only. Platform
+has no selected executable `Now` or `Next`; the root control owner is deliberately
+reselecting after FUND Stage C closed at FAIL with zero-residue/revocation PASS.
 
 - `CR-Fix-PLAT-ROLE-04` is the accepted portfolio expedite. A Core Owner/Admin without an
   exact SeasonPro League role still correctly receives no C1 module scope; P1 can now
@@ -418,25 +424,20 @@ longer blocks LMSPro R8-A3 testing. `main`/live promotion remains separately con
 
 ## 11. Current Control Decision
 
-The Platform lifecycle hierarchy is active for future work. No application code,
-schema, migration, infrastructure, deployment or promotion is authorised by establishing
-this control.
-
-The current Platform action is:
+The Platform lifecycle hierarchy remains active for future work, but no Platform
+application code, schema, migration, infrastructure, deployment or promotion is currently
+selected or authorised.
 
 ```text
-PLAT-RUNTIME-01 staging acceptance complete
--> control returned to LMSPro R8-A3
--> R8-A3 staging acceptance and evidence reconciliation complete
--> current combined staging-to-main release HOLD pending cross-lane/live-migration gates
+ROOT NOW  -> control-owner deliberate portfolio reselection after FUND Stage C closure
+ROOT NEXT -> not selected
+PLATFORM  -> no executable slice selected
+PARKED    -> PLAT-ROLE-R1 only on an explicit trigger; PLAT-REFINE findings remain non-executable
 ```
 
-The governing production decision is:
-
-`docs/00-roadmap-control/2026-07-23-lmspro-r8-a3-and-combined-staging-bundle-production-risk-assessment-and-promotion-decision.md`
-
-PLAT-RUNTIME-01 itself is not reopened. Its production inclusion is governed as part of the
-exact combined release or a separately planned selective LMSPro dependency bundle.
+The former `PLAT-RUNTIME-01`/R8-A3 release decision is completed historical evidence and is
+not a current hold. Any Platform candidate must return through its existing CR disposition,
+bounded planning and root selection.
 
 ## 12. Reconciliation Rule
 

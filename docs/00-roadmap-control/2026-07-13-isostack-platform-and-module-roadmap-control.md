@@ -104,7 +104,7 @@ The control owner confirmed exact staging Render identity and S1-S4 all green, t
 authorised live promotion. Main/origin/main now align at `d78935d4`; exact-main Security Scan
 `32838343535` and post-push production public health pass. The control owner then confirmed exact
 production Render identity and minimum non-destructive L1-L2 all green. R14-A is complete and
-closed. FUND Stage C resumes as root `Now` at exact candidate `328aadf0` and its recorded
+closed. FUND Stage C then resumed as root `Now` at exact candidate `328aadf0` and its recorded
 pre-execution checkpoint. The control owner's 2026-08-26 read-only Render dashboard
 inspection found no matching Stage C service, superseding the prior suspended-worker claim;
 the subsequent read-only Cloudflare inspection confirmed the exact dedicated WEUR bucket
@@ -241,8 +241,8 @@ Registered and ordered work outside that pair:
   `32835754829`/`32835986995`/`32836190860` and public staging health green; exact staging Render
   identity and focused S1-S4 human smoke pass. The exact candidate is aligned through main with
   exact-main Security Scan `32838343535`, production public health, exact production Render
-  identity and read-only L1-L2 green. R14-A is complete and closed; FUND Stage C resumes from its
-  exact preserved checkpoint;
+  identity and read-only L1-L2 green. R14-A is complete and closed; FUND Stage C subsequently
+  resumed, executed and closed at FAIL with zero-residue/revocation PASS;
 - Platform `CR-Fix-PLAT-ROLE-04` P1 tenant module persona recovery: accepted urgent
   remedial expedite delivered through exact main `250baf12`. The authoritative P1 Client Users surface now
   separates Core authority from exact SeasonPro persona, supports deliberate exact-default
@@ -253,8 +253,8 @@ Registered and ordered work outside that pair:
   UI offers the tab to Admins. `PLAT-ROLE-04A` separately implements incomplete-user C1
   discoverability and module activation gating in exact `fcd162db`; the local gate and
   dev/staging technical gates and applicable human smoke pass; exact `fcd162db` is now live
-  through main and 3/3 production smoke passes. The CR-Fix is complete and closed; Fund
-  Stage C was restored before the later LMSPro expedite and is now preserved as `Next`;
+  through main and 3/3 production smoke passes. The CR-Fix is complete and closed; FUND
+  Stage C was later restored, executed and closed at FAIL with zero-residue/revocation PASS;
 - LMSPro R12-A Free Day owner-notice authority: complete and retained by ancestry in exact
   production application `fcd162db`; the new CR-Fix preserves that notice-period authority;
 - Platform/SeasonPro role-authority clarification: complete and closed. `PLAT-ROLE-01` is
@@ -282,9 +282,9 @@ Registered and ordered work outside that pair:
   Support project is complete and closed. FUND `1R-F-A` planning is accepted, its local
   R1B automation and physical review pass; exact proof `6f9ef016` is dev-aligned with its
   Security Scan green. Stage B Linux-container parity is now green at exact `139d09c4`;
-  the dedicated Stage C plan is accepted and its bounded implementation, exact-commit
-  gates, one-off isolated execution and teardown were selected before the LMSPro expedite
-  and are now preserved as portfolio `Next`.
+  the dedicated Stage C plan was accepted and its bounded implementation, exact-commit
+  gates, isolated execution and zero-residue closure are now complete. The result is FAIL
+  because the accepted runner failed before behavioural proof.
   Existing Resend transport is retained; generic retry
   infrastructure and Platform Notice remain separate trigger-based work;
 - LMSPro 500-recipient operating envelope: standard communications/capacity triage input;
@@ -301,10 +301,10 @@ Registered and ordered work outside that pair:
   automated-green with three handwritten fields, two rich-text blocks and `200 × 192 mm` /
   `171 × 180 mm` artwork. Human/physical review passes 12/12 and exact `6f9ef016` is aligned
   to dev with Security Scan `31589031306` green. Stage B Linux parity run `31595635243`
-  and exact `139d09c4` Security Scan `31595635276` pass. Stage C is accepted and
-  authorised under its dedicated 2026-08-12 contract, but external execution is paused at
-  the preserved safe checkpoint behind the accepted LMSPro expedite; no external result is
-  yet recorded;
+  and exact `139d09c4` Security Scan `31595635276` pass. Stage C executed under its
+  dedicated 2026-08-12 contract and closed at FAIL after the accepted runner failed before
+  behavioural proof. Zero-residue/revocation passes; no rerun or later FUND child is
+  selected;
 - FUND `1R-H-A`: Store Order short-code and single-artwork correlation plan registered as a
   parked downstream inventory item after public Store `1R-G`; it does not displace the
   current `1R-F-A` pair or authorise Order implementation;
@@ -904,24 +904,17 @@ different documentation lifecycles.
 
 ## 7. Current Parent Control Decision
 
-Section 0 is the current decision: F3 and Role Authority are complete. Exact `60ac76c1` is
-aligned through dev, staging and main; all Security Scans, health, staging and production
-Role evidence pass. Same-Club sibling C2 creation and authentication are production-proven.
-Support Ticketing is complete, accepted and promoted through production at exact
-`cde4eaff`, with the recorded security, health, Render-identity and human evidence green.
-`PLAT-ROLE-R1` is trigger-based parked assurance, not active work.
-FUND `1R-F-A-R1B` source/folding PDF review is the active local outcome. R1A was superseded
-before review once the physical folding hierarchy was clarified and both source PDFs were
-inspected directly. The container cannot yet be executed on this Mac. Stage C and later
-FUND slices remain unauthorised.
-R11-A is a separately authorised bounded UI release at `83356030`; local smoke is 18/18 and
-staging smoke is all green. The exact commit is aligned through `origin/main`, the live
-deployment is triggered and public live health is PASS. Exact Render live-build
-identification and authenticated production smoke remain. It does not alter the current
-Support Ticketing local-gate/conditional-security sequence.
-R10-A is complete after the control owner's totally-green production smoke. The detailed
-history below explains how the lanes reached that position and must not be read as a
-competing selector.
+Section 0 is the current decision. F3, Role Authority, Support Ticketing, the later LMSPro
+R13/R14 work and FUND Stage C are closed at their recorded boundaries. Stage C is FAIL
+because its accepted runner failed before behavioural proof; zero-residue/revocation
+passes. Application `d78935d4` remains the promoted product baseline, while exact Stage C
+candidate `328aadf0` remains historical proof evidence only. `PLAT-ROLE-R1` remains
+trigger-based parked assurance.
+
+No executable slice is selected. Root `Now` is the control-owner decision to choose the
+next bounded outcome, and root `Next` is intentionally not selected. The detailed history
+below explains how the lanes reached this position and must not be read as a competing
+selector or resumption instruction.
 
 `1R-C1` through `1R-D`, `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D`, Commerce A1 through A7 and
 FUND 1R-E-A are complete through implementation confirmation and review/test. The retained
@@ -996,10 +989,9 @@ LMSPro UI work; then stage and UI-smoke the LMSPro work separately before promot
 main/live. This is a deployment gate, not a claim that any shared database has been
 migrated.
 
-The Platform lane is now a first-class sibling control, with Platform Assurance as
-its subordinate finding/refinement register. Its active `PLAT-ASSURE-01` finding is
-registered but not selected as the global next executable slice. It therefore does not
-displace the current authorised FUND/Commerce sequence.
+The Platform lane is a first-class sibling control, with Platform Assurance as its
+subordinate finding/refinement register. Its findings are registered but not selected as
+the global next executable slice. They do not displace the current root selection gate.
 Until the parent roadmap promotes its bounded remediation, module reviews must disclose
 the known repository-wide lint limitation and may provide focused changed-scope lint
 evidence without claiming a clean global gate.

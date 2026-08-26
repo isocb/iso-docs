@@ -2,6 +2,8 @@
 
 Date: 2026-07-16
 
+Last reconciled: 2026-08-26
+
 Status: Active Commerce Core roadmap
 
 Parent roadmap:
@@ -146,7 +148,14 @@ Current result:
 - no Commerce-owned database-to-Prisma drift was found;
 - no shared database deployment was performed; staging/main remain unchanged.
 
-## 8. Current Next Step
+## 8. Current Commerce Position
+
+Commerce is complete through the dormant `COMMERCE-A7` FUND consumer boundary and has no
+selected executable `Now` or `Next`. The former A7 promotion checkpoint and delivery detail
+below remain historical evidence. FUND Stage C subsequently closed at FAIL because its
+accepted runner failed before behavioural proof; zero-residue/revocation passes. Root
+control now awaits deliberate reselection. The registered SeasonPro subscription/payments
+input requires formal cross-lane triage before it can create any Commerce authority.
 
 Controlled A7 promotion checkpoint: application `dev`/`origin-dev` and
 `staging`/`origin-staging` are aligned at `91e8751c`; the Neon development database reports
@@ -332,9 +341,10 @@ reconciliation. It is not promoted to staging. Its human Store workflow schedule
 pending controlled staging promotion. The non-executable FUND `1R-F - Project Offer
 And Artwork Readiness Reconciliation` parent is reviewed/accepted at
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`.
-`1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` remains the single next
-cross-lane planning candidate; no proof implementation, `1R-G` or artwork/template production
-implementation is authorised.
+`1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` subsequently completed
+at FAIL because the accepted runner failed before behavioural proof; all temporary resources
+and credentials are absent. It is no longer the next cross-lane candidate. No Commerce,
+`1R-G` or artwork/template production implementation is selected or authorised.
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-c1-store-oversight-c2-project-store-control-alignment-planning.md`
 

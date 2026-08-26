@@ -1,6 +1,6 @@
 # Platform Roadmap — One-Page Summary
 
-Snapshot: 2026-08-10
+Snapshot: 2026-08-26
 Status: Printable management summary — **not delivery authority**
 
 ## Purpose
@@ -11,22 +11,14 @@ infrastructure, security assurance and engineering controls.
 
 ## Current Position
 
-- Local/remote dev, staging and main are exact `60ac76c1`.
-- The dependency advisory refresh is complete through live evidence.
-- Role Authority is complete and closed. All 13 `PLAT-ROLE-01` matrix items are accepted
-  with corrected C1/C2 persona wording.
-- First `PLAT-ROLE-02` checkpoint `5e551938` failed usefully and was not promoted.
-  Corrective `7e453665` passed technical gates; `PLAT-ROLE-02A` then corrected the Owner
-  input and passes its corrected actor/target human gate. `PLAT-ROLE-02B` corrected the C2
-  Officials read and whole-role replacement paths, restored the disposable fixture and
-  passed technical gates. The complete parent 1–18 human matrix is accepted. Item 7 exposed
-  one stale former current-season Club junction beneath an otherwise passing exact-Club
-  edit; its focused retest and read-only Derby junction proof now pass.
-- The dependency expedite is accepted and locally green at exact `js-yaml@4.3.1` and
-  `nanoid@3.3.18`, with zero audit findings. Exact dev, staging and main Security Scans,
-  staging smoke 8/8, exact-Club proof, staging/production public health and production
-  Render/C1/C2 evidence pass. Same-Club sibling C2 creation and magic-link authentication
-  are production-proven.
+- **Portfolio NOW:** control-owner deliberate reselection after FUND Stage C closure.
+- **Portfolio NEXT:** not selected; no Platform item is implicitly next.
+- Role Authority, Support Ticketing, the dependency advisory refresh, `PLAT-ROLE-04` and
+  `PLAT-ROLE-04A` are delivered at their recorded evidence boundaries.
+- `PLAT-ROLE-R1` remains trigger-based assurance only. Assurance refinements remain
+  registered but non-executable.
+- Platform has no selected application, schema, migration, infrastructure, deployment or
+  promotion action.
 
 ## Open Management Inputs
 
@@ -43,10 +35,8 @@ infrastructure, security assurance and engineering controls.
 - **Security Scan advisory refresh:** expedite accepted and locally green. Exact patched
   overrides produce zero audit findings without unrelated churn; retain their own child
   commit in the combined release candidate.
-- **Support ticketing client readiness:** mandatory self-contained project after Role
-  Authority, still awaiting Platform triage. Client enablement is
-  blocked on tenant scope, server-side lifecycle authority, internal-note privacy,
-  notification routing/acknowledgements, lifecycle reporting and useful filters.
+- **Support ticketing client readiness:** delivered and closed through exact `cde4eaff`;
+  future regression or capability requires a new CR/CR-Fix.
 - **Assurance refinements 02–04:** registered findings only; none is executable.
 
 ## Completed Foundations
@@ -66,10 +56,9 @@ expedite; it is not automatically an expedite.
 
 ## Next Decision
 
-Begin Support Ticketing client-readiness triage and select its first bounded
-security/privacy/operability prerequisite. Keep client support
-enablement off until its security/privacy and
-notification-operability boundaries are accepted and tested.
+Do not select Platform merely to fill the queue. Choose the new root pair from evidenced
+product need. `PLAT-ROLE-R1` should move only on its explicit product/security/housekeeping
+trigger; otherwise it remains parked until deliberately selected.
 
 Authoritative source:
 [`IsoStack Platform Roadmap And Slice Control`](../../platform/00-roadmap-control/2026-07-22-isostack-platform-roadmap-and-slice-control.md)

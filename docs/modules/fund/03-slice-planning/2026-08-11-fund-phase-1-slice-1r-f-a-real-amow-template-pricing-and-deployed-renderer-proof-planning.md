@@ -5,7 +5,8 @@ Date: 2026-08-11
 Status: **PLAN ACCEPTED; INFERRED R1/R1A COMPOSITIONS SUPERSEDED; R1B SOURCE-FAITHFUL
 AUTOMATION AND HUMAN/PHYSICAL REVIEW PASS; STAGE B LINUX PARITY AND EXACT SECURITY SCAN PASS
 AT DEV `139d09c4`; STAGE C ACCEPTED, IMPLEMENTED AND EXACT `328aadf0` LOCAL/LINUX/SECURITY
-GATES PASS; EXTERNAL RUN/TEARDOWN PENDING; NO LATER SLICE AUTHORISED**
+GATES PASS; EXTERNAL ASSUMPTION TEST FAILS ON DETERMINISTIC RUNNER DEFECT;
+ZERO-RESIDUE/REVOCATION PASS; NO LATER SLICE AUTHORISED**
 
 Owning lane: FUND
 
@@ -350,9 +351,11 @@ The dedicated accepted execution contract is:
 - perform private-object round-trip and zero-residue teardown; and
 - suspend/delete the worker after evidence is captured.
 
-Candidate outcome: exact application `328aadf0` is dev-aligned; local gates, Linux parity
-run `31599134487` and Security Scan `31599134488` pass. External execution and teardown
-remain pending and no Stage C PASS is yet claimed.
+Final outcome: exact application `328aadf0` is dev-aligned; local gates, Linux parity run
+`31599134487` and Security Scan `31599134488` pass. External execution reached the exact
+worker but failed on deterministic Playwright `page.evaluate`/`__name` serialization before
+behavioural/private-object proof. Stage C is FAIL, not PASS; all temporary provider/local
+resources and credentials are absent and zero-residue/revocation passes.
 
 ### Stage D — Human physical gate
 
@@ -492,9 +495,9 @@ No cleanup command may target a shared bucket, broad prefix or production servic
 ## 16. Review Decision And Next Authority
 
 Plan acceptance and local Stages A/B implementation authority were given explicitly on
-2026-08-11. A separate approval remains required before creating temporary Render
-infrastructure or proof credentials. Acceptance does not pre-authorise external
-infrastructure creation, shared storage access, deployment or any later child slice.
+2026-08-11. The separately authorised Stage C assumption test is complete at FAIL with
+zero-residue/revocation PASS. No later child, correction or rerun is authorised by that
+result.
 
 After execution:
 

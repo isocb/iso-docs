@@ -1,7 +1,7 @@
 # LMSPro / SeasonPro Roadmap And Slice Control
 
 Date: 2026-06-29
-Last updated: 2026-08-25
+Last updated: 2026-08-26
 Module: LMSPro / SeasonPro
 Control status: Active authoritative LMSPro / SeasonPro child roadmap and delivery-cycle control
 
@@ -9,7 +9,7 @@ Parent portfolio control:
 
 `docs/00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md`
 
-## 0. Authoritative CR Inventory And Current LMSPro Disposition — 2026-08-25
+## 0. Authoritative CR Inventory And Current LMSPro Disposition — 2026-08-26
 
 This file is confirmed as the one authoritative LMSPro / SeasonPro child roadmap. The root
 Platform/module roadmap owns the one serial cross-lane `Now` and `Next`. CR inputs, triage,
@@ -37,18 +37,24 @@ authority. Later disposition changes must update the existing row.
 | [`2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md`](../01-cr-inputs/2026-08-06-lmspro-recipient-tab-responsive-accordion-ui-cr-input.md) | R11-A implemented with corrected combined Division/Age Group recipient-type widget, session disclosure and responsive layout; focused/full tests, type, verification, lint and 131-page build PASS; authenticated local UI smoke 18/18 and staging smoke all green; exact `83356030` is retained by ancestry in current `60ac76c1`; public live health PASS; no schema/API/provider/configuration change | Live branch promotion complete; retained evidence does not displace the reconciled R12-A/Support Ticketing `Now`/`Next` |
 | [`CR-Fix-2026-08-11-lmspro-free-day-owner-notice-authority.md`](../01-cr-inputs/CR-Fix-2026-08-11-lmspro-free-day-owner-notice-authority.md) | Complete green local smoke; R12-A `39a25d99` is retained in exact accepted production head `cde4eaff`; all exact scans, public health and Render production identity pass | Production inclusion complete by ancestry; retain bounded evidence and close with the combined release |
 | [`CR-Fix-2026-08-24-lmspro-free-day-and-team-variation-request-remediation.md`](../01-cr-inputs/CR-Fix-2026-08-24-lmspro-free-day-and-team-variation-request-remediation.md) | [Formal triage](../02-triage/2026-08-24-lmspro-cr-fix-free-day-and-team-variation-request-remediation-triage.md) delivered two ordered bounded lifecycles; [R13-A Free Day](../03-slice-planning/2026-08-24-lmspro-remediation-slice-r13-a-free-day-integrity-and-management-presentation-planning.md) and [R13-B Deferred Variation](../03-slice-planning/2026-08-24-lmspro-remediation-slice-r13-b-deferred-team-variation-workflow-planning.md) closed at staging with exact R13-B `06811784`, B1-B10, all Security/migration/health gates and S1-S4 PASS. The same exact commit is live; production migration/schema, exact Render identity, L1-L2 and exact-main Security Scan `32824479591` attempt 2 pass | Tactical parent delivery and controlled live release complete; no R13 action remains |
-| [`CR-Fix-2026-08-25-lmspro-team-variation-request-approval-consistency.md`](../01-cr-inputs/CR-Fix-2026-08-25-lmspro-team-variation-request-approval-consistency.md) | Exact `d78935d4` passes local R1-R9, staging S1-S4 and production L1-L2 and is aligned through main with all four Security Scans and staging/production public health green | Complete and closed; FUND Stage C resumed as root `Now` from exact `328aadf0` and its preserved checkpoint |
-| [`CR-Feature-2026-08-25-lmspro-club-subscription-payments-and-accounting-integration.md`](../01-cr-inputs/CR-Feature-2026-08-25-lmspro-club-subscription-payments-and-accounting-integration.md) | Captured planning input; business questions remain open; awaiting formal cross-lane triage when SeasonPro work resumes | Registered future SeasonPro/Platform/Commerce Core candidate; no implementation, provider/configuration change or displacement of FUND `1R-F-A` Stage C from root `Now` is authorised |
+| [`CR-Fix-2026-08-25-lmspro-team-variation-request-approval-consistency.md`](../01-cr-inputs/CR-Fix-2026-08-25-lmspro-team-variation-request-approval-consistency.md) | Exact `d78935d4` passes local R1-R9, staging S1-S4 and production L1-L2 and is aligned through main with all four Security Scans and staging/production public health green | Complete and closed; the subsequently resumed FUND Stage C assumption test is also closed and does not reopen this CR-Fix |
+| [`CR-Feature-2026-08-25-lmspro-club-subscription-payments-and-accounting-integration.md`](../01-cr-inputs/CR-Feature-2026-08-25-lmspro-club-subscription-payments-and-accounting-integration.md) | Captured planning input; business questions remain open; awaiting formal cross-lane triage when SeasonPro work resumes | Registered future SeasonPro/Platform/Commerce Core candidate; no implementation or provider/configuration change is authorised and it is not root `Now`/`Next` |
 
 Current LMSPro portfolio disposition:
 
 ```text
-ROOT NOW -> resume and execute FUND 1R-F-A Stage C from exact 328aadf0 and its preserved zero-resource checkpoint
-ROOT NEXT -> reconcile Stage C result, conclude 1R-F-A and deliberately reselect
+ROOT NOW -> control-owner deliberate portfolio reselection after FUND 1R-F-A Stage C closed at FAIL with zero residue
+ROOT NEXT -> not selected; do not infer LMSPro work, a Stage C correction/rerun or a later FUND child
 LMS R13 -> delivery/live proof complete at exact 06811784; production migration/schema, Render identity, L1-L2 and exact-main scan PASS
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; historical PLAT-ROLE-03/LMS-ROLE-01/02 are not next slices
 PARKED -> 500-recipient operating envelope, R5-C evidence reconciliation and other registered candidates
 ```
+
+This current disposition supersedes the chronological resumption wording retained below.
+FUND Stage C subsequently executed, failed on a deterministic proof-runner defect before
+behavioural proof and completed zero-residue/revocation. LMSPro has no selected executable
+slice. Its registered operating-envelope, R5-C evidence and subscription/accounting inputs
+remain parked until the root control owner deliberately selects one.
 
 The control owner accepted this operational expedite on 2026-08-24 and explicitly placed it
 before further FUND work. The application refs are now aligned at exact R13-B `06811784`;
@@ -75,14 +81,13 @@ Exact refs aligned through staging; Security Scans `32835754829`/`32835986995`/`
 public staging health pass. The control owner confirmed exact staging identity and S1-S4 all green,
 then authorised live promotion. Exact `d78935d4` now aligns through main; exact-main Security Scan
 `32838343535` and production public health pass. The control owner confirmed exact production
-Render identity and minimum read-only L1-L2 all green. R14-A is complete and closed; FUND Stage C
-resumes as root `Now` from exact `328aadf0` and its preserved checkpoint. It does not reopen R13.
+Render identity and minimum read-only L1-L2 all green. R14-A is complete and closed. FUND
+Stage C subsequently ran and closed at FAIL because its accepted runner failed before the
+behavioural proof; zero-residue/revocation passes. This does not reopen R13 or select LMSPro.
 
-FUND `1R-F-A` Stage C is restored as root `Now` at its preserved checkpoint: exact
-candidate `328aadf0` retained, temporary Render worker suspended, no application secrets,
-private R2 proof bucket empty and existing auto-deploy services untouched. No Stage C run,
-credential action, teardown claim or later FUND child may proceed while the selected minimal
-LMSPro CR-Fix is root `Now`.
+FUND `1R-F-A` Stage C is complete. Exact candidate `328aadf0` remains historical evidence;
+the temporary Render service, private R2 bucket, provider credentials, local credential
+records and helpers are absent. Root control now awaits deliberate reselection.
 
 ## Purpose
 

@@ -3,8 +3,8 @@
 Date: 2026-07-15
 
 Status: Parent reviewed and accepted; `1R-F-A` source/physical and Stage B Linux parity
-gates pass at exact dev `139d09c4`; Stage C authority decision selected; no later child or
-Stage C implementation authorised
+gates pass; Stage C closes at FAIL after deterministic runner failure with
+zero-residue/revocation PASS; no later child, correction or rerun authorised
 
 Naming correction: 2026-07-16 — restored alphabetical delivery order by assigning this
 parent `1R-F` and moving the previously reserved, unimplemented Public Store Presentation
@@ -269,8 +269,10 @@ The accepted bounded child plan is at:
 
 Its local Stage A automation, visual/physical review and immutable Stage B Linux-container
 execution pass. Exact `139d09c4` is aligned to local/remote dev with Linux parity run
-`31595635243` and Security Scan `31595635276` green. Temporary Render/private-object Stage C
-and all later children remain unauthorised; the Stage C authority decision is selected.
+`31595635243` and Security Scan `31595635276` green. The separately authorised Stage C
+assumption test closes at FAIL because its accepted runner failed before behavioural proof;
+zero-residue/revocation passes. All later children and any correction/rerun remain
+unauthorised.
 
 Bounded outcome:
 
@@ -397,7 +399,8 @@ Accepted conclusions:
    new typed evidence.
 4. A generated Artwork Template requires its own aggregate.
 5. No artwork/template implementation is safe before a real deployed-renderer/print proof.
-6. `1R-F-A` is therefore the single selected bounded planning outcome.
+6. `1R-F-A` completed at FAIL because Stage C did not prove the external assumption; root
+   control must deliberately select any correction/new candidate or different outcome.
 
 Because this is a non-executable parent reconciliation, no `04-implementation-confirmations`
 or `05-review-and-test` record is created. Each executable child receives the full

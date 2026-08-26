@@ -42,7 +42,7 @@ This document is planning/documentation only. It does not implement code, change
 This FUND roadmap controls the FUND lane only. It records Commerce dependencies but does not
 own or sequence Commerce Core implementation.
 
-## 0. Authoritative CR Inventory And Current FUND Disposition — 2026-08-25
+## 0. Authoritative CR Inventory And Current FUND Disposition — 2026-08-26
 
 This file is confirmed as the one authoritative FUND child roadmap. The strategic
 completion overview and refinement/pilot-placement register remain subordinate. The root
@@ -494,8 +494,8 @@ COMMERCE-A1 (complete on dev)
         no E-D migration; consolidated E-B/C/D human schedule pending
   -> FUND 1R-F Project Offer And Artwork Readiness Reconciliation parent accepted
      -> FUND 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
-        preserved FUND resumption point after Support Ticketing; F3 and Role Authority complete;
-        planning and implementation are not authorised
+        local/physical/Linux gates pass; external assumption test closed at FAIL on a
+        deterministic runner defect; zero-residue/revocation PASS
         -> apply the accepted pilot/refinement placement before accepting later F/G work;
            this is a control gate, not an executable slice
 
@@ -543,13 +543,14 @@ Rules:
   `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`;
 - [`1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof`](../03-slice-planning/2026-08-11-fund-phase-1-slice-1r-f-a-real-amow-template-pricing-and-deployed-renderer-proof-planning.md)
   follows E-D; its plan, Stage A evidence, human/physical review and Stage B Linux parity
-  pass at exact dev `139d09c4`. The Stage C authority decision is selected. This does not
-  itself authorise temporary Render infrastructure or production implementation;
+  pass at exact dev `139d09c4`. Stage C closed at FAIL because its accepted runner failed
+  before behavioural proof; zero-residue/revocation passes. No correction, rerun or
+  production implementation is selected;
 - [`1R-H-A - Store Order Short Code And Single-Artwork Correlation`](../03-slice-planning/2026-08-11-fund-phase-1-slice-1r-h-a-store-order-short-code-and-single-artwork-correlation-planning.md)
   is a parked downstream planning input after public Store `1R-G`; it records accepted
   policy only and is not `Now`/`Next` or implementation authority;
-- the subordinate 2026-07-20 refinement register must inform the AMOW proof and later
-  pilot gates, but cannot start work or displace the selected bounded planning outcome;
+- the subordinate 2026-07-20 refinement register must inform any later AMOW correction,
+  proof or pilot gate, but cannot start work or displace root selection;
 - never implement two slices merely because their planning can be discussed together;
 - finish one slice lifecycle before selecting another unless the user explicitly changes
   the control decision.
@@ -581,8 +582,9 @@ The reconciled placement authority is recorded in:
 
 `docs/modules/fund/00-roadmap-control/2026-07-20-fund-refinement-wishlist-and-slice-control.md`
 
-It informs the current selected `1R-F-A` local proof/review action while preventing later
-template, Store and communications decisions from hardening around known pilot gaps:
+It informed the completed `1R-F-A` proof/review action and must inform any separately
+selected correction/new candidate or later pilot gate, preventing template, Store and
+communications decisions from hardening around known pilot gaps:
 
 - before pilot Intake, complete confirmation polish and indispensable organiser
   notifications; add embed/CSP only if AMOW confirms embedded Intake, and add configurable
@@ -890,7 +892,7 @@ local application commit `4a90be1`. Its representative 137-to-138 and fresh 138-
 disposable lifecycles passed with A1/A2/C6 regressions and zero residue. It is not pushed or
 deployed to a shared environment and adds no runtime payment behavior.
 
-Current selected control outcome:
+Current reconciled control outcome:
 
 ```text
 `COMMERCE-A7 - FUND Consumer Integration` is implemented/reviewed as a dormant internal
@@ -922,9 +924,11 @@ in the E-D review. The
 non-executable `1R-F - Project Offer And Artwork Readiness Reconciliation` parent is
 reviewed/accepted and records the separate Individual, collective and Standard readiness
 branches. `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` has green Stage
-A, source/physical and Stage B Linux-container evidence at exact dev `139d09c4`. The Stage C
-authority decision is active. No Stage C, `1R-G` or artwork/template production
-implementation is authorised.
+A, source/physical and Stage B Linux-container evidence at exact dev `139d09c4`. Stage C
+closed at FAIL after the accepted runner failed before behavioural proof; all temporary
+provider/local resources and credentials are absent. Root control awaits deliberate
+reselection. No correction/rerun, `1R-G` or artwork/template production implementation is
+selected or authorised.
 ```
 
 ## 10. Roadmap Maintenance Rule
