@@ -37,14 +37,14 @@ Files/change boundary: bounded proof runner/tests/script/docs only; no schema, r
 Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
 Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 provider inspections and credential-retention checks recorded; initial wrong-build containment recorded; subsequent exact-deploy log proves full `328aadf0` checkout, pinned image identities and terminal live state
 Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; fresh run `8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd` passes exact-prefix-zero/out-of-prefix-403 preflight and exact twelve-name/value Render read-back with 3598 seconds; worker remains suspended with auto-deploy Off/no deployment/job
-Known residual risk: corrected execution, removal/revocation and resource absence remain pending
-Next authorised action: inline re-prove exact latest manual/live deployment, suspension/off, original failed job only, exact twelve fresh values and at least twenty credential minutes; then create exactly one corrected Starter job, poll only it and never retry an ambiguous create
+Known residual risk: corrected job terminal-failed after 53 seconds; exact failure cause, fresh-prefix residue, removal/revocation and resource absence remain pending
+Next authorised action: inspect only corrected job `job-da7dbsh42hec73b401pg` log and capture non-secret terminal output/failure line; do not create or rerun any job
 
-Current state: corrected base and fresh credential/environment gates pass at run `345d4353-3af7-4a7e-93ba-11c3e1fcf6f9`, exact prefix zero/out-of-prefix 403, twelve values and 3598 seconds; corrected job pending and no Stage C pass claimed
+Current state: corrected job passed all inline gates then terminal-failed; final job count two/no third, diagnosis/cleanup pending and no Stage C pass claimed
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
 Current environment: candidate preserved in current ancestry; exact worker `srv-da7au58u01pc738qld00` remains suspended with auto-deploy Off; run `8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd` was configured with prefix zero/out-of-prefix 403; single Starter job `job-da7cu29srm7s7385o5g0`, accepted command, created `11:33:29.465286145Z`, started `11:33:29Z`, finished `11:34:30Z`, terminal `failed`; final job count one and no second job exists
-Next human decision/test: run the bounded corrected-job helper exactly once and report preflight, job identity/status/timestamps/final count; then obtain exact job log evidence
-Safe resumption point: never rerun an ambiguous create; after corrected job identity exists, poll/read only it, preserve suspension and proceed to cleanup
+Next human decision/test: open exact corrected job in Render Jobs and report complete non-secret command output, especially final failure or `FUND_STAGE_C_EVIDENCE` line
+Safe resumption point: no further attempt; after log diagnosis, independently list exact fresh prefix and continue controlled teardown/disposition
 ```
 
 ## 1. Gate Rule
@@ -251,6 +251,15 @@ the explicit new authorisation and reports the sequence resume once, manually de
 commit to green, then suspend complete. Read-only API proof of latest manual/live/exact,
 suspension, auto-deploy `no` and original-job-only is required before credential/job action.
 
+That corrected-base verification passed at deployment `dep-da7d78a3v7hc73eug70g`, manual,
+live and exact `328aadf0`, with the worker suspended, auto-deploy `no` and only original
+failed job `job-da7cu29srm7s7385o5g0`. Fresh run
+`345d4353-3af7-4a7e-93ba-11c3e1fcf6f9` then passed exact-prefix zero, out-of-prefix 403 and
+exact twelve-name/value read-back with 3598 seconds remaining. Corrected Starter job
+`job-da7dbsh42hec73b401pg` passed the same inline gates with 3387 seconds, then moved pending
+to running to terminal `failed` from `12:02:58Z` to `12:03:51Z`. Final job count is two and
+no third job was created. No further attempt is authorised; log diagnosis and cleanup follow.
+
 Local comparison also shows that `d78935d4` is not identical to accepted candidate
 `328aadf0` inside the proof build boundary: root `tsconfig.json` and
 `scripts/proofs/fund-1r-f-a/tsconfig.json` differ. The wrong-revision build therefore cannot
@@ -273,7 +282,7 @@ deploy state.
 | Six PUT/HEAD/GET/checksum/DELETE/not-found/list-empty sequences | PENDING |
 | Node/Playwright/Chromium/font/container identity | PENDING |
 | Cold/warm/batch timing and peak memory below 80% | PENDING |
-| Job terminal success and final exact-prefix object count zero | STOP — exactly one job `job-da7cu29srm7s7385o5g0` terminal `failed` at the pre-storage commit guard; independent parent-authority exact-prefix count is zero |
+| Job terminal success and final exact-prefix object count zero | STOP — original job failed at pre-storage commit guard; corrected job `job-da7dbsh42hec73b401pg` passed inline exact-base/fresh-run gates then terminal-failed after 53 seconds; two jobs/no third, corrected log and fresh-prefix residue pending |
 
 ## 5. Teardown And Revocation Evidence — Pending
 

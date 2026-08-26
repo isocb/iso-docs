@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | All corrected-attempt pre-execution gates pass. Fresh run `345d4353-3af7-4a7e-93ba-11c3e1fcf6f9`, exact empty prefix, out-of-prefix 403, expiry `2026-08-26T12:59:26Z`, and exact twelve-name/value read-back pass with 3598 seconds; no deploy/job. Immediately re-prove exact latest deployment/suspension/off/original-job-only, then create exactly one corrected Starter job and poll only it. Never resume. Existing services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Corrected job `job-da7dbsh42hec73b401pg` passed inline exact-deploy/suspended/off/fresh-run/original-job-only preflight with 3387 credential seconds, then ran the accepted command on Starter and reached terminal `failed` from `12:02:58Z` to `12:03:51Z`. Final job count is two and no third job exists. No further attempt is authorised. Inspect only that exact job log, independently prove fresh prefix residue, then teardown/disposition. Existing services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -186,7 +186,10 @@ manual/live at exact `328aadf0`, worker suspended, auto-deploy `no`, and only or
 job `job-da7cu29srm7s7385o5g0` exists. Never resume again. Fresh run
 `345d4353-3af7-4a7e-93ba-11c3e1fcf6f9` then passes exact-prefix zero, out-of-prefix 403,
 3600-second scope and exact twelve-name/value read-back with 3598 seconds; no deploy/job.
-Re-prove the base inline, then create exactly one corrected Starter job and poll only it.
+Corrected job `job-da7dbsh42hec73b401pg` then passed the full inline preflight with 3387
+seconds, ran the accepted Starter command and reached terminal `failed` from `12:02:58Z` to
+`12:03:51Z`. Final job count is two/no third job. No further attempt is authorised; inspect
+only that log, prove fresh-prefix residue independently, then teardown/disposition.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then
