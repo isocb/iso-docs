@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Phase 3 passes: exact `328aadf0` is built and live on isolated worker `srv-da7au58u01pc738qld00` as Render deployment `dep-da7b87i3v7hc73et4ui0`; logs prove the full checkout and pinned Node/Playwright image identities, auto-deploy remains Off, the command is inert and user variables remain zero. Phase 4 may now fix one random run prefix and mint one 60-minute prefix-scoped R2 credential, retained outside Render until scope/expiry checks pass. Existing services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Phase 3 passes at service `srv-da7au58u01pc738qld00`, deployment `dep-da7b87i3v7hc73et4ui0` and exact `328aadf0`. Phase 4 stopped safely: the local Cloudflare temporary-credential request returned HTTP 403/code 10000 before any credential or local temporary record was created; no Render variable/job exists. This is unrelated to the removed Render `PORT` variable because the request went directly from the control owner's Mac to Cloudflare. Verify the stored parent token status/identity read-only before choosing replacement or Cloudflare's documented local-signing path. Existing services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -145,6 +145,13 @@ identifier. The control owner then supplied exact Render deployment
 `dep-da7b87i3v7hc73et4ui0`. Phase 3 therefore passes. Phase 4 may now fix one random UUID-v4
 run ID and exact prefix, mint one 60-minute object-read-write credential restricted to that
 bucket/prefix, and retain its three values outside Render until scope/expiry checks pass.
+The first local mint request returned HTTP 403/code 10000 before Cloudflare returned a
+credential, so the helper created no local temporary records and no Render variable/job
+exists. The deleted Render `PORT` variable cannot cause this Mac-to-Cloudflare API denial.
+The objective Phase 4 stop gate is active: verify the stored parent token status and token
+ID/access-key-ID relationship read-only before choosing replacement or the documented
+local-signing path. The worker was last proved live; a cost-limiting suspension was requested
+but is not yet evidenced.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then

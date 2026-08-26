@@ -37,14 +37,14 @@ Files/change boundary: bounded proof runner/tests/script/docs only; no schema, r
 Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
 Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 provider inspections and credential-retention checks recorded; initial wrong-build containment recorded; subsequent exact-deploy log proves full `328aadf0` checkout, pinned image identities and terminal live state
 Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; isolated Render worker is live at exact `328aadf0` with auto-deploy Off, accepted inert command and zero user variables
-Known residual risk: runtime credential scope/usability, job, cleanup, revocation and resource absence remain pending
-Next authorised action: fix one random lowercase UUID-v4 run ID and mint one 3600-second object-read-write temporary R2 credential restricted to exact prefix fund/1r-f-a/stage-c/<run-id>/; retain its three secret values outside Render and do not create a job before scope/expiry evidence passes
+Known residual risk: the first temporary-credential request was denied with Cloudflare HTTP 403/code 10000; parent-token status/identity, runtime credential scope/usability, job, cleanup, revocation and resource absence remain pending
+Next authorised action: run only the read-only Cloudflare token-verification endpoint using the named parent-token Keychain record and compare its returned token ID to the stored parent access-key ID without printing either; do not retry minting, add Render variables or create a job
 
-Current state: Stage C Phase 3 exact build, inert-runtime behaviour and provider identity pass; Phase 4 temporary credential is not yet minted and no external Stage C result is claimed
+Current state: Stage C Phase 3 passes; Phase 4 is stopped safely after Cloudflare denied the first mint request before credential creation, and no external Stage C result is claimed
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
-Current environment: candidate preserved in current ancestry; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` remains empty/private and both operator authorities remain in named Keychain records; Render worker `srv-da7au58u01pc738qld00`, deployment `dep-da7b87i3v7hc73et4ui0`, in workspace `Isostack` is live at exact 328aadf0a360b4c65837327060302ddc525f6168 with auto-deploy Off, the accepted inert command, zero user variables and no linked environment group, secret file or disk; no temporary R2 credential or one-off job exists
-Next human decision/test: run the bounded local mint helper using the named parent-token and access-key-ID Keychain records, then report only mint status, run ID, prefix, UTC expiry, permission, TTL, bucket and count of verified temporary Keychain items
-Safe resumption point: after scope/expiry and three local temporary credential records pass, configure only the accepted Stage C environment using Save only; do not create the one-off job before the environment contract is re-proved
+Current environment: candidate preserved in current ancestry; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` remains empty/private and both operator authorities remain in named Keychain records; Render worker `srv-da7au58u01pc738qld00`, deployment `dep-da7b87i3v7hc73et4ui0`, was last proved live at exact 328aadf0a360b4c65837327060302ddc525f6168 with auto-deploy Off, the accepted inert command and zero variables; suspension has been requested but not confirmed; Cloudflare returned HTTP 403/code 10000 before any temporary credential, local temporary record, Render variable or one-off job was created
+Next human decision/test: suspend the worker for cost control, then run the bounded read-only token verifier and report only HTTP status, verification success, token status, expiry and whether returned token ID matches the stored parent access-key ID
+Safe resumption point: do not retry minting until token verification distinguishes inactive/mismatched authority from active matching authority; then replace the parent or use the separately reviewed documented local-signing path without widening scope
 ```
 
 ## 1. Gate Rule
@@ -190,6 +190,13 @@ the required provider identifier remained to be captured without changing the se
 control owner then supplied exact Render deployment `dep-da7b87i3v7hc73et4ui0`, completing
 the Phase 3 service/build identity boundary.
 
+The first Phase 4 helper request went directly from the control owner's Mac to Cloudflare's
+temporary-credential endpoint and returned HTTP 403/code 10000. Cloudflare returned no
+credential result, so the helper did not reach its Keychain-write path; no temporary local
+record, Render variable or job was created. This denial is unrelated to the removed Render
+`PORT` variable, which is not read by the helper and cannot affect a Mac-to-Cloudflare API
+request. Do not retry the mint until the stored parent token is verified read-only.
+
 Local comparison also shows that `d78935d4` is not identical to accepted candidate
 `328aadf0` inside the proof build boundary: root `tsconfig.json` and
 `scripts/proofs/fund-1r-f-a/tsconfig.json` differ. The wrong-revision build therefore cannot
@@ -207,7 +214,7 @@ deploy state.
 | Dedicated Render operator key retained outside the service | PASS — control-owner Terminal verification of the named Keychain record for workspace `Isostack`; API authentication remains to be proved without exposing the value |
 | Temporary worker has no route/disk/database/env group and auto-deploy is off | PASS — exact worker identity, manual suspension, auto-deploy Off, inert command, zero user variables, no linked environment group, no secret file and no disk are proved; removal used Save only and started no deploy |
 | Exact Render build commit and inert base process | PASS — full exact `328aadf0` checkout, pinned build images, green/live state, inert command, auto-deploy Off and zero variables at service `srv-da7au58u01pc738qld00`, deployment `dep-da7b87i3v7hc73et4ui0` |
-| One-hour prefix-scoped temporary session credential | PENDING |
+| One-hour prefix-scoped temporary session credential | STOP — first Mac-to-Cloudflare mint request returned HTTP 403/code 10000 before a credential or local temporary record was created; parent token status/identity verification pending |
 | Out-of-prefix and anonymous access denied | PENDING |
 | Six PUT/HEAD/GET/checksum/DELETE/not-found/list-empty sequences | PENDING |
 | Node/Playwright/Chromium/font/container identity | PENDING |
