@@ -4,7 +4,7 @@ Purpose: define the durable human-and-AI method for turning an idea, fault or ob
 into a controlled IsoStack release without allowing the portfolio to become an unranked
 list of competing work.
 
-Version: 4.3
+Version: 4.4
 
 Last updated: 2026-08-26
 
@@ -295,6 +295,42 @@ production model is built, production-ready or approved.
 
 This declaration clarifies an existing slice; it does not add a lifecycle stage, status,
 document, branch or approval.
+
+### 5.5 Agent-Operated Execution And Evidence
+
+Control depth defines the evidence, failure boundaries and stopping conditions required;
+it does not make the human the default operator of terminal commands, provider APIs or
+repeatable verification steps. When an AI assistant has direct tool access and the action
+is inside the accepted boundary, it must normally operate the authorised workflow itself
+from preflight through verification and cleanup.
+
+For a bounded external-service workflow, prefer one fail-closed orchestration where
+practical. It should:
+
+1. read back current authority, resource identity and provider state before mutation;
+2. perform only the ordered actions inside the accepted boundary;
+3. monitor jobs and retrieve terminal logs without requiring the human to relay them;
+4. verify the result through an independent provider or resource readback;
+5. remove temporary credentials, configuration and resources in the declared order; and
+6. produce one redacted evidence summary, including any failure and absence proof.
+
+Do not routinely ask a human to copy commands, move output between a terminal and the
+assistant, poll provider state or perform other mechanical steps that the assistant can
+execute and verify directly. `High` control may require stronger preconditions, negative
+tests, independent readbacks, rollback gates and explicit destructive-action approval; it
+does not require the human to operate each gate manually.
+
+Pause only when continuation requires missing or expanded authority, a material human
+choice, secret entry that the assistant cannot safely perform, an external action the
+available tools cannot reach, approval for a destructive action, or genuinely human
+visual/business judgement. If a provider dashboard step is unavoidable, give one concise
+task with its exact boundary and expected evidence, then resume agent-operated work.
+
+For an assumption test, predeclare the disposable resource boundary and removal order,
+use temporary credentials, fail closed when a precondition or proof fails and complete the
+authorised removal even when the tested assumption fails. Retain only the declared code,
+automated checks and redacted evidence. A human smoke gate remains human only where actual
+human judgement is the evidence being collected.
 
 ## 6. Defects Discovered During Active Work
 

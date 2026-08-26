@@ -91,6 +91,24 @@ Do not rely on development shorthand alone. Pair terms such as `proof`, `spike`,
 “remove and revoke”, and “prove nothing remains”. This is a communication requirement
 inside the existing lifecycle, not another lane, status, document or approval.
 
+## Agent-Operated Execution In One Minute
+
+Evidence depth controls how strongly work must be proved; it does not decide who types the
+commands. When an AI assistant has direct terminal or provider access and the action is
+already authorised, the normal arrangement is for the assistant to run the workflow,
+monitor it, collect the logs, verify provider state and complete the declared cleanup.
+
+Do not make the human a routine courier for commands and tool output. For a bounded
+external assumption test, prefer one fail-closed flow covering preflight, ordered changes,
+job monitoring, independent readback, removal and one redacted evidence report. `High`
+control strengthens negative tests, rollback and verification; it does not turn each
+mechanical step into a manual human gate.
+
+The assistant pauses for a genuine human decision, missing or expanded authority, a secret
+or provider action it cannot access safely, required destructive-action approval, or
+human-visible business judgement. When a dashboard-only action is unavoidable, it asks for
+one precise action and the evidence needed, then resumes the work itself.
+
 ## Branch Corridor Model
 
 Use this plain-English model when discussing work:

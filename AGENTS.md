@@ -45,6 +45,20 @@ or status document merely to apply the depth.
 For schema, migration or live-data planning/evidence, also follow
 `SAFE_DATABASE_WORKFLOW.md`.
 
+## Operate Authorised Work Directly
+
+- Control depth governs evidence and stopping conditions, not who types commands. When
+  direct terminal or provider access exists and an action is inside the accepted boundary,
+  execute the workflow end to end, including monitoring, log retrieval, independent
+  readback and declared cleanup.
+- Do not make the human relay commands or tool output that the assistant can obtain and
+  verify. For bounded external assumption tests, prefer one fail-closed orchestration from
+  preflight through ordered removal and redacted evidence.
+- Pause for missing or expanded authority, a material human choice, inaccessible secret or
+  dashboard work, destructive-action approval or genuinely human visual/business
+  judgement. If a manual provider step is unavoidable, request one precise action and then
+  resume agent-operated execution.
+
 ## Keep The Portfolio And Evidence Truthful
 
 - Register every new CR in its authoritative child roadmap with an explicit disposition in

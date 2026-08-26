@@ -242,6 +242,24 @@ Safe resumption point:
 
 Update it in place. Do not create a separate status document.
 
+### Let The Assistant Operate The Tools
+
+Once the work and its boundary are accepted, an assistant with direct terminal or provider
+access should normally carry out the mechanical workflow itself. That includes checking
+the starting state, running commands, monitoring jobs, collecting logs, independently
+reading back the result and removing temporary resources in the agreed order.
+
+The human owns scope, authority, material choices and genuinely human-visible acceptance.
+The human should not routinely have to copy commands into a terminal and return the output
+when the assistant can obtain and verify it directly. `High` evidence depth means stronger
+failure, rollback, negative-test and absence proof; it does not mean manual operation at
+every checkpoint.
+
+The assistant should pause only for an unavoidable dashboard or secret-entry step, a
+destructive action requiring approval, an authority expansion, or a decision that changes
+the result. In that case it should ask for one precise action, explain the expected evidence
+in plain language and then take the workflow back over.
+
 ## Building, Proving And Releasing
 
 Implementation changes only the accepted slice. Then:
