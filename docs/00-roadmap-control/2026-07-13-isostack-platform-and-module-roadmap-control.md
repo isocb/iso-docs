@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Phase 3 stop gate is active: accidental worker creation in workspace `Isostack` initially built wrong revision `d78935d4` before auto-deploy was set Off, followed by a reported suspend/resume. The attached build log shows no proof execution, R2 operation or credential, and no temporary runtime credential/job exists. Re-suspend and read-only inspect the exact worker identity, command and empty environment before deciding whether to correct it to exact 328aadf0 or delete/replace it. Existing auto-deploy services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Phase 3 stop gate remains active after the wrong-revision `d78935d4` build. Worker `srv-da7au58u01pc738qld00` is now proved manually suspended with auto-deploy Off, the accepted inert command, no linked environment group, secret file or disk, and no runtime credential/job; its blank user-environment-variable count is not accepted as zero. Confirm that count is zero, then correct this isolated worker to exact `328aadf0` within the accepted gate. Existing auto-deploy services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -123,9 +123,13 @@ operator authorities now exist outside Render; Phase 3 must create only the acce
 no-secret worker and stop on any exact-commit, auto-deploy, routing or inert-state mismatch.
 The control owner then accidentally created the worker before setting auto-deploy Off. Its
 initial log proves checkout/build of wrong revision `d78935d4` and stops at `Deploying...`;
-no runtime proof or credential activity is shown. Auto-deploy is now reported Off, but a
-subsequent suspend/resume leaves current suspension, command and environment unproved. The
-planned Phase 3 mismatch stop gate is active; no runtime credential or job is authorised.
+no runtime proof or credential activity is shown. Subsequent dashboard evidence identifies
+`srv-da7au58u01pc738qld00`, records auto-deploy Off, status `Suspended`, latest event
+`Manually Suspended`, the accepted inert command, and no linked environment group, secret
+file or disk. The submitted user-environment-variable count was blank and is therefore not
+accepted as zero. The planned Phase 3 mismatch stop gate remains active; no runtime
+credential or job is authorised until that count is proved zero and the isolated worker is
+corrected to exact `328aadf0`.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then
