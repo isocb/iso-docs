@@ -24,15 +24,15 @@ Implementation confirmation:
 Exact commit: 328aadf0a360b4c65837327060302ddc525f6168
 Files/change boundary: bounded proof runner/tests/script/docs only; no schema, route, shared R2 utility or render.yaml change
 Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
-Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 read-only Render/R2 inspections found no matching Stage C service and confirmed the dedicated WEUR bucket is empty/private
+Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 Render/R2 inspections found no matching Stage C service, confirmed the dedicated WEUR bucket is empty/private and deleted the exact stale parent token
 Environment proven: local and pinned Linux candidate; matching Stage C Render service absent; exact dedicated R2 bucket empty with no public-development URL, custom domain, CORS, lock or event notification
-Known residual risk: stale non-expiring parent-token revocation, dedicated Render operator authority, new exact worker/job execution, fresh temporary credential, cleanup, revocation and resource absence remain pending
-Next authorised action: revoke and verify removal of the exact stale Stage C parent token, then establish fresh bounded operator authorities and resume only the accepted one-window Phase 3-8 sequence
+Known residual risk: fresh parent-token and Render operator authority, new exact worker/job execution, temporary credential, cleanup, revocation and resource absence remain pending
+Next authorised action: establish fresh bounded operator authorities outside Render, then resume only the accepted one-window Phase 3-8 sequence
 
 Current state: Stage C resumed as root Now after R14-A closure; exact candidate gates pass and no external Stage C result is claimed
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
-Current environment: candidate preserved in current ancestry; no matching Stage C Render service; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` is empty/private; matching bucket-scoped Object Read & Write parent-token record is active with a `forever` TTL; existing auto-deploy services were not changed
-Next human decision/test: revoke exact token `FUND-1R-F-A-Stage-C-2026-08-12`, verify it no longer appears as usable, and stop before creating a replacement token, Render service or temporary credential
+Current environment: candidate preserved in current ancestry; no matching Stage C Render service; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` is empty/private; exact stale token `FUND-1R-F-A-Stage-C-2026-08-12` deleted; no replacement token or temporary credential created; existing auto-deploy services were not changed
+Next human decision/test: create and retain fresh dedicated R2 parent and Render operator credentials outside Render without sharing secret values, then stop before service creation
 Safe resumption point: use only exact 328aadf0 under the accepted one-window execution/teardown contract; stop before any broader resource, application or product work
 ```
 
@@ -116,6 +116,12 @@ immediate exact-key deletion and final zero-prefix proof. Parent-token usability
 retention, revocation/refusal, temporary credential issuance and all Render execution remain
 unproved.
 
+The control owner then deleted exact stale token `FUND-1R-F-A-Stage-C-2026-08-12` on
+2026-08-26. No replacement token, Render service or temporary credential was created, and
+the bucket remained the exact empty/private boundary recorded above. This deletion closes
+the stale-token exposure; it is not the final revocation/refusal proof for the fresh parent
+token that will govern the one-off execution.
+
 This is not yet a failed gate: no external resource should exist before the exact Linux and
 Security gates pass. Before Phase 3 begins, the control window still requires a dedicated
 operator-only Render API key and a fresh dedicated Cloudflare/R2 parent-token authority.
@@ -126,7 +132,7 @@ Neither value may enter Git, documentation, command output or shell history.
 | Required evidence | Result |
 | --- | --- |
 | Dedicated bucket identity, empty initial list, no `r2.dev`, domain or CORS | PASS — control-owner dashboard inspection; exact WEUR bucket recorded above |
-| Dedicated parent token scope retained outside Render | PENDING — exact active bucket-scoped Object Read & Write token record found with TTL `forever`; revoke this stale token before creating fresh execution-window authority |
+| Dedicated parent token scope retained outside Render | PENDING — stale exact token deleted; fresh execution-window parent token not yet created |
 | Temporary worker has no route/disk/database/env group and auto-deploy is off | PENDING |
 | Exact Render build commit and inert base process | PENDING |
 | One-hour prefix-scoped temporary session credential | PENDING |

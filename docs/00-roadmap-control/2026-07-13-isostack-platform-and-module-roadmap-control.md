@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Resume only from the recorded safe checkpoint: exact candidate `328aadf0` is preserved in current ancestry; the control owner's 2026-08-26 read-only inspections found no matching Stage C Render service and confirmed the dedicated WEUR R2 bucket is empty and private. Resolve the existing dedicated parent-token disposition before provisioning. Existing auto-deploy services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Resume only from the recorded safe checkpoint: exact candidate `328aadf0` is preserved in current ancestry; the control owner's 2026-08-26 read-only inspections found no matching Stage C Render service and confirmed the dedicated WEUR R2 bucket is empty and private. The stale non-expiring parent token is deleted; establish fresh dedicated operator authority before provisioning. Existing auto-deploy services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -111,8 +111,9 @@ the subsequent read-only Cloudflare inspection confirmed the exact dedicated WEU
 is empty, has no public-development URL, custom domain, CORS, lock or event notification,
 and retains only Cloudflare's default seven-day incomplete-multipart abort rule. A matching
 active bucket-scoped Object Read & Write parent-token record exists with a `forever` TTL;
-it must be revoked before fresh execution-window authority is created. Stage C-result
-reconciliation is restored as `Next`. Exact R13 staging
+the control owner deleted that exact token on 2026-08-26 before any replacement credential,
+service or temporary session was created. Fresh execution-window authority remains pending.
+Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then
 matched that exact commit, the production migration/schema proof passed and the substantive
