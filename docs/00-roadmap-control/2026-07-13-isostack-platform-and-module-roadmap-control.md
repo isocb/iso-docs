@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Phase 3 stop gate remains active only on the wrong-revision `d78935d4` build. Worker `srv-da7au58u01pc738qld00` is proved manually suspended with auto-deploy Off, the accepted inert command, zero user variables and no linked environment group, secret file or disk. The dashboard does not display Manual Deploy while the service is suspended. Resume only this isolated worker, immediately deploy exact `328aadf0`, then stop for exact build/runtime evidence before adding any credential or job. Existing auto-deploy services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Exact `328aadf0` is now built and live on isolated worker `srv-da7au58u01pc738qld00`; supplied logs prove the full checkout and pinned Node/Playwright image identities, while auto-deploy remains Off, the inert command is unchanged and user variables remain zero. The supplied “Deploy ID” is only the commit link, not Render's `dep-…` identifier. Capture that non-secret deployment ID read-only, then progress to the one-hour prefix-scoped credential and single one-off job. Existing services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -136,8 +136,13 @@ unexpected deploy. The empty-worker configuration boundary now passes. The plann
 mismatch stop gate remains active only on the wrong build. The control owner then confirmed
 that this worker's dashboard does not display Manual Deploy while it is suspended. Resume
 only this isolated worker; the current wrong artifact may run briefly only under the proved
-inert/no-secret boundary. Immediately deploy exact `328aadf0`, then stop for exact
-build/runtime evidence before adding any credential or job.
+inert/no-secret boundary. The subsequent specific-commit deploy is green: supplied logs
+prove checkout of full `328aadf0a360b4c65837327060302ddc525f6168`, the accepted pinned
+Node and Playwright image digests and terminal `service is live`; auto-deploy remains Off,
+the Docker command remains the accepted inert command and user variables remain zero. The
+value supplied as “Deploy ID” is a GitHub commit link rather than Render's own `dep-…`
+identifier. Capture that provider identifier read-only before Phase 4 mints the one-hour
+prefix-scoped credential or creates a job.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then

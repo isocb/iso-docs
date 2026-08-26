@@ -35,16 +35,16 @@ Implementation confirmation:
 Exact commit: 328aadf0a360b4c65837327060302ddc525f6168
 Files/change boundary: bounded proof runner/tests/script/docs only; no schema, route, shared R2 utility or render.yaml change
 Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
-Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 provider inspections and credential-retention checks recorded; subsequent Render build log proves an accidental initial `d78935d4` worker build before auto-deploy was turned off; later dashboard evidence proves the exact worker is manually suspended and inert
-Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; attached Render log proves only the wrong-revision `d78935d4` image build through `Deploying...`, with no runtime, proof-runner, R2-operation or credential evidence
-Known residual risk: exact 328aadf0 artifact, runtime credentials/job, cleanup, revocation and resource absence remain pending
-Next authorised action: because Manual Deploy is not displayed while suspended, resume only `srv-da7au58u01pc738qld00`, then immediately use its dashboard to deploy specific commit 328aadf0a360b4c65837327060302ddc525f6168; do not add variables, credentials or create a job
+Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 provider inspections and credential-retention checks recorded; initial wrong-build containment recorded; subsequent exact-deploy log proves full `328aadf0` checkout, pinned image identities and terminal live state
+Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; isolated Render worker is live at exact `328aadf0` with auto-deploy Off, accepted inert command and zero user variables
+Known residual risk: Render's `dep-…` deployment identifier has not been supplied; runtime credentials/job, cleanup, revocation and resource absence remain pending
+Next authorised action: open the successful exact deployment read-only and report only Render's non-secret `dep-…` identifier from its URL/details; do not add variables, credentials or create a job yet
 
-Current state: Stage C Phase 3 stop gate active; the wrong-revision d78935d4 build is contained in manually suspended worker srv-da7au58u01pc738qld00 with auto-deploy Off and its inert command proved; no external Stage C result is claimed
+Current state: Stage C Phase 3 exact build and inert-runtime behaviour pass; required Render deployment identifier capture remains pending and no external Stage C result is claimed
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
-Current environment: candidate preserved in current ancestry; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` remains empty/private and both operator authorities remain in named Keychain records; Render worker `srv-da7au58u01pc738qld00` in workspace `Isostack` is manually suspended with auto-deploy Off, the accepted inert command, zero user variables and no linked environment group, secret file or disk; its initial build used d78935d407ace7ebe796a31a13adf3e17dafa758; no temporary R2 credential or one-off job exists
-Next human decision/test: resume this exact worker, wait only until Manual Deploy appears, then use Manual Deploy > Deploy a specific commit and submit full SHA 328aadf0a360b4c65837327060302ddc525f6168; stop on any resume, command, variable, auto-deploy or commit mismatch
-Safe resumption point: stop after an exact-328aadf0 deploy reaches a terminal state and report deploy ID/status, displayed commit, auto-deploy state and final service status; add no credential or job
+Current environment: candidate preserved in current ancestry; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` remains empty/private and both operator authorities remain in named Keychain records; Render worker `srv-da7au58u01pc738qld00` in workspace `Isostack` is live at exact 328aadf0a360b4c65837327060302ddc525f6168 with auto-deploy Off, the accepted inert command, zero user variables and no linked environment group, secret file or disk; no temporary R2 credential or one-off job exists
+Next human decision/test: open the green exact deployment and report only its Render `dep-…` identifier; the supplied GitHub commit link is not that identifier
+Safe resumption point: after the exact deployment identifier is recorded, fix one random UUID-v4 run ID and mint one 60-minute credential restricted to exact prefix fund/1r-f-a/stage-c/<run-id>/; do not create a job before scope/expiry evidence passes
 ```
 
 ## 1. Gate Rule
@@ -182,6 +182,12 @@ isolated service. The current wrong artifact may run briefly because its command
 inert and it has no credential, service link, environment group, secret file or disk. It
 remains unacceptable evidence and must be replaced immediately by a specific-commit deploy.
 
+The control owner completed that correction: supplied logs prove checkout of full
+`328aadf0a360b4c65837327060302ddc525f6168`, the accepted pinned Node and Playwright image
+digests, terminal green/live state, auto-deploy Off and zero user variables. The supplied
+“Deploy ID” is a link to the GitHub commit rather than Render's provider deployment ID, so
+the required `dep-…` identifier remains to be captured without changing the service.
+
 Local comparison also shows that `d78935d4` is not identical to accepted candidate
 `328aadf0` inside the proof build boundary: root `tsconfig.json` and
 `scripts/proofs/fund-1r-f-a/tsconfig.json` differ. The wrong-revision build therefore cannot
@@ -198,7 +204,7 @@ deploy state.
 | Dedicated parent token scope retained outside Render | PASS — fresh exact token is Object Read & Write scoped only to the exact bucket, has a 24-hour TTL and is retained in the control owner's macOS Keychain; usability remains a later objective gate |
 | Dedicated Render operator key retained outside the service | PASS — control-owner Terminal verification of the named Keychain record for workspace `Isostack`; API authentication remains to be proved without exposing the value |
 | Temporary worker has no route/disk/database/env group and auto-deploy is off | PASS — exact worker identity, manual suspension, auto-deploy Off, inert command, zero user variables, no linked environment group, no secret file and no disk are proved; removal used Save only and started no deploy |
-| Exact Render build commit and inert base process | STOP — initial build log proves wrong revision `d78935d4`; exact 328aadf0 has not been deployed and no equivalence is claimed |
+| Exact Render build commit and inert base process | STOP — full exact `328aadf0` checkout, pinned build images, green/live state, inert command, auto-deploy Off and zero variables pass; required Render `dep-…` identifier remains unrecorded because the supplied value was the GitHub commit link |
 | One-hour prefix-scoped temporary session credential | PENDING |
 | Out-of-prefix and anonymous access denied | PENDING |
 | Six PUT/HEAD/GET/checksum/DELETE/not-found/list-empty sequences | PENDING |
