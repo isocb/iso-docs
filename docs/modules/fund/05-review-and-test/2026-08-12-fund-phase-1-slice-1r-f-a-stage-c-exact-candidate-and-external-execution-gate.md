@@ -2,8 +2,15 @@
 
 Date: 2026-08-12
 
+Restart checkpoint reconciled: 2026-08-26
+
 Status: **RESUMED AS ROOT NOW — EXACT `328aadf0` LOCAL, LINUX AND SECURITY GATES PASS;
 RENDER/R2 EXECUTION AND TEARDOWN EVIDENCE PENDING**
+
+Control depth: **`High`** — dedicated credentials, runtime configuration, a material
+external-service contract, private-object handling and exact resource teardown require the
+full failure, rollback, negative-access, revocation and absence evidence already defined by
+the accepted plan.
 
 Planning authority:
 
@@ -14,10 +21,18 @@ Implementation confirmation:
 [`1R-F-A Stage C implementation confirmation`](../04-implementation-confirmations/2026-08-12-fund-phase-1-slice-1r-f-a-stage-c-isolated-render-private-object-proof-implementation-confirmation.md)
 
 ```text
+Exact commit: 328aadf0a360b4c65837327060302ddc525f6168
+Files/change boundary: bounded proof runner/tests/script/docs only; no schema, route, shared R2 utility or render.yaml change
+Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
+Human evidence: accepted R1B source/physical review 12/12 PASS; no external Stage C human evidence yet
+Environment proven: local and pinned Linux candidate only; Render/R2 execution and teardown not proven
+Known residual risk: live provider identity/state, dedicated operator authority, one-off execution, cleanup, credential revocation and resource absence remain pending
+Next authorised action: revalidate the exact recorded Render/R2 checkpoint and dedicated operator authorities, then resume only the accepted one-window Phase 2-8 sequence
+
 Current state: Stage C resumed as root Now after R14-A closure; exact candidate gates pass and no external Stage C result is claimed
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
-Current environment: candidate preserved in current ancestry; recorded temporary worker suspended, no application secrets injected, private proof bucket empty and existing auto-deploy services untouched
-Next human decision/test: revalidate the recorded zero-resource checkpoint and dedicated operator authorities before Phase 2
+Current environment: candidate preserved in current ancestry; prior control records a suspended temporary worker, no application secrets injected, an empty private proof bucket and existing auto-deploy services untouched, but that external state has not been live-revalidated in this resumed session
+Next human decision/test: inspect the exact recorded worker and bucket identities/settings and confirm dedicated operator authorities before any Phase 2-5 external action
 Safe resumption point: use only exact 328aadf0 under the accepted one-window execution/teardown contract; stop before any broader resource, application or product work
 ```
 
@@ -68,6 +83,13 @@ Read-only readiness inspection found:
 - no GitHub repository/environment secret names providing those authorities; and
 - existing local application R2 S3 credentials, which are deliberately not treated as
   authority to create the proof bucket or as the required dedicated Stage C parent token.
+
+The 2026-08-26 resumption inspection additionally found no local Render or Wrangler CLI,
+no Render/Cloudflare/Stage-C environment-variable names and no authenticated provider
+connection available to this control window. These are local capability findings only;
+they do not prove the current Render workspace, worker, Cloudflare account, bucket, token or
+public-access state. The prior recorded suspended-worker/empty-bucket state must therefore
+be revalidated in the provider control planes before creation, execution or deletion.
 
 This is not yet a failed gate: no external resource should exist before the exact Linux and
 Security gates pass. Before Phase 2 begins, the control window still requires a dedicated

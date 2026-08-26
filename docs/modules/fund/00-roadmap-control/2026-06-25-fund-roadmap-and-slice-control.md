@@ -59,7 +59,7 @@ same row.
 | [`2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md) | Planned through `1Q-G-B` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md) | Planned through `1Q-G-A` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-13-fund-cr-commission-ladder-planner-input.md`](../01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md) | Policy/assignment foundation partly incorporated through `1R-C5`; aggregate calculation, statements and settlement remain absent | Parked later commission work, represented by subordinate `2R-PROD-05`; not selected |
-| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B Linux parity and exact `139d09c4` dev scan pass; dedicated Stage C contract accepted and authorised on 2026-08-12; downstream short-code/single-artwork policy preserved in parked `1R-H-A` | Stage C resumes as root `Now` only from exact candidate `328aadf0` and its recorded zero-resource checkpoint. External execution/teardown remain governed by the accepted gate; `1R-H-A` remains inventory only and no production implementation is authorised |
+| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B Linux parity and exact `139d09c4` dev scan pass; dedicated Stage C contract accepted and authorised on 2026-08-12; downstream short-code/single-artwork policy preserved in parked `1R-H-A` | Stage C resumes as root `Now` only from exact candidate `328aadf0` and its recorded pre-execution checkpoint. The prior suspended-worker/empty-bucket state requires live provider revalidation. External execution/teardown remain governed by the accepted gate; `1R-H-A` remains inventory only and no production implementation is authorised |
 | [`2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md`](../01-cr-inputs/2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md) | Consumed as the boundary preventing `1R-F-A` from absorbing collective/Standard paths | `1R-F-F` through `I` remain parked; no implementation authority |
 | [`2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`](../01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md) | `1R-F-A` automation, physical review and Linux parity accept candidate capacities of ten STANDARD portrait and twelve COMPACT landscape rows; production selection policy remains later `1R-F-B/D` work | Proof evidence only; no schema/policy implementation authorised |
 | [`2026-07-15-fund-template-manager-brief.md`](../01-cr-inputs/2026-07-15-fund-template-manager-brief.md) | Retained source brief for the Application/Artwork Template input | Provenance only; not a fourth CR and its provisional `T` labels carry no slice authority |
@@ -69,7 +69,7 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> resume and execute FUND 1R-F-A Stage C from exact 328aadf0 and its preserved zero-resource checkpoint
+ROOT NOW  -> resume and execute FUND 1R-F-A Stage C from exact 328aadf0 and its preserved pre-execution checkpoint after live provider-state revalidation
 ROOT NEXT -> reconcile the Stage C result, conclude 1R-F-A and deliberately reselect
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
 FUND      -> ACTIVE at preserved Stage C gate; R1B human/physical, Stage B and exact candidate gates PASS; external execution/teardown pending
@@ -124,7 +124,7 @@ R14-A local R1-R9, staging S1-S4 and production L1-L2: PASS; COMPLETE AND CLOSED
 protected work/dev/staging/main Security Scans: PASS; exact-main run 32838343535 complete
 Role Authority: COMPLETE AND CLOSED
 Support Ticketing: COMPLETE AND CLOSED
-FUND Stage C: resumed as root NOW at exact 328aadf0 and its preserved zero-resource checkpoint
+FUND Stage C: resumed as root NOW at exact 328aadf0 and its preserved pre-execution checkpoint; live provider-state revalidation pending
 ```
 
 Current consolidated delivery state:

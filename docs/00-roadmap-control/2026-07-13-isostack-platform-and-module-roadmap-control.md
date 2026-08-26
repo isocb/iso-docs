@@ -105,7 +105,8 @@ authorised live promotion. Main/origin/main now align at `d78935d4`; exact-main 
 `32838343535` and post-push production public health pass. The control owner then confirmed exact
 production Render identity and minimum non-destructive L1-L2 all green. R14-A is complete and
 closed. FUND Stage C resumes as root `Now` at exact candidate `328aadf0` and its recorded
-zero-resource checkpoint; Stage C-result reconciliation is restored as `Next`. Exact R13 staging
+pre-execution checkpoint; the prior suspended-worker/empty-bucket state still requires live
+provider revalidation. Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then
 matched that exact commit, the production migration/schema proof passed and the substantive

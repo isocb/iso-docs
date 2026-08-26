@@ -11,6 +11,11 @@ Owning lane: FUND
 Existing identifier: `1R-F-A Stage C` — this document expands the Stage C already named by
 the accepted parent; it does not invent or select a new slice.
 
+Control depth: **`High`** — the slice uses dedicated credentials, runtime configuration,
+temporary external Render/R2 resources, private-object handling and exact destructive
+teardown. Retain the explicit failure, rollback, negative-access, credential-revocation and
+resource-absence gates in this plan; reducing the depth requires an explicit reason here.
+
 Parent planning authority:
 
 [`1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof`](2026-08-11-fund-phase-1-slice-1r-f-a-real-amow-template-pricing-and-deployed-renderer-proof-planning.md)
