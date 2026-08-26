@@ -24,9 +24,9 @@ Most recently completed implementation lifecycle:
 Current integrated critical-path action:
 
 ```text
-Execute the accepted isolated `1R-F-A` Stage C temporary Render/private-object proof once,
-capture the bounded evidence, prove credential/resource teardown and conclude `1R-F-A`.
-Do not use shared data, modify existing Render services or start a later slice first.
+Control owner deliberately selects the next portfolio outcome after `1R-F-A` Stage C
+closed at FAIL with zero-residue/revocation PASS. Do not infer a runner correction/rerun,
+`1R-F-B`, `1R-G`, `1R-H-A` or another parked slice.
 ```
 
 Commerce A1-A7 and the retained FUND C1-C6/1R-D/R3 foundations are implemented/reviewed and
@@ -37,9 +37,10 @@ also included by ancestry in `83356030`, with no E-D migration or shared databas
 The real-workflow human schedule remains recorded in its review. The non-executable `1R-F`
 parent remains accepted. `1R-F-A-R1B` source/folding PDF review and Stage B Linux-container
 parity pass at exact dev `139d09c4`. The dedicated Stage C contract was accepted and
-authorised on 2026-08-12; its exact candidate `328aadf0` is preserved in current ancestry and the
-bounded Stage C gate has resumed as root `Now` from its recorded zero-resource checkpoint. Later
-children remain unauthorised.
+authorised on 2026-08-12; its exact candidate `328aadf0` is preserved in current ancestry.
+The accepted runner failed deterministically before behavioural proof, so Stage C closes at
+FAIL rather than PASS. Provider and local zero-residue/revocation gates pass. Later children
+and any runner correction/new candidate remain unauthorised pending deliberate selection.
 
 Parked downstream policy plan, not selected:
 

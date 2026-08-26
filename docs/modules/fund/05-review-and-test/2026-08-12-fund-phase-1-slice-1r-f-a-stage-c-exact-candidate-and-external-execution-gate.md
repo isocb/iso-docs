@@ -4,9 +4,8 @@ Date: 2026-08-12
 
 Restart checkpoint reconciled: 2026-08-26
 
-Status: **RESUMED AS ROOT NOW — EXACT `328aadf0` LOCAL, LINUX AND SECURITY GATES PASS;
-PHASE 3 STOP GATE ACTIVE AFTER WRONG-REVISION RENDER BUILD; RUNTIME CREDENTIAL/JOB NOT
-AUTHORISED**
+Status: **COMPLETE — FAIL: ASSUMPTION NOT PROVED BECAUSE THE ACCEPTED RUNNER FAILED;
+ZERO-RESIDUE/REVOCATION GATE PASS; NO PRODUCTION MODEL BUILT OR AUTHORISED**
 
 Control depth: **`High`** — dedicated credentials, runtime configuration, a material
 external-service contract, private-object handling and exact resource teardown require the
@@ -35,16 +34,16 @@ Implementation confirmation:
 Exact commit: 328aadf0a360b4c65837327060302ddc525f6168
 Files/change boundary: bounded proof runner/tests/script/docs only; no schema, route, shared R2 utility or render.yaml change
 Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
-Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 provider inspections and credential-retention checks recorded; initial wrong-build containment recorded; subsequent exact-deploy log proves full `328aadf0` checkout, pinned image identities and terminal live state
-Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; fresh run `8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd` passes exact-prefix-zero/out-of-prefix-403 preflight and exact twelve-name/value Render read-back with 3598 seconds; worker remains suspended with auto-deploy Off/no deployment/job
-Known residual risk: proof-runner serialization defect is confirmed; temporary Render/R2/provider/local resource removal and absence remain pending; no Stage C behaviour PASS exists
-Next authorised action: while worker remains suspended, replace the exact twelve direct variables with an empty array via Render API, read back zero and prove no deploy/job/artifact drift; then delete worker and continue credential/bucket/local teardown
+Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner provider inspections and manual empty-bucket deletion recorded; agent-operated API/Keychain readbacks prove Render and derived-credential cleanup
+Environment proven: exact corrected run prefix zero; Render direct variables 12 -> 0 without deploy, exact service deletion returned 204 then ID/list absence; exact empty WEUR R2 bucket now returns 404; three derived session-credential Keychain records absent
+Known residual risk: deterministic proof-runner serialization defect prevented behavioural proof; no provider resource or credential remains; any runner correction/new exact candidate requires separate selection and review
+Next authorised action: none inside Stage C. Control owner must deliberately select either a separately reviewed local runner correction/new candidate or another parked portfolio outcome
 
-Current state: corrected job failed on deterministic local/provider `__name` runner defect; fresh prefix independently zero, exact base/suspension/off/two jobs proved; teardown pending and no Stage C pass claimed
+Current state: Stage C complete at FAIL because the accepted runner failed on deterministic local/provider `__name`; no behavioural PASS; all provider resources, credentials and named local credential records are absent
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
-Current environment: candidate preserved in current ancestry; exact worker `srv-da7au58u01pc738qld00` remains suspended with auto-deploy Off; run `8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd` was configured with prefix zero/out-of-prefix 403; single Starter job `job-da7cu29srm7s7385o5g0`, accepted command, created `11:33:29.465286145Z`, started `11:33:29Z`, finished `11:34:30Z`, terminal `failed`; final job count one and no second job exists
-Next human decision/test: run bounded Render environment-clear helper and report before/after count, no-deploy, unchanged latest deployment and two-job count
-Safe resumption point: after zero variables pass, delete the suspended worker; then revoke test-only provider credentials, delete empty bucket and remove local Keychain/helper records; local runner correction remains separate
+Current environment: candidate retained in repository history; Render service absent by ID/list; R2 bucket absent by 404; Cloudflare and Render credentials rejected with 401; all seven named local credential records and all seventeen temporary helper files absent
+Next human decision/test: deliberately select the next portfolio outcome; do not infer a rerun or runner correction from this failed assumption test
+Safe resumption point: start from this final zero-residue result; no Stage C provider or local credential state needs reconstruction, and any runner correction begins as separately accepted work
 ```
 
 ## 1. Gate Rule
@@ -280,7 +279,35 @@ be accepted by ancestry or treated as an equivalent exact artifact. Phase 3 was 
 its planned commit-mismatch stop gate. The later corrected attempt proved exact `328aadf0`
 before execution, then exposed the independent runner serialization defect recorded above.
 
-## 4. External Execution Evidence — Pending
+Teardown then proceeded without another job. The bounded Render environment call replaced
+the twelve direct variables with an empty array and read back zero while preserving the
+suspended/auto-deploy-off state, exact latest deployment and final count of two failed jobs.
+The exact service deletion then passed those same fail-closed preconditions, returned HTTP
+204 and was independently absent both by ID (HTTP 404) and filtered service list.
+
+The retained parent R2 credentials again listed the complete bucket at zero objects. S3
+container deletion was refused with HTTP 403 `AccessDenied`; no object deletion occurred and
+a read-only check proved the bucket remained empty. The control owner then deleted that
+exact empty bucket through Cloudflare. Independent S3 readback returned HTTP 404
+`NotFound`, proving the exact bucket absent. The three expired derived session-credential
+Keychain records were then deleted and independently found absent.
+
+The control owner deleted exact Cloudflare token
+`FUND-1R-F-A-Stage-C-2026-08-26` and revoked the dedicated temporary Render API key. The
+retained local values were used only for refusal proof: Cloudflare user and account verify
+endpoints each returned HTTP 401/code 1000, and Render returned HTTP 401. The final four
+parent/provider Keychain records were then deleted; combined with the three derived records,
+all seven named Stage C local credential records are absent and no secret value entered the
+evidence. A final exact filename scan returned no Stage C temporary helper file.
+
+The actual removal order differed from section 13: the exact bucket-scoped parent authority
+was retained through the complete zero-object and bucket-absence checks, and the Render key
+was retained through service deletion/absence. This avoided losing the only bounded cleanup
+and verification authorities, did not widen scope, and ended with objective 401 refusal
+before local deletion. The deviation is recorded explicitly rather than presenting the
+planned order as the observed order.
+
+## 4. External Execution Evidence — Complete, Behaviour Not Proved
 
 | Required evidence | Result |
 | --- | --- |
@@ -291,28 +318,33 @@ before execution, then exposed the independent runner serialization defect recor
 | Exact Render build commit and inert base process | PASS — corrected latest deployment `dep-da7d78a3v7hc73eug70g` is manual/live at exact `328aadf0`; worker is suspended with auto-deploy `no` and inert base command |
 | One-hour prefix-scoped temporary session credential | PASS — documented local signing; corrected run `345d4353-3af7-4a7e-93ba-11c3e1fcf6f9`, exact prefix, expiry `2026-08-26T12:59:26Z`, object-read-write/3600 seconds, prefix zero, out-of-prefix 403 and three verified temporary Keychain items |
 | Out-of-prefix and anonymous access denied | PARTIAL — out-of-prefix 403 proved in preflight; corrected runner failed before anonymous-object test |
-| Six PUT/HEAD/GET/checksum/DELETE/not-found/list-empty sequences | PENDING |
-| Node/Playwright/Chromium/font/container identity | STOP — exact container reached Playwright execution but failed because serialized `page.evaluate` code referenced unavailable `__name`; local runner correction/new candidate required |
-| Cold/warm/batch timing and peak memory below 80% | PENDING |
+| Six PUT/HEAD/GET/checksum/DELETE/not-found/list-empty sequences | NOT OBTAINED — accepted runner failed before the first sequence; assumption remains unproved |
+| Node/Playwright/Chromium/font/container identity | FAIL — exact container reached Playwright execution but serialized `page.evaluate` code referenced unavailable `__name`; local reproduction confirms deterministic runner defect |
+| Cold/warm/batch timing and peak memory below 80% | NOT OBTAINED — runner stopped before measurements |
 | Job terminal success and final exact-prefix object count zero | STOP — corrected job `job-da7dbsh42hec73b401pg` failed at renderer serialization after inline gates; two jobs/no third; independent parent-authority fresh-prefix count is zero |
 
-## 5. Teardown And Revocation Evidence — Pending
+## 5. Teardown And Revocation Evidence — Pass
 
 | Required evidence | Result |
 | --- | --- |
 | Exact prefix independently listed as empty | PASS — retained parent authority read-only listing returned corrected fresh-prefix object count zero after terminal job failure |
-| Dedicated R2 parent token revoked | PENDING |
-| Derived temporary credential rejected after revocation | PENDING |
-| Stage C variables removed | PENDING |
-| Temporary Render service deleted and exact ID/name absent | PENDING |
-| Dedicated Render API key revoked and rejected | PENDING |
-| Dedicated empty R2 bucket deleted and exact name absent | PENDING |
-| Named local Stage C credential records deleted and absent | PENDING |
-| No database, disk, hostname, shared data or customer object created | PENDING |
+| Dedicated R2 parent token revoked | PASS — control-owner deletion; retained value subsequently rejected at both Cloudflare verify endpoints with HTTP 401/code 1000 |
+| Derived temporary credential rejected after revocation | PASS end state — parent token is rejected, all three derived-value records are absent and the target bucket is absent; no separate derived replay was possible after those records were removed |
+| Stage C variables removed | PASS — direct environment count changed from twelve to zero by API update without deploy; suspension/off, exact deploy and two-job state were preserved |
+| Temporary Render service deleted and exact ID/name absent | PASS — exact preflight passed; DELETE returned 204; subsequent exact-ID read returned 404 and filtered service list had no match |
+| Dedicated Render API key revoked and rejected | PASS — control-owner revocation; retained value subsequently returned HTTP 401 from Render |
+| Dedicated empty R2 bucket deleted and exact name absent | PASS — complete parent-authority listing was zero; control-owner deleted the exact bucket after S3 container deletion was refused under object-only authority; independent readback returned 404 `NotFound` |
+| Named local Stage C credential records and helpers deleted and absent | PASS — three derived plus four parent/provider records deleted; all seven exact record names absent; all seventeen exact temporary helper files absent |
+| No database, disk, hostname, shared data or customer object created | PASS — worker had no disk/route/database/environment group, exact run prefix remained zero and both isolated provider resources are absent |
 
 ## 6. Current Disposition
 
-Stage C is the restored root `Now`; resume only from the checkpoint above. Do not promote
-staging/main or start `1R-F-B`, `1R-G` or `1R-H-A`.
-The record may become PASS only when every pending exact-candidate, execution and teardown
-row is replaced by evidence.
+Stage C is complete with result **FAIL — assumption not proved**. The accepted exact
+candidate reached browser execution but its deterministic `__name` serialization defect
+prevented the private-object round-trip evidence. This is not a Cloudflare or Render
+security-model failure and is not a production-build result. Zero-residue and credential
+revocation pass in full.
+
+Do not promote staging/main, reopen Stage C, correct the runner or start `1R-F-B`, `1R-G` or
+`1R-H-A` automatically. The next action is a deliberate control-owner portfolio selection;
+any local runner correction and new exact candidate must be separately accepted.

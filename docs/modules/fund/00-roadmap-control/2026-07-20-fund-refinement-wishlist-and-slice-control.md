@@ -3,10 +3,11 @@
 Original document: 2026-06-30
 Reconciled: 2026-07-20
 
-Current dependency note: 2026-08-11 - corrective `1R-E-D` remains in current ancestry.
+Current dependency note: 2026-08-26 - corrective `1R-E-D` remains in current ancestry.
 `1R-F-A-R1B` source/folding composition, PDF/physical review and Stage B Linux parity are
-green. The dedicated Stage C contract is accepted and its bounded implementation,
-exact-commit gates, one isolated execution and teardown are portfolio `Now`.
+green. Stage C is complete at FAIL after a deterministic proof-runner defect prevented
+behavioural proof; zero-residue/revocation passes. This subordinate register selects no
+runner correction, rerun or later FUND child.
 
 Status: Active subordinate register of genuinely absent refinements; no next-slice authority
 

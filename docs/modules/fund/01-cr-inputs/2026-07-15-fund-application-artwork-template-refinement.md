@@ -2,9 +2,10 @@
 
 Date: 2026-07-15
 
-Status: Accepted governed input to the `1R-F` parent; bounded `1R-F-A` source/physical and
-Stage B Linux parity gates pass at exact dev `139d09c4`; Stage C authority decision selected;
-no Stage C or production implementation authorised
+Status: Accepted governed input consumed by the `1R-F` parent; bounded `1R-F-A`
+source/physical and Stage B gates pass; Stage C closes at FAIL because its accepted runner
+failed before behavioural proof, with zero-residue/revocation PASS; no production
+implementation authorised
 
 Source brief:
 

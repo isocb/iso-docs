@@ -2,7 +2,7 @@
 
 Created: 2026-06-25
 
-Last consolidated: 2026-08-25
+Last consolidated: 2026-08-26
 
 Status: Active authoritative control for the FUND lane
 
@@ -59,7 +59,7 @@ same row.
 | [`2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md) | Planned through `1Q-G-B` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md) | Planned through `1Q-G-A` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-13-fund-cr-commission-ladder-planner-input.md`](../01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md) | Policy/assignment foundation partly incorporated through `1R-C5`; aggregate calculation, statements and settlement remain absent | Parked later commission work, represented by subordinate `2R-PROD-05`; not selected |
-| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B Linux parity and exact `139d09c4` dev scan pass; dedicated Stage C contract accepted and authorised on 2026-08-12; downstream short-code/single-artwork policy preserved in parked `1R-H-A` | Stage C remains root `Now`. Final read-only proof: fresh prefix zero, suspended/off, exact latest deployment, two jobs/no third. No more attempt. Teardown Render variables/service, provider credentials, empty bucket and local records; retain deterministic runner defect for reviewed correction/new candidate. External execution/removal remain governed by the accepted assumption-test gate; `1R-H-A` remains inventory only and no production implementation is authorised |
+| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B Linux parity and exact `139d09c4` dev scan pass; Stage C exact candidate passed local/Linux/security but its accepted runner failed deterministically before behavioural proof; zero-residue/revocation passes | `1R-F-A` Stage C complete at FAIL — assumption not proved, not a provider-security failure or production result. No temporary provider/local residue remains. Runner correction/new candidate or another parked outcome requires deliberate root selection; `1R-H-A` remains inventory only and no production implementation is authorised |
 | [`2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md`](../01-cr-inputs/2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md) | Consumed as the boundary preventing `1R-F-A` from absorbing collective/Standard paths | `1R-F-F` through `I` remain parked; no implementation authority |
 | [`2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`](../01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md) | `1R-F-A` automation, physical review and Linux parity accept candidate capacities of ten STANDARD portrait and twelve COMPACT landscape rows; production selection policy remains later `1R-F-B/D` work | Proof evidence only; no schema/policy implementation authorised |
 | [`2026-07-15-fund-template-manager-brief.md`](../01-cr-inputs/2026-07-15-fund-template-manager-brief.md) | Retained source brief for the Application/Artwork Template input | Provenance only; not a fourth CR and its provisional `T` labels carry no slice authority |
@@ -69,10 +69,10 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> teardown FUND 1R-F-A Stage C test resources: fresh prefix zero/exact base/two jobs proved; clear Render vars, delete worker, revoke test keys/token, delete empty bucket/local records; retain runner defect
-ROOT NEXT -> reconcile the Stage C result, conclude 1R-F-A and deliberately reselect
+ROOT NOW  -> control-owner deliberate portfolio reselection after 1R-F-A Stage C closed at FAIL with zero residue
+ROOT NEXT -> not selected; do not infer a runner correction/rerun, 1R-F-B, 1R-G or 1R-H-A
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
-FUND      -> ACTIVE at preserved Stage C gate; R1B human/physical, Stage B and exact candidate gates PASS; external execution/teardown pending
+FUND      -> 1R-F-A Stage C COMPLETE at FAIL (assumption not proved); zero-residue/revocation PASS; awaiting deliberate portfolio selection
 ```
 
 Email F3, Role Authority and Support Ticketing are complete and closed. `PLAT-ROLE-R1` is
@@ -169,6 +169,14 @@ passed inline gates with 3387 seconds then failed terminal after 53 seconds; two
 No further attempt. Exact log identifies Playwright `page.evaluate` browser-context
 `__name` failure. Final read-only proof returns fresh-prefix zero, suspended/off, exact latest
 deployment and two jobs. Clear/verify zero Render variables as the first teardown action.
+That zero-residue sequence is now complete without a further job: Render variables changed
+from twelve to zero, the exact service returned deletion 204 and is absent by ID/list, and
+the complete R2 bucket listed zero objects before control-owner deletion and independent
+404 proof. The Cloudflare parent token and Render operator key were deleted/revoked and
+subsequently returned HTTP 401; all seven named local credential records and temporary
+helpers are absent. Stage C therefore closes at FAIL because the assumption was not proved,
+while zero-residue/revocation passes. No runner correction, rerun or later FUND child is
+selected by that outcome.
 
 ## 1. Control Authority And Reading Rule
 
@@ -201,7 +209,7 @@ R14-A local R1-R9, staging S1-S4 and production L1-L2: PASS; COMPLETE AND CLOSED
 protected work/dev/staging/main Security Scans: PASS; exact-main run 32838343535 complete
 Role Authority: COMPLETE AND CLOSED
 Support Ticketing: COMPLETE AND CLOSED
-FUND Stage C: root NOW at Phase 3 stop gate; accidental d78935d4 worker exists with auto-deploy reported Off after creation, current suspension/command/environment unproved, and no runtime credential/job authorised
+FUND Stage C: COMPLETE at FAIL because deterministic runner defect prevented behavioural proof; zero-residue/revocation PASS; no provider/local test resource remains; deliberate root reselection required
 ```
 
 Current consolidated delivery state:
@@ -252,9 +260,10 @@ Current E-A/E-B/E-C promotion state:
   the non-executable successor to the three governed CRs; and
 - `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is accepted and locally
   implemented through the Stage C exact candidate. R1B automation, human/physical review,
-  Linux-container parity and exact candidate gates pass. Stage C external execution remains
-  authorised by its dedicated plan but is paused as root `Next`; no `1R-F-B` through
-  `1R-F-I`, `1R-G` or artwork/template production implementation is authorised.
+  Linux-container parity and exact candidate gates pass. Stage C external execution failed
+  before behavioural proof on the deterministic runner defect; all temporary resources and
+  credentials are absent. No `1R-F-B` through `1R-F-I`, `1R-G`, runner correction/rerun or
+  artwork/template production implementation is selected or authorised.
 - the 2026-07-20 refinement reconciliation is accepted as subordinate placement control:
   it must inform `1R-F-A` and be applied before accepting work beyond it, but it does not
   replace the authoritative next-candidate decision or authorise a refinement implementation.

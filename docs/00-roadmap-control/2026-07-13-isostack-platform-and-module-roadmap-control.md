@@ -2,11 +2,11 @@
 
 Date: 2026-07-27
 
-Last portfolio reconciliation: 2026-08-25
+Last portfolio reconciliation: 2026-08-26
 
 Status: Active parent roadmap
 
-## 0. Current Portfolio Control — 2026-08-25
+## 0. Current Portfolio Control — 2026-08-26
 
 This section is the current cross-lane control and supersedes older global `single next`
 wording later in this document. Older statements remain evidence of the sequence at the
@@ -79,8 +79,8 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Final read-only proof passes: fresh exact-prefix object count zero under parent authority; worker suspended/auto-deploy `no`; latest deployment remains `dep-da7d78a3v7hc73eug70g`/exact `328aadf0`; corrected job failed; total jobs two/no third. No further attempt. Teardown in order: clear and verify zero Render variables without deploy/job, delete worker, revoke Render/Cloudflare test credentials, delete empty bucket, remove local Keychain/helper records. Retain runner defect separately. Existing services remain untouched. |
-| **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
+| **NOW** | Control-owner deliberate portfolio reselection after FUND `1R-F-A` Stage C closure | Stage C is complete at FAIL because the accepted runner failed deterministically before behavioural proof; zero-residue/revocation passes. No Render service/variables, R2 bucket, provider credential, local credential record or temporary helper remains. Select a separately reviewed runner-correction/new-candidate slice or another parked outcome; do not infer either. |
+| **NEXT** | Not selected pending the deliberate control-owner decision | Do not infer `1R-F-B`, `1R-G`, `1R-H-A` or a Stage C rerun automatically. Use the final Stage C evidence and authoritative child roadmaps for the next pair. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
 promotion. Exact `250baf12` is aligned through main; all protected scans, Render identity,
@@ -196,7 +196,15 @@ separately reviewed local correction/new candidate. Final parent-authority read-
 then returned fresh exact-prefix object count zero; worker remains suspended/auto-deploy
 `no`, latest deployment exact, corrected job failed, total jobs two. Begin controlled
 teardown by clearing and verifying zero Render variables without deploy/job.
-Stage C-result reconciliation is restored as `Next`. Exact R13 staging
+That teardown completed without another job: direct variables reduced from twelve to zero;
+the exact Render service returned deletion 204 and is absent by ID/list; the complete R2
+bucket listed zero objects before control-owner deletion and independent readback returned
+404. The control owner deleted the Cloudflare parent token and revoked the Render operator
+key; refusal readbacks returned Cloudflare 401/code 1000 on both verify routes and Render
+401. All seven named Keychain records are absent. Stage C closes at FAIL because the
+assumption was not proved, with zero-residue/revocation PASS. Root selection now returns to
+the control owner; no later FUND child or rerun is inferred.
+Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then
 matched that exact commit, the production migration/schema proof passed and the substantive
