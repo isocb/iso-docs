@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Phases 3 and all pre-execution gates pass. Fresh run `8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd` has an exact empty prefix, out-of-prefix 403, expiry `2026-08-26T12:22:56Z`, and 3598 seconds after exact twelve-name/value Render read-back; no deploy/job occurred. Create exactly one Starter one-off job from the suspended worker using `npm run proof:fund:1r-f-a:stage-c`, then poll that job only to terminal state. Existing services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | The single authorised Starter job `job-da7cu29srm7s7385o5g0` was created from the suspended worker with 2967 credential seconds and ran only command `npm run proof:fund:1r-f-a:stage-c`. It moved pending → running → failed from `11:33:29Z` to `11:34:30Z`; final job count is one and no second job exists. Do not rerun. Inspect only that exact job's log to identify the failure and confirm cleanup evidence. Existing services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -168,7 +168,10 @@ The environment-shape disagreement is resolved without mutation. Because the fir
 credential expired before execution, fresh run `8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd` was
 created and now passes exact-prefix zero, out-of-prefix 403 and 3600-second scope; the same
 twelve Render names and values read back exactly with 3598 seconds remaining, no deploy and
-no job. Create exactly one Starter one-off job from the suspended worker and poll only it.
+no job. The single authorised Starter job `job-da7cu29srm7s7385o5g0` was then created with
+2967 seconds remaining and moved pending → running → failed from `11:33:29Z` to `11:34:30Z`.
+Final job count is one and no second job was created. Do not rerun; inspect only its log and
+confirm failure cause and cleanup evidence.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then
