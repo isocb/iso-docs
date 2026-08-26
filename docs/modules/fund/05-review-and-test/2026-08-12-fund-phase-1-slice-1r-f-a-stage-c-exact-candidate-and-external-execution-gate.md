@@ -24,15 +24,15 @@ Implementation confirmation:
 Exact commit: 328aadf0a360b4c65837327060302ddc525f6168
 Files/change boundary: bounded proof runner/tests/script/docs only; no schema, route, shared R2 utility or render.yaml change
 Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
-Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 read-only Render inspection found no matching Stage C service
-Environment proven: local and pinned Linux candidate; absence of a matching Stage C Render service by control-owner inspection only; R2 execution and teardown not proven
-Known residual risk: private R2 boundary/state, dedicated operator authority, new exact worker/job execution, cleanup, credential revocation and resource absence remain pending
-Next authorised action: revalidate the private R2 proof boundary, then establish dedicated operator authorities and resume only the accepted one-window Phase 2-8 sequence
+Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 read-only Render/R2 inspections found no matching Stage C service and confirmed the dedicated WEUR bucket is empty/private
+Environment proven: local and pinned Linux candidate; matching Stage C Render service absent; exact dedicated R2 bucket empty with no public-development URL, custom domain, CORS, lock or event notification
+Known residual risk: stale non-expiring parent-token revocation, dedicated Render operator authority, new exact worker/job execution, fresh temporary credential, cleanup, revocation and resource absence remain pending
+Next authorised action: revoke and verify removal of the exact stale Stage C parent token, then establish fresh bounded operator authorities and resume only the accepted one-window Phase 3-8 sequence
 
 Current state: Stage C resumed as root Now after R14-A closure; exact candidate gates pass and no external Stage C result is claimed
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
-Current environment: candidate preserved in current ancestry; control-owner read-only Render inspection found no matching Stage C service, so the prior suspended-worker claim is superseded; private R2 proof-bucket state remains unverified; existing auto-deploy services were not changed
-Next human decision/test: inspect the Cloudflare R2 account for a matching dedicated Stage C bucket and record its non-secret identity, object count and private-access settings before any creation, credential or deletion action
+Current environment: candidate preserved in current ancestry; no matching Stage C Render service; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` is empty/private; matching bucket-scoped Object Read & Write parent-token record is active with a `forever` TTL; existing auto-deploy services were not changed
+Next human decision/test: revoke exact token `FUND-1R-F-A-Stage-C-2026-08-12`, verify it no longer appears as usable, and stop before creating a replacement token, Render service or temporary credential
 Safe resumption point: use only exact 328aadf0 under the accepted one-window execution/teardown contract; stop before any broader resource, application or product work
 ```
 
@@ -96,17 +96,37 @@ and no service ID or one-off job exists to carry forward from that inspection. T
 supersedes the prior suspended-worker claim but does not prove the Cloudflare/R2 boundary or
 authorise creation of a replacement worker.
 
+The control owner then completed a read-only Cloudflare R2 dashboard inspection on
+2026-08-26 and reported:
+
+- account ID `43e9ed0a07538f8859168b9c692c91f9`;
+- exact bucket `isostack-fund-1r-f-a-stage-c-964210fa`, located in Western Europe (`WEUR`);
+- object count zero;
+- public-development URL disabled and no custom domain;
+- no CORS policy, bucket-lock rule or event notification;
+- no connected Worker/binding shown;
+- only Cloudflare's default rule to abort incomplete multipart uploads after seven days;
+  and
+- active parent token `FUND-1R-F-A-Stage-C-2026-08-12`, with Object Read & Write permission
+  scoped only to the exact bucket and TTL `forever`; no credential value was shared.
+
+This passes the Phase 2 bucket identity, initial-empty-list and private-access boundary. The
+default multipart-abort rule is provider baseline behaviour and does not replace Stage C's
+immediate exact-key deletion and final zero-prefix proof. Parent-token usability, secure
+retention, revocation/refusal, temporary credential issuance and all Render execution remain
+unproved.
+
 This is not yet a failed gate: no external resource should exist before the exact Linux and
-Security gates pass. Before Phase 2 begins, the control window still requires a dedicated
-operator-only Render API key and dedicated Cloudflare/R2 administrative parent-token
-authority. Neither value may enter Git, documentation, command output or shell history.
+Security gates pass. Before Phase 3 begins, the control window still requires a dedicated
+operator-only Render API key and a fresh dedicated Cloudflare/R2 parent-token authority.
+Neither value may enter Git, documentation, command output or shell history.
 
 ## 4. External Execution Evidence — Pending
 
 | Required evidence | Result |
 | --- | --- |
-| Dedicated bucket identity, empty initial list, no `r2.dev`, domain or CORS | PENDING |
-| Dedicated parent token scope retained outside Render | PENDING |
+| Dedicated bucket identity, empty initial list, no `r2.dev`, domain or CORS | PASS — control-owner dashboard inspection; exact WEUR bucket recorded above |
+| Dedicated parent token scope retained outside Render | PENDING — exact active bucket-scoped Object Read & Write token record found with TTL `forever`; revoke this stale token before creating fresh execution-window authority |
 | Temporary worker has no route/disk/database/env group and auto-deploy is off | PENDING |
 | Exact Render build commit and inert base process | PENDING |
 | One-hour prefix-scoped temporary session credential | PENDING |

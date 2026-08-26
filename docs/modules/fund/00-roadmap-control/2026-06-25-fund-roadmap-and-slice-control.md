@@ -59,7 +59,7 @@ same row.
 | [`2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md) | Planned through `1Q-G-B` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md) | Planned through `1Q-G-A` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-13-fund-cr-commission-ladder-planner-input.md`](../01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md) | Policy/assignment foundation partly incorporated through `1R-C5`; aggregate calculation, statements and settlement remain absent | Parked later commission work, represented by subordinate `2R-PROD-05`; not selected |
-| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B Linux parity and exact `139d09c4` dev scan pass; dedicated Stage C contract accepted and authorised on 2026-08-12; downstream short-code/single-artwork policy preserved in parked `1R-H-A` | Stage C resumes as root `Now` only from exact candidate `328aadf0` and its recorded pre-execution checkpoint. The control owner's 2026-08-26 read-only Render inspection found no matching Stage C service; the private R2 proof boundary remains to be revalidated. External execution/teardown remain governed by the accepted gate; `1R-H-A` remains inventory only and no production implementation is authorised |
+| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B Linux parity and exact `139d09c4` dev scan pass; dedicated Stage C contract accepted and authorised on 2026-08-12; downstream short-code/single-artwork policy preserved in parked `1R-H-A` | Stage C resumes as root `Now` only from exact candidate `328aadf0` and its recorded pre-execution checkpoint. The control owner's 2026-08-26 read-only inspections found no matching Stage C Render service and confirmed the dedicated WEUR R2 bucket is empty/private; existing parent-token disposition remains unresolved. External execution/teardown remain governed by the accepted gate; `1R-H-A` remains inventory only and no production implementation is authorised |
 | [`2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md`](../01-cr-inputs/2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md) | Consumed as the boundary preventing `1R-F-A` from absorbing collective/Standard paths | `1R-F-F` through `I` remain parked; no implementation authority |
 | [`2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`](../01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md) | `1R-F-A` automation, physical review and Linux parity accept candidate capacities of ten STANDARD portrait and twelve COMPACT landscape rows; production selection policy remains later `1R-F-B/D` work | Proof evidence only; no schema/policy implementation authorised |
 | [`2026-07-15-fund-template-manager-brief.md`](../01-cr-inputs/2026-07-15-fund-template-manager-brief.md) | Retained source brief for the Application/Artwork Template input | Provenance only; not a fourth CR and its provisional `T` labels carry no slice authority |
@@ -69,7 +69,7 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> resume and execute FUND 1R-F-A Stage C from exact 328aadf0; matching Render service absent by control-owner inspection, private R2 proof boundary revalidation next
+ROOT NOW  -> resume and execute FUND 1R-F-A Stage C from exact 328aadf0; matching Render service absent and dedicated WEUR R2 bucket empty/private by control-owner inspection; parent-token disposition next
 ROOT NEXT -> reconcile the Stage C result, conclude 1R-F-A and deliberately reselect
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
 FUND      -> ACTIVE at preserved Stage C gate; R1B human/physical, Stage B and exact candidate gates PASS; external execution/teardown pending
@@ -90,8 +90,15 @@ dev-aligned at exact `328aadf0`; candidate Linux parity `31599134487` and Securi
 Stage C result has yet been recorded. Exact candidate
 `328aadf0a360b4c65837327060302ddc525f6168` remains preserved. The control owner's
 2026-08-26 read-only Render dashboard inspection found no matching Stage C service,
-superseding the prior suspended-worker claim. The private R2 proof boundary has not yet been
-revalidated in the resumed control window; existing auto-deploy services remain untouched.
+superseding the prior suspended-worker claim; existing auto-deploy services remain untouched.
+The control owner's subsequent read-only Cloudflare inspection confirmed account
+`43e9ed0a07538f8859168b9c692c91f9`, bucket
+`isostack-fund-1r-f-a-stage-c-964210fa`, WEUR placement, zero objects, disabled public
+development access, no custom domain/CORS/lock/event notification and only the default
+seven-day incomplete-multipart abort rule. Matching parent token
+`FUND-1R-F-A-Stage-C-2026-08-12` is active, Object Read & Write scoped only to that bucket
+and has a `forever` TTL. It must be revoked before fresh execution-window authority is
+created.
 Resume only from that checkpoint under the accepted Stage C gate.
 
 ## 1. Control Authority And Reading Rule
@@ -125,7 +132,7 @@ R14-A local R1-R9, staging S1-S4 and production L1-L2: PASS; COMPLETE AND CLOSED
 protected work/dev/staging/main Security Scans: PASS; exact-main run 32838343535 complete
 Role Authority: COMPLETE AND CLOSED
 Support Ticketing: COMPLETE AND CLOSED
-FUND Stage C: resumed as root NOW at exact 328aadf0; matching Render service absent by control-owner inspection; private R2 proof boundary revalidation pending
+FUND Stage C: resumed as root NOW at exact 328aadf0; matching Render service absent and dedicated WEUR R2 bucket empty/private by control-owner inspection; parent-token disposition pending
 ```
 
 Current consolidated delivery state:
