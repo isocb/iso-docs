@@ -2,7 +2,7 @@
 
 Date: 2026-08-05
 
-Last updated: 2026-08-24
+Last updated: 2026-08-26
 
 Purpose: explain, in plain English, how a new idea, defect or improvement enters the
 IsoStack development process without taking over the current work.
@@ -176,6 +176,43 @@ should define:
 - stop conditions and dependencies.
 
 Large CRs may produce several slices. Only the selected slice is active.
+
+### Say Whether This Tests An Assumption Or Builds Production
+
+Some work exists to answer “can this approach work safely?” Other work establishes the
+model the application will actually operate. Those are different outcomes and every
+relevant plan must say which one it owns.
+
+An **assumption test** may briefly create a temporary service, credential, bucket, database
+branch or provider setting. The plan must say:
+
+- the exact question being tested;
+- which things exist only for the test;
+- which things will be removed and credentials revoked before the test closes;
+- what evidence or code remains afterward; and
+- that success informs later planning rather than silently becoming the production model.
+
+A **production build** creates or changes persistent application behaviour or operations.
+Its plan must identify where runtime credentials live, who can recover or rotate them, what
+is backed up or reconstructable, which services remain, and how the result moves safely to
+staging and live.
+
+Use a visible line near the top of the plan:
+
+```text
+Work type: Assumption test — not a production build
+```
+
+or:
+
+```text
+Work type: Production build
+```
+
+Do not make a business reader infer this from words such as `proof`, `spike`, `sandbox`,
+`ephemeral` or `teardown`. Explain them as “test an assumption”, “temporary”, “remove and
+revoke”, and “prove nothing remains”. Passing an assumption test does not decide production
+storage, credentials, backup, recovery, retention, scale or operating ownership.
 
 ### Choose Evidence Depth, Not Another Process
 

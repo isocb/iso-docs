@@ -16,6 +16,19 @@ temporary external Render/R2 resources, private-object handling and exact destru
 teardown. Retain the explicit failure, rollback, negative-access, credential-revocation and
 resource-absence gates in this plan; reducing the depth requires an explicit reason here.
 
+Work type: **ASSUMPTION TEST — NOT A PRODUCTION BUILD**
+
+```text
+Question being tested: can the accepted artwork renderer run once in isolated Render Linux and complete private, scoped R2 object round trips without leaving access or resources behind?
+Temporary during the test: one dedicated R2 bucket and parent token, one prefix-scoped runtime credential, one inert Render worker, one one-off job and their local operator credential records
+Removed and revoked at the end: every object, R2 credential, Render credential, local credential record, temporary Render resource and the dedicated bucket; absence must be proved
+Retained result: the bounded proof runner/tests plus redacted timing, identity, access-denial, checksum, cleanup and absence evidence in GitHub/isodocs
+Production consequence: PASS supports later production planning only; it does not create, select or authorise the production renderer, bucket, credential storage, retention, backup, recovery or operating model
+```
+
+In this record, `teardown` always means the plain-language end state: remove the temporary
+resources, revoke and delete the temporary credentials, and prove that nothing remains.
+
 Parent planning authority:
 
 [`1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof`](2026-08-11-fund-phase-1-slice-1r-f-a-real-amow-template-pricing-and-deployed-renderer-proof-planning.md)
@@ -513,8 +526,11 @@ After the one-off job is terminal:
 8. delete the temporary Render service by exact service ID;
 9. verify the service ID/name no longer appears in the authorised Render workspace;
 10. revoke the dedicated Stage C Render API key and prove it no longer authenticates;
-11. delete the now-empty dedicated R2 bucket through the operator control plane; and
-12. verify the bucket name no longer exists and no Blueprint/environment group was created.
+11. delete the now-empty dedicated R2 bucket through the operator control plane;
+12. verify the bucket name no longer exists and no Blueprint/environment group was created;
+    and
+13. delete every named local Stage C credential record and verify those record names are
+    absent.
 
 If any step fails, stop. Do not retry with broader authority or delete the bucket while its
 contents are unknown. Stage C remains incomplete until the same control window records the

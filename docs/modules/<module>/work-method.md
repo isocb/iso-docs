@@ -4,9 +4,9 @@ Purpose: define the durable human-and-AI method for turning an idea, fault or ob
 into a controlled IsoStack release without allowing the portfolio to become an unranked
 list of competing work.
 
-Version: 4.2
+Version: 4.3
 
-Last updated: 2026-08-24
+Last updated: 2026-08-26
 
 Status: Authoritative working-method protocol. Product and Platform roadmap authority is
 held by the root and child roadmap files named below, not by this method document.
@@ -257,6 +257,44 @@ Next authorised action:
 Use explicit `not applicable`, `not run` or `pending` statements instead of silently
 omitting a field. Existing detailed evidence follows only where it assists review,
 reproduction or safe resumption.
+
+### 5.4 Assumption Tests And Production Models
+
+A selected slice whose primary purpose is to answer an uncertainty through a proof,
+feasibility run, spike, sandbox, temporary provider configuration or disposable external
+resource must declare near the top of its existing plan:
+
+```text
+Work type: Assumption test — not a production build
+Question being tested:
+Temporary during the test:
+Removed and revoked at the end:
+Retained result:
+Production consequence:
+```
+
+Use plain business language in every field. `Removed and revoked at the end` identifies the
+required end state, not merely the implementation task. `Retained result` normally contains
+only code, automated checks and redacted evidence. `Production consequence` must say
+explicitly whether success only informs later planning or whether a separate accepted plan
+already authorises a production change.
+
+A plan that creates or changes persistent application behaviour or infrastructure must say
+`Work type: Production build` and identify the persistent service/configuration boundary,
+operational owner, credential location, recovery/redundancy expectation and promotion gate.
+If a slice contains both an assumption test and a proposed production model, separate their
+authority and stop gates so that passing the test cannot silently authorise the persistent
+model.
+
+Do not use development shorthand such as `proof`, `pilot`, `spike`, `sandbox`, `ephemeral`
+or `teardown` as the only description. Pair it with plain wording: what is being tested,
+what exists only temporarily, what will be removed, what remains afterward and what has not
+been authorised. Confirmations and reviews must preserve the same distinction. An
+assumption-test PASS means the declared assumption is supported; it does not mean the
+production model is built, production-ready or approved.
+
+This declaration clarifies an existing slice; it does not add a lifecycle stage, status,
+document, branch or approval.
 
 ## 6. Defects Discovered During Active Work
 

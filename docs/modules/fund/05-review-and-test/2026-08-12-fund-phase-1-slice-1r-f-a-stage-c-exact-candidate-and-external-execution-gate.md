@@ -12,6 +12,16 @@ external-service contract, private-object handling and exact resource teardown r
 full failure, rollback, negative-access, revocation and absence evidence already defined by
 the accepted plan.
 
+Work type: **ASSUMPTION TEST — NOT A PRODUCTION BUILD**
+
+Plain-language boundary: Stage C temporarily tests whether the accepted renderer and
+private, scoped R2 access model work together in isolated Render Linux. Every provider
+resource, credential and local credential record created for the test must be removed or
+revoked and proved absent. Only the proof code and redacted evidence remain. A PASS informs
+later production planning; it does not build or authorise the production storage,
+credential, backup, recovery, retention or operating model. In this record, `teardown`
+means “remove and revoke the temporary test setup and prove nothing remains”.
+
 Planning authority:
 
 [`1R-F-A Stage C temporary Render/private-object proof`](../03-slice-planning/2026-08-12-fund-phase-1-slice-1r-f-a-stage-c-temporary-render-private-object-proof-planning.md)
@@ -165,6 +175,7 @@ output or shell history.
 | Temporary Render service deleted and exact ID/name absent | PENDING |
 | Dedicated Render API key revoked and rejected | PENDING |
 | Dedicated empty R2 bucket deleted and exact name absent | PENDING |
+| Named local Stage C credential records deleted and absent | PENDING |
 | No database, disk, hostname, shared data or customer object created | PENDING |
 
 ## 6. Current Disposition

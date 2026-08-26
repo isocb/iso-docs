@@ -6,7 +6,7 @@ portfolio and promotion method.
 Scope: developers, maintainers, contractors and AI assistants working with IsoStack
 repositories.
 
-Last updated: 2026-08-24
+Last updated: 2026-08-26
 
 ## Authoritative Working Method
 
@@ -69,6 +69,27 @@ human evidence, proven environment, residual risk and next authorised action.
 The active controlling record also carries one in-place restart checkpoint: current state,
 last proven commit, current environment, next human decision/test and safe resumption point.
 Do not create a separate status document for it.
+
+## Assumption Tests Versus Production Builds
+
+Plans must say in ordinary language whether the selected work is:
+
+- an **assumption test**, which temporarily proves whether an approach or security model can
+  work; or
+- a **production build**, which creates or changes the persistent model the application will
+  operate and recover.
+
+When a slice uses temporary credentials, provider settings, services, data or other
+resources to answer an uncertainty, put this distinction near the top of its existing plan.
+State what is temporary, what will be removed at the end, what evidence will remain and
+whether success authorises any production design. An assumption-test PASS supports a later
+decision; it does not silently approve production infrastructure, credential storage,
+retention, backup, recovery or operating ownership.
+
+Do not rely on development shorthand alone. Pair terms such as `proof`, `spike`, `sandbox`,
+`ephemeral` or `teardown` with plain language such as “test an assumption”, “temporary”,
+“remove and revoke”, and “prove nothing remains”. This is a communication requirement
+inside the existing lifecycle, not another lane, status, document or approval.
 
 ## Branch Corridor Model
 
