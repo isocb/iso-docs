@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Phase 3 stop gate remains active after the wrong-revision `d78935d4` build. Worker `srv-da7au58u01pc738qld00` is now proved manually suspended with auto-deploy Off, the accepted inert command, no linked environment group, secret file or disk, and no runtime credential/job; its blank user-environment-variable count is not accepted as zero. Confirm that count is zero, then correct this isolated worker to exact `328aadf0` within the accepted gate. Existing auto-deploy services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Phase 3 stop gate remains active after the wrong-revision `d78935d4` build. Worker `srv-da7au58u01pc738qld00` is proved manually suspended with auto-deploy Off, the accepted inert command, no linked environment group, secret file or disk, and no runtime credential/job. Its one reported user-defined `PORT` variable is not secret but violates the empty-worker boundary. Remove only that variable using Save only, re-prove zero variables/suspension/auto-deploy Off, then correct this isolated worker to exact `328aadf0`. Existing auto-deploy services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -126,10 +126,13 @@ initial log proves checkout/build of wrong revision `d78935d4` and stops at `Dep
 no runtime proof or credential activity is shown. Subsequent dashboard evidence identifies
 `srv-da7au58u01pc738qld00`, records auto-deploy Off, status `Suspended`, latest event
 `Manually Suspended`, the accepted inert command, and no linked environment group, secret
-file or disk. The submitted user-environment-variable count was blank and is therefore not
-accepted as zero. The planned Phase 3 mismatch stop gate remains active; no runtime
-credential or job is authorised until that count is proved zero and the isolated worker is
-corrected to exact `328aadf0`.
+file or disk. The control owner subsequently confirmed one user-defined variable, reported
+as `PORT` with a five-digit value that was not shared or recorded. Render documents `PORT`
+as an optional web-service setting; this background worker has no inbound route and its
+inert command does not use it. It is not treated as a credential exposure, but it violates
+the accepted empty-worker boundary. The planned Phase 3 mismatch stop gate remains active;
+remove only that variable using Save only and re-prove zero variables, suspension and
+auto-deploy Off before correcting the isolated worker to exact `328aadf0`.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then

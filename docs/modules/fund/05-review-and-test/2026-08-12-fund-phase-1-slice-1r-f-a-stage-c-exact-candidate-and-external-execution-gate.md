@@ -37,14 +37,14 @@ Files/change boundary: bounded proof runner/tests/script/docs only; no schema, r
 Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
 Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 provider inspections and credential-retention checks recorded; subsequent Render build log proves an accidental initial `d78935d4` worker build before auto-deploy was turned off; later dashboard evidence proves the exact worker is manually suspended and inert
 Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; attached Render log proves only the wrong-revision `d78935d4` image build through `Deploying...`, with no runtime, proof-runner, R2-operation or credential evidence
-Known residual risk: the submitted user-environment-variable count is blank and therefore not proved zero; exact 328aadf0 artifact, runtime credentials/job, cleanup, revocation and resource absence remain pending
-Next authorised action: keep `srv-da7au58u01pc738qld00` suspended and confirm only that its user-defined environment-variable count is zero; do not deploy, add variables or create a job before that confirmation
+Known residual risk: one user-defined variable reported as `PORT` violates the empty-worker boundary; exact 328aadf0 artifact, runtime credentials/job, cleanup, revocation and resource absence remain pending
+Next authorised action: keep `srv-da7au58u01pc738qld00` suspended, remove only its reported `PORT` variable using Save only, then re-prove zero user variables, suspension and auto-deploy Off; do not deploy, add variables or create a job before that proof
 
 Current state: Stage C Phase 3 stop gate active; the wrong-revision d78935d4 build is contained in manually suspended worker srv-da7au58u01pc738qld00 with auto-deploy Off and its inert command proved; no external Stage C result is claimed
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
-Current environment: candidate preserved in current ancestry; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` remains empty/private and both operator authorities remain in named Keychain records; Render worker `srv-da7au58u01pc738qld00` in workspace `Isostack` is manually suspended with auto-deploy Off, the accepted inert command, no linked environment group, secret file or disk, and an unproved blank user-variable count; its initial build used d78935d407ace7ebe796a31a13adf3e17dafa758; no temporary R2 credential or one-off job exists
-Next human decision/test: while the worker remains suspended, report only whether its user-defined environment-variable count is zero; do not share any variable value
-Safe resumption point: do not resume or deploy until zero user-defined variables is proved; then manually deploy exact 328aadf0 to this isolated worker with auto-deploy remaining Off
+Current environment: candidate preserved in current ancestry; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` remains empty/private and both operator authorities remain in named Keychain records; Render worker `srv-da7au58u01pc738qld00` in workspace `Isostack` is manually suspended with auto-deploy Off, the accepted inert command, no linked environment group, secret file or disk, and one user-defined variable reported as `PORT`; its five-digit value was not shared or recorded; its initial build used d78935d407ace7ebe796a31a13adf3e17dafa758; no temporary R2 credential or one-off job exists
+Next human decision/test: while the worker remains suspended, remove only its reported `PORT` variable using Save only, then report the user-variable count, status and auto-deploy state without sharing any value
+Safe resumption point: do not resume or deploy until zero user-defined variables, suspension and auto-deploy Off are re-proved; then manually deploy exact 328aadf0 to this isolated worker
 ```
 
 ## 1. Gate Rule
@@ -167,8 +167,12 @@ then set to Off and the worker was suspended and resumed. Later dashboard eviden
 the exact service as `srv-da7au58u01pc738qld00`, name
 `isostack-fund-1r-f-a-stage-c-964210fa`, status `Suspended`, latest event
 `Manually Suspended`, auto-deploy Off and the accepted inert Docker command. It also records
-no linked environment group, secret file or disk. The submitted user-environment-variable
-count is blank and is not treated as proof of zero.
+no linked environment group, secret file or disk. The control owner subsequently confirmed
+one user-defined variable, reported as `PORT`; its five-digit value was not shared or
+recorded. Render documents `PORT` as an optional web-service setting. This background worker
+has no inbound traffic and the accepted inert command does not use it, so it is not treated
+as a credential exposure. It nevertheless violates the empty-worker gate and must be
+removed without deploying the wrong revision.
 
 Local comparison also shows that `d78935d4` is not identical to accepted candidate
 `328aadf0` inside the proof build boundary: root `tsconfig.json` and
@@ -185,7 +189,7 @@ deletion path.
 | Dedicated bucket identity, empty initial list, no `r2.dev`, domain or CORS | PASS — control-owner dashboard inspection; exact WEUR bucket recorded above |
 | Dedicated parent token scope retained outside Render | PASS — fresh exact token is Object Read & Write scoped only to the exact bucket, has a 24-hour TTL and is retained in the control owner's macOS Keychain; usability remains a later objective gate |
 | Dedicated Render operator key retained outside the service | PASS — control-owner Terminal verification of the named Keychain record for workspace `Isostack`; API authentication remains to be proved without exposing the value |
-| Temporary worker has no route/disk/database/env group and auto-deploy is off | STOP — exact worker identity, manual suspension, auto-deploy Off, inert command, no linked environment group, no secret file and no disk are proved; blank user-environment-variable count is not accepted as zero |
+| Temporary worker has no route/disk/database/env group and auto-deploy is off | STOP — exact worker identity, manual suspension, auto-deploy Off, inert command, no linked environment group, no secret file and no disk are proved; one reported non-secret `PORT` variable must be removed using Save only and zero variables re-proved |
 | Exact Render build commit and inert base process | STOP — initial build log proves wrong revision `d78935d4`; exact 328aadf0 has not been deployed and no equivalence is claimed |
 | One-hour prefix-scoped temporary session credential | PENDING |
 | Out-of-prefix and anonymous access denied | PENDING |
