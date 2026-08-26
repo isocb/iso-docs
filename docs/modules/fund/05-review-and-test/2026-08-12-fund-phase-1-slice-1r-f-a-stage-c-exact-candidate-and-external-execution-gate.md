@@ -4,8 +4,9 @@ Date: 2026-08-12
 
 Restart checkpoint reconciled: 2026-08-26
 
-Status: **COMPLETE — FAIL: ASSUMPTION NOT PROVED BECAUSE THE ACCEPTED RUNNER FAILED;
-ZERO-RESIDUE/REVOCATION GATE PASS; NO PRODUCTION MODEL BUILT OR AUTHORISED**
+Status: **PRIOR STAGE C COMPLETE AT FAIL WITH ZERO RESIDUE; STAGE C-R1 EXACT `0c7e4848`
+CORRECTION GATES PASS; ONE FRESH DISPOSABLE EXTERNAL ASSUMPTION TEST SELECTED; NO PRODUCTION
+MODEL BUILT OR AUTHORISED**
 
 Control depth: **`High`** — dedicated credentials, runtime configuration, a material
 external-service contract, private-object handling and exact resource teardown require the
@@ -31,19 +32,19 @@ Implementation confirmation:
 [`1R-F-A Stage C implementation confirmation`](../04-implementation-confirmations/2026-08-12-fund-phase-1-slice-1r-f-a-stage-c-isolated-render-private-object-proof-implementation-confirmation.md)
 
 ```text
-Exact commit: 328aadf0a360b4c65837327060302ddc525f6168
-Files/change boundary: bounded proof runner/tests/script/docs only; no schema, route, shared R2 utility or render.yaml change
-Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
+Exact commit: corrected candidate 0c7e48489aef697c6f39faf1a081456f9f3858a4; prior failed candidate 328aadf0a360b4c65837327060302ddc525f6168 retained as historical evidence
+Files/change boundary: Stage C-R1 changes only renderer.ts browser-context layout collection; no template, fixture, threshold, schema, route, shared R2 utility or render.yaml change
+Automated checks: corrected local proof and focused 9/9 PASS; proof/application TypeScript and repository verification PASS; Linux parity 32970902854 and Security Scan 32970902848 PASS
 Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner provider inspections and manual empty-bucket deletion recorded; agent-operated API/Keychain readbacks prove Render and derived-credential cleanup
 Environment proven: exact corrected run prefix zero; Render direct variables 12 -> 0 without deploy, exact service deletion returned 204 then ID/list absence; exact empty WEUR R2 bucket now returns 404; three derived session-credential Keychain records absent
-Known residual risk: deterministic proof-runner serialization defect prevented behavioural proof; no provider resource or credential remains; any runner correction/new exact candidate requires separate selection and review
-Next authorised action: none inside Stage C. Control owner must deliberately select either a separately reviewed local runner correction/new candidate or another parked portfolio outcome
+Known residual risk: external renderer/private-object behaviour remains unproved; no provider resource or credential currently exists; the fresh test must reconstruct only disposable isolated resources and prove complete removal
+Next authorised action: create the dedicated fresh provider authority that the agent cannot originate, then agent-operate one exact-candidate external test and complete zero-residue removal
 
-Current state: Stage C complete at FAIL because the accepted runner failed on deterministic local/provider `__name`; no behavioural PASS; all provider resources, credentials and named local credential records are absent
-Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
-Current environment: candidate retained in repository history; Render service absent by ID/list; R2 bucket absent by 404; Cloudflare and Render credentials rejected with 401; all seven named local credential records and all seventeen temporary helper files absent
-Next human decision/test: deliberately select the next portfolio outcome; do not infer a rerun or runner correction from this failed assumption test
-Safe resumption point: start from this final zero-residue result; no Stage C provider or local credential state needs reconstruction, and any runner correction begins as separately accepted work
+Current state: Stage C-R1 correction/new candidate gates PASS; fresh external assumption test selected and awaiting dedicated provider authority
+Last proven commit: 0c7e48489aef697c6f39faf1a081456f9f3858a4
+Current environment: dev/origin-dev exact; Render service absent; R2 bucket absent; prior credentials revoked/rejected; no named local Stage C credential record or temporary helper exists
+Next human decision/test: create only the dedicated bucket-scoped Cloudflare credential and dedicated Render operator key; no business or architecture decision remains before agent operation
+Safe resumption point: use exact 0c7e4848 with wholly new disposable resource names and credentials; fail closed before any job on identity, scope, public-access, empty-prefix or exact-build mismatch
 ```
 
 ## 1. Gate Rule

@@ -429,8 +429,8 @@ application code, schema, migration, infrastructure, deployment or promotion is 
 selected or authorised.
 
 ```text
-ROOT NOW  -> FUND 1R-F-A Stage C-R1 bounded local runner correction/new exact candidate
-ROOT NEXT -> one fresh isolated Stage C-R1 external assumption test after corrected gates only
+ROOT NOW  -> one fresh isolated FUND Stage C-R1 external assumption test at exact corrected 0c7e4848
+ROOT NEXT -> not selected pending Stage C-R1 result and reconciliation
 PLATFORM  -> no executable slice selected
 PARKED    -> PLAT-ROLE-R1 only on an explicit trigger; PLAT-REFINE findings remain non-executable
 ```

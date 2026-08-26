@@ -11,10 +11,9 @@ infrastructure, security assurance and engineering controls.
 
 ## Current Position
 
-- **Portfolio NOW:** FUND `1R-F-A Stage C-R1` bounded local runner correction/new exact
-  candidate.
-- **Portfolio NEXT:** one conditional fresh isolated Stage C-R1 external assumption test;
-  no Platform item is implicitly next.
+- **Portfolio NOW:** one fresh isolated FUND `1R-F-A Stage C-R1` external assumption test at
+  exact corrected `0c7e4848`.
+- **Portfolio NEXT:** not selected pending that result; no Platform item is implicitly next.
 - Role Authority, Support Ticketing, the dependency advisory refresh, `PLAT-ROLE-04` and
   `PLAT-ROLE-04A` are delivered at their recorded evidence boundaries.
 - `PLAT-ROLE-R1` remains trigger-based assurance only. Assurance refinements remain

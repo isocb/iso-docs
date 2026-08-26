@@ -2,8 +2,9 @@
 
 Date: 2026-08-12
 
-Status: **BOUNDED RUNNER IMPLEMENTED AND DEV-ALIGNED AT EXACT APPLICATION `328aadf0`;
-LOCAL, LINUX AND SECURITY GATES PASS; EXTERNAL EXECUTION EVIDENCE PENDING**
+Status: **ORIGINAL BOUNDED RUNNER RETAINED; STAGE C-R1 SERIALIZATION CORRECTION DEV-ALIGNED
+AT EXACT APPLICATION `0c7e4848`; LOCAL, LINUX AND SECURITY GATES PASS; ONE FRESH DISPOSABLE
+EXTERNAL EXECUTION PENDING**
 
 Planning authority:
 
@@ -16,6 +17,33 @@ Review and execution gate:
 Application baseline: exact `139d09c476cb7d250eba5e234eefb76f087f9ab5`
 
 Exact candidate: `328aadf0a360b4c65837327060302ddc525f6168`
+
+Stage C-R1 corrected exact candidate: `0c7e48489aef697c6f39faf1a081456f9f3858a4`
+
+## 0. Stage C-R1 Correction Confirmation — 2026-08-26
+
+The separately selected correction changes only
+`scripts/proofs/fund-1r-f-a/renderer.ts`. It removes the nested `rect` function from the
+Playwright `page.evaluate` browser boundary and performs the same DOM measurements without
+a serialized closure. No template, layout threshold, fixture, renderer output contract,
+Stage C object operation, schema, route, dependency or runtime configuration changed.
+
+Evidence at exact `0c7e48489aef697c6f39faf1a081456f9f3858a4`:
+
+- pre-correction local proof reproduced `page.evaluate: ReferenceError: __name is not defined`;
+- corrected local proof passes all six accepted fixtures, six refusals, QR/PDF, geometry,
+  determinism, bounded retry and no-shared-infrastructure assertions;
+- focused proof suite passes `9/9`;
+- proof-project TypeScript, application TypeScript and repository verification pass;
+- pinned Linux parity run `32970902854` passes, including the container proof and normalised
+  Mac/Linux comparison;
+- exact dev Security Scan `32970902848` passes dependency, schema, secret and TypeScript
+  jobs; and
+- local `dev` and `origin/dev` align at the exact corrected candidate.
+
+No Cloudflare or Render resource or credential was created during the correction. The
+accepted next boundary is one fresh disposable external assumption test, not a production
+build.
 
 ## 1. Outcome
 

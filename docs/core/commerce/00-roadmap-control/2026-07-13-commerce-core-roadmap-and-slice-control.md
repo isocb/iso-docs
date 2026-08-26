@@ -154,8 +154,8 @@ Commerce is complete through the dormant `COMMERCE-A7` FUND consumer boundary an
 selected executable `Now` or `Next`. The former A7 promotion checkpoint and delivery detail
 below remain historical evidence. FUND Stage C subsequently closed at FAIL because its
 accepted runner failed before behavioural proof; zero-residue/revocation passes. Root
-control now selects bounded Stage C-R1 local correction/new-candidate work followed only
-after green gates by one fresh disposable external assumption test. The registered
+control now selects one fresh disposable Stage C-R1 external assumption test because the
+bounded exact `0c7e4848` correction gates pass. Root `Next` is not selected. The registered
 SeasonPro subscription/payments input requires formal cross-lane triage before it can
 create any Commerce authority.
 

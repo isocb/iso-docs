@@ -69,10 +69,10 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> 1R-F-A Stage C-R1 bounded local runner correction and new exact candidate; High depth; no provider resource or credential
-ROOT NEXT -> one fresh isolated Stage C-R1 external assumption test only after exact local/Linux/security gates; complete removal required
+ROOT NOW  -> one fresh isolated Stage C-R1 external assumption test at exact corrected 0c7e4848; awaiting dedicated provider authority; complete removal required
+ROOT NEXT -> not selected pending Stage C-R1 result and reconciliation; do not infer later FUND or production work
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
-FUND      -> prior Stage C COMPLETE at FAIL with zero residue; Stage C-R1 local correction/new-candidate work selected on 2026-08-26
+FUND      -> prior Stage C COMPLETE at FAIL with zero residue; Stage C-R1 correction gates PASS; fresh disposable external test is active Now
 ```
 
 Email F3, Role Authority and Support Ticketing are complete and closed. `PLAT-ROLE-R1` is
@@ -177,9 +177,11 @@ the complete R2 bucket listed zero objects before control-owner deletion and ind
 subsequently returned HTTP 401; all seven named local credential records and temporary
 helpers are absent. Stage C therefore closes at FAIL because the assumption was not proved,
 while zero-residue/revocation passes. On 2026-08-26 the control owner separately selected
-Stage C-R1 bounded local runner correction/new-candidate work as root `Now` and one fresh
-isolated external assumption test, conditional on every corrected candidate gate, as root
-`Next`. No later FUND child or production model is authorised.
+Stage C-R1 bounded local runner correction/new-candidate work and one conditional fresh
+isolated external assumption test. The correction is complete at exact `0c7e4848` with
+local, Linux parity `32970902854` and Security Scan `32970902848` PASS, so the fresh
+disposable external test advances to root `Now`. Root `Next` is not selected. No later FUND
+child or production model is authorised.
 
 ## 1. Control Authority And Reading Rule
 

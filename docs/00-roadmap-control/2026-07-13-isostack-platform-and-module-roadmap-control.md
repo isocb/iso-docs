@@ -79,8 +79,8 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | FUND `1R-F-A Stage C-R1` bounded local runner correction and new exact candidate | The control owner accepted this selection on 2026-08-26. Correct only the deterministic Playwright browser-context serialization defect, retain `High` evidence depth, and prove the correction locally and in the pinned Linux container. Create no provider resource or credential during this local boundary. |
-| **NEXT** | One fresh isolated `1R-F-A Stage C-R1` external assumption test, conditional on the corrected exact candidate passing every local/Linux/security gate | Recreate a fresh disposable R2/Render test environment, run once, capture behavioural/private-object evidence and remove/revoke everything with proved absence. This is not a production build and does not authorise `1R-F-B`, `1R-G`, `1R-H-A` or permanent infrastructure. |
+| **NOW** | One fresh isolated FUND `1R-F-A Stage C-R1` external assumption test at exact corrected candidate `0c7e4848` | The preceding local correction is complete: local proof, focused `9/9`, pinned Linux parity `32970902854` and Security Scan `32970902848` pass. Recreate a fresh disposable R2/Render test environment, run once, capture behavioural/private-object evidence and remove/revoke everything with proved absence. Dedicated provider authority is the only pending human action. |
+| **NEXT** | Not selected pending the Stage C-R1 result and reconciliation | Do not infer `1R-F-B`, `1R-G`, `1R-H-A`, production infrastructure or another run. This remains a `High`-depth assumption test, not a production build. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
 promotion. Exact `250baf12` is aligned through main; all protected scans, Render identity,
@@ -912,13 +912,14 @@ candidate `328aadf0` remains historical proof evidence only. `PLAT-ROLE-R1` rema
 trigger-based parked assurance.
 
 The control owner selected bounded FUND `1R-F-A Stage C-R1` runner correction/new-candidate
-work as root `Now` on 2026-08-26. One fresh isolated external assumption test is root
-`Next`, but only if the corrected exact candidate passes every local, pinned-Linux and
-security gate. The first boundary creates no provider resource or credential. The second
-reconstructs a wholly disposable test environment, runs once and proves complete removal;
-it does not build a production model or authorise a later FUND child. The detailed history
-below explains how the lanes reached this position and must not be read as a competing
-selector or resumption instruction.
+work on 2026-08-26. That correction is complete at exact `0c7e4848`; local, pinned-Linux
+and security gates pass. The already-selected one fresh isolated external assumption test
+therefore advances to root `Now`, awaiting only dedicated provider authority. It must
+reconstruct a wholly disposable test environment, run once and prove complete removal; it
+does not build a production model or authorise a later FUND child. Root `Next` is not
+selected pending the result and reconciliation. The detailed history below explains how
+the lanes reached this position and must not be read as a competing selector or resumption
+instruction.
 
 `1R-C1` through `1R-D`, `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D`, Commerce A1 through A7 and
 FUND 1R-E-A are complete through implementation confirmation and review/test. The retained

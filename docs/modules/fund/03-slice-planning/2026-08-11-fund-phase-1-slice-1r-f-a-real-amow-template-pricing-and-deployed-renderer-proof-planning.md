@@ -5,8 +5,9 @@ Date: 2026-08-11
 Status: **PLAN ACCEPTED; INFERRED R1/R1A COMPOSITIONS SUPERSEDED; R1B SOURCE-FAITHFUL
 AUTOMATION AND HUMAN/PHYSICAL REVIEW PASS; STAGE B LINUX PARITY AND EXACT SECURITY SCAN PASS
 AT DEV `139d09c4`; STAGE C ACCEPTED, IMPLEMENTED AND EXACT `328aadf0` LOCAL/LINUX/SECURITY
-GATES PASS; EXTERNAL ASSUMPTION TEST FAILS ON DETERMINISTIC RUNNER DEFECT;
-ZERO-RESIDUE/REVOCATION PASS; STAGE C-R1 LOCAL CORRECTION/NEW-CANDIDATE WORK ACCEPTED**
+GATES PASS; PRIOR EXTERNAL ASSUMPTION TEST FAILS ON DETERMINISTIC RUNNER DEFECT;
+ZERO-RESIDUE/REVOCATION PASS; STAGE C-R1 EXACT `0c7e4848` LOCAL/LINUX/SECURITY GATES PASS;
+ONE FRESH DISPOSABLE EXTERNAL TEST SELECTED**
 
 Owning lane: FUND
 
@@ -34,11 +35,11 @@ Production consequence: even a PASS only supports later production planning; it 
 ```
 
 ```text
-Current state: Stage C-R1 selected; bounded local runner correction/new exact candidate is active
-Last proven commit: Stage C failed candidate 328aadf0a360b4c65837327060302ddc525f6168; current application baseline d78935d407ace7ebe796a31a13adf3e17dafa758 plus agent-method documentation f48a2e0697a04b4819f1bd149dc9aa86cfa60dae
-Current environment: local repositories; no R2 bucket, Render proof service, provider credential or named local credential record exists
-Next human decision/test: none before the bounded local correction; external reconstruction proceeds only after the corrected exact candidate passes local/Linux/security review
-Safe resumption point: inspect collectLayout in scripts/proofs/fund-1r-f-a/renderer.ts, correct only the browser-context serialization boundary, and stop before provider mutation unless all candidate gates pass
+Current state: Stage C-R1 local correction/new exact candidate complete; one fresh disposable external test is selected and awaiting dedicated provider authority
+Last proven commit: exact application 0c7e48489aef697c6f39faf1a081456f9f3858a4; local proof and 9/9 focused tests PASS; Linux parity 32970902854 and Security Scan 32970902848 PASS
+Current environment: dev and origin/dev aligned at exact candidate; no R2 bucket, Render proof service, provider credential or named local credential record exists
+Next human decision/test: create only the dedicated bucket-scoped Cloudflare credential and dedicated Render operator key that the agent cannot originate; the agent then operates the accepted one-off workflow
+Safe resumption point: start from exact candidate 0c7e4848 and zero provider residue; do not create a job until fresh resource identity, private bucket state, scoped credential denial and exact Render build are independently proved
 ```
 - [`FUND strategic completion roadmap`](../00-roadmap-control/2026-07-15-fund-store-artwork-orders-and-production-strategic-completion-roadmap.md)
 - [`FUND refinement register`](../00-roadmap-control/2026-07-20-fund-refinement-wishlist-and-slice-control.md)

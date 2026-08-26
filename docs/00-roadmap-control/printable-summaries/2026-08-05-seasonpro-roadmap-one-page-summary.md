@@ -10,10 +10,9 @@ communications behaviour.
 
 ## Current Position
 
-- **Portfolio NOW:** FUND `1R-F-A Stage C-R1` bounded local runner correction/new exact
-  candidate.
-- **Portfolio NEXT:** one conditional fresh isolated Stage C-R1 external assumption test;
-  no LMSPro item is implicitly next.
+- **Portfolio NOW:** one fresh isolated FUND `1R-F-A Stage C-R1` external assumption test at
+  exact corrected `0c7e4848`.
+- **Portfolio NEXT:** not selected pending that result; no LMSPro item is implicitly next.
 - R13-A Free Day and R13-B Deferred Variation are delivered and closed through their
   accepted live evidence. R14-A approval consistency/guidance is also complete and closed.
 - Exact application `d78935d4` is aligned through the recorded live R14-A evidence.

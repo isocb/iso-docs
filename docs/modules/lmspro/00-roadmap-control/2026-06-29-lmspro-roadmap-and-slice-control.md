@@ -43,8 +43,8 @@ authority. Later disposition changes must update the existing row.
 Current LMSPro portfolio disposition:
 
 ```text
-ROOT NOW -> FUND 1R-F-A Stage C-R1 bounded local runner correction/new exact candidate; no provider resource or credential in this boundary
-ROOT NEXT -> one fresh isolated Stage C-R1 external assumption test only after corrected exact-candidate gates; complete removal required
+ROOT NOW -> one fresh isolated FUND Stage C-R1 external assumption test at exact corrected 0c7e4848; awaiting dedicated provider authority
+ROOT NEXT -> not selected pending Stage C-R1 result and reconciliation
 LMS R13 -> delivery/live proof complete at exact 06811784; production migration/schema, Render identity, L1-L2 and exact-main scan PASS
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; historical PLAT-ROLE-03/LMS-ROLE-01/02 are not next slices
 PARKED -> 500-recipient operating envelope, R5-C evidence reconciliation and other registered candidates
@@ -53,8 +53,9 @@ PARKED -> 500-recipient operating envelope, R5-C evidence reconciliation and oth
 This current disposition supersedes the chronological resumption wording retained below.
 FUND Stage C subsequently executed, failed on a deterministic proof-runner defect before
 behavioural proof and completed zero-residue/revocation. The control owner selected bounded
-Stage C-R1 correction/new-candidate work as root `Now` and a conditional fresh isolated
-external assumption test as root `Next`. LMSPro has no selected executable slice. Its
+Stage C-R1 correction/new-candidate work followed by a conditional fresh isolated external
+assumption test. The correction gates pass and the external test is now root `Now`; root
+`Next` is not selected. LMSPro has no selected executable slice. Its
 registered operating-envelope, R5-C evidence and subscription/accounting inputs remain
 parked.
 
@@ -89,8 +90,8 @@ behavioural proof; zero-residue/revocation passes. This does not reopen R13 or s
 
 FUND `1R-F-A` Stage C is complete. Exact candidate `328aadf0` remains historical evidence;
 the temporary Render service, private R2 bucket, provider credentials, local credential
-records and helpers are absent. Root control now selects the bounded Stage C-R1 local
-correction/new candidate, followed conditionally by one fresh disposable external test.
+records and helpers are absent. The bounded Stage C-R1 local correction is complete and
+one fresh disposable external test is root `Now`, awaiting dedicated provider authority.
 
 ## Purpose
 
