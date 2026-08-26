@@ -38,12 +38,12 @@ Automated checks: local proof, Linux parity 31599134487 and Security Scan 315991
 Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 provider inspections and credential-retention checks recorded; subsequent Render build log proves an accidental initial `d78935d4` worker build before auto-deploy was turned off; later dashboard evidence proves the exact worker is manually suspended and inert
 Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; attached Render log proves only the wrong-revision `d78935d4` image build through `Deploying...`, with no runtime, proof-runner, R2-operation or credential evidence
 Known residual risk: exact 328aadf0 artifact, runtime credentials/job, cleanup, revocation and resource absence remain pending
-Next authorised action: use only the isolated `srv-da7au58u01pc738qld00` dashboard to deploy specific commit 328aadf0a360b4c65837327060302ddc525f6168; if Render will not deploy while suspended, stop and report that UI boundary before resuming; do not add variables, credentials or create a job
+Next authorised action: because Manual Deploy is not displayed while suspended, resume only `srv-da7au58u01pc738qld00`, then immediately use its dashboard to deploy specific commit 328aadf0a360b4c65837327060302ddc525f6168; do not add variables, credentials or create a job
 
 Current state: Stage C Phase 3 stop gate active; the wrong-revision d78935d4 build is contained in manually suspended worker srv-da7au58u01pc738qld00 with auto-deploy Off and its inert command proved; no external Stage C result is claimed
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
 Current environment: candidate preserved in current ancestry; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` remains empty/private and both operator authorities remain in named Keychain records; Render worker `srv-da7au58u01pc738qld00` in workspace `Isostack` is manually suspended with auto-deploy Off, the accepted inert command, zero user variables and no linked environment group, secret file or disk; its initial build used d78935d407ace7ebe796a31a13adf3e17dafa758; no temporary R2 credential or one-off job exists
-Next human decision/test: from this exact worker's Events page, use Manual Deploy > Deploy a specific commit and submit full SHA 328aadf0a360b4c65837327060302ddc525f6168 only if Render permits it while suspended; otherwise report the disabled/unavailable control without resuming
+Next human decision/test: resume this exact worker, wait only until Manual Deploy appears, then use Manual Deploy > Deploy a specific commit and submit full SHA 328aadf0a360b4c65837327060302ddc525f6168; stop on any resume, command, variable, auto-deploy or commit mismatch
 Safe resumption point: stop after an exact-328aadf0 deploy reaches a terminal state and report deploy ID/status, displayed commit, auto-deploy state and final service status; add no credential or job
 ```
 
@@ -176,13 +176,19 @@ owner removed only that variable using Save only and subsequently confirmed zero
 variables, status `Suspended`, auto-deploy Off and no unexpected deploy. The empty-worker
 configuration boundary therefore passes without having run either revision.
 
+The control owner then confirmed that the dashboard does not display Manual Deploy while
+the worker is suspended. The bounded correction therefore requires resuming only this
+isolated service. The current wrong artifact may run briefly because its command is proved
+inert and it has no credential, service link, environment group, secret file or disk. It
+remains unacceptable evidence and must be replaced immediately by a specific-commit deploy.
+
 Local comparison also shows that `d78935d4` is not identical to accepted candidate
 `328aadf0` inside the proof build boundary: root `tsconfig.json` and
 `scripts/proofs/fund-1r-f-a/tsconfig.json` differ. The wrong-revision build therefore cannot
 be accepted by ancestry or treated as an equivalent exact artifact. Phase 3 is contained at
 its planned commit-mismatch stop gate. No runtime credential or one-off job is authorised
-until the worker is re-suspended and the control window records a safe correction or
-deletion path.
+until the worker is resumed only for this correction and exact `328aadf0` reaches a terminal
+deploy state.
 
 ## 4. External Execution Evidence — Pending
 

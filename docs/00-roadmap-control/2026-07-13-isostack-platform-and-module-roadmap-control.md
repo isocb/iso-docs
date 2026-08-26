@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Phase 3 stop gate remains active only on the wrong-revision `d78935d4` build. Worker `srv-da7au58u01pc738qld00` is proved manually suspended with auto-deploy Off, the accepted inert command, zero user variables and no linked environment group, secret file or disk. The unnecessary non-secret `PORT` variable was removed using Save only and no deploy started. Correct only this isolated worker to exact `328aadf0`, then stop for exact build/runtime evidence before adding any credential or job. Existing auto-deploy services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Phase 3 stop gate remains active only on the wrong-revision `d78935d4` build. Worker `srv-da7au58u01pc738qld00` is proved manually suspended with auto-deploy Off, the accepted inert command, zero user variables and no linked environment group, secret file or disk. The dashboard does not display Manual Deploy while the service is suspended. Resume only this isolated worker, immediately deploy exact `328aadf0`, then stop for exact build/runtime evidence before adding any credential or job. Existing auto-deploy services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -133,9 +133,11 @@ inert command does not use it. It is not treated as a credential exposure, but i
 the accepted empty-worker boundary. The control owner removed only that variable using Save
 only and then confirmed zero user variables, status `Suspended`, auto-deploy Off and no
 unexpected deploy. The empty-worker configuration boundary now passes. The planned Phase 3
-mismatch stop gate remains active only on the wrong build: correct this isolated worker to
-exact `328aadf0`, then stop for exact build/runtime evidence before adding any credential or
-job.
+mismatch stop gate remains active only on the wrong build. The control owner then confirmed
+that this worker's dashboard does not display Manual Deploy while it is suspended. Resume
+only this isolated worker; the current wrong artifact may run briefly only under the proved
+inert/no-secret boundary. Immediately deploy exact `328aadf0`, then stop for exact
+build/runtime evidence before adding any credential or job.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then
