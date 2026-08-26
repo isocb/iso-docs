@@ -47,6 +47,22 @@ Next human decision/test: create only the dedicated bucket-scoped Cloudflare cre
 Safe resumption point: use exact 0c7e4848 with wholly new disposable resource names and credentials; fail closed before any job on identity, scope, public-access, empty-prefix or exact-build mismatch
 ```
 
+### Stage C-R1 credential-origin containment — 2026-08-26
+
+The first replacement-credential entry attempt exposed the three newly created values in
+the collaboration transcript and literal Terminal commands. The agent stopped before using
+any credential or creating any Render service, variable, derived credential, object or job.
+It deleted and proved absence of all three exact local Keychain records. The control owner
+then revoked both provider credentials, deleted the empty dedicated bucket, ran `fc -p` and
+closed the originating Terminal session. A subsequent disk check found six matching Zsh
+history entries despite that precaution; the agent removed only entries containing the
+exact Stage C-R1 credential-record prefix and independently proved zero history matches and
+zero matching Keychain records.
+
+No secret value is retained in this evidence. Replacement credentials must be entered only
+through a local prompt-only helper that invokes macOS `security ... -w` without a value;
+they must not enter shell variables, command arguments, history, chat or documentation.
+
 ## 1. Gate Rule
 
 Stage C is one indivisible evidence gate:

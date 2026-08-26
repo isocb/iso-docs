@@ -37,8 +37,8 @@ Production consequence: even a PASS only supports later production planning; it 
 ```text
 Current state: Stage C-R1 local correction/new exact candidate complete; one fresh disposable external test is selected and awaiting dedicated provider authority
 Last proven commit: exact application 0c7e48489aef697c6f39faf1a081456f9f3858a4; local proof and 9/9 focused tests PASS; Linux parity 32970902854 and Security Scan 32970902848 PASS
-Current environment: dev and origin/dev aligned at exact candidate; no R2 bucket, Render proof service, provider credential or named local credential record exists
-Next human decision/test: create only the dedicated bucket-scoped Cloudflare credential and dedicated Render operator key that the agent cannot originate; the agent then operates the accepted one-off workflow
+Current environment: dev and origin/dev aligned at exact candidate; first replacement credentials revoked after entry exposure, empty bucket deleted, exact local records/history scrubbed and absent; no R2 bucket, Render proof service or provider credential exists
+Next human decision/test: recreate only the dedicated bucket-scoped Cloudflare credential and dedicated Render operator key, entering values solely through the prompt-only local helper; the agent then operates the accepted one-off workflow
 Safe resumption point: start from exact candidate 0c7e4848 and zero provider residue; do not create a job until fresh resource identity, private bucket state, scoped credential denial and exact Render build are independently proved
 ```
 - [`FUND strategic completion roadmap`](../00-roadmap-control/2026-07-15-fund-store-artwork-orders-and-production-strategic-completion-roadmap.md)
