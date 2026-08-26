@@ -24,15 +24,15 @@ Implementation confirmation:
 Exact commit: 328aadf0a360b4c65837327060302ddc525f6168
 Files/change boundary: bounded proof runner/tests/script/docs only; no schema, route, shared R2 utility or render.yaml change
 Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
-Human evidence: accepted R1B source/physical review 12/12 PASS; no external Stage C human evidence yet
-Environment proven: local and pinned Linux candidate only; Render/R2 execution and teardown not proven
-Known residual risk: live provider identity/state, dedicated operator authority, one-off execution, cleanup, credential revocation and resource absence remain pending
-Next authorised action: revalidate the exact recorded Render/R2 checkpoint and dedicated operator authorities, then resume only the accepted one-window Phase 2-8 sequence
+Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 read-only Render inspection found no matching Stage C service
+Environment proven: local and pinned Linux candidate; absence of a matching Stage C Render service by control-owner inspection only; R2 execution and teardown not proven
+Known residual risk: private R2 boundary/state, dedicated operator authority, new exact worker/job execution, cleanup, credential revocation and resource absence remain pending
+Next authorised action: revalidate the private R2 proof boundary, then establish dedicated operator authorities and resume only the accepted one-window Phase 2-8 sequence
 
 Current state: Stage C resumed as root Now after R14-A closure; exact candidate gates pass and no external Stage C result is claimed
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
-Current environment: candidate preserved in current ancestry; prior control records a suspended temporary worker, no application secrets injected, an empty private proof bucket and existing auto-deploy services untouched, but that external state has not been live-revalidated in this resumed session
-Next human decision/test: inspect the exact recorded worker and bucket identities/settings and confirm dedicated operator authorities before any Phase 2-5 external action
+Current environment: candidate preserved in current ancestry; control-owner read-only Render inspection found no matching Stage C service, so the prior suspended-worker claim is superseded; private R2 proof-bucket state remains unverified; existing auto-deploy services were not changed
+Next human decision/test: inspect the Cloudflare R2 account for a matching dedicated Stage C bucket and record its non-secret identity, object count and private-access settings before any creation, credential or deletion action
 Safe resumption point: use only exact 328aadf0 under the accepted one-window execution/teardown contract; stop before any broader resource, application or product work
 ```
 
@@ -88,8 +88,13 @@ The 2026-08-26 resumption inspection additionally found no local Render or Wrang
 no Render/Cloudflare/Stage-C environment-variable names and no authenticated provider
 connection available to this control window. These are local capability findings only;
 they do not prove the current Render workspace, worker, Cloudflare account, bucket, token or
-public-access state. The prior recorded suspended-worker/empty-bucket state must therefore
-be revalidated in the provider control planes before creation, execution or deletion.
+public-access state.
+
+The control owner then completed a read-only Render dashboard inspection on 2026-08-26 and
+reported no matching Stage C service. No service was resumed, edited, deployed or deleted,
+and no service ID or one-off job exists to carry forward from that inspection. This
+supersedes the prior suspended-worker claim but does not prove the Cloudflare/R2 boundary or
+authorise creation of a replacement worker.
 
 This is not yet a failed gate: no external resource should exist before the exact Linux and
 Security gates pass. Before Phase 2 begins, the control window still requires a dedicated
