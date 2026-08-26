@@ -37,14 +37,14 @@ Files/change boundary: bounded proof runner/tests/script/docs only; no schema, r
 Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
 Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 provider inspections and credential-retention checks recorded; initial wrong-build containment recorded; subsequent exact-deploy log proves full `328aadf0` checkout, pinned image identities and terminal live state
 Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; fresh run `8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd` passes exact-prefix-zero/out-of-prefix-403 preflight and exact twelve-name/value Render read-back with 3598 seconds; worker remains suspended with auto-deploy Off/no deployment/job
-Known residual risk: proof-runner Playwright browser-context serialization defect is confirmed; fresh-prefix residue, removal/revocation and resource absence remain pending; no Stage C behaviour PASS exists
-Next authorised action: independently list fresh exact prefix using retained parent authority, then execute controlled teardown of temporary Render/R2/local credentials/resources; retain `__name` runner defect for separately reviewed local correction/new candidate, with no external rerun
+Known residual risk: proof-runner serialization defect is confirmed; temporary Render/R2/provider/local resource removal and absence remain pending; no Stage C behaviour PASS exists
+Next authorised action: while worker remains suspended, replace the exact twelve direct variables with an empty array via Render API, read back zero and prove no deploy/job/artifact drift; then delete worker and continue credential/bucket/local teardown
 
-Current state: corrected exact job failed on `page.evaluate: ReferenceError: __name is not defined`; two jobs/no third, cleanup pending, no further external attempt and no Stage C pass claimed
+Current state: corrected job failed on deterministic local/provider `__name` runner defect; fresh prefix independently zero, exact base/suspension/off/two jobs proved; teardown pending and no Stage C pass claimed
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
 Current environment: candidate preserved in current ancestry; exact worker `srv-da7au58u01pc738qld00` remains suspended with auto-deploy Off; run `8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd` was configured with prefix zero/out-of-prefix 403; single Starter job `job-da7cu29srm7s7385o5g0`, accepted command, created `11:33:29.465286145Z`, started `11:33:29Z`, finished `11:34:30Z`, terminal `failed`; final job count one and no second job exists
-Next human decision/test: run bounded read-only fresh-prefix residue check and report count/service/job state; then follow step-by-step teardown
-Safe resumption point: no further external attempt; after zero residue, remove/revoke test-only Render environment/service, Cloudflare token/bucket and local Keychain items; local runner correction is separate
+Next human decision/test: run bounded Render environment-clear helper and report before/after count, no-deploy, unchanged latest deployment and two-job count
+Safe resumption point: after zero variables pass, delete the suspended worker; then revoke test-only provider credentials, delete empty bucket and remove local Keychain/helper records; local runner correction remains separate
 ```
 
 ## 1. Gate Rule
@@ -276,10 +276,9 @@ diagnosis requires no provider mutation; correction/new-candidate work remains s
 Local comparison also shows that `d78935d4` is not identical to accepted candidate
 `328aadf0` inside the proof build boundary: root `tsconfig.json` and
 `scripts/proofs/fund-1r-f-a/tsconfig.json` differ. The wrong-revision build therefore cannot
-be accepted by ancestry or treated as an equivalent exact artifact. Phase 3 is contained at
-its planned commit-mismatch stop gate. No runtime credential or one-off job is authorised
-until the worker is resumed only for this correction and exact `328aadf0` reaches a terminal
-deploy state.
+be accepted by ancestry or treated as an equivalent exact artifact. Phase 3 was contained at
+its planned commit-mismatch stop gate. The later corrected attempt proved exact `328aadf0`
+before execution, then exposed the independent runner serialization defect recorded above.
 
 ## 4. External Execution Evidence — Pending
 
@@ -289,19 +288,19 @@ deploy state.
 | Dedicated parent token scope retained outside Render | PASS — fresh exact token is Object Read & Write scoped only to the exact bucket, has a 24-hour TTL and is retained in the control owner's macOS Keychain; usability remains a later objective gate |
 | Dedicated Render operator key retained outside the service | PASS — control-owner Terminal verification of the named Keychain record for workspace `Isostack`; successful environment update/read-back proves API authentication without exposing the value |
 | Temporary worker has no route/disk/database/env group and auto-deploy is off | PASS — exact worker identity, manual suspension, auto-deploy Off, inert command, no linked environment group, no secret file, no disk and no unexpected deployment are proved; two HTTP 200 API reads and hard-refreshed dashboard agree on twelve accepted keys |
-| Exact Render build commit and inert base process | STOP — accepted deployment `dep-da7b87i3v7hc73et4ui0` proves exact `328aadf0` but is deactivated; latest live deployment `dep-da7ck6u7bikc73a9j7lg` is rejected `d78935d4`; seven-record trigger/timestamp history pending |
-| One-hour prefix-scoped temporary session credential | PASS — documented local signing; fresh run `8ef3e1af-12ad-40b1-987a-de9ec0a9f9cd`, exact prefix, expiry `2026-08-26T12:22:56Z`, object-read-write/3600 seconds, prefix zero, out-of-prefix 403 and three verified temporary Keychain items |
-| Out-of-prefix and anonymous access denied | PENDING |
+| Exact Render build commit and inert base process | PASS — corrected latest deployment `dep-da7d78a3v7hc73eug70g` is manual/live at exact `328aadf0`; worker is suspended with auto-deploy `no` and inert base command |
+| One-hour prefix-scoped temporary session credential | PASS — documented local signing; corrected run `345d4353-3af7-4a7e-93ba-11c3e1fcf6f9`, exact prefix, expiry `2026-08-26T12:59:26Z`, object-read-write/3600 seconds, prefix zero, out-of-prefix 403 and three verified temporary Keychain items |
+| Out-of-prefix and anonymous access denied | PARTIAL — out-of-prefix 403 proved in preflight; corrected runner failed before anonymous-object test |
 | Six PUT/HEAD/GET/checksum/DELETE/not-found/list-empty sequences | PENDING |
 | Node/Playwright/Chromium/font/container identity | STOP — exact container reached Playwright execution but failed because serialized `page.evaluate` code referenced unavailable `__name`; local runner correction/new candidate required |
 | Cold/warm/batch timing and peak memory below 80% | PENDING |
-| Job terminal success and final exact-prefix object count zero | STOP — original job failed at pre-storage commit guard; corrected job `job-da7dbsh42hec73b401pg` passed inline exact-base/fresh-run gates then terminal-failed after 53 seconds; two jobs/no third, corrected log and fresh-prefix residue pending |
+| Job terminal success and final exact-prefix object count zero | STOP — corrected job `job-da7dbsh42hec73b401pg` failed at renderer serialization after inline gates; two jobs/no third; independent parent-authority fresh-prefix count is zero |
 
 ## 5. Teardown And Revocation Evidence — Pending
 
 | Required evidence | Result |
 | --- | --- |
-| Exact prefix independently listed as empty | PASS — retained parent authority read-only listing returned exact-prefix object count zero after terminal job failure |
+| Exact prefix independently listed as empty | PASS — retained parent authority read-only listing returned corrected fresh-prefix object count zero after terminal job failure |
 | Dedicated R2 parent token revoked | PENDING |
 | Derived temporary credential rejected after revocation | PENDING |
 | Stage C variables removed | PENDING |

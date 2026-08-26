@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Corrected exact job exposed a proof-runner defect: Playwright `page.evaluate` failed with `ReferenceError: __name is not defined`; the identical failure is locally reproduced at `renderer.ts:157` `collectLayout`, confirming deterministic application serialization rather than a provider issue. Two jobs/no third; no further external attempt. Prove fresh prefix zero, then teardown provider/local test resources. Retain the runner defect for separately reviewed correction/new candidate. Existing services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Final read-only proof passes: fresh exact-prefix object count zero under parent authority; worker suspended/auto-deploy `no`; latest deployment remains `dep-da7d78a3v7hc73eug70g`/exact `328aadf0`; corrected job failed; total jobs two/no third. No further attempt. Teardown in order: clear and verify zero Render variables without deploy/job, delete worker, revoke Render/Cloudflare test credentials, delete empty bucket, remove local Keychain/helper records. Retain runner defect separately. Existing services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -192,7 +192,10 @@ seconds, ran the accepted Starter command and reached terminal `failed` from `12
 `page.evaluate: ReferenceError: __name is not defined`, a browser-context serialization
 defect in the proof runner. No further external attempt is authorised. Independently prove
 fresh-prefix zero, teardown temporary provider/local resources, and retain the defect for a
-separately reviewed local correction/new candidate.
+separately reviewed local correction/new candidate. Final parent-authority read-only proof
+then returned fresh exact-prefix object count zero; worker remains suspended/auto-deploy
+`no`, latest deployment exact, corrected job failed, total jobs two. Begin controlled
+teardown by clearing and verifying zero Render variables without deploy/job.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then
