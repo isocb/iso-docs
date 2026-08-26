@@ -59,7 +59,7 @@ same row.
 | [`2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md) | Planned through `1Q-G-B` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md) | Planned through `1Q-G-A` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-13-fund-cr-commission-ladder-planner-input.md`](../01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md) | Policy/assignment foundation partly incorporated through `1R-C5`; aggregate calculation, statements and settlement remain absent | Parked later commission work, represented by subordinate `2R-PROD-05`; not selected |
-| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B Linux parity and exact `139d09c4` dev scan pass; dedicated Stage C contract accepted and authorised on 2026-08-12; downstream short-code/single-artwork policy preserved in parked `1R-H-A` | Stage C remains root `Now`. Phase 3 passes at exact `328aadf0`, isolated worker `srv-da7au58u01pc738qld00` and deployment `dep-da7b87i3v7hc73et4ui0`. Phase 4 stopped on Cloudflare HTTP 403/code 10000 before any temporary credential/local record or Render variable/job was created. The deleted Render `PORT` is unrelated; verify the parent token status/identity read-only before replacement or documented local signing. External execution/removal remain governed by the accepted assumption-test gate; `1R-H-A` remains inventory only and no production implementation is authorised |
+| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B Linux parity and exact `139d09c4` dev scan pass; dedicated Stage C contract accepted and authorised on 2026-08-12; downstream short-code/single-artwork policy preserved in parked `1R-H-A` | Stage C remains root `Now`. Phase 3 passes at exact `328aadf0`, isolated worker `srv-da7au58u01pc738qld00` and deployment `dep-da7b87i3v7hc73et4ui0`. Phase 4's API mint stopped on Cloudflare 403/10000 before credential creation; verification then proved the parent active until `2026-08-27T08:23:56Z` with matching token/access-key IDs, excluding expiry/identity drift. Use Cloudflare's documented local signing at the same 60-minute bucket/prefix scope and read-only preflight before storing/configuring it. External execution/removal remain governed by the accepted assumption-test gate; `1R-H-A` remains inventory only and no production implementation is authorised |
 | [`2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md`](../01-cr-inputs/2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md) | Consumed as the boundary preventing `1R-F-A` from absorbing collective/Standard paths | `1R-F-F` through `I` remain parked; no implementation authority |
 | [`2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`](../01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md) | `1R-F-A` automation, physical review and Linux parity accept candidate capacities of ten STANDARD portrait and twelve COMPACT landscape rows; production selection policy remains later `1R-F-B/D` work | Proof evidence only; no schema/policy implementation authorised |
 | [`2026-07-15-fund-template-manager-brief.md`](../01-cr-inputs/2026-07-15-fund-template-manager-brief.md) | Retained source brief for the Application/Artwork Template input | Provenance only; not a fourth CR and its provisional `T` labels carry no slice authority |
@@ -69,7 +69,7 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> diagnose FUND 1R-F-A Stage C Phase 4 objective stop: Cloudflare mint returned 403/10000 before credential creation; verify parent token status/identity read-only before replacement or documented local signing
+ROOT NOW  -> execute FUND 1R-F-A Stage C Phase 4 fallback: active matching parent verified after API endpoint refusal; locally sign the same 60-minute exact-prefix credential and prove empty-prefix/out-of-prefix boundaries before storing/configuring it
 ROOT NEXT -> reconcile the Stage C result, conclude 1R-F-A and deliberately reselect
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
 FUND      -> ACTIVE at preserved Stage C gate; R1B human/physical, Stage B and exact candidate gates PASS; external execution/teardown pending
@@ -134,8 +134,13 @@ credential was returned; the helper therefore wrote no temporary Keychain record
 Render variable/job exists. The removed Render `PORT` variable is unrelated because the
 request ran directly from the control owner's Mac to Cloudflare. Verify the stored parent
 token status and token-ID/access-key-ID relationship read-only before choosing replacement
-or Cloudflare's documented local-signing path. The worker was last proved live; suspension
-was requested to limit cost but is not yet evidenced.
+or Cloudflare's documented local-signing path. Read-only verification then returned HTTP
+200/success, status `active`, expiry `2026-08-27T08:23:56Z`, and matching returned token ID
+and stored access-key ID. This excludes parent expiry/identity drift and confirms an endpoint
+refusal. Use documented local signing at the same 60-minute bucket/prefix scope, then
+read-only prove exact-prefix empty and out-of-prefix denial before storing/configuring the
+three values. The worker was last proved live; suspension was requested to limit cost but
+is not yet evidenced.
 
 ## 1. Control Authority And Reading Rule
 

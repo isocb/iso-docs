@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Phase 3 passes at service `srv-da7au58u01pc738qld00`, deployment `dep-da7b87i3v7hc73et4ui0` and exact `328aadf0`. Phase 4 stopped safely: the local Cloudflare temporary-credential request returned HTTP 403/code 10000 before any credential or local temporary record was created; no Render variable/job exists. This is unrelated to the removed Render `PORT` variable because the request went directly from the control owner's Mac to Cloudflare. Verify the stored parent token status/identity read-only before choosing replacement or Cloudflare's documented local-signing path. Existing services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Phase 3 passes at service `srv-da7au58u01pc738qld00`, deployment `dep-da7b87i3v7hc73et4ui0` and exact `328aadf0`. The API mint stopped safely at HTTP 403/code 10000, but read-only verification now proves the stored parent token is active until `2026-08-27T08:23:56Z` and its ID matches the stored access-key ID. This excludes expiry/identity drift and confirms an endpoint refusal. Use Cloudflare's documented local-signing method with the same parent and exact 60-minute bucket/prefix scope, then read-only prove exact-prefix empty and out-of-prefix denial before storing or configuring the result. Existing services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -148,9 +148,13 @@ bucket/prefix, and retain its three values outside Render until scope/expiry che
 The first local mint request returned HTTP 403/code 10000 before Cloudflare returned a
 credential, so the helper created no local temporary records and no Render variable/job
 exists. The deleted Render `PORT` variable cannot cause this Mac-to-Cloudflare API denial.
-The objective Phase 4 stop gate is active: verify the stored parent token status and token
-ID/access-key-ID relationship read-only before choosing replacement or the documented
-local-signing path. The worker was last proved live; a cost-limiting suspension was requested
+The subsequent read-only token-verification call returned HTTP 200/success, status `active`,
+expiry `2026-08-27T08:23:56Z`, and equality between its returned token ID and the stored
+parent access-key ID. This excludes parent expiry and identity drift; the 403 is therefore
+an endpoint refusal. Cloudflare's documented local-signing method may now derive the same
+60-minute bucket/prefix-scoped credential without widening parent authority. Read-only
+prove the exact prefix empty and out-of-prefix denial before storing its three values or
+configuring Render. The worker was last proved live; a cost-limiting suspension was requested
 but is not yet evidenced.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`

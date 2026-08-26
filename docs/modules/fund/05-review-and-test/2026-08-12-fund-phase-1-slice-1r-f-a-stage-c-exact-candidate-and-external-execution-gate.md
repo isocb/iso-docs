@@ -37,14 +37,14 @@ Files/change boundary: bounded proof runner/tests/script/docs only; no schema, r
 Automated checks: local proof, Linux parity 31599134487 and Security Scan 31599134488 PASS
 Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner 2026-08-26 provider inspections and credential-retention checks recorded; initial wrong-build containment recorded; subsequent exact-deploy log proves full `328aadf0` checkout, pinned image identities and terminal live state
 Environment proven: local and pinned Linux candidate; exact dedicated R2 bucket remains empty/private; isolated Render worker is live at exact `328aadf0` with auto-deploy Off, accepted inert command and zero user variables
-Known residual risk: the first temporary-credential request was denied with Cloudflare HTTP 403/code 10000; parent-token status/identity, runtime credential scope/usability, job, cleanup, revocation and resource absence remain pending
-Next authorised action: run only the read-only Cloudflare token-verification endpoint using the named parent-token Keychain record and compare its returned token ID to the stored parent access-key ID without printing either; do not retry minting, add Render variables or create a job
+Known residual risk: the Temporary Credentials API refused an active matching parent token; locally signed runtime credential scope/usability, job, cleanup, revocation and resource absence remain pending
+Next authorised action: use Cloudflare's documented local-signing method with the named parent access-key-ID/secret Keychain records to derive one 3600-second object-read-write credential restricted to exact prefix fund/1r-f-a/stage-c/<new-run-id>/; read-only prove that prefix is empty and out-of-prefix HEAD is denied before storing the three temporary values; do not configure Render or create a job before that preflight passes
 
-Current state: Stage C Phase 3 passes; Phase 4 is stopped safely after Cloudflare denied the first mint request before credential creation, and no external Stage C result is claimed
+Current state: Stage C Phase 3 passes; Phase 4 parent authority is active/matching and the API refusal is contained, with documented same-scope local signing next; no external Stage C result is claimed
 Last proven commit: 328aadf0a360b4c65837327060302ddc525f6168
 Current environment: candidate preserved in current ancestry; dedicated WEUR R2 bucket `isostack-fund-1r-f-a-stage-c-964210fa` remains empty/private and both operator authorities remain in named Keychain records; Render worker `srv-da7au58u01pc738qld00`, deployment `dep-da7b87i3v7hc73et4ui0`, was last proved live at exact 328aadf0a360b4c65837327060302ddc525f6168 with auto-deploy Off, the accepted inert command and zero variables; suspension has been requested but not confirmed; Cloudflare returned HTTP 403/code 10000 before any temporary credential, local temporary record, Render variable or one-off job was created
-Next human decision/test: suspend the worker for cost control, then run the bounded read-only token verifier and report only HTTP status, verification success, token status, expiry and whether returned token ID matches the stored parent access-key ID
-Safe resumption point: do not retry minting until token verification distinguishes inactive/mismatched authority from active matching authority; then replace the parent or use the separately reviewed documented local-signing path without widening scope
+Next human decision/test: suspend the worker for cost control, then run the bounded local-signing/preflight helper and report only signing status, run ID, prefix, expiry, permission, TTL, bucket, exact-prefix object count, out-of-prefix status, preflight result and verified temporary Keychain item count
+Safe resumption point: after local-signing scope/expiry, exact-prefix zero, out-of-prefix denial and three temporary local records pass, configure only the accepted Stage C variables using Save only; do not create the job before environment re-proof
 ```
 
 ## 1. Gate Rule
@@ -197,6 +197,14 @@ record, Render variable or job was created. This denial is unrelated to the remo
 `PORT` variable, which is not read by the helper and cannot affect a Mac-to-Cloudflare API
 request. Do not retry the mint until the stored parent token is verified read-only.
 
+The read-only verification returned HTTP 200 with `success=true`, token status `active`,
+expiry `2026-08-27T08:23:56Z`, and equality between the returned token ID and stored parent
+access-key ID. This excludes expiry and identity mismatch as the cause of the 403. Cloudflare
+documents local JWT signing with the same parent secret as an alternative temporary-
+credential method. That path preserves the accepted parent/bucket/prefix/permission/TTL
+boundary and avoids widening authority; it must pass exact-prefix-empty and out-of-prefix-
+denied preflight before its three derived values are retained or configured.
+
 Local comparison also shows that `d78935d4` is not identical to accepted candidate
 `328aadf0` inside the proof build boundary: root `tsconfig.json` and
 `scripts/proofs/fund-1r-f-a/tsconfig.json` differ. The wrong-revision build therefore cannot
@@ -214,7 +222,7 @@ deploy state.
 | Dedicated Render operator key retained outside the service | PASS — control-owner Terminal verification of the named Keychain record for workspace `Isostack`; API authentication remains to be proved without exposing the value |
 | Temporary worker has no route/disk/database/env group and auto-deploy is off | PASS — exact worker identity, manual suspension, auto-deploy Off, inert command, zero user variables, no linked environment group, no secret file and no disk are proved; removal used Save only and started no deploy |
 | Exact Render build commit and inert base process | PASS — full exact `328aadf0` checkout, pinned build images, green/live state, inert command, auto-deploy Off and zero variables at service `srv-da7au58u01pc738qld00`, deployment `dep-da7b87i3v7hc73et4ui0` |
-| One-hour prefix-scoped temporary session credential | STOP — first Mac-to-Cloudflare mint request returned HTTP 403/code 10000 before a credential or local temporary record was created; parent token status/identity verification pending |
+| One-hour prefix-scoped temporary session credential | STOP — API mint returned HTTP 403/code 10000, then parent verification passed active/matching through `2026-08-27T08:23:56Z`; documented same-scope local-signing credential and preflight remain pending |
 | Out-of-prefix and anonymous access denied | PENDING |
 | Six PUT/HEAD/GET/checksum/DELETE/not-found/list-empty sequences | PENDING |
 | Node/Playwright/Chromium/font/container identity | PENDING |
