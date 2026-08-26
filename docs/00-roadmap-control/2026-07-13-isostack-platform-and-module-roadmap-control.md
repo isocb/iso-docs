@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Single job `job-da7cu29srm7s7385o5g0` failed closed on `Render commit differs from Stage C authority`. The runner checks this before renderer or R2-client creation, so no Stage C storage operation/result occurred; final job count is one/no second job. Do not rerun. Read-only prove exact-prefix zero and compare the base service's latest successful deploy identity with accepted deployment `dep-da7b87i3v7hc73et4ui0`, then proceed to teardown/disposition. Existing services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Single job `job-da7cu29srm7s7385o5g0` failed closed because Render's latest live artifact is rejected `d78935d4`, while accepted deployment `dep-da7b87i3v7hc73et4ui0`/`328aadf0` is deactivated. Independent parent-authority listing proves exact run-prefix count zero; worker remains suspended/auto-deploy no. Do not rerun. Read-only inspect all seven deploy IDs/commits/triggers/timestamps, then explicitly decide teardown or a corrected, newly authorised attempt. Existing services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -172,8 +172,12 @@ no job. The single authorised Starter job `job-da7cu29srm7s7385o5g0` was then cr
 2967 seconds remaining and moved pending → running → failed from `11:33:29Z` to `11:34:30Z`.
 Final job count is one and no second job was created. Its exact log reports `Render commit
 differs from Stage C authority`; validation occurs before renderer or R2-client creation, so
-no Stage C storage operation/result occurred. Do not rerun. Read-only prove exact-prefix
-zero and compare latest successful/accepted deploy identities before teardown/disposition.
+no Stage C storage operation/result occurred. Independent parent-authority listing proves
+the exact run prefix remains zero. Render read-back identifies latest deployment
+`dep-da7ck6u7bikc73a9j7lg` as live at rejected `d78935d4`, while accepted deployment
+`dep-da7b87i3v7hc73et4ui0` is deactivated at exact `328aadf0`. Worker remains suspended and
+auto-deploy reports `no`. Do not rerun. Read-only inspect all seven deployment triggers and
+timestamps, then explicitly decide teardown or a corrected, newly authorised attempt.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then
