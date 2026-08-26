@@ -59,7 +59,7 @@ same row.
 | [`2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md) | Planned through `1Q-G-B` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md) | Planned through `1Q-G-A` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-13-fund-cr-commission-ladder-planner-input.md`](../01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md) | Policy/assignment foundation partly incorporated through `1R-C5`; aggregate calculation, statements and settlement remain absent | Parked later commission work, represented by subordinate `2R-PROD-05`; not selected |
-| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B Linux parity and exact `139d09c4` dev scan pass; dedicated Stage C contract accepted and authorised on 2026-08-12; downstream short-code/single-artwork policy preserved in parked `1R-H-A` | Stage C remains root `Now`. Exact `328aadf0` is green/live on isolated worker `srv-da7au58u01pc738qld00`; logs prove the full checkout and pinned images, auto-deploy remains Off, the command is inert and user variables remain zero. The supplied “Deploy ID” is only the commit link, so capture Render's `dep-…` identifier read-only before minting the one-hour prefix-scoped credential or creating the single job. External execution/removal remain governed by the accepted assumption-test gate; `1R-H-A` remains inventory only and no production implementation is authorised |
+| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B Linux parity and exact `139d09c4` dev scan pass; dedicated Stage C contract accepted and authorised on 2026-08-12; downstream short-code/single-artwork policy preserved in parked `1R-H-A` | Stage C remains root `Now`. Phase 3 passes at exact `328aadf0`, isolated worker `srv-da7au58u01pc738qld00` and deployment `dep-da7b87i3v7hc73et4ui0`; auto-deploy remains Off, the command is inert and user variables remain zero. Phase 4 may now mint one 60-minute credential restricted to one random exact run prefix, retaining its three secret values outside Render until scope/expiry checks pass. External execution/removal remain governed by the accepted assumption-test gate; `1R-H-A` remains inventory only and no production implementation is authorised |
 | [`2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md`](../01-cr-inputs/2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md) | Consumed as the boundary preventing `1R-F-A` from absorbing collective/Standard paths | `1R-F-F` through `I` remain parked; no implementation authority |
 | [`2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`](../01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md) | `1R-F-A` automation, physical review and Linux parity accept candidate capacities of ten STANDARD portrait and twelve COMPACT landscape rows; production selection policy remains later `1R-F-B/D` work | Proof evidence only; no schema/policy implementation authorised |
 | [`2026-07-15-fund-template-manager-brief.md`](../01-cr-inputs/2026-07-15-fund-template-manager-brief.md) | Retained source brief for the Application/Artwork Template input | Provenance only; not a fourth CR and its provisional `T` labels carry no slice authority |
@@ -69,7 +69,7 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> complete FUND 1R-F-A Stage C Phase 3 evidence: exact 328aadf0 build/inert worker pass; capture Render dep- identifier read-only, then mint the one-hour prefix credential and create the single governed job
+ROOT NOW  -> execute FUND 1R-F-A Stage C Phase 4: Phase 3 exact worker/deploy passes; mint and verify one 60-minute credential restricted to one random exact run prefix before configuring or creating the single governed job
 ROOT NEXT -> reconcile the Stage C result, conclude 1R-F-A and deliberately reselect
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
 FUND      -> ACTIVE at preserved Stage C gate; R1B human/physical, Stage B and exact candidate gates PASS; external execution/teardown pending
@@ -125,8 +125,10 @@ to run briefly only under the proved inert/no-secret boundary. The subsequent
 specific-commit deploy is green and supplied logs prove full `328aadf0` checkout, accepted
 pinned image identities and terminal live state; auto-deploy remains Off, the command is
 inert and user variables remain zero. The submitted “Deploy ID” is the GitHub commit link,
-not Render's `dep-…` identifier. Capture the provider deployment ID read-only before
-minting the one-hour prefix credential or creating the single governed job.
+not Render's provider identifier. The control owner then supplied exact deployment
+`dep-da7b87i3v7hc73et4ui0`, closing Phase 3. Phase 4 may now fix one random UUID-v4 run ID
+and exact prefix, mint one 60-minute object-read-write credential restricted to that
+bucket/prefix, and retain its three values outside Render until scope/expiry checks pass.
 
 ## 1. Control Authority And Reading Rule
 

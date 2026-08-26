@@ -79,7 +79,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Exact `328aadf0` is now built and live on isolated worker `srv-da7au58u01pc738qld00`; supplied logs prove the full checkout and pinned Node/Playwright image identities, while auto-deploy remains Off, the inert command is unchanged and user variables remain zero. The supplied “Deploy ID” is only the commit link, not Render's `dep-…` identifier. Capture that non-secret deployment ID read-only, then progress to the one-hour prefix-scoped credential and single one-off job. Existing services remain untouched. |
+| **NOW** | Resume and execute accepted FUND `1R-F-A` Stage C implementation/gates/run/teardown | Phase 3 passes: exact `328aadf0` is built and live on isolated worker `srv-da7au58u01pc738qld00` as Render deployment `dep-da7b87i3v7hc73et4ui0`; logs prove the full checkout and pinned Node/Playwright image identities, auto-deploy remains Off, the command is inert and user variables remain zero. Phase 4 may now fix one random run prefix and mint one 60-minute prefix-scoped R2 credential, retained outside Render until scope/expiry checks pass. Existing services remain untouched. |
 | **NEXT** | Reconcile the Stage C result, conclude `1R-F-A` and deliberately reselect | Do not infer `1R-F-B`, `1R-G` or another product slice automatically; use the recorded Stage C evidence and authoritative FUND roadmap for the next portfolio decision. |
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
@@ -140,9 +140,11 @@ inert/no-secret boundary. The subsequent specific-commit deploy is green: suppli
 prove checkout of full `328aadf0a360b4c65837327060302ddc525f6168`, the accepted pinned
 Node and Playwright image digests and terminal `service is live`; auto-deploy remains Off,
 the Docker command remains the accepted inert command and user variables remain zero. The
-value supplied as “Deploy ID” is a GitHub commit link rather than Render's own `dep-…`
-identifier. Capture that provider identifier read-only before Phase 4 mints the one-hour
-prefix-scoped credential or creates a job.
+value supplied as “Deploy ID” was initially a GitHub commit link rather than Render's own
+identifier. The control owner then supplied exact Render deployment
+`dep-da7b87i3v7hc73et4ui0`. Phase 3 therefore passes. Phase 4 may now fix one random UUID-v4
+run ID and exact prefix, mint one 60-minute object-read-write credential restricted to that
+bucket/prefix, and retain its three values outside Render until scope/expiry checks pass.
 Stage C-result reconciliation is restored as `Next`. Exact R13 staging
 candidate `06811784`
 was subsequently authorised for controlled live promotion as-is. Main and origin/main then
