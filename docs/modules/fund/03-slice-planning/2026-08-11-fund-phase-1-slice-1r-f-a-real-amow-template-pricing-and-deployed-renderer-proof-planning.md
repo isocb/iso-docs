@@ -35,10 +35,10 @@ Production consequence: even a PASS only supports later production planning; it 
 ```
 
 ```text
-Current state: PAUSED BY CONTROL OWNER UNTIL 2026-08-27; Stage C-R1 local correction/new exact candidate is complete and one fresh disposable external test remains selected as root Now
-Last proven commit: exact application 0c7e48489aef697c6f39faf1a081456f9f3858a4 on dev/origin-dev; local proof and 9/9 focused tests PASS; Linux parity 32970902854 and Security Scan 32970902848 PASS; isodocs containment checkpoint d02e423
+Current state: RESUMED BY CONTROL OWNER ON 2026-09-01; Stage C-R1 local correction/new exact candidate is complete and one fresh disposable external test remains selected as root Now
+Last proven commit: exact application 0c7e48489aef697c6f39faf1a081456f9f3858a4 on dev/origin-dev; local proof and 9/9 focused tests PASS; Linux parity 32970902854 and Security Scan 32970902848 PASS; isodocs overnight checkpoint 02ac694
 Current environment: zero provider residue — exposed replacements revoked, empty bucket deleted, exact Keychain records absent and Zsh history matches zero; no R2 bucket, Render proof service, provider credential, environment variable, object or job exists; proposed replacement names below have NOT been created
-Next human decision/test: create bucket isostack-fund-1r-f-a-stage-c-r1-5b1791b5, bucket-only Object Read & Write token FUND-1R-F-A-Stage-C-R1-B-2026-08-27 and Render key of the same name, then run only /private/tmp/fund-stage-c-r1-store-credentials.zsh and report STAGE_C_R1_CREDENTIAL_RECORDS=PASS without transcript or values
+Next human decision/test: create bucket isostack-fund-1r-f-a-stage-c-r1-5b1791b5, bucket-only Object Read & Write token FUND-1R-F-A-Stage-C-R1-B-2026-09-01 and Render key of the same name, then run only /private/tmp/fund-stage-c-r1-store-credentials.zsh and report STAGE_C_R1_CREDENTIAL_RECORDS=PASS without transcript or values
 Safe resumption point: first verify zero provider/local residue and that exact 0c7e4848 remains dev/origin-dev; verify the prompt-only helper exists and uses macOS security ... -w with no value, recreating it outside Git if /private/tmp was cleared; after credential-name/API readback, agent-operate the one-off flow and stop before any job on resource identity, private/public state, scope denial or exact-build mismatch
 ```
 - [`FUND strategic completion roadmap`](../00-roadmap-control/2026-07-15-fund-store-artwork-orders-and-production-strategic-completion-roadmap.md)
