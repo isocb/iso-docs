@@ -59,9 +59,9 @@ same row.
 | [`2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md) | Planned through `1Q-G-B` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md) | Planned through `1Q-G-A` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-13-fund-cr-commission-ladder-planner-input.md`](../01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md) | Policy/assignment foundation partly incorporated through `1R-C5`; aggregate calculation, statements and settlement remain absent | Parked later commission work, represented by subordinate `2R-PROD-05`; not selected |
-| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B passes; prior Stage C failure is contained; corrected Stage C-R1 exact `0c7e4848` local/Linux/security/external evidence and zero-residue/revocation pass | `1R-F-A` COMPLETE AND CLOSED AT PASS. Assumption-test evidence only; no production implementation is authorised. Bounded `1R-F-B` planning is the direct accepted follow-on candidate but requires explicit root selection |
+| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; `1R-F-A` completes at PASS with exact `0c7e4848` local/Linux/security/physical/external evidence and zero residue; control owner explicitly selected bounded `1R-F-B` planning | `1R-F-B` High-control schema-foundation draft awaits control-owner review. Planning only; no production implementation is authorised |
 | [`2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md`](../01-cr-inputs/2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md) | Consumed as the boundary preventing `1R-F-A` from absorbing collective/Standard paths | `1R-F-F` through `I` remain parked; no implementation authority |
-| [`2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`](../01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md) | `1R-F-A` automation, physical review and Linux parity accept candidate capacities of ten STANDARD portrait and twelve COMPACT landscape rows; production selection policy remains later `1R-F-B/D` work | Proof evidence only; no schema/policy implementation authorised |
+| [`2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`](../01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md) | `1R-F-A` accepts validated ceilings of ten STANDARD portrait and twelve COMPACT landscape rows; selected `1R-F-B` planning carries those ceilings into immutable template-version schema while later C/D retain policy behaviour | `1R-F-B` draft awaiting review; no schema/policy implementation authorised |
 | [`2026-07-15-fund-template-manager-brief.md`](../01-cr-inputs/2026-07-15-fund-template-manager-brief.md) | Retained source brief for the Application/Artwork Template input | Provenance only; not a fourth CR and its provisional `T` labels carry no slice authority |
 | [`2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md`](../01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md) | Implemented/reviewed as `1R-E-D`; application commit is included by ancestry in current `83356030` | Completed technical correction; E-B/E-C real-workflow human acceptance remains a separate recorded gate and is not invented here |
 | [`change-request-cmqt61xmf000612xt5ifl1mdn-2026-06-25.md`](../01-cr-inputs/change-request-cmqt61xmf000612xt5ifl1mdn-2026-06-25.md) | Original issue bundle was triaged and distributed across the historical `1P`/`1Q` lifecycle and later refinement controls | Superseded as a single active queue; retained as source evidence, with any genuinely absent outcome governed by its named current refinement/workstream |
@@ -69,10 +69,11 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> control-owner selection after Stage C-R1 completed at PASS; bounded 1R-F-B planning is the direct follow-on candidate but is not selected
-ROOT NEXT -> not selected pending that explicit decision; do not infer later FUND or production work
+ROOT NOW  -> FUND 1R-F-B High-control schema-foundation planning selected; bounded draft awaits control-owner review
+ROOT NEXT -> not selected pending that review; no schema implementation is inferred
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
 FUND      -> 1R-F-A COMPLETE AND CLOSED AT PASS; prior Stage C FAIL retained as contained history; Stage C-R1 provider/object/Render/local residue zero
+             1R-F-B planning only is selected; no Prisma/database/provider/runtime change is authorised
 ```
 
 On 2026-09-01 exact Stage C-R1 deployment `dep-dab9dj142hec73a9vvtg` and the single
@@ -224,7 +225,8 @@ R14-A local R1-R9, staging S1-S4 and production L1-L2: PASS; COMPLETE AND CLOSED
 protected work/dev/staging/main Security Scans: PASS; exact-main run 32838343535 complete
 Role Authority: COMPLETE AND CLOSED
 Support Ticketing: COMPLETE AND CLOSED
-FUND Stage C: COMPLETE at FAIL because deterministic runner defect prevented behavioural proof; zero-residue/revocation PASS; no provider/local test resource remains; deliberate root reselection required
+FUND 1R-F-A Stage C-R1: COMPLETE AND CLOSED AT PASS on exact 0c7e4848; provider/object/Render/local residue zero
+FUND 1R-F-B: selected for High-control planning only; draft awaiting control-owner review; no production implementation authorised
 ```
 
 Current consolidated delivery state:
@@ -273,12 +275,11 @@ Current E-A/E-B/E-C promotion state:
   authenticated E-B/E-C real-workflow acceptance remains pending; and
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is reviewed and accepted as
   the non-executable successor to the three governed CRs; and
-- `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is accepted and locally
-  implemented through the Stage C exact candidate. R1B automation, human/physical review,
-  Linux-container parity and exact candidate gates pass. Stage C external execution failed
-  before behavioural proof on the deterministic runner defect; all temporary resources and
-  credentials are absent. No `1R-F-B` through `1R-F-I`, `1R-G`, runner correction/rerun or
-  artwork/template production implementation is selected or authorised.
+- `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is complete and closed
+  at PASS on corrected exact `0c7e4848`, including disposable external execution and zero
+  provider/object/Render/local residue. The control owner selected bounded `1R-F-B`
+  planning only. Its High-control draft awaits review; no Prisma, migration, database,
+  service, UI, provider, deployment or later `1R-F` child is authorised.
 - the 2026-07-20 refinement reconciliation is accepted as subordinate placement control:
   it must inform `1R-F-A` and be applied before accepting work beyond it, but it does not
   replace the authoritative next-candidate decision or authorise a refinement implementation.
@@ -947,9 +948,10 @@ Stage C runner failure is contained with zero residue. Corrected Stage C-R1 pass
 behavioural run. Its exact prefix, Render variables/service, bucket, provider authorities,
 local credential records and helpers are absent; both retained provider values returned
 HTTP 401 before local deletion. `1R-F-A` is complete and closed at PASS. Root control now
-awaits explicit portfolio selection; bounded `1R-F-B` planning is the direct accepted PASS
-follow-on candidate but is not selected. No `1R-G`, further run or artwork/template
-production implementation is selected or authorised.
+selects bounded `1R-F-B` High-control planning. Its schema-foundation draft awaits
+control-owner review and makes no application, Prisma, database, provider or deployment
+change. Root `Next` remains unselected; no `1R-G`, further run or artwork/template
+production implementation is authorised.
 ```
 
 ## 10. Roadmap Maintenance Rule

@@ -2,10 +2,9 @@
 
 Date: 2026-07-15
 
-Status: Accepted governed input consumed by the `1R-F` parent; bounded `1R-F-A`
-source/physical and Stage B gates pass; Stage C closes at FAIL because its accepted runner
-failed before behavioural proof, with zero-residue/revocation PASS; no production
-implementation authorised
+Status: Accepted governed input consumed by the `1R-F` parent; `1R-F-A` complete and closed
+at PASS on corrected exact `0c7e4848` with zero residue; bounded `1R-F-B` High-control
+planning selected and awaiting review; no production implementation authorised
 
 Source brief:
 
@@ -27,9 +26,13 @@ Accepted reconciliation successor:
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`
 
-Current bounded child plan:
+Completed proof child plan:
 
 `docs/modules/fund/03-slice-planning/2026-08-11-fund-phase-1-slice-1r-f-a-real-amow-template-pricing-and-deployed-renderer-proof-planning.md`
+
+Current bounded planning child:
+
+`docs/modules/fund/03-slice-planning/2026-09-01-fund-phase-1-slice-1r-f-b-individual-artwork-template-offer-lock-schema-foundation-planning.md`
 
 Parked downstream Store Order policy plan:
 

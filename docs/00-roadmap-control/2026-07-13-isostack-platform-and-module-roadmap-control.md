@@ -80,8 +80,8 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Control-owner selection after FUND `1R-F-A Stage C-R1` completed at PASS | Stage C-R1 is complete at exact `0c7e4848`, including provider revocation and zero residue. Select the next bounded portfolio outcome explicitly. The accepted plan identifies `1R-F-B` planning as the direct PASS follow-on candidate, but it is not automatically selected. |
-| **NEXT** | Not selected pending that explicit decision | Do not infer `1R-F-B`, `1R-G`, `1R-H-A`, production infrastructure, promotion or another run. The completed `High`-depth assumption test is evidence for later planning, not a production build. |
+| **NOW** | FUND `1R-F-B` Individual Artwork Template And Offer-Lock Schema Foundation planning | The control owner explicitly selected planning on 2026-09-01. A bounded `High`-control draft now defines a future production-model schema boundary and awaits review. This documentation work does not authorise Prisma, migration, database, service, UI, infrastructure or deployment changes. |
+| **NEXT** | Not selected pending `1R-F-B` plan review | Do not infer schema implementation, `1R-F-C`, `1R-G`, `1R-H-A`, production infrastructure, promotion or another external run. Plan acceptance and any implementation selection are separate control decisions. |
 
 On 2026-09-01 the control owner supplied the fresh provider authority through the accepted
 prompt-only boundary and the agent operated the one-off test. Exact Render deploy
@@ -94,6 +94,14 @@ The control owner then confirmed exact empty-bucket deletion and both provider r
 Retained Cloudflare R2 and Render credentials each returned HTTP 401; all three exact
 Keychain records and all five Stage C-R1 helpers are absent. The indivisible test therefore
 completes at PASS with zero provider, object, Render or local credential residue.
+
+The control owner then explicitly selected bounded FUND `1R-F-B` planning. The resulting
+High-control draft plans a future additive tenant-scoped production schema for Application
+Template identity/version/assignment, immutable Project offer locks, Project-specific
+Artwork Template version/generation evidence and secure-grant evidence. It makes no
+application, Prisma, database, provider, infrastructure or deployment change. Root `Next`
+remains unselected until the control owner reviews that plan; acceptance would still not
+authorise implementation.
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
 promotion. Exact `250baf12` is aligned through main; all protected scans, Render identity,

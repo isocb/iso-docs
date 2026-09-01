@@ -2,9 +2,10 @@
 
 Date: 2026-07-15
 
-Status: Accepted governed input to the `1R-F` parent; `1R-F-A` automation, physical review
-and Linux parity accept proof capacities of ten STANDARD portrait and twelve COMPACT
-landscape rows; no schema, policy or production implementation authorised
+Status: Accepted governed input to the `1R-F` parent; `1R-F-A` accepts validated ceilings
+of ten STANDARD portrait and twelve COMPACT landscape rows; bounded `1R-F-B` High-control
+planning selected and awaiting review; no schema, policy or production implementation
+authorised
 
 Related change requests by name:
 
@@ -22,9 +23,13 @@ Accepted reconciliation successor:
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-f-project-offer-artwork-readiness-reconciliation-planning.md`
 
-Current bounded child plan:
+Completed proof child plan:
 
 `docs/modules/fund/03-slice-planning/2026-08-11-fund-phase-1-slice-1r-f-a-real-amow-template-pricing-and-deployed-renderer-proof-planning.md`
+
+Current bounded planning child:
+
+`docs/modules/fund/03-slice-planning/2026-09-01-fund-phase-1-slice-1r-f-b-individual-artwork-template-offer-lock-schema-foundation-planning.md`
 
 The successor preserves this CR as governed source evidence, accepts the shared
 Individual Artwork selection/capacity contract and routes renderer-dependent capacity

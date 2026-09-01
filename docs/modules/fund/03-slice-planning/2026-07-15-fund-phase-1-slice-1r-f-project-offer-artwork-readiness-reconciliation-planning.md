@@ -2,9 +2,9 @@
 
 Date: 2026-07-15
 
-Status: Parent reviewed and accepted; `1R-F-A` source/physical and Stage B Linux parity
-gates pass; Stage C closes at FAIL after deterministic runner failure with
-zero-residue/revocation PASS; no later child, correction or rerun authorised
+Status: Parent reviewed and accepted; `1R-F-A` complete and closed at PASS on corrected
+exact `0c7e4848` with zero residue; control owner selected bounded `1R-F-B` planning only;
+no production implementation authorised
 
 Naming correction: 2026-07-16 — restored alphabetical delivery order by assigning this
 parent `1R-F` and moving the previously reserved, unimplemented Public Store Presentation
@@ -268,11 +268,11 @@ The accepted bounded child plan is at:
 [`1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof`](2026-08-11-fund-phase-1-slice-1r-f-a-real-amow-template-pricing-and-deployed-renderer-proof-planning.md)
 
 Its local Stage A automation, visual/physical review and immutable Stage B Linux-container
-execution pass. Exact `139d09c4` is aligned to local/remote dev with Linux parity run
-`31595635243` and Security Scan `31595635276` green. The separately authorised Stage C
-assumption test closes at FAIL because its accepted runner failed before behavioural proof;
-zero-residue/revocation passes. All later children and any correction/rerun remain
-unauthorised.
+execution pass. The original Stage C runner failure remains contained history. Separately
+selected Stage C-R1 corrected exact `0c7e4848` passes local, Linux, security and one
+disposable external behavioural run, with provider/object/Render/local residue zero.
+`1R-F-A` is complete and closed at PASS. Only bounded `1R-F-B` planning is now selected;
+no schema implementation or later child is authorised.
 
 Bounded outcome:
 
@@ -296,9 +296,15 @@ user/client and is the first planned human stop.
 
 ### 6.2 1R-F-B — Individual Artwork Template And Offer-Lock Schema Foundation
 
-Plan the accepted Application Template identity/version/assignment, Project offer lock,
-Artwork Template identity/version, generation attempt and secure grant evidence only after
-A proves the renderer/layout contract.
+The selected bounded planning draft is at:
+
+[`1R-F-B Individual Artwork Template And Offer-Lock Schema Foundation`](2026-09-01-fund-phase-1-slice-1r-f-b-individual-artwork-template-offer-lock-schema-foundation-planning.md)
+
+It plans the accepted Application Template identity/version/assignment, Project offer lock,
+Artwork Template identity/version, generation attempt and secure-grant evidence after A's
+corrected exact candidate proved the renderer/layout contract. The draft is `High` control
+and awaits control-owner review. It makes no schema, migration, database, provider,
+service, UI or deployment change and does not authorise implementation.
 
 ### 6.3 1R-F-C — Individual Selection, Template Lifecycle And C1 Management
 
@@ -399,8 +405,10 @@ Accepted conclusions:
    new typed evidence.
 4. A generated Artwork Template requires its own aggregate.
 5. No artwork/template implementation is safe before a real deployed-renderer/print proof.
-6. `1R-F-A` completed at FAIL because Stage C did not prove the external assumption; root
-   control must deliberately select any correction/new candidate or different outcome.
+6. `1R-F-A` completed and closed at PASS after the separately selected Stage C-R1 corrected
+   candidate proved the external assumption and zero residue.
+7. The control owner then selected bounded `1R-F-B` planning; its High-control draft awaits
+   review and does not authorise production implementation.
 
 Because this is a non-executable parent reconciliation, no `04-implementation-confirmations`
 or `05-review-and-test` record is created. Each executable child receives the full
@@ -408,8 +416,10 @@ lifecycle independently.
 
 ## 10. Preserved Planning Prompt And Current Child
 
-The prompt below is retained as the authority used to create the bounded `1R-F-A` child
-plan. Current review must use that child document rather than generating a competing plan.
+The prompt below is retained as historical authority used to create the completed
+`1R-F-A` child. Current work must use the selected `1R-F-B` planning document linked in
+section 6.2 rather than generating a competing plan or treating this historical prompt as
+current implementation authority.
 
 ```text
 Continue only accepted FUND Phase 1 Slice 1R-F-A planning. Do not implement production
