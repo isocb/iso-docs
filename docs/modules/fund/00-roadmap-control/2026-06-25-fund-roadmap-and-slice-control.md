@@ -59,7 +59,7 @@ same row.
 | [`2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md) | Planned through `1Q-G-B` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md) | Planned through `1Q-G-A` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-13-fund-cr-commission-ladder-planner-input.md`](../01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md) | Policy/assignment foundation partly incorporated through `1R-C5`; aggregate calculation, statements and settlement remain absent | Parked later commission work, represented by subordinate `2R-PROD-05`; not selected |
-| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B passes; prior Stage C failure is contained; corrected Stage C-R1 exact `0c7e4848` local/Linux/security and external behavioural proof pass | `1R-F-A` Stage C-R1 is behaviourally PASS with exact-prefix and Render residue zero. Final bucket deletion, provider revocation and local-record absence remain root `Now`; this is assumption-test evidence only and authorises no production implementation |
+| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; source-faithful `1R-F-A-R1B` automation and 12/12 human/physical review pass; Stage B passes; prior Stage C failure is contained; corrected Stage C-R1 exact `0c7e4848` local/Linux/security/external evidence and zero-residue/revocation pass | `1R-F-A` COMPLETE AND CLOSED AT PASS. Assumption-test evidence only; no production implementation is authorised. Bounded `1R-F-B` planning is the direct accepted follow-on candidate but requires explicit root selection |
 | [`2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md`](../01-cr-inputs/2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md) | Consumed as the boundary preventing `1R-F-A` from absorbing collective/Standard paths | `1R-F-F` through `I` remain parked; no implementation authority |
 | [`2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`](../01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md) | `1R-F-A` automation, physical review and Linux parity accept candidate capacities of ten STANDARD portrait and twelve COMPACT landscape rows; production selection policy remains later `1R-F-B/D` work | Proof evidence only; no schema/policy implementation authorised |
 | [`2026-07-15-fund-template-manager-brief.md`](../01-cr-inputs/2026-07-15-fund-template-manager-brief.md) | Retained source brief for the Application/Artwork Template input | Provenance only; not a fourth CR and its provisional `T` labels carry no slice authority |
@@ -69,10 +69,10 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> finish Stage C-R1 cleanup after exact 0c7e4848 external behavioural PASS: delete empty bucket, revoke provider credentials and prove local/provider absence
-ROOT NEXT -> not selected pending final Stage C-R1 cleanup and reconciliation; do not infer later FUND or production work
+ROOT NOW  -> control-owner selection after Stage C-R1 completed at PASS; bounded 1R-F-B planning is the direct follow-on candidate but is not selected
+ROOT NEXT -> not selected pending that explicit decision; do not infer later FUND or production work
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
-FUND      -> prior Stage C FAIL contained; Stage C-R1 behavioural/object/Render evidence PASS; final provider/local cleanup is active Now
+FUND      -> 1R-F-A COMPLETE AND CLOSED AT PASS; prior Stage C FAIL retained as contained history; Stage C-R1 provider/object/Render/local residue zero
 ```
 
 On 2026-09-01 exact Stage C-R1 deployment `dep-dab9dj142hec73a9vvtg` and the single
@@ -80,9 +80,10 @@ one-off job `job-dab9eirtqb8s73f7r5n0` passed at full candidate
 `0c7e48489aef697c6f39faf1a081456f9f3858a4`. Six controlled fixtures, six refusals and
 six private R2 checksum round trips pass; peak memory ratio is `0.6583`; exact-prefix count
 is zero. All twelve direct Render variables were removed and disposable service
-`srv-dab9dip42hec73a9vuvg` is deleted/absent. Only the exact empty bucket, two dedicated
-provider credentials, three local parent/provider records and temporary helpers remain for
-the accepted final revocation/absence sequence.
+`srv-dab9dip42hec73a9vuvg` is deleted/absent. The control owner then confirmed exact bucket
+deletion and both provider revocations; retained Cloudflare and Render credentials each
+returned HTTP 401. All three exact Keychain records and all five temporary helpers are
+absent. `1R-F-A` therefore closes at PASS with zero residue.
 
 Email F3, Role Authority and Support Ticketing are complete and closed. `PLAT-ROLE-R1` is
 deferred trigger-based assurance and does not block FUND unless a recorded trigger fires.
@@ -509,8 +510,8 @@ COMMERCE-A1 (complete on dev)
   -> FUND 1R-F Project Offer And Artwork Readiness Reconciliation parent accepted
      -> FUND 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
         local/physical/Linux gates pass; prior external failure contained; corrected
-        Stage C-R1 external behavioural proof PASS at exact 0c7e4848; exact-prefix and
-        Render residue zero; final provider/local cleanup pending
+        Stage C-R1 external behavioural proof PASS at exact 0c7e4848; provider revocation
+        and exact-prefix/Render/local zero-residue PASS; COMPLETE AND CLOSED
         -> apply the accepted pilot/refinement placement before accepting later F/G work;
            this is a control gate, not an executable slice
 
@@ -560,8 +561,8 @@ Rules:
   follows E-D; its plan, Stage A evidence, human/physical review and Stage B Linux parity
   pass at exact dev `139d09c4`. The prior Stage C failure is contained. Corrected Stage C-R1
   local/Linux/security gates and the one external behavioural/private-object run pass at
-  exact `0c7e4848`; exact-prefix and Render residue are zero. Final bucket/provider/local
-  cleanup remains required. No production implementation, promotion or further run is selected;
+  exact `0c7e4848`; provider revocation and exact-prefix/Render/local zero-residue pass.
+  `1R-F-A` is complete and closed. No production implementation, promotion or further run is selected;
 - [`1R-H-A - Store Order Short Code And Single-Artwork Correlation`](../03-slice-planning/2026-08-11-fund-phase-1-slice-1r-h-a-store-order-short-code-and-single-artwork-correlation-planning.md)
   is a parked downstream planning input after public Store `1R-G`; it records accepted
   policy only and is not `Now`/`Next` or implementation authority;
@@ -943,10 +944,12 @@ branches. `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` has
 A, source/physical and Stage B Linux-container evidence at exact dev `139d09c4`. The prior
 Stage C runner failure is contained with zero residue. Corrected Stage C-R1 passes its exact
 `0c7e4848` local/Linux/security gates and the one authorised external Render/private-R2
-behavioural run. Its exact prefix, Render variables and disposable service are absent. Root
-control remains on final empty-bucket deletion, provider revocation and local-record/helper
-absence; no `1R-F-B`, `1R-G`, further run or artwork/template production implementation is
-selected or authorised.
+behavioural run. Its exact prefix, Render variables/service, bucket, provider authorities,
+local credential records and helpers are absent; both retained provider values returned
+HTTP 401 before local deletion. `1R-F-A` is complete and closed at PASS. Root control now
+awaits explicit portfolio selection; bounded `1R-F-B` planning is the direct accepted PASS
+follow-on candidate but is not selected. No `1R-G`, further run or artwork/template
+production implementation is selected or authorised.
 ```
 
 ## 10. Roadmap Maintenance Rule

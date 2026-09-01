@@ -58,7 +58,7 @@ PLAT-ROLE-04A production Render/health = exact fcd162db LIVE; DB connected; RLS 
 FUND R1B automation, physical/PDF smoke and exact dev Security Scan 31589031306 = PASS
 FUND Stage B Linux parity 31595635243 and exact dev Security Scan 31595635276 = PASS
 FUND Stage C candidate Linux parity 31599134487 and exact Security Scan 31599134488 = PASS
-FUND Stage C-R1 exact 0c7e4848 Linux parity 32970902854, Security Scan 32970902848 and disposable external behavioural proof = PASS; exact prefix/Render residue zero; provider revocation/deletion pending
+FUND Stage C-R1 exact 0c7e4848 Linux parity 32970902854, Security Scan 32970902848, disposable external behavioural proof, provider revocation and zero object/Render/local residue = PASS; COMPLETE AND CLOSED
 Support exact dev Security Scan 31494574593 and staging Security Scan 31494804070 = PASS
 Support exact main Security Scan 31496940138 = PASS
 Support staging public health = HTTP 200; database connected; RLS 11/11
@@ -80,8 +80,8 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Close the successful FUND `1R-F-A Stage C-R1` assumption test at exact corrected candidate `0c7e4848` | External behavioural proof passed: six fixtures/refusals and six private checksum round trips pass, exact prefix is zero, twelve Render variables are removed and the disposable service is absent. Delete the exact empty bucket, revoke both named provider credentials, prove refusal/absence, then remove the three local records/helpers. |
-| **NEXT** | Not selected pending final Stage C-R1 cleanup and reconciliation | Do not infer `1R-F-B`, `1R-G`, `1R-H-A`, production infrastructure, promotion or another run. This remains a `High`-depth assumption test result, not a production build. |
+| **NOW** | Control-owner selection after FUND `1R-F-A Stage C-R1` completed at PASS | Stage C-R1 is complete at exact `0c7e4848`, including provider revocation and zero residue. Select the next bounded portfolio outcome explicitly. The accepted plan identifies `1R-F-B` planning as the direct PASS follow-on candidate, but it is not automatically selected. |
+| **NEXT** | Not selected pending that explicit decision | Do not infer `1R-F-B`, `1R-G`, `1R-H-A`, production infrastructure, promotion or another run. The completed `High`-depth assumption test is evidence for later planning, not a production build. |
 
 On 2026-09-01 the control owner supplied the fresh provider authority through the accepted
 prompt-only boundary and the agent operated the one-off test. Exact Render deploy
@@ -90,9 +90,10 @@ prompt-only boundary and the agent operated the one-off test. Exact Render deplo
 `2908.62/1904.02 ms`, batch time was `22627 ms`, and peak cgroup memory was `353406976`
 bytes (`0.6583` of the accepted Starter envelope). The exact prefix is empty, direct Render
 variables are zero, and temporary service `srv-dab9dip42hec73a9vuvg` is deleted/absent.
-Only provider revocation, empty-bucket deletion and local-record/helper absence remain; the
-test is behaviourally PASS but cannot close as the indivisible final PASS before those
-cleanup gates complete.
+The control owner then confirmed exact empty-bucket deletion and both provider revocations.
+Retained Cloudflare R2 and Render credentials each returned HTTP 401; all three exact
+Keychain records and all five Stage C-R1 helpers are absent. The indivisible test therefore
+completes at PASS with zero provider, object, Render or local credential residue.
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
 promotion. Exact `250baf12` is aligned through main; all protected scans, Render identity,

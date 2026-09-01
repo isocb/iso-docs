@@ -4,9 +4,9 @@ Date: 2026-08-12
 
 Restart checkpoint reconciled: 2026-09-01
 
-Status: **PRIOR STAGE C FAIL CONTAINED; STAGE C-R1 EXACT `0c7e4848` EXTERNAL BEHAVIOURAL
-PROOF PASS; ZERO OBJECT/RENDER RESIDUE PASS; FINAL PROVIDER REVOCATION, BUCKET DELETION AND
-LOCAL-RECORD ABSENCE PENDING; NO PRODUCTION MODEL BUILT OR AUTHORISED**
+Status: **STAGE C-R1 COMPLETE AT PASS AT EXACT `0c7e4848`; EXTERNAL BEHAVIOUR, PROVIDER
+REVOCATION AND ZERO OBJECT/RENDER/LOCAL RESIDUE PASS; PRIOR STAGE C FAIL RETAINED AS
+CONTAINED HISTORY; NO PRODUCTION MODEL BUILT OR AUTHORISED**
 
 Control depth: **`High`** — dedicated credentials, runtime configuration, a material
 external-service contract, private-object handling and exact resource teardown require the
@@ -36,15 +36,10 @@ Exact commit: corrected candidate 0c7e48489aef697c6f39faf1a081456f9f3858a4; prio
 Files/change boundary: Stage C-R1 changes only renderer.ts browser-context layout collection; no template, fixture, threshold, schema, route, shared R2 utility or render.yaml change
 Automated checks: corrected local proof and focused 9/9 PASS; proof/application TypeScript and repository verification PASS; Linux parity 32970902854 and Security Scan 32970902848 PASS
 Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner created the exact fresh provider authority through the prompt-only boundary; agent-operated provider/API evidence proves the external behaviour and current cleanup state
-Environment proven: exact R1 prefix zero; Render direct variables 12 -> 0, exact service deletion returned 204 then ID/list absence; no derived credential was written to Keychain; the empty private bucket and two provider credentials remain only for final deletion/revocation proof
-Known residual risk: external renderer/private-object behaviour is now proved for this bounded test only; it does not establish a production operating model, and final provider/local revocation evidence remains incomplete
-Next authorised action: remove the exact empty proof bucket, revoke the two named provider credentials, prove refusal/absence from retained local records, then delete those records and temporary helpers
+Environment proven: exact R1 prefix zero; Render direct variables 12 -> 0, exact service deletion returned 204 then ID/list absence; no derived credential was written to Keychain; bucket/provider deletion and revocation confirmed; both retained provider values returned HTTP 401; three exact Keychain records and five helpers absent
+Known residual risk: external renderer/private-object behaviour is proved for this bounded test only; it does not establish production storage, credentials, backup, recovery, retention or an operating model
+Next authorised action: none within Stage C-R1; root control awaits explicit selection, with bounded 1R-F-B planning available as the direct PASS follow-on candidate
 
-Current state: Stage C-R1 external behavioural evidence PASS; Render/object cleanup PASS; final provider/local cleanup pending
-Last proven commit: 0c7e48489aef697c6f39faf1a081456f9f3858a4
-Current environment: dev/origin-dev exact; run prefix zero; Render variables and disposable service absent; empty private bucket, dedicated Cloudflare token, dedicated Render key and three local parent/provider records remain for final revocation/absence proof
-Next human decision/test: delete the exact empty bucket and Cloudflare token, revoke the exact Render key, and report only completion booleans
-Safe resumption point: never rerun the job; use retained records only to prove provider rejection/absence, then remove the three exact Keychain records and all temporary helpers before final reconciliation
 ```
 
 ### Stage C-R1 credential-origin containment — 2026-08-26
@@ -413,23 +408,36 @@ PDF evidence, in controlled fixture order:
 No database, customer data, public hostname, disk, environment group, shared bucket or
 production service was used or changed.
 
-## 8. Stage C-R1 Cleanup Evidence — Provider Revocation Pending
+## 8. Stage C-R1 Cleanup And Revocation Evidence — Pass
 
 The agent removed all twelve direct Render variables, verified zero, deleted exact service
 `srv-dab9dip42hec73a9vuvg`, received subsequent exact-ID absence and proved zero exact-name
 matches. The exact run prefix independently lists zero objects. No second job or service was
 created.
 
-Remaining bounded cleanup is human-provider authority only:
+The control owner then reported deletion of exact empty bucket
+`isostack-fund-1r-f-a-stage-c-r1-5b1791b5`, deletion of Cloudflare token
+`FUND-1R-F-A-Stage-C-R1-B-2026-09-01` and revocation of the Render API key with the same
+name. Before deleting the retained local records, the agent proved Cloudflare R2 and Render
+each reject the retained credential with HTTP 401. It then deleted only the three exact
+Keychain records; independent lookups for all three return macOS Keychain not-found status
+44. All five `/private/tmp/fund-stage-c-r1*` helpers were deleted and an exact filename scan
+returns zero.
 
-1. delete empty bucket `isostack-fund-1r-f-a-stage-c-r1-5b1791b5`;
-2. delete Cloudflare token `FUND-1R-F-A-Stage-C-R1-B-2026-09-01`;
-3. revoke the Render API key with the same name;
-4. use the retained local records only for refusal/absence proof; and
-5. delete the three exact Keychain records and all `/private/tmp` Stage C-R1 helpers.
+The complete final state is therefore:
 
-Until those five actions pass, Stage C-R1 is **behaviourally PASS but cleanup-incomplete**.
-It is not yet the indivisible final PASS defined by section 1.
+| Cleanup boundary | Result |
+| --- | --- |
+| Exact run prefix | PASS — zero objects before and after the job |
+| Render direct variables | PASS — twelve to zero |
+| Disposable Render service | PASS — deleted; exact ID/name absent |
+| Dedicated R2 bucket | PASS — empty before control-owner deletion; deletion confirmed |
+| Cloudflare parent token | PASS — deletion confirmed; retained credential returned HTTP 401 |
+| Render operator key | PASS — revocation confirmed; retained credential returned HTTP 401 |
+| Local credential records | PASS — all three exact records deleted and not found |
+| Temporary helpers | PASS — all five exact files deleted; zero matches |
+
+Stage C-R1 now satisfies the indivisible PASS gate defined by section 1.
 
 ## 9. Stage C-R1 Current Disposition
 
@@ -439,5 +447,7 @@ and completes all six private scoped R2 checksum round trips with zero object re
 supports later production planning only. It does not build or authorise production storage,
 credentials, backup, recovery, retention, renderer service or operating model.
 
-Root `Now` remains only the final revocation/deletion/absence sequence. Root `Next` remains
-unselected; do not infer `1R-F-B`, `1R-G`, `1R-H-A`, promotion or another external run.
+Stage C-R1 is **COMPLETE AND CLOSED AT PASS**. Root `Now` returns to explicit control-owner
+portfolio selection and root `Next` remains unselected. The accepted plan identifies bounded
+`1R-F-B` planning as the direct PASS follow-on candidate, but this record does not select it.
+Do not infer `1R-G`, `1R-H-A`, promotion, production infrastructure or another external run.

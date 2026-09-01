@@ -2,10 +2,9 @@
 
 Date: 2026-08-11
 
-Status: **PLAN ACCEPTED; R1B SOURCE/PHYSICAL REVIEW AND STAGE B PASS; PRIOR STAGE C FAIL
-CONTAINED; STAGE C-R1 EXACT `0c7e4848` LOCAL/LINUX/SECURITY AND EXTERNAL BEHAVIOURAL
-EVIDENCE PASS; ZERO OBJECT/RENDER RESIDUE PASS; FINAL BUCKET DELETION, PROVIDER REVOCATION
-AND LOCAL-RECORD REMOVAL PENDING**
+Status: **COMPLETE AT PASS; R1B SOURCE/PHYSICAL REVIEW, STAGE B AND STAGE C-R1 EXACT
+`0c7e4848` LOCAL/LINUX/SECURITY/EXTERNAL EVIDENCE PASS; PROVIDER REVOCATION AND ZERO
+OBJECT/RENDER/LOCAL RESIDUE PASS; NO PRODUCTION MODEL BUILT OR AUTHORISED**
 
 Owning lane: FUND
 
@@ -33,11 +32,11 @@ Production consequence: even a PASS only supports later production planning; it 
 ```
 
 ```text
-Current state: Stage C-R1 external behavioural proof PASS on 2026-09-01; final provider/local cleanup is the only remaining root Now action
+Current state: COMPLETE AND CLOSED AT PASS on 2026-09-01; external behaviour, provider revocation and complete zero-residue evidence pass
 Last proven commit: exact application 0c7e48489aef697c6f39faf1a081456f9f3858a4; local proof and focused 9/9, Linux parity 32970902854, Security Scan 32970902848 and disposable Render job job-dab9eirtqb8s73f7r5n0 PASS
-Current environment: exact prefix 70e0f321-b64f-44ac-8598-bbc6c6098ff4 is zero; twelve Render variables were removed; disposable service srv-dab9dip42hec73a9vuvg was deleted and exact-name/ID absence proved; empty private bucket and its two dedicated provider credentials remain only for final human deletion/revocation; three named parent/provider Keychain records and temporary helpers remain until refusal/absence proof
-Next human decision/test: delete exact empty bucket isostack-fund-1r-f-a-stage-c-r1-5b1791b5, delete Cloudflare token FUND-1R-F-A-Stage-C-R1-B-2026-09-01 and revoke the Render API key of the same name, then report the three results without values
-Safe resumption point: do not create another service, credential, prefix, object or job; after the control-owner deletions, use the retained local records only for bounded 401/404 refusal proof, delete the three exact Keychain records and /private/tmp helpers, prove absence, then reconcile Stage C-R1 and root Now/Next
+Current environment: exact prefix zero; twelve Render variables removed; disposable service absent; control-owner reports the exact empty bucket deleted and both named provider credentials revoked; retained Cloudflare and Render values each return HTTP 401; three exact Keychain records and all five Stage C-R1 helpers are absent
+Next human decision/test: select the next portfolio outcome explicitly; bounded 1R-F-B planning is the direct accepted PASS follow-on candidate but is not automatically selected
+Safe resumption point: start from completed exact 0c7e4848 evidence and root selection control; do not recreate Stage C resources or rerun its job, and do not infer production infrastructure, promotion or implementation authority
 ```
 - [`FUND strategic completion roadmap`](../00-roadmap-control/2026-07-15-fund-store-artwork-orders-and-production-strategic-completion-roadmap.md)
 - [`FUND refinement register`](../00-roadmap-control/2026-07-20-fund-refinement-wishlist-and-slice-control.md)
