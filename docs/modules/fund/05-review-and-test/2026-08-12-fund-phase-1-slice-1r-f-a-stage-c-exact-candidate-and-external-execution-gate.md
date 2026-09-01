@@ -2,11 +2,11 @@
 
 Date: 2026-08-12
 
-Restart checkpoint reconciled: 2026-08-26
+Restart checkpoint reconciled: 2026-09-01
 
-Status: **PRIOR STAGE C COMPLETE AT FAIL WITH ZERO RESIDUE; STAGE C-R1 EXACT `0c7e4848`
-CORRECTION GATES PASS; ONE FRESH DISPOSABLE EXTERNAL ASSUMPTION TEST SELECTED; NO PRODUCTION
-MODEL BUILT OR AUTHORISED**
+Status: **PRIOR STAGE C FAIL CONTAINED; STAGE C-R1 EXACT `0c7e4848` EXTERNAL BEHAVIOURAL
+PROOF PASS; ZERO OBJECT/RENDER RESIDUE PASS; FINAL PROVIDER REVOCATION, BUCKET DELETION AND
+LOCAL-RECORD ABSENCE PENDING; NO PRODUCTION MODEL BUILT OR AUTHORISED**
 
 Control depth: **`High`** — dedicated credentials, runtime configuration, a material
 external-service contract, private-object handling and exact resource teardown require the
@@ -35,16 +35,16 @@ Implementation confirmation:
 Exact commit: corrected candidate 0c7e48489aef697c6f39faf1a081456f9f3858a4; prior failed candidate 328aadf0a360b4c65837327060302ddc525f6168 retained as historical evidence
 Files/change boundary: Stage C-R1 changes only renderer.ts browser-context layout collection; no template, fixture, threshold, schema, route, shared R2 utility or render.yaml change
 Automated checks: corrected local proof and focused 9/9 PASS; proof/application TypeScript and repository verification PASS; Linux parity 32970902854 and Security Scan 32970902848 PASS
-Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner provider inspections and manual empty-bucket deletion recorded; agent-operated API/Keychain readbacks prove Render and derived-credential cleanup
-Environment proven: exact corrected run prefix zero; Render direct variables 12 -> 0 without deploy, exact service deletion returned 204 then ID/list absence; exact empty WEUR R2 bucket now returns 404; three derived session-credential Keychain records absent
-Known residual risk: external renderer/private-object behaviour remains unproved; no provider resource or credential currently exists; the fresh test must reconstruct only disposable isolated resources and prove complete removal
-Next authorised action: create the dedicated fresh provider authority that the agent cannot originate, then agent-operate one exact-candidate external test and complete zero-residue removal
+Human evidence: accepted R1B source/physical review 12/12 PASS; control-owner created the exact fresh provider authority through the prompt-only boundary; agent-operated provider/API evidence proves the external behaviour and current cleanup state
+Environment proven: exact R1 prefix zero; Render direct variables 12 -> 0, exact service deletion returned 204 then ID/list absence; no derived credential was written to Keychain; the empty private bucket and two provider credentials remain only for final deletion/revocation proof
+Known residual risk: external renderer/private-object behaviour is now proved for this bounded test only; it does not establish a production operating model, and final provider/local revocation evidence remains incomplete
+Next authorised action: remove the exact empty proof bucket, revoke the two named provider credentials, prove refusal/absence from retained local records, then delete those records and temporary helpers
 
-Current state: Stage C-R1 correction/new candidate gates PASS; fresh external assumption test selected and awaiting dedicated provider authority
+Current state: Stage C-R1 external behavioural evidence PASS; Render/object cleanup PASS; final provider/local cleanup pending
 Last proven commit: 0c7e48489aef697c6f39faf1a081456f9f3858a4
-Current environment: dev/origin-dev exact; Render service absent; R2 bucket absent; prior credentials revoked/rejected; no named local Stage C credential record or temporary helper exists
-Next human decision/test: create only the dedicated bucket-scoped Cloudflare credential and dedicated Render operator key; no business or architecture decision remains before agent operation
-Safe resumption point: use exact 0c7e4848 with wholly new disposable resource names and credentials; fail closed before any job on identity, scope, public-access, empty-prefix or exact-build mismatch
+Current environment: dev/origin-dev exact; run prefix zero; Render variables and disposable service absent; empty private bucket, dedicated Cloudflare token, dedicated Render key and three local parent/provider records remain for final revocation/absence proof
+Next human decision/test: delete the exact empty bucket and Cloudflare token, revoke the exact Render key, and report only completion booleans
+Safe resumption point: never rerun the job; use retained records only to prove provider rejection/absence, then remove the three exact Keychain records and all temporary helpers before final reconciliation
 ```
 
 ### Stage C-R1 credential-origin containment — 2026-08-26
@@ -354,7 +354,7 @@ planned order as the observed order.
 | Named local Stage C credential records and helpers deleted and absent | PASS — three derived plus four parent/provider records deleted; all seven exact record names absent; all seventeen exact temporary helper files absent |
 | No database, disk, hostname, shared data or customer object created | PASS — worker had no disk/route/database/environment group, exact run prefix remained zero and both isolated provider resources are absent |
 
-## 6. Current Disposition
+## 6. Prior Stage C Disposition
 
 Stage C is complete with result **FAIL — assumption not proved**. The accepted exact
 candidate reached browser execution but its deterministic `__name` serialization defect
@@ -365,3 +365,79 @@ revocation pass in full.
 Do not promote staging/main, reopen Stage C, correct the runner or start `1R-F-B`, `1R-G` or
 `1R-H-A` automatically. The next action is a deliberate control-owner portfolio selection;
 any local runner correction and new exact candidate must be separately accepted.
+
+## 7. Stage C-R1 External Execution Evidence — 2026-09-01
+
+The control owner created exact disposable provider authority and entered its three values
+only through the prompt-only Keychain helper. The agent then operated the accepted one-off
+workflow. A read-only preflight proved the exact bucket empty, cross-bucket access denied
+with HTTP 403 and anonymous S3-endpoint access refused. Render returned the workspace label
+`My Workspace`, differing from the earlier recorded `Isostack` label; read-only listing
+proved that exact workspace owns all four existing `isocb/isostack-bedrock` services, so
+the difference is reconciled as provider display-name drift rather than a different account.
+
+The agent created disposable background worker `srv-dab9dip42hec73a9vuvg` with auto-deploy
+`no`, no initial environment values, Starter plan, Frankfurt region, the accepted inert
+command and proof Dockerfile. Initial deployment `dep-dab9dj142hec73a9vvtg` reached `live`
+at exact full commit `0c7e48489aef697c6f39faf1a081456f9f3858a4`; the worker was then
+suspended before any runtime credential was installed.
+
+Locally signed one-hour credential run `70e0f321-b64f-44ac-8598-bbc6c6098ff4` was restricted
+to exact prefix `fund/1r-f-a/stage-c/70e0f321-b64f-44ac-8598-bbc6c6098ff4/`. The prefix
+began empty, out-of-prefix HEAD returned HTTP 403, and exact readback of the twelve accepted
+Render variables passed. Exactly one Starter one-off job, `job-dab9eirtqb8s73f7r5n0`,
+ran `npm run proof:fund:1r-f-a:stage-c` and reached terminal `succeeded`.
+
+| Required evidence | Stage C-R1 result |
+| --- | --- |
+| Exact candidate/runtime gate | PASS — deploy and runner both report exact `0c7e48489aef697c6f39faf1a081456f9f3858a4` |
+| Private/scope negative tests | PASS — cross-bucket parent request 403; temporary out-of-prefix request 403; anonymous object-endpoint preflight refused |
+| Controlled renderer fixtures/refusals | PASS — six accepted fixtures and six refusal fixtures |
+| Six private PDF round trips | PASS — each PUT/HEAD/GET/DELETE used one attempt; checksum, not-found and prefix-empty checks pass |
+| Timing | PASS — cold `2908.62 ms`, warm `1904.02 ms`, complete batch `22627 ms` |
+| Memory | PASS — cgroup-v2 peak `353406976` bytes, ratio `0.6582717895507812`, below the accepted `0.8` ceiling |
+| Job bound | PASS — exactly one job created; terminal `succeeded` |
+| Final object state | PASS — structured report and independent operator listing both return exact-prefix count zero |
+
+PDF evidence, in controlled fixture order:
+
+| Fixture | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `portrait-short-no-logo` | 16067 | `6663fcbe32b2791a5225d4fd09aab1676255bda921d89a87cccf60e43939aa80` |
+| `landscape-short-with-logo` | 30489 | `690ca453612a9536056095882b0381dceb8abf788815eedc74024b9ed86a7c79` |
+| `portrait-long-content` | 16314 | `dc92e82887f931c2665beda716896e1f6e699e1653d0ff7eacc6672f9ea4d424` |
+| `landscape-long-content` | 30391 | `9789a5f25951ef0996c20aef752c2ffb0550db034de77b63b597dbf3ae357c86` |
+| `portrait-standard-maximum` | 16412 | `d8666d355f635a13273f983365692015542172f5774252e39d8f57eefe5e28a7` |
+| `landscape-compact-maximum` | 30883 | `2f86c52e97514c3e4c12635af5df876144089564e116a2621d1c199097a5498a` |
+
+No database, customer data, public hostname, disk, environment group, shared bucket or
+production service was used or changed.
+
+## 8. Stage C-R1 Cleanup Evidence — Provider Revocation Pending
+
+The agent removed all twelve direct Render variables, verified zero, deleted exact service
+`srv-dab9dip42hec73a9vuvg`, received subsequent exact-ID absence and proved zero exact-name
+matches. The exact run prefix independently lists zero objects. No second job or service was
+created.
+
+Remaining bounded cleanup is human-provider authority only:
+
+1. delete empty bucket `isostack-fund-1r-f-a-stage-c-r1-5b1791b5`;
+2. delete Cloudflare token `FUND-1R-F-A-Stage-C-R1-B-2026-09-01`;
+3. revoke the Render API key with the same name;
+4. use the retained local records only for refusal/absence proof; and
+5. delete the three exact Keychain records and all `/private/tmp` Stage C-R1 helpers.
+
+Until those five actions pass, Stage C-R1 is **behaviourally PASS but cleanup-incomplete**.
+It is not yet the indivisible final PASS defined by section 1.
+
+## 9. Stage C-R1 Current Disposition
+
+The external assumption under test is proved at exact `0c7e4848`: the corrected deterministic
+renderer runs in the pinned Render Linux container, stays inside the Starter memory bound,
+and completes all six private scoped R2 checksum round trips with zero object residue. This
+supports later production planning only. It does not build or authorise production storage,
+credentials, backup, recovery, retention, renderer service or operating model.
+
+Root `Now` remains only the final revocation/deletion/absence sequence. Root `Next` remains
+unselected; do not infer `1R-F-B`, `1R-G`, `1R-H-A`, promotion or another external run.

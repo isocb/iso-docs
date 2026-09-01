@@ -2,12 +2,10 @@
 
 Date: 2026-08-11
 
-Status: **PLAN ACCEPTED; INFERRED R1/R1A COMPOSITIONS SUPERSEDED; R1B SOURCE-FAITHFUL
-AUTOMATION AND HUMAN/PHYSICAL REVIEW PASS; STAGE B LINUX PARITY AND EXACT SECURITY SCAN PASS
-AT DEV `139d09c4`; STAGE C ACCEPTED, IMPLEMENTED AND EXACT `328aadf0` LOCAL/LINUX/SECURITY
-GATES PASS; PRIOR EXTERNAL ASSUMPTION TEST FAILS ON DETERMINISTIC RUNNER DEFECT;
-ZERO-RESIDUE/REVOCATION PASS; STAGE C-R1 EXACT `0c7e4848` LOCAL/LINUX/SECURITY GATES PASS;
-ONE FRESH DISPOSABLE EXTERNAL TEST SELECTED**
+Status: **PLAN ACCEPTED; R1B SOURCE/PHYSICAL REVIEW AND STAGE B PASS; PRIOR STAGE C FAIL
+CONTAINED; STAGE C-R1 EXACT `0c7e4848` LOCAL/LINUX/SECURITY AND EXTERNAL BEHAVIOURAL
+EVIDENCE PASS; ZERO OBJECT/RENDER RESIDUE PASS; FINAL BUCKET DELETION, PROVIDER REVOCATION
+AND LOCAL-RECORD REMOVAL PENDING**
 
 Owning lane: FUND
 
@@ -35,11 +33,11 @@ Production consequence: even a PASS only supports later production planning; it 
 ```
 
 ```text
-Current state: RESUMED BY CONTROL OWNER ON 2026-09-01; Stage C-R1 local correction/new exact candidate is complete and one fresh disposable external test remains selected as root Now
-Last proven commit: exact application 0c7e48489aef697c6f39faf1a081456f9f3858a4 on dev/origin-dev; local proof and 9/9 focused tests PASS; Linux parity 32970902854 and Security Scan 32970902848 PASS; isodocs overnight checkpoint 02ac694
-Current environment: zero provider residue — exposed replacements revoked, empty bucket deleted, exact Keychain records absent and Zsh history matches zero; no R2 bucket, Render proof service, provider credential, environment variable, object or job exists; proposed replacement names below have NOT been created
-Next human decision/test: create bucket isostack-fund-1r-f-a-stage-c-r1-5b1791b5, bucket-only Object Read & Write token FUND-1R-F-A-Stage-C-R1-B-2026-09-01 and Render key of the same name, then run only /private/tmp/fund-stage-c-r1-store-credentials.zsh and report STAGE_C_R1_CREDENTIAL_RECORDS=PASS without transcript or values
-Safe resumption point: first verify zero provider/local residue and that exact 0c7e4848 remains dev/origin-dev; verify the prompt-only helper exists and uses macOS security ... -w with no value, recreating it outside Git if /private/tmp was cleared; after credential-name/API readback, agent-operate the one-off flow and stop before any job on resource identity, private/public state, scope denial or exact-build mismatch
+Current state: Stage C-R1 external behavioural proof PASS on 2026-09-01; final provider/local cleanup is the only remaining root Now action
+Last proven commit: exact application 0c7e48489aef697c6f39faf1a081456f9f3858a4; local proof and focused 9/9, Linux parity 32970902854, Security Scan 32970902848 and disposable Render job job-dab9eirtqb8s73f7r5n0 PASS
+Current environment: exact prefix 70e0f321-b64f-44ac-8598-bbc6c6098ff4 is zero; twelve Render variables were removed; disposable service srv-dab9dip42hec73a9vuvg was deleted and exact-name/ID absence proved; empty private bucket and its two dedicated provider credentials remain only for final human deletion/revocation; three named parent/provider Keychain records and temporary helpers remain until refusal/absence proof
+Next human decision/test: delete exact empty bucket isostack-fund-1r-f-a-stage-c-r1-5b1791b5, delete Cloudflare token FUND-1R-F-A-Stage-C-R1-B-2026-09-01 and revoke the Render API key of the same name, then report the three results without values
+Safe resumption point: do not create another service, credential, prefix, object or job; after the control-owner deletions, use the retained local records only for bounded 401/404 refusal proof, delete the three exact Keychain records and /private/tmp helpers, prove absence, then reconcile Stage C-R1 and root Now/Next
 ```
 - [`FUND strategic completion roadmap`](../00-roadmap-control/2026-07-15-fund-store-artwork-orders-and-production-strategic-completion-roadmap.md)
 - [`FUND refinement register`](../00-roadmap-control/2026-07-20-fund-refinement-wishlist-and-slice-control.md)
