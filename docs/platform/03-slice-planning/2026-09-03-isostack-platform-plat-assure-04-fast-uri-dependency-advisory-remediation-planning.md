@@ -2,8 +2,8 @@
 
 Date: 2026-09-03
 
-Status: **EXACT `14077382` TECHNICALLY ACCEPTED THROUGH STAGING; HUMAN STAGING GATE
-PENDING; MAIN NOT AUTHORISED**
+Status: **EXACT `14077382` PROMOTED THROUGH MAIN AFTER STAGING H1-H4 PASS; EXACT MAIN
+SECURITY SCAN AND PRODUCTION HEALTH PASS; PRODUCTION RENDER IDENTITY PENDING**
 
 Control depth: `High` — the work corrects a security advisory in the production dependency
 graph and restores a mandatory protected-branch release gate.
@@ -20,11 +20,11 @@ Source and triage:
 ## Restart Checkpoint
 
 ```text
-Current state: exact 14077382 is implemented and aligned on origin/dev and origin/staging; all local and exact online technical gates plus public staging health pass; exact Render identity and H1-H4 remain pending
-Last proven commit: application 14077382b7d397528e96fb6f7bdea978236a4713; work/dev/staging Security Scans 33732994236/33733261291/33733518510 PASS; prior d78935d4 scheduled failure 33726655633 retained as negative evidence
-Current environment: local staging, origin/dev and origin/staging exact 14077382; origin/main remains d78935d4; no schema, database, provider credential or runtime-configuration change
-Next human decision/test: complete H1 exact Render identity and H2-H4 sign-in/authenticated-shell/sign-out staging smoke, then decide separately whether to authorise main
-Safe resumption point: read the staging gate and report H1-H4 only; do not promote main or resume FUND until the expedite is closed or explicitly re-disposed
+Current state: exact 14077382 is aligned through origin/main after explicit promotion authority; staging H1-H4, exact main Security Scan and public production health pass; exact production Render identity remains pending
+Last proven commit: application 14077382b7d397528e96fb6f7bdea978236a4713; work/dev/staging/main Security Scans 33732994236/33733261291/33733518510/33764964802 PASS; prior d78935d4 failure 33726655633 retained as negative evidence
+Current environment: local and remote dev/staging/main exact 14077382; production public health HTTP 200/database connected/RLS 11/11; no schema, database, provider credential or runtime-configuration change
+Next human decision/test: confirm the production Render service is Live/green at displayed commit 14077382; no repeat authenticated product smoke is required for this dependency-only release
+Safe resumption point: read the production verification record and report exact production Render identity only; do not infer it from health or resume FUND until the expedite closes
 ```
 
 ## 1. Authorised Outcome

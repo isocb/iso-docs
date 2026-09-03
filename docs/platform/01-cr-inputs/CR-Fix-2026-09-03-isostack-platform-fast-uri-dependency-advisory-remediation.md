@@ -6,8 +6,8 @@ Identifier: `CR-Fix-PLAT-ASSURE-04`
 
 Owning lane: IsoStack Platform assurance
 
-Status: **EXACT `14077382` IMPLEMENTED AND ALIGNED THROUGH STAGING; ALL TECHNICAL GATES
-PASS; HUMAN STAGING GATE PENDING; MAIN NOT AUTHORISED**
+Status: **EXACT `14077382` PROMOTED THROUGH MAIN; ALL LOCAL, PROTECTED-BRANCH AND STAGING
+HUMAN GATES PASS; PRODUCTION HEALTH PASS; EXACT PRODUCTION RENDER IDENTITY PENDING**
 
 Triage:
 
@@ -20,7 +20,8 @@ Plan:
 Delivered evidence:
 
 - [`implementation confirmation`](../04-implementation-confirmations/2026-09-03-isostack-platform-plat-assure-04-fast-uri-dependency-advisory-remediation-implementation.md); and
-- [`staging review and human gate`](../05-review-and-test/2026-09-03-isostack-platform-plat-assure-04-fast-uri-dependency-advisory-remediation-staging-gate.md).
+- [`staging review and human gate`](../05-review-and-test/2026-09-03-isostack-platform-plat-assure-04-fast-uri-dependency-advisory-remediation-staging-gate.md); and
+- [`production promotion and minimum verification`](../05-review-and-test/2026-09-03-isostack-platform-plat-assure-04-fast-uri-production-promotion-and-verification.md).
 
 ## 1. Reported Problem
 

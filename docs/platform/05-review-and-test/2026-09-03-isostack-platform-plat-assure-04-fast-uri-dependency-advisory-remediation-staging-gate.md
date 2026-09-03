@@ -2,8 +2,8 @@
 
 Date: 2026-09-03
 
-Status: **TECHNICAL STAGING PASS; EXACT RENDER IDENTITY AND HUMAN SMOKE PENDING; MAIN
-BLOCKED**
+Status: **COMPLETE STAGING PASS; EXACT RENDER IDENTITY AND H1-H4 PASS; MAIN PROMOTION
+SUBSEQUENTLY EXPLICITLY AUTHORISED**
 
 Implementation:
 
@@ -15,10 +15,10 @@ Implementation:
 Exact commit: 14077382b7d397528e96fb6f7bdea978236a4713
 Files/change boundary: exact fast-uri override/lock record only in the implementation commit
 Automated checks: all local checks and work/dev/staging Security Scans PASS; staging audit 0 High/0 Critical; public health PASS
-Human evidence: pending H1-H4 below
-Environment proven: exact origin/dev and origin/staging refs; public staging database/RLS health; exact Render build identity pending dashboard readback
-Known residual risk: 28 Moderate/1 Low retained for follow-up; no direct source reachability found for corrected CLI path; main remains unmodified
-Next authorised action: complete H1-H4 and report only the four outcomes; then make a separate main-promotion decision
+Human evidence: H1-H4 PASS on 2026-09-03
+Environment proven: exact origin/dev and origin/staging refs; public staging database/RLS health; staging Render exact 14077382 Live
+Known residual risk: 28 Moderate/1 Low retained for follow-up; no direct source reachability found for corrected CLI path
+Next authorised action: completed — control owner separately authorised main promotion after this gate passed
 ```
 
 ## 1. Review Conclusion
@@ -31,13 +31,22 @@ package or behaviour change.
 
 Technical staging disposition: **PASS**.
 
-Release disposition: **HOLD BEFORE MAIN** until the human gate below passes and main is
-separately authorised.
+Release disposition: **PASS**. The control owner subsequently gave the required separate
+main-promotion instruction.
 
-## 2. Human Staging Gate
+## 2. Human Staging Gate — PASS
 
-Use `https://staging.seasonpro.co.uk`. This is intentionally small because the correction
-changes dependency resolution, not a feature or authentication contract.
+The control owner completed this intentionally small gate at
+`https://staging.seasonpro.co.uk` on 2026-09-03:
+
+```text
+H1 Render exact 14077382 and Live: PASS
+H2 signed-out sign-in surface: PASS
+H3 existing-user dashboard/app shell: PASS
+H4 sign-out return: PASS
+```
+
+The executed boundary was:
 
 1. **H1 — Render identity:** in the staging Render service, confirm status is Live/green
    and displayed commit begins `14077382`.
@@ -48,18 +57,7 @@ changes dependency resolution, not a feature or authentication contract.
 4. **H4 — Sign-out:** sign out and confirm the browser returns to a signed-out sign-in
    surface without an application error.
 
-Do not create users, change roles, send an email, edit FUND data or exercise production.
-A useful result report is simply:
-
-```text
-H1 Render exact 14077382 and Live: PASS/FAIL
-H2 signed-out sign-in surface: PASS/FAIL
-H3 existing-user dashboard/app shell: PASS/FAIL
-H4 sign-out return: PASS/FAIL
-```
-
-Any failure keeps main blocked and should include only the visible error/route, not
-credentials or personal data.
+No user, role, email, FUND data or production mutation was required or reported.
 
 ## 3. Recovery And Main Boundary
 
@@ -67,4 +65,3 @@ If a staging regression is confirmed, revert isolated dependency commit `1407738
 the protected branch corridor and repeat the scan/health gate. Do not lower the audit
 threshold. A passing H1-H4 result does not itself promote main; it makes a later explicit
 main-promotion decision safe to consider.
-

@@ -2,8 +2,8 @@
 
 Date: 2026-09-03
 
-Status: **IMPLEMENTED AT EXACT `14077382`; ALIGNED THROUGH STAGING; ALL TECHNICAL GATES
-PASS; HUMAN STAGING GATE PENDING**
+Status: **IMPLEMENTED AT EXACT `14077382`; ALIGNED THROUGH MAIN; ALL LOCAL, PROTECTED
+SCANS, STAGING HUMAN EVIDENCE AND PRODUCTION HEALTH PASS; PRODUCTION IDENTITY PENDING**
 
 Plan:
 
@@ -19,10 +19,10 @@ Review:
 Exact commit: 14077382b7d397528e96fb6f7bdea978236a4713
 Files/change boundary: package.json and package-lock.json only; fast-uri 3.1.5 -> 3.1.7
 Automated checks: local dependency/audit, focused 6/6, full 512 pass/12 skip, type, verify, middleware verification and 131-route build PASS; exact work/dev/staging Security Scans PASS
-Human evidence: pending four-check staging gate; no user-visible behaviour changed
-Environment proven: local Node 22.23.2/npm 10.8.2; origin/dev and origin/staging exact 14077382; two staging public health endpoints HTTP 200/database connected/RLS 11/11
-Known residual risk: 28 Moderate and 1 Low findings remain; exact Render deployed-commit dashboard identity and human smoke pending; origin/main remains d78935d4
-Next authorised action: control owner completes the recorded staging identity/smoke gate; no main promotion is authorised
+Human evidence: staging H1-H4 PASS — Render exact 14077382 Live, signed-out entry, existing-user shell and sign-out return
+Environment proven: local Node 22.23.2/npm 10.8.2; dev/staging/main exact 14077382; staging and production public health HTTP 200/database connected/RLS 11/11
+Known residual risk: 28 Moderate and 1 Low findings remain; exact production Render deployed-commit dashboard identity pending
+Next authorised action: confirm production Render is Live at displayed commit 14077382, then close the expedite and resume portfolio control
 ```
 
 ## 1. Delivered Diff
@@ -99,13 +99,18 @@ They do not describe staging configuration and did not affect the build.
   [`33733261291`](https://github.com/isocb/isostack-bedrock/actions/runs/33733261291): PASS;
 - protected staging Security Scan
   [`33733518510`](https://github.com/isocb/isostack-bedrock/actions/runs/33733518510): PASS; and
-- `origin/dev` and `origin/staging`: exact `14077382b7d397528e96fb6f7bdea978236a4713`.
+- protected main Security Scan
+  [`33764964802`](https://github.com/isocb/isostack-bedrock/actions/runs/33764964802): PASS; and
+- `origin/dev`, `origin/staging` and `origin/main`: exact
+  `14077382b7d397528e96fb6f7bdea978236a4713`.
 
 At 2026-09-03 08:32 UTC, both `https://staging.seasonpro.co.uk/api/health` and
 `https://staging.isostack.app/api/health` returned HTTP 200, database connected and RLS
 enabled on 11/11 checked tables.
 
-The available public/GitHub metadata does not expose Render's exact deployed commit. That
-identity is retained as the first human dashboard check; it is not inferred from public
-health. `origin/main` remains unchanged at `d78935d4`; the pre-existing local `main`
-pointer remains at documentation-only `f48a2e06` and was not moved or pushed.
+The control owner confirmed the staging service green/Live at exact `14077382` and H2-H4
+signed-out, authenticated-shell and sign-out checks all PASS. On the subsequent explicit
+instruction, main was fast-forwarded to exact `14077382`; its Security Scan passed. At
+2026-09-03 14:09 UTC, `https://app.seasonpro.co.uk/api/health` returned HTTP 200, database
+connected and RLS enabled on 11/11 checked tables. Available public/GitHub metadata does
+not expose Render's displayed production commit, so that final identity remains pending.
