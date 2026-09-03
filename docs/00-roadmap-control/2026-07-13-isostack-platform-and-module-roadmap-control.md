@@ -95,7 +95,8 @@ dev and staging Security Scans `33732994236`, `33733261291` and `33733518510` pa
 public staging health endpoints return HTTP 200, database connected and RLS 11/11. The
 available automated boundary cannot prove Render's displayed exact commit, so the expedite
 remains `Now` pending that dashboard identity and the proportionate four-check human smoke.
-`main` remains unchanged at `d78935d4`.
+`origin/main` remains unchanged at `d78935d4`. The pre-existing local `main` pointer remains
+at documentation-only `f48a2e06`; this expedite did not move or push it.
 
 On 2026-09-01 the control owner supplied the fresh provider authority through the accepted
 prompt-only boundary and the agent operated the one-off test. Exact Render deploy

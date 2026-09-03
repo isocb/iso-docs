@@ -21,7 +21,7 @@ Files/change boundary: package.json and package-lock.json only; fast-uri 3.1.5 -
 Automated checks: local dependency/audit, focused 6/6, full 512 pass/12 skip, type, verify, middleware verification and 131-route build PASS; exact work/dev/staging Security Scans PASS
 Human evidence: pending four-check staging gate; no user-visible behaviour changed
 Environment proven: local Node 22.23.2/npm 10.8.2; origin/dev and origin/staging exact 14077382; two staging public health endpoints HTTP 200/database connected/RLS 11/11
-Known residual risk: 28 Moderate and 1 Low findings remain; exact Render deployed-commit dashboard identity and human smoke pending; main remains d78935d4
+Known residual risk: 28 Moderate and 1 Low findings remain; exact Render deployed-commit dashboard identity and human smoke pending; origin/main remains d78935d4
 Next authorised action: control owner completes the recorded staging identity/smoke gate; no main promotion is authorised
 ```
 
@@ -107,5 +107,5 @@ enabled on 11/11 checked tables.
 
 The available public/GitHub metadata does not expose Render's exact deployed commit. That
 identity is retained as the first human dashboard check; it is not inferred from public
-health. `main` and `origin/main` remain unchanged at `d78935d4`.
-
+health. `origin/main` remains unchanged at `d78935d4`; the pre-existing local `main`
+pointer remains at documentation-only `f48a2e06` and was not moved or pushed.
