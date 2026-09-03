@@ -2,8 +2,8 @@
 
 Date: 2026-09-01
 
-Status: Paused at control-owner review while `CR-Fix-PLAT-ASSURE-04` is root `Now`; bounded
-draft preserved; no implementation authorised
+Status: Restored as portfolio `Now` for strategic user-framework and planning review after
+the security expedite closed; bounded draft preserved; no implementation authorised
 
 Control depth: `High` — this future production build concerns persistent schema, tenant
 authority, immutable commercial evidence and secure-access evidence.
@@ -22,10 +22,10 @@ Authoritative controls:
 ## Restart Checkpoint
 
 ```text
-Current state: 1R-F-B planning review is paused and preserved as portfolio Next while the accepted Platform security expedite is Now; the draft does not authorise implementation
+Current state: 1R-F-B is restored as portfolio Now for strategic user-framework and planning review after PLAT-ASSURE-04 closed; the detailed draft remains unaccepted and does not authorise implementation
 Last proven commit: application 0c7e48489aef697c6f39faf1a081456f9f3858a4; 1R-F-A local, Linux, security, physical and disposable external evidence PASS with zero residue; IsoDocs pre-plan baseline e317098
-Current environment: application dev/staging/main and origins align at exact Platform security candidate 14077382; production health passes and production Render identity remains the security-expedite closure check; no Prisma, database, provider or runtime mutation has been made for 1R-F-B
-Next human decision/test: after the security expedite closes, first reconcile the high-level user framework and proportionality, then review, amend or reject the detailed aggregate, field, constraint, migration and Do Not Build boundaries
+Current environment: application dev/staging/main and origins align at exact production 14077382; PLAT-ASSURE-04 is closed with all gates PASS; no Prisma, database, provider or runtime mutation has been made for 1R-F-B
+Next human decision/test: first reconcile the high-level user framework and proportionality, then review, amend or reject the detailed aggregate, field, constraint, migration and Do Not Build boundaries
 Safe resumption point: return to this unchanged draft with the root/FUND roadmaps and accepted 1R-F parent; do not edit Prisma or create a migration until the control owner accepts the strategic skeleton and later gives explicit implementation authority
 ```
 

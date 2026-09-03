@@ -69,11 +69,11 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> Platform CR-Fix-PLAT-ASSURE-04 security expedite through staging
-ROOT NEXT -> resume FUND 1R-F-B planning review and strategic user-framework reconciliation at its existing safe point
+ROOT NOW  -> FUND 1R-F-B strategic user-framework and planning review restored at its existing safe point
+ROOT NEXT -> not selected pending that review; no schema implementation is inferred
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
 FUND      -> 1R-F-A COMPLETE AND CLOSED AT PASS; prior Stage C FAIL retained as contained history; Stage C-R1 provider/object/Render/local residue zero
-             1R-F-B planning is paused but preserved; no Prisma/database/provider/runtime change is authorised
+             1R-F-B planning review is restored; detailed draft remains unaccepted and no Prisma/database/provider/runtime change is authorised
 ```
 
 On 2026-09-01 exact Stage C-R1 deployment `dep-dab9dj142hec73a9vvtg` and the single
@@ -219,7 +219,7 @@ the position when that material was written and must not select new work.
 Current application repository state:
 
 ```text
-application local/remote dev/staging/main: exact Platform security candidate 14077382; production Render identity pending before the expedite closes
+application local/remote dev/staging/main: exact production 14077382; PLAT-ASSURE-04 complete and closed with all gates PASS
 preserved Stage C candidate: exact 328aadf0
 R14-A local R1-R9, staging S1-S4 and production L1-L2: PASS; COMPLETE AND CLOSED
 protected work/dev/staging/main Security Scans: PASS; exact-main run 32838343535 complete

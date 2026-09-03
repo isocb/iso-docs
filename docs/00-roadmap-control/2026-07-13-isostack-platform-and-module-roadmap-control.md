@@ -80,25 +80,27 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Platform `CR-Fix-PLAT-ASSURE-04` fast-uri dependency advisory remediation | Exact `14077382` is aligned through main after staging H1-H4 PASS and explicit main authority. Exact main Security Scan and production public health pass; production Render identity is the final closure check. |
-| **NEXT** | Resume FUND `1R-F-B` planning review and strategic user-framework reconciliation | Preserve the existing draft and its no-implementation boundary. Return to the control owner's high-level review of whether the proposed skeleton is proportionate before accepting, amending or rejecting schema detail. |
+| **NOW** | FUND `1R-F-B` strategic user-framework and planning review | The interrupted High-control draft is restored at its exact review checkpoint. Begin with the control owner's high-level skeletal workflow/proportionality review; do not treat the detailed ten-model proposal as accepted and do not implement schema. |
+| **NEXT** | Not selected pending `1R-F-B` strategic review | Do not infer schema implementation, `1R-F-C`, `1R-G`, `1R-H-A`, infrastructure or another external run. Any accepted implementation remains a later explicit decision. |
 
 Scheduled Security Scan `33726655633` failed against unchanged protected commit `d78935d4`
 after four new High `fast-uri@3.1.5` advisories entered the advisory database. The control
 owner accepted `CR-Fix-PLAT-ASSURE-04` as a deliberate interrupt. It changes only the exact
 dependency override/lock record to `3.1.7` and preserves the fail-closed gate. Its initial
 authority stopped after staging evidence. After H1-H4 passed, the control owner separately
-authorised main promotion. FUND `1R-F-B` remains displaced to `Next` at its existing
-plan-review safe point; no FUND implementation, schema or provider work is authorised by
-the interrupt.
+authorised main promotion. During the interrupt FUND `1R-F-B` was displaced to `Next` at
+its existing plan-review safe point; no FUND implementation, schema or provider work was
+authorised by the interrupt.
 
 The isolated `fast-uri 3.1.7` correction is application commit `14077382`. Exact work,
 dev and staging Security Scans `33732994236`, `33733261291` and `33733518510` pass. Both
 public staging health endpoints return HTTP 200, database connected and RLS 11/11. The
 control owner confirms exact staging Render identity and H1-H4 PASS, then explicitly
 authorised main. Local/remote dev, staging and main align at exact `14077382`; exact main
-Security Scan `33764964802` and production public health pass. Only production Render's
-displayed exact-commit identity remains pending before closure.
+Security Scan `33764964802` and production public health pass. The control owner then
+confirmed production Render Live/green at displayed exact `14077382`. The expedite is
+complete and closed, and the displaced FUND `1R-F-B` strategic planning review returns to
+root `Now` at its unchanged no-implementation checkpoint.
 
 On 2026-09-01 the control owner supplied the fresh provider authority through the accepted
 prompt-only boundary and the agent operated the one-off test. Exact Render deploy

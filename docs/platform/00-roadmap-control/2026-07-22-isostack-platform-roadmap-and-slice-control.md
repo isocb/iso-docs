@@ -45,22 +45,23 @@ default.
 | [`2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md`](../01-cr-inputs/2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md) | Exact `cde4eaff` aligned through main; local 24/24 and staging 10/10 human smoke, all exact scans, public health and production Render identity pass | Complete and closed; future regression/capability requires a new CR/CR-Fix |
 | [`CR-Fix-2026-08-11-isostack-platform-support-p1-workbench-editing-and-case-tracking.md`](../01-cr-inputs/CR-Fix-2026-08-11-isostack-platform-support-p1-workbench-editing-and-case-tracking.md) | Corrected workbench and case tracking delivered in exact production `cde4eaff`; all gates pass | Corrective child complete and closed with parent |
 | [`CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md`](../01-cr-inputs/CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md) | Dependency child `60ac76c1`; all exact scans and combined staging/production evidence pass | Complete and closed; retain exact scan evidence with the combined release |
-| [`CR-Fix-2026-09-03-isostack-platform-fast-uri-dependency-advisory-remediation.md`](../01-cr-inputs/CR-Fix-2026-09-03-isostack-platform-fast-uri-dependency-advisory-remediation.md) | `CR-Fix-PLAT-ASSURE-04`: exact application `14077382`; all local/protected scans, staging H1-H4 and production health PASS | Root `Now` pending production Render exact-commit identity only; main promotion was separately authorised and completed. Moderate/Low follow-up remains separate `PLAT-ASSURE-04-R1` |
+| [`CR-Fix-2026-09-03-isostack-platform-fast-uri-dependency-advisory-remediation.md`](../01-cr-inputs/CR-Fix-2026-09-03-isostack-platform-fast-uri-dependency-advisory-remediation.md) | `CR-Fix-PLAT-ASSURE-04`: exact application `14077382`; all local/protected scans, staging H1-H4 and production health/Render identity PASS | Complete and closed through main; portfolio control returned to FUND `1R-F-B`. Moderate/Low follow-up remains separate `PLAT-ASSURE-04-R1` |
 
 Current Platform portfolio disposition:
 
 The current root decision supersedes the chronological delivery narrative below. Role
 Authority, Support Ticketing, `PLAT-ROLE-04` and `PLAT-ROLE-04A` are delivered at their
 recorded evidence boundaries. `PLAT-ROLE-R1` remains trigger-based assurance only. Platform
-owns the selected `CR-Fix-PLAT-ASSURE-04` security expedite as root `Now`. The former FUND
-`1R-F-B` planning review is preserved as root `Next`; this interrupt does not accept or
-implement its schema draft.
+has no selected Platform `Now` or `Next`. `CR-Fix-PLAT-ASSURE-04` is complete and root
+control has returned to the preserved FUND `1R-F-B` strategic planning review; the
+interrupt did not accept or implement its schema draft.
 
 - `CR-Fix-PLAT-ASSURE-04` exact `14077382` changes only the fast-uri override/lock record.
   Work/dev/staging/main Security Scans `33732994236`/`33733261291`/`33733518510`/
   `33764964802`, both staging health domains and staging H1-H4 pass. After explicit main
   authority, exact `14077382` aligned through main and production public health passed.
-  Production Render exact-commit identity remains the final closure check;
+  Production Render Live/green at displayed exact `14077382` also passes. The expedite is
+  complete and closed;
 
 - `CR-Fix-PLAT-ROLE-04` is the accepted portfolio expedite. A Core Owner/Admin without an
   exact SeasonPro League role still correctly receives no C1 module scope; P1 can now

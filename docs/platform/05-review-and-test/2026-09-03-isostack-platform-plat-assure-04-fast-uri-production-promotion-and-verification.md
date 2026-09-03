@@ -2,8 +2,8 @@
 
 Date: 2026-09-03
 
-Status: **EXACT MAIN PROMOTION AND SECURITY/HEALTH GATES PASS; PRODUCTION RENDER IDENTITY
-PENDING**
+Status: **COMPLETE PRODUCTION PASS — EXACT MAIN PROMOTION, SECURITY, HEALTH AND RENDER
+IDENTITY GATES PASS; CLOSED**
 
 Staging prerequisite:
 
@@ -15,10 +15,10 @@ Staging prerequisite:
 Exact commit: 14077382b7d397528e96fb6f7bdea978236a4713
 Files/change boundary: package.json/package-lock.json fast-uri correction only in the remedial commit
 Automated checks: exact main Security Scan 33764964802 PASS; public production health HTTP 200/database connected/RLS 11/11
-Human evidence: staging H1-H4 PASS; control owner explicitly authorised main promotion; production Render identity pending
-Environment proven: local/remote dev, staging and main exact 14077382; production public health at 2026-09-03 14:09 UTC
-Known residual risk: 28 Moderate/1 Low follow-up; public health does not expose exact Render commit
-Next authorised action: confirm production Render service Live/green at displayed commit 14077382; then close the expedite
+Human evidence: staging H1-H4 PASS; control owner explicitly authorised main promotion; production Render exact 14077382 Live/green PASS
+Environment proven: local/remote dev, staging and main exact 14077382; production public health at 2026-09-03 14:09 UTC; exact production Render identity
+Known residual risk: 28 Moderate/1 Low findings remain separately registered as PLAT-ASSURE-04-R1
+Next authorised action: none within this closed expedite; FUND 1R-F-B strategic planning review is restored as portfolio Now
 ```
 
 ## 1. Promotion Decision And Result
@@ -42,17 +42,16 @@ commit.
   `status=healthy`, database connected and RLS enabled on 11/11 checked tables; and
 - no schema, migration, data, credential or runtime-configuration action was performed.
 
-## 3. Minimum Remaining Production Verification
+## 3. Minimum Production Verification — PASS
 
-Public health proves a healthy production service but does not expose Render's deployed
-commit. The only remaining check is non-mutating dashboard readback:
+Public health does not expose Render's deployed commit. The control owner completed the
+non-mutating dashboard readback:
 
 ```text
-Production Render service Live/green at displayed commit 14077382: PASS/FAIL
+Production Render service Live/green at displayed commit 14077382: PASS
 ```
 
-No repeat login, email, role, FUND-data or provider test is proportionate for this
+No repeat login, email, role, FUND-data or provider test was proportionate for this
 dependency-only release because the full representative human path passed on staging and
-the code/configuration boundary cannot vary in production. A mismatch keeps the expedite
-open and requires deployment diagnosis; it must not be described as closed.
-
+the code/configuration boundary could not vary in production. The production gate and
+expedite are complete.
