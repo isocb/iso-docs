@@ -2,8 +2,8 @@
 
 Date: 2026-09-01
 
-Status: Selected for planning; bounded draft awaiting control-owner review; no
-implementation authorised
+Status: Paused at control-owner review while `CR-Fix-PLAT-ASSURE-04` is root `Now`; bounded
+draft preserved; no implementation authorised
 
 Control depth: `High` — this future production build concerns persistent schema, tenant
 authority, immutable commercial evidence and secure-access evidence.
@@ -22,11 +22,11 @@ Authoritative controls:
 ## Restart Checkpoint
 
 ```text
-Current state: 1R-F-B is the selected portfolio Now for planning only; this bounded High-control schema draft awaits control-owner review and does not authorise implementation
+Current state: 1R-F-B planning review is paused and preserved as portfolio Next while the accepted Platform security expedite is Now; the draft does not authorise implementation
 Last proven commit: application 0c7e48489aef697c6f39faf1a081456f9f3858a4; 1R-F-A local, Linux, security, physical and disposable external evidence PASS with zero residue; IsoDocs pre-plan baseline e317098
 Current environment: application dev and origin/dev align at exact 0c7e4848 with 153 migration directories; no Prisma, database, provider, runtime or deployment mutation has been made for 1R-F-B
-Next human decision/test: review, amend or accept the aggregate, field, constraint, migration and Do Not Build boundaries in this plan
-Safe resumption point: read this plan with the root/FUND roadmaps and accepted 1R-F parent; do not edit Prisma or create a migration until explicit implementation authority follows plan acceptance
+Next human decision/test: after the security expedite closes, first reconcile the high-level user framework and proportionality, then review, amend or reject the detailed aggregate, field, constraint, migration and Do Not Build boundaries
+Safe resumption point: return to this unchanged draft with the root/FUND roadmaps and accepted 1R-F parent; do not edit Prisma or create a migration until the control owner accepts the strategic skeleton and later gives explicit implementation authority
 ```
 
 ## 1. Authorised Outcome And Stopping Point

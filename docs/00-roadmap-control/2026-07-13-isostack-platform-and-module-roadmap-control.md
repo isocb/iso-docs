@@ -2,11 +2,11 @@
 
 Date: 2026-07-27
 
-Last portfolio reconciliation: 2026-09-01
+Last portfolio reconciliation: 2026-09-03
 
 Status: Active parent roadmap
 
-## 0. Current Portfolio Control — 2026-09-01
+## 0. Current Portfolio Control — 2026-09-03
 
 This section is the current cross-lane control and supersedes older global `single next`
 wording later in this document. Older statements remain evidence of the sequence at the
@@ -80,8 +80,15 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | FUND `1R-F-B` Individual Artwork Template And Offer-Lock Schema Foundation planning | The control owner explicitly selected planning on 2026-09-01. A bounded `High`-control draft now defines a future production-model schema boundary and awaits review. This documentation work does not authorise Prisma, migration, database, service, UI, infrastructure or deployment changes. |
-| **NEXT** | Not selected pending `1R-F-B` plan review | Do not infer schema implementation, `1R-F-C`, `1R-G`, `1R-H-A`, production infrastructure, promotion or another external run. Plan acceptance and any implementation selection are separate control decisions. |
+| **NOW** | Platform `CR-Fix-PLAT-ASSURE-04` fast-uri dependency advisory remediation | On 2026-09-03 the control owner accepted the High-control security expedite and authorised its isolated dependency correction and normal promotion corridor through staging. Main is not authorised. |
+| **NEXT** | Resume FUND `1R-F-B` planning review and strategic user-framework reconciliation | Preserve the existing draft and its no-implementation boundary. Return to the control owner's high-level review of whether the proposed skeleton is proportionate before accepting, amending or rejecting schema detail. |
+
+Scheduled Security Scan `33726655633` failed against unchanged protected commit `d78935d4`
+after four new High `fast-uri@3.1.5` advisories entered the advisory database. The control
+owner accepted `CR-Fix-PLAT-ASSURE-04` as a deliberate interrupt. It changes only the exact
+dependency override/lock record to `3.1.7`, preserves the fail-closed gate and stops after
+staging evidence. FUND `1R-F-B` is displaced to `Next` at its existing plan-review safe
+point; no FUND implementation, schema or provider work is authorised by the interrupt.
 
 On 2026-09-01 the control owner supplied the fresh provider authority through the accepted
 prompt-only boundary and the agent operated the one-off test. Exact Render deploy

@@ -69,11 +69,11 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> FUND 1R-F-B High-control schema-foundation planning selected; bounded draft awaits control-owner review
-ROOT NEXT -> not selected pending that review; no schema implementation is inferred
+ROOT NOW  -> Platform CR-Fix-PLAT-ASSURE-04 security expedite through staging
+ROOT NEXT -> resume FUND 1R-F-B planning review and strategic user-framework reconciliation at its existing safe point
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
 FUND      -> 1R-F-A COMPLETE AND CLOSED AT PASS; prior Stage C FAIL retained as contained history; Stage C-R1 provider/object/Render/local residue zero
-             1R-F-B planning only is selected; no Prisma/database/provider/runtime change is authorised
+             1R-F-B planning is paused but preserved; no Prisma/database/provider/runtime change is authorised
 ```
 
 On 2026-09-01 exact Stage C-R1 deployment `dep-dab9dj142hec73a9vvtg` and the single
