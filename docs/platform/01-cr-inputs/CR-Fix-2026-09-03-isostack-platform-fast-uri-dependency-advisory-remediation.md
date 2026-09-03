@@ -6,8 +6,8 @@ Identifier: `CR-Fix-PLAT-ASSURE-04`
 
 Owning lane: IsoStack Platform assurance
 
-Status: **EXPEDITE ACCEPTED; BOUNDED IMPLEMENTATION AND PROMOTION THROUGH STAGING
-AUTHORISED; MAIN NOT AUTHORISED**
+Status: **EXACT `14077382` IMPLEMENTED AND ALIGNED THROUGH STAGING; ALL TECHNICAL GATES
+PASS; HUMAN STAGING GATE PENDING; MAIN NOT AUTHORISED**
 
 Triage:
 
@@ -16,6 +16,11 @@ Triage:
 Plan:
 
 [`PLAT-ASSURE-04 bounded remediation plan`](../03-slice-planning/2026-09-03-isostack-platform-plat-assure-04-fast-uri-dependency-advisory-remediation-planning.md)
+
+Delivered evidence:
+
+- [`implementation confirmation`](../04-implementation-confirmations/2026-09-03-isostack-platform-plat-assure-04-fast-uri-dependency-advisory-remediation-implementation.md); and
+- [`staging review and human gate`](../05-review-and-test/2026-09-03-isostack-platform-plat-assure-04-fast-uri-dependency-advisory-remediation-staging-gate.md).
 
 ## 1. Reported Problem
 
@@ -93,4 +98,3 @@ The authorised staging boundary requires:
 4. passing exact-commit work-branch, dev and staging Security Scans;
 5. staging health and exact deployed-commit evidence; and
 6. a short human staging smoke before any later request to promote to `main`.
-

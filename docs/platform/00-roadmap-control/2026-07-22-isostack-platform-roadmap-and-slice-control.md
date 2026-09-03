@@ -45,7 +45,7 @@ default.
 | [`2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md`](../01-cr-inputs/2026-08-05-isostack-core-platform-support-ticketing-client-readiness-and-communications-cr.md) | Exact `cde4eaff` aligned through main; local 24/24 and staging 10/10 human smoke, all exact scans, public health and production Render identity pass | Complete and closed; future regression/capability requires a new CR/CR-Fix |
 | [`CR-Fix-2026-08-11-isostack-platform-support-p1-workbench-editing-and-case-tracking.md`](../01-cr-inputs/CR-Fix-2026-08-11-isostack-platform-support-p1-workbench-editing-and-case-tracking.md) | Corrected workbench and case tracking delivered in exact production `cde4eaff`; all gates pass | Corrective child complete and closed with parent |
 | [`CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md`](../01-cr-inputs/CR-Fix-2026-08-09-isostack-platform-protected-branch-security-scan-advisory-refresh.md) | Dependency child `60ac76c1`; all exact scans and combined staging/production evidence pass | Complete and closed; retain exact scan evidence with the combined release |
-| [`CR-Fix-2026-09-03-isostack-platform-fast-uri-dependency-advisory-remediation.md`](../01-cr-inputs/CR-Fix-2026-09-03-isostack-platform-fast-uri-dependency-advisory-remediation.md) | `CR-Fix-PLAT-ASSURE-04`: High-control expedite accepted; exact fast-uri 3.1.7 correction and promotion through staging authorised | Root `Now`; main remains prohibited pending exact staging gates and control-owner human smoke. Moderate/Low follow-up remains separate `PLAT-ASSURE-04-R1` |
+| [`CR-Fix-2026-09-03-isostack-platform-fast-uri-dependency-advisory-remediation.md`](../01-cr-inputs/CR-Fix-2026-09-03-isostack-platform-fast-uri-dependency-advisory-remediation.md) | `CR-Fix-PLAT-ASSURE-04`: exact application `14077382`; local plus work/dev/staging scans and staging public health PASS | Root `Now`; main remains prohibited pending exact Render identity and H1-H4 human staging smoke. Moderate/Low follow-up remains separate `PLAT-ASSURE-04-R1` |
 
 Current Platform portfolio disposition:
 
@@ -55,6 +55,11 @@ recorded evidence boundaries. `PLAT-ROLE-R1` remains trigger-based assurance onl
 owns the selected `CR-Fix-PLAT-ASSURE-04` security expedite as root `Now`. The former FUND
 `1R-F-B` planning review is preserved as root `Next`; this interrupt does not accept or
 implement its schema draft.
+
+- `CR-Fix-PLAT-ASSURE-04` exact `14077382` changes only the fast-uri override/lock record.
+  Work/dev/staging Security Scans `33732994236`/`33733261291`/`33733518510` and both
+  staging health domains pass. Exact Render dashboard identity and the four-check human
+  staging smoke remain pending; main is unchanged and not authorised;
 
 - `CR-Fix-PLAT-ROLE-04` is the accepted portfolio expedite. A Core Owner/Admin without an
   exact SeasonPro League role still correctly receives no C1 module scope; P1 can now

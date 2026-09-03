@@ -219,7 +219,7 @@ the position when that material was written and must not select new work.
 Current application repository state:
 
 ```text
-application local/remote dev/staging/main: exact d78935d4
+application dev/origin-dev and staging/origin-staging: exact Platform security candidate 14077382; origin/main remains d78935d4
 preserved Stage C candidate: exact 328aadf0
 R14-A local R1-R9, staging S1-S4 and production L1-L2: PASS; COMPLETE AND CLOSED
 protected work/dev/staging/main Security Scans: PASS; exact-main run 32838343535 complete

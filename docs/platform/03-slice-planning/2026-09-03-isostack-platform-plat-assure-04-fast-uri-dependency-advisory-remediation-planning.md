@@ -2,7 +2,8 @@
 
 Date: 2026-09-03
 
-Status: **ACCEPTED FOR IMPLEMENTATION AND PROMOTION THROUGH STAGING; MAIN NOT AUTHORISED**
+Status: **EXACT `14077382` TECHNICALLY ACCEPTED THROUGH STAGING; HUMAN STAGING GATE
+PENDING; MAIN NOT AUTHORISED**
 
 Control depth: `High` — the work corrects a security advisory in the production dependency
 graph and restores a mandatory protected-branch release gate.
@@ -19,11 +20,11 @@ Source and triage:
 ## Restart Checkpoint
 
 ```text
-Current state: accepted High-control Platform security expedite; bounded implementation on a dedicated application branch is next
-Last proven commit: application dev/origin-dev 0c7e48489aef697c6f39faf1a081456f9f3858a4; scheduled protected baseline d78935d407ace7ebe796a31a13adf3e17dafa758 fails Security Scan 33726655633 on the new fast-uri advisories
-Current environment: local work branch fix/platform-fast-uri-advisory-20260903; no application, schema, database, provider, credential or deployment mutation yet
-Next human decision/test: after exact staging deployment and automated gates pass, complete the four-check staging smoke recorded in triage before any main-promotion decision
-Safe resumption point: inspect package.json/package-lock.json and this plan; change only fast-uri 3.1.5 to exact 3.1.7; stop on diff, audit, test, scan, health or deployment-identity mismatch
+Current state: exact 14077382 is implemented and aligned on origin/dev and origin/staging; all local and exact online technical gates plus public staging health pass; exact Render identity and H1-H4 remain pending
+Last proven commit: application 14077382b7d397528e96fb6f7bdea978236a4713; work/dev/staging Security Scans 33732994236/33733261291/33733518510 PASS; prior d78935d4 scheduled failure 33726655633 retained as negative evidence
+Current environment: local staging, origin/dev and origin/staging exact 14077382; origin/main remains d78935d4; no schema, database, provider credential or runtime-configuration change
+Next human decision/test: complete H1 exact Render identity and H2-H4 sign-in/authenticated-shell/sign-out staging smoke, then decide separately whether to authorise main
+Safe resumption point: read the staging gate and report H1-H4 only; do not promote main or resume FUND until the expedite is closed or explicitly re-disposed
 ```
 
 ## 1. Authorised Outcome
@@ -73,4 +74,3 @@ cleanup exists. A failed gate stops forward promotion.
 Stop with the corrected exact commit promoted no farther than `staging`. `main` remains
 unchanged until the control owner reports the human staging smoke and gives a separate
 promotion instruction.
-

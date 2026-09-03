@@ -24,7 +24,7 @@ Authoritative controls:
 ```text
 Current state: 1R-F-B planning review is paused and preserved as portfolio Next while the accepted Platform security expedite is Now; the draft does not authorise implementation
 Last proven commit: application 0c7e48489aef697c6f39faf1a081456f9f3858a4; 1R-F-A local, Linux, security, physical and disposable external evidence PASS with zero residue; IsoDocs pre-plan baseline e317098
-Current environment: application dev and origin/dev align at exact 0c7e4848 with 153 migration directories; no Prisma, database, provider, runtime or deployment mutation has been made for 1R-F-B
+Current environment: application origin/dev and origin/staging align at exact Platform security candidate 14077382 while origin/main remains d78935d4; no Prisma, database, provider or runtime mutation has been made for 1R-F-B
 Next human decision/test: after the security expedite closes, first reconcile the high-level user framework and proportionality, then review, amend or reject the detailed aggregate, field, constraint, migration and Do Not Build boundaries
 Safe resumption point: return to this unchanged draft with the root/FUND roadmaps and accepted 1R-F parent; do not edit Prisma or create a migration until the control owner accepts the strategic skeleton and later gives explicit implementation authority
 ```
