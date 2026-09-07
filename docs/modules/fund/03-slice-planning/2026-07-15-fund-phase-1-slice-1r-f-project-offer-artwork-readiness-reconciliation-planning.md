@@ -331,6 +331,14 @@ evidence; it does not require a large or schema-first implementation. `1R-F-B` m
 schema, migration, database, provider, service, UI or deployment change and does not
 authorise implementation.
 
+The owner's subsequent smoke-scope answers are recorded in active 1R-F-B Section 1.1 and
+the [business situation report](../00-roadmap-control/2026-08-25-fund-complete-module-smoke-readiness-business-overview.md):
+Phase 1 covers Individual Artwork only through a finalised commission statement, excludes
+settlement and permits emulated services in development staging before FUND deployment.
+Staging must later reflect actual live services. This narrows the first test destination,
+not the full module architecture or the authority needed for actual service deployment.
+Other workflow branches remain later, and no implementation child is selected.
+
 The previous C-through-I breakdown below is preserved as historical candidate allocation.
 It is not the current delivery sequence, no item is `Next`, and the control owner may later
 reuse, combine, split, defer or supersede it when selecting one bounded vertical outcome.

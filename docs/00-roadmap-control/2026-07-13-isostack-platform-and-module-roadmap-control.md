@@ -109,6 +109,14 @@ with the first usable journey. The owner authorised these review corrections and
 documentation commit; the proposed business answers and any later implementation selection
 remain separate decisions.
 
+The owner has since confirmed the first Phase 1 smoke boundary: one Individual Artwork
+journey through a calculated/finalised commission statement; settlement and other workflow
+branches follow later. Development staging may use simulated services before FUND
+deployment and must later reflect the services actually used live. These answers are
+reconciled into the active plan and its [plain-English business situation report](../modules/fund/00-roadmap-control/2026-08-25-fund-complete-module-smoke-readiness-business-overview.md).
+They do not select implementation, accept the separate offer/finalisation proposals or
+change root Now/Next.
+
 Scheduled Security Scan `33726655633` failed against unchanged protected commit `d78935d4`
 after four new High `fast-uri@3.1.5` advisories entered the advisory database. The control
 owner accepted `CR-Fix-PLAT-ASSURE-04` as a deliberate interrupt. It changes only the exact

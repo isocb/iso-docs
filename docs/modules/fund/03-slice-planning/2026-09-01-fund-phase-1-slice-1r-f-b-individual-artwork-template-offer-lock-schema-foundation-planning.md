@@ -2,8 +2,8 @@
 
 Date: 2026-09-01
 
-Last revised: 2026-09-07 — owner-authorised review corrections; proposed business decisions
-remain for acceptance before Pass 1 closes.
+Last revised: 2026-09-07 — review corrections and owner-confirmed Phase 1 smoke scope;
+separate offer/finalisation proposals remain for acceptance before Pass 1 closes.
 
 Status: Selected portfolio `Now` for strategic user-framework, workflow and proportionality
 review; the former ten-record schema proposal is preserved in Appendix A as an unaccepted
@@ -31,10 +31,10 @@ Authoritative controls:
 ## Restart Checkpoint
 
 ```text
-Current state: 1R-F-B is portfolio Now for strategic user-framework, Project-workflow and proportionality reconciliation; the detailed ten-record draft is unaccepted Appendix A evidence and does not select schema implementation
-Last proven commit: application 0c7e48489aef697c6f39faf1a081456f9f3858a4; 1R-F-A local, Linux, security, physical and disposable external evidence PASS with zero residue; IsoDocs reconciliation base 2f3c09e; the documentation-only amendment is authorised for local commit, not push
+Current state: 1R-F-B remains portfolio Now for planning; owner confirmed Individual-only Phase 1 smoke, finalised commission statement without settlement, and simulated development services; Appendix A remains unaccepted and no implementation is selected
+Last proven commit: application 0c7e48489aef697c6f39faf1a081456f9f3858a4; 1R-F-A local, Linux, security, physical and disposable external evidence PASS with zero residue; IsoDocs workflow reconciliation 013452f; the owner-answer/business-report follow-up continues the authorised local documentation update, without push
 Current environment: application dev/staging/main and origins align at exact production 14077382; PLAT-ASSURE-04 is closed with all gates PASS; no Prisma, database, provider or runtime mutation has been made for 1R-F-B
-Next human decision/test: review the Section 4.2 walkthrough and Section 8 proposed decisions; accept or amend those business rules before closing Pass 1 and separately selecting any vertical outcome
+Next human decision/test: choose the delivery, Products/options, media, setup route and messages in the business report; separately accept or amend the Section 8 offer/finalisation proposals before closing Pass 1 and selecting a vertical outcome
 Safe resumption point: return to Sections 2 through 8 with the root/FUND roadmaps and accepted 1R-F parent; do not use Appendix A as implementation direction, edit Prisma or create a migration unless a later selected vertical plan proves the required persistence and receives explicit implementation authority
 ```
 
@@ -75,6 +75,27 @@ Render service, object store, route, service, UI or deployment may change. Accep
 this reconciliation will permit a later decision about one bounded vertical plan only. It
 will not select schema implementation or automatically select `1R-F-C`, `1R-F-D`,
 `1R-F-E`, `1R-G` or another child.
+
+### 1.1 Confirmed Phase 1 Smoke Scope And Business Report
+
+The owner answered the smoke-scope questions in the existing [business situation report](../00-roadmap-control/2026-08-25-fund-complete-module-smoke-readiness-business-overview.md).
+The following are now accepted planning inputs:
+
+- the first connected smoke covers one AMOW Individual Artwork journey only; collective,
+  Group/Bulk and Standard workflows follow later;
+- Phase 1 ends with calculated and finalised commission statement evidence; exercising
+  settlement is not required;
+- before FUND deployment, simulated/emulated external services are satisfactory for
+  development staging; after deployment, staging must be augmented to reflect the actual
+  live services; and
+- delivery, actual Products/options, media, Project setup and messages remain open. The
+  report breaks the former combined question into concrete options, without choosing them
+  on the owner's behalf.
+
+This is the longer Phase 1 test destination, not acceptance of the proposed next Pass 2
+implementation boundary. Section 8's offer/finalisation decisions remain distinct. The
+business report is maintained alongside the existing lifecycle as its plain-English view;
+it owns neither a competing selection nor a second restart checkpoint.
 
 ## 2. Business Concepts Preserved For Review
 
@@ -266,6 +287,24 @@ an elaborate job framework or a second authority model. Reuse existing capabilit
 they meet the selected boundary. A necessary control moves with the first behaviour that
 depends on it; it cannot be deferred merely because Pass 3 has a hardening label.
 
+#### Development Simulation And Later Live-Service Parity
+
+The owner permits Phase 1 development staging to emulate payment, rendering, private
+storage, scanning and email services as required by the chosen test. The later bounded
+plan may use simulated providers to prove the application journey without provisioning
+real services. Tests must still exercise the selected tenant/actor, offer/version,
+concurrency and failure contracts; record which service responses were simulated and
+which document, physical or provider behaviours were actually proved. Simulated success
+is not evidence of real provider delivery or physical-print acceptance.
+
+The essential controls above attach to the behaviour and environment enabled. Real managed
+storage/recovery and real provider configuration are not prerequisites for an explicitly
+emulated development run. Before enabling actual service use, its deployment plan must
+define and prove the corresponding operating/access/recovery contract. Once FUND is
+deployed, augment staging to match the services used by live FUND. No provider change or
+deployment is authorised by these planning inputs, and the completed 1R-F-A proof is not
+reopened.
+
 ### Pass 3 — Operational Hardening
 
 After the minimum journey, evidence may justify richer assignment/version-history views,
@@ -292,8 +331,9 @@ count. The business journey determines the persistence boundary.
 ## 8. Proposed Business Decisions For Control-Owner Acceptance
 
 The owner authorised the review corrections and documentation commit. The following
-specific answers are recommendations for acceptance, not decisions inferred from that
-instruction. They draw on the accepted parent while making the unresolved choices explicit.
+specific answers below are recommendations for acceptance, not decisions inferred from that
+instruction or from the separate accepted smoke-scope answers in Section 1.1. They draw on
+the accepted parent while making the unresolved choices explicit.
 
 | Decision | Proposed answer | Boundary / consequence |
 | --- | --- | --- |

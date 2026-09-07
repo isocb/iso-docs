@@ -50,6 +50,15 @@ This overview:
 It does not implement code, change schema, create migrations, deploy infrastructure or
 authorise any application work.
 
+The [business situation report](2026-08-25-fund-complete-module-smoke-readiness-business-overview.md)
+is the maintained plain-English companion to this overview and the authoritative lifecycle.
+Its owner-confirmed first smoke scope is one Individual Artwork journey through a
+calculated/finalised commission statement, without settlement. Other workflow branches
+remain later. Development staging may emulate external services before FUND deployment;
+after deployment it must reflect the services used live. The full capability destination
+below remains broader than Phase 1; no later branch or settlement capability is a hidden
+prerequisite for that first test.
+
 ### 1.1 Current Business Journey And Progress
 
 The business journey is the primary completion view:

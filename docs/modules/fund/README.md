@@ -35,6 +35,18 @@ contains the proposed user walkthrough and business answers for acceptance. Esse
 private access, offer/document consistency, failure handling and recovery belong to the
 first usable journey; Pass 3 adds evidence-led operational improvements.
 
+## Business Situation Report
+
+Read the [FUND business situation and Phase 1 smoke report](00-roadmap-control/2026-08-25-fund-complete-module-smoke-readiness-business-overview.md)
+for the plain-English position, confirmed decisions and remaining choices. Keep that
+existing report aligned with material lifecycle updates; it is not a second roadmap.
+
+The owner confirmed Individual-only Phase 1 smoke, a calculated/finalised commission
+statement without settlement, and simulated external services for development staging
+before FUND deployment. Staging must later reflect live services. Delivery, Products/buyer
+choices, media, setup and messages have separate options in the report; the active plan
+retains its still-unaccepted offer/finalisation proposals and no implementation is selected.
+
 ## Start Here
 
 Read in this order when resuming work:

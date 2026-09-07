@@ -81,6 +81,22 @@ purchaser see and do, how readiness branches around one common Project journey, 
 has reached, and what smallest coherent Individual Artwork vertical outcome may later be
 selected. It does not select that vertical outcome.
 
+### Business Situation Report And Confirmed First Smoke Scope
+
+The existing [business situation report](2026-08-25-fund-complete-module-smoke-readiness-business-overview.md)
+is the plain-English companion to this lifecycle. Update it when confirmed business scope,
+material progress/blockers or the next owner question changes; it does not select slices
+or duplicate the active plan's checkpoint.
+
+The owner confirmed one Individual Artwork journey for Phase 1, ending in a calculated
+and finalised commission statement without settlement. Collective/Group/Bulk/Standard
+coverage follows later. Simulated external services are acceptable for development staging
+before FUND deployment; staging must subsequently reflect actual live services. Actual
+deployment still requires proof of the service contracts it enables. The report provides
+separate options for unresolved delivery, Products/options, media, setup and messages.
+These accepted planning inputs are reconciled into 1R-F-B Section 1.1; they do not close
+Pass 1, accept its separate finalisation proposals or select implementation.
+
 ### Retained 1R-F-A And Interrupt History
 
 The chronology below is retained as historical evidence of the completed assumption test
