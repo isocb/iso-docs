@@ -3,8 +3,8 @@
 Date: 2026-07-15
 
 Status: Parent reviewed and accepted; `1R-F-A` complete and closed at PASS on corrected
-exact `0c7e4848` with zero residue; control owner selected bounded `1R-F-B` planning only;
-no production implementation authorised
+exact `0c7e4848` with zero residue; `1R-F-B` is selected for user-framework, Project
+workflow and vertical-slice reconciliation only; no production implementation authorised
 
 Naming correction: 2026-07-16 — restored alphabetical delivery order by assigning this
 parent `1R-F` and moving the previously reserved, unimplemented Public Store Presentation
@@ -154,6 +154,13 @@ models must not be duplicated merely to give new UI convenient names.
 
 ## 4. Accepted Cross-CR Decisions
 
+Strategic correction on 2026-09-07: the positions below remain valuable inputs from the
+accepted parent, but `1R-F-B` must re-establish them as user/business rules before deriving
+persistence. Exact finaliser authority, assignment hierarchy, unlock/revision chronology
+and the immutable evidence required at each milestone are explicitly open for control-owner
+confirmation or deliberate deferral. This correction does not reopen the ownership
+boundaries in Section 2.
+
 ### 4.1 C2 authority
 
 - active same-Client `PROJECT_MANAGER` and `ADMIN` members may review and mutate eligible
@@ -235,6 +242,13 @@ environment action, never migration behaviour.
 Later children extend the existing `1R-D`/`1R-E-A` policy; they do not create a competing
 Store state machine.
 
+For Individual Artwork, **ready to finalise** is the earlier check of Project type, valid
+template, eligible selection/capacity, resolved content/prices and finaliser authority.
+It does not require a finalised offer or generated document. The contract below governs
+**publication readiness**, after finalisation and successful matching document generation,
+and still requires all other Store gates. Neither finalisation nor download publishes
+the Store. Collective/Standard paths retain their own approval/readiness requirements.
+
 ```text
 ARTWORK_FUNDRAISING
 -> current finalised Individual Artwork offer lock and successful current Artwork
@@ -271,8 +285,9 @@ Its local Stage A automation, visual/physical review and immutable Stage B Linux
 execution pass. The original Stage C runner failure remains contained history. Separately
 selected Stage C-R1 corrected exact `0c7e4848` passes local, Linux, security and one
 disposable external behavioural run, with provider/object/Render/local residue zero.
-`1R-F-A` is complete and closed at PASS. Only bounded `1R-F-B` planning is now selected;
-no schema implementation or later child is authorised.
+`1R-F-A` is complete and closed at PASS. Only the strategic `1R-F-B` user/workflow and
+proportionality reconciliation is now selected; no schema implementation or later child is
+authorised.
 
 Bounded outcome:
 
@@ -294,57 +309,71 @@ It adds no production schema, public/C1/C2 route, reusable editor, operational j
 Store publication or real Order behaviour. Final physical print acceptance requires the
 user/client and is the first planned human stop.
 
-### 6.2 1R-F-B — Individual Artwork Template And Offer-Lock Schema Foundation
+### 6.2 1R-F-B — User Framework, Project Workflow And Vertical-Slice Reconciliation
 
 The selected bounded planning draft is at:
 
-[`1R-F-B Individual Artwork Template And Offer-Lock Schema Foundation`](2026-09-01-fund-phase-1-slice-1r-f-b-individual-artwork-template-offer-lock-schema-foundation-planning.md)
+[`1R-F-B User Framework, Project Workflow And Vertical-Slice Reconciliation`](2026-09-01-fund-phase-1-slice-1r-f-b-individual-artwork-template-offer-lock-schema-foundation-planning.md)
 
-It plans the accepted Application Template identity/version/assignment, Project offer lock,
-Artwork Template identity/version, generation attempt and secure-grant evidence after A's
-corrected exact candidate proved the renderer/layout contract. The draft is `High` control
-and awaits control-owner review. It makes no schema, migration, database, provider,
-service, UI or deployment change and does not authorise implementation.
+It re-establishes the common C1/C2/purchaser journey, Project progression, readiness
+branches, current business-capability progress and the smallest coherent Individual
+Artwork vertical outcome. The former ten-record schema proposal remains preserved in that
+document as an unaccepted technical option. The review asks which persistence the next
+user journey requires and which controls belong to later operational hardening. Sections
+4.2 and 8 of the active plan now contain a proposed actor/action/blocker/result walkthrough
+and business-rule answers for acceptance. Its minimum usable journey includes authorised
+private document access, immutable offer/document consistency, concurrency and failure
+handling, proportionate recovery and applicable document/print proof. Later operational
+improvements cannot postpone controls needed by that first behaviour.
 
-### 6.3 1R-F-C — Individual Selection, Template Lifecycle And C1 Management
+The plan is `High` control and awaits control-owner review. High control strengthens later
+evidence; it does not require a large or schema-first implementation. `1R-F-B` makes no
+schema, migration, database, provider, service, UI or deployment change and does not
+authorise implementation.
 
-Implement the shared minimum/maximum policy, template lifecycle/assignment services and
+The previous C-through-I breakdown below is preserved as historical candidate allocation.
+It is not the current delivery sequence, no item is `Next`, and the control owner may later
+reuse, combine, split, defer or supersede it when selecting one bounded vertical outcome.
+
+### 6.3 Earlier Candidate 1R-F-C — Individual Selection, Template Lifecycle And C1 Management
+
+Candidate scope was to implement the shared minimum/maximum policy, template lifecycle/assignment services and
 bounded C1 basic management/validation. A dedicated visual-editor sub-slice may be split
 when planning demonstrates that it is not safely bounded with basic management.
 
-### 6.4 1R-F-D — C2 Individual Offer Preview, Finalisation And Lock
+### 6.4 Earlier Candidate 1R-F-D — C2 Individual Offer Preview, Finalisation And Lock
 
-Implement default-all selection, exact organiser preview/finalisation/unlock, immutable
+Candidate scope was to implement default-all selection, exact organiser preview/finalisation/unlock, immutable
 commercial/configuration lock and workflow-aware Store readiness consumption. No renderer
 job or public Store route.
 
-### 6.5 1R-F-E — Artwork Template Generation, Storage And Delivery
+### 6.5 Earlier Candidate 1R-F-E — Artwork Template Generation, Storage And Delivery
 
-Implement the dedicated idempotent worker, immutable generated versions, private managed
+Candidate scope was to implement the dedicated idempotent worker, immutable generated versions, private managed
 storage, authorised C2 download, exact-version secure organiser grant/email, operational
 history, invalidation/revision and automated/visual/physical release evidence.
 
-### 6.6 1R-F-F — Workflow Instructions And Collective Artwork Schema Foundation
+### 6.6 Earlier Candidate 1R-F-F — Workflow Instructions And Collective Artwork Schema Foundation
 
-Plan/implement Product+Project-type+Workflow-Class instruction versions/snapshots,
+Candidate scope was to plan/implement Product+Project-type+Workflow-Class instruction versions/snapshots,
 Collective Project Artwork/version/approval evidence, source lineage, Store Product
 presentation release and physical-sample hold using C4 assets without duplicating them.
 
-### 6.7 1R-F-G — Collective Composition, Approval, Release And Readiness Services
+### 6.7 Earlier Candidate 1R-F-G — Collective Composition, Approval, Release And Readiness Services
 
-Implement exact C1 composition, exact-organiser approval/change request/locking, explicit
+Candidate scope was to implement exact C1 composition, exact-organiser approval/change request/locking, explicit
 C1 Product release/hold and branch-aware E-A readiness. Include prospective revision and
 historic Commerce evidence protection; no production authorisation.
 
-### 6.8 1R-F-H — Collective C1/C2 Surfaces And Secure Source Handling
+### 6.8 Earlier Candidate 1R-F-H — Collective C1/C2 Surfaces And Secure Source Handling
 
-Implement C2 instructions/source submission/approval UI and C1 composition/presentation/
+Candidate scope was to implement C2 instructions/source submission/approval UI and C1 composition/presentation/
 release/exception UI through the accepted services. Upload/scanning must use a separately
 accepted managed-upload boundary and may be split if it cannot be safely bounded.
 
-### 6.9 1R-F-I — Standard Path And Cross-Branch Release Reconciliation
+### 6.9 Earlier Candidate 1R-F-I — Standard Path And Cross-Branch Release Reconciliation
 
-Prove explicit Workflow Class `C` Standard readiness, Bulk mixed-path behaviour, C1/C2
+Candidate scope was to prove explicit Workflow Class `C` Standard readiness, Bulk mixed-path behaviour, C1/C2
 diagnostics, A7 non-trading consumption and the final converged policy needed by `1R-G`.
 
 ## 7. Deferred Questions Routed To Owning Children
@@ -353,7 +382,8 @@ The parent does not invent visual or operational detail that requires proof:
 
 - A owns exact safe-print inset, font pack, grid capacities, long-content envelopes and
   printer/QR acceptance while reproducing the accepted current grid structure;
-- B/D own precise lock table shape and offer mutation chronology;
+- the current B review owns the user/business decisions and proportionality; a later
+  selected vertical plan owns only the persistence and chronology it proves necessary;
 - E owns the TBA organiser-email, secure-link and retention contracts plus implementation of
   the required explicit physical print/distribution confirmation;
 - F owns exact source-completion contracts and typed physical-sample evidence;
@@ -407,8 +437,9 @@ Accepted conclusions:
 5. No artwork/template implementation is safe before a real deployed-renderer/print proof.
 6. `1R-F-A` completed and closed at PASS after the separately selected Stage C-R1 corrected
    candidate proved the external assumption and zero residue.
-7. The control owner then selected bounded `1R-F-B` planning; its High-control draft awaits
-   review and does not authorise production implementation.
+7. The control owner then selected `1R-F-B` strategic user/workflow/proportionality
+   reconciliation. Its former ten-record proposal is preserved only as unaccepted
+   technical evidence, and no production implementation is authorised.
 
 Because this is a non-executable parent reconciliation, no `04-implementation-confirmations`
 or `05-review-and-test` record is created. Each executable child receives the full
@@ -417,9 +448,10 @@ lifecycle independently.
 ## 10. Preserved Planning Prompt And Current Child
 
 The prompt below is retained as historical authority used to create the completed
-`1R-F-A` child. Current work must use the selected `1R-F-B` planning document linked in
-section 6.2 rather than generating a competing plan or treating this historical prompt as
-current implementation authority.
+`1R-F-A` child. Current work must use the selected `1R-F-B` business/workflow
+reconciliation linked in Section 6.2 rather than generating a competing plan, accepting
+the old C-through-I sequence automatically or treating this historical prompt as current
+implementation authority.
 
 ```text
 Continue only accepted FUND Phase 1 Slice 1R-F-A planning. Do not implement production

@@ -2,11 +2,11 @@
 
 Date: 2026-07-27
 
-Last portfolio reconciliation: 2026-09-03
+Last portfolio reconciliation: 2026-09-07
 
 Status: Active parent roadmap
 
-## 0. Current Portfolio Control — 2026-09-03
+## 0. Current Portfolio Control — 2026-09-07
 
 This section is the current cross-lane control and supersedes older global `single next`
 wording later in this document. Older statements remain evidence of the sequence at the
@@ -80,8 +80,34 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | FUND `1R-F-B` strategic user-framework and planning review | The interrupted High-control draft is restored at its exact review checkpoint. Begin with the control owner's high-level skeletal workflow/proportionality review; do not treat the detailed ten-model proposal as accepted and do not implement schema. |
-| **NEXT** | Not selected pending `1R-F-B` strategic review | Do not infer schema implementation, `1R-F-C`, `1R-G`, `1R-H-A`, infrastructure or another external run. Any accepted implementation remains a later explicit decision. |
+| **NOW** | FUND `1R-F-B` user framework, Project workflow and vertical-slice reconciliation | Re-establish the visible C1/C2/purchaser journey, readiness branches, business progress and proportionality before selecting implementation. The detailed ten-model proposal is unaccepted technical evidence, not the current direction. |
+| **NEXT** | Not selected pending control-owner acceptance of the `1R-F-B` review | Do not infer schema implementation, `1R-F-C`, `1R-G`, `1R-H-A`, infrastructure or another external run. One smallest coherent vertical outcome requires a later explicit selection. |
+
+Current FUND business spine:
+
+```text
+C1 configuration
+-> C2 Project and Product selection
+-> workflow-specific preparation and review/approval
+-> Individual Artwork finalisation and matching document generation where applicable
+-> publication readiness across the applicable branch
+-> publishable Store
+-> purchaser Store/Order/payment
+-> C1 Order operation and artwork matching
+-> production/fulfilment/dispatch
+-> commission reporting and settlement
+```
+
+FUND has substantial internal Client, Event, Product, Project, Store and Commerce
+foundations, but it has not yet reached an end-to-end fundraising journey. The selected
+review must make that user-facing progress and the smallest coherent Individual Artwork
+vertical outcome explicit before technical architecture drives another implementation
+sequence. The active plan now distinguishes readiness to finalise from readiness to
+publish, supplies an actor/action/blocker/result walkthrough and proposes business answers
+for acceptance. Essential access, immutable-evidence and failure/recovery controls travel
+with the first usable journey. The owner authorised these review corrections and a local
+documentation commit; the proposed business answers and any later implementation selection
+remain separate decisions.
 
 Scheduled Security Scan `33726655633` failed against unchanged protected commit `d78935d4`
 after four new High `fast-uri@3.1.5` advisories entered the advisory database. The control
@@ -114,13 +140,14 @@ Retained Cloudflare R2 and Render credentials each returned HTTP 401; all three 
 Keychain records and all five Stage C-R1 helpers are absent. The indivisible test therefore
 completes at PASS with zero provider, object, Render or local credential residue.
 
-The control owner then explicitly selected bounded FUND `1R-F-B` planning. The resulting
-High-control draft plans a future additive tenant-scoped production schema for Application
-Template identity/version/assignment, immutable Project offer locks, Project-specific
-Artwork Template version/generation evidence and secure-grant evidence. It makes no
-application, Prisma, database, provider, infrastructure or deployment change. Root `Next`
-remains unselected until the control owner reviews that plan; acceptance would still not
-authorise implementation.
+The control owner then explicitly selected FUND `1R-F-B` planning. Strategic review on
+2026-09-07 corrected its schema-first framing: `1R-F-B` now reconciles the C1/C2/purchaser
+framework, Project workflow, readiness branches, business progress and proportionality.
+The former ten-record schema proposal is retained inside the same plan as an unaccepted
+technical option for later use only where a selected vertical journey proves the need.
+This documentation decision makes no application, Prisma, database, provider,
+infrastructure or deployment change. Root `Next` remains unselected until the control
+owner accepts or amends the review and deliberately chooses one bounded vertical outcome.
 
 The control owner explicitly accepted and completed the `CR-Fix-PLAT-ROLE-04` production
 promotion. Exact `250baf12` is aligned through main; all protected scans, Render identity,

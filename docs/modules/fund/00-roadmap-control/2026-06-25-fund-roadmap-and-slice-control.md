@@ -2,7 +2,7 @@
 
 Created: 2026-06-25
 
-Last consolidated: 2026-09-01
+Last consolidated: 2026-09-07
 
 Status: Active authoritative control for the FUND lane
 
@@ -42,7 +42,7 @@ This document is planning/documentation only. It does not implement code, change
 This FUND roadmap controls the FUND lane only. It records Commerce dependencies but does not
 own or sequence Commerce Core implementation.
 
-## 0. Authoritative CR Inventory And Current FUND Disposition — 2026-09-01
+## 0. Authoritative CR Inventory And Current FUND Disposition — 2026-09-07
 
 This file is confirmed as the one authoritative FUND child roadmap. The strategic
 completion overview and refinement/pilot-placement register remain subordinate. The root
@@ -59,22 +59,34 @@ same row.
 | [`2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md) | Planned through `1Q-G-B` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md) | Planned through `1Q-G-A` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-13-fund-cr-commission-ladder-planner-input.md`](../01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md) | Policy/assignment foundation partly incorporated through `1R-C5`; aggregate calculation, statements and settlement remain absent | Parked later commission work, represented by subordinate `2R-PROD-05`; not selected |
-| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; `1R-F-A` completes at PASS with exact `0c7e4848` local/Linux/security/physical/external evidence and zero residue; control owner explicitly selected bounded `1R-F-B` planning | `1R-F-B` High-control schema-foundation draft awaits control-owner review. Planning only; no production implementation is authorised |
-| [`2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md`](../01-cr-inputs/2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md) | Consumed as the boundary preventing `1R-F-A` from absorbing collective/Standard paths | `1R-F-F` through `I` remain parked; no implementation authority |
-| [`2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`](../01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md) | `1R-F-A` accepts validated ceilings of ten STANDARD portrait and twelve COMPACT landscape rows; selected `1R-F-B` planning carries those ceilings into immutable template-version schema while later C/D retain policy behaviour | `1R-F-B` draft awaiting review; no schema/policy implementation authorised |
+| [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; `1R-F-A` completes at PASS with exact `0c7e4848` and zero residue; `1R-F-B` now reconciles the visible user/workflow framework and smallest vertical outcome | Former ten-record schema proposal retained as unaccepted technical evidence; no production implementation is authorised |
+| [`2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md`](../01-cr-inputs/2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md) | Consumed as the boundary preventing the Individual proof from absorbing collective/Standard paths; those paths remain readiness branches around the common journey | Detailed collective work remains parked; no former `1R-F-F` through `I` candidate is automatically selected |
+| [`2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`](../01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md) | `1R-F-A` proved ceilings of ten STANDARD portrait and twelve COMPACT landscape rows for its exact variants; `1R-F-B` now treats their product effect before persistence | Capacity evidence informs the minimum vertical journey; no template-version schema or policy implementation is authorised |
 | [`2026-07-15-fund-template-manager-brief.md`](../01-cr-inputs/2026-07-15-fund-template-manager-brief.md) | Retained source brief for the Application/Artwork Template input | Provenance only; not a fourth CR and its provisional `T` labels carry no slice authority |
-| [`2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md`](../01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md) | Implemented/reviewed as `1R-E-D`; application commit is included by ancestry in current `83356030` | Completed technical correction; E-B/E-C real-workflow human acceptance remains a separate recorded gate and is not invented here |
+| [`2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md`](../01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md) | Implemented/reviewed as `1R-E-D`; application commit is included by ancestry in current `14077382` | Completed technical correction; E-B/E-C real-workflow human acceptance remains a separate recorded gate and is not invented here |
 | [`change-request-cmqt61xmf000612xt5ifl1mdn-2026-06-25.md`](../01-cr-inputs/change-request-cmqt61xmf000612xt5ifl1mdn-2026-06-25.md) | Original issue bundle was triaged and distributed across the historical `1P`/`1Q` lifecycle and later refinement controls | Superseded as a single active queue; retained as source evidence, with any genuinely absent outcome governed by its named current refinement/workstream |
 
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> FUND 1R-F-B strategic user-framework and planning review restored at its existing safe point
-ROOT NEXT -> not selected pending that review; no schema implementation is inferred
+ROOT NOW  -> FUND 1R-F-B user framework, Project workflow and vertical-slice reconciliation
+ROOT NEXT -> unselected pending control-owner acceptance; no schema or later child is inferred
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
 FUND      -> 1R-F-A COMPLETE AND CLOSED AT PASS; prior Stage C FAIL retained as contained history; Stage C-R1 provider/object/Render/local residue zero
-             1R-F-B planning review is restored; detailed draft remains unaccepted and no Prisma/database/provider/runtime change is authorised
+             1R-F-B reconciles the business journey and proportionality; the ten-record draft remains unaccepted evidence and no implementation is authorised
 ```
+
+The permitted action is documentation review only. It must establish what C1, C2 and the
+purchaser see and do, how readiness branches around one common Project journey, where FUND
+has reached, and what smallest coherent Individual Artwork vertical outcome may later be
+selected. It does not select that vertical outcome.
+
+### Retained 1R-F-A And Interrupt History
+
+The chronology below is retained as historical evidence of the completed assumption test
+and subsequent security interruption. The exact current repository, business progress and
+permitted action are stated in Sections 2 through 4; this retained chronology cannot
+select work.
 
 On 2026-09-01 exact Stage C-R1 deployment `dep-dab9dj142hec73a9vvtg` and the single
 one-off job `job-dab9eirtqb8s73f7r5n0` passed at full candidate
@@ -216,30 +228,82 @@ the position when that material was written and must not select new work.
 
 ## 2. Current Control Snapshot
 
+### 2.0 Business Journey And Progress
+
+The common FUND journey is the first current-control view:
+
+```text
+C1 configures Events, Products, commercial rules and availability
+-> C2 creates or manages a Project
+-> suitable Products are selected
+-> workflow-specific preparation and review/approval take place
+-> Individual Artwork: ready to finalise -> C2 finalises -> matching document generated
+-> each branch satisfies its publication-readiness requirements
+-> Store becomes publishable
+-> purchaser browses, Orders and pays
+-> C1 operates and reconciles Orders
+-> artwork/production requirements are matched
+-> production is authorised and fulfilled
+-> dispatch occurs
+-> commission is calculated, reported and later settled
+```
+
+Readiness is the principal branch around this spine:
+
+```text
+                             -> Individual Artwork readiness
+                            /
+Client -> Project -> Products -> Readiness -> Store -> Order -> Fulfilment -> Commission
+                            \
+                             -> Collective / Bulk / Standard readiness
+```
+
+| Business capability | Current position |
+| --- | --- |
+| C1 Client/Event/Product/Project foundations | Substantial foundation exists |
+| C2 Client/Project management foundation | Exists |
+| Project Product selection/eligibility | Exists |
+| Project Store/configuration foundations | Exists; consolidated human acceptance remains relevant |
+| Workflow-specific artwork readiness | Partial; Individual technical proof only |
+| Public purchaser Store | Not built |
+| Consumer checkout/Order journey | Backend Commerce machinery exists; public FUND journey is incomplete |
+| Physical artwork/Order matching | Not operationally built |
+| Production workflow | Not operationally built |
+| Dispatch/fulfilment | Not operationally built |
+| Commission calculation/statements/settlement | Not operationally complete |
+| End-to-end fundraising journey | Not yet reached |
+
+`1R-F-B` is the strategic reconciliation of this framework and its proportionality. It is
+not schema implementation. The former ten-record proposal remains an unaccepted technical
+option inside the controlling `1R-F-B` document.
+
 Current application repository state:
 
 ```text
 application local/remote dev/staging/main: exact production 14077382; PLAT-ASSURE-04 complete and closed with all gates PASS
-preserved Stage C candidate: exact 328aadf0
+1R-F-A corrected proof commit: exact 0c7e4848; retained in current ancestry
 R14-A local R1-R9, staging S1-S4 and production L1-L2: PASS; COMPLETE AND CLOSED
 protected work/dev/staging/main Security Scans: PASS; exact-main run 32838343535 complete
 Role Authority: COMPLETE AND CLOSED
 Support Ticketing: COMPLETE AND CLOSED
 FUND 1R-F-A Stage C-R1: COMPLETE AND CLOSED AT PASS on exact 0c7e4848; provider/object/Render/local residue zero
-FUND 1R-F-B: selected for High-control planning only; draft awaiting control-owner review; no production implementation authorised
+FUND 1R-F-B: selected for High-control user/workflow/proportionality review only; no implementation authorised
+documentation reconciliation base/upstream at review: exact 2f3c09e; the owner authorised this amendment for local commit only; no push or main alignment is authorised
+documentation main/origin-main: exact 4e4ed16; not aligned with the working documentation state
 ```
 
 Current consolidated delivery state:
 
 - Commerce `A1` through `A7`, FUND `1R-C1` through `1R-D` and Project Intake/creation
   `1P-G-R3-A` through `R3-D` are included in the promoted application ancestry;
-- protected application dev, staging and main are aligned at `d78935d4`; its ancestry
-  includes `83356030`, E-D and the previously promoted FUND/Commerce application work;
+- protected application dev, staging and main, local and remote, are aligned at
+  `14077382`; its ancestry includes `0c7e4848`, `d78935d4`, E-D and the previously promoted
+  FUND/Commerce application work;
 - E-D adds no migration and performed no shared database action; shared database state
   remains governed by the preceding promotion records;
 - the historical E-D secret detection, schema security and TypeScript CI evidence remains
-  unchanged; the later protected dependency correction is included by ancestry. Current
-  work/dev/staging/main R14-A scans through exact-main `32838343535` pass in full;
+  unchanged; the later protected `fast-uri` dependency correction at `14077382` is included
+  and its exact work/dev/staging/main security and environment gates pass;
 - the staging application health check passed with its database connected and RLS enabled
   on all 11 expected tables;
 - prior human FUND administrator login and pre-existing UI smoke testing passed; E-B/E-C
@@ -277,9 +341,10 @@ Current E-A/E-B/E-C promotion state:
   the non-executable successor to the three governed CRs; and
 - `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is complete and closed
   at PASS on corrected exact `0c7e4848`, including disposable external execution and zero
-  provider/object/Render/local residue. The control owner selected bounded `1R-F-B`
-  planning only. Its High-control draft awaits review; no Prisma, migration, database,
-  service, UI, provider, deployment or later `1R-F` child is authorised.
+  provider/object/Render/local residue. The control owner selected `1R-F-B` strategic
+  user/workflow/proportionality reconciliation only. Its former ten-record proposal is
+  unaccepted technical evidence; no Prisma, migration, database, service, UI, provider,
+  deployment or later `1R-F` child is authorised.
 - the 2026-07-20 refinement reconciliation is accepted as subordinate placement control:
   it must inform `1R-F-A` and be applied before accepting work beyond it, but it does not
   replace the authoritative next-candidate decision or authorise a refinement implementation.
@@ -288,7 +353,10 @@ Authoritative promotion evidence:
 
 `docs/00-roadmap-control/2026-07-20-fund-1r-e-dev-staging-promotion-confirmation.md`
 
-Committed development schema foundation:
+Retained historical schema/promotion detail:
+
+The following dated evidence explains how the existing foundation was reached. It does not
+override the current repository truth or selected planning outcome above.
 
 - `COMMERCE-A1`: implemented and reviewed as passed;
 - FUND `1R-C1`: implemented and reviewed as passed;
@@ -462,20 +530,20 @@ Full evidence is recorded in:
 | `1R-E-B` | FUND Store | Implemented/reviewed; present in current dev/staging ancestry; automated evidence passed; consolidated human acceptance pending | C1 Store portfolio oversight and exceptional intervention surface consuming E-A authority |
 | `1R-E-C` | FUND Store | Implemented/reviewed; present in current dev/staging ancestry; automated evidence passed; consolidated human acceptance pending | C2 Project Store control surface consuming E-A authority, bounded C2 commission acceptance and normal Project/Store control |
 | `1R-E-D` | FUND Store | Implemented/reviewed at `c45a41d9`; present in current dev/staging ancestry; no E-D migration; consolidated human acceptance pending | Mandatory one DRAFT Store per Project, all-eligible-minus-C2-exclusions defaults, atomic C2 activation/publication intent and real-workflow human testability |
+| `1R-F` | FUND artwork readiness | Reviewed/accepted; non-executable parent | Separates the common Project journey from Individual, collective and Standard readiness branches |
+| `1R-F-A` | FUND Individual Artwork proof | Complete and closed at PASS on exact `0c7e4848` | Real AMOW template, pricing, Linux, deployed renderer/private-object behaviour and zero external residue proved |
+| `1R-F-B` | FUND strategic reconciliation | Portfolio `Now`; planning/documentation only | Reconcile the C1/C2/purchaser framework, workflow branches, proportionality and smallest later vertical outcome; no implementation authority |
 
 `1R-C1` through `1R-D` and `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D` must not be rerun as pending work. No next
 implementation is authorised merely because the preceding lifecycle completed.
 
 ## 4. Current Sequence And Dependency Control
 
-Current promotion checkpoint: application `dev`/`origin-dev` and
-`staging`/`origin-staging` are aligned at `99164ddd`. The configured Neon development
-database remains at its separately recorded 140-migration boundary. The Render staging
-build contract ran committed migrations before build; no direct staging migration inventory
-was queried locally. Exact dev/staging automated gates and online staging
-health/database/RLS checks passed. E-D is present in staging ancestry and closes the
-Project-to-Store testability gap; E-B/E-C/D consolidated human acceptance is pending under
-the 2026-07-23 schedule. Production remains untouched. Historical promotion evidence is
+Current repository checkpoint: local and remote application `main`, `dev` and `staging`
+are clean and aligned at exact `14077382`. This includes completed Platform security work,
+the corrected `1R-F-A` proof ancestry and the prior FUND/Commerce foundations. No
+application work branch exists for `1R-F-B` because its present authority is documentation
+review only. Historical promotion evidence is
 recorded at
 `docs/00-roadmap-control/2026-07-20-fund-1r-e-dev-staging-promotion-confirmation.md`, and
 the current combined production decision is:
@@ -513,8 +581,11 @@ COMMERCE-A1 (complete on dev)
         local/physical/Linux gates pass; prior external failure contained; corrected
         Stage C-R1 external behavioural proof PASS at exact 0c7e4848; provider revocation
         and exact-prefix/Render/local zero-residue PASS; COMPLETE AND CLOSED
-        -> apply the accepted pilot/refinement placement before accepting later F/G work;
-           this is a control gate, not an executable slice
+     -> FUND 1R-F-B User Framework, Project Workflow And Vertical-Slice Reconciliation
+        is portfolio NOW for planning/documentation only
+        -> control-owner acceptance of business decisions and proportionality
+        -> one smallest coherent vertical outcome may be selected separately later
+           (root NEXT remains unselected)
 
 FUND 1R-C1 (complete on dev)
   -> 1R-C2 (complete on dev)
@@ -564,6 +635,12 @@ Rules:
   local/Linux/security gates and the one external behavioural/private-object run pass at
   exact `0c7e4848`; provider revocation and exact-prefix/Render/local zero-residue pass.
   `1R-F-A` is complete and closed. No production implementation, promotion or further run is selected;
+- [`1R-F-B - User Framework, Project Workflow And Vertical-Slice Reconciliation`](../03-slice-planning/2026-09-01-fund-phase-1-slice-1r-f-b-individual-artwork-template-offer-lock-schema-foundation-planning.md)
+  is the selected strategic planning action. It must complete the business-readable user
+  journey, workflow-branch and proportionality decisions before any schema or UI outcome
+  is selected. Its retained ten-record proposal is unaccepted technical evidence. High
+  control governs the later evidence burden; it does not require a large or schema-first
+  slice;
 - [`1R-H-A - Store Order Short Code And Single-Artwork Correlation`](../03-slice-planning/2026-08-11-fund-phase-1-slice-1r-h-a-store-order-short-code-and-single-artwork-correlation-planning.md)
   is a parked downstream planning input after public Store `1R-G`; it records accepted
   policy only and is not `Now`/`Next` or implementation authority;
@@ -682,45 +759,15 @@ payment model.
 
 | Item | Status | Control |
 | --- | --- | --- |
-| A1/C1/C2 application changes | Committed at `4575d2d` on `origin/dev` | Staging/main and shared database deployment remain pending |
-| Shared database deployment | Not performed | Use normal reviewed promotion separately |
-| MediaFile tenant relation | Database limitation | Later write service must validate MediaFile ownership before enabling writes |
-| Legacy Prisma drift | Known, unrelated | LMSPro enum/default/name drift is outside `1R-C1`; do not repair incidentally |
-| Product tax classification | Safely `UNCLASSIFIED` | Store readiness must block until explicitly classified |
-| Project Product tax propagation | Not implemented | Later accepted service must copy reviewed Product classification |
-| FUND `1P-G-R3` Intake automation alignment | Three-child Intake lifecycle complete on `origin/dev` | R3-C connects only aligned Intake confirmation/review; no shared deployment claimed |
-| FUND `1P-G-R3-A` schema/form policy | Implemented/reviewed at `4bb7dd9`; included on `origin/dev`; shared databases undeployed | Staging/main promotion is separate |
-| FUND `1P-G-R3-B` service/protection engine | Implemented/reviewed at `04da074`; included on `origin/dev`; shared databases undeployed | Invoked only through completed R3-C aligned confirmation/review paths |
-| FUND `1P-G-R3-C` Intake integration | Implemented/reviewed; application `origin/dev` at `234f115`; shared databases undeployed | No real form activated; staging/main promotion remains separate |
-| Historical 1P-G/K1-F review evidence | Incomplete slice-by-slice chain | D1/D2 and K1-F-A/B lack separate review/test records; close coverage prospectively in R3 children and do not invent backdated evidence |
-| `1P-G-R3-D` all-source Project creation alignment | Implemented/reviewed at `e1c2d9f`, included on `origin/dev` at `3206199`; shared databases undeployed | Migration 135 refuses non-empty FUND data and changes no LMSPro object; staging/main/shared deployment need explicit promotion |
-| `COMMERCE-A2` | Implemented/reviewed on `origin/dev` at `3206199`; shared databases undeployed | Migration 136 adds only generic checkout/Order/line schema and passed A1/tenant/arithmetic/deletion tests |
-| FUND `1R-C6` | Implemented/reviewed at local application `9947669`; not pushed/deployed | Migration 137 adds typed FUND evidence and exact supporting relations; zero runtime behavior |
-| FUND Store `1R-D` | Implemented/reviewed at local application `db85fcc`; not pushed/deployed | Internal Store services consume C1-C6 evidence; no schema, UI, public Store or Commerce payment behavior |
-| FUND `1R-C3`/`1R-C4` application changes | Committed at `686229c` on `origin/dev` | Staging/main and shared database deployment remain pending |
-| FUND `1R-C5` application changes | Committed at `8b5f208`; included on `origin/dev` | Staging/main promotion remains separate; shared databases unchanged |
-| Commerce `A6-A` | Implemented/reviewed at local application `513cf3a`; not pushed/deployed | Migration 140 adds only Commerce-owned connection/onboarding/event evidence; FUND waits for later accepted Commerce integration |
-| Commerce `A6-B` | Implemented/reviewed at local application `e8aecea`; not pushed/deployed | Tenant settings and hosted onboarding only; no migration, Checkout, webhook or FUND behavior |
-| Commerce `A6-C` | Implemented/reviewed at local application `34ef64bb`; not pushed/deployed | Dormant connected-account Checkout adapter only; no migration, route, UI, webhook, payment transition or FUND behavior |
-| Commerce `A6-D` | Implemented/reviewed at local application `fa670e3c`; not pushed/deployed/configured | Dedicated Connect receipt and canonical Payment/Refund reconciliation; no migration, real Stripe action, shared secret/Event destination, FUND or production behavior |
-| `2R-ACCESS-01` / `PLAT-REFINE-03` direct FUND route entitlement | Pre-existing static-shell exposure confirmed by 2026-07-27 staging smoke; mutations refused and no cross-tenant access observed | Registered medium-priority Platform-parent/FUND-consumer wishlist; perform read-only route/API inventory and elevate if any data disclosure or broader bypass is found |
-
-### 7.1 Controlled Promotion Sequence Before LMSPro UI Work
-
-The retained sequence for application commit `4575d2d` is a first-class release gate:
-
-1. promote the unchanged A1/C1/C2 application commit from `dev` to `staging` before mixing
-   it with later LMSPro UI changes;
-2. apply and verify its three bounded migrations against the staging database through the
-   normal reviewed deployment path;
-3. confirm migration inventory, application health and no unrelated LMSPro regression;
-4. begin or rebase the LMSPro UI work from the then-current `dev` baseline;
-5. promote the LMSPro changes separately to staging, perform their UI smoke testing, and
-   only then promote the reviewed commits/migrations to `main`/live.
-
-This ordering does not claim that staging or live deployment has happened. The committed
-FUND/Commerce schema additions are additive and module-bounded, but that is not permission
-to bypass staging migration and application-health checks.
+| Application repository | Clean; local and remote `main`, `dev` and `staging` exact at `14077382` | Preserve alignment; `1R-F-B` authorises no application branch or change |
+| Documentation repository | Reconciliation base/upstream at review `2f3c09e`; `main`/`origin/main` at review `4e4ed16` | Owner authorised a local documentation commit; no push or main alignment is authorised. Inspect current refs before resuming |
+| FUND `1R-F-A` | Complete and closed at PASS on exact `0c7e4848`; zero external residue | Do not rerun or reinterpret the former contained Stage C failure as current state |
+| FUND `1R-F-B` | Strategic planning/reconciliation only | Confirm users, journey, branches, finalisation decisions and proportionality; no schema, UI or runtime work |
+| Ten-record schema proposal | Unaccepted technical option | Retain in the active plan appendix; do not treat it as selected direction |
+| E-B/E-C/E-D consolidated human acceptance | Still relevant evidence gate | Complete only through its governed schedule when separately selected; do not infer a new implementation slice |
+| Public purchaser and operational journey | Incomplete | Later work must cover Store, checkout, Order operations, artwork matching, production, dispatch and commission in bounded outcomes |
+| `2R-ACCESS-01` / `PLAT-REFINE-03` | Parked Platform-parent/FUND-consumer refinement | Elevate only if evidence shows data disclosure or broader authority bypass |
+| Real provider or live-data operation | Separately controlled High-risk action | Requires a later accepted outcome with explicit failure, rollback, tenant and environment evidence |
 
 ## 8. Current Authoritative Evidence
 
@@ -845,6 +892,42 @@ commission capabilities described by the strategic inputs.
 
 ## 9. Current Planning Handoff
 
+### 9.1 Current Handoff — 2026-09-07
+
+```text
+NOW: FUND 1R-F-B User Framework, Project Workflow And Vertical-Slice Reconciliation
+NEXT: unselected pending control-owner acceptance
+IMPLEMENTATION AUTHORITY: None
+```
+
+The immediate action is to review and accept, amend or defer the business framework in the
+active `1R-F-B` plan. It records:
+
+1. **Pass 1 — user/workflow skeleton:** agree what C1 configures, what C2 creates and
+   finalises, what the purchaser sees, and how Individual, collective and Standard
+   readiness branch around the common Project journey;
+2. **Pass 2 — minimum Individual Artwork vertical journey:** only after separate selection,
+   prove C1 configuration through C2 finalisation to a matching authorised document
+   download and Store preview, with remaining publication blockers visible. Include the
+   essential access, immutable-evidence, concurrency/failure, recovery and document-proof
+   controls required by that journey; and
+3. **Pass 3 — operational hardening:** select richer history, automated retry, external
+   delivery/email, monitoring and scale improvements when justified. Do not defer controls
+   required for the first usable journey.
+
+Passes 2 and 3 are sequencing guidance, not selected work. The control owner must first
+accept or amend the proposed finaliser, hierarchy, unlock/revision and immutable-evidence
+answers in Section 8 of the active plan, using its Section 4.2 user walkthrough. The
+review-correction and commit instruction does not accept those newly proposed answers or
+close Pass 1. Any later implementation plan must inspect the actual current schema
+and code and choose the smallest coherent outcome. The former ten-record proposal cannot
+be used as a default implementation specification.
+
+### 9.2 Retained Historical Delivery Detail
+
+The following record explains how the existing foundation was reached. Any old branch,
+deployment or next-action statement in it is superseded by Sections 0, 2, 4, 7 and 9.1.
+
 No implementation is currently underway. `1P-G-R3-A` is committed at application baseline
 `4bb7dd9` with its documentation lifecycle committed at `65fc243`. `1P-G-R3-B` is committed
 at application `04da074`, with the R3-B lifecycle and accepted R3-C plan committed at
@@ -910,7 +993,7 @@ local application commit `4a90be1`. Its representative 137-to-138 and fresh 138-
 disposable lifecycles passed with A1/A2/C6 regressions and zero residue. It is not pushed or
 deployed to a shared environment and adds no runtime payment behavior.
 
-Current reconciled control outcome:
+Historical reconciled control outcome before the 2026-09-07 correction:
 
 ```text
 `COMMERCE-A7 - FUND Consumer Integration` is implemented/reviewed as a dormant internal
@@ -947,11 +1030,11 @@ Stage C runner failure is contained with zero residue. Corrected Stage C-R1 pass
 `0c7e4848` local/Linux/security gates and the one authorised external Render/private-R2
 behavioural run. Its exact prefix, Render variables/service, bucket, provider authorities,
 local credential records and helpers are absent; both retained provider values returned
-HTTP 401 before local deletion. `1R-F-A` is complete and closed at PASS. Root control now
-selects bounded `1R-F-B` High-control planning. Its schema-foundation draft awaits
-control-owner review and makes no application, Prisma, database, provider or deployment
-change. Root `Next` remains unselected; no `1R-G`, further run or artwork/template
-production implementation is authorised.
+HTTP 401 before local deletion. `1R-F-A` is complete and closed at PASS. The later
+2026-09-07 correction redefines `1R-F-B` as the user/workflow/proportionality review and
+retains the former schema draft only as unaccepted evidence. Root `Next` remains
+unselected; no `1R-G`, further run or artwork/template production implementation is
+authorised.
 ```
 
 ## 10. Roadmap Maintenance Rule

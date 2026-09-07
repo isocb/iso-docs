@@ -2,17 +2,16 @@
 
 Created: 2026-07-15
 
-Last consolidated: 2026-08-26
+Last consolidated: 2026-09-07
 
 Status: Subordinate strategic capability overview; planning coordination only
 
-Current control note: direct portrait and fold-aware landscape source inspection superseded
-inferred R1A before review. Source-faithful `1R-F-A-R1B` automation and 12/12 physical/PDF
-review pass. Stage B Linux parity and the exact dev Security Scan pass at `139d09c4`.
-The dedicated Stage C exact candidate passed its local/Linux/security gates, but its
-accepted runner failed deterministically before behavioural proof. Stage C is complete at
-FAIL with zero-residue/revocation PASS. Root selection returns to the control owner; no
-runner correction, rerun or later FUND child is inferred.
+Current control note: `1R-F-A` is complete and closed at PASS on corrected exact
+`0c7e4848`, including the authorised deployed renderer/private-object proof and zero
+provider, object, Render and local residue. Platform security work is complete and local
+and remote application `main`, `dev` and `staging` are aligned at exact `14077382`. Root
+`Now` is `1R-F-B` user framework, Project workflow and vertical-slice reconciliation.
+Root `Next` is unselected and no implementation is authorised.
 
 Authoritative FUND roadmap and slice control:
 
@@ -50,6 +49,47 @@ This overview:
 
 It does not implement code, change schema, create migrations, deploy infrastructure or
 authorise any application work.
+
+### 1.1 Current Business Journey And Progress
+
+The business journey is the primary completion view:
+
+```text
+C1 configuration -> C2 Project -> Products -> workflow preparation/review
+-> Individual Artwork: ready to finalise -> finalisation -> matching document
+-> branch publication readiness -> authorised publication -> public Store
+-> purchaser Order/payment -> C1 Order operations
+-> artwork/production matching -> production/fulfilment -> dispatch -> commission
+```
+
+Readiness branches around, rather than replaces, that common journey:
+
+```text
+                             -> Individual Artwork readiness
+                            /
+Client -> Project -> Products -> Readiness -> Store -> Order -> Fulfilment -> Commission
+                            \
+                             -> Collective / Bulk / Standard readiness
+```
+
+| Business capability | Current position |
+| --- | --- |
+| C1 Client/Event/Product/Project foundations | Substantial foundation exists |
+| C2 Client/Project management foundation | Exists |
+| Project Product selection/eligibility | Exists |
+| Project Store/configuration foundations | Exists; consolidated human acceptance remains relevant |
+| Workflow-specific artwork readiness | Partial; Individual technical proof only |
+| Public purchaser Store | Not built |
+| Consumer checkout/Order journey | Backend Commerce machinery exists; public FUND journey is incomplete |
+| Physical artwork/Order matching | Not operationally built |
+| Production workflow | Not operationally built |
+| Dispatch/fulfilment | Not operationally built |
+| Commission calculation/statements/settlement | Not operationally complete |
+| End-to-end fundraising journey | Not yet reached |
+
+`1R-F-B` now reconciles the users, workflow branches and smallest coherent later vertical
+outcome against this view. Its former ten-record schema proposal is retained only as an
+unaccepted technical option in the active plan.
 
 ## 2. Authority And Reading Rule
 
@@ -212,8 +252,9 @@ The authoritative controls currently establish:
   with green automated gates and healthy staging/database/RLS evidence; prior FUND-admin
   login and pre-existing UI smoke passed, while E-B/E-C human acceptance is blocked by the
   missing default Project Store initiation workflow;
-- application dev/staging/main are aligned at `83356030`; real Stripe configuration and
-  environment-specific operational evidence remain separately controlled; and
+- local and remote application dev/staging/main are clean and aligned at `14077382`; real
+  provider configuration and environment-specific operational evidence remain separately
+  controlled; and
 - FUND `1R-E - C1 Store Oversight And C2 Project Store Control Alignment` is an accepted
   non-executable parent; its bounded E-A lifecycle is implemented/reviewed at application
   commit `daafc349` on the 141-migration disposable baseline and included in promoted
@@ -225,16 +266,19 @@ The authoritative controls currently establish:
   migration; its automated evidence passes and human acceptance now awaits controlled
   promotion of E-D plus the recorded real-workflow schedule.
 - `1R-E-D - Default Project Store Instantiation And Eligible Product Reconciliation` is
-  implemented/reviewed at `c45a41d9` and included by ancestry in application `83356030` as the mandatory bridge
+  implemented/reviewed at `c45a41d9` and included by ancestry in current application
+  `14077382` as the mandatory bridge
   from Project creation to the E-B/E-C surfaces. It uses the existing 141-migration schema,
   retains default-all rather than silently truncating future Individual Artwork selections,
   leaves its separately recorded human workflow acceptance pending.
 - `1R-F - Project Offer And Artwork Readiness Reconciliation` is reviewed/accepted as the
   non-executable parent; and
-- `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is accepted and
-  implemented through Stage A plus the pinned Stage B container definition. R1B automation,
-  human/physical review and exact dev Security Scan pass; Linux-container evidence remains
-  pending.
+- `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is complete and closed
+  at PASS on corrected exact `0c7e4848`, including local, Linux, security, physical,
+  deployed-renderer/private-object and zero-residue evidence; and
+- `1R-F-B - User Framework, Project Workflow And Vertical-Slice Reconciliation` is the
+  selected strategic planning action. It authorises no schema, UI, runtime, provider or
+  environment change.
 
 This baseline is a summary only. Commit, migration, deployment and current-next-action
 claims must be read from the authoritative controls.
@@ -410,6 +454,22 @@ The public Store and workflow-specific capability implementations may remain inc
 This stage is conditional by Project/Product workflow and must not become one monolithic
 implementation slice.
 
+The immediate work is not a schema foundation. It is the `1R-F-B` strategic review, using
+three proportionate passes:
+
+1. **User/workflow skeleton:** agree the C1, C2 and purchaser journey, the readiness
+   branches and the remaining finalisation decisions.
+2. **Minimum Individual Artwork vertical journey:** if separately selected, prove C1
+   configuration through C2 finalisation to a matching authorised document download and
+   Store preview. Include the necessary private access, immutable offer/document evidence,
+   concurrency/failure handling, recovery and applicable document/print proof.
+3. **Operational hardening:** add richer history, automated retry, external delivery/email,
+   monitoring and scale improvements justified by evidence. Essential controls accompany
+   the first behaviour that needs them.
+
+Only Pass 1 is selected. Passes 2 and 3 remain sequencing guidance and require their own
+accepted bounded lifecycle.
+
 ### 11.1 Individual Artwork Branch
 
 Applies to:
@@ -418,16 +478,23 @@ Applies to:
 Project type = ARTWORK_FUNDRAISING
 ```
 
-Candidate workstreams:
+Progress and possible later outcomes:
 
-1. real AMOW template, pricing and deployed-renderer proof;
-2. Application Template identity/version/assignment and validation foundation;
-3. shared Individual Artwork Product-selection limit policy;
-4. C1 Application Template basic management and controlled editor;
-5. C2 default-all Product selection, preview, finalisation and Project-offer lock;
-6. Artwork Template job, renderer, private storage and immutable version;
-7. C2 download, secure organiser delivery and C1 operational history; and
-8. unlock/revision, visual regression, physical print and QR QA.
+1. real AMOW template, pricing and deployed-renderer proof — complete at `1R-F-A` PASS;
+2. C1 Application Template configuration and assignment — business framework to confirm;
+3. C2 eligible Product selection, capacity feedback, preview and finalisation — smallest
+   visible vertical candidate, not yet selected;
+4. exact Artwork Template generation, authenticated download and matching Store preview,
+   with remaining publication blockers explicit — minimum vertical boundary and essential
+   controls to agree before persistence design;
+5. richer operational history, external delivery/email, supported revision workflows and
+   wider QA/scale coverage — later improvements; required private access, consistency,
+   failure/recovery and first-use document/print proof belong to the minimum journey.
+
+The detailed ten-record persistence proposal formerly presented as `1R-F-B` is preserved
+in that plan's Appendix A as unaccepted technical design evidence. It may inform a later
+implementation plan, but it is not the selected direction and must be tested against the
+actual smallest vertical outcome first.
 
 Completion gate:
 
@@ -772,45 +839,29 @@ setup through payment, production, dispatch and commission.
 
 ## 20. Recommended Strategic Sequence
 
-The strategic dependency order is:
+The current strategic dependency order is:
 
 ```text
-A6-D lifecycle complete
--> A7 thin FUND consumer integration complete and promoted through staging
--> 1R-E C1 Store oversight and C2 Project Store control alignment
-   (parent accepted)
--> 1R-E-A Store authority/intervention service implemented/reviewed locally
--> 1R-E-B C1 Store portfolio oversight and exceptional intervention surface
-   implemented/reviewed as passed locally; no shared deployment
--> 1R-E-C C2 Project Store control surface
-   implemented/reviewed/promoted; human acceptance pending promoted E-D workflow
--> 1R-E-D Default Project Store instantiation and eligible Product reconciliation
-   implemented/reviewed at c45a41d9; integrated on dev/origin-dev at 174dc8ac;
-   no E-D migration; not promoted to staging
--> 1R-F workflow-conditional Project Offer And Artwork Readiness parent accepted
--> 1R-F-A Real AMOW Template, Pricing And Deployed Renderer Proof
-   plan accepted; R1B automation/human/physical and Stage B Linux parity/Security PASS;
-   exact dev 139d09c4; Stage C authority decision selected but not yet authorised
--> apply confirmed pilot gates: Intake confirmation/conditional embed and type fit,
-   essential purchaser option/media authority, required messages and evidence-led
-   Product duplication
--> 1R-G public Store presentation
--> 1R-H consumer Order completion and communications parent reconciliation
--> parked 1R-H-A Store Order short code/single-artwork correlation when selected
+Commerce/A7, Store and Project foundations established
+-> 1R-F parent accepted
+-> 1R-F-A real AMOW template/pricing/deployed-renderer proof COMPLETE AT PASS
+-> 1R-F-B Pass 1: user/workflow skeleton and proportionality review (NOW)
+-> control-owner acceptance of finalisation decisions and one bounded outcome
+-> Pass 2: minimum Individual Artwork vertical journey (not selected)
+-> Pass 3: operational hardening justified by vertical evidence (not selected)
+-> public Store and purchaser Order/payment journey
 -> C1/C2 Order operations
--> upload/scanning and typed artwork intake
--> production matching and authorisation
--> production batching and dispatch
--> commission calculation and statements
--> wider-rollout campaign editor, promotional sequences and accepted merchandising/setup
-   refinements
--> full release hardening
+-> artwork intake, matching and production authorisation
+-> production batching, dispatch and fulfilment
+-> commission calculation, statements and settlement
+-> full release hardening and complete-module smoke readiness
 ```
 
-This does not require every future UI or schema slice to be implemented in one strictly
-linear series. Planning proofs and schema-option work may be discussed earlier where safe.
-Implementation order remains controlled one bounded lifecycle at a time unless the user
-and authoritative roadmap explicitly authorise otherwise.
+Root `Next` remains unselected. This sequence communicates dependencies; it does not select
+Pass 2, Pass 3, Public Store or any later capability. Each implementation outcome remains
+one separately accepted bounded lifecycle. High control determines evidence and stopping
+conditions where authority, tenancy, payment, data or provider risk is present; it does not
+justify a broad schema-first slice.
 
 ## 21. Cross-Stage Non-Negotiable Gates
 
@@ -895,8 +946,21 @@ this overview. They should not duplicate its full strategic content.
 
 ## 25. Strategic Handoff
 
-The current executable action remains whatever the root, Commerce and FUND controls state.
-At the current consolidation point, A6-D and the bounded `COMMERCE-A7 - FUND Consumer
+```text
+NOW: FUND 1R-F-B User Framework, Project Workflow And Vertical-Slice Reconciliation
+NEXT: unselected pending control-owner acceptance
+IMPLEMENTATION AUTHORITY: None
+```
+
+Resume in the active `1R-F-B` plan. Review the common C1/C2/purchaser journey, the
+Individual/collective/Standard readiness branches, the business finalisation decisions and
+the proposed smallest visible vertical outcome. Do not create an application branch,
+schema or migration from the retained ten-record technical option. Once Pass 1 is accepted,
+the root and FUND roadmaps may separately select one bounded Pass 2 outcome.
+
+The following delivery detail is retained as historical foundation context. Its old branch,
+promotion and next-action wording is superseded by the handoff above and the authoritative
+roadmaps. At that earlier consolidation point, A6-D and the bounded `COMMERCE-A7 - FUND Consumer
 Integration` are implemented/reviewed, and their application ancestry is promoted through
 dev/staging at `91e8751c`. The A7 plan is retained at:
 
@@ -932,9 +996,9 @@ The reconciled
 It allocates separate Individual, collective and Standard Product readiness branches
 after `1R-E`; the formerly reserved Public Store slice moves to `1R-G`. E-D is
 implemented/reviewed at `c45a41d9` and integrated at `174dc8ac`. `1R-F-A - Real AMOW Template,
-Pricing And Deployed Renderer Proof` has green Stage A, human/physical and Stage B Linux
-parity evidence at exact dev `139d09c4`. The Stage C authority decision is selected. This
-document authorises no Stage C, `1R-G` or production implementation.
+Pricing And Deployed Renderer Proof` subsequently completed at PASS on corrected exact
+`0c7e4848`, including the authorised external proof and zero residue. This document
+authorises no `1R-F-B` implementation, `1R-G` or production implementation.
 
 `docs/modules/fund/03-slice-planning/2026-07-15-fund-phase-1-slice-1r-e-b-c1-store-portfolio-oversight-exceptional-intervention-surface-implementation-planning.md`
 

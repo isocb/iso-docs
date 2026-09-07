@@ -2,11 +2,38 @@
 
 **Canonical source:** `isodocs/docs/modules/fund/`  
 **Module slug:** `fund`  
-**Status:** C1 admin foundation released; C1 remediation and C2 access planning active
+**Status:** Substantial internal foundation exists; `1R-F-B` user/workflow/proportionality
+reconciliation is portfolio `Now`; no implementation is selected
 
 FUND is the reusable IsoStack module for fundraising, project lifecycle management, organiser engagement, commerce/store planning, commission distribution and production coordination.
 
 AMOW remains the founding use case / production partner context, but not the module identity.
+
+## Current Strategic Position
+
+FUND is not yet an end-to-end operational module. Its current business spine is:
+
+```text
+C1 configuration -> C2 Project -> Products -> workflow preparation/review
+-> Individual finalisation/document or other branch approval -> publication readiness -> Store
+-> purchaser Order/payment -> Order operations -> artwork/production matching
+-> production/fulfilment -> dispatch -> commission
+```
+
+C1/C2 administration, Product selection, Store configuration and backend Commerce have
+substantial foundations. Individual Artwork has a completed technical proof. The public
+Store, complete purchaser journey, operational artwork matching, production, dispatch and
+commission outcomes remain incomplete.
+
+The current action is documentation-only Pass 1 in [`1R-F-B - User Framework, Project
+Workflow And Vertical-Slice Reconciliation`](03-slice-planning/2026-09-01-fund-phase-1-slice-1r-f-b-individual-artwork-template-offer-lock-schema-foundation-planning.md).
+It must agree the C1/C2/purchaser framework, workflow branches and smallest coherent later
+vertical outcome. Pass 2 (minimum Individual Artwork journey) and Pass 3 (operational
+hardening) are not selected. The retained ten-record schema option is not implementation
+authority. The active plan distinguishes ready-to-finalise from ready-to-publish and
+contains the proposed user walkthrough and business answers for acceptance. Essential
+private access, offer/document consistency, failure handling and recovery belong to the
+first usable journey; Pass 3 adds evidence-led operational improvements.
 
 ## Start Here
 
@@ -106,21 +133,35 @@ Current operational control starts at:
 00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md
 ```
 
-## Current App Branches
-
-Released baseline:
+The business completion view is:
 
 ```text
-main = dev = staging = 62b727e chore(release): promote FUND C1 admin foundation
+00-roadmap-control/2026-07-15-fund-store-artwork-orders-and-production-strategic-completion-roadmap.md
 ```
 
-Active FUND branch:
+## Current Repository Position
+
+Application repository:
 
 ```text
-feature/fund-phase-1-c2-project-access
+local/remote main = dev = staging = 14077382
+worktree clean
 ```
 
-Separate SeasonPro remediation branch:
+Documentation repository:
+
+```text
+working branch = fix/platform-fast-uri-advisory-20260903
+reconciliation base/upstream at review = 2f3c09e
+main/origin-main at review = 4e4ed16
+owner authorised a local documentation commit; no push or main alignment is authorised
+inspect current refs before resuming; the amendment is not claimed online
+```
+
+There is no application work branch for `1R-F-B`; the selected action authorises
+documentation review only.
+
+Separate LMSPro remediation branch retained outside this FUND action:
 
 ```text
 feature/seasonpro-remediation

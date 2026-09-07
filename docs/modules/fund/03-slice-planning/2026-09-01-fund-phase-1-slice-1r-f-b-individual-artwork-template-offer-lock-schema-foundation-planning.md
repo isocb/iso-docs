@@ -1,15 +1,24 @@
-# FUND Phase 1 Slice 1R-F-B - Individual Artwork Template And Offer-Lock Schema Foundation Planning
+# FUND Phase 1 Slice 1R-F-B - User Framework, Project Workflow And Vertical-Slice Reconciliation
 
 Date: 2026-09-01
 
-Status: Restored as portfolio `Now` for strategic user-framework and planning review after
-the security expedite closed; bounded draft preserved; no implementation authorised
+Last revised: 2026-09-07 — owner-authorised review corrections; proposed business decisions
+remain for acceptance before Pass 1 closes.
 
-Control depth: `High` — this future production build concerns persistent schema, tenant
-authority, immutable commercial evidence and secure-access evidence.
+Status: Selected portfolio `Now` for strategic user-framework, workflow and proportionality
+review; the former ten-record schema proposal is preserved in Appendix A as an unaccepted
+technical option; no implementation authorised
 
-Work type: planning for a production build. This planning turn creates documentation only;
-it does not build or alter the production model.
+Control depth: `High` — the reconciliation concerns tenant authority, immutable commercial
+evidence and a later payment/production journey. High control strengthens the eventual
+evidence boundary; it does not require a large or schema-first implementation.
+
+Work type: strategic planning and product-workflow reconciliation. This turn changes
+documentation only; it neither selects nor builds a production model.
+
+Path continuity note: the existing filename is retained so current roadmap and historic
+links do not break. Its former schema-foundation title no longer states the selected
+meaning of `1R-F-B`.
 
 Authoritative controls:
 
@@ -22,99 +31,304 @@ Authoritative controls:
 ## Restart Checkpoint
 
 ```text
-Current state: 1R-F-B is restored as portfolio Now for strategic user-framework and planning review after PLAT-ASSURE-04 closed; the detailed draft remains unaccepted and does not authorise implementation
-Last proven commit: application 0c7e48489aef697c6f39faf1a081456f9f3858a4; 1R-F-A local, Linux, security, physical and disposable external evidence PASS with zero residue; IsoDocs pre-plan baseline e317098
+Current state: 1R-F-B is portfolio Now for strategic user-framework, Project-workflow and proportionality reconciliation; the detailed ten-record draft is unaccepted Appendix A evidence and does not select schema implementation
+Last proven commit: application 0c7e48489aef697c6f39faf1a081456f9f3858a4; 1R-F-A local, Linux, security, physical and disposable external evidence PASS with zero residue; IsoDocs reconciliation base 2f3c09e; the documentation-only amendment is authorised for local commit, not push
 Current environment: application dev/staging/main and origins align at exact production 14077382; PLAT-ASSURE-04 is closed with all gates PASS; no Prisma, database, provider or runtime mutation has been made for 1R-F-B
-Next human decision/test: first reconcile the high-level user framework and proportionality, then review, amend or reject the detailed aggregate, field, constraint, migration and Do Not Build boundaries
-Safe resumption point: return to this unchanged draft with the root/FUND roadmaps and accepted 1R-F parent; do not edit Prisma or create a migration until the control owner accepts the strategic skeleton and later gives explicit implementation authority
+Next human decision/test: review the Section 4.2 walkthrough and Section 8 proposed decisions; accept or amend those business rules before closing Pass 1 and separately selecting any vertical outcome
+Safe resumption point: return to Sections 2 through 8 with the root/FUND roadmaps and accepted 1R-F parent; do not use Appendix A as implementation direction, edit Prisma or create a migration unless a later selected vertical plan proves the required persistence and receives explicit implementation authority
 ```
 
 ## 1. Authorised Outcome And Stopping Point
 
-Plan one additive, tenant-scoped schema foundation for the accepted Individual Artwork
-path:
+Re-establish FUND's visible business and user journey before selecting more technical
+construction:
 
 ```text
-reusable Application Template identity and immutable versions
--> Event / standalone assignment history
--> immutable Project offer versions and exact selected Product rows
--> Project-specific Artwork Template identity and immutable generated versions
--> generation-attempt and secure-grant evidence
+C1 configures Events, Products, commercial rules and availability
+-> C2 creates or manages a Project
+-> suitable Products are selected
+-> workflow-specific preparation and review/approval take place
+-> Individual Artwork: ready to finalise -> C2 finalises -> matching document generated
+-> each branch satisfies its publication-readiness requirements
+-> Store becomes publishable
+-> purchaser browses, Orders and pays
+-> C1 operates and reconciles Orders
+-> artwork/production requirements are matched
+-> production is authorised and fulfilled
+-> dispatch occurs
+-> commission is calculated, reported and later settled
 ```
 
-The stopping point for this turn is an evidence-based plan ready for control-owner review.
+The stopping point is a business-readable reconciliation that:
+
+- shows what C1, C2 and the purchaser see and do;
+- shows how a Project progresses and where readiness branches diverge;
+- distinguishes foundations that exist from user journeys that remain absent;
+- preserves the important offer-lock questions as product rules first;
+- determines whether each part of the former ten-record option is required now or only for
+  later operational hardening; and
+- identifies the smallest coherent Individual Artwork vertical outcome that could be
+  separately planned next.
+
 No application repository file, database, migration, test database, provider account,
-Render service, object store, route, service, UI or deployment may change.
+Render service, object store, route, service, UI or deployment may change. Acceptance of
+this reconciliation will permit a later decision about one bounded vertical plan only. It
+will not select schema implementation or automatically select `1R-F-C`, `1R-F-D`,
+`1R-F-E`, `1R-G` or another child.
 
-If this plan is later accepted, implementation remains a separate explicit decision. That
-future implementation would be a production-model build because it creates persistent
-records. It must initially run only against a positively identified disposable database
-and must not migrate any shared development, staging or production database without a
-separate promotion decision.
+## 2. Business Concepts Preserved For Review
 
-## 2. Evidence Used And Decisions Carried Forward
+The strategic review does not reject the distinction between:
 
-### 2.1 Current application baseline
-
-Direct inspection at exact application `0c7e4848` confirms 153 migration directories and
-the existing tenant-scoped identities that 1R-F-B must extend:
-
-- `FundEvent`, `FundClientMember` and `FundProject` own Event, exact organiser and Project
-  identity;
-- `FundProjectProduct` owns selected Product membership and display order;
-- the one-per-Project `FundProjectStore` owns the Store and canonical public identity;
-- `FundProjectStoreProduct` owns the exact Store/Project/Project Product/Product junction;
-- immutable `FundStoreProductConfigurationVersion` owns the exact commercial and
-  presentation configuration snapshot; and
-- `FundProductionAsset` remains a separate production-file aggregate and must not be
-  reinterpreted as a generated Artwork Template.
-
-1R-F-B adds no replacement Product, Store, price, media, Order, payment, commission or
-production-asset authority.
-
-### 2.2 Proven 1R-F-A inputs
-
-The completed High-control assumption test proved the candidate renderer/layout contract
-at exact `0c7e4848`, including genuine-source visual/physical review, deployment-equivalent
-Linux execution, private object behaviour and resource measurements. For schema planning,
-the controlling outputs are:
-
-- A4 portrait `STANDARD` supports a validated ceiling of ten Product rows;
-- A4 landscape `COMPACT` supports a validated ceiling of twelve Product rows;
-- every selected Project Product consumes exactly one printable row;
-- the minimum finalised Individual Artwork offer contains one selected Product;
-- Product order, exact gross displayed price, Project/Client content, branding, canonical
-  Store URL/QR and the renderer/layout contract must be pinned at finalisation; and
-- the proof was temporary assumption testing, not production storage, credentials,
-  infrastructure or a persistent model.
-
-Ten and twelve are evidence-backed ceilings for those two exact proven variants. They are
-not global defaults and do not authorise a future version with another layout to claim the
-same capacity without its own validation evidence.
-
-### 2.3 Accepted business authority
-
-The accepted parent requires three separate aggregates:
-
-| Aggregate | Meaning |
+| Concept | Business meaning |
 | --- | --- |
-| Application Template / Version | Reusable C1-owned A4 design and immutable layout/capacity contract |
-| Artwork Template / Version | Generated, immutable, Project-specific Individual Artwork document finalised by the exact C2 organiser |
-| Collective Project Artwork / Version | A later Group/Bulk aggregate outside 1R-F-B |
+| Application Template | Reusable C1-controlled design and validated layout/capacity |
+| Project Offer | Exact Products, prices, content and presentation accepted for one Project |
+| Artwork Template | Generated Project-specific document used by the Individual Artwork workflow |
 
-Pre-finalisation assignment follows a stable Application Template identity, not a mutable
-or preselected version:
+The requirement also remains valid that a finalised historical offer must not silently
+change when Products, prices, branding or reusable templates later change. The review must
+determine which facts must be immutable at each business milestone and what evidence the
+next vertical journey genuinely needs.
 
-- an Event-linked Project follows its Event assignment and has no Project override;
-- a standalone Project uses its exact Project assignment when present, otherwise the
-  tenant's standalone default; and
-- finalisation pins the exact Application Template Version then current, so later template
-  changes cannot rewrite a historic offer or Artwork Template.
+Existing architecture remains protected:
 
-An offer may be finalised before Store publication. Finalisation does not publish the
-Store, authorise checkout, prove payment or authorise production.
+- C2 Client/account is the Project-management node;
+- C1 is producer/operator/supplier;
+- the Project belongs to the C2 Client;
+- FUND owns Project, Store, Product, readiness, artwork, production and commission context;
+- Commerce Core owns generic Order, Payment and Refund evidence;
+- typed FUND context links to Commerce evidence; and
+- no duplicate generic FUND Order or payment model is introduced.
 
-## 3. Bounded Schema Vocabulary
+## 3. Existing Foundation And Demonstrated Gap
+
+Substantial internal foundations already exist for C1 Client/Event/Product/Project
+administration, C2 Client/Project management, Project Product eligibility/selection,
+Project Store configuration and generic Commerce checkout/Order/payment machinery. The
+corrected `1R-F-A` assumption test at exact application `0c7e4848` also proved that the
+candidate Individual Artwork rendering and private-object approach can work within its
+tested envelope, then removed all temporary resources.
+
+Those foundations do not yet form an end-to-end fundraising operation. In particular:
+
+- workflow-specific artwork readiness is only partially proved;
+- the public purchaser Store is not built;
+- the public FUND checkout/Order journey is not complete;
+- physical artwork/Order matching is not operational;
+- production, dispatch and fulfilment are not operational;
+- commission calculation/statements/settlement are not complete; and
+- no `1R-F-B` application, Prisma, migration or database implementation exists.
+
+## 4. Project Workflow Branches Around The Common Spine
+
+The principal variation occurs around Project/Product readiness, after Product selection
+and before Store publication:
+
+```text
+                             -> Individual Artwork readiness
+                            /
+Client -> Project -> Products -> Readiness -> Store -> Order -> Fulfilment -> Commission
+                            \
+                             -> Collective / Bulk / Standard readiness
+```
+
+- **Individual Artwork** requires the Project-specific artwork-sheet/document process.
+- **Group Personalised Product** requires collective artwork composition, organiser
+  approval and supplier-side Product-presentation approval.
+- **Bulk Order / Club-Funded** may use collective-artwork handling or ordinary Product
+  readiness according to accepted Project/Product policy.
+- **Standard / Unmodified Product** remains a Product path, not a separate Project type,
+  and is ready through ordinary Store/commercial/presentation requirements.
+- **Not Sure Yet** remains intake/configuration only and must resolve to an operational
+  Project type before Product/readiness/Store progression.
+
+This review describes how the branches fit one FUND architecture. It does not claim
+implementation or behavioural proof for the unbuilt branches.
+
+### 4.1 Ready To Finalise And Ready To Publish
+
+For Individual Artwork these are separate gates, in this order:
+
+```text
+Project and template configured -> eligible Products selected -> offer preview
+-> ready to finalise -> authorised C2 finalisation -> matching document generated
+-> artwork readiness satisfied -> all remaining Store gates pass -> ready to publish
+-> separate authorised publication
+```
+
+**Ready to finalise** means the Project has an operational type, a valid assigned template,
+a selection within its validated capacity, resolved required content/prices and an
+authorised finaliser. It does not require an already finalised offer or generated document.
+The server must recheck these facts when finalisation is requested.
+
+**Ready to publish** additionally requires the current finalised offer, its successful
+matching Artwork Template and all existing Store/commercial/presentation gates. A failed
+or pending generation leaves that readiness incomplete. Finalisation, generation and
+download do not publish the Store or authorise checkout or production.
+
+Collective readiness instead requires approved composition and separately released Product
+presentation. Standard Products use ordinary Store readiness; mixed Bulk Projects apply
+the appropriate branch per Product. Neither path inherits the Individual document gate.
+
+### 4.2 Proposed User Walkthrough
+
+This is a proposed target journey for business review, not a claim that the screens or
+behaviour already exist. Section 5 records current delivery progress. The first five steps
+describe the candidate Pass 2; later steps show its intended business hand-off only.
+
+| Step / actor | What they see and do | What blocks progression | Result / next action |
+| --- | --- | --- | --- |
+| 1. C1 prepares the offer | In Event or standalone Project configuration, select a validated Application Template and eligible Products with prices and required content | No valid template assignment, missing offer content or unresolved commercial configuration | C2 can review the prepared Project; an eligible pool above template capacity shows a warning rather than silently removing Products |
+| 2. Authorised C2 member selects Products | In the Project, see all eligible Products selected initially, the selection count/capacity and the resulting offer preview; deselect as needed | No selected Product, capacity exceeded, unresolved Project type or missing required content | Offer is ready for the authorised finaliser to review; a successful document is not required yet |
+| 3. Proposed exact C2 organiser finalises | Review the Products, order, prices, Project content and template, then confirm the exact offer | Wrong/inactive finaliser or any relevant selection, price, template or authority change since preview | Preserve the confirmed offer; show document generation pending; Store is not yet artwork-ready |
+| 4. System generates; C2 views status | Project shows generation pending, failed or available for that exact offer | Failed/incomplete generation, stale input or another offer becoming current | Failure remains visible with controlled retry; only a complete matching document becomes current |
+| 5. Authorised C2 member downloads | See the matching document and Store preview using the same Products/prices; download through Project access | Wrong Client/Project authority, missing file or document/offer mismatch | Candidate Pass 2 ends with a usable document and explicit remaining publication blockers; no public trading or distribution is inferred |
+| 6. C2 publishes; purchaser shops — later | C2 sees remaining publication blockers; after a separate publication action, purchaser sees only released ready Products and proceeds through checkout | Unmet Store/commercial/payment gates, unready Product or unavailable public journey | Commerce records Order/payment evidence; payment status comes from verified provider processing |
+| 7. C1 operates Orders — later | See Orders, payment status, physical artwork receipt/matching and production holds | Unpaid/unconfirmed Order, unmatched artwork or unmet production requirements | Explicit production authorisation, then fulfilment and dispatch; payment alone never authorises production |
+| 8. C1/C2 review commission — later | See Project sales/refund evidence, applicable accepted terms and the resulting statement | Incomplete reconciliation or unresolved adjustments | Calculate and report commission, then separately record settlement |
+
+The consolidated E-B/E-C/E-D human acceptance gate remains relevant to steps 1–2 and 6;
+this proposed walkthrough does not mark it passed. Printable use or physical distribution
+also requires the applicable print/QR proof and distribution rules before that use begins.
+
+## 5. Business-Journey Progress View
+
+| Business capability | Current position |
+| --- | --- |
+| C1 Client/Event/Product/Project foundations | Substantial foundation exists |
+| C2 Client/Project management foundation | Exists |
+| Project Product selection/eligibility | Exists |
+| Project Store/configuration foundations | Exists; consolidated human acceptance remains relevant |
+| Workflow-specific artwork readiness | Partial; Individual technical proof only |
+| Public purchaser Store | Not built |
+| Consumer checkout/Order journey | Backend Commerce machinery exists; public FUND journey is incomplete |
+| Physical artwork/Order matching | Not operationally built |
+| Production workflow | Not operationally built |
+| Dispatch/fulfilment | Not operationally built |
+| Commission calculation/statements/settlement | Not operationally complete |
+| End-to-end fundraising journey | Not yet reached |
+
+## 6. Revised Three-Pass Sequence
+
+### Pass 1 — User And Workflow Skeleton
+
+The current `1R-F-B` outcome reconciles C1, C2 and purchaser surfaces, Project progression,
+readiness branches, blockers, Store hand-off and downstream convergence. It creates no
+technical implementation.
+
+### Pass 2 — Minimum Individual Artwork Vertical Journey
+
+After Pass 1 is accepted, the control owner may separately select and plan the smallest
+coherent path:
+
+```text
+C1 selects/configures a validated reusable template
+-> C2 selects eligible Products
+-> C2 previews the resulting Project offer
+-> ready-to-finalise checks pass
+-> C2 finalises the offer
+-> the same exact Products/prices appear in the Store preview
+-> the matching Project-specific artwork sheet is generated
+-> C2 can access/download it
+-> artwork readiness passes; other Store publication blockers remain explicit
+```
+
+The implementation boundary may cross schema, service and UI concerns when that is the
+smallest safe recognisable journey, but each exact implementation decision still requires
+a separately accepted plan. Public Store publication/trading, payment and physical
+distribution remain outside this candidate unless later explicitly selected.
+
+#### Essential Controls In The First Usable Journey
+
+The later Pass 2 plan must include the minimum controls needed by the behaviour it enables:
+
+- server-checked tenant, Client, Project and actor authority for selection, finalisation,
+  generation and download;
+- one consistent finalised offer and matching document, retaining the exact Products,
+  order, resolved prices/content, template and Store URL/QR evidence so later edits cannot
+  silently change what C2 confirmed;
+- atomic finalisation with stale-input checks, protection against duplicate/concurrent
+  requests and a defined pending/failure/retry outcome; no partial or mismatched file may
+  be presented as current or satisfy publication readiness;
+- secure managed storage and authorised access for generated documents, with a named
+  operating owner and a proportionate retention/deletion and recovery boundary before
+  persistent files are delivered; an expiring external grant/email is optional if the
+  first journey uses authenticated Project download only;
+- relevant failure, negative authority and version-consistency tests, direct C1/C2 proof,
+  and document/price/layout/QR checks; physical-print acceptance is required before actual
+  printable use or distribution; and
+- explicit refusal of unsupported revision/unlock actions and a safe failure/rollback
+  path that preserves existing confirmed offers and documents.
+
+These are behavioural requirements, not a mandate for ten tables, a particular provider,
+an elaborate job framework or a second authority model. Reuse existing capabilities where
+they meet the selected boundary. A necessary control moves with the first behaviour that
+depends on it; it cannot be deferred merely because Pass 3 has a hardening label.
+
+### Pass 3 — Operational Hardening
+
+After the minimum journey, evidence may justify richer assignment/version-history views,
+detailed generation-attempt diagnostics, automated retry orchestration, external expiring
+access, email/resend, advanced retention tooling, monitoring and scale improvements.
+Post-publication revision workflows remain later work; unsupported changes must already
+be refused. Pass 3 does not defer baseline private access, immutable offer/document
+consistency, concurrency protection, failure handling or recovery required in Pass 2.
+
+## 7. Proportionality Rule For Persistence
+
+Appendix A preserves the former detailed proposal as technical design evidence. For every
+proposed record, later planning must ask:
+
+> Is this persistence required for the next proven user journey, or does it belong to
+> later operational hardening?
+
+This question is explicitly open for generation attempts, access grants,
+generated-document history/storage separation, assignment history and offer/version
+history. The review must not assume all ten proposed models are created together, but it
+must not simplify away legitimate immutable commercial evidence merely to reduce the model
+count. The business journey determines the persistence boundary.
+
+## 8. Proposed Business Decisions For Control-Owner Acceptance
+
+The owner authorised the review corrections and documentation commit. The following
+specific answers are recommendations for acceptance, not decisions inferred from that
+instruction. They draw on the accepted parent while making the unresolved choices explicit.
+
+| Decision | Proposed answer | Boundary / consequence |
+| --- | --- | --- |
+| 1. Business concepts | Retain Application Template as reusable C1 design, Project Offer as the exact confirmed commercial/content selection, and Artwork Template as the resulting Project-specific document | Preserve these meanings without prescribing separate tables for every concept |
+| 2. Assignment hierarchy | Event-linked Projects follow their Event's template assignment; standalone Projects use an explicit C1 Project assignment, otherwise the tenant standalone default | No Event-Project override in the minimum journey; missing/invalid assignment blocks finalisation rather than silently falling back |
+| 3. Lock point | C2 finalisation confirms the exact offer before generation; show the resulting document as pending until successful | Generation failure does not unlock or rewrite the confirmed offer; finalisation does not publish the Store |
+| 4. Finaliser | Initially retain the exact active Project organiser as finaliser; authorised same-Client Project members may prepare selection and view/download within existing permissions | Avoid inventing a new permission system for the first journey; broader finaliser authority remains an explicit later choice |
+| 5. Revision / unlock | Drafts remain editable. Any supported pre-publication refinalisation requires organiser authority, a reason, audit and a new offer/document version. At publication, first Order, payment, physical distribution or production authorisation, refuse ordinary unlock pending a separately accepted reconciliation workflow | This conservatively extends the parent's paid-Order/distribution boundary to first Order and omits published-Store unlock from the minimum journey; it requires explicit acceptance. If pre-publication refinalisation is deferred, the UI must clearly refuse edits to a finalised offer |
+| 6. Immutable milestones | Finalisation preserves actor/time, template/layout, ordered Products, exact commercial/configuration/content and Store URL/QR; generation binds the successful document to that offer. Later publication, Order/payment, distribution and production actions retain their own exact relevant evidence | Reuse existing immutable FUND configuration and Commerce evidence; never substitute a mutable current Product record for a historic confirmed fact. Later milestones are not implemented by Pass 2 |
+| 7. Minimum next outcome | Propose the Section 4.2 steps 1–5: C1 configuration through C2 selection/finalisation to a matching authenticated document download and Store preview, with the essential controls in Section 6 | Public Store, trading, payment, physical distribution and downstream operations remain later. Confirm the practical usefulness of this stopping point before selecting its bounded plan |
+
+Decisions needed by the selected behaviour must be resolved before its implementation plan
+is accepted. A deliberate deferral must state the blocked action; it cannot leave a newly
+enabled workflow without defined authority, evidence or recovery.
+
+## 9. Current Acceptance And Stopping Gate
+
+This reconciliation is ready for control-owner review when it gives a non-technical reader
+one coherent C1/C2/purchaser journey, shows the readiness branches, states current progress,
+presents the walkthrough and proposed answers for acceptance, distinguishes ready-to-finalise
+from ready-to-publish, and keeps essential controls in the first usable journey while
+separating later operational improvements.
+
+Acceptance will close strategic Pass 1 only. Root `Next` remains unselected until the
+control owner accepts or amends this review and deliberately chooses one bounded vertical
+outcome. No schema implementation or named later child is inferred.
+
+## Appendix A — Unaccepted Detailed Schema Option / Technical Design Evidence
+
+The material below is preserved from the earlier schema-first draft. It has not been
+accepted as the current implementation direction. Model names, field sets, constraints,
+migration sequencing and validation ideas may inform a later vertical plan only where the
+accepted business journey proves them necessary.
+
+### A.1 Bounded Schema Vocabulary
 
 Add only the following enums:
 
@@ -152,7 +366,7 @@ FundArtworkTemplateGrantIssuerType
 Do not encode Project type, Workflow Class, Store, Order, payment or delivery states again
 inside these enums. Those remain owned by their existing aggregates.
 
-## 4. Planned Models And Contracts
+### A.2 Planned Models And Contracts
 
 Common rules for every planned table:
 
@@ -167,7 +381,7 @@ Common rules for every planned table:
   bypassing application tenant filters. Any future row-level-security change requires its
   own explicit review rather than being inferred here.
 
-### 4.1 `FundApplicationTemplate`
+#### A.2.1 `FundApplicationTemplate`
 
 Stable tenant-owned reusable template identity:
 
@@ -188,7 +402,7 @@ Required constraints:
 
 The stable identity does not contain layout JSON or capacity. Those belong to a version.
 
-### 4.2 `FundApplicationTemplateVersion`
+#### A.2.2 `FundApplicationTemplateVersion`
 
 Versioned design and validation contract:
 
@@ -232,7 +446,7 @@ Required constraints:
 No migration seeds an AMOW template. Creating and validating a real tenant template is
 later C1 lifecycle work under `1R-F-C`.
 
-### 4.3 `FundApplicationTemplateAssignment`
+#### A.2.3 `FundApplicationTemplateAssignment`
 
 Append-only assignment history with one active assignment per applicable scope:
 
@@ -267,7 +481,7 @@ Required constraints and indexes:
 Assignments point to template identity so a Project follows the identity's active version
 until finalisation. They never point directly to a draft version.
 
-### 4.4 `FundIndividualArtworkOffer`
+#### A.2.4 `FundIndividualArtworkOffer`
 
 Stable one-per-Project Individual Artwork offer identity:
 
@@ -285,7 +499,7 @@ Required constraints:
 - later services create/use it only for `ARTWORK_FUNDRAISING`; schema presence alone does
   not change Project type or make a Project ready.
 
-### 4.5 `FundIndividualArtworkOfferVersion`
+#### A.2.5 `FundIndividualArtworkOfferVersion`
 
 Append-only finalisation/lock record:
 
@@ -324,7 +538,7 @@ This record pins resolved display/branding/renderer input but does not duplicate
 Store or configuration rows. The foreign-keyed Product rows below retain exact source
 lineage.
 
-### 4.6 `FundIndividualArtworkOfferProduct`
+#### A.2.6 `FundIndividualArtworkOfferProduct`
 
 One printable Product row in one exact offer version:
 
@@ -353,7 +567,7 @@ The gross amount is the exact purchaser-facing printable amount resolved from th
 configuration. This does not replace the configuration's net/VAT/basis authority and does
 not create Order or payment evidence.
 
-### 4.7 `FundArtworkTemplate`
+#### A.2.7 `FundArtworkTemplate`
 
 Stable Project-specific generated-document identity:
 
@@ -373,7 +587,7 @@ Required constraints:
 This aggregate is not `FundProductionAsset` and its presence does not imply that a PDF was
 stored or delivered.
 
-### 4.8 `FundArtworkTemplateGenerationAttempt`
+#### A.2.8 `FundArtworkTemplateGenerationAttempt`
 
 Append-only request identity with tightly controlled execution-state adjudication:
 
@@ -402,7 +616,7 @@ Required constraints:
 
 `1R-F-E` later owns the worker, retry policy, concurrency and operational implementation.
 
-### 4.9 `FundArtworkTemplateVersion`
+#### A.2.9 `FundArtworkTemplateVersion`
 
 Immutable evidence for one successful generated document:
 
@@ -428,7 +642,7 @@ No provider/object location is included. `1R-F-E` must separately plan private m
 storage, checksum-to-object binding, retention, deletion and recovery before a generated
 version can be operationally delivered.
 
-### 4.10 `FundArtworkTemplateAccessGrant`
+#### A.2.10 `FundArtworkTemplateAccessGrant`
 
 Revocable, expiring evidence that targets one exact generated version and organiser:
 
@@ -456,7 +670,7 @@ This is schema support, not a working link. `1R-F-E` owns token entropy, fixed-t
 comparison, expiry/reissue policy, authorised download, access logging, email/resend,
 retention and rate limiting. No public bucket or permanent object URL is authorised.
 
-## 5. Transaction, Immutability And Authority Boundaries
+### A.3 Transaction, Immutability And Authority Options
 
 Later service implementation must use bounded transactions for:
 
@@ -479,12 +693,12 @@ rules for Store publication/trading, paid Orders and recorded physical distribut
 permitted unlock creates a full superseding offer version after refinalisation; it never
 edits historic offer/Product/Artwork versions or Commerce Order evidence.
 
-## 6. Migration Plan If Separately Authorised
+### A.4 Migration Option If Separately Authorised By A Later Vertical Plan
 
-The implementation candidate is one additive migration after the current 153-directory
-baseline, provided preflight still proves that exact baseline. If another migration lands
-first, the implementer must refresh the baseline and migration identifier rather than
-assuming ordinal 154.
+The earlier implementation option was one additive migration after the then-current
+153-directory baseline. Any later selected vertical plan must re-inspect the current
+baseline, prove that its required persistence belongs in that journey and define its own
+migration boundary rather than assuming this option or ordinal 154.
 
 Required sequence under `SAFE_DATABASE_WORKFLOW.md`:
 
@@ -507,9 +721,9 @@ or other-module row. New tables begin empty. Reverse relations and supporting co
 keys may be added only where an exact foreign key requires them and may not alter owning
 aggregate behaviour.
 
-## 7. High-Control Validation Contract
+### A.5 High-Control Validation Option
 
-### 7.1 Static and migration checks
+#### A.5.1 Static and migration checks
 
 - `prisma format`, `prisma validate`, client generation, TypeScript validation and the
   production build pass;
@@ -521,7 +735,7 @@ aggregate behaviour.
   and
 - rollback-before-evidence is proved on a disposable database only.
 
-### 7.2 Required positive proofs
+#### A.5.2 Candidate positive proofs
 
 - create both proven template-version variants with maximums at their accepted ceilings;
 - activate one version and select it through Event, standalone-default and exact
@@ -533,7 +747,7 @@ aggregate behaviour.
 - prove historic version and Product lineage remains readable after a new template/offer/
   artwork version becomes current.
 
-### 7.3 Required negative and failure proofs
+#### A.5.3 Candidate negative and failure proofs
 
 - reject cross-tenant template, Event, Project, Store, Product, member and User references;
 - reject invalid polymorphic assignment shapes, two active assignments for one scope and a
@@ -554,22 +768,22 @@ aggregate behaviour.
 - inject a transaction failure before each current-pointer change and prove no partial
   assignment, offer/Product lock, attempt/version or grant residue.
 
-### 7.4 Existing behaviour and human gates
+#### A.5.4 Existing behaviour and human gates
 
 Focused schema tests must be followed by the relevant existing FUND Store, readiness,
 Commerce A7, full automated, lint, type, migration-integrity and build gates. The migration
 must not change existing Store readiness or Order behaviour.
 
-There is no end-user UI in 1R-F-B, so no C1/C2 browser acceptance is claimed. Human gates
-are:
+No end-user UI is authorised by the current strategic `1R-F-B`, so no C1/C2 browser
+acceptance is claimed. If a later vertical plan reuses this option, its human gates include:
 
-1. control-owner review/acceptance of this plan before implementation;
+1. control-owner review/acceptance of that later vertical plan before implementation;
 2. later review of the exact Prisma/migration diff, table meanings and rollback report;
    and
 3. separate human UI/physical acceptance in the owning C/D/E children when behaviour is
    actually introduced.
 
-## 8. Recovery, Redundancy And Operational Ownership
+### A.6 Recovery, Redundancy And Operational Ownership Option
 
 The future records are ordinary tenant-scoped production database records protected by the
 application database backup/recovery model, not by a developer's Mac, Keychain or a
@@ -590,7 +804,7 @@ Rollback boundary:
   use a reviewed forward correction; and
 - no production rollback, restore or provider action is authorised by this plan.
 
-## 9. Do Not Build
+### A.7 Preserved Technical Do Not Build Boundary
 
 This plan and any later narrowly accepted schema implementation exclude:
 
@@ -608,9 +822,10 @@ This plan and any later narrowly accepted schema implementation exclude:
 - public Store `1R-G`, production/fulfilment work or any other roadmap outcome; and
 - shared development, staging or production migration/deployment/promotion.
 
-## 10. Planning Acceptance Gate And Subsequent Decision
+### A.8 Historical Technical Option Assessment
 
-This draft is ready for control-owner review when it truthfully demonstrates:
+If a later selected vertical plan reuses this option, it must reassess whether it
+truthfully demonstrates:
 
 1. exact reuse of current tenant/Project/Store/Product configuration authority;
 2. separate reusable template, offer lock and generated-document aggregates;
@@ -620,6 +835,8 @@ This draft is ready for control-owner review when it truthfully demonstrates:
 6. a safe 153-to-candidate disposable migration route; and
 7. explicit exclusion of all C/D/E behaviour and production infrastructure.
 
-Acceptance of the plan would permit selection of a separate bounded 1R-F-B schema
-implementation decision; it would not itself authorise that implementation. Root `Next`
-therefore remains unselected while this draft is under review.
+This checklist does not constitute acceptance of the ten-model proposal and does not make
+a separate `1R-F-B` schema implementation the default next decision. Root `Next` remains
+unselected while the strategic review is open. A later vertical plan may reuse, reduce or
+defer these technical ideas only after the business journey and persistence need are
+accepted.
