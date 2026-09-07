@@ -319,7 +319,9 @@ plans one C1 assignment → C2 preview/finalisation → authenticated developmen
 download and matching Store-preview journey against the current code. High-control evidence
 covers its authority, persistence and emulated service boundary. The draft proposes fixed
 initial template variants and four purpose-specific records; it does not accept or build
-the former ten-record option. D1–D4 need review before implementation.
+the former ten-record option. D1–D4 business scope is accepted; technical review remains
+before implementation. Purchaser/operational slices remain in Phase 1 after B1, while the
+template editor belongs to Phase 2.
 
 B1 holds the single active restart checkpoint. No new provider, schema, UI or migration is
 created by planning. The previous C-through-I breakdown below is historical candidate

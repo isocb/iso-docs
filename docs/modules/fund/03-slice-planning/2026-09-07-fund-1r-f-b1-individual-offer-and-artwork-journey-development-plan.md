@@ -2,7 +2,7 @@
 
 Date: 2026-09-07
 
-Status: **Selected development planning; draft for review; implementation not yet accepted**
+Status: **Development planning; D1–D4 business scope accepted; technical review pending**
 
 Control depth: **High** — this journey introduces persistent offer evidence, exact C2
 finaliser authority, tenant-bound document access and failure/retry behaviour.
@@ -22,10 +22,10 @@ selects this planning outcome as Now; Next is unselected pending its review.
 ## Restart Checkpoint
 
 ```text
-Current state: B1 development plan drafted from application source; enduring B framework relocated to roadmap control; business assumptions below await acceptance, no application change
-Last proven commit: application 14077382; completed renderer proof 0c7e4848 retained in ancestry; documentation alignment 20e1159; B1 has no implementation/test commit
+Current state: B1 development plan drafted from application source; enduring B framework relocated to roadmap control; D1–D4 accepted, including Phase 1 purchaser/operational work after B1; technical review pending, no application change
+Last proven commit: application 14077382; completed renderer proof 0c7e4848 retained in ancestry; documentation planning baseline c348eb5; B1 has no implementation/test commit
 Current environment: clean application main; local/remote dev, staging and main at 14077382 at planning start; 153 migration directories on disk; no database connection or provider action
-Next human decision/test: accept or amend the four bounded decisions in Section 2; approve the reviewed plan before implementation; wider pilot choices remain with the business situation report
+Next human decision/test: no outstanding D1–D4 business question; complete technical plan review before implementation, then the planned C1/C2 human proof; wider pilot choices remain with the business situation report
 Safe resumption point: read this plan and framework from current IsoDocs main, recheck the application baseline, then implement only an accepted B1 boundary; no ten-model schema batch, legacy-branch merge or live-service setup
 ```
 
@@ -52,22 +52,37 @@ explicit promotion may prove the same emulated journey on development staging. A
 production renderer/storage deployment remains a separate operating decision. Neither
 successful download nor this slice's artwork status publishes the Store.
 
-## 2. Four Bounded Decisions To Accept Or Amend
+## 2. Four Accepted Business Decisions
 
-These are concrete planning recommendations, not silently accepted business policy. They
-narrow the framework's open questions to what this slice actually needs.
+Chris accepted D1–D3 in this document and confirmed D4 in conversation on 2026-09-07.
+These decisions settle B1's business scope. The four-record technical proposal and
+environment contract still require technical review; the business questions need not be
+asked again.
 
-| Decision | Recommended B1 boundary | Consequence |
-| --- | --- | --- |
-| D1 — Initial template choices | C1 selects from the two already proved variants: portrait STANDARD, maximum ten Products; landscape COMPACT, maximum twelve. Use a versioned code registry for these fixed designs, with persisted tenant-owned assignment | No visual editor, arbitrary template upload or full reusable-template administration in B1. A future changed variant needs its own capacity/layout proof |
-| D2 — Assignment and finalisation | Event-linked Projects follow the Event assignment; standalone Projects use an explicit Project assignment or the tenant standalone default. Authorised same-Client managers/admins prepare selection; the exact active organiser alone finalises | No Event-Project override or new permissions system. C1 prepares/oversees but does not impersonate the organiser to finalise |
-| D3 — First release revision rule | Before finalisation, allow normal edits. After finalisation, refuse changes to the confirmed Project offer/selection; allow controlled regeneration of that same offer only | No unlock or replacement-offer UI in B1. Explain the lock before confirmation; a mistaken finalisation is a visible limitation, not an excuse to alter history or delete data |
-| D4 — First development result | Implement the complete flow above using deterministic renderer/private-file emulators, authenticated Project download and a Store preview. Use existing test Projects and synthetic representative Products | Emulated documents visibly say “Development preview — not for distribution”. Real rendering, provider storage and physical distribution are not claimed. Public Store/payment/Order operations remain later |
+| Decision | Accepted B1 boundary | Consequence | Owner response |
+| --- | --- | --- | --- |
+| D1 — Initial template choices | C1 selects from the two already proved variants: portrait STANDARD, maximum ten Products; landscape COMPACT, maximum twelve. Use a versioned code registry for these fixed designs, with persisted tenant-owned assignment | No visual editor, arbitrary template upload or full reusable-template administration in B1. A future changed variant needs its own capacity/layout proof | Accepted: fixed templates initially; template editor in Phase 2 |
+| D2 — Assignment and finalisation | Event-linked Projects follow the Event assignment; standalone Projects use an explicit Project assignment or the tenant standalone default. Authorised same-Client managers/admins prepare selection; the exact active organiser alone finalises | No Event-Project override or new permissions system. C1 prepares/oversees but does not impersonate the organiser to finalise | Accepted |
+| D3 — First release revision rule | Before finalisation, allow normal edits. After finalisation, refuse changes to the confirmed Project offer/selection; allow controlled regeneration of that same offer only | No unlock or replacement-offer UI in B1. Explain the lock before confirmation; a mistaken finalisation is a visible limitation, not an excuse to alter history or delete data | Accepted |
+| D4 — First development result | Implement the complete flow above using deterministic renderer/private-file emulators, authenticated Project download and a Store preview. Use existing test Projects and synthetic representative Products | Emulated documents visibly say “Development preview — not for distribution”. Real production rendering/storage and physical distribution are not proved by B1. Public Store, payment, Order and operational slices remain required in Phase 1, after B1 | Accepted following clarification of Phase 1 versus B1 |
 
-D1/D4 are deliberate limits on the first outcome and require owner acceptance. The code
-registry preserves design identity/version but does not require the former ten-table
-option. If the owner needs editable designs, actual printable output or unlock immediately,
-amend this plan before implementation rather than hiding that work inside the slice.
+Owner response provenance:
+
+- D1: “Accepted with caveat. Fixed template with editor to be phase 2 development.”
+- D2 and D3: “Accepted.”
+- D4 initially requested clarification because Public Store/payment/Order operations are
+  required in this phase. The final response was: “Retain B1 with purchaser and operational
+  slices in phase one but not B1 specifically. Accepted.”
+
+B1 is the first bounded delivery slice within Phase 1. Phase 1 continues through the
+purchaser journey, payment/Order operations, artwork matching, production, dispatch and a
+calculated/finalised commission statement; settlement remains later. The template editor
+belongs to Phase 2. Neither these later Phase 1 slices nor Phase 2 is selected as root Next
+by this acceptance.
+
+The code registry preserves design identity/version without requiring the former ten-table
+option. The accepted development document is intended to prove the confirmed content and download flow;
+production print suitability and actual provider operation require their own evidence.
 
 Delivery mode, purchaser options/media, Intake and outbound-message choices for the full
 Phase 1 smoke are **not blockers to drafting B1**. B1 adds no buyer checkout, fulfilment,
@@ -283,7 +298,7 @@ Planning validation obtained: source/path and migration-directory inspection onl
 structure/link checks recorded at commit. Application tests, migration proof and human
 behavioural proof: **not run; no B1 implementation exists**.
 
-The plan is ready for business/technical review with D1–D4 clearly proposed. Acceptance
-must settle those limits and the exact authority/environment contract before implementation.
-The immediate next step is review of this concrete draft; root Next is not silently filled
+D1–D4 business scope is accepted. Complete technical review of the persistence, authority
+and environment contracts against that settled scope before implementation.
+The immediate next step is technical review of this concrete draft; root Next is not silently filled
 with another workstream. No implementation confirmation or PASS record is created early.

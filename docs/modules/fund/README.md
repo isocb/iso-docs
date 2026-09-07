@@ -31,8 +31,10 @@ readiness gates, Phase 1 scope and unaccepted technical appendix; it does not se
 
 The selected [B1 development plan](03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md)
 proposes one C1 assignment → C2 preview/finalisation → authenticated development artwork
-download and matching Store-preview journey. The draft contains four concrete decisions
-and a four-record persistence proposal for review. No application change is yet accepted.
+download and matching Store-preview journey. D1–D4 business scope is accepted, with the
+template editor in Phase 2 and purchaser/operational slices retained in Phase 1 after B1.
+The four-record persistence proposal remains for technical review. No application change
+is made by this acceptance.
 
 ## Business Situation Report
 
@@ -44,7 +46,7 @@ The owner confirmed Individual-only Phase 1 smoke, a calculated/finalised commis
 statement without settlement, and simulated external services for development staging
 before FUND deployment. Staging must later reflect live services. Delivery, Products/buyer
 choices, media, setup and messages have separate options in the report; the active plan
-retains its still-unaccepted offer/finalisation proposals and no implementation is selected.
+records accepted D1–D4 offer/finalisation scope; technical review remains before implementation.
 
 ## Start Here
 

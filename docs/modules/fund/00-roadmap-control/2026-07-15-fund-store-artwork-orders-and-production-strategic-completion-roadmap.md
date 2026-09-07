@@ -465,7 +465,7 @@ The public Store and workflow-specific capability implementations may remain inc
 This stage is conditional by Project/Product workflow and must not become one monolithic
 implementation slice.
 
-The immediate work is not a schema foundation. It is the `1R-F-B` strategic review, using
+The immediate work is B1 development planning under the enduring B framework, using
 three proportionate passes:
 
 1. **User/workflow skeleton:** agree the C1, C2 and purchaser journey, the readiness
@@ -859,7 +859,7 @@ Commerce/A7, Store and Project foundations established
 -> 1R-F-A real AMOW template/pricing/deployed-renderer proof COMPLETE AT PASS
 -> 1R-F-B: enduring subordinate user/workflow framework
 -> 1R-F-B1: development planning for first Individual offer/document journey (NOW)
--> review B1 D1-D4 and bounded plan
+-> B1 D1-D4 business scope ACCEPTED; complete technical plan review
 -> Pass 2 implementation only if separately accepted
 -> Pass 3: operational hardening justified by vertical evidence (not selected)
 -> public Store and purchaser Order/payment journey
@@ -967,7 +967,8 @@ IMPLEMENTATION AUTHORITY: None
 
 Use the enduring B framework for business context and the selected B1 draft for its
 precise development boundary. B1 holds the active checkpoint and the four business
-recommendations needed by the first outcome. Its emulated result does not prove production
+decisions needed by the first outcome, now accepted. Purchaser and operational slices
+remain in Phase 1 after B1; the template editor is Phase 2. Its emulated result does not prove production
 rendering or provider operation. Review the plan before implementation; other workflow
 branches and the ten-model appendix remain unselected.
 

@@ -82,7 +82,7 @@ is a subordinate augmentation of this roadmap; it does not select work or hold a
 slice checkpoint. [B1 development planning](../03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md)
 is now selected: one draft journey from C1 template assignment through C2 finalisation to a
 matching development document download and Store preview. B1 contains four explicit
-recommendations to accept/amend; no code or migration is yet authorised. Later pilot
+business decisions, now accepted; technical review remains before implementation. Later pilot
 choices do not block drafting this bounded plan.
 
 On 2026-09-07 the owner reconfirmed FUND as the primary planning/delivery focus after
@@ -314,7 +314,7 @@ protected work/dev/staging/main Security Scans: PASS; exact-main run 32838343535
 Role Authority: COMPLETE AND CLOSED
 Support Ticketing: COMPLETE AND CLOSED
 FUND 1R-F-A Stage C-R1: COMPLETE AND CLOSED AT PASS on exact 0c7e4848; provider/object/Render/local residue zero
-FUND 1R-F-B: enduring subordinate framework; FUND 1R-F-B1: selected High-control development planning, draft awaiting review; no implementation authorised
+FUND 1R-F-B: enduring subordinate framework; FUND 1R-F-B1: selected High-control development planning, business scope accepted, technical review pending; no implementation started
 documentation alignment preflight: clean c295b1e; main/origin-main at 4e4ed16; work branch two ahead of upstream and 72 ahead of main without divergence
 documentation publishing target: local main/origin-main and the existing work branch; owner now authorises consolidation/push/readback, superseding local-only instructions; resolve exact refs before resumption
 ```
@@ -560,7 +560,7 @@ Full evidence is recorded in:
 | `1R-F` | FUND artwork readiness | Reviewed/accepted; non-executable parent | Separates the common Project journey from Individual, collective and Standard readiness branches |
 | `1R-F-A` | FUND Individual Artwork proof | Complete and closed at PASS on exact `0c7e4848` | Real AMOW template, pricing, Linux, deployed renderer/private-object behaviour and zero external residue proved |
 | `1R-F-B` | FUND business framework | Reclassified as subordinate roadmap augmentation | Enduring user/workflow/proportionality context; no active checkpoint or executable slice |
-| `1R-F-B1` | FUND Individual offer/document journey | Portfolio `Now`; development-plan draft for review | C1 assignment, C2 preview/finalisation, emulated authenticated download and matching Store preview; four bounded decisions await acceptance |
+| `1R-F-B1` | FUND Individual offer/document journey | Portfolio `Now`; development-plan draft for review | C1 assignment, C2 preview/finalisation, emulated authenticated download and matching Store preview; D1–D4 accepted; technical review pending; purchaser/operational slices remain in Phase 1 after B1 |
 
 `1R-C1` through `1R-D` and `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D` must not be rerun as pending work. No next
 implementation is authorised merely because the preceding lifecycle completed.
@@ -666,7 +666,7 @@ Rules:
 - [B — User Framework And Individual Artwork Delivery Principles](2026-09-07-fund-user-framework-and-individual-artwork-delivery-principles.md)
   is the enduring subordinate framework. Its ten-record appendix remains unaccepted;
 - [B1 — Individual Offer And Artwork Journey](../03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md)
-  is the selected development-plan draft. Review D1–D4 and its proposed persistence,
+  is the selected development-plan draft. D1–D4 are accepted. Review its proposed persistence,
   authority and emulated-service contracts before implementation;
 - [`1R-H-A - Store Order Short Code And Single-Artwork Correlation`](../03-slice-planning/2026-08-11-fund-phase-1-slice-1r-h-a-store-order-short-code-and-single-artwork-correlation-planning.md)
   is a parked downstream planning input after public Store `1R-G`; it records accepted
@@ -789,7 +789,7 @@ payment model.
 | Application repository | Clean; local and remote `main`, `dev` and `staging` exact at `14077382` | Preserve alignment; `1R-F-B` authorises no application branch or change |
 | Documentation repository | Consolidated and published through `20e1159`; this B/B1 planning update follows on main | Keep documentation committed and aligned online; recheck exact refs on resumption |
 | FUND `1R-F-A` | Complete and closed at PASS on exact `0c7e4848`; zero external residue | Do not rerun or reinterpret the former contained Stage C failure as current state |
-| FUND `1R-F-B` / `1R-F-B1` | Enduring framework / selected development-plan draft | Review B1 D1–D4 and exact change boundary; no schema, UI or runtime work until accepted |
+| FUND `1R-F-B` / `1R-F-B1` | Enduring framework / selected development-plan draft | D1–D4 accepted; complete technical review of the exact change boundary before implementation |
 | Ten-record schema proposal | Unaccepted technical option | Retain in the enduring framework appendix; do not treat it as selected direction |
 | E-B/E-C/E-D consolidated human acceptance | Still relevant evidence gate | Complete only through its governed schedule when separately selected; do not infer a new implementation slice |
 | Public purchaser and operational journey | Incomplete | Later work must cover Store, checkout, Order operations, artwork matching, production, dispatch and commission in bounded outcomes |
@@ -930,8 +930,9 @@ IMPLEMENTATION AUTHORITY: None
 Read the enduring B framework for business context and the B1 draft for the concrete
 implementation proposal. B1 is the only active checkpoint. Its D1–D4 decisions cover fixed
 initial designs, assignment/finaliser authority, no-unlock first behaviour and the emulated
-development result. Review those decisions and the four-record proposal before accepting
-implementation. The longer Phase 1 smoke and later pilot choices remain in the business
+development result, all now accepted. Review the four-record technical proposal before
+implementation. Purchaser and operational slices remain required in Phase 1 after B1;
+the template editor is Phase 2. The longer Phase 1 smoke and later pilot choices remain in the business
 situation report. The former C-through-I sequence and ten-model option remain unselected.
 
 ### 9.2 Retained Historical Delivery Detail

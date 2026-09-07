@@ -320,6 +320,13 @@ count. The business journey determines the persistence boundary.
 
 ## 8. Proposed Business Decisions For Control-Owner Acceptance
 
+B1 acceptance update — 2026-09-07: Chris accepted D1–D4 in the bounded B1 plan.
+Fixed templates come first, with the editor in Phase 2. Assignment hierarchy, exact active
+organiser finalisation and no ordinary B1 unlock are accepted. B1 ends at the emulated
+document/Store preview; purchaser and operational slices remain required within Phase 1.
+These accepted B1 decisions take precedence over the earlier proposals below for B1.
+Broader refinalisation workflows and the ten-model appendix remain unaccepted options.
+
 The owner authorised the review corrections and documentation commit. The following
 specific answers below are recommendations for acceptance, not decisions inferred from that
 instruction or from the separate accepted smoke-scope answers in Section 1.1. They draw on

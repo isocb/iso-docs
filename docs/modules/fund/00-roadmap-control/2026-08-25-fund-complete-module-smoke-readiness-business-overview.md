@@ -27,8 +27,8 @@ consolidated and published through `20e1159`. Git alignment is not a new app dep
 
 The current FUND work is **development planning for the first Individual offer and
 artwork-document journey**, under `1R-F-B1`. The broader B document is now the enduring
-business framework. B1 proposes the exact first result and its business choices; no code
-has been built. The existing C1/C2 Store staging checks still need their recorded human
+business framework. You have accepted B1’s four business decisions; technical review
+remains before implementation. No B1 code has been built. The existing C1/C2 Store staging checks still need their recorded human
 acceptance; this report does not mark those checks complete.
 
 ## Your Phase 1 Decisions
@@ -88,10 +88,15 @@ lifecycle evidence.
 This full Phase 1 journey is larger than the selected **B1 development-planning** outcome.
 The [B1 draft](../03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md)
 stops at a matching development artwork download and Store preview using emulated services.
-Its four decisions are ready for your review: fixed initial template choices, assignment/
-organiser finalisation, no ordinary unlock, and a development-preview result. These limits
-are proposed, not assumed accepted. The later delivery/Intake/message choices below need
-not delay drafting this smaller plan.
+You have accepted all four B1 decisions: fixed initial templates, the assignment hierarchy
+and organiser finalisation, no ordinary unlock, and an emulated development result.
+The template editor is Phase 2 development.
+
+Your D4 clarification confirms that **Public Store, payment, Order and operational slices
+remain required in Phase 1, after B1**. B1 is the first delivery step, not the whole Phase 1
+result. Development simulation proves application behaviour; it does not establish actual
+provider operation or print suitability. There is no remaining D1–D4 business question.
+The later delivery/Intake/message choices below remain for their relevant Phase 1 slices.
 
 ## Remaining Scope Choices — Broken Into Options
 
@@ -112,8 +117,8 @@ image requirement, setup route and essential messages. If a choice is deferred, 
 plan must say which action cannot yet be tested.
 
 The separate [offer and finalisation proposals](2026-09-07-fund-user-framework-and-individual-artwork-delivery-principles.md#8-proposed-business-decisions-for-control-owner-acceptance)
-(template assignment, who may finalise, revision rules and the minimum next outcome) still
-await acceptance. Your four smoke-scope answers do not answer those different questions.
+are now resolved for B1 by its accepted D1–D4 decisions. Broader revision/refinalisation
+workflows and later operating choices remain outside that acceptance.
 
 ## How This Report Stays In Step
 

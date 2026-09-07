@@ -81,7 +81,12 @@ Current serial portfolio decision:
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
 | **NOW** | FUND `1R-F-B1` Individual Offer And Artwork Journey development planning | Draft the first bounded C1 assignment → C2 preview/finalisation → matching development document download and Store preview outcome against the current code. The enduring B framework constrains the plan; its ten-model appendix remains unaccepted. |
-| **NEXT** | Not selected pending review of the B1 development plan | No implementation, later child or real service deployment is inferred. Resolve the four bounded B1 decisions before accepting implementation. |
+| **NEXT** | Not selected pending review of the B1 development plan | No implementation, later child or real service deployment is inferred. D1–D4 business scope is accepted; complete technical plan review before implementation. |
+
+On 2026-09-07 Chris accepted B1 decisions D1–D4: fixed templates initially with an editor
+in Phase 2; assignment/organiser authority and finalisation lock as proposed; an emulated
+B1 result. Purchaser and operational slices remain required in Phase 1 after B1. Current
+work remains B1 development planning and technical review; no later slice is selected.
 
 The owner subsequently identified B as a lasting subordinate roadmap augmentation and
 requested development planning. Its [business framework](../modules/fund/00-roadmap-control/2026-09-07-fund-user-framework-and-individual-artwork-delivery-principles.md)
