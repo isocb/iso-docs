@@ -2,7 +2,17 @@
 
 Date: 2026-09-07
 
-Status: Implemented; automated validation passed. Human local acceptance
+```text
+Exact commit: 57e1454b530ae19dc586768fd996ff230d84421c
+Files/change boundary: B1 four-model additive migration, offer/template/document services, C1/C2 routers and UI, existing-write guards, readiness blockers and tests; example/legacy credential sanitation only outside that runtime boundary
+Automated checks: PASS; detailed checks and qualifications in the review/test record
+Human evidence: authenticated C1/C2 smoke pending; synthetic component checks do not replace it
+Environment proven: local runtime/component checks and dedicated disposable TEST database upgrade/replay; resources removed; application work branch published, no shared environment promotion
+Known residual risk: independent review and human acceptance pending; emulated PDF/private temporary storage do not prove production or physical-print suitability
+Next authorised action: independent review of the exact candidate, then authenticated local C1/C2 smoke and recorded disposition before promotion
+```
+
+Status: Implemented; automated validation passed. Independent review, human local acceptance
 and any environment promotion remain pending.
 
 Control depth: **High**. Owner authority: Chris explicitly requested technical review and

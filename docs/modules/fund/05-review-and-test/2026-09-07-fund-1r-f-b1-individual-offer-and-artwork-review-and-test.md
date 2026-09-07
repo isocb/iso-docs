@@ -2,9 +2,19 @@
 
 Date: 2026-09-07
 
+```text
+Exact commit: 57e1454b530ae19dc586768fd996ff230d84421c
+Files/change boundary: B1 four-model additive migration, offer/template/document services, C1/C2 routers and UI, existing-write guards, readiness blockers and tests; example/legacy credential sanitation only outside that runtime boundary
+Automated checks: PASS; detailed checks and qualifications in the review/test record
+Human evidence: authenticated C1/C2 smoke pending; synthetic component checks do not replace it
+Environment proven: local runtime/component checks and dedicated disposable TEST database upgrade/replay; resources removed; application work branch published, no shared environment promotion
+Known residual risk: independent review and human acceptance pending; emulated PDF/private temporary storage do not prove production or physical-print suitability
+Next authorised action: independent review of the exact candidate, then authenticated local C1/C2 smoke and recorded disposition before promotion
+```
+
 Control depth: **High**.
 
-Disposition: **Automated validation PASS; human local acceptance pending**.
+Disposition: **Automated validation PASS; independent review and human local acceptance pending; HOLD promotion**.
 Exact application commit: `57e1454b530ae19dc586768fd996ff230d84421c` on `work/fund-b1-individual-offer` (published to the approved work branch).
 Review scope: the [accepted B1 plan](../03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md)
 and its [implementation confirmation](../04-implementation-confirmations/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-implementation-confirmation.md).
@@ -29,6 +39,7 @@ human acceptance or an independent agent review.
 | Changed application lint | No errors; nine pre-existing warnings in the two existing Project components. New code clean |
 | Production build | PASS on final committed candidate (131 pages) |
 | Component browser checks | PASS — actual C1, over-capacity, confirmed and 390px mobile component, synthetic tRPC responses; no page errors/overflow |
+| Independent review of exact candidate | **Pending** — implementing-agent checks do not close this gate |
 | Authenticated C1/C2 human smoke | **Pending** |
 | Staging/live/provider/physical print | **Not run** |
 
@@ -82,10 +93,11 @@ Application commit `57e1454b530ae19dc586768fd996ff230d84421c` is independently v
 from the fully tested candidate; the sanitation changes only examples/legacy documentation.
 The amended candidate passed the required pre-commit TypeScript check. No force push,
 shared-history rewrite, deployment or credential rotation was performed. The removed
-credentials remain in older Git history: their revocation/rotation status is unverified
-and requires follow-up; removal from current files does not revoke them.
+credentials remain in older Git history. Chris confirmed on 2026-09-07 that they had
+already been rotated some time ago. This records owner confirmation; no live credential
+validity test was performed and no further rotation is requested by this record.
 
-## Human Local Schedule
+## Human Local Smoke Schedule — Pending
 
 On a positively identified disposable local/development target with emulation enabled:
 
@@ -98,5 +110,8 @@ On a positively identified disposable local/development target with emulation en
    the disposable emulator file and verify same-offer regeneration and understandable feedback.
 5. Confirm public trading remains blocked and record the exact candidate and human result.
 
-Until this gate passes, the candidate remains on its work branch. No dev/staging/main
+Record tester, date, exact commit, non-sensitive environment/role identifiers and PASS/FAIL
+for each step, with defects linked here. No step above has an authenticated human PASS yet.
+
+Until independent review and this human gate pass, the candidate remains on its work branch. No dev/staging/main
 alignment of the new code, deployment or live service operation is claimed.

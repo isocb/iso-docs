@@ -86,7 +86,7 @@ Current serial portfolio decision:
 On 2026-09-07 Chris subsequently authorised B1 technical review and implementation.
 B1 is implemented and automated validation has passed; sanitized application commit
 `57e1454b` is published to the approved work branch, with independent remote readback.
-Disposable resources are removed; authenticated local human acceptance remains pending. The active plan Section 11 owns the exact technical boundary; no staging/live promotion
+Disposable resources are removed; independent review and authenticated local human acceptance remain pending. The active plan Section 11 owns the exact technical boundary; no staging/live promotion
 is inferred. Earlier planning-only statements below are retained chronology.
 
 On 2026-09-07 Chris accepted B1 decisions D1–D4: fixed templates initially with an editor

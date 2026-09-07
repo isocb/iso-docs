@@ -13,3 +13,6 @@ Confirmation documents record what was actually changed:
 
 Historical confirmations may remain in `implementation/` until they are next touched. New confirmations should go here.
 
+## Current B1 Record
+
+- [B1 — Individual Offer And Artwork implementation confirmation](2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-implementation-confirmation.md) — application `57e1454b`; independent review and authenticated human smoke pending.

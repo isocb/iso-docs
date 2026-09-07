@@ -10,3 +10,6 @@ Review/test confirmations prove behaviour:
 - remaining risks;
 - proceed/amend/hold recommendation.
 
+## Current B1 Record
+
+- [B1 — Individual Offer And Artwork review, automated evidence and human smoke schedule](2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-review-and-test.md) — application `57e1454b`; independent review and authenticated human smoke pending.

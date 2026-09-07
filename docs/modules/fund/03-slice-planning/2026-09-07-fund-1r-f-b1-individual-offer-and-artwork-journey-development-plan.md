@@ -2,7 +2,7 @@
 
 Date: 2026-09-07
 
-Status: **Implemented and automated validation PASS; local human acceptance pending**
+Status: **Implemented and automated validation PASS; independent review and local human acceptance pending**
 
 Control depth: **High** — this journey introduces persistent offer evidence, exact C2
 finaliser authority, tenant-bound document access and failure/retry behaviour.
@@ -22,11 +22,11 @@ selects this planning outcome as Now; Next is unselected pending its review.
 ## Restart Checkpoint
 
 ```text
-Current state: B1 schema/services/UI implemented and automated checks PASS; D1–D4 accepted; local human acceptance pending; sanitized application commit published to the approved GitHub work branch after explicit owner approval
+Current state: B1 schema/services/UI implemented and automated checks PASS; D1–D4 accepted; independent review and local human acceptance pending; sanitized application commit published to the approved GitHub work branch after explicit owner approval
 Last proven commit: application B1 57e1454b530ae19dc586768fd996ff230d84421c; baseline 14077382 and renderer proof 0c7e4848 retained in ancestry; documentation pre-implementation baseline 5a2d716
 Current environment: local and origin/work/fund-b1-individual-offer match; 153-to-154 upgrade and fresh 154 replay proven on dedicated disposable TEST databases, all removed with zero inventory readback; dev/staging/main remain 14077382; no shared migration or promotion
-Next human decision/test: authenticated local C1/C2 journey; D1–D4 accepted; staging/live promotion remains outside this instruction
-Safe resumption point: resume B1 commit 57e1454b and linked implementation/review records; record local human smoke before promotion; check credential rotation separately because inherited exposure remains in older Git history; no ten-model schema batch or live-service setup
+Next human decision/test: independent review and authenticated local C1/C2 journey; D1–D4 accepted; staging/live promotion remains outside this instruction
+Safe resumption point: resume B1 commit 57e1454b and linked implementation/review records; complete independent review and record local human smoke before promotion; Chris confirms inherited credentials were already rotated; no ten-model schema batch or live-service setup
 ```
 
 ## 1. One Visible Outcome
