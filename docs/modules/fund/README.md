@@ -163,11 +163,11 @@ worktree clean
 Documentation repository:
 
 ```text
-working branch = fix/platform-fast-uri-advisory-20260903
-reconciliation base/upstream at review = 2f3c09e
-main/origin-main at review = 4e4ed16
-owner authorised a local documentation commit; no push or main alignment is authorised
-inspect current refs before resuming; the amendment is not claimed online
+publishing flow = main / origin/main
+pre-alignment candidate = c295b1e on fix/platform-fast-uri-advisory-20260903
+owner authorised consolidation and online alignment on 2026-09-07
+application dev/staging/main are the environment branches; IsoDocs retains main-only flow
+resolve current main and origin/main refs before resuming; old local-only restrictions are superseded
 ```
 
 There is no application work branch for `1R-F-B`; the selected action authorises

@@ -20,7 +20,13 @@ The Individual Artwork rendering and private-storage assumption test is **comple
 passed**; its temporary resources were removed. It is not a pending test or an operational
 production service.
 
-The current work is **business and workflow planning**, under `1R-F-B`. The next development
+The owner has reconfirmed **FUND as the primary focus**, with LMSPro remedial work
+concluded. The repository alignment preflight found no uncommitted code or documentation:
+application dev/staging/main already match locally and online; the two recent documentation
+commits and the earlier completed lifecycle history are being consolidated into the
+documentation main branch for online publication. Git alignment is not a new app deployment.
+
+The current FUND work is **business and workflow planning**, under `1R-F-B`. The next development
 outcome has not been selected. The existing C1/C2 Store staging checks still need their
 recorded human acceptance; this report does not mark those checks complete.
 

@@ -31,12 +31,17 @@ Authoritative controls:
 ## Restart Checkpoint
 
 ```text
-Current state: 1R-F-B remains portfolio Now for planning; owner confirmed Individual-only Phase 1 smoke, finalised commission statement without settlement, and simulated development services; Appendix A remains unaccepted and no implementation is selected
-Last proven commit: application 0c7e48489aef697c6f39faf1a081456f9f3858a4; 1R-F-A local, Linux, security, physical and disposable external evidence PASS with zero residue; IsoDocs workflow reconciliation 013452f; the owner-answer/business-report follow-up continues the authorised local documentation update, without push
+Current state: owner reconfirmed FUND as primary planning/delivery focus after LMSPro remediation; repository consolidation and online alignment authorised; 1R-F-B business decisions remain open; Individual-only smoke, finalised statement and development simulation remain accepted
+Last proven commit: application 0c7e48489aef697c6f39faf1a081456f9f3858a4; 1R-F-A local, Linux, security, physical and disposable external evidence PASS with zero residue; IsoDocs business-report reconciliation c295b1e; owner now authorises consolidation and push of the current documentation history; this supersedes the earlier local-only boundary
 Current environment: application dev/staging/main and origins align at exact production 14077382; PLAT-ASSURE-04 is closed with all gates PASS; no Prisma, database, provider or runtime mutation has been made for 1R-F-B
 Next human decision/test: choose the delivery, Products/options, media, setup route and messages in the business report; separately accept or amend the Section 8 offer/finalisation proposals before closing Pass 1 and selecting a vertical outcome
-Safe resumption point: return to Sections 2 through 8 with the root/FUND roadmaps and accepted 1R-F parent; do not use Appendix A as implementation direction, edit Prisma or create a migration unless a later selected vertical plan proves the required persistence and receives explicit implementation authority
+Safe resumption point: read current main/origin-main documentation and the unchanged application 14077382 baseline, then resolve the Section 8 decisions needed for the next bounded plan; preserve Appendix A as unaccepted evidence; do not merge historical application branches or infer a schema build from repository alignment
 ```
+
+The owner reconfirmed FUND as the primary delivery focus and authorised repository
+consolidation/publishing on 2026-09-07. Continue planning toward implementation; the
+remaining business choices and exact next implementation boundary still require resolution.
+This reconciliation does not treat a general resumption request as answers to those choices.
 
 ## 1. Authorised Outcome And Stopping Point
 

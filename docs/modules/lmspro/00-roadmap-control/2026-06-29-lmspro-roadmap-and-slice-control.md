@@ -43,21 +43,26 @@ authority. Later disposition changes must update the existing row.
 Current LMSPro portfolio disposition:
 
 ```text
-ROOT NOW -> one fresh isolated FUND Stage C-R1 external assumption test at exact corrected 0c7e4848; awaiting dedicated provider authority
-ROOT NEXT -> not selected pending Stage C-R1 result and reconciliation
+ROOT NOW -> FUND 1R-F-B user/workflow reconciliation and planning toward the next bounded implementation outcome
+ROOT NEXT -> unselected pending the remaining business decisions and bounded outcome selection
 LMS R13 -> delivery/live proof complete at exact 06811784; production migration/schema, Render identity, L1-L2 and exact-main scan PASS
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; historical PLAT-ROLE-03/LMS-ROLE-01/02 are not next slices
 PARKED -> 500-recipient operating envelope, R5-C evidence reconciliation and other registered candidates
 ```
 
 This current disposition supersedes the chronological resumption wording retained below.
-FUND Stage C subsequently executed, failed on a deterministic proof-runner defect before
-behavioural proof and completed zero-residue/revocation. The control owner selected bounded
-Stage C-R1 correction/new-candidate work followed by a conditional fresh isolated external
-assumption test. The correction gates pass and the external test is now root `Now`; root
-`Next` is not selected. LMSPro has no selected executable slice. Its
-registered operating-envelope, R5-C evidence and subscription/accounting inputs remain
-parked.
+On 2026-09-07 the owner confirmed LMSPro remedial work is concluded and FUND is the primary
+focus. R13 and R14-A remain closed at their recorded live boundaries. FUND Stage C-R1
+subsequently passed at exact `0c7e4848` with zero residue; it is not awaiting execution.
+Application local/remote dev, staging and main now match at `14077382`, including the closed
+Platform security correction. FUND 1R-F-B is the selected planning checkpoint, with its
+remaining business decisions open. LMSPro has no selected executable slice; registered
+operating-envelope, R5-C evidence and subscription/accounting inputs remain parked.
+
+### Retained Remediation And Resumption History
+
+The following exact-commit and next-action statements describe their historical points;
+only the current disposition above and root roadmap select work.
 
 The control owner accepted this operational expedite on 2026-08-24 and explicitly placed it
 before further FUND work. The application refs are now aligned at exact R13-B `06811784`;

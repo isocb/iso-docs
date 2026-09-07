@@ -83,6 +83,22 @@ Current serial portfolio decision:
 | **NOW** | FUND `1R-F-B` user framework, Project workflow and vertical-slice reconciliation | Re-establish the visible C1/C2/purchaser journey, readiness branches, business progress and proportionality before selecting implementation. The detailed ten-model proposal is unaccepted technical evidence, not the current direction. |
 | **NEXT** | Not selected pending control-owner acceptance of the `1R-F-B` review | Do not infer schema implementation, `1R-F-C`, `1R-G`, `1R-H-A`, infrastructure or another external run. One smallest coherent vertical outcome requires a later explicit selection. |
 
+On 2026-09-07 the owner reconfirmed FUND as the primary planning/delivery focus and
+confirmed that LMSPro remedial work is concluded. The immediate resumption action includes
+committing and aligning current documentation and code locally and online. This supersedes
+the earlier local-commit-only restriction. Fresh Git preflight found the application
+worktree clean and all local/remote dev, staging and main refs at `14077382`; no application
+promotion is needed. IsoDocs current work is committed through `c295b1e`, two commits ahead
+of its work-branch upstream and 72 commits ahead of main, with no divergence. Its accepted
+documentation history is authorised for fast-forward consolidation into local main and
+push/readback. IsoDocs keeps its existing main publishing flow; application dev/staging/main
+remain the environment corridor.
+
+FUND resumes at the active 1R-F-B business decisions and bounded planning checkpoint. The
+request to resume delivery does not decide the still-open finaliser/revision and pilot
+choices or accept the ten-model option. Resolve the choices needed by the next outcome,
+then complete its bounded implementation plan. Root Next remains unselected meanwhile.
+
 Current FUND business spine:
 
 ```text

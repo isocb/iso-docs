@@ -81,6 +81,13 @@ purchaser see and do, how readiness branches around one common Project journey, 
 has reached, and what smallest coherent Individual Artwork vertical outcome may later be
 selected. It does not select that vertical outcome.
 
+On 2026-09-07 the owner reconfirmed FUND as the primary planning/delivery focus after
+conclusion of LMSPro remediation and requested committed local/online repository alignment.
+Application dev/staging/main already match at `14077382`; documentation consolidation
+uses the existing main flow. The active plan remains the place to resolve the business
+choices and prepare the next bounded implementation outcome; no historic branch or
+unaccepted schema option is selected by repository alignment.
+
 ### Business Situation Report And Confirmed First Smoke Scope
 
 The existing [business situation report](2026-08-25-fund-complete-module-smoke-readiness-business-overview.md)
@@ -304,8 +311,8 @@ Role Authority: COMPLETE AND CLOSED
 Support Ticketing: COMPLETE AND CLOSED
 FUND 1R-F-A Stage C-R1: COMPLETE AND CLOSED AT PASS on exact 0c7e4848; provider/object/Render/local residue zero
 FUND 1R-F-B: selected for High-control user/workflow/proportionality review only; no implementation authorised
-documentation reconciliation base/upstream at review: exact 2f3c09e; the owner authorised this amendment for local commit only; no push or main alignment is authorised
-documentation main/origin-main: exact 4e4ed16; not aligned with the working documentation state
+documentation alignment preflight: clean c295b1e; main/origin-main at 4e4ed16; work branch two ahead of upstream and 72 ahead of main without divergence
+documentation publishing target: local main/origin-main and the existing work branch; owner now authorises consolidation/push/readback, superseding local-only instructions; resolve exact refs before resumption
 ```
 
 Current consolidated delivery state:
@@ -776,7 +783,7 @@ payment model.
 | Item | Status | Control |
 | --- | --- | --- |
 | Application repository | Clean; local and remote `main`, `dev` and `staging` exact at `14077382` | Preserve alignment; `1R-F-B` authorises no application branch or change |
-| Documentation repository | Reconciliation base/upstream at review `2f3c09e`; `main`/`origin/main` at review `4e4ed16` | Owner authorised a local documentation commit; no push or main alignment is authorised. Inspect current refs before resuming |
+| Documentation repository | Clean committed pre-alignment candidate `c295b1e`; main can fast-forward without conflict | Owner authorises current documentation consolidation and online main alignment; inspect exact refs before resuming |
 | FUND `1R-F-A` | Complete and closed at PASS on exact `0c7e4848`; zero external residue | Do not rerun or reinterpret the former contained Stage C failure as current state |
 | FUND `1R-F-B` | Strategic planning/reconciliation only | Confirm users, journey, branches, finalisation decisions and proportionality; no schema, UI or runtime work |
 | Ten-record schema proposal | Unaccepted technical option | Retain in the active plan appendix; do not treat it as selected direction |

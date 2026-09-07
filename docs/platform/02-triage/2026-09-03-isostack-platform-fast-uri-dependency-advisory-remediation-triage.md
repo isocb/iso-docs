@@ -63,4 +63,3 @@ therefore a small staging regression check, not a broad FUND or email campaign t
 
 A real email send is not required: the corrected path is transitive CLI tooling, not the
 runtime `@react-email/components` rendering path used by application source.
-
