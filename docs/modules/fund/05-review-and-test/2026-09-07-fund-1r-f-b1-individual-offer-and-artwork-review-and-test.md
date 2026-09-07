@@ -7,7 +7,7 @@ Exact commit: 57e1454b530ae19dc586768fd996ff230d84421c
 Files/change boundary: B1 four-model additive migration, offer/template/document services, C1/C2 routers and UI, existing-write guards, readiness blockers and tests; example/legacy credential sanitation only outside that runtime boundary
 Automated checks: PASS; detailed checks and qualifications in the review/test record
 Human evidence: authenticated C1/C2 smoke pending; synthetic component checks do not replace it
-Environment proven: local runtime/component checks and dedicated disposable TEST database upgrade/replay; resources removed; application work branch published, no shared environment promotion
+Environment proven: prior disposable tests plus user-authorised existing Neon DevData migration and localhost:3000 login/health checks; no staging/live promotion
 Known residual risk: independent review and human acceptance pending; emulated PDF/private temporary storage do not prove production or physical-print suitability
 Next authorised action: independent review of the exact candidate, then authenticated local C1/C2 smoke and recorded disposition before promotion
 ```
@@ -64,7 +64,7 @@ orphan deletion even while the matching document remains available.
 
 ## Database And Cleanup Evidence
 
-No ordinary application database URL was used. Parsed identities confirmed the configured
+The original automated proof used no ordinary application database URL. The later owner-authorised local DevData preparation is recorded below. Parsed identities confirmed the configured
 test endpoint differs from the application endpoint; new uniquely named databases were
 created there for this task. The 153-migration baseline and additive B1 migration replayed,
 reaching 154; a synthetic baseline record survived the upgrade.
@@ -97,9 +97,41 @@ credentials remain in older Git history. Chris confirmed on 2026-09-07 that they
 already been rotated some time ago. This records owner confirmation; no live credential
 validity test was performed and no further rotation is requested by this record.
 
+## Local DevData Preparation — 2026-09-07
+
+Chris requested use of the existing Neon database assigned to local development. Both local
+configuration files and the effective Next development configuration identify DevData,
+endpoint fingerprint `0970d1fe7a73`, distinct from configured staging and production.
+Preflight found 153 completed matching-checksum migrations, no failed migration and only
+B1 pending. Applied the existing committed migration through Prisma deploy, without reset,
+seed or new migration generation. Independent readback: 154 completed migrations, all four
+B1 tables and nine enabled triggers. Existing Project/Product/Store row counts and content
+fingerprints were unchanged. Prisma client was regenerated.
+
+B1 emulation is enabled with target local in ignored `.env.local` (mode 0600); credentials
+were not changed. The app runs on loopback port 3000. HTTP checks: `/api/health` 200 with
+database connected; `/auth/bedrock/login` 200; both protected FUND entry points redirect
+unauthenticated requests to sign-in. The health endpoint also reports core-table RLS 0/11;
+this local result is not an RLS PASS or staging security evidence. No RLS setting was altered.
+
+Aggregate data check found zero active Individual Artwork Projects. No Client/organiser was
+invented and no existing Project was reclassified. Choose the intended tenant/Client/organiser
+and create a smoke Project through the UI, or provide that choice for assistant setup.
+The old disposable databases remain removed; DevData is the retained user-designated local
+test database. Local runtime remains running for the human test. No app branch promotion or
+staging/live migration was performed.
+
 ## Human Local Smoke Schedule — Pending
 
-On a positively identified disposable local/development target with emulation enabled:
+Open `http://localhost:3000/app/fund/projects` and sign in normally as C1. If the server has
+stopped, run `npm run dev` from `isostack-bedrock` on the B1 work branch; `.env.local` retains
+the verified local configuration. Use **Create Project → Individual Artwork Project**,
+select the intended Client and organiser, and supply the required dates. Use a dedicated
+smoke Project because finalisation deliberately locks its confirmed offer.
+
+For the C2 steps, sign in as that organiser through their own session and open
+`http://localhost:3000/app/fund/client/projects`. Impersonation cannot finalise. On this
+identified local development target with emulation enabled:
 
 1. C1 assigns portrait, then compact, and checks Event versus standalone scope.
 2. C2 confirms over-capacity feedback, resolves selection/configuration blockers and reviews

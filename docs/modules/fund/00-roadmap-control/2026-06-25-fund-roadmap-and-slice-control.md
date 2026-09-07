@@ -78,6 +78,9 @@ FUND      -> 1R-F-A COMPLETE AND CLOSED AT PASS; prior Stage C FAIL retained as 
 
 Chris subsequently authorised technical review and implementation on 2026-09-07.
 B1 Section 11 records the resolved implementation boundary and current evidence.
+The later owner-authorised local smoke setup is ready: existing Neon DevData has migration
+154 with preservation checks passed, and localhost:3000 runs with local-only emulation.
+The active plan/review records hold exact environment evidence and Project prerequisites.
 Independent review and authenticated local human smoke remain pending; automated PASS
 does not close either gate. The 04/05 folder indexes link the implementation and review records.
 No staging/live promotion is inferred; earlier planning-only wording below is chronology.

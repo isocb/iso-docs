@@ -22,11 +22,11 @@ selects this planning outcome as Now; Next is unselected pending its review.
 ## Restart Checkpoint
 
 ```text
-Current state: B1 schema/services/UI implemented and automated checks PASS; D1–D4 accepted; independent review and local human acceptance pending; sanitized application commit published to the approved GitHub work branch after explicit owner approval
+Current state: B1 implemented and automated checks PASS; user-authorised local DevData preparation complete; localhost:3000 running with B1 emulation; independent review and authenticated human acceptance pending
 Last proven commit: application B1 57e1454b530ae19dc586768fd996ff230d84421c; baseline 14077382 and renderer proof 0c7e4848 retained in ancestry; documentation pre-implementation baseline 5a2d716
-Current environment: local and origin/work/fund-b1-individual-offer match; 153-to-154 upgrade and fresh 154 replay proven on dedicated disposable TEST databases, all removed with zero inventory readback; dev/staging/main remain 14077382; no shared migration or promotion
-Next human decision/test: independent review and authenticated local C1/C2 journey; D1–D4 accepted; staging/live promotion remains outside this instruction
-Safe resumption point: resume B1 commit 57e1454b and linked implementation/review records; complete independent review and record local human smoke before promotion; Chris confirms inherited credentials were already rotated; no ten-model schema batch or live-service setup
+Current environment: app work branch 57e1454b; local Neon DevData fingerprint 0970d1fe7a73 migrated to 154 with data preservation verified; local emulation enabled in ignored .env.local; localhost:3000 running; application dev/staging/main remain 14077382; staging/live databases unchanged
+Next human decision/test: select/create an Individual Artwork Project in DevData with the intended Client and organiser, then authenticated C1/C2 smoke; independent review also pending; no staging/live promotion
+Safe resumption point: use localhost:3000 or restart npm run dev on B1 branch; follow 05 local DevData smoke schedule, retain confirmed test evidence, complete independent review before promotion; no reset/seed or live-service setup
 ```
 
 ## 1. One Visible Outcome
@@ -347,3 +347,27 @@ Implementation and test evidence now reside in the
 and [review/test record](../05-review-and-test/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-review-and-test.md).
 Final review added explicit immediate aggregate validation before success because Prisma 5
 can hide a deferred COMMIT error, and cleanup retry for already-available documents.
+
+
+### Local DevData Smoke Preparation Authority — 2026-09-07
+
+Chris subsequently identified the existing online Neon database assigned to local work and
+asked the assistant to prepare it for B1 human smoke. This authorises applying the already
+reviewed B1 migration to that positively identified DevData database and enabling local
+emulation, superseding the earlier disposable-only preparation restriction for this action.
+It does not authorise staging/live changes, a reset, seed, branch promotion or role bypass.
+
+Read-only preflight identified the configured DevData endpoint by fingerprint `0970d1fe7a73`;
+Next development resolves the same target, distinct from configured staging and production.
+Its ledger has 153 completed migrations, matching source checksums, no failed migration,
+and only `20260907120000_fund_b1_individual_offer` pending. Apply that existing migration
+through Prisma deploy without creating a new migration or invoking reset/seed. Check existing
+Project/Product/Store content before/after and independently verify the four new tables,
+triggers and 154-entry ledger. On failure, stop and inspect; do not reset or blindly rerun.
+Disable local emulation if rollback is needed; preserve any subsequently confirmed evidence.
+
+Preparation outcome: PASS — migration ledger 154, four new tables and nine enabled B1
+triggers independently read back; existing Project/Product/Store counts and content hashes
+unchanged. Prisma client regenerated. Local ignored configuration enables emulation with
+target local; no credential values changed. HTTP login/database checks pass. The review
+record holds the local smoke entry points, data prerequisite and health-check qualification.

@@ -7,7 +7,7 @@ Exact commit: 57e1454b530ae19dc586768fd996ff230d84421c
 Files/change boundary: B1 four-model additive migration, offer/template/document services, C1/C2 routers and UI, existing-write guards, readiness blockers and tests; example/legacy credential sanitation only outside that runtime boundary
 Automated checks: PASS; detailed checks and qualifications in the review/test record
 Human evidence: authenticated C1/C2 smoke pending; synthetic component checks do not replace it
-Environment proven: local runtime/component checks and dedicated disposable TEST database upgrade/replay; resources removed; application work branch published, no shared environment promotion
+Environment proven: prior disposable tests plus owner-authorised existing Neon DevData preparation and localhost:3000 health/login checks; no staging/live promotion
 Known residual risk: independent review and human acceptance pending; emulated PDF/private temporary storage do not prove production or physical-print suitability
 Next authorised action: independent review of the exact candidate, then authenticated local C1/C2 smoke and recorded disposition before promotion
 ```
@@ -72,3 +72,7 @@ transport and cannot replace that gate. No staging/live or physical-print PASS i
 Disablement preserves confirmed evidence. Before shared deployment, reconcile existing
 Individual Stores against the new readiness blockers and prove the chosen environment's
 private storage/recovery contract. No evidence-table deletion is an ordinary production rollback.
+
+Local smoke preparation subsequently authorised by Chris is complete: the existing DevData
+database has B1 applied with data preservation checked, and local emulation is enabled.
+See the review/test record for entry points and the outstanding Project/organiser choice.

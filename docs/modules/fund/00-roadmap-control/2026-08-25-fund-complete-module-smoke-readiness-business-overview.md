@@ -36,6 +36,14 @@ walkthrough remains pending, and this code has not been promoted to staging or l
 Store, payment, Order and operational slices remain in Phase 1 after B1; the template editor
 is Phase 2. The earlier Store human acceptance schedule is not silently marked complete.
 
+The local test application is now running at `http://localhost:3000`, using the existing
+Neon DevData database you identified. The B1 database update is applied and existing data
+was preserved. In FUND → Projects, create an **Individual Artwork Project** for the intended
+Client and organiser; there are currently none in this local dataset. Its detail page
+contains **Individual offer and artwork**. Finalisation must be tested through the organiser's
+own Client dashboard login. The [review/test record](../05-review-and-test/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-review-and-test.md)
+contains the smoke schedule. Local setup is ready; your human test result remains pending.
+
 ## Your Phase 1 Decisions
 
 | Question | Confirmed direction |
