@@ -44,6 +44,14 @@ contains **Individual offer and artwork**. Finalisation must be tested through t
 own Client dashboard login. The [review/test record](../05-review-and-test/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-review-and-test.md)
 contains the smoke schedule. Local setup is ready; your human test result remains pending.
 
+While you test B1, the proposed next plan is
+[1R-G Public Store Presentation](../03-slice-planning/2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md):
+what a purchaser sees when opening a Project Store link. It covers the released Product
+presentation and unavailable-Store states; buying/payment remains a later Phase 1 step.
+The current B1 emulator cannot make a real Individual Store trade. The plan therefore
+records the release dependency and the choice of development demonstration explicitly.
+The reserved slice has not yet been confirmed as Next; no implementation is being started.
+
 ## Your Phase 1 Decisions
 
 | Question | Confirmed direction |

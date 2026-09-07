@@ -83,6 +83,12 @@ Current serial portfolio decision:
 | **NOW** | FUND `1R-F-B1` Individual Offer And Artwork Journey technical review and implementation | Implement the first bounded C1 assignment → C2 preview/finalisation → matching development document download and Store preview outcome against the current code. The enduring B framework constrains the plan; its ten-model appendix remains unaccepted. |
 | **NEXT** | Not selected pending B1 local human acceptance | B1 implementation is authorised. Complete its local human gate before promotion; no later child or real service deployment is inferred. |
 
+While performing B1 local smoke, Chris requested next-slice planning. A
+[reserved 1R-G Public Store Presentation draft](../modules/fund/03-slice-planning/2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md)
+is prepared; exact selection is awaiting his response because no successor was previously
+selected. B1 remains Now; the draft does not confer implementation authority or close its
+independent-review/human gates. No local runtime or data changes accompany this planning.
+
 On 2026-09-07 Chris subsequently authorised B1 technical review and implementation.
 B1 is implemented and automated validation has passed; sanitized application commit
 `57e1454b` is published to the approved work branch, with independent remote readback.

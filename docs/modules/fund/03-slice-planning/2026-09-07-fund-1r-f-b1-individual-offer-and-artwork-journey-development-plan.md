@@ -22,7 +22,7 @@ selects this planning outcome as Now; Next is unselected pending its review.
 ## Restart Checkpoint
 
 ```text
-Current state: B1 implemented and automated checks PASS; user-authorised local DevData preparation complete; localhost:3000 running with B1 emulation; independent review and authenticated human acceptance pending
+Current state: B1 implemented and automated checks PASS; user-authorised local DevData preparation complete; localhost:3000 running with B1 emulation; Chris reports testing in progress, human acceptance and independent review still pending
 Last proven commit: application B1 57e1454b530ae19dc586768fd996ff230d84421c; baseline 14077382 and renderer proof 0c7e4848 retained in ancestry; documentation pre-implementation baseline 5a2d716
 Current environment: app work branch 57e1454b; local Neon DevData fingerprint 0970d1fe7a73 migrated to 154 with data preservation verified; local emulation enabled in ignored .env.local; localhost:3000 running; application dev/staging/main remain 14077382; staging/live databases unchanged
 Next human decision/test: select/create an Individual Artwork Project in DevData with the intended Client and organiser, then authenticated C1/C2 smoke; independent review also pending; no staging/live promotion
@@ -371,3 +371,6 @@ triggers independently read back; existing Project/Product/Store counts and cont
 unchanged. Prisma client regenerated. Local ignored configuration enables emulation with
 target local; no credential values changed. HTTP login/database checks pass. The review
 record holds the local smoke entry points, data prerequisite and health-check qualification.
+
+Chris subsequently reported local testing in progress and requested next-slice planning.
+The [reserved 1R-G draft](2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md) is subordinate preparation, with exact Next selection pending. B1 retains this sole active checkpoint; no human PASS or promotion is inferred.

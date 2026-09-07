@@ -113,3 +113,7 @@ Completed R3-D plan:
 Accepted parent:
 
 `2026-07-14-fund-phase-1-slice-1p-g-r3-project-intake-automated-provisioning-alignment-planning.md`
+
+## Next-Slice Planning Candidate
+
+- [1R-G — Public Store Presentation](2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md) — source-grounded planning draft; exact Next selection and release/demo contract pending. B1 local human testing remains Now.
