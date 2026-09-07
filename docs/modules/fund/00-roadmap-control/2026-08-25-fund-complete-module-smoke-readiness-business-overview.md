@@ -25,11 +25,16 @@ concluded. The repository alignment preflight found no uncommitted code or docum
 application dev/staging/main match locally and online at `14077382`; documentation was
 consolidated and published through `20e1159`. Git alignment is not a new app deployment.
 
-The current FUND work is **development planning for the first Individual offer and
-artwork-document journey**, under `1R-F-B1`. The broader B document is now the enduring
-business framework. You have accepted B1’s four business decisions; technical review
-remains before implementation. No B1 code has been built. The existing C1/C2 Store staging checks still need their recorded human
-acceptance; this report does not mark those checks complete.
+The current FUND work is **B1 implementation and validation**. You accepted all four
+business decisions and then asked for technical review and implementation. The first
+connected development flow has now been built: C1 assigns a fixed template; the organiser
+reviews and finalises the offer; authorised users can generate and download a matching
+development document and see the same confirmed Store preview.
+
+Automated recovery, migration, type, lint, build and repository checks have passed. B1 is committed and published at `57e1454b` on `work/fund-b1-individual-offer` after your approval and a credential review. The authenticated C1/C2 human
+walkthrough remains pending, and this code has not been promoted to staging or live. Public
+Store, payment, Order and operational slices remain in Phase 1 after B1; the template editor
+is Phase 2. The earlier Store human acceptance schedule is not silently marked complete.
 
 ## Your Phase 1 Decisions
 
@@ -55,7 +60,7 @@ other workflows and later settlement remains a broader future outcome.
 | --- | --- | --- |
 | Administration and Project setup | Client, user, Product, Event, Project, Intake and organiser foundations exist | Choose the test users and Project setup route; prove the selected route and relevant permissions |
 | Project and Store control | Draft Store creation, eligible Products, C2 control and C1 oversight are implemented | Complete the existing connected C1/C2 checks and show clear selection/readiness blockers |
-| Individual offer and artwork sheet | The renderer/layout/private-storage assumption test passed; Store configuration foundations exist | Connect template assignment, C2 selection and finalisation to a matching document and Store preview |
+| Individual offer and artwork sheet | The renderer/layout/private-storage assumption test passed; Store configuration foundations exist | B1 now connects assignment, finalisation, matching development PDF and Store preview; complete the human walkthrough |
 | Public buying and payment | Shared Order/payment/refund machinery exists; the public FUND buying journey is incomplete | Add released Product display, buyer choices, checkout and purchase/status evidence; simulated payment outcomes are acceptable in development |
 | Order and artwork operations | Generic Order evidence and asset foundations exist | Add Order Code, C1 reconciliation, physical artwork/Order matching and limited C2 progress/sales visibility |
 | Production and dispatch | Delivery and asset foundations exist | Connect explicit production approval, fulfilment and dispatch for the chosen delivery mode |

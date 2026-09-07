@@ -2,7 +2,7 @@
 
 Date: 2026-09-07
 
-Status: **Development planning; D1–D4 business scope accepted; technical review pending**
+Status: **Implemented and automated validation PASS; local human acceptance pending**
 
 Control depth: **High** — this journey introduces persistent offer evidence, exact C2
 finaliser authority, tenant-bound document access and failure/retry behaviour.
@@ -22,11 +22,11 @@ selects this planning outcome as Now; Next is unselected pending its review.
 ## Restart Checkpoint
 
 ```text
-Current state: B1 development plan drafted from application source; enduring B framework relocated to roadmap control; D1–D4 accepted, including Phase 1 purchaser/operational work after B1; technical review pending, no application change
-Last proven commit: application 14077382; completed renderer proof 0c7e4848 retained in ancestry; documentation planning baseline c348eb5; B1 has no implementation/test commit
-Current environment: clean application main; local/remote dev, staging and main at 14077382 at planning start; 153 migration directories on disk; no database connection or provider action
-Next human decision/test: no outstanding D1–D4 business question; complete technical plan review before implementation, then the planned C1/C2 human proof; wider pilot choices remain with the business situation report
-Safe resumption point: read this plan and framework from current IsoDocs main, recheck the application baseline, then implement only an accepted B1 boundary; no ten-model schema batch, legacy-branch merge or live-service setup
+Current state: B1 schema/services/UI implemented and automated checks PASS; D1–D4 accepted; local human acceptance pending; sanitized application commit published to the approved GitHub work branch after explicit owner approval
+Last proven commit: application B1 57e1454b530ae19dc586768fd996ff230d84421c; baseline 14077382 and renderer proof 0c7e4848 retained in ancestry; documentation pre-implementation baseline 5a2d716
+Current environment: local and origin/work/fund-b1-individual-offer match; 153-to-154 upgrade and fresh 154 replay proven on dedicated disposable TEST databases, all removed with zero inventory readback; dev/staging/main remain 14077382; no shared migration or promotion
+Next human decision/test: authenticated local C1/C2 journey; D1–D4 accepted; staging/live promotion remains outside this instruction
+Safe resumption point: resume B1 commit 57e1454b and linked implementation/review records; record local human smoke before promotion; check credential rotation separately because inherited exposure remains in older Git history; no ten-model schema batch or live-service setup
 ```
 
 ## 1. One Visible Outcome
@@ -300,5 +300,50 @@ behavioural proof: **not run; no B1 implementation exists**.
 
 D1–D4 business scope is accepted. Complete technical review of the persistence, authority
 and environment contracts against that settled scope before implementation.
-The immediate next step is technical review of this concrete draft; root Next is not silently filled
-with another workstream. No implementation confirmation or PASS record is created early.
+The drafting-stage technical-review gate is superseded by the owner’s explicit review and
+implementation instruction in Section 11; root Next is not filled with another workstream. No implementation confirmation or PASS record is created early.
+
+
+## 11. Technical Review And Implementation Authority — 2026-09-07
+
+Chris explicitly requested B1 technical review and implementation after accepting D1–D4.
+This authorises resolving routine technical choices and implementing this bounded journey;
+the earlier planning-only statements record the drafting stage and are superseded here.
+No deployed configuration change, production provider or staging/live promotion is included.
+
+Source review resolutions:
+
+- Use the four proposed records with tenant-composite foreign keys and typed offer rows.
+  Scope keys enforce Event/Project/default assignment uniqueness. A deferred database
+  constraint checks complete offer/document/row creation at commit.
+- Reuse the Project Store advisory lock. Database triggers protect all existing C1/C2
+  Project content/selection/copy/order paths and immutable evidence, with readable service
+  prechecks where appropriate. Source configuration may refresh without rewriting offers.
+- Use existing GBP minor-unit and half-up tax helpers plus Seller tax evidence. The fixed
+  emulator preserves exact text or refuses unsupported font characters; it does not silently
+  substitute content. Logo identity/alt text are pinned; actual imagery/layout remain outside
+  this explicitly emulated document result.
+- Add `FUND_INDIVIDUAL_ARTWORK_TARGET=local|test|staging|production`; emulation requires
+  an explicit non-production value. Known production provider signals also refuse emulation.
+  Default mode stays disabled. No deployed setting is changed.
+- Reuse authenticated feature-gated tRPC mutations for download (bounded base64 payload),
+  rather than duplicating session/tenant resolution in a REST route. No public locator or
+  shared cache is introduced. Reject impersonated finalisation; the organiser uses their
+  own session. Current Client membership controls viewing/downloading; managers/admins
+  generate, and the exact organiser alone finalises.
+- Use deterministic PDFs/private temporary files, persisted claims and comparison before
+  completion. Lost files can regenerate only to the same output hash. Retain cleanup locators
+  until deletion succeeds. No real provider is needed for the accepted development result.
+- Compose Individual blockers into canonical Store authority and readiness, including A7.
+  B1 emulated evidence never enables actual trading; existing Individual Stores need a later
+  deployment reconciliation before promotion. Other Project branches retain their rules.
+
+Validation remains pending until recorded below and in the implementation/review records.
+The next human gate is the implemented C1/C2 local journey; D1–D4 will not be asked again.
+
+
+Implementation and test evidence now reside in the
+[implementation confirmation](../04-implementation-confirmations/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-implementation-confirmation.md)
+and [review/test record](../05-review-and-test/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-review-and-test.md).
+Final review added explicit immediate aggregate validation before success because Prisma 5
+can hide a deferred COMMIT error, and cleanup retry for already-available documents.

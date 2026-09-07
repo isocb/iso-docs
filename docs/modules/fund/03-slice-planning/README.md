@@ -23,7 +23,7 @@ Most recently completed implementation lifecycle:
 
 Current integrated critical-path action:
 
-- [B1 — Individual Offer And Artwork Journey development plan](2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md) is selected for planning; D1–D4 business scope is accepted and technical review remains before implementation.
+- [B1 — Individual Offer And Artwork Journey development plan](2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md) now governs authorised technical review and implementation; automated validation has passed and local human smoke remains pending.
 - [B — business framework](../00-roadmap-control/2026-09-07-fund-user-framework-and-individual-artwork-delivery-principles.md) is a subordinate roadmap augmentation. The former schema-planning path is only a redirect.
 - B1 holds the one active restart checkpoint. Root Next is unselected pending its review.
 

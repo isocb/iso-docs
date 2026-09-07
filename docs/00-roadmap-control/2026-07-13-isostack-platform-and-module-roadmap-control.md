@@ -80,8 +80,14 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | FUND `1R-F-B1` Individual Offer And Artwork Journey development planning | Draft the first bounded C1 assignment → C2 preview/finalisation → matching development document download and Store preview outcome against the current code. The enduring B framework constrains the plan; its ten-model appendix remains unaccepted. |
-| **NEXT** | Not selected pending review of the B1 development plan | No implementation, later child or real service deployment is inferred. D1–D4 business scope is accepted; complete technical plan review before implementation. |
+| **NOW** | FUND `1R-F-B1` Individual Offer And Artwork Journey technical review and implementation | Implement the first bounded C1 assignment → C2 preview/finalisation → matching development document download and Store preview outcome against the current code. The enduring B framework constrains the plan; its ten-model appendix remains unaccepted. |
+| **NEXT** | Not selected pending B1 local human acceptance | B1 implementation is authorised. Complete its local human gate before promotion; no later child or real service deployment is inferred. |
+
+On 2026-09-07 Chris subsequently authorised B1 technical review and implementation.
+B1 is implemented and automated validation has passed; sanitized application commit
+`57e1454b` is published to the approved work branch, with independent remote readback.
+Disposable resources are removed; authenticated local human acceptance remains pending. The active plan Section 11 owns the exact technical boundary; no staging/live promotion
+is inferred. Earlier planning-only statements below are retained chronology.
 
 On 2026-09-07 Chris accepted B1 decisions D1–D4: fixed templates initially with an editor
 in Phase 2; assignment/organiser authority and finalisation lock as proposed; an emulated

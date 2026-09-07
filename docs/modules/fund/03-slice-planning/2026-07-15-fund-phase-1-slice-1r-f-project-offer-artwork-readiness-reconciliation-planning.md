@@ -4,7 +4,7 @@ Date: 2026-07-15
 
 Status: Parent reviewed and accepted; `1R-F-A` complete and closed at PASS on corrected
 exact `0c7e4848` with zero residue; `1R-F-B` is the enduring subordinate framework and
-`1R-F-B1` development planning is selected; no production implementation authorised
+`1R-F-B1` technical review and implementation are authorised; automated validation has passed, with local human smoke and promotion pending
 
 Naming correction: 2026-07-16 — restored alphabetical delivery order by assigning this
 parent `1R-F` and moving the previously reserved, unimplemented Public Store Presentation
@@ -319,8 +319,8 @@ plans one C1 assignment → C2 preview/finalisation → authenticated developmen
 download and matching Store-preview journey against the current code. High-control evidence
 covers its authority, persistence and emulated service boundary. The draft proposes fixed
 initial template variants and four purpose-specific records; it does not accept or build
-the former ten-record option. D1–D4 business scope is accepted; technical review remains
-before implementation. Purchaser/operational slices remain in Phase 1 after B1, while the
+the former ten-record option. D1–D4 are accepted and Chris has explicitly authorised
+technical review and implementation; the B1 implementation/review records now own evidence. Purchaser/operational slices remain in Phase 1 after B1, while the
 template editor belongs to Phase 2.
 
 B1 holds the single active restart checkpoint. No new provider, schema, UI or migration is

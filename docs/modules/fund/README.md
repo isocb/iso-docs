@@ -2,8 +2,8 @@
 
 **Canonical source:** `isodocs/docs/modules/fund/`  
 **Module slug:** `fund`  
-**Status:** `1R-F-B1` Individual Offer And Artwork Journey development planning is portfolio
-`Now`; B is the enduring business framework; implementation awaits plan acceptance
+**Status:** B1 technical review and implementation are authorised; the connected development
+journey is built and automated validation has passed. Human local smoke remains pending.
 
 FUND is the reusable IsoStack module for fundraising, project lifecycle management, organiser engagement, commerce/store planning, commission distribution and production coordination.
 
@@ -33,8 +33,8 @@ The selected [B1 development plan](03-slice-planning/2026-09-07-fund-1r-f-b1-ind
 proposes one C1 assignment → C2 preview/finalisation → authenticated development artwork
 download and matching Store-preview journey. D1–D4 business scope is accepted, with the
 template editor in Phase 2 and purchaser/operational slices retained in Phase 1 after B1.
-The four-record persistence proposal remains for technical review. No application change
-is made by this acceptance.
+The four-record implementation and C1/C2 journey are now present on the B1 work branch.
+See its implementation confirmation and review/test record for validation and remaining gates.
 
 ## Business Situation Report
 
@@ -46,7 +46,7 @@ The owner confirmed Individual-only Phase 1 smoke, a calculated/finalised commis
 statement without settlement, and simulated external services for development staging
 before FUND deployment. Staging must later reflect live services. Delivery, Products/buyer
 choices, media, setup and messages have separate options in the report; the active plan
-records accepted D1–D4 offer/finalisation scope; technical review remains before implementation.
+records accepted D1–D4 offer/finalisation scope; implementation is authorised and automated validation has passed.
 
 ## Start Here
 

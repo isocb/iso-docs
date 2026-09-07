@@ -10,9 +10,9 @@ Current control note: `1R-F-A` is complete and closed at PASS on corrected exact
 `0c7e4848`, including the authorised deployed renderer/private-object proof and zero
 provider, object, Render and local residue. Platform security work is complete and local
 and remote application `main`, `dev` and `staging` are aligned at exact `14077382`. Root
-`Now` is `1R-F-B1` Individual Offer And Artwork Journey development planning. The enduring
+`Now` is `1R-F-B1` Individual Offer And Artwork Journey technical review and implementation. The enduring
 `1R-F-B` framework is a subordinate roadmap augmentation. Root `Next` is unselected and
-no implementation is authorised.
+B1 implementation is authorised; no staging/live promotion is inferred.
 
 Authoritative FUND roadmap and slice control:
 
@@ -960,16 +960,16 @@ this overview. They should not duplicate its full strategic content.
 ## 25. Strategic Handoff
 
 ```text
-NOW: FUND 1R-F-B1 Individual Offer And Artwork Journey development planning
-NEXT: unselected pending B1 plan review
-IMPLEMENTATION AUTHORITY: None
+NOW: FUND 1R-F-B1 Individual Offer And Artwork Journey implementation and validation
+NEXT: unselected pending B1 local human acceptance
+IMPLEMENTATION AUTHORITY: B1 only; explicitly requested by Chris on 2026-09-07
 ```
 
 Use the enduring B framework for business context and the selected B1 draft for its
 precise development boundary. B1 holds the active checkpoint and the four business
 decisions needed by the first outcome, now accepted. Purchaser and operational slices
 remain in Phase 1 after B1; the template editor is Phase 2. Its emulated result does not prove production
-rendering or provider operation. Review the plan before implementation; other workflow
+rendering or provider operation. Follow the B1 implementation/review evidence and remaining local human gate; other workflow
 branches and the ten-model appendix remain unselected.
 
 The following delivery detail is retained as historical foundation context. Its old branch,

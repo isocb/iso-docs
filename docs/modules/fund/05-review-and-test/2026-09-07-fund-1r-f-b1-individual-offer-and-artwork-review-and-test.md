@@ -1,0 +1,102 @@
+# FUND 1R-F-B1 — Individual Offer And Artwork Review And Test
+
+Date: 2026-09-07
+
+Control depth: **High**.
+
+Disposition: **Automated validation PASS; human local acceptance pending**.
+Exact application commit: `57e1454b530ae19dc586768fd996ff230d84421c` on `work/fund-b1-individual-offer` (published to the approved work branch).
+Review scope: the [accepted B1 plan](../03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md)
+and its [implementation confirmation](../04-implementation-confirmations/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-implementation-confirmation.md).
+This is the implementing agent's separate source/evidence review, not a claim of independent
+human acceptance or an independent agent review.
+
+## Evidence
+
+| Check | Result |
+| --- | --- |
+| Fixed template contract, 1/10/12 limits, duplicate/order refusal | PASS — focused unit tests |
+| Deterministic PDF, unsupported text refusal, private file/path handling | PASS — focused unit tests |
+| Disabled/default/production-target guards | PASS — focused unit tests |
+| Connected B1 service journey | PASS on dedicated disposable databases, including extended rollback and both failed/available-document cleanup recovery cases |
+| Existing E-D default Project/Store suite | PASS, including exclusions, eligibility, replay, rollback and zero fixture residue |
+| Existing E-A Store authority suite | PASS when run alone, including intervention, idempotency, Client authority, Event dates and rollback |
+| Existing E-C Client Store suite | PASS, including Client isolation, Store operations, commission and zero fixture residue |
+| Existing 1R-D Store configuration/readiness suite | PASS when run alone, including immutable versions, tenant isolation, rollback and zero fixture residue |
+| Existing Commerce A7 suite | PASS — atomic aggregate, idempotency/replay and zero fixture residue |
+| Repository Vitest run | 81 suites passed, one skipped; local renderer suite initially failed Chromium sandbox launch, then its three tests passed with launch permission |
+| TypeScript / repository verification | PASS on final committed candidate; required pre-commit type check also passed |
+| Changed application lint | No errors; nine pre-existing warnings in the two existing Project components. New code clean |
+| Production build | PASS on final committed candidate (131 pages) |
+| Component browser checks | PASS — actual C1, over-capacity, confirmed and 390px mobile component, synthetic tRPC responses; no page errors/overflow |
+| Authenticated C1/C2 human smoke | **Pending** |
+| Staging/live/provider/physical print | **Not run** |
+
+The retained legacy database suites now compare their ledgers with the current migration
+inventory instead of hard-coding 141. Generic Store trading scenarios use the existing
+Standard/bulk branch; B1 separately asserts the new Individual trading refusal. Historical
+closed lifecycle evidence is not rewritten. Concurrent runs of separate suites against one
+test database caused serialization conflicts; the affected suites passed when run alone,
+without changing application transaction behaviour to conceal test contention.
+
+## Negative And Recovery Boundaries
+
+The B1 service proof covers wrong tenant, inactive access, non-organiser manager/viewer,
+stale preview, duplicate/concurrent finalisation, existing C1/C2 write paths, immutable price
+rows, upstream Product changes, render failure/timeout, lost/changed file, wrong regenerated
+hash and canonical refusal of real trading. Expanded tests cover Event hierarchy, incomplete
+aggregate rollback, scope/tenant constraints and retained-orphan cleanup recovery.
+
+Source review corrections include explicit complete-aggregate checking before commit success,
+private download cache headers, resetting confirmation when the preview changes, and retrying
+orphan deletion even while the matching document remains available.
+
+## Database And Cleanup Evidence
+
+No ordinary application database URL was used. Parsed identities confirmed the configured
+test endpoint differs from the application endpoint; new uniquely named databases were
+created there for this task. The 153-migration baseline and additive B1 migration replayed,
+reaching 154; a synthetic baseline record survived the upgrade.
+
+Reproducible orchestration: `node scripts/run-fund-b1-disposable-tests.mjs`. It creates its
+own databases, copies the baseline migrations, proves the upgrade and service cases, performs
+fresh replay, then drops its databases and removes its temporary credential workspace.
+Fresh 154-migration replay: **PASS**. All dedicated databases were removed; independent
+TEST endpoint inventory readback found **zero** `fund_b1_disposable_%` databases. No existing
+test database was reset. Temporary credential workspace, baseline and component files were
+removed; the component server is stopped and its port independently verified closed.
+
+## Publication And Credential Review
+
+Chris explicitly approved both GitHub destinations, conditional on credential review.
+The unpublished application commit was sanitized before publication: a credential-bearing
+comment was removed from `.env.example`, four inherited database URLs in the legacy
+application deployment guide were replaced with placeholders, and example Turnstile values
+were cleared. Non-secret setting names and disabled/production defaults remain documented.
+No actual environment file is included. Redacted pattern scans of candidate file contents
+and comparison against local sensitive configuration values found no remaining credentials
+in the changed files; broader connection-string matches were reviewed as placeholders.
+
+Application commit `57e1454b530ae19dc586768fd996ff230d84421c` is independently verified on
+`origin/work/fund-b1-individual-offer`. Runtime source and migration contents are unchanged
+from the fully tested candidate; the sanitation changes only examples/legacy documentation.
+The amended candidate passed the required pre-commit TypeScript check. No force push,
+shared-history rewrite, deployment or credential rotation was performed. The removed
+credentials remain in older Git history: their revocation/rotation status is unverified
+and requires follow-up; removal from current files does not revoke them.
+
+## Human Local Schedule
+
+On a positively identified disposable local/development target with emulation enabled:
+
+1. C1 assigns portrait, then compact, and checks Event versus standalone scope.
+2. C2 confirms over-capacity feedback, resolves selection/configuration blockers and reviews
+   the exact Products, prices and content. A non-organiser must not be able to finalise.
+3. The organiser confirms the lock and finalises. Verify pending/available/failed states
+   and that old selection/copy controls refuse changes to the confirmed offer.
+4. Download and inspect the labelled PDF against the confirmed Store preview. Remove only
+   the disposable emulator file and verify same-offer regeneration and understandable feedback.
+5. Confirm public trading remains blocked and record the exact candidate and human result.
+
+Until this gate passes, the candidate remains on its work branch. No dev/staging/main
+alignment of the new code, deployment or live service operation is claimed.

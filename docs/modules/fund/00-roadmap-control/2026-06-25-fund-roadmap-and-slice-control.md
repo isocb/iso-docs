@@ -69,12 +69,16 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> FUND 1R-F-B1 Individual Offer And Artwork Journey development planning
-ROOT NEXT -> unselected pending B1 plan review; implementation is not inferred
+ROOT NOW  -> FUND 1R-F-B1 Individual Offer And Artwork Journey technical review and implementation
+ROOT NEXT -> unselected pending B1 local human acceptance; no promotion inferred
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
 FUND      -> 1R-F-A COMPLETE AND CLOSED AT PASS; prior Stage C FAIL retained as contained history; Stage C-R1 provider/object/Render/local residue zero
-             1R-F-B is the enduring subordinate framework; B1 owns the active development-plan draft and checkpoint; no implementation is authorised
+             1R-F-B is the enduring subordinate framework; B1 owns the active development-plan draft and checkpoint; technical review and implementation now authorised
 ```
+
+Chris subsequently authorised technical review and implementation on 2026-09-07.
+B1 Section 11 records the resolved implementation boundary and current evidence.
+No staging/live promotion is inferred; earlier planning-only wording below is chronology.
 
 The owner requested development planning after recognising B as an enduring framework.
 The [B framework](2026-09-07-fund-user-framework-and-individual-artwork-delivery-principles.md)
@@ -314,7 +318,7 @@ protected work/dev/staging/main Security Scans: PASS; exact-main run 32838343535
 Role Authority: COMPLETE AND CLOSED
 Support Ticketing: COMPLETE AND CLOSED
 FUND 1R-F-A Stage C-R1: COMPLETE AND CLOSED AT PASS on exact 0c7e4848; provider/object/Render/local residue zero
-FUND 1R-F-B: enduring subordinate framework; FUND 1R-F-B1: selected High-control development planning, business scope accepted, technical review pending; no implementation started
+FUND 1R-F-B: enduring subordinate framework; FUND 1R-F-B1: High-control implementation candidate; automated proof and disposable cleanup passed; local human acceptance pending
 documentation alignment preflight: clean c295b1e; main/origin-main at 4e4ed16; work branch two ahead of upstream and 72 ahead of main without divergence
 documentation publishing target: local main/origin-main and the existing work branch; owner now authorises consolidation/push/readback, superseding local-only instructions; resolve exact refs before resumption
 ```
@@ -560,7 +564,7 @@ Full evidence is recorded in:
 | `1R-F` | FUND artwork readiness | Reviewed/accepted; non-executable parent | Separates the common Project journey from Individual, collective and Standard readiness branches |
 | `1R-F-A` | FUND Individual Artwork proof | Complete and closed at PASS on exact `0c7e4848` | Real AMOW template, pricing, Linux, deployed renderer/private-object behaviour and zero external residue proved |
 | `1R-F-B` | FUND business framework | Reclassified as subordinate roadmap augmentation | Enduring user/workflow/proportionality context; no active checkpoint or executable slice |
-| `1R-F-B1` | FUND Individual offer/document journey | Portfolio `Now`; development-plan draft for review | C1 assignment, C2 preview/finalisation, emulated authenticated download and matching Store preview; D1–D4 accepted; technical review pending; purchaser/operational slices remain in Phase 1 after B1 |
+| `1R-F-B1` | FUND Individual offer/document journey | Portfolio `Now`; implementation and validation | C1 assignment, C2 preview/finalisation, emulated authenticated download and matching Store preview; D1–D4 accepted; implementation present, local human acceptance pending; purchaser/operational slices remain in Phase 1 after B1 |
 
 `1R-C1` through `1R-D` and `1P-G-R3-A`/`R3-B`/`R3-C`/`R3-D` must not be rerun as pending work. No next
 implementation is authorised merely because the preceding lifecycle completed.
@@ -666,8 +670,8 @@ Rules:
 - [B — User Framework And Individual Artwork Delivery Principles](2026-09-07-fund-user-framework-and-individual-artwork-delivery-principles.md)
   is the enduring subordinate framework. Its ten-record appendix remains unaccepted;
 - [B1 — Individual Offer And Artwork Journey](../03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md)
-  is the selected development-plan draft. D1–D4 are accepted. Review its proposed persistence,
-  authority and emulated-service contracts before implementation;
+  governs the authorised implementation. D1–D4 and the technical boundary are settled;
+  its implementation/review records own automated proof and the remaining human gate;
 - [`1R-H-A - Store Order Short Code And Single-Artwork Correlation`](../03-slice-planning/2026-08-11-fund-phase-1-slice-1r-h-a-store-order-short-code-and-single-artwork-correlation-planning.md)
   is a parked downstream planning input after public Store `1R-G`; it records accepted
   policy only and is not `Now`/`Next` or implementation authority;
@@ -786,10 +790,10 @@ payment model.
 
 | Item | Status | Control |
 | --- | --- | --- |
-| Application repository | Clean; local and remote `main`, `dev` and `staging` exact at `14077382` | Preserve alignment; `1R-F-B` authorises no application branch or change |
+| Application repository | Clean; local and remote `main`, `dev` and `staging` exact at `14077382` | B1 work branch is published at `57e1454b`; human acceptance precedes promotion |
 | Documentation repository | Consolidated and published through `20e1159`; this B/B1 planning update follows on main | Keep documentation committed and aligned online; recheck exact refs on resumption |
 | FUND `1R-F-A` | Complete and closed at PASS on exact `0c7e4848`; zero external residue | Do not rerun or reinterpret the former contained Stage C failure as current state |
-| FUND `1R-F-B` / `1R-F-B1` | Enduring framework / selected development-plan draft | D1–D4 accepted; complete technical review of the exact change boundary before implementation |
+| FUND `1R-F-B` / `1R-F-B1` | Enduring framework / implementation candidate | Complete local human acceptance before promotion |
 | Ten-record schema proposal | Unaccepted technical option | Retain in the enduring framework appendix; do not treat it as selected direction |
 | E-B/E-C/E-D consolidated human acceptance | Still relevant evidence gate | Complete only through its governed schedule when separately selected; do not infer a new implementation slice |
 | Public purchaser and operational journey | Incomplete | Later work must cover Store, checkout, Order operations, artwork matching, production, dispatch and commission in bounded outcomes |
@@ -922,16 +926,16 @@ commission capabilities described by the strategic inputs.
 ### 9.1 Current Handoff — 2026-09-07
 
 ```text
-NOW: FUND 1R-F-B1 Individual Offer And Artwork Journey development planning
-NEXT: unselected pending B1 plan review
-IMPLEMENTATION AUTHORITY: None
+NOW: FUND 1R-F-B1 Individual Offer And Artwork Journey implementation and validation
+NEXT: unselected pending B1 local human acceptance
+IMPLEMENTATION AUTHORITY: B1 only, explicitly requested by Chris on 2026-09-07
 ```
 
 Read the enduring B framework for business context and the B1 draft for the concrete
 implementation proposal. B1 is the only active checkpoint. Its D1–D4 decisions cover fixed
 initial designs, assignment/finaliser authority, no-unlock first behaviour and the emulated
-development result, all now accepted. Review the four-record technical proposal before
-implementation. Purchaser and operational slices remain required in Phase 1 after B1;
+development result, all now accepted and implemented on the B1 work branch. The
+implementation/review records own final automated validation and the local human gate. Purchaser and operational slices remain required in Phase 1 after B1;
 the template editor is Phase 2. The longer Phase 1 smoke and later pilot choices remain in the business
 situation report. The former C-through-I sequence and ten-model option remain unselected.
 
