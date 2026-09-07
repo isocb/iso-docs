@@ -22,13 +22,14 @@ production service.
 
 The owner has reconfirmed **FUND as the primary focus**, with LMSPro remedial work
 concluded. The repository alignment preflight found no uncommitted code or documentation:
-application dev/staging/main already match locally and online; the two recent documentation
-commits and the earlier completed lifecycle history are being consolidated into the
-documentation main branch for online publication. Git alignment is not a new app deployment.
+application dev/staging/main match locally and online at `14077382`; documentation was
+consolidated and published through `20e1159`. Git alignment is not a new app deployment.
 
-The current FUND work is **business and workflow planning**, under `1R-F-B`. The next development
-outcome has not been selected. The existing C1/C2 Store staging checks still need their
-recorded human acceptance; this report does not mark those checks complete.
+The current FUND work is **development planning for the first Individual offer and
+artwork-document journey**, under `1R-F-B1`. The broader B document is now the enduring
+business framework. B1 proposes the exact first result and its business choices; no code
+has been built. The existing C1/C2 Store staging checks still need their recorded human
+acceptance; this report does not mark those checks complete.
 
 ## Your Phase 1 Decisions
 
@@ -84,10 +85,13 @@ changed offer details, failed/duplicate payment and unmatched artwork. Payment a
 never approve production. Test-service outcomes must be labelled simulated or real in the
 lifecycle evidence.
 
-This full Phase 1 journey is larger than the proposed **next** development outcome. That
-smaller candidate stops at the matching artwork download and Store preview. It remains for
-your acceptance and separate planning; choosing Individual-only smoke does not silently
-approve building the whole chain at once.
+This full Phase 1 journey is larger than the selected **B1 development-planning** outcome.
+The [B1 draft](../03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md)
+stops at a matching development artwork download and Store preview using emulated services.
+Its four decisions are ready for your review: fixed initial template choices, assignment/
+organiser finalisation, no ordinary unlock, and a development-preview result. These limits
+are proposed, not assumed accepted. The later delivery/Intake/message choices below need
+not delay drafting this smaller plan.
 
 ## Remaining Scope Choices — Broken Into Options
 
@@ -107,15 +111,16 @@ A useful response names the delivery option, actual Products and required buyer 
 image requirement, setup route and essential messages. If a choice is deferred, the later
 plan must say which action cannot yet be tested.
 
-The separate [offer and finalisation proposals](../03-slice-planning/2026-09-01-fund-phase-1-slice-1r-f-b-individual-artwork-template-offer-lock-schema-foundation-planning.md#8-proposed-business-decisions-for-control-owner-acceptance)
+The separate [offer and finalisation proposals](2026-09-07-fund-user-framework-and-individual-artwork-delivery-principles.md#8-proposed-business-decisions-for-control-owner-acceptance)
 (template assignment, who may finalise, revision rules and the minimum next outcome) still
 await acceptance. Your four smoke-scope answers do not answer those different questions.
 
 ## How This Report Stays In Step
 
 Use this page for the current business situation, confirmed scope and remaining choices.
-The [active plan](../03-slice-planning/2026-09-01-fund-phase-1-slice-1r-f-b-individual-artwork-template-offer-lock-schema-foundation-planning.md)
-records the detailed workflow and decision consequences. The [FUND roadmap](2026-06-25-fund-roadmap-and-slice-control.md)
+The [enduring framework](2026-09-07-fund-user-framework-and-individual-artwork-delivery-principles.md)
+records the detailed workflow and decision consequences. The [active B1 plan](../03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md)
+sets out the proposed first development result and its review decisions. The [FUND roadmap](2026-06-25-fund-roadmap-and-slice-control.md)
 and [root portfolio control](../../../00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md)
 continue to own selection and status; implementation/review records own proof. Update this
 page alongside those existing records when their business meaning changes, using plain

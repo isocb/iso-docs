@@ -3,8 +3,8 @@
 Date: 2026-07-15
 
 Status: Parent reviewed and accepted; `1R-F-A` complete and closed at PASS on corrected
-exact `0c7e4848` with zero residue; `1R-F-B` is selected for user-framework, Project
-workflow and vertical-slice reconciliation only; no production implementation authorised
+exact `0c7e4848` with zero residue; `1R-F-B` is the enduring subordinate framework and
+`1R-F-B1` development planning is selected; no production implementation authorised
 
 Naming correction: 2026-07-16 — restored alphabetical delivery order by assigning this
 parent `1R-F` and moving the previously reserved, unimplemented Public Store Presentation
@@ -285,9 +285,8 @@ Its local Stage A automation, visual/physical review and immutable Stage B Linux
 execution pass. The original Stage C runner failure remains contained history. Separately
 selected Stage C-R1 corrected exact `0c7e4848` passes local, Linux, security and one
 disposable external behavioural run, with provider/object/Render/local residue zero.
-`1R-F-A` is complete and closed at PASS. Only the strategic `1R-F-B` user/workflow and
-proportionality reconciliation is now selected; no schema implementation or later child is
-authorised.
+`1R-F-A` is complete and closed at PASS. The B framework is enduring context; B1
+development planning is now selected. No implementation or promotion is authorised.
 
 Bounded outcome:
 
@@ -309,39 +308,22 @@ It adds no production schema, public/C1/C2 route, reusable editor, operational j
 Store publication or real Order behaviour. Final physical print acceptance requires the
 user/client and is the first planned human stop.
 
-### 6.2 1R-F-B — User Framework, Project Workflow And Vertical-Slice Reconciliation
+### 6.2 1R-F-B Framework And B1 Development Plan
 
-The selected bounded planning draft is at:
+The owner reclassified [B as a subordinate roadmap augmentation](../00-roadmap-control/2026-09-07-fund-user-framework-and-individual-artwork-delivery-principles.md).
+Its business journey, readiness distinction, Phase 1 scope, proportionality rules and
+unaccepted ten-model appendix remain intact. It is not an executable slice or selector.
 
-[`1R-F-B User Framework, Project Workflow And Vertical-Slice Reconciliation`](2026-09-01-fund-phase-1-slice-1r-f-b-individual-artwork-template-offer-lock-schema-foundation-planning.md)
+The selected [B1 development draft](2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md)
+plans one C1 assignment → C2 preview/finalisation → authenticated development artwork
+download and matching Store-preview journey against the current code. High-control evidence
+covers its authority, persistence and emulated service boundary. The draft proposes fixed
+initial template variants and four purpose-specific records; it does not accept or build
+the former ten-record option. D1–D4 need review before implementation.
 
-It re-establishes the common C1/C2/purchaser journey, Project progression, readiness
-branches, current business-capability progress and the smallest coherent Individual
-Artwork vertical outcome. The former ten-record schema proposal remains preserved in that
-document as an unaccepted technical option. The review asks which persistence the next
-user journey requires and which controls belong to later operational hardening. Sections
-4.2 and 8 of the active plan now contain a proposed actor/action/blocker/result walkthrough
-and business-rule answers for acceptance. Its minimum usable journey includes authorised
-private document access, immutable offer/document consistency, concurrency and failure
-handling, proportionate recovery and applicable document/print proof. Later operational
-improvements cannot postpone controls needed by that first behaviour.
-
-The plan is `High` control and awaits control-owner review. High control strengthens later
-evidence; it does not require a large or schema-first implementation. `1R-F-B` makes no
-schema, migration, database, provider, service, UI or deployment change and does not
-authorise implementation.
-
-The owner's subsequent smoke-scope answers are recorded in active 1R-F-B Section 1.1 and
-the [business situation report](../00-roadmap-control/2026-08-25-fund-complete-module-smoke-readiness-business-overview.md):
-Phase 1 covers Individual Artwork only through a finalised commission statement, excludes
-settlement and permits emulated services in development staging before FUND deployment.
-Staging must later reflect actual live services. This narrows the first test destination,
-not the full module architecture or the authority needed for actual service deployment.
-Other workflow branches remain later, and no implementation child is selected.
-
-The previous C-through-I breakdown below is preserved as historical candidate allocation.
-It is not the current delivery sequence, no item is `Next`, and the control owner may later
-reuse, combine, split, defer or supersede it when selecting one bounded vertical outcome.
+B1 holds the single active restart checkpoint. No new provider, schema, UI or migration is
+created by planning. The previous C-through-I breakdown below is historical candidate
+allocation, not the current sequence. No listed later candidate is Next.
 
 ### 6.3 Earlier Candidate 1R-F-C — Individual Selection, Template Lifecycle And C1 Management
 
@@ -447,7 +429,8 @@ Accepted conclusions:
    candidate proved the external assumption and zero residue.
 7. The control owner then selected `1R-F-B` strategic user/workflow/proportionality
    reconciliation. Its former ten-record proposal is preserved only as unaccepted
-   technical evidence, and no production implementation is authorised.
+   technical evidence. B now serves as the enduring framework, with B1 development planning
+   selected; no production implementation is authorised.
 
 Because this is a non-executable parent reconciliation, no `04-implementation-confirmations`
 or `05-review-and-test` record is created. Each executable child receives the full
@@ -456,8 +439,8 @@ lifecycle independently.
 ## 10. Preserved Planning Prompt And Current Child
 
 The prompt below is retained as historical authority used to create the completed
-`1R-F-A` child. Current work must use the selected `1R-F-B` business/workflow
-reconciliation linked in Section 6.2 rather than generating a competing plan, accepting
+`1R-F-A` child. Current work must use the B framework and selected B1 development
+plan linked in Section 6.2 rather than generating a competing plan, accepting
 the old C-through-I sequence automatically or treating this historical prompt as current
 implementation authority.
 

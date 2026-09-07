@@ -10,8 +10,9 @@ Current control note: `1R-F-A` is complete and closed at PASS on corrected exact
 `0c7e4848`, including the authorised deployed renderer/private-object proof and zero
 provider, object, Render and local residue. Platform security work is complete and local
 and remote application `main`, `dev` and `staging` are aligned at exact `14077382`. Root
-`Now` is `1R-F-B` user framework, Project workflow and vertical-slice reconciliation.
-Root `Next` is unselected and no implementation is authorised.
+`Now` is `1R-F-B1` Individual Offer And Artwork Journey development planning. The enduring
+`1R-F-B` framework is a subordinate roadmap augmentation. Root `Next` is unselected and
+no implementation is authorised.
 
 Authoritative FUND roadmap and slice control:
 
@@ -96,9 +97,10 @@ Client -> Project -> Products -> Readiness -> Store -> Order -> Fulfilment -> Co
 | Commission calculation/statements/settlement | Not operationally complete |
 | End-to-end fundraising journey | Not yet reached |
 
-`1R-F-B` now reconciles the users, workflow branches and smallest coherent later vertical
-outcome against this view. Its former ten-record schema proposal is retained only as an
-unaccepted technical option in the active plan.
+The [B framework](2026-09-07-fund-user-framework-and-individual-artwork-delivery-principles.md)
+now preserves the enduring user/workflow and proportionality rules as a subordinate roadmap
+augmentation. Its ten-record appendix remains unaccepted. The selected [B1 draft](../03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md)
+turns the first Individual journey into a concrete development plan.
 
 ## 2. Authority And Reading Rule
 
@@ -285,8 +287,8 @@ The authoritative controls currently establish:
 - `1R-F-A - Real AMOW Template, Pricing And Deployed Renderer Proof` is complete and closed
   at PASS on corrected exact `0c7e4848`, including local, Linux, security, physical,
   deployed-renderer/private-object and zero-residue evidence; and
-- `1R-F-B - User Framework, Project Workflow And Vertical-Slice Reconciliation` is the
-  selected strategic planning action. It authorises no schema, UI, runtime, provider or
+- `1R-F-B` is the enduring subordinate business framework; `1R-F-B1` is the selected
+  development-plan draft. Planning authorises no schema, UI, runtime, provider or
   environment change.
 
 This baseline is a summary only. Commit, migration, deployment and current-next-action
@@ -476,8 +478,9 @@ three proportionate passes:
    monitoring and scale improvements justified by evidence. Essential controls accompany
    the first behaviour that needs them.
 
-Only Pass 1 is selected. Passes 2 and 3 remain sequencing guidance and require their own
-accepted bounded lifecycle.
+Pass 1 now serves as the enduring B framework. Development planning for the first Pass 2
+outcome is selected as B1; implementation is not yet accepted. Pass 3 remains later
+sequencing guidance. B1 includes the essential controls required by its emulated result.
 
 ### 11.1 Individual Artwork Branch
 
@@ -854,9 +857,10 @@ The current strategic dependency order is:
 Commerce/A7, Store and Project foundations established
 -> 1R-F parent accepted
 -> 1R-F-A real AMOW template/pricing/deployed-renderer proof COMPLETE AT PASS
--> 1R-F-B Pass 1: user/workflow skeleton and proportionality review (NOW)
--> control-owner acceptance of finalisation decisions and one bounded outcome
--> Pass 2: minimum Individual Artwork vertical journey (not selected)
+-> 1R-F-B: enduring subordinate user/workflow framework
+-> 1R-F-B1: development planning for first Individual offer/document journey (NOW)
+-> review B1 D1-D4 and bounded plan
+-> Pass 2 implementation only if separately accepted
 -> Pass 3: operational hardening justified by vertical evidence (not selected)
 -> public Store and purchaser Order/payment journey
 -> C1/C2 Order operations
@@ -956,16 +960,16 @@ this overview. They should not duplicate its full strategic content.
 ## 25. Strategic Handoff
 
 ```text
-NOW: FUND 1R-F-B User Framework, Project Workflow And Vertical-Slice Reconciliation
-NEXT: unselected pending control-owner acceptance
+NOW: FUND 1R-F-B1 Individual Offer And Artwork Journey development planning
+NEXT: unselected pending B1 plan review
 IMPLEMENTATION AUTHORITY: None
 ```
 
-Resume in the active `1R-F-B` plan. Review the common C1/C2/purchaser journey, the
-Individual/collective/Standard readiness branches, the business finalisation decisions and
-the proposed smallest visible vertical outcome. Do not create an application branch,
-schema or migration from the retained ten-record technical option. Once Pass 1 is accepted,
-the root and FUND roadmaps may separately select one bounded Pass 2 outcome.
+Use the enduring B framework for business context and the selected B1 draft for its
+precise development boundary. B1 holds the active checkpoint and the four business
+recommendations needed by the first outcome. Its emulated result does not prove production
+rendering or provider operation. Review the plan before implementation; other workflow
+branches and the ten-model appendix remain unselected.
 
 The following delivery detail is retained as historical foundation context. Its old branch,
 promotion and next-action wording is superseded by the handoff above and the authoritative

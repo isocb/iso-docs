@@ -2,8 +2,8 @@
 
 **Canonical source:** `isodocs/docs/modules/fund/`  
 **Module slug:** `fund`  
-**Status:** Substantial internal foundation exists; `1R-F-B` user/workflow/proportionality
-reconciliation is portfolio `Now`; no implementation is selected
+**Status:** `1R-F-B1` Individual Offer And Artwork Journey development planning is portfolio
+`Now`; B is the enduring business framework; implementation awaits plan acceptance
 
 FUND is the reusable IsoStack module for fundraising, project lifecycle management, organiser engagement, commerce/store planning, commission distribution and production coordination.
 
@@ -25,15 +25,14 @@ substantial foundations. Individual Artwork has a completed technical proof. The
 Store, complete purchaser journey, operational artwork matching, production, dispatch and
 commission outcomes remain incomplete.
 
-The current action is documentation-only Pass 1 in [`1R-F-B - User Framework, Project
-Workflow And Vertical-Slice Reconciliation`](03-slice-planning/2026-09-01-fund-phase-1-slice-1r-f-b-individual-artwork-template-offer-lock-schema-foundation-planning.md).
-It must agree the C1/C2/purchaser framework, workflow branches and smallest coherent later
-vertical outcome. Pass 2 (minimum Individual Artwork journey) and Pass 3 (operational
-hardening) are not selected. The retained ten-record schema option is not implementation
-authority. The active plan distinguishes ready-to-finalise from ready-to-publish and
-contains the proposed user walkthrough and business answers for acceptance. Essential
-private access, offer/document consistency, failure handling and recovery belong to the
-first usable journey; Pass 3 adds evidence-led operational improvements.
+The [B business framework](00-roadmap-control/2026-09-07-fund-user-framework-and-individual-artwork-delivery-principles.md)
+is an enduring subordinate augmentation of the FUND roadmap. It preserves the user journey,
+readiness gates, Phase 1 scope and unaccepted technical appendix; it does not select work.
+
+The selected [B1 development plan](03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md)
+proposes one C1 assignment → C2 preview/finalisation → authenticated development artwork
+download and matching Store-preview journey. The draft contains four concrete decisions
+and a four-record persistence proposal for review. No application change is yet accepted.
 
 ## Business Situation Report
 

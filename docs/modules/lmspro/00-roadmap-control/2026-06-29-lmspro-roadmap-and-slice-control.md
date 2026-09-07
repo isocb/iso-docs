@@ -43,7 +43,7 @@ authority. Later disposition changes must update the existing row.
 Current LMSPro portfolio disposition:
 
 ```text
-ROOT NOW -> FUND 1R-F-B user/workflow reconciliation and planning toward the next bounded implementation outcome
+ROOT NOW -> FUND 1R-F-B1 Individual Offer And Artwork Journey development planning
 ROOT NEXT -> unselected pending the remaining business decisions and bounded outcome selection
 LMS R13 -> delivery/live proof complete at exact 06811784; production migration/schema, Render identity, L1-L2 and exact-main scan PASS
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; historical PLAT-ROLE-03/LMS-ROLE-01/02 are not next slices

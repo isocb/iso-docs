@@ -23,24 +23,15 @@ Most recently completed implementation lifecycle:
 
 Current integrated critical-path action:
 
-```text
-Control owner deliberately selects the next portfolio outcome after `1R-F-A` Stage C
-closed at FAIL with zero-residue/revocation PASS. Do not infer a runner correction/rerun,
-`1R-F-B`, `1R-G`, `1R-H-A` or another parked slice.
-```
+- [B1 — Individual Offer And Artwork Journey development plan](2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md) is selected for planning and review; no implementation is accepted yet.
+- [B — business framework](../00-roadmap-control/2026-09-07-fund-user-framework-and-individual-artwork-delivery-principles.md) is a subordinate roadmap augmentation. The former schema-planning path is only a redirect.
+- B1 holds the one active restart checkpoint. Root Next is unselected pending its review.
 
-Commerce A1-A7 and the retained FUND C1-C6/1R-D/R3 foundations are implemented/reviewed and
-included by ancestry in current application `d78935d4`, aligned through dev/staging/main.
-E-A was validated against the complete 141-migration disposable baseline with zero residue;
-E-B and E-C add no migration. Corrective E-D is implemented/reviewed at `c45a41d9` and is
-also included by ancestry in `83356030`, with no E-D migration or shared database action.
-The real-workflow human schedule remains recorded in its review. The non-executable `1R-F`
-parent remains accepted. `1R-F-A-R1B` source/folding PDF review and Stage B Linux-container
-parity pass at exact dev `139d09c4`. The dedicated Stage C contract was accepted and
-authorised on 2026-08-12; its exact candidate `328aadf0` is preserved in current ancestry.
-The accepted runner failed deterministically before behavioural proof, so Stage C closes at
-FAIL rather than PASS. Provider and local zero-residue/revocation gates pass. Later children
-and any runner correction/new candidate remain unauthorised pending deliberate selection.
+Application local/remote dev, staging and main align at `14077382`. Commerce/A7, Project
+and Store foundations are retained in ancestry. The corrected 1R-F-A proof at `0c7e4848`
+passed local, Linux, security and its isolated external run with zero residue; it is closed.
+The earlier Stage C failure is history, not a pending rerun. E-B/E-C/E-D consolidated
+human acceptance remains at its separately recorded gate.
 
 Parked downstream policy plan, not selected:
 

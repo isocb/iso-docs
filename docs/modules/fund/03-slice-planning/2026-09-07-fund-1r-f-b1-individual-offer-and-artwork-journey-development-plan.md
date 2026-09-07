@@ -1,0 +1,289 @@
+# FUND 1R-F-B1 — Individual Offer And Artwork Journey Development Plan
+
+Date: 2026-09-07
+
+Status: **Selected development planning; draft for review; implementation not yet accepted**
+
+Control depth: **High** — this journey introduces persistent offer evidence, exact C2
+finaliser authority, tenant-bound document access and failure/retry behaviour.
+
+Work type: plan for a production-model build, initially proved through an emulated
+local/development journey. Simulated service responses are test infrastructure; the offer
+model and application behaviour would be persistent. No implementation, migration,
+provider setup or environment promotion is performed by this planning change.
+
+Owning inputs: the accepted `1R-F` parent and its existing Application/Artwork Template and
+Product-selection/capacity CRs; this is their bounded development child, not a new CR.
+The enduring [1R-F-B framework](../00-roadmap-control/2026-09-07-fund-user-framework-and-individual-artwork-delivery-principles.md)
+augments the [FUND roadmap](../00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md).
+[Root control](../../../00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md)
+selects this planning outcome as Now; Next is unselected pending its review.
+
+## Restart Checkpoint
+
+```text
+Current state: B1 development plan drafted from application source; enduring B framework relocated to roadmap control; business assumptions below await acceptance, no application change
+Last proven commit: application 14077382; completed renderer proof 0c7e4848 retained in ancestry; documentation alignment 20e1159; B1 has no implementation/test commit
+Current environment: clean application main; local/remote dev, staging and main at 14077382 at planning start; 153 migration directories on disk; no database connection or provider action
+Next human decision/test: accept or amend the four bounded decisions in Section 2; approve the reviewed plan before implementation; wider pilot choices remain with the business situation report
+Safe resumption point: read this plan and framework from current IsoDocs main, recheck the application baseline, then implement only an accepted B1 boundary; no ten-model schema batch, legacy-branch merge or live-service setup
+```
+
+## 1. One Visible Outcome
+
+For an existing Individual Artwork Project with a valid organiser and eligible Products:
+
+```text
+C1 chooses one validated template variant for the Event/standalone assignment
+-> C2 sees the selected Products and capacity feedback
+-> C2 previews the exact offer
+-> the authorised organiser finalises it
+-> generation shows pending, failed or available for that offer
+-> authorised C2 downloads the matching development artwork document
+-> the Project Store preview shows the same confirmed Products/prices
+```
+
+Before: existing users can manage Projects and Stores, but cannot complete that connected
+Individual offer/document journey. After: they can exercise it on controlled test data,
+with clearly labelled emulated service evidence and without opening public trading.
+
+The first implementation gate ends at the local automated and C1/C2 human result. A later
+explicit promotion may prove the same emulated journey on development staging. A real
+production renderer/storage deployment remains a separate operating decision. Neither
+successful download nor this slice's artwork status publishes the Store.
+
+## 2. Four Bounded Decisions To Accept Or Amend
+
+These are concrete planning recommendations, not silently accepted business policy. They
+narrow the framework's open questions to what this slice actually needs.
+
+| Decision | Recommended B1 boundary | Consequence |
+| --- | --- | --- |
+| D1 — Initial template choices | C1 selects from the two already proved variants: portrait STANDARD, maximum ten Products; landscape COMPACT, maximum twelve. Use a versioned code registry for these fixed designs, with persisted tenant-owned assignment | No visual editor, arbitrary template upload or full reusable-template administration in B1. A future changed variant needs its own capacity/layout proof |
+| D2 — Assignment and finalisation | Event-linked Projects follow the Event assignment; standalone Projects use an explicit Project assignment or the tenant standalone default. Authorised same-Client managers/admins prepare selection; the exact active organiser alone finalises | No Event-Project override or new permissions system. C1 prepares/oversees but does not impersonate the organiser to finalise |
+| D3 — First release revision rule | Before finalisation, allow normal edits. After finalisation, refuse changes to the confirmed Project offer/selection; allow controlled regeneration of that same offer only | No unlock or replacement-offer UI in B1. Explain the lock before confirmation; a mistaken finalisation is a visible limitation, not an excuse to alter history or delete data |
+| D4 — First development result | Implement the complete flow above using deterministic renderer/private-file emulators, authenticated Project download and a Store preview. Use existing test Projects and synthetic representative Products | Emulated documents visibly say “Development preview — not for distribution”. Real rendering, provider storage and physical distribution are not claimed. Public Store/payment/Order operations remain later |
+
+D1/D4 are deliberate limits on the first outcome and require owner acceptance. The code
+registry preserves design identity/version but does not require the former ten-table
+option. If the owner needs editable designs, actual printable output or unlock immediately,
+amend this plan before implementation rather than hiding that work inside the slice.
+
+Delivery mode, purchaser options/media, Intake and outbound-message choices for the full
+Phase 1 smoke are **not blockers to drafting B1**. B1 adds no buyer checkout, fulfilment,
+Intake path or email. The [business situation report](../00-roadmap-control/2026-08-25-fund-complete-module-smoke-readiness-business-overview.md)
+retains those later decisions. Existing delivery-profile/commission/Store blockers must
+remain visible even though B1 does not resolve them.
+
+## 3. Inspected Application Foundation
+
+Read-only inspection at `14077382` found 153 migration directories; this is a source count,
+not an assertion about a connected database's migration ledger. These existing files own
+the behaviour to extend, with paths relative to `isostack-bedrock`:
+
+| Existing source | Reuse / observed gap |
+| --- | --- |
+| `prisma/schema.prisma` — `FundProject`, `FundProjectProduct`, `FundProjectStore`, `FundProjectStoreProduct`, `FundStoreProductConfigurationVersion` | Reuse tenant/Project identity, the one Store per Project and immutable commercial/configuration versions. No Application Template, Project Offer or Artwork Template model currently exists |
+| `src/modules/fund/services/client-dashboard.service.ts` and `routers/client-dashboard.router.ts` | Reuse Client-member context and Project/Store/Product operations; add organiser-only finalisation checks without turning the C2 account into a new Project owner |
+| `src/modules/fund/services/projects.service.ts` | C1 Project/Product add/remove/active/order paths exist and also need confirmed-offer mutation protection |
+| `src/modules/fund/services/store-management.service.ts` | Reuse `getStoreForProject`, `refreshStoreConfiguration` and transactional Store mechanisms. `deriveFundStoreReadiness` currently checks existing Store gates; Individual offer/document readiness must be composed into this policy, not become a parallel Store state machine |
+| `src/modules/fund/services/store-authority.service.ts` | Existing Store authority is consumed by operations and must remain authoritative; no browser readiness flag may publish a Store |
+| `src/modules/fund/components/projects/ProjectDetailPage.tsx`, `ProjectProductsManager.tsx` and `components/client-dashboard/ClientProjectStorePanel.tsx` | Add narrow assignment/offer/status controls to existing Project surfaces; no dashboard replacement |
+| `scripts/proofs/fund-1r-f-a/contract.ts`, `template.tsx`, `renderer.ts` | Proof uses synthetic inputs, a fixed proof-logo identity, a non-routable `store.example.invalid` URL and local output paths. It is not a ready-made production renderer or URL/branding contract |
+
+The proof validates ten/twelve-row capacities for its exact variants and already-resolved
+GBP gross-price strings. B1 must resolve prices from existing commercial authority; never
+turn the proof's sample prices, logo identity, URL or fixture IDs into business defaults.
+
+## 4. User And Service Behaviour
+
+### C1 preparation and C2 preview
+
+Add a minimal assignment control using the existing C1 administration shell. Its server
+resolves Event/standalone hierarchy; the client never supplies tenant or finaliser identity.
+The template registry carries immutable variant ID/version, content hash, orientation,
+validated capacity and render-contract version. Availability can change prospectively;
+already finalised offers retain their exact variant snapshot.
+
+Start a new selection with every distinct eligible Product, preserving existing defaults.
+Show an over-capacity warning without silently truncating it; C2 deselects until one through
+the variant maximum remain. Existing Group/Bulk/Standard selection is unchanged.
+
+Preview returns the exact ordered Product/configuration-version references, titles,
+resolved gross prices/currency, required Project content, branding inputs and template
+contract. Missing required configuration is a named blocker. In emulated mode, a clearly
+identified non-trading Store destination is acceptable; it is not a promised public URL.
+Use a server-computed input fingerprint to detect changes between preview and finalisation.
+
+### Finalisation and generation
+
+Inside a bounded transaction, re-resolve tenant, active membership, organiser identity,
+assignment, selected Products and commercial/configuration versions. Lock/revalidate the
+Project using the existing transaction conventions. Reject stale preview or concurrent
+conflicting finalisation with a refresh instruction. The same idempotency key and same
+request return the existing result; changed input with that key is refused.
+
+Commit the immutable offer and its Product rows atomically before beginning document work.
+Generation consumes that persisted offer, never current mutable Product values. A small
+persisted claim/lease and compare-and-set completion protect retry/concurrency without a
+separate general-purpose job system. Interrupted work can be retried against the same
+offer after its claim expires; stale completion cannot replace a newer claim's result.
+
+Record pending/failed/available status, bounded redacted failure reason, input/offer hash,
+renderer contract, output hash and byte count. Only a complete matching file may become
+available. A failed render/store operation leaves the confirmed offer intact and cannot
+satisfy artwork readiness. An orphaned emulator output must be removed by bounded cleanup;
+if deletion fails, retain its exact non-secret locator for retry and report the failure.
+
+### Access, preview and existing mutations
+
+Download resolves the session and current Client/Project membership server-side, then loads
+the exact offer/document relationship. No bearer grant, public object URL, arbitrary file
+path or browser-provided storage key is accepted. Serve a deterministic download with a
+safe filename and no shared cache. A lost emulator file shows regeneration required, not a
+successful download or a pointer to another document. Same-offer regeneration must
+reproduce the recorded deterministic output hash; if it cannot, refuse availability and
+report the mismatch instead of changing the established document identity.
+
+The confirmed Store preview consumes the same offer rows and prices as the document. Later
+Product edits or Store refresh may create new source versions, but cannot rewrite the
+confirmed offer. B1 must protect Project selection, order and confirmed Project content
+through every existing C1/C2 mutation path. Upstream Product/branding edits for other
+Projects remain possible; the confirmed snapshot stays stable.
+
+Unconfigured Individual Projects gain explicit missing-template/offer/document blockers.
+Compose these with existing Store authority/readiness checks, including activation and
+publication paths. Do not mark a Project publishable merely because its document exists.
+Emulated output must never satisfy readiness for live trading; production-mode validation
+refuses it. A7 must still consume canonical readiness and cannot acquire checkout authority
+from a B1 preview. Other workflow branches retain their existing policy.
+
+## 5. Persistence Proposal — Four Records, Each Tied To The Journey
+
+These are proposed implementation contracts, not migration authority. Exact Prisma/SQL
+must be reviewed against the current baseline when implementation is accepted.
+
+| Proposed record | Minimum purpose and evidence | Former option treatment |
+| --- | --- | --- |
+| `FundIndividualTemplateAssignment` | Tenant-owned Event, standalone-default or exact standalone-Project assignment to a registry variant/version; actor/time and mutually exclusive scope references | Reusable design identity/version stay in the immutable code registry initially. One active assignment per scope; richer assignment-history UI/table deferred |
+| `FundIndividualOffer` | Tenant/Project/Store identity; finaliser and timestamp; idempotency/input hash; pinned registry/render contract; validated Project/branding/content snapshot and destination; immutable commercial offer evidence | Keep the needed offer identity. No editable lock boolean; B1 permits one finalised offer per Project and no replacement/unlock |
+| `FundIndividualOfferProduct` | Ordered exact Project Product and Store Product/configuration-version references plus resolved display/price evidence | Retain typed row lineage and exact ordering; reuse existing commercial versions instead of duplicating generic Product/pricing authority |
+| `FundIndividualArtworkDocument` | One document lifecycle for an exact offer: generation state/claim expiry, current attempt identity, bounded failure, storage-provider kind/opaque locator, hash/size/render contract | Combine first-document identity and execution status. Once available, output identity is immutable; retry cannot silently change the confirmed offer. Full attempt-history and multi-version administration deferred |
+
+Use tenant-scoped composite keys/FKs for all relations; validate that Store, Project,
+Product and configuration-version references describe the same lineage. Enforce assignment
+scope uniqueness, unique offer-per-Project/idempotency and ordered non-duplicate offer rows.
+Offer snapshots use named, strictly validated schemas rather than unstructured metadata.
+Currency/precision follows the current commercial contract. Snapshot fields are immutable;
+only document execution fields follow their defined state transitions.
+
+No generic FUND Order/Payment model, access-grant table, duplicate production asset or
+unbounded generation-attempt history is introduced. Existing audit records carry actor
+operations where appropriate. Test fixtures begin explicitly configured; no inferred
+assignments or silent finalisation of existing Projects.
+
+## 6. Emulation And Environment Boundary
+
+Use narrow renderer and private-document-store interfaces with deterministic test adapters.
+They must exercise success, refusal, failure, timeout, lost file and retry cases. The
+emulated renderer produces a valid downloadable PDF from the confirmed fields, visibly
+marked as a development preview; this proves data consistency and delivery interaction,
+not production layout, QR or physical-print fitness. Private emulated storage is outside
+public assets, tenant-scoped and accessible only through the authorised application path.
+
+Proposed application mode: `FUND_INDIVIDUAL_ARTWORK_MODE=disabled|emulated`, default disabled.
+Startup/service validation must refuse emulated mode on the production deployment target;
+`NODE_ENV` alone is insufficient because staging also uses production builds. The accepted
+implementation must use the repository's actual deployment-target contract, or explicitly
+plan a validated target setting if none exists. This configuration is High-control evidence,
+not permission to edit any deployed environment in this planning turn.
+
+The disposable test operator owns emulator setup and cleanup; no provider credential,
+public bucket, live email or external worker is required. Persisted offer evidence belongs
+to the selected database and its recovery contract. Files in disposable emulator storage
+are recoverable by same-offer regeneration; record that limitation and test it before any
+shared development use. Disablement preserves offers and makes unavailable operations
+clear. Actual service adapters, credentials, retention/recovery ownership and environment
+parity require a later accepted deployment outcome; completed 1R-F-A provider tests are not
+rerun to manufacture B1 evidence.
+
+## 7. Expected Change Boundary And Implementation Order
+
+Keep one bounded lifecycle; the following are implementation steps, not new roadmap slices:
+
+1. Implement the fixed variant registry, preview/capacity rules and service interfaces with
+   representative fixtures; review the precise four-record schema and migration.
+2. Add one additive migration, typed offer/assignment/document services and transactional
+   authority/idempotency/mutation guards; validate on a positively identified disposable DB.
+3. Wire C1 assignment and C2 preview/finalise/status/download to the existing Project UI,
+   with authenticated transport following current C1/C2 actor-resolution patterns.
+4. Add emulated generation/private storage, canonical readiness composition and the same
+   offer-driven Store preview; prove failure/recovery, then the local human journey.
+
+Expected application paths: `prisma/schema.prisma`, one new `prisma/migrations/*/migration.sql`,
+new focused `src/modules/fund/services/individual-offer*` and `lib/individual-offer*` code,
+existing Project/Client/Store services and routers named in Section 3, relevant C1/C2 Project
+components, one authenticated download handler, and focused tests/verification scripts.
+Exact route and file names must follow current repository conventions; no new public Store
+route, generic reporting system or framework-wide refactor is included.
+
+The later implementation must inspect every existing write path named in Section 3 rather
+than protecting only the new UI. If that inspection finds a necessary cross-module schema
+or authority change outside this boundary, amend the plan before that change.
+
+## 8. Acceptance And Proof
+
+| Proof | Required result |
+| --- | --- |
+| C1 assignment and C2 selection | Event/standalone hierarchy works; invalid assignment blocks; one/ten/twelve boundaries and over-capacity feedback are exact; unrelated workflow selection unchanged |
+| Authority | Wrong tenant/Client/Project, inactive member and non-organiser finalisation are refused; authorised Project viewers/downloaders follow the accepted role contract |
+| Stale or duplicate actions | Price/selection/template/organiser changes invalidate stale preview; duplicate identical requests converge; conflicting requests create no partial or second offer |
+| Consistency | Offer, Store preview and downloaded PDF agree on ordered Products, prices and content; later upstream edits never silently change confirmed evidence |
+| Failure and recovery | Inject render/store/transaction failure, timeout, lost file and concurrent retry; only one valid completion, no false readiness, bounded cleanup and recoverable status |
+| Existing-path protection | C1/C2 Project/Product/copy/order mutations cannot bypass the confirmed-offer rule; canonical Store activation/publication and A7 never trust simulated output for real trading |
+| Migration | Representative 153-to-candidate and fresh replay preserve existing records; no backfill guesses; tenant/FK/uniqueness and rollback-before-use proven on disposable DB |
+| Human local journey | C1 selects variant; C2 sees capacity, previews and finalises; status/error/retry is understandable; matching PDF downloads; remaining Store blockers and development-preview limitation are clear |
+| Environment | Emulation disabled by default, production target refuses it, no shared credential/provider use; test fixtures and emulator outputs removed with evidence |
+
+After focused tests, run the relevant existing E-D default-Store, E-C Client-Store, E-A
+Store-authority, Store-readiness and A7 regression checks; TypeScript, existing verification,
+changed-scope lint and build. Run the normal repository suite once for this High-control
+boundary. Do not repeat the completed external renderer proof; real-render extraction or
+print-layout changes are outside this emulated first result.
+
+A local pass is not a staging or live pass. If later promoted to development staging, prove
+its exact mode/target, isolated database/storage and representative C1/C2 path; do not
+mechanically repeat pure tests. Preserve the separate E-B/E-C/E-D human acceptance record:
+B1 may supply directly overlapping evidence only when those checks are actually observed.
+
+## 9. Migration, Failure And Rollback
+
+Follow [SAFE_DATABASE_WORKFLOW.md](../../../../SAFE_DATABASE_WORKFLOW.md). Planning does
+not connect to any database. After implementation acceptance, create/review a Prisma
+migration from the then-current baseline, positively identify the disposable target, and
+check its ledger before applying or resetting anything. No ordinary local `DATABASE_URL`
+is assumed safe. No shared migration or reset is authorised here.
+
+Stop on existing-data incompatibility; do not guess template, offer or workflow state.
+Before persistent use, prove disposable rollback/replay and remove test fixtures. After
+accepted evidence exists, disable new actions and use a forward correction preserving
+confirmed offers; dropping evidence tables or changing finalised snapshots is not ordinary
+rollback. A deployment plan must explicitly reconcile any newly blocked existing
+Individual Store before activation; no automatic publication or legacy backfill is allowed.
+
+## 10. Do Not Build And Review Gate
+
+No public Store, checkout/payment, Order Code, artwork/Order matching, production, dispatch,
+commission or settlement implementation. No collective/Standard redesign, Intake or
+communications expansion. No visual template designer, external access links/email,
+ordinary unlock/replacement-offer UI, real provider/worker/storage deployment, secret or
+runtime environment changes in this planning turn. Do not adopt all ten Appendix A models.
+
+Planning validation obtained: source/path and migration-directory inspection only; document
+structure/link checks recorded at commit. Application tests, migration proof and human
+behavioural proof: **not run; no B1 implementation exists**.
+
+The plan is ready for business/technical review with D1–D4 clearly proposed. Acceptance
+must settle those limits and the exact authority/environment contract before implementation.
+The immediate next step is review of this concrete draft; root Next is not silently filled
+with another workstream. No implementation confirmation or PASS record is created early.

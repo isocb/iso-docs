@@ -80,8 +80,16 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | FUND `1R-F-B` user framework, Project workflow and vertical-slice reconciliation | Re-establish the visible C1/C2/purchaser journey, readiness branches, business progress and proportionality before selecting implementation. The detailed ten-model proposal is unaccepted technical evidence, not the current direction. |
-| **NEXT** | Not selected pending control-owner acceptance of the `1R-F-B` review | Do not infer schema implementation, `1R-F-C`, `1R-G`, `1R-H-A`, infrastructure or another external run. One smallest coherent vertical outcome requires a later explicit selection. |
+| **NOW** | FUND `1R-F-B1` Individual Offer And Artwork Journey development planning | Draft the first bounded C1 assignment → C2 preview/finalisation → matching development document download and Store preview outcome against the current code. The enduring B framework constrains the plan; its ten-model appendix remains unaccepted. |
+| **NEXT** | Not selected pending review of the B1 development plan | No implementation, later child or real service deployment is inferred. Resolve the four bounded B1 decisions before accepting implementation. |
+
+The owner subsequently identified B as a lasting subordinate roadmap augmentation and
+requested development planning. Its [business framework](../modules/fund/00-roadmap-control/2026-09-07-fund-user-framework-and-individual-artwork-delivery-principles.md)
+now lives in roadmap control, while the [B1 draft](../modules/fund/03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md)
+holds the one active checkpoint, proposed implementation boundary and review gate. This
+selects development planning, not implementation or blanket acceptance of the detailed
+business proposals. The following resumption/alignment account is retained history; current
+selection is the table above.
 
 On 2026-09-07 the owner reconfirmed FUND as the primary planning/delivery focus and
 confirmed that LMSPro remedial work is concluded. The immediate resumption action includes
