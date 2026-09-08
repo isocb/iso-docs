@@ -22,11 +22,11 @@ selects this planning outcome as Now; Next is unselected pending its review.
 ## Restart Checkpoint
 
 ```text
-Current state: B1-R1 implemented on isolated application candidate cd72dd780c6fec5b784a00c03a5ebb38133b71ce; source checks and build PASS; migration, database/concurrency proof, independent review and human acceptance remain open
-Last proven commit: application B1-R1 cd72dd780c6fec5b784a00c03a5ebb38133b71ce based on B1 57e1454b530ae19dc586768fd996ff230d84421c; baseline 14077382 and renderer proof 0c7e4848 retained in ancestry; documentation planning baseline 0f03638
-Current environment: isolated app branch work/fund-b1-r1-catalogue-workflow at cd72dd78; user's original B1 worktree and localhost process left untouched; local Neon DevData, staging and live databases unchanged; no migration applied and dev/staging/main not promoted
-Next human decision/test: after controlled local migration proof, run the B1-R1 C1/C2 Catalogue and workflow smoke schedule; independent review and staging gate must follow before B1 acceptance or promotion
-Safe resumption point: read B1-R1 04/05 records, preflight an authorised disposable/local database against the fail-closed migration, then run database integration/concurrency proof; stop on any Event, NOT_SURE Project or immutable FUND evidence until reconciled
+Current state: B1-R1 application source/automated checks and guarded Neon DevData 154-to-155 migration PASS; localhost:3000 is ready; database/concurrency proof, independent review and human acceptance remain open
+Last proven commit: application B1-R1 cd72dd780c6fec5b784a00c03a5ebb38133b71ce based on B1 57e1454b530ae19dc586768fd996ff230d84421c; baseline 14077382 and renderer proof 0c7e4848 retained in ancestry; DevData migration target fingerprint 5a235762acc4
+Current environment: primary local checkout on work/fund-b1-r1-catalogue-workflow at cd72dd78; migration 155 applied only to local Neon DevData after authorised FUND-only test-data recreation; localhost health PASS; app dev/staging/main and staging/live databases unchanged
+Next human decision/test: recreate the FUND test setup and run the B1-R1 C1/C2 Catalogue and workflow smoke schedule; independent review and staging gate must follow before B1 acceptance or promotion
+Safe resumption point: read B1-R1 04/05 records, retain the DevData migration evidence, run the scheduled human smoke and remaining negative database/integration/concurrency proof; do not promote on local evidence alone
 ```
 
 ## 1. One Visible Outcome
@@ -396,4 +396,4 @@ B1 technical evidence remains valid within its recorded scope but does not prove
 to this corrected business model. Acceptance remains pending; triage must explicitly decide
 correction sequencing before B1 closure. No new implementation or second checkpoint is created.
 
-B1-R1 is now [triaged](../02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md) with a [detailed remedial plan](2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md). Triage requires its correction before B1 business acceptance. This record retains the only restart checkpoint; no code or database changes occurred in planning.
+B1-R1 is now [triaged](../02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md) with a [detailed remedial plan](2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md). Triage requires its correction before B1 business acceptance. Candidate `cd72dd78` implements the plan and its guarded DevData migration now passes; this record retains the only restart checkpoint while human and remaining High-control proof stays open.

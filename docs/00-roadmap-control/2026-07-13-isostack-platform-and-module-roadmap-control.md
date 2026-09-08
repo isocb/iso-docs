@@ -87,11 +87,14 @@ On 2026-09-08 Chris authorised triage and detailed planning of the Catalogue/wor
 [B1-R1 triage](../modules/fund/02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md)
 requires correction and review/human proof before B1 business acceptance. The
 [bounded remedial plan](../modules/fund/03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md)
-is complete and inside B1 Now; no second Now or implementation authority is created. Next remains
-unselected and the 1R-G candidate is downstream of this acceptance dependency. Four explicit
+is implemented at application candidate `cd72dd78` inside B1 Now. Its guarded local Neon
+DevData 154-to-155 migration passes after the authorised FUND-only test-data recreation; no
+non-FUND application-table count changed. Next remains unselected and the 1R-G candidate is downstream of
+this acceptance dependency. Four explicit
 Event/Project workflows (Standard = unmodified Product) and standalone Catalogue availability
 are owner-confirmed. Product suitability is not reinstated as a compatibility gate. The plan
-removes the database Workflow Class reference gate and now awaits implementation acceptance.
+removes the database Workflow Class reference gate. Remaining negative database/concurrency
+proof, independent review and local human acceptance precede any promotion.
 
 While performing B1 local smoke, Chris requested next-slice planning. A
 [reserved 1R-G Public Store Presentation draft](../modules/fund/03-slice-planning/2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md)

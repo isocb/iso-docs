@@ -2,7 +2,7 @@
 
 Created: 2026-08-25
 
-Last updated: 2026-09-07
+Last updated: 2026-09-08
 
 Status: **Plain-English situation report; subordinate to the delivery lifecycle**
 
@@ -36,13 +36,15 @@ walkthrough remains pending, and this code has not been promoted to staging or l
 Store, payment, Order and operational slices remain in Phase 1 after B1; the template editor
 is Phase 2. The earlier Store human acceptance schedule is not silently marked complete.
 
-The local test application is now running at `http://localhost:3000`, using the existing
-Neon DevData database you identified. The B1 database update is applied and existing data
-was preserved. In FUND → Projects, create an **Individual Artwork Project** for the intended
-Client and organiser; there are currently none in this local dataset. Its detail page
-contains **Individual offer and artwork**. Finalisation must be tested through the organiser's
-own Client dashboard login. The [review/test record](../05-review-and-test/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-review-and-test.md)
-contains the smoke schedule. Local setup is ready; your human test result remains pending.
+The local test application is now running at `http://localhost:3000` on corrected candidate
+`cd72dd78`, using the Neon DevData database you identified. The Catalogue/workflow database
+change is applied. Its safety checks confirmed that only the small disposable FUND setup was
+removed and that every application table outside FUND retained the same row count. Recreate the FUND
+Event, Client, Project, Intake, Product and Catalogue test bed through the ordinary C1/public
+processes. Product creation should no longer ask for a workflow: the Event or standalone
+Project owns that choice. Finalisation must still be tested through the organiser's own Client
+dashboard login. The [B1-R1 review/test record](../05-review-and-test/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-review-and-test.md)
+contains the current smoke schedule. Your human result remains pending.
 
 While you test B1, the proposed next plan is
 [1R-G Public Store Presentation](../03-slice-planning/2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md):
@@ -56,10 +58,11 @@ Your test-bed work identified an important simplification, now captured in the
 [Catalogue/workflow CR-Fix](../01-cr-inputs/CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md). A Product is maintained once; the producer
 places it in Catalogues and controls where those Catalogues are available. The Event or
 standalone Project determines the workflow, and C2 selects the offered subset. The separate
-Product Suitability gate and mandatory Product Workflow Class are to be removed from the
+Product Suitability gate and mandatory Product Workflow Class have been removed from the
 intended model. Manufacturing changes should be handled through Catalogue choices without
-another Product edit. The completed bounded plan protects existing selections and finalised
-evidence while removing those duplicate gates. This is planned, not implemented; B1 acceptance remains pending. Your confirmation
+another Product edit. The implementation protects existing selections and finalised
+evidence while removing those duplicate gates. Automated checks and the local database
+upgrade pass; B1 acceptance remains pending. Your confirmation
 that FUND has no users/data requiring remedial conversion is recorded, alongside the need
 for a staging schema migration and permission to recreate development test data when needed.
 
@@ -72,11 +75,12 @@ default-only restriction so those available ranges are not silently suppressed. 
 the four workflows fixed Event/Project definitions in the application, removing the database
 Workflow Class records that could independently block Product setup.
 
-The proposed change behaviour is: select the initial range once; later additions are available
+The implemented change behaviour is: select the initial range once; later additions are available
 for C2 to choose; losing the last Catalogue source shows an unavailable selected Product;
 finalised offer/Order evidence never changes. Event workflow changes after Projects exist
-are proposed to be refused in this bounded correction. These transition details are ready
-for your review; implementation has not started, and the local test bed is untouched.
+are refused. The local FUND test bed was recreated empty under the recorded development-data
+authority so the migration could apply without guessing workflows for old Event rows. The
+application and database are ready for the human walkthrough; staging and live are unchanged.
 
 ## Your Phase 1 Decisions
 

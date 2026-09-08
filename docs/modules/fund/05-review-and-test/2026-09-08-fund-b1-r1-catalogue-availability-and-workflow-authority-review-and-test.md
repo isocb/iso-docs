@@ -2,7 +2,7 @@
 
 Date: 2026-09-08
 
-Status: **Source review and automated application checks PASS; connected High-control proof, independent review and human acceptance pending.**
+Status: **Source review, automated checks and guarded DevData migration PASS; remaining High-control proof, independent review and human acceptance pending.**
 
 Candidate: application `cd72dd780c6fec5b784a00c03a5ebb38133b71ce`, branch `work/fund-b1-r1-catalogue-workflow`, based on B1 `57e1454b530ae19dc586768fd996ff230d84421c`.
 
@@ -12,7 +12,9 @@ The source candidate implements the accepted separation: Catalogues control Prod
 
 The reviewed transaction order takes the tenant availability lock before Project/Store locks for default selection, explicit selection, finalisation, checkout and Intake provisioning. Source-changing Catalogue and Product status operations take the exclusive form. Current eligibility is re-evaluated at Store refresh, finalisation and checkout, so last-source withdrawal does not depend on a stale UI cache.
 
-No blocking source defect remains from this review. This is not yet the independent or connected database review required by High control.
+No blocking source defect remains from this review. The local upgrade path is now proved on
+DevData; this is not yet the independent, negative or concurrency review required by High
+control.
 
 ## Resolved Local Isolation Incident
 
@@ -41,13 +43,33 @@ localhost checkout's generated Prisma Client.
 | Focused FUND lint | PASS with warnings | No errors in implementation files; configured test-file parser exclusions remain |
 | Repository lint | Baseline FAIL | Existing errors outside FUND; does not supply a repository lint PASS |
 | Whitespace and credential scan | PASS | No staged environment/credential/private-key/token match |
-| Connected migration/integration/concurrency | PENDING | No database was changed in this implementation pass |
+| Connected DevData migration | PASS | Guarded 154-to-155 upgrade after authorised FUND-only test-data recreation; ledger and contracted schema read back |
+| Connected integration/concurrency | PENDING | Failure cases, advisory-lock races and existing database suites have not been exercised |
 
-## Required Connected Proof
+## DevData Migration Evidence
 
-On an authorised disposable or local test database, record the exact endpoint fingerprint and migration ledger before work. Prove a fresh migration and a 154-to-155 upgrade with zero FUND Events/immutable evidence, then separately prove that Event rows, `NOT_SURE` Projects and immutable offer/Order evidence stop the contraction without partial application. Verify deferred Event/Project mismatch rejection, cross-tenant refusal, advisory-lock ordering and retry/idempotency behavior. Confirm unrelated module counts before and after and remove test residue.
+The preflight recorded redacted target fingerprint `5a235762acc4`, proved the configured target
+was local DevData and differed from staging/production, and found migration count 154. Two
+Events, one Project and their supporting Client, Intake, delivery, Store and template-assignment
+test rows were present. Products, Catalogues, Project Products, individual offers and Order
+contexts were all empty. No table outside FUND referenced a FUND table.
 
-Do not apply this migration to the user's current DevData without its own preflight: the user has created FUND test Events, and the fail-closed migration is expected to refuse unclassified existing Events. Decide whether to recreate that disposable FUND data or explicitly classify it through a reviewed migration transition; do not infer workflow from legacy Product rows.
+Chris had already authorised recreation of development FUND data and confirmed there are no
+FUND users requiring conversion. A single guarded operation cleared only the FUND-schema rows,
+deployed `20260908120000_fund_b1_r1_catalogue_workflow_authority`, and read back its successful
+ledger row. DevData now has the four exact workflow values, both new required columns, none of
+the three retired Product workflow/suitability tables, and zero FUND rows ready for recreation.
+Exact counts for every non-FUND application table remained unchanged, with comparison digest
+`6635290daabf`. Local `/api/health` then returned HTTP 200 and `/fund/products` returned the
+expected authenticated-route redirect on candidate `cd72dd78`.
+
+## Remaining Connected Proof
+
+Prove the fresh migration separately, then prove that Event rows, `NOT_SURE` Projects and
+immutable offer/Order evidence stop the contraction without partial application. Verify
+deferred Event/Project mismatch rejection, cross-tenant refusal, advisory-lock ordering and
+retry/idempotency behaviour. Run the relevant connected service suites. These gates and the
+human schedule below remain open; the DevData upgrade alone does not complete High control.
 
 ## Human Smoke Schedule
 

@@ -2,9 +2,9 @@
 
 Date: 2026-09-08
 
-Status: **Application implementation committed; connected migration and acceptance pending.**
+Status: **Application implementation committed; local DevData migration PASS; broader connected proof and acceptance pending.**
 
-Control depth: **High**. Authority is the accepted B1-R1 [plan](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md), its CR-Fix and triage. Application baseline was `57e1454b530ae19dc586768fd996ff230d84421c`. The isolated candidate is `cd72dd780c6fec5b784a00c03a5ebb38133b71ce` on `work/fund-b1-r1-catalogue-workflow`.
+Control depth: **High**. Authority is the accepted B1-R1 [plan](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md), its CR-Fix and triage. Application baseline was `57e1454b530ae19dc586768fd996ff230d84421c`. The candidate is `cd72dd780c6fec5b784a00c03a5ebb38133b71ce` on `work/fund-b1-r1-catalogue-workflow`; after isolated implementation, that branch became the primary local test checkout.
 
 ## Implemented Result
 
@@ -20,7 +20,16 @@ Control depth: **High**. Authority is the accepted B1-R1 [plan](../03-slice-plan
 
 Migration `20260908120000_fund_b1_r1_catalogue_workflow_authority` replaces the persisted enum, adds Event workflow and the Project selection marker, contracts the obsolete Product authority schema and installs deferred Event/Project consistency guards. It stops before contraction if any Event lacks explicit classification, any Project is `NOT_SURE`, or finalised FUND offer/Order evidence exists. This matches the owner's stated no-operational-FUND-data condition without guessing old classifications.
 
-The migration was reviewed as source and the Prisma schema validates. It was **not applied** to local Neon DevData, staging or live. No reset, seed, deployment, environment edit or server restart occurred.
+The migration was reviewed as source and the Prisma schema validates. On 2026-09-08 a
+fail-closed preflight proved that `.env` matched the local Neon DevData identity and differed
+from staging and production. DevData was at 154 migrations and contained two Events, one
+Project and its small supporting FUND test setup, with zero Products, Catalogues, individual
+offers or Order contexts. Under Chris's recorded authority to recreate development FUND data,
+only FUND-schema rows were cleared and migration 155 was deployed. The four workflow enum
+values, required columns, removed legacy tables and successful ledger row were read back.
+Exact counts across every application table outside the FUND schema were unchanged; the
+Prisma migration ledger was excluded from that comparison because migration 155 adds its
+expected row. Staging and live were not changed.
 
 ## Verification Obtained
 
@@ -33,7 +42,12 @@ The migration was reviewed as source and the Prisma schema validates. It was **n
 - Focused FUND ESLint: no implementation errors; repository test files are outside the configured ESLint TypeScript project and existing warnings remain.
 - Whole-repository `npm run lint`: FAIL on pre-existing non-FUND lint errors. No B1-R1 error was identified in the focused run.
 - Staged filename and credential-pattern scans: no environment file, credential, private key or token match.
+- Guarded Neon DevData 154-to-155 migration: PASS at redacted target fingerprint
+  `5a235762acc4`; all FUND rows are empty for test-data recreation and unrelated-table count
+  digest `6635290daabf` was unchanged.
+- Local candidate runtime: PASS; `/api/health` returned HTTP 200 and the authenticated
+  `/fund/products` route returned the expected HTTP 307 redirect on localhost:3000.
 
 ## Deliberate Boundary And Open Gates
 
-No Product workflow multiselect, replacement suitability flags, per-Project Catalogue assignment, purchaser journey, provider integration, production/refund workflow or promotion was added. Connected fresh/upgrade migration proof, negative fail-closed data proof, advisory-lock concurrency proof, existing database integration scripts, independent review and the scheduled C1/C2 human smoke remain open. B1 and B1-R1 are not accepted or promoted by this confirmation.
+No Product workflow multiselect, replacement suitability flags, per-Project Catalogue assignment, purchaser journey, provider integration, production/refund workflow or promotion was added. Fresh-database migration proof, negative fail-closed data proof, advisory-lock concurrency proof, existing database integration scripts, independent review and the scheduled C1/C2 human smoke remain open. B1 and B1-R1 are not accepted or promoted by this confirmation.
