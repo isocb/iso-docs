@@ -67,7 +67,8 @@ consumers still use it. Split into independently deployable children only if imp
 review demonstrates an unresolved boundary that needs separate control.
 
 Chris confirmed four explicit workflows, one per Event/Project, with Standard selling an
-unmodified Product. He confirmed Catalogues are made available to standalone Projects.
+unmodified Product. He confirmed Catalogues are made available to Events and separately to
+standalone Projects.
 The plan uses existing Catalogue availability controls without a new per-Project assignment
 gate, and removes default-only suppression of otherwise standalone-available Catalogues.
 Other draft transition rules remain clearly labelled for implementation review.
