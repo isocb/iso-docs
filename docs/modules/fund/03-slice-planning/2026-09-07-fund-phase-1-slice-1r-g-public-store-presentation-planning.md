@@ -172,3 +172,6 @@ raw records. Exact implementation rollback and environment gates belong in techn
 Delivery-address and purchaser-message choices belong to later checkout/operations planning
 and do not block this read-only draft. Stop at a reviewable plan until scope and selection
 are resolved. B1 remains Now and its local test continues unchanged.
+
+
+Current prerequisite: [B1-R1 Catalogue/workflow correction](2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md) is triaged for planning within B1 and must be corrected/reviewed before B1 business closure. Rebase this public-presentation plan on that authority/source contract; do not preserve Product-level workflow/suitability gates merely because they appear in the original source inventory above. No 1R-G implementation selected.

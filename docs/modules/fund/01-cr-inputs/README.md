@@ -34,4 +34,4 @@ Plain-English addition and delivery guide:
 
 Current B1 business-model finding:
 
-- [Catalogue-led Product availability and Event/Project workflow authority](CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md) — captured; awaiting triage. Supersedes the earlier Product suitability flags proposal; no implementation authorised.
+- [Catalogue-led Product availability and Event/Project workflow authority](CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md) — triaged as B1-R1 with detailed planning; implementation acceptance pending. Supersedes the earlier Product suitability flags proposal.

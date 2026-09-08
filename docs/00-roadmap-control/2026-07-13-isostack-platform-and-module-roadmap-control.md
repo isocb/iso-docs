@@ -83,6 +83,15 @@ Current serial portfolio decision:
 | **NOW** | FUND `1R-F-B1` Individual Offer And Artwork Journey technical review and implementation | Implement the first bounded C1 assignment → C2 preview/finalisation → matching development document download and Store preview outcome against the current code. The enduring B framework constrains the plan; its ten-model appendix remains unaccepted. |
 | **NEXT** | Not selected pending B1 local human acceptance | B1 implementation is authorised. Complete its local human gate before promotion; no later child or real service deployment is inferred. |
 
+On 2026-09-08 Chris authorised triage and detailed planning of the Catalogue/workflow CR-Fix.
+[B1-R1 triage](../modules/fund/02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md)
+requires correction and review/human proof before B1 business acceptance. The
+[bounded remedial plan](../modules/fund/03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md)
+is inside B1 Now; no second Now or implementation authority is created. Next remains
+unselected and the 1R-G candidate is downstream of this acceptance dependency. Four explicit
+Event/Project workflows (Standard = unmodified Product) and standalone Catalogue availability
+are owner-confirmed. Product suitability is not reinstated as a compatibility gate.
+
 While performing B1 local smoke, Chris requested next-slice planning. A
 [reserved 1R-G Public Store Presentation draft](../modules/fund/03-slice-planning/2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md)
 is prepared; exact selection is awaiting his response because no successor was previously

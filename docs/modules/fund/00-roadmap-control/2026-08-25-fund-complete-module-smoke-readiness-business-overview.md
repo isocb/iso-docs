@@ -63,6 +63,19 @@ planning. This is captured, not implemented; B1 acceptance remains pending. Your
 that FUND has no users/data requiring remedial conversion is recorded, alongside the need
 for a staging schema migration and permission to recreate development test data when needed.
 
+The Catalogue/workflow correction has now been [triaged](../02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md) and
+[planned in detail](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md) as B1-R1. It must be corrected and tested
+before B1 business acceptance. There will be four workflows, one per Event or standalone
+Project; Standard means selling an unmodified Product. C1 makes Catalogues available to
+standalone Projects without another per-Project assignment gate. The plan removes the old
+default-only restriction so those available ranges are not silently suppressed.
+
+The proposed change behaviour is: select the initial range once; later additions are available
+for C2 to choose; losing the last Catalogue source shows an unavailable selected Product;
+finalised offer/Order evidence never changes. Event workflow changes after Projects exist
+are proposed to be refused in this bounded correction. These transition details are ready
+for your review; implementation has not started, and the local test bed is untouched.
+
 ## Your Phase 1 Decisions
 
 | Question | Confirmed direction |

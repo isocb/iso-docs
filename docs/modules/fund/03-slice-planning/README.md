@@ -117,3 +117,5 @@ Accepted parent:
 ## Next-Slice Planning Candidate
 
 - [1R-G — Public Store Presentation](2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md) — source-grounded planning draft; exact Next selection and release/demo contract pending. B1 local human testing remains Now.
+
+- [B1-R1 detailed remediation plan](2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md) — inside B1 acceptance correction; implementation acceptance pending.

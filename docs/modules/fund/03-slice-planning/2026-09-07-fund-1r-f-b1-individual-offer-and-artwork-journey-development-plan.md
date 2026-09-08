@@ -25,8 +25,8 @@ selects this planning outcome as Now; Next is unselected pending its review.
 Current state: B1 implemented and automated checks PASS; user-authorised local DevData preparation complete; localhost:3000 running with B1 emulation; Chris reports testing in progress, human acceptance and independent review still pending
 Last proven commit: application B1 57e1454b530ae19dc586768fd996ff230d84421c; baseline 14077382 and renderer proof 0c7e4848 retained in ancestry; documentation pre-implementation baseline 5a2d716
 Current environment: app work branch 57e1454b; local Neon DevData fingerprint 0970d1fe7a73 migrated to 154 with data preservation verified; local emulation enabled in ignored .env.local; localhost:3000 running; application dev/staging/main remain 14077382; staging/live databases unchanged
-Next human decision/test: triage the captured Catalogue/workflow authority CR-Fix and resolve its B1 acceptance dependency; local smoke findings and independent review remain pending; no staging/live promotion
-Safe resumption point: use localhost:3000 or restart npm run dev on B1 branch; follow 05 local DevData smoke schedule, retain confirmed test evidence, complete independent review before promotion; no reset/seed or live-service setup
+Next human decision/test: review B1-R1 detailed plan and proposed delta/edit rules before implementation acceptance; four workflows and standalone Catalogue availability confirmed; B1 acceptance requires correction plus review/human proof
+Safe resumption point: read B1-R1 triage/plan and resume at implementation acceptance, preserving local test work; no code/reset/migration from planning; after correction record independent review/human proof before B1 closure
 ```
 
 ## 1. One Visible Outcome
@@ -395,3 +395,5 @@ remove Product Workflow Class authority and the separate Product Suitability vet
 B1 technical evidence remains valid within its recorded scope but does not prove conformance
 to this corrected business model. Acceptance remains pending; triage must explicitly decide
 correction sequencing before B1 closure. No new implementation or second checkpoint is created.
+
+B1-R1 is now [triaged](../02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md) with a [detailed remedial plan](2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md). Triage requires its correction before B1 business acceptance. This record retains the only restart checkpoint; no code or database changes occurred in planning.

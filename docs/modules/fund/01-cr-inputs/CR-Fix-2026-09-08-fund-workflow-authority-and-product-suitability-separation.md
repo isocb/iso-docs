@@ -2,10 +2,12 @@
 
 Date: 2026-09-08
 
-Status: **Captured; awaiting triage and roadmap selection. Business requirement confirmed by Chris; no implementation authorised by capture.**
+Status: **Triaged for B1-R1 remedial planning; detailed plan prepared; implementation acceptance pending.**
+
+[Triage](../02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md) and [detailed plan](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md) now own disposition and proposed implementation boundary.
 
 Owning lane: FUND. Source: B1 local smoke and owner clarification.
-Proposed control depth: **High**, to be confirmed in triage — workflow authority, tenant
+Control depth: **High**, confirmed in triage — workflow authority, tenant
 scope, readiness, schema migration and immutable offer/Order evidence are affected.
 
 ## 1. Confirmed Business Requirement — Refined After Catalogue Discussion
@@ -212,3 +214,9 @@ is needed and its scope is explicit.
 The confirmed definition here supersedes conflicting Product-owned-workflow and separate
 Product-suitability-veto assumptions in earlier inputs for subsequent triage. Historical records and their original
 evidence remain preserved; their existence is not acceptance of the now-identified mismatch.
+
+
+Subsequent planning decisions: Chris confirms four explicit workflows, one per Event or
+standalone Project; Standard means selling an unmodified Product. Catalogues are made
+available to standalone Projects. Triage requires B1-R1 correction and its acceptance
+evidence before B1 closure; no partial acceptance exception or implementation is inferred.

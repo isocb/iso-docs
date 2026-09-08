@@ -177,3 +177,14 @@ This is an unresolved business acceptance issue; original automated PASS results
 without asserting the new requirement is implemented. CR disposition: captured, awaiting triage;
 no corrective code/migration has run. Chris confirms no FUND users or existing data requiring
 remedial conversion; staging schema migration is still required when implementation is selected.
+
+
+### B1-R1 Triage Disposition — 2026-09-08
+
+[Triage](../02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md) and [detailed planning](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md)
+are complete as documentation, with implementation acceptance pending. Correction is required
+before B1 business closure. Existing automated results remain historical evidence for their
+exact candidate; no corrected-code PASS is claimed. The owner confirmed four workflows,
+Standard as unmodified Product, and Catalogue availability for standalone Projects. Proposed
+selection/edit transition rules remain reviewable in the plan. No new 04/05 correction
+completion records are created before implementation and testing occur.

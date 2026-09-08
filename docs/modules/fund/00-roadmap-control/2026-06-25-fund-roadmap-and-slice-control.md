@@ -77,13 +77,15 @@ FUND      -> 1R-F-A COMPLETE AND CLOSED AT PASS; prior Stage C FAIL retained as 
 ```
 
 [CR-Fix — Catalogue-Led Product Availability and Event/Project Workflow Authority](../01-cr-inputs/CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md)
-— **captured; awaiting triage/selection**, proposed High depth. Confirmed requirement:
+— **triaged; B1-R1 detailed planning prepared**, High depth.
+[Triage](../02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md); [implementation plan](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md). Implementation acceptance pending. Confirmed requirement:
 one Product reused through Catalogues; retire Product Workflow Class authority and the
 separate Product Suitability veto; C2 selects the available subset. Manufacturing changes
 are managed through Catalogue membership/availability without a second Product edit.
 FUND has no users or data requiring remedial conversion per Chris; dev data may be recreated,
-while staging still requires a migration. B1 acceptance remains unresolved against this
-finding; no Now/Next change or implementation follows from capture.
+while staging still requires a migration. Triage requires B1-R1 correction, review and human
+acceptance before B1 closure. B1 Now includes this authorised remedial planning; 1R-G remains
+downstream and unselected. Four workflows and standalone Catalogue availability are confirmed.
 
 Local smoke blocker [CR-Fix — Workflow Class reference data](../01-cr-inputs/CR-Fix-2026-09-08-fund-local-workflow-class-reference-data.md)
 has its bounded DevData-only repair/readback PASS within B1 preparation; human Product creation retry remains pending. No new portfolio
