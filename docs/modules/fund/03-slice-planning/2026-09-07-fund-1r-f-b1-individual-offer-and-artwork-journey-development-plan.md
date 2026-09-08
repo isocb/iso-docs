@@ -22,11 +22,11 @@ selects this planning outcome as Now; Next is unselected pending its review.
 ## Restart Checkpoint
 
 ```text
-Current state: B1 implemented and automated checks PASS; user-authorised local DevData preparation complete; localhost:3000 running with B1 emulation; Chris reports testing in progress; B1-R1 remedial planning is complete; human acceptance, B1-R1 implementation and independent review still pending
-Last proven commit: application B1 57e1454b530ae19dc586768fd996ff230d84421c; baseline 14077382 and renderer proof 0c7e4848 retained in ancestry; documentation pre-implementation baseline 5a2d716
-Current environment: app work branch 57e1454b; local Neon DevData fingerprint 0970d1fe7a73 migrated to 154 with data preservation verified; local emulation enabled in ignored .env.local; localhost:3000 running; application dev/staging/main remain 14077382; staging/live databases unchanged
-Next human decision/test: accept or amend the completed B1-R1 schema, Catalogue-delta and workflow-edit contract before implementation; four workflows and standalone Catalogue availability confirmed; B1 acceptance requires correction plus review/human proof
-Safe resumption point: read B1-R1 triage/completed plan and resume only after implementation acceptance, preserving local test work; no code/reset/migration from planning; after correction record independent review/human proof before B1 closure
+Current state: B1-R1 implemented on isolated application candidate cd72dd780c6fec5b784a00c03a5ebb38133b71ce; source checks and build PASS; migration, database/concurrency proof, independent review and human acceptance remain open
+Last proven commit: application B1-R1 cd72dd780c6fec5b784a00c03a5ebb38133b71ce based on B1 57e1454b530ae19dc586768fd996ff230d84421c; baseline 14077382 and renderer proof 0c7e4848 retained in ancestry; documentation planning baseline 0f03638
+Current environment: isolated app branch work/fund-b1-r1-catalogue-workflow at cd72dd78; user's original B1 worktree and localhost process left untouched; local Neon DevData, staging and live databases unchanged; no migration applied and dev/staging/main not promoted
+Next human decision/test: after controlled local migration proof, run the B1-R1 C1/C2 Catalogue and workflow smoke schedule; independent review and staging gate must follow before B1 acceptance or promotion
+Safe resumption point: read B1-R1 04/05 records, preflight an authorised disposable/local database against the fail-closed migration, then run database integration/concurrency proof; stop on any Event, NOT_SURE Project or immutable FUND evidence until reconciled
 ```
 
 ## 1. One Visible Outcome

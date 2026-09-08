@@ -77,8 +77,8 @@ FUND      -> 1R-F-A COMPLETE AND CLOSED AT PASS; prior Stage C FAIL retained as 
 ```
 
 [CR-Fix — Catalogue-Led Product Availability and Event/Project Workflow Authority](../01-cr-inputs/CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md)
-— **triaged; B1-R1 detailed planning complete**, High depth.
-[Triage](../02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md); [implementation plan](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md). Implementation acceptance pending. Confirmed requirement:
+— **implemented on isolated candidate; connected proof and acceptance pending**, High depth.
+[Triage](../02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md); [implementation plan](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md); [implementation confirmation](../04-implementation-confirmations/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-implementation-confirmation.md); [review/test record](../05-review-and-test/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-review-and-test.md). Confirmed requirement:
 one Product reused through Catalogues; retire Product Workflow Class authority and the
 separate Product Suitability veto; C2 selects the available subset. Manufacturing changes
 are managed through Catalogue membership/availability without a second Product edit.
@@ -88,7 +88,7 @@ acceptance before B1 closure. B1 Now includes this authorised remedial planning;
 downstream and unselected. Four workflows and standalone Catalogue availability are confirmed.
 The completed plan removes `NOT_SURE` from persisted Event/Project workflow, replaces the
 database Workflow Class rows with a fixed code registry, and removes Product and Project-Product
-workflow gates. Its selection-transition and locking contract awaits implementation acceptance.
+workflow gates. Candidate `cd72dd78` implements the correction; no connected migration or promotion has occurred. Database/concurrency proof, independent review and human acceptance remain required.
 
 Local smoke blocker [CR-Fix — Workflow Class reference data](../01-cr-inputs/CR-Fix-2026-09-08-fund-local-workflow-class-reference-data.md)
 has its bounded DevData-only repair/readback PASS within B1 preparation; human Product creation retry remains pending. No new portfolio
@@ -819,10 +819,10 @@ payment model.
 
 | Item | Status | Control |
 | --- | --- | --- |
-| Application repository | Clean; local and remote `main`, `dev` and `staging` exact at `14077382` | B1 work branch is published at `57e1454b`; human acceptance precedes promotion |
+| Application repository | B1-R1 candidate `cd72dd78` on isolated `work/fund-b1-r1-catalogue-workflow`; original B1 worktree retained at `57e1454b`; dev/staging/main unchanged | Publish the candidate branch; connected migration and human acceptance precede promotion |
 | Documentation repository | Consolidated and published through `20e1159`; this B/B1 planning update follows on main | Keep documentation committed and aligned online; recheck exact refs on resumption |
 | FUND `1R-F-A` | Complete and closed at PASS on exact `0c7e4848`; zero external residue | Do not rerun or reinterpret the former contained Stage C failure as current state |
-| FUND `1R-F-B` / `1R-F-B1` | Enduring framework / implementation candidate | Complete local human acceptance before promotion |
+| FUND `1R-F-B` / `1R-F-B1` | Enduring framework / B1-R1 source candidate with automated PASS | Complete database/concurrency proof, independent review and local human acceptance before promotion |
 | Ten-record schema proposal | Unaccepted technical option | Retain in the enduring framework appendix; do not treat it as selected direction |
 | E-B/E-C/E-D consolidated human acceptance | Still relevant evidence gate | Complete only through its governed schedule when separately selected; do not infer a new implementation slice |
 | Public purchaser and operational journey | Incomplete | Later work must cover Store, checkout, Order operations, artwork matching, production, dispatch and commission in bounded outcomes |

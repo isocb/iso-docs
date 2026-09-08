@@ -2,7 +2,7 @@
 
 Date: 2026-09-08
 
-Status: **Detailed planning complete following triage; implementation acceptance pending.**
+Status: **Implemented on isolated candidate; connected migration, independent review and human acceptance pending.**
 Control depth: **High**. Work type: production-model correction, not an assumption test.
 
 Authority: [CR-Fix](../01-cr-inputs/CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md)
