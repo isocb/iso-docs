@@ -4,7 +4,7 @@ Date: 2026-09-08
 
 Status: **Application implementation committed; local DevData migration PASS; broader connected proof and acceptance pending.**
 
-Control depth: **High**. Authority is the accepted B1-R1 [plan](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md), its CR-Fix and triage. Application baseline was `57e1454b530ae19dc586768fd996ff230d84421c`. The corrected candidate is `e00db199` on `work/fund-b1-r1-catalogue-workflow`, comprising implementation `cd72dd780c6fec5b784a00c03a5ebb38133b71ce` and the bounded Catalogue-checkbox correction.
+Control depth: **High**. Authority is the accepted B1-R1 [plan](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md), its CR-Fix and triage. Application baseline was `57e1454b530ae19dc586768fd996ff230d84421c`. The corrected candidate is `8bda74f4` on `work/fund-b1-r1-catalogue-workflow`, comprising implementation `cd72dd780c6fec5b784a00c03a5ebb38133b71ce` and bounded Catalogue-checkbox and Intake required-selection corrections.
 
 ## Implemented Result
 
@@ -51,6 +51,11 @@ expected row. Staging and live were not changed.
   read `event.currentTarget.checked` after the React event target became unavailable.
   `e00db199` captures the boolean before entering the updater. Full TypeScript, focused
   component ESLint and commit-time critical-file checks pass; human retry is pending.
+- Intake form creation at `e00db199`: FAIL because Mantine allowed the already selected
+  required scope to be deselected to `null`, which the server correctly refused. `8bda74f4`
+  makes required scope, provisioning mode and fixed Project type selections non-deselectable
+  in create/edit forms and adds client validation. Full TypeScript, focused ESLint and
+  commit-time checks pass; human retry is pending.
 
 ## Deliberate Boundary And Open Gates
 

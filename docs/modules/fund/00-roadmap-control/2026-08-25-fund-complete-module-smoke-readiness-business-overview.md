@@ -37,7 +37,7 @@ Store, payment, Order and operational slices remain in Phase 1 after B1; the tem
 is Phase 2. The earlier Store human acceptance schedule is not silently marked complete.
 
 The local test application is now running at `http://localhost:3000` on corrected candidate
-`e00db199`, using the Neon DevData database you identified. The Catalogue/workflow database
+`8bda74f4`, using the Neon DevData database you identified. The Catalogue/workflow database
 change is applied. Its safety checks confirmed that only the small disposable FUND setup was
 removed and that every application table outside FUND retained the same row count. Recreate the FUND
 Event, Client, Project, Intake, Product and Catalogue test bed through the ordinary C1/public
@@ -50,6 +50,12 @@ The first attempt to tick an Event Catalogue exposed a browser error in the chec
 That handler now copies the checked value before updating screen state, and its code checks
 pass at `e00db199`. Retry the selection and Save action before continuing the rest of the
 walkthrough; this correction is not yet counted as a human pass.
+
+The following Intake-form creation attempt exposed a related required-selection issue: clicking
+the already selected Event scope could clear it, so the server received no Event/standalone
+choice and correctly refused creation. Candidate `8bda74f4` keeps all required Intake policy
+choices selected and validates them before submission. Retry creation before continuing the C2
+path; this correction is also awaiting human proof.
 
 While you test B1, the proposed next plan is
 [1R-G Public Store Presentation](../03-slice-planning/2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md):

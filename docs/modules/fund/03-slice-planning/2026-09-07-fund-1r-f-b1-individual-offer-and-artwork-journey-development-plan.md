@@ -22,10 +22,10 @@ selects this planning outcome as Now; Next is unselected pending its review.
 ## Restart Checkpoint
 
 ```text
-Current state: B1-R1 application source/automated checks and guarded Neon DevData 154-to-155 migration PASS; first human Catalogue checkbox defect corrected; retry, database/concurrency proof, independent review and acceptance remain open
-Last proven commit: application B1-R1 e00db199, comprising implementation cd72dd780c6fec5b784a00c03a5ebb38133b71ce and bounded checkbox correction, based on B1 57e1454b530ae19dc586768fd996ff230d84421c; DevData migration target fingerprint 5a235762acc4
-Current environment: primary local checkout on work/fund-b1-r1-catalogue-workflow at e00db199; migration 155 applied only to local Neon DevData; owner's localhost process is on port 3001 and Codex port 3000 process is stopped; app dev/staging/main and staging/live databases unchanged
-Next human decision/test: retry Catalogue selection and Save, then continue the B1-R1 C1/C2 Catalogue and workflow smoke schedule; independent review and staging gate must follow before B1 acceptance or promotion
+Current state: B1-R1 application source/automated checks and guarded Neon DevData 154-to-155 migration PASS; Catalogue checkbox and Intake required-selection human defects corrected; retry, database/concurrency proof, independent review and acceptance remain open
+Last proven commit: application B1-R1 8bda74f4, comprising implementation cd72dd780c6fec5b784a00c03a5ebb38133b71ce and bounded interaction corrections e00db199/8bda74f4, based on B1 57e1454b530ae19dc586768fd996ff230d84421c; DevData migration target fingerprint 5a235762acc4
+Current environment: primary local checkout on work/fund-b1-r1-catalogue-workflow at 8bda74f4; migration 155 applied only to local Neon DevData; owner's localhost process is on port 3001 and Codex port 3000 process is stopped; app dev/staging/main and staging/live databases unchanged
+Next human decision/test: retry Intake form creation, then Catalogue selection and Save and the remaining B1-R1 C1/C2 smoke schedule; independent review and staging gate must follow before B1 acceptance or promotion
 Safe resumption point: read B1-R1 04/05 records, retain the DevData migration evidence, run the scheduled human smoke and remaining negative database/integration/concurrency proof; do not promote on local evidence alone
 ```
 
@@ -396,4 +396,4 @@ B1 technical evidence remains valid within its recorded scope but does not prove
 to this corrected business model. Acceptance remains pending; triage must explicitly decide
 correction sequencing before B1 closure. No new implementation or second checkpoint is created.
 
-B1-R1 is now [triaged](../02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md) with a [detailed remedial plan](2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md). Triage requires its correction before B1 business acceptance. Corrected candidate `e00db199` implements the plan and its guarded DevData migration now passes; this record retains the only restart checkpoint while human and remaining High-control proof stays open.
+B1-R1 is now [triaged](../02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md) with a [detailed remedial plan](2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md). Triage requires its correction before B1 business acceptance. Corrected candidate `8bda74f4` implements the plan and its guarded DevData migration now passes; this record retains the only restart checkpoint while human and remaining High-control proof stays open.

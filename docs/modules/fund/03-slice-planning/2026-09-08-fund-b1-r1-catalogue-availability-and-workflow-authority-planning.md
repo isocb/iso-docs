@@ -2,7 +2,7 @@
 
 Date: 2026-09-08
 
-Status: **Implemented; guarded DevData migration PASS; local human defect corrected and retest pending.**
+Status: **Implemented; guarded DevData migration PASS; two local human defects corrected and retest pending.**
 Control depth: **High**. Work type: production-model correction, not an assumption test.
 
 Authority: [CR-Fix](../01-cr-inputs/CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md)

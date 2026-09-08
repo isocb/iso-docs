@@ -2,9 +2,9 @@
 
 Date: 2026-09-08
 
-Status: **Source review, automated checks and guarded DevData migration PASS; first human defect corrected at `e00db199`, retest and remaining gates pending.**
+Status: **Source review, automated checks and guarded DevData migration PASS; two human defects corrected at `8bda74f4`, retest and remaining gates pending.**
 
-Candidate: application `e00db199` on branch `work/fund-b1-r1-catalogue-workflow`; parent implementation `cd72dd780c6fec5b784a00c03a5ebb38133b71ce`, based on B1 `57e1454b530ae19dc586768fd996ff230d84421c`.
+Candidate: application `8bda74f4` on branch `work/fund-b1-r1-catalogue-workflow`; parent implementation `cd72dd780c6fec5b784a00c03a5ebb38133b71ce`, based on B1 `57e1454b530ae19dc586768fd996ff230d84421c`.
 
 ## Review Result
 
@@ -63,7 +63,7 @@ Exact counts for every non-FUND application table remained unchanged, with compa
 `6635290daabf`. Local `/api/health` then returned HTTP 200 and `/fund/products` returned the
 expected authenticated-route redirect on candidate `cd72dd78`.
 
-## Human Finding And Correction
+## Human Findings And Corrections
 
 The first Catalogue-assignment attempt on parent candidate `cd72dd78` failed in
 `AvailabilityManager` with `null is not an object` while evaluating
@@ -76,6 +76,15 @@ and the commit-time critical-file verification pass. The production build eviden
 the parent candidate's full build; this one-handler correction has not been rebuilt while the
 owner's localhost process is active. Human retry of Catalogue selection and Save remains
 pending, so the schedule is not accepted.
+
+The next Intake-form creation attempt at `e00db199` reached server validation with
+`alignedScope: null`. Mantine permits selecting the current option again to deselect it by
+default, even when the field has a valid initial value and no clear button. The server
+correctly refused null rather than inferring Event or standalone authority. Corrected commit
+`8bda74f4` prevents deselection of required scope, provisioning mode and fixed Project type
+fields in both create and edit forms, marks them required and supplies client-side validation.
+Full TypeScript, focused ESLint for both components and commit-time checks pass. Human creation
+retry remains pending.
 
 ## Remaining Connected Proof
 
