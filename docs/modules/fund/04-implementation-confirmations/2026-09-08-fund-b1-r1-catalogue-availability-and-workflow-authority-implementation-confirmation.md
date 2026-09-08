@@ -4,7 +4,7 @@ Date: 2026-09-08
 
 Status: **Application implementation committed; local DevData migration PASS; broader connected proof and acceptance pending.**
 
-Control depth: **High**. Authority is the accepted B1-R1 [plan](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md), its CR-Fix and triage. Application baseline was `57e1454b530ae19dc586768fd996ff230d84421c`. The corrected candidate is `8bda74f4` on `work/fund-b1-r1-catalogue-workflow`, comprising implementation `cd72dd780c6fec5b784a00c03a5ebb38133b71ce` and bounded Catalogue-checkbox and Intake required-selection corrections.
+Control depth: **High**. Authority is the accepted B1-R1 [plan](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md), its CR-Fix and triage. Application baseline was `57e1454b530ae19dc586768fd996ff230d84421c`. The corrected candidate is `2cfc89fa` on `work/fund-b1-r1-catalogue-workflow`, comprising implementation `cd72dd780c6fec5b784a00c03a5ebb38133b71ce` and bounded corrections `e00db199`, `8bda74f4` and `2cfc89fa` found during local human smoke.
 
 ## Implemented Result
 
@@ -15,6 +15,11 @@ Control depth: **High**. Authority is the accepted B1-R1 [plan](../03-slice-plan
 - Product selection defaults the first non-empty range once. Explicit selection/exclusion sets the same marker. Later Catalogue additions remain available but unselected. Last-source loss preserves the selected row, marks it unavailable and blocks Store readiness, offer finalisation and checkout through current eligibility checks.
 - Tenant-scoped transaction advisory locks are shared by authoritative selection/finalisation/checkout reads and exclusive for Catalogue assignment/scope/membership/status and Product status changes.
 - New Order-line workflow evidence comes from the parent Project workflow registry. Existing immutable Order-line fields and finalised offer evidence remain unchanged.
+- C2 Project creation now treats Event selection as workflow authority: the selected Event's
+  workflow is shown read-only, while a standalone Project retains the required four-choice
+  workflow field. Creation redirects to Project detail, whose default dedicated Products tab
+  exposes the Catalogue-derived eligible range and lets an authorised C2 user maintain the
+  Project subset. Store controls no longer obscure that selection task.
 
 ## Schema And Migration
 
@@ -34,7 +39,7 @@ expected row. Staging and live were not changed.
 ## Verification Obtained
 
 - `npm run type-check`: PASS.
-- `npm run build:skip-types`: PASS; 131 static pages generated. Expected missing local Upstash warnings were emitted without build failure.
+- `npm run build`: PASS; full type check, optimized production build and all 131 static pages generated. Expected missing local Upstash warnings were emitted without build failure.
 - `npx vitest run src/modules/fund`: PASS, 7 files and 26 tests.
 - `npx prisma validate` with a non-connecting placeholder URL: PASS.
 - `npx tsx scripts/verify-critical-files.ts`: PASS, including its TypeScript check.
@@ -56,6 +61,13 @@ expected row. Staging and live were not changed.
   makes required scope, provisioning mode and fixed Project type selections non-deselectable
   in create/edit forms and adds client validation. Full TypeScript, focused ESLint and
   commit-time checks pass; human retry is pending.
+- C2 Project testing at `8bda74f4`: BLOCKED because Project creation presented Event and
+  workflow as independent inputs, while Product selection had no discoverable Project-detail
+  surface. `2cfc89fa` derives and locks the workflow when an Event is selected, keeps the
+  four-choice selector for standalone Projects, adds the dedicated C2 Products tab and
+  redirects successful creation there. Full build, TypeScript, focused ESLint, all 26 FUND
+  tests, whitespace and credential-pattern checks pass. Local health is HTTP 200 and the C2
+  Projects route reaches its expected authentication redirect; human retry is pending.
 
 ## Deliberate Boundary And Open Gates
 

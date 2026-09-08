@@ -22,10 +22,10 @@ selects this planning outcome as Now; Next is unselected pending its review.
 ## Restart Checkpoint
 
 ```text
-Current state: B1-R1 application source/automated checks and guarded Neon DevData 154-to-155 migration PASS; Catalogue checkbox and Intake required-selection human defects corrected; retry, database/concurrency proof, independent review and acceptance remain open
-Last proven commit: application B1-R1 8bda74f4, comprising implementation cd72dd780c6fec5b784a00c03a5ebb38133b71ce and bounded interaction corrections e00db199/8bda74f4, based on B1 57e1454b530ae19dc586768fd996ff230d84421c; DevData migration target fingerprint 5a235762acc4
-Current environment: primary local checkout on work/fund-b1-r1-catalogue-workflow at 8bda74f4; migration 155 applied only to local Neon DevData; owner's localhost process is on port 3001 and Codex port 3000 process is stopped; app dev/staging/main and staging/live databases unchanged
-Next human decision/test: retry Intake form creation, then Catalogue selection and Save and the remaining B1-R1 C1/C2 smoke schedule; independent review and staging gate must follow before B1 acceptance or promotion
+Current state: B1-R1 application source/automated checks and guarded Neon DevData 154-to-155 migration PASS; Catalogue checkbox, Intake required-selection, and C2 Project workflow/Product-selection human defects corrected; retry, database/concurrency proof, independent review and acceptance remain open
+Last proven commit: application B1-R1 2cfc89fa, comprising implementation cd72dd780c6fec5b784a00c03a5ebb38133b71ce and bounded interaction corrections e00db199, 8bda74f4 and 2cfc89fa, based on B1 57e1454b530ae19dc586768fd996ff230d84421c; DevData migration target fingerprint 5a235762acc4
+Current environment: primary local checkout on work/fund-b1-r1-catalogue-workflow at 2cfc89fa; migration 155 applied only to local Neon DevData; candidate is running on localhost:3000; app dev/staging/main and staging/live databases unchanged
+Next human decision/test: retry Event-linked C2 Project creation and confirm inherited read-only workflow, then use the default Products tab to select the Catalogue-derived subset; repeat standalone creation with one of four workflows and continue the B1-R1 smoke schedule
 Safe resumption point: read B1-R1 04/05 records, retain the DevData migration evidence, run the scheduled human smoke and remaining negative database/integration/concurrency proof; do not promote on local evidence alone
 ```
 

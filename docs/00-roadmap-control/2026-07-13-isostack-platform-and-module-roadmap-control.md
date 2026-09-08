@@ -87,7 +87,9 @@ On 2026-09-08 Chris authorised triage and detailed planning of the Catalogue/wor
 [B1-R1 triage](../modules/fund/02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md)
 requires correction and review/human proof before B1 business acceptance. The
 [bounded remedial plan](../modules/fund/03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md)
-is implemented at corrected application candidate `8bda74f4` inside B1 Now. Its guarded local Neon
+is implemented at corrected application candidate `2cfc89fa` inside B1 Now. It now exposes
+Event-owned workflow and standalone workflow selection correctly in C2 Project creation and
+a dedicated C2 Project Products subset surface. Its guarded local Neon
 DevData 154-to-155 migration passes after the authorised FUND-only test-data recreation; no
 non-FUND application-table count changed. Next remains unselected and the 1R-G candidate is downstream of
 this acceptance dependency. Four explicit

@@ -2,9 +2,9 @@
 
 Date: 2026-09-08
 
-Status: **Source review, automated checks and guarded DevData migration PASS; two human defects corrected at `8bda74f4`, retest and remaining gates pending.**
+Status: **Source review, automated checks and guarded DevData migration PASS; three human defects corrected at `2cfc89fa`, retest and remaining gates pending.**
 
-Candidate: application `8bda74f4` on branch `work/fund-b1-r1-catalogue-workflow`; parent implementation `cd72dd780c6fec5b784a00c03a5ebb38133b71ce`, based on B1 `57e1454b530ae19dc586768fd996ff230d84421c`.
+Candidate: application `2cfc89fa` on branch `work/fund-b1-r1-catalogue-workflow`; parent implementation `cd72dd780c6fec5b784a00c03a5ebb38133b71ce`, based on B1 `57e1454b530ae19dc586768fd996ff230d84421c`.
 
 ## Review Result
 
@@ -36,15 +36,16 @@ localhost checkout's generated Prisma Client.
 | Check | Result | Evidence limit |
 | --- | --- | --- |
 | TypeScript | PASS | Full `npm run type-check` |
-| Production application build | PASS | `npm run build:skip-types`; all 131 static pages generated |
+| Production application build | PASS | Exact `2cfc89fa`: `npm run build`; full type check and all 131 static pages generated |
 | FUND unit tests | PASS | 7 files, 26 tests; workflow exhaustiveness and first-initialisation selection included |
 | Prisma schema validation | PASS | Non-connecting placeholder URL; no database mutation |
 | Critical-file verification | PASS | Repository verifier and nested type check |
-| Focused FUND lint | PASS with warnings | No errors in implementation files; configured test-file parser exclusions remain |
+| Focused correction lint | PASS | Five changed C2 service/component files, zero warnings |
 | Repository lint | Baseline FAIL | Existing errors outside FUND; does not supply a repository lint PASS |
 | Whitespace and credential scan | PASS | No staged environment/credential/private-key/token match |
 | Connected DevData migration | PASS | Guarded 154-to-155 upgrade after authorised FUND-only test-data recreation; ledger and contracted schema read back |
 | Connected integration/concurrency | PENDING | Failure cases, advisory-lock races and existing database suites have not been exercised |
+| Local runtime | PASS | `/api/health` HTTP 200; C2 Projects route expected HTTP 307 authentication redirect on localhost:3000 |
 
 ## DevData Migration Evidence
 
@@ -86,6 +87,21 @@ fields in both create and edit forms, marks them required and supplies client-si
 Full TypeScript, focused ESLint for both components and commit-time checks pass. Human creation
 retry remains pending.
 
+The following C2 Project test at `8bda74f4` was blocked before Product selection. The create
+modal allowed Event and workflow to appear independently editable, despite Event being the
+authority for a linked Project, and Product selection was obscured inside the Store surface.
+Corrected commit `2cfc89fa` puts Event first, displays its workflow read-only when selected,
+retains a required four-choice workflow input only for standalone Projects, and redirects a
+successful create to Project detail. Project detail now opens on a dedicated Products tab,
+where an authorised C2 user can select or remove the eligible Catalogue-derived subset and
+see Products that have lost their final Catalogue source. The Store tab retains Store
+visibility and Order controls.
+
+Exact-candidate `npm run build`, full TypeScript, focused zero-warning ESLint, all 7 FUND test
+files/26 tests, `git diff --check`, critical-file verification and credential-pattern checks
+pass. Local health and authentication-boundary checks pass on port 3000. Human proof of the
+correct Event-linked and standalone paths remains pending.
+
 ## Remaining Connected Proof
 
 Prove the fresh migration separately, then prove that Event rows, `NOT_SURE` Projects and
@@ -96,13 +112,16 @@ human schedule below remain open; the DevData upgrade alone does not complete Hi
 
 ## Human Smoke Schedule
 
-1. Create one Ceramic Mug without a Product workflow field and add it to two Catalogues.
-2. Create Events for each of the four workflows, assign Catalogues, and confirm linked Projects inherit the Event workflow with no editable conflict.
-3. Create four standalone Projects and confirm all active standalone-capable Catalogues form the offered range without a default Catalogue flag.
-4. Let C2 retain a subset. Add a Product to a source Catalogue and confirm it appears available but remains unselected.
-5. Remove one of two sources and confirm continued eligibility. Remove the last source and confirm the selection remains visible as unavailable while finalisation/trading refuses.
-6. Restore availability and confirm eligibility returns without reactivating a prior C2 exclusion.
-7. Confirm Event workflow changes refuse after a linked Project; confirm a draft standalone workflow change succeeds only before publication, finalised offer and Orders.
-8. Finalise the existing Individual offer and confirm its document, Product, price and workflow evidence remain unchanged across later Catalogue withdrawal.
+1. Retry Intake creation and Catalogue assignment/Save, confirming the two earlier interaction corrections.
+2. Create one Ceramic Mug without a Product workflow field and add it to two Catalogues.
+3. From C2, create an Event-linked Project: select Event first, confirm its workflow is inherited and read-only, then confirm creation opens Project detail on Products.
+4. From C2, create a standalone Project and choose one of the four workflows; confirm creation opens the same Products surface.
+5. Create Events for each of the four workflows, assign Catalogues, and confirm linked Projects inherit the Event workflow with no editable conflict.
+6. Create four standalone Projects and confirm all active standalone-capable Catalogues form the offered range without a default Catalogue flag.
+7. On the Products tab, let C2 retain a subset. Add a Product to a source Catalogue and confirm it appears available but remains unselected.
+8. Remove one of two sources and confirm continued eligibility. Remove the last source and confirm the selection remains visible as unavailable while finalisation/trading refuses.
+9. Restore availability and confirm eligibility returns without reactivating a prior C2 exclusion.
+10. Confirm Event workflow changes refuse after a linked Project; confirm a draft standalone workflow change succeeds only before publication, finalised offer and Orders.
+11. Finalise the existing Individual offer and confirm its document, Product, price and workflow evidence remain unchanged across later Catalogue withdrawal.
 
 Record role/tenant identity, exact candidate, database fingerprint, time and PASS/FAIL for each result. Human acceptance, staging migration, controlled promotion and live proof remain separate gates.

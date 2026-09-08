@@ -2,7 +2,7 @@
 
 Date: 2026-09-08
 
-Status: **Implemented; guarded DevData migration PASS; two local human defects corrected and retest pending.**
+Status: **Implemented; guarded DevData migration PASS; three local human defects corrected and retest pending.**
 Control depth: **High**. Work type: production-model correction, not an assumption test.
 
 Authority: [CR-Fix](../01-cr-inputs/CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md)
@@ -260,6 +260,15 @@ One proposed B1-R1 slice, no independent partial feature releases:
    inputs, filters and fixtures. Do not publish a half-migrated workflow contract.
 4. Prove full candidate, produce 04 implementation confirmation and 05 independent review,
    run the human schedule, then reconcile B1 before controlled promotion.
+
+The human smoke exposed two missing C2 surfaces in addition to the earlier interaction
+defects. Project creation presented Event and workflow as independent choices, and Product
+selection was obscured inside Store controls. Corrected candidate `2cfc89fa` now makes Event
+the workflow authority in the C2 create/edit modal, retains the four-choice workflow control
+only for standalone Projects, redirects creation to Project detail, and exposes a dedicated
+Products tab for the Catalogue-derived C2 subset. These are implementations of the planned
+Event/Project authority and C2-selection contract, not an expansion of the slice. Human retry
+remains required.
 
 A worktree can isolate future code from active local testing; no new checkout is created
 for this documentation pass. No persistent branch or separate schema-only lane is needed

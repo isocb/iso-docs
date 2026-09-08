@@ -37,7 +37,7 @@ Store, payment, Order and operational slices remain in Phase 1 after B1; the tem
 is Phase 2. The earlier Store human acceptance schedule is not silently marked complete.
 
 The local test application is now running at `http://localhost:3000` on corrected candidate
-`8bda74f4`, using the Neon DevData database you identified. The Catalogue/workflow database
+`2cfc89fa`, using the Neon DevData database you identified. The Catalogue/workflow database
 change is applied. Its safety checks confirmed that only the small disposable FUND setup was
 removed and that every application table outside FUND retained the same row count. Recreate the FUND
 Event, Client, Project, Intake, Product and Catalogue test bed through the ordinary C1/public
@@ -56,6 +56,15 @@ the already selected Event scope could clear it, so the server received no Event
 choice and correctly refused creation. Candidate `8bda74f4` keeps all required Intake policy
 choices selected and validates them before submission. Retry creation before continuing the C2
 path; this correction is also awaiting human proof.
+
+The next C2 test found that the Project form did not make Event workflow authority explicit
+and that Product selection was hidden inside Store controls. The correction now asks for the
+Event first and shows its workflow as fixed for an Event-linked Project. With no Event, the
+organiser chooses one of the four workflows for a standalone Project. After creation the UI
+opens the Project on a dedicated Products tab, where C2 can select the subset supplied by the
+available Catalogues; selected Products that later lose their final Catalogue source remain
+visible as unavailable. Candidate `2cfc89fa` passes the full build, TypeScript, focused lint
+and all FUND tests. This behavior still needs your human retry before acceptance.
 
 While you test B1, the proposed next plan is
 [1R-G Public Store Presentation](../03-slice-planning/2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md):
