@@ -76,6 +76,10 @@ FUND      -> 1R-F-A COMPLETE AND CLOSED AT PASS; prior Stage C FAIL retained as 
              1R-F-B is the enduring subordinate framework; B1 owns the active development-plan draft and checkpoint; technical review and implementation now authorised
 ```
 
+Local smoke blocker [CR-Fix — Workflow Class reference data](../01-cr-inputs/CR-Fix-2026-09-08-fund-local-workflow-class-reference-data.md)
+has its bounded DevData-only repair/readback PASS within B1 preparation; human Product creation retry remains pending. No new portfolio
+selection or application implementation is inferred; B1 remains Now.
+
 Chris is now performing the B1 local test and requested next-slice planning. The reserved
 [`1R-G Public Store Presentation` planning draft](../03-slice-planning/2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md)
 is prepared for review. It is a proposed next candidate, not an already-approved executable

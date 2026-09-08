@@ -76,3 +76,21 @@ private storage/recovery contract. No evidence-table deletion is an ordinary pro
 Local smoke preparation subsequently authorised by Chris is complete: the existing DevData
 database has B1 applied with data preservation checked, and local emulation is enabled.
 See the review/test record for entry points and the outstanding Project/organiser choice.
+
+
+## Local Workflow Reference Repair — 2026-09-08
+
+[CR-Fix](../01-cr-inputs/CR-Fix-2026-09-08-fund-local-workflow-class-reference-data.md):
+Create Product had no choices for its mandatory Production Workflow Class. DevData had zero
+reference rows despite the original migration being complete; this is missing reference
+data, not a missing enum. Under accepted local smoke preparation, restored only the four
+canonical INSERT rows from committed migration `20260623130000_add_fund_product_workflow_classes`.
+Target fingerprint `0970d1fe7a73` was checked distinct from staging/production. The transaction
+rechecked table emptiness under lock; no schema/ledger change, full seed, user-row update,
+reset or application edit was performed. Application remains `57e1454b`.
+
+Database repair/readback: PASS — A1, A2, B and C are active, system-default and read-only;
+independent readback confirms the original migration marker remains complete. Cause/timing
+of prior removal remains unknown. The modal's active-class query can now return these rows.
+Authenticated UI Product creation: pending Chris's retry after refresh/reopening the modal.
+For B1 Individual Artwork Products choose A1; Product Suitability remains separately required.
