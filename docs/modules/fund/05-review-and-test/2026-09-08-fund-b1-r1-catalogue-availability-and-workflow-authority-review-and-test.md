@@ -14,6 +14,21 @@ The reviewed transaction order takes the tenant availability lock before Project
 
 No blocking source defect remains from this review. This is not yet the independent or connected database review required by High control.
 
+## Resolved Local Isolation Incident
+
+Candidate validation temporarily linked the isolated worktree to the original checkout's
+`node_modules`. Running `prisma generate` for B1-R1 consequently replaced the generated
+Prisma Client used by the user's running B1 localhost process. The unchanged B1 source then
+failed its Product query because it requested the old `workflowClass` relation from the new
+client metadata.
+
+The shared link was removed, Prisma Client was regenerated from the original B1 schema, and
+only the original checkout's localhost process was restarted. Client metadata readback again
+showed `FundProduct.workflowClass`, and localhost returned an authenticated-route redirect.
+No tracked application file or database row changed. Future candidate database-client
+generation must use a fully separate dependency output and must not share the active
+localhost checkout's generated Prisma Client.
+
 ## Automated Evidence
 
 | Check | Result | Evidence limit |
