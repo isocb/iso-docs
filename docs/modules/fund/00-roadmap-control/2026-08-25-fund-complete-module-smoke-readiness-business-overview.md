@@ -58,8 +58,8 @@ places it in Catalogues and controls where those Catalogues are available. The E
 standalone Project determines the workflow, and C2 selects the offered subset. The separate
 Product Suitability gate and mandatory Product Workflow Class are to be removed from the
 intended model. Manufacturing changes should be handled through Catalogue choices without
-another Product edit. Effects on existing selections and finalised evidence need bounded
-planning. This is captured, not implemented; B1 acceptance remains pending. Your confirmation
+another Product edit. The completed bounded plan protects existing selections and finalised
+evidence while removing those duplicate gates. This is planned, not implemented; B1 acceptance remains pending. Your confirmation
 that FUND has no users/data requiring remedial conversion is recorded, alongside the need
 for a staging schema migration and permission to recreate development test data when needed.
 
@@ -68,7 +68,9 @@ The Catalogue/workflow correction has now been [triaged](../02-triage/2026-09-08
 before B1 business acceptance. There will be four workflows, one per Event or standalone
 Project; Standard means selling an unmodified Product. C1 makes Catalogues available to
 standalone Projects without another per-Project assignment gate. The plan removes the old
-default-only restriction so those available ranges are not silently suppressed.
+default-only restriction so those available ranges are not silently suppressed. It also makes
+the four workflows fixed Event/Project definitions in the application, removing the database
+Workflow Class records that could independently block Product setup.
 
 The proposed change behaviour is: select the initial range once; later additions are available
 for C2 to choose; losing the last Catalogue source shows an unavailable selected Product;

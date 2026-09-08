@@ -22,11 +22,11 @@ selects this planning outcome as Now; Next is unselected pending its review.
 ## Restart Checkpoint
 
 ```text
-Current state: B1 implemented and automated checks PASS; user-authorised local DevData preparation complete; localhost:3000 running with B1 emulation; Chris reports testing in progress, human acceptance and independent review still pending
+Current state: B1 implemented and automated checks PASS; user-authorised local DevData preparation complete; localhost:3000 running with B1 emulation; Chris reports testing in progress; B1-R1 remedial planning is complete; human acceptance, B1-R1 implementation and independent review still pending
 Last proven commit: application B1 57e1454b530ae19dc586768fd996ff230d84421c; baseline 14077382 and renderer proof 0c7e4848 retained in ancestry; documentation pre-implementation baseline 5a2d716
 Current environment: app work branch 57e1454b; local Neon DevData fingerprint 0970d1fe7a73 migrated to 154 with data preservation verified; local emulation enabled in ignored .env.local; localhost:3000 running; application dev/staging/main remain 14077382; staging/live databases unchanged
-Next human decision/test: review B1-R1 detailed plan and proposed delta/edit rules before implementation acceptance; four workflows and standalone Catalogue availability confirmed; B1 acceptance requires correction plus review/human proof
-Safe resumption point: read B1-R1 triage/plan and resume at implementation acceptance, preserving local test work; no code/reset/migration from planning; after correction record independent review/human proof before B1 closure
+Next human decision/test: accept or amend the completed B1-R1 schema, Catalogue-delta and workflow-edit contract before implementation; four workflows and standalone Catalogue availability confirmed; B1 acceptance requires correction plus review/human proof
+Safe resumption point: read B1-R1 triage/completed plan and resume only after implementation acceptance, preserving local test work; no code/reset/migration from planning; after correction record independent review/human proof before B1 closure
 ```
 
 ## 1. One Visible Outcome

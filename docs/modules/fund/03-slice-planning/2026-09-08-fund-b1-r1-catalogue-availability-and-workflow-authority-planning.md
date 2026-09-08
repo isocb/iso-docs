@@ -2,7 +2,7 @@
 
 Date: 2026-09-08
 
-Status: **Detailed planning draft following triage; workflow/scope decisions confirmed; implementation acceptance pending.**
+Status: **Detailed planning complete following triage; implementation acceptance pending.**
 Control depth: **High**. Work type: production-model correction, not an assumption test.
 
 Authority: [CR-Fix](../01-cr-inputs/CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md)
@@ -37,12 +37,14 @@ he says otherwise. Preserve unrelated module data and any synthetic immutable ev
 | C2 chooses the offered subset; readiness/release remains required | Confirmed |
 | Four explicit workflows, including Standard | Confirmed by Chris; one per Event/Project, no mixed workflow; Standard sells an unmodified Product |
 | Standalone Catalogue scope | Chris confirms Catalogues are made available to standalone Projects; use existing Catalogue availability controls, no extra per-Project assignment gate |
-| Initial default-all once; later additions available but unselected | Proposed transition rule below; reconciles initial convenience with C2 subset preservation |
-| Lost last Catalogue source | Proposed explicit unavailable selection; no silent removal from a locked offer |
-| Event workflow edits after Projects exist | Proposed refusal in this slice; prevents implicit bulk reclassification |
+| Initial default-all once; later additions available but unselected | Planning decision for implementation acceptance; reconciles initial convenience with C2 subset preservation |
+| Lost last Catalogue source | Planning decision for implementation acceptance; preserve an explicit unavailable selection and never silently change a locked offer |
+| Event workflow edits after Projects exist | Planning decision for implementation acceptance; refuse the edit rather than implicitly reclassify Projects |
 
 The owner has confirmed four explicit workflows and standalone Catalogue availability.
-No mixed workflow is required. The transition rules below remain reviewable proposals for
+No mixed workflow is required. Source review has also resolved the schema approach: the four
+workflow definitions are fixed application behaviour keyed by Event/Project type, not editable
+database records. The transition rules below remain reviewable planning decisions for
 implementation acceptance; they do not reopen the confirmed Catalogue-led model.
 
 ## 3. Workflow Authority And Schema Proposal
@@ -52,17 +54,19 @@ implementation acceptance; they do not reopen the confirmed Catalogue-led model.
 Prefer reusing the typed Project context rather than introducing a second independent
 workflow selector. The confirmed four-workflow mapping is:
 
-| Existing/proposed Project type | Human workflow | Internal definition |
+| Project type | Human workflow | Fixed internal code |
 | --- | --- | --- |
 | ARTWORK_FUNDRAISING | Individual Artwork | A1 |
 | GROUP_PERSONALISED_PRODUCTS | Group Artwork | A2 |
 | BULK_ORDER_CLUB_FUNDED | Logo/Bulk personalisation | B |
-| STANDARD (new proposed enum value) | Standard (unmodified Product) | C |
-| NOT_SURE | Unresolved draft | No operational workflow; resolve before offer readiness |
+| STANDARD (new enum value) | Standard (unmodified Product) | C |
 
-Add typed `FundEvent.projectType` using the same enum; do not treat free-text `eventType` as
-authority. A draft Event may remain unresolved, but Event-linked Project creation requires
-resolved Event context. A standalone Project owns its type. Do not derive either from a
+Make `FundProjectType` the one persisted operational workflow vocabulary: add `STANDARD` and
+remove `NOT_SURE`. Add required typed `FundEvent.projectType` using the same enum; do not
+treat free-text `eventType` as authority. Every Event and Project therefore has exactly one
+of the four workflows. `NOT_SURE` may remain a public Intake response while the request is
+unresolved, but C1 must choose one of the four before provisioning; it is not stored as an
+Event or Project workflow. A standalone Project owns its type. Do not derive context from a
 Product, Catalogue name, browser label or submitted hidden field.
 
 Introduce one server resolver returning effective Project type, workflow code/requirements,
@@ -71,28 +75,34 @@ Event; keep Project type as a consistency mirror for existing consumers, not a s
 editable authority. Enforce same-tenant Event linkage and type consistency at service and
 database boundaries, covering old/direct write paths. Before writing, lock/re-read the
 Event and Project in a declared order; reject stale context rather than silently accepting
-browser input. A deferred consistency constraint or equivalent database constraint trigger
-must account for transactional Project creation without permitting conflicting committed rows.
+browser input. Add a deferred consistency constraint trigger so a committed linked Project
+cannot differ from its Event while transactional creation remains possible.
 
-Keep canonical A1/A2/B/C definitions as operational reference data if useful to existing
-consumers; they are not Product-edit controls. No missing-reference-data seed dependency:
-migrations/test setup must provide the canonical definitions idempotently. Whether to rename
-the existing reference model is an implementation naming choice, not another business gate.
+Replace `FundProductWorkflowClass` and its editable/active database rows with one exhaustive,
+read-only application registry keyed by `FundProjectType`. The registry supplies the A1/A2/B/C
+code, label and fixed requirements such as artwork, group artwork, personalisation data and
+production export. It must fail at compile/test time if a Project type has no definition; it
+must not query a seed row, accept tenant overrides or expose a workflow-class CRUD/list router.
+This removes the missing/inactive reference-data failure that blocked Product setup while
+preserving a single vocabulary for downstream displays and readiness rules.
 
 ### Remove competing Product authority
 
 Remove `FundProduct.workflowClassId` and its relation/index, required input validation and
 Product creation/filter/display dependencies. Retire `FundProductProjectTypeSuitability` and
-`FundProductOrganizationTypeSuitability` as availability gates, their write endpoints and
-suitability management surfaces. Keep unrelated Client type and tenant/role permission logic.
-Do not leave unused fields mandatory, return success from obsolete mutation endpoints, or
-retain hidden filtering in Store refresh/checkout.
+`FundProductOrganizationTypeSuitability`, their write endpoints and suitability management
+surfaces. Remove the now-unreferenced `FundProductWorkflowClass` model/table and router. Keep
+unrelated Client type and tenant/role permission logic. Do not leave unused fields mandatory,
+return success from obsolete mutation endpoints, or retain hidden filtering in Store refresh
+or checkout.
 
-`FundProjectProduct.workflowClassId` and workflow code/name snapshots may remain as resolved
-context evidence populated from the Project resolver, never copied from Product. Before
-finalisation they may be refreshed under the Project lock; after finalisation they are
-protected evidence. Existing FUND Order-line workflow snapshots remain immutable. Generic
-Commerce identities, amounts and payment statuses remain unchanged.
+Remove `FundProjectProduct.workflowClassId` and its workflow code/name snapshots. A Product
+selection does not have its own workflow: consumers show the effective Project workflow once
+at Project level and apply the fixed registry requirements there. Existing FUND Order-line
+workflow code/name snapshots remain immutable historical fields, but new Order lines populate
+them from `FundOrderContext.projectTypeSnapshot` through the fixed registry, never from Product.
+The parent Order context already carries the typed immutable Project workflow. Generic Commerce
+identities, amounts and payment statuses remain unchanged.
 
 ### Standalone Catalogue scope — confirmed direction
 
@@ -117,11 +127,15 @@ Catalogue assignments and active Catalogue memberships. Active/unarchived Produc
 status rules remain. No Project-type or organisation-type Product Suitability filter remains.
 One source withdrawal leaves the Product available if another valid source remains.
 
-Initial convenience and later curation must be explicit:
+Initial convenience and later curation must be explicit. Add nullable
+`FundProject.productSelectionInitializedAt`; it is internal state and becomes non-null in the
+same transaction as the first default or explicit Product selection:
 
 - At first successful offer initialisation with a non-empty available range, default-select
-  that range once. Persist an internal selection-initialised marker in the same transaction.
+  that range once and set the marker.
   An empty initial range does not consume this first initialisation.
+- If C2 explicitly selects or excludes Products before automatic initialisation, set the marker
+  in that mutation so a later refresh cannot overwrite the deliberate subset.
 - Subsequent Catalogue additions appear as available choices, not automatically selected.
   Clearing all selections or excluding a Product must not reset initialisation or re-add it.
 - Explicit C2 selections, exclusions and ordering survive unrelated refreshes.
@@ -147,13 +161,13 @@ checkout must revalidate current availability, so safety does not depend on a la
 refresh or background job. Show affected source/Project counts where existing UI permits;
 never expose other tenants' Projects. A cosmetic list cache is not trading authority.
 
-For transaction boundaries, define a shared tenant-availability lock for selection,
-finalisation and checkout and an exclusive counterpart for Catalogue/source-availability
-mutations. Acquire availability before Event/Project locks consistently. Hold it through
-source read, authoritative validation and commit; include relevant source status/date edits
-and Product activation/archive paths in that contract. This prevents a last-source withdrawal
-racing past a successful sale check. Verify lock ordering/timeout/retry and narrow the lock
-scope later only with equivalent negative proof, not an unproved cache/revision assumption.
+For transaction boundaries, use one transaction-scoped PostgreSQL advisory-lock namespace per
+tenant: shared for authoritative availability reads during selection/finalisation/checkout and
+exclusive for Catalogue assignment/membership/status/window, Catalogue status/scope, and Product
+activation/archive mutations. Acquire this availability lock before Event, Project and Store
+row locks in that order. Hold it through source read, validation and commit. This prevents a
+last-source withdrawal racing past a successful sale check. Prove timeout/retry behaviour and
+retain existing idempotency contracts.
 
 ## 5. Creation, Intake And Context Changes
 
@@ -170,13 +184,13 @@ C1 approval/provisioning, not only when receiving the public form.
 C2 Project creation/update and legacy organiser routes must call the same authority resolver.
 Do not use impersonation, email snapshots or Client-provided tenant IDs as mutation authority.
 
-Proposed simple change boundary: C1 may change an Event workflow before it has linked Projects;
+Change boundary for implementation acceptance: C1 may change an Event workflow before it has linked Projects;
 refuse afterwards with a clear explanation rather than bulk-changing Projects. A standalone
 draft may change workflow before finalisation, publication or Orders, then invalidate/rebuild
 only unconfirmed readiness/configuration under lock. Changing Event linkage obeys the same
-unconfirmed-only boundary and re-evaluates the Catalogue source range. NOT_SURE remains
-an incomplete draft context, never a default operational workflow. Finalised/Order contexts
-cannot be reclassified by these ordinary actions.
+unconfirmed-only boundary and re-evaluates the Catalogue source range. An Intake response of
+`NOT_SURE` must be resolved before Project creation. Finalised/Order contexts cannot be
+reclassified by these ordinary actions.
 
 ## 6. Source Change Inventory
 
@@ -184,16 +198,16 @@ All paths below are relative to isostack-bedrock; inspect exact contents again a
 
 | Area | Known source | Required change |
 | --- | --- | --- |
-| Models/migrations | `prisma/schema.prisma`, new committed migration(s) | Typed Event context, proposed Standard, remove Product gates; standalone scope simplification and initialisation state |
+| Models/migrations | `prisma/schema.prisma`, new committed migration(s) | Four-value Project/Event enum, remove Product/reference gates; standalone scope simplification and Project initialisation state |
 | Product CRUD | `components/products/ProductModal.tsx`, `ProductTable.tsx`; `services/products.service.ts`; `lib/validation/products-catalogues.ts` under `src/modules/fund` | Remove mandatory class, suitability configuration/filtering and copied Product workflow |
 | Catalogue/availability | `services/catalogues.service.ts`, `availability.service.ts`; Catalogue/Availability components and routers | Retire suitability endpoints/views; preserve Catalogue membership, assignments, source dates and deduplication |
 | Eligibility | `services/product-eligibility.service.ts` | Authoritative Catalogue sources only; derive displayed operational context from Project |
 | Event/Project | `services/events.service.ts`, `projects.service.ts`, `organiser-projects.service.ts`; corresponding validation/routers/forms | Trusted workflow inheritance, consistency, change boundaries and permissions |
 | Intake | `services/project-intake.service.ts`, `project-intake-provisioning.service.ts`, `lib/project-intake-policy.ts`; public/C1 forms | Same vocabulary and trusted Event context at every stage |
-| Selection/configuration | `services/store-management.service.ts`, `lib/project-product-snapshot.ts` | Project-derived snapshots, initial-once selection, current availability independent of locked evidence |
+| Selection/configuration | `services/store-management.service.ts`, `lib/project-product-snapshot.ts` | Remove per-Product workflow snapshots, initial-once selection, current availability independent of locked evidence |
 | B1 | `services/individual-offer.service.ts`, `individual-offer-readiness.ts`, offer contract/tests | Context-based workflow/readiness, frozen evidence and last-source withdrawal refusal |
 | Store authority | `services/store-authority.service.ts`, `store-oversight.service.ts`, C1/C2 Store components | Clear context/availability reasons; no Product-class veto or locked-data rewrite |
-| Consumer Orders | `services/store-checkout.service.ts`, FUND context validators | Pin resolved Project workflow; preserve transaction/idempotency and generic Commerce ownership |
+| Consumer Orders | `services/store-checkout.service.ts`, FUND context validators | Populate line workflow evidence from the parent Project snapshot/registry; preserve transaction/idempotency and generic Commerce ownership |
 | Tests | existing B1, E-A/E-C/E-D, 1R-D and A7 suites; eligibility/Intake tests | Replace Product-class fixtures, prove Catalogue changes and no hidden legacy gate |
 
 Schema-wide and repository-wide searches for workflowClass, suitability, snapshot builders
@@ -206,17 +220,23 @@ No legacy FUND reclassification programme is needed. Local development fixtures 
 recreated when required, confined to the declared FUND scope; do not delete shared users,
 Clients needed elsewhere, generic Commerce or other modules without a separate concrete scope.
 
-Prefer one coherent schema/application release. Add typed Event context with an explicit
-unresolved draft value rather than guessing workflow from old Products. Retire obsolete
-Product relations/suitability tables in the reviewed migration. Enum expansion and SQL using
-new values may require separate migration transactions; technical review must determine
-PostgreSQL sequencing rather than promise a single SQL file prematurely.
+Use one coherent schema/application release. Add required typed Event context, add `STANDARD`,
+and remove `NOT_SURE` from the persisted Event/Project enum rather than guessing workflow from
+old Products. Retire the obsolete Product/reference relations, suitability tables,
+`isDefaultStandalone` and Project Product workflow fields in reviewed migration SQL. PostgreSQL
+enum replacement and dependent-column handling must be sequenced explicitly and proved on both
+fresh and upgrade paths; do not rely on Prisma-generated ordering without inspecting the SQL.
 
-Preflight each target: identify endpoint and current ledger/checksums, inspect only bounded
-FUND record counts for constraints, identify immutable evidence, and prove migration on a
-fresh full baseline and an upgrade fixture. Source inventory is 154 now; staging may still
-need B1 as well as the correction. Derive required migrations from the actual target ledger.
-No assumption that all environments have the local DevData schema.
+Preflight each target: identify endpoint and current ledger/checksums; inspect bounded counts
+for Events, Projects, `NOT_SURE` Projects, Project Products, suitability/reference rows,
+Individual offers and FUND Orders; identify immutable evidence; and prove migration on a fresh
+full baseline and an upgrade fixture. The expected staging condition is no operational FUND
+rows, based on the owner's statement. If an Event lacks a workflow, a Project is `NOT_SURE`, or
+immutable FUND evidence exists unexpectedly, stop before contraction and return the counts for
+a business decision. Do not infer or backfill an Event workflow from Product classifications.
+Source inventory is 154 now; staging may still need B1 as well as the correction. Derive required
+migrations from the actual target ledger. No assumption that all environments have the local
+DevData schema.
 
 Because the correction removes old columns, do not run old and new FUND application code
 against incompatible schemas during rollout. State the maintenance/startup order and backup/
@@ -233,7 +253,7 @@ owner's position, stop the destructive step and reconcile; do not silently conve
 
 One proposed B1-R1 slice, no independent partial feature releases:
 
-1. Use the confirmed four-workflow/standalone-scope decisions; finish exact schema/resolver/constraint and transition-rule review.
+1. Record implementation acceptance of this completed schema, transition and lock contract.
 2. Implement schema and context resolution with meaningful tenant/inheritance tests, then
    Catalogue/selection semantics. Keep the candidate isolated from the user's running app.
 3. Update all C1/C2/Intake surfaces and B1/Store/Order consumers together; remove obsolete
@@ -249,14 +269,14 @@ merely to sequence these packages.
 
 | Test | Required result |
 | --- | --- |
-| One Product, four confirmed workflow contexts | Same Product ID; correct Event/Project-derived workflow in each; no Product classification step |
+| One Product, four confirmed workflow contexts | Same Product ID; correct Event/Project-derived workflow in each; no Product classification or workflow reference-row step |
 | C1/public Intake/approval/C2 creation | All resolve the same Event authority; stale/forged/cross-tenant context refuses |
 | Catalogue sources | Multiple Catalogues deduplicate; removing one source preserves availability; losing the last source withholds it |
 | Standalone scope | All Catalogues marked available to standalone resolve; no obsolete default-only suppression or per-Project gate; zero available gives an empty range |
 | C2 selection | Initial default-all once; later additions unselected; exclusions/order/empty curated subset survive refresh |
 | Manufacturing delta | C1 Catalogue edit is sufficient; draft selection shows actionable unavailability, no second Product suitability action |
 | Frozen evidence | Withdrawal blocks future trading without changing locked offer, price, workflow or Order snapshots; no automatic refund/unlock |
-| Legacy paths | Old suitability mutations rejected/removed; no fallback Product workflow authority; raw conflicting Event/Project writes refuse |
+| Legacy paths | Old suitability/workflow-class mutations and routes removed; no fallback Product or reference-row authority; raw conflicting Event/Project writes refuse |
 | Concurrency | Selection/finalise/context/availability races cannot commit or sell inconsistent evidence; retries remain idempotent |
 | Migration | Fresh and upgrade replay, no failed/unknown ledger entries, unrelated data untouched, synthetic immutable evidence preserved |
 | Existing behaviour | B1 fixed capacities/download/recovery and A7/Store/Intake authority tests still pass; emulation never grants trading |

@@ -2,7 +2,7 @@
 
 Date: 2026-09-08
 
-Status: **Triaged for B1-R1 remedial planning; detailed plan prepared; implementation acceptance pending.**
+Status: **Triaged; B1-R1 detailed planning complete; implementation acceptance pending.**
 
 [Triage](../02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md) and [detailed plan](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md) now own disposition and proposed implementation boundary.
 

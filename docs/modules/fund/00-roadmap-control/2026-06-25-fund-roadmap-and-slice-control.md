@@ -77,7 +77,7 @@ FUND      -> 1R-F-A COMPLETE AND CLOSED AT PASS; prior Stage C FAIL retained as 
 ```
 
 [CR-Fix — Catalogue-Led Product Availability and Event/Project Workflow Authority](../01-cr-inputs/CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md)
-— **triaged; B1-R1 detailed planning prepared**, High depth.
+— **triaged; B1-R1 detailed planning complete**, High depth.
 [Triage](../02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md); [implementation plan](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md). Implementation acceptance pending. Confirmed requirement:
 one Product reused through Catalogues; retire Product Workflow Class authority and the
 separate Product Suitability veto; C2 selects the available subset. Manufacturing changes
@@ -86,6 +86,9 @@ FUND has no users or data requiring remedial conversion per Chris; dev data may 
 while staging still requires a migration. Triage requires B1-R1 correction, review and human
 acceptance before B1 closure. B1 Now includes this authorised remedial planning; 1R-G remains
 downstream and unselected. Four workflows and standalone Catalogue availability are confirmed.
+The completed plan removes `NOT_SURE` from persisted Event/Project workflow, replaces the
+database Workflow Class rows with a fixed code registry, and removes Product and Project-Product
+workflow gates. Its selection-transition and locking contract awaits implementation acceptance.
 
 Local smoke blocker [CR-Fix — Workflow Class reference data](../01-cr-inputs/CR-Fix-2026-09-08-fund-local-workflow-class-reference-data.md)
 has its bounded DevData-only repair/readback PASS within B1 preparation; human Product creation retry remains pending. No new portfolio
@@ -1824,19 +1827,17 @@ Design question:
 Is a Product's workflow class a default, a suitability set, or a Project-specific operational choice?
 ```
 
-Current stabilising interpretation:
+Superseded interpretation — 2026-09-08:
 
-- `FundProduct.workflowClassId` is the Product default/initial classification.
-- `FundProjectProduct.workflowClassId` is the operational Project Product workflow snapshot.
-- A future suitability/availability layer may allow one Product to support multiple workflow classes.
+The earlier stabilising interpretation recorded in this section was implemented provisionally and is now
+superseded by the triaged [B1-R1 correction](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md):
 
-Planning needed before Store/Commerce/production:
-
-- Whether suitability belongs on Product.
-- Whether suitability belongs on Catalogue membership.
-- Whether Event constraints limit permitted workflow classes.
-- Whether Project Product chooses final workflow.
-- How suitability affects production export and lifecycle.
+- Product and Project Product do not own workflow or suitability.
+- Catalogue membership and availability define which Products can be offered.
+- Event owns workflow for linked Projects; a standalone Project owns its workflow.
+- One fixed application registry maps the four Project types to their operational
+  A1/A2/B/C requirements.
+- Order evidence snapshots the Project workflow; it is not re-derived from Product.
 
 #### C1 Production / Dispatch / Commission Workflow
 
