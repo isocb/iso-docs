@@ -52,6 +52,17 @@ The current B1 emulator cannot make a real Individual Store trade. The plan ther
 records the release dependency and the choice of development demonstration explicitly.
 The reserved slice has not yet been confirmed as Next; no implementation is being started.
 
+Your test-bed work identified an important simplification, now captured in the
+[Catalogue/workflow CR-Fix](../01-cr-inputs/CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md). A Product is maintained once; the producer
+places it in Catalogues and controls where those Catalogues are available. The Event or
+standalone Project determines the workflow, and C2 selects the offered subset. The separate
+Product Suitability gate and mandatory Product Workflow Class are to be removed from the
+intended model. Manufacturing changes should be handled through Catalogue choices without
+another Product edit. Effects on existing selections and finalised evidence need bounded
+planning. This is captured, not implemented; B1 acceptance remains pending. Your confirmation
+that FUND has no users/data requiring remedial conversion is recorded, alongside the need
+for a staging schema migration and permission to recreate development test data when needed.
+
 ## Your Phase 1 Decisions
 
 | Question | Confirmed direction |

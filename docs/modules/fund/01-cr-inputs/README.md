@@ -31,3 +31,7 @@ Mandatory registration:
 Plain-English addition and delivery guide:
 
 `../../../00-roadmap-control/2026-08-05-human-guide-change-request-to-release.md`
+
+Current B1 business-model finding:
+
+- [Catalogue-led Product availability and Event/Project workflow authority](CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md) — captured; awaiting triage. Supersedes the earlier Product suitability flags proposal; no implementation authorised.

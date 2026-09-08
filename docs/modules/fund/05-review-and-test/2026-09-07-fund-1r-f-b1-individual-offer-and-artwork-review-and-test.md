@@ -165,3 +165,15 @@ independent readback confirms the original migration marker remains complete. Ca
 of prior removal remains unknown. The modal's active-class query can now return these rows.
 Authenticated UI Product creation: pending Chris's retry after refresh/reopening the modal.
 For B1 Individual Artwork Products choose A1; Product Suitability remains separately required.
+
+
+## Business-Model Finding — Captured 2026-09-08
+
+Chris's local test/discussion identified a structural issue beyond the repaired empty dropdown.
+The [refined Catalogue/workflow CR-Fix](../01-cr-inputs/CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md) requires one reusable Product,
+Catalogue-led availability, Event/Project workflow authority and no separate Product Suitability
+veto. Manufacturing changes should require Catalogue changes only, not another Product edit.
+This is an unresolved business acceptance issue; original automated PASS results are retained
+without asserting the new requirement is implemented. CR disposition: captured, awaiting triage;
+no corrective code/migration has run. Chris confirms no FUND users or existing data requiring
+remedial conversion; staging schema migration is still required when implementation is selected.

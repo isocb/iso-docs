@@ -25,7 +25,7 @@ selects this planning outcome as Now; Next is unselected pending its review.
 Current state: B1 implemented and automated checks PASS; user-authorised local DevData preparation complete; localhost:3000 running with B1 emulation; Chris reports testing in progress, human acceptance and independent review still pending
 Last proven commit: application B1 57e1454b530ae19dc586768fd996ff230d84421c; baseline 14077382 and renderer proof 0c7e4848 retained in ancestry; documentation pre-implementation baseline 5a2d716
 Current environment: app work branch 57e1454b; local Neon DevData fingerprint 0970d1fe7a73 migrated to 154 with data preservation verified; local emulation enabled in ignored .env.local; localhost:3000 running; application dev/staging/main remain 14077382; staging/live databases unchanged
-Next human decision/test: retry Create Product after restoring missing Workflow Class defaults; continue C1/public Intake test-bed creation and authenticated C1/C2 smoke; independent review also pending; no staging/live promotion
+Next human decision/test: triage the captured Catalogue/workflow authority CR-Fix and resolve its B1 acceptance dependency; local smoke findings and independent review remain pending; no staging/live promotion
 Safe resumption point: use localhost:3000 or restart npm run dev on B1 branch; follow 05 local DevData smoke schedule, retain confirmed test evidence, complete independent review before promotion; no reset/seed or live-service setup
 ```
 
@@ -385,3 +385,13 @@ work. The 04/05 B1 records hold the outcome; no reset/seed or new application sl
 
 Repair outcome: four canonical defaults restored and independently verified. Product creation
 through the human C1 session remains pending; application and existing user records unchanged.
+
+
+### Catalogue/Workflow Authority Finding — 2026-09-08
+
+The [refined CR-Fix](../01-cr-inputs/CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md) captures Chris's confirmed simplification:
+Catalogue membership/availability determines Product scope; Event/Project determines workflow;
+remove Product Workflow Class authority and the separate Product Suitability veto. Existing
+B1 technical evidence remains valid within its recorded scope but does not prove conformance
+to this corrected business model. Acceptance remains pending; triage must explicitly decide
+correction sequencing before B1 closure. No new implementation or second checkpoint is created.

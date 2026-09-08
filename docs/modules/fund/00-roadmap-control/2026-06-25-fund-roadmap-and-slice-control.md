@@ -76,6 +76,15 @@ FUND      -> 1R-F-A COMPLETE AND CLOSED AT PASS; prior Stage C FAIL retained as 
              1R-F-B is the enduring subordinate framework; B1 owns the active development-plan draft and checkpoint; technical review and implementation now authorised
 ```
 
+[CR-Fix — Catalogue-Led Product Availability and Event/Project Workflow Authority](../01-cr-inputs/CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md)
+— **captured; awaiting triage/selection**, proposed High depth. Confirmed requirement:
+one Product reused through Catalogues; retire Product Workflow Class authority and the
+separate Product Suitability veto; C2 selects the available subset. Manufacturing changes
+are managed through Catalogue membership/availability without a second Product edit.
+FUND has no users or data requiring remedial conversion per Chris; dev data may be recreated,
+while staging still requires a migration. B1 acceptance remains unresolved against this
+finding; no Now/Next change or implementation follows from capture.
+
 Local smoke blocker [CR-Fix — Workflow Class reference data](../01-cr-inputs/CR-Fix-2026-09-08-fund-local-workflow-class-reference-data.md)
 has its bounded DevData-only repair/readback PASS within B1 preparation; human Product creation retry remains pending. No new portfolio
 selection or application implementation is inferred; B1 remains Now.
