@@ -4,7 +4,7 @@ Date: 2026-09-08
 
 Status: **Application implementation committed; local DevData migration PASS; broader connected proof and acceptance pending.**
 
-Control depth: **High**. Authority is the accepted B1-R1 [plan](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md), its CR-Fix and triage. Application baseline was `57e1454b530ae19dc586768fd996ff230d84421c`. The candidate is `cd72dd780c6fec5b784a00c03a5ebb38133b71ce` on `work/fund-b1-r1-catalogue-workflow`; after isolated implementation, that branch became the primary local test checkout.
+Control depth: **High**. Authority is the accepted B1-R1 [plan](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md), its CR-Fix and triage. Application baseline was `57e1454b530ae19dc586768fd996ff230d84421c`. The corrected candidate is `e00db199` on `work/fund-b1-r1-catalogue-workflow`, comprising implementation `cd72dd780c6fec5b784a00c03a5ebb38133b71ce` and the bounded Catalogue-checkbox correction.
 
 ## Implemented Result
 
@@ -47,6 +47,10 @@ expected row. Staging and live were not changed.
   digest `6635290daabf` was unchanged.
 - Local candidate runtime: PASS; `/api/health` returned HTTP 200 and the authenticated
   `/fund/products` route returned the expected HTTP 307 redirect on localhost:3000.
+- Initial human Catalogue assignment at `cd72dd78`: FAIL because the checkbox state updater
+  read `event.currentTarget.checked` after the React event target became unavailable.
+  `e00db199` captures the boolean before entering the updater. Full TypeScript, focused
+  component ESLint and commit-time critical-file checks pass; human retry is pending.
 
 ## Deliberate Boundary And Open Gates
 

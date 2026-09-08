@@ -37,7 +37,7 @@ Store, payment, Order and operational slices remain in Phase 1 after B1; the tem
 is Phase 2. The earlier Store human acceptance schedule is not silently marked complete.
 
 The local test application is now running at `http://localhost:3000` on corrected candidate
-`cd72dd78`, using the Neon DevData database you identified. The Catalogue/workflow database
+`e00db199`, using the Neon DevData database you identified. The Catalogue/workflow database
 change is applied. Its safety checks confirmed that only the small disposable FUND setup was
 removed and that every application table outside FUND retained the same row count. Recreate the FUND
 Event, Client, Project, Intake, Product and Catalogue test bed through the ordinary C1/public
@@ -45,6 +45,11 @@ processes. Product creation should no longer ask for a workflow: the Event or st
 Project owns that choice. Finalisation must still be tested through the organiser's own Client
 dashboard login. The [B1-R1 review/test record](../05-review-and-test/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-review-and-test.md)
 contains the current smoke schedule. Your human result remains pending.
+
+The first attempt to tick an Event Catalogue exposed a browser error in the checkbox handler.
+That handler now copies the checked value before updating screen state, and its code checks
+pass at `e00db199`. Retry the selection and Save action before continuing the rest of the
+walkthrough; this correction is not yet counted as a human pass.
 
 While you test B1, the proposed next plan is
 [1R-G Public Store Presentation](../03-slice-planning/2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md):

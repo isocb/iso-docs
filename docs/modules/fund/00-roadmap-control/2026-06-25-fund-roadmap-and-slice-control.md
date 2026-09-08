@@ -88,7 +88,7 @@ acceptance before B1 closure. B1 Now includes this authorised remedial planning;
 downstream and unselected. Four workflows and standalone Catalogue availability are confirmed.
 The completed plan removes `NOT_SURE` from persisted Event/Project workflow, replaces the
 database Workflow Class rows with a fixed code registry, and removes Product and Project-Product
-workflow gates. Candidate `cd72dd78` implements the correction. Its guarded Neon DevData
+workflow gates. Corrected candidate `e00db199` implements the correction. Its guarded Neon DevData
 154-to-155 migration passed after the authorised FUND-only test-data recreation, with all
 non-FUND application-table counts unchanged. No promotion has occurred. Negative database/concurrency
 proof, independent review and human acceptance remain required.
@@ -822,7 +822,7 @@ payment model.
 
 | Item | Status | Control |
 | --- | --- | --- |
-| Application repository | Primary local checkout runs B1-R1 candidate `cd72dd78` on `work/fund-b1-r1-catalogue-workflow`; dev/staging/main unchanged | Publish the candidate branch only with the required authority; remaining High-control proof and human acceptance precede promotion |
+| Application repository | Primary local checkout runs corrected B1-R1 candidate `e00db199` on `work/fund-b1-r1-catalogue-workflow`; dev/staging/main unchanged | Retry the corrected Catalogue interaction; publish only with the required authority; remaining High-control proof and human acceptance precede promotion |
 | Documentation repository | Consolidated and published through `20e1159`; this B/B1 planning update follows on main | Keep documentation committed and aligned online; recheck exact refs on resumption |
 | FUND `1R-F-A` | Complete and closed at PASS on exact `0c7e4848`; zero external residue | Do not rerun or reinterpret the former contained Stage C failure as current state |
 | FUND `1R-F-B` / `1R-F-B1` | Enduring framework / B1-R1 source and guarded DevData migration PASS | Complete negative database/integration/concurrency proof, independent review and local human acceptance before promotion |

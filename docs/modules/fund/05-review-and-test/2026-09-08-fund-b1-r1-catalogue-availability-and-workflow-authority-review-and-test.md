@@ -2,9 +2,9 @@
 
 Date: 2026-09-08
 
-Status: **Source review, automated checks and guarded DevData migration PASS; remaining High-control proof, independent review and human acceptance pending.**
+Status: **Source review, automated checks and guarded DevData migration PASS; first human defect corrected at `e00db199`, retest and remaining gates pending.**
 
-Candidate: application `cd72dd780c6fec5b784a00c03a5ebb38133b71ce`, branch `work/fund-b1-r1-catalogue-workflow`, based on B1 `57e1454b530ae19dc586768fd996ff230d84421c`.
+Candidate: application `e00db199` on branch `work/fund-b1-r1-catalogue-workflow`; parent implementation `cd72dd780c6fec5b784a00c03a5ebb38133b71ce`, based on B1 `57e1454b530ae19dc586768fd996ff230d84421c`.
 
 ## Review Result
 
@@ -62,6 +62,20 @@ the three retired Product workflow/suitability tables, and zero FUND rows ready 
 Exact counts for every non-FUND application table remained unchanged, with comparison digest
 `6635290daabf`. Local `/api/health` then returned HTTP 200 and `/fund/products` returned the
 expected authenticated-route redirect on candidate `cd72dd78`.
+
+## Human Finding And Correction
+
+The first Catalogue-assignment attempt on parent candidate `cd72dd78` failed in
+`AvailabilityManager` with `null is not an object` while evaluating
+`event.currentTarget.checked`. The checkbox handler passed the React event into a functional
+state updater and read the target inside that later callback. Corrected commit `e00db199`
+copies the checked boolean synchronously, then uses only that value in the updater.
+
+Full `npm run type-check`, focused ESLint for `AvailabilityManager.tsx`, `git diff --check`
+and the commit-time critical-file verification pass. The production build evidence remains
+the parent candidate's full build; this one-handler correction has not been rebuilt while the
+owner's localhost process is active. Human retry of Catalogue selection and Save remains
+pending, so the schedule is not accepted.
 
 ## Remaining Connected Proof
 
