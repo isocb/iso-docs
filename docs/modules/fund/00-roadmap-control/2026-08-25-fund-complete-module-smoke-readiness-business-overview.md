@@ -37,7 +37,7 @@ Store, payment, Order and operational slices remain in Phase 1 after B1; the tem
 is Phase 2. The earlier Store human acceptance schedule is not silently marked complete.
 
 The local test application is now running at `http://localhost:3000` on corrected candidate
-`2cfc89fa`, using the Neon DevData database you identified. The Catalogue/workflow database
+`51618485`, using the Neon DevData database you identified. The Catalogue/workflow database
 change is applied. Its safety checks confirmed that only the small disposable FUND setup was
 removed and that every application table outside FUND retained the same row count. Recreate the FUND
 Event, Client, Project, Intake, Product and Catalogue test bed through the ordinary C1/public
@@ -65,6 +65,15 @@ opens the Project on a dedicated Products tab, where C2 can select the subset su
 available Catalogues; selected Products that later lose their final Catalogue source remain
 visible as unavailable. Candidate `2cfc89fa` passes the full build, TypeScript, focused lint
 and all FUND tests. This behavior still needs your human retry before acceptance.
+
+The apparent missing Product control on the next retry was caused by Product `MugTest` still
+being draft. Event `wf1`, Catalogue `Cat1`, their assignment and Product membership were active,
+and your C2 Project Manager role already had the required selection authority. The screen now
+states when an active Catalogue contains no active Products and directs C1 to activate the
+Product. It also displays the current C2 role; C1 manages Client roles from the Client's Users
+tab, because C2 cannot elevate itself. Project activation is now visible at the top of Project
+detail rather than inside Store controls. After you activated the Product, connected readback
+confirmed `MugTest` is available from `Cat1`, unselected and ready for the C2 selection retry.
 
 While you test B1, the proposed next plan is
 [1R-G Public Store Presentation](../03-slice-planning/2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md):

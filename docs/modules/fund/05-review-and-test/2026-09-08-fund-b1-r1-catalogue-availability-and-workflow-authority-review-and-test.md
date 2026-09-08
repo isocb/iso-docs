@@ -2,9 +2,9 @@
 
 Date: 2026-09-08
 
-Status: **Source review, automated checks and guarded DevData migration PASS; three human defects corrected at `2cfc89fa`, retest and remaining gates pending.**
+Status: **Source review, automated checks and guarded DevData migration PASS; four human findings corrected at `51618485`, retest and remaining gates pending.**
 
-Candidate: application `2cfc89fa` on branch `work/fund-b1-r1-catalogue-workflow`; parent implementation `cd72dd780c6fec5b784a00c03a5ebb38133b71ce`, based on B1 `57e1454b530ae19dc586768fd996ff230d84421c`.
+Candidate: application `51618485` on branch `work/fund-b1-r1-catalogue-workflow`; parent implementation `cd72dd780c6fec5b784a00c03a5ebb38133b71ce`, based on B1 `57e1454b530ae19dc586768fd996ff230d84421c`.
 
 ## Review Result
 
@@ -36,7 +36,7 @@ localhost checkout's generated Prisma Client.
 | Check | Result | Evidence limit |
 | --- | --- | --- |
 | TypeScript | PASS | Full `npm run type-check` |
-| Production application build | PASS | Exact `2cfc89fa`: `npm run build`; full type check and all 131 static pages generated |
+| Production application build | PASS | Exact `51618485` source: `npm run build`; full type check and all 131 static pages generated |
 | FUND unit tests | PASS | 7 files, 26 tests; workflow exhaustiveness and first-initialisation selection included |
 | Prisma schema validation | PASS | Non-connecting placeholder URL; no database mutation |
 | Critical-file verification | PASS | Repository verifier and nested type check |
@@ -102,6 +102,27 @@ files/26 tests, `git diff --check`, critical-file verification and credential-pa
 pass. Local health and authentication-boundary checks pass on port 3000. Human proof of the
 correct Event-linked and standalone paths remains pending.
 
+The next screen appeared to show an active Event Catalogue with no way to select its Product
+or activate the Project. Redacted connected DevData readback proved the exact state: Event
+`wf1`, Catalogue `Cat1`, assignment and membership were active; Product `MugTest` was `DRAFT`;
+the Project was `DRAFT` with no Product membership; and its organiser was an active C2
+`PROJECT_MANAGER` with dashboard access. Project Manager already has the same Project/Product
+mutation authority as C2 Admin. C2 self-elevation is correctly absent; C1 manages Client users
+on Client detail's Users tab.
+
+The eligibility implementation had collapsed an active Catalogue with zero active Products
+into the same warning as no active Catalogue source. Candidate `51618485` retains that empty
+source Catalogue and reports the correct no-active-Products condition. The Products tab shows
+source Catalogue codes and tells C2 that C1 must activate the Product. It also shows the current
+C2 access level. Project activation/pause/resume now appears at the top of Project detail and
+has been removed from the unrelated Store-controls card.
+
+After Chris activated the Product, connected readback returned source `Cat1`, eligible Product
+`MugTest`, no selected Product and no warning, which is the correct pre-selection state. Exact
+source passes the full build, TypeScript, focused zero-warning ESLint, 7 FUND files/26 tests,
+critical-file verification, whitespace and credential-pattern checks. Human button selection
+and activation remain pending.
+
 ## Remaining Connected Proof
 
 Prove the fresh migration separately, then prove that Event rows, `NOT_SURE` Projects and
@@ -114,14 +135,16 @@ human schedule below remain open; the DevData upgrade alone does not complete Hi
 
 1. Retry Intake creation and Catalogue assignment/Save, confirming the two earlier interaction corrections.
 2. Create one Ceramic Mug without a Product workflow field and add it to two Catalogues.
-3. From C2, create an Event-linked Project: select Event first, confirm its workflow is inherited and read-only, then confirm creation opens Project detail on Products.
+3. From C2, create an Event-linked Project: select Event first, confirm its workflow is inherited and read-only, then confirm creation opens Project detail on Products and displays the current C2 access level.
 4. From C2, create a standalone Project and choose one of the four workflows; confirm creation opens the same Products surface.
 5. Create Events for each of the four workflows, assign Catalogues, and confirm linked Projects inherit the Event workflow with no editable conflict.
 6. Create four standalone Projects and confirm all active standalone-capable Catalogues form the offered range without a default Catalogue flag.
-7. On the Products tab, let C2 retain a subset. Add a Product to a source Catalogue and confirm it appears available but remains unselected.
-8. Remove one of two sources and confirm continued eligibility. Remove the last source and confirm the selection remains visible as unavailable while finalisation/trading refuses.
-9. Restore availability and confirm eligibility returns without reactivating a prior C2 exclusion.
-10. Confirm Event workflow changes refuse after a linked Project; confirm a draft standalone workflow change succeeds only before publication, finalised offer and Orders.
-11. Finalise the existing Individual offer and confirm its document, Product, price and workflow evidence remain unchanged across later Catalogue withdrawal.
+7. On the Products tab, confirm an active Catalogue containing only draft Products gives a C1 Product-activation message; activate the Product as C1, then let C2 select the now-eligible subset.
+8. Use the top-level Project action to activate the Project and confirm the server reports any remaining readiness gate clearly.
+9. Add a Product to a source Catalogue and confirm it appears available but remains unselected after initial selection.
+10. Remove one of two sources and confirm continued eligibility. Remove the last source and confirm the selection remains visible as unavailable while finalisation/trading refuses.
+11. Restore availability and confirm eligibility returns without reactivating a prior C2 exclusion.
+12. Confirm Event workflow changes refuse after a linked Project; confirm a draft standalone workflow change succeeds only before publication, finalised offer and Orders.
+13. Finalise the existing Individual offer and confirm its document, Product, price and workflow evidence remain unchanged across later Catalogue withdrawal.
 
 Record role/tenant identity, exact candidate, database fingerprint, time and PASS/FAIL for each result. Human acceptance, staging migration, controlled promotion and live proof remain separate gates.

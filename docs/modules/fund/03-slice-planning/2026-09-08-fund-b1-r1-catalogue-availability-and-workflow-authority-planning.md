@@ -2,7 +2,7 @@
 
 Date: 2026-09-08
 
-Status: **Implemented; guarded DevData migration PASS; three local human defects corrected and retest pending.**
+Status: **Implemented; guarded DevData migration PASS; four local human findings corrected and retest pending.**
 Control depth: **High**. Work type: production-model correction, not an assumption test.
 
 Authority: [CR-Fix](../01-cr-inputs/CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md)
@@ -269,6 +269,15 @@ only for standalone Projects, redirects creation to Project detail, and exposes 
 Products tab for the Catalogue-derived C2 subset. These are implementations of the planned
 Event/Project authority and C2-selection contract, not an expansion of the slice. Human retry
 remains required.
+
+The next C2 retry established that an active Catalogue can legitimately yield no eligible
+Products when its Product is still draft, but the API/UI described that state as if no source
+Catalogue existed. It also established that the Project lifecycle action was hidden inside
+Store controls and that the current C2 role was unclear. Candidate `51618485` preserves an
+empty active Catalogue in eligibility results, gives the correct Product-activation guidance,
+shows the current C2 access level, and places Project activation at the Project-page level.
+C2 cannot elevate its own role; C1 Client user management remains the authority. These changes
+make the already-planned selection and activation sequence testable without changing authority.
 
 A worktree can isolate future code from active local testing; no new checkout is created
 for this documentation pass. No persistent branch or separate schema-only lane is needed

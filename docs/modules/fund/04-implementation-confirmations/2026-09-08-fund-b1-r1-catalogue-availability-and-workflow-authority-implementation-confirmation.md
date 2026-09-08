@@ -4,7 +4,7 @@ Date: 2026-09-08
 
 Status: **Application implementation committed; local DevData migration PASS; broader connected proof and acceptance pending.**
 
-Control depth: **High**. Authority is the accepted B1-R1 [plan](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md), its CR-Fix and triage. Application baseline was `57e1454b530ae19dc586768fd996ff230d84421c`. The corrected candidate is `2cfc89fa` on `work/fund-b1-r1-catalogue-workflow`, comprising implementation `cd72dd780c6fec5b784a00c03a5ebb38133b71ce` and bounded corrections `e00db199`, `8bda74f4` and `2cfc89fa` found during local human smoke.
+Control depth: **High**. Authority is the accepted B1-R1 [plan](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md), its CR-Fix and triage. Application baseline was `57e1454b530ae19dc586768fd996ff230d84421c`. The corrected candidate is `51618485` on `work/fund-b1-r1-catalogue-workflow`, comprising implementation `cd72dd780c6fec5b784a00c03a5ebb38133b71ce` and bounded corrections `e00db199`, `8bda74f4`, `2cfc89fa` and `51618485` found during local human smoke.
 
 ## Implemented Result
 
@@ -20,6 +20,11 @@ Control depth: **High**. Authority is the accepted B1-R1 [plan](../03-slice-plan
   workflow field. Creation redirects to Project detail, whose default dedicated Products tab
   exposes the Catalogue-derived eligible range and lets an authorised C2 user maintain the
   Project subset. Store controls no longer obscure that selection task.
+- Eligibility now retains an active source Catalogue even when it contains no active Product,
+  so C2 sees the correct C1 Product-activation remediation instead of a false missing-Catalogue
+  message. C2 pages show the current access level and explain that C1 manages Client roles.
+  Project activation/pause/resume is visible at the top of Project detail; Store controls are
+  confined to the Store tab.
 
 ## Schema And Migration
 
@@ -68,6 +73,14 @@ expected row. Staging and live were not changed.
   redirects successful creation there. Full build, TypeScript, focused ESLint, all 26 FUND
   tests, whitespace and credential-pattern checks pass. Local health is HTTP 200 and the C2
   Projects route reaches its expected authentication redirect; human retry is pending.
+- C2 Product/activation retry at `2cfc89fa`: BLOCKED from selection because the sole Product
+  was `DRAFT`, although Event `wf1`, Catalogue `Cat1`, assignment and membership were active.
+  The C2 organiser was already `PROJECT_MANAGER`, which has the required mutation authority;
+  self-elevation to C2 Admin is intentionally unavailable. `51618485` distinguishes an empty
+  active source Catalogue from no Catalogue source, supplies C1 Product-activation guidance,
+  displays the C2 role, and moves Project lifecycle actions out of the Store tab. After Chris
+  activated the Product, connected readback returned `Cat1`, eligible `MugTest`, zero selected
+  Products and no warnings. Selection and Project activation human retry remain pending.
 
 ## Deliberate Boundary And Open Gates
 
