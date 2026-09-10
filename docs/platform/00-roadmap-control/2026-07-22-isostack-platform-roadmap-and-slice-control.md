@@ -2,7 +2,7 @@
 
 Date: 2026-07-22
 
-Last reconciled: 2026-09-03
+Last reconciled: 2026-09-10
 
 Status: Active authoritative Platform child roadmap; no implementation authorised by
 this document alone
@@ -19,7 +19,7 @@ Application routing reference:
 
 `isostack-bedrock/src/app/README.md`
 
-## 0. Authoritative CR Inventory And Current Platform Disposition — 2026-09-03
+## 0. Authoritative CR Inventory And Current Platform Disposition — 2026-09-10
 
 This file is confirmed as the one authoritative Platform child roadmap. The Platform
 Assurance, Security Review And Refinement Roadmap remains a subordinate finding/register
@@ -34,6 +34,7 @@ default.
 
 | Source CR | Current disposition | Roadmap treatment |
 | --- | --- | --- |
+| [`CR-Fix-2026-09-10-isostack-platform-next-sharp-js-yaml-security-advisories.md`](../01-cr-inputs/CR-Fix-2026-09-10-isostack-platform-next-sharp-js-yaml-security-advisories.md) | Read-only review confirms 1 Critical and 3 High package entries on all protected branches; Next/Sharp image-processing exposure and js-yaml require bounded correction | Urgent High-control correction proposed in [triage](../02-triage/2026-09-10-isostack-platform-next-sharp-js-yaml-security-advisories-triage.md); not selected or implemented; FUND local human smoke continues |
 | [`2026-07-22-isostack-platform-node-middleware-request-body-finalisation-defect-cr.md`](../01-cr-inputs/2026-07-22-isostack-platform-node-middleware-request-body-finalisation-defect-cr.md) | Completed through `PLAT-RUNTIME-01`; subsequently included in the completed LMSPro R8-A production release | Closed historical corrective input; do not reopen without a new finding |
 | [`2026-07-27-isostack-platform-auth-dependency-and-audit-gate-security-remediation-cr-input.md`](../01-cr-inputs/2026-07-27-isostack-platform-auth-dependency-and-audit-gate-security-remediation-cr-input.md) | Completed through the documented `PLAT-ASSURE-03` dev/staging lifecycle and human gate; no separate production claim is added by this reconciliation | Closed at its recorded evidence boundary; `PLAT-REFINE-03` and `PLAT-REFINE-04` retain separate follow-up concerns |
 | [`2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md`](../01-cr-inputs/2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md) | Complete and closed; exact `60ac76c1` passes local/staging/production gates, including same-Club C2 sibling creation and magic-link authentication | Closed project; historical conditional plans do not remain active |
@@ -48,6 +49,13 @@ default.
 | [`CR-Fix-2026-09-03-isostack-platform-fast-uri-dependency-advisory-remediation.md`](../01-cr-inputs/CR-Fix-2026-09-03-isostack-platform-fast-uri-dependency-advisory-remediation.md) | `CR-Fix-PLAT-ASSURE-04`: exact application `14077382`; all local/protected scans, staging H1-H4 and production health/Render identity PASS | Complete and closed through main; portfolio control returned to FUND `1R-F-B`. Moderate/Low follow-up remains separate `PLAT-ASSURE-04-R1` |
 
 Current Platform portfolio disposition:
+
+On 2026-09-10 Chris requested review of the failed daily security scan while continuing FUND
+smoke. The new advisory CR above proposes a targeted Next.js/Sharp/js-yaml correction with
+the existing request-body backport preserved. Root selection has not changed: FUND B1/B1-R2
+remains Now. Exact protected refs are still `14077382`; historical PASS evidence below does
+not override the current failing advisory gate. PLAT-ASSURE-04 remains closed, while its
+separate Moderate/Low assessment PLAT-ASSURE-04-R1 also needs to include the new Vitest finding.
 
 The current root decision supersedes the chronological delivery narrative below. Role
 Authority, Support Ticketing, `PLAT-ROLE-04` and `PLAT-ROLE-04A` are delivered at their
