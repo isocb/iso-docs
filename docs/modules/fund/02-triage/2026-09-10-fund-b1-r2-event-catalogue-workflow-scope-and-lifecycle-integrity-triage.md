@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 
-Disposition: **Accepted and implemented as a blocking correction inside B1; human acceptance pending.**
+Disposition: **Accepted and implemented as a blocking correction inside B1; local human smoke PASS reported by Chris on 2026-09-10; independent review and promotion pending.**
 Control depth: **High** — Catalogue workflow eligibility, Event authority, schema migration,
 concurrency and immutable commercial evidence are affected.
 
@@ -37,8 +37,8 @@ strict `CLOSED -> ARCHIVED` action. Close is `ACTIVE -> CLOSED` only when no lin
 
 ## Blocker And Data Position
 
-B1 human testing is paused after steps 5–7. B1-R2 must be implemented and reviewed before that
-schedule resumes. Existing B1/B1-R1 automated evidence remains valid within its exact scope; it
+B1 human testing initially paused after steps 5–7. B1-R2 is now implemented, and Chris
+reports the resumed local smoke PASS on 2026-09-10. Independent review remains open. Existing B1/B1-R1 automated evidence remains valid within its exact scope; it
 does not prove the new Catalogue or Event rules.
 
 Chris confirms there are no FUND users requiring data remediation and permits recreation of the

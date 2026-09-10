@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 
-Status: **Implemented locally at `29104b55`; automated/connected proof PASS; human acceptance pending.**
+Status: **Implemented locally at `29104b55`; automated/connected proof PASS; local human smoke PASS reported by Chris on 2026-09-10; independent review and promotion pending.**
 Control depth: **High**. Work type: production-model correction.
 
 Authority: [CR-Fix](../01-cr-inputs/CR-Fix-2026-09-10-fund-event-catalogue-workflow-scope-and-lifecycle-integrity.md)
@@ -239,6 +239,7 @@ does not promote the candidate.
 ## 12. Stopping Point
 
 Application `29104b55`, the versioned migration and 04/05 records now form the local candidate.
-Stop for independent review and the resumed human smoke.
+Local human smoke is now owner-reported PASS in the 05 record. Stop for independent review,
+remaining connected proof and security integration/combined-candidate validation.
 Do not promote to dev/staging/main or apply the migration beyond the identified local DevData
 target without the later controlled-promotion gate.

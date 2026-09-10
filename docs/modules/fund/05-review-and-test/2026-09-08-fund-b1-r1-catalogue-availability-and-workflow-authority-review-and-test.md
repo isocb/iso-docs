@@ -2,9 +2,14 @@
 
 Date: 2026-09-08
 
-Status: **Human smoke paused after steps 5–7 exposed blocking B1-R2 Catalogue scope, Event management and state-clarity findings; prior exact-candidate evidence retained.**
+Status: **Local human smoke PASS reported by Chris on 2026-09-10 after B1-R2; independent review and remaining connected/promotion proof remain open.**
 
 Candidate: application `51618485` on branch `work/fund-b1-r1-catalogue-workflow`; parent implementation `cd72dd780c6fec5b784a00c03a5ebb38133b71ce`, based on B1 `57e1454b530ae19dc586768fd996ff230d84421c`.
+
+Retest candidate: local application `29104b55` with DevData migration 156. Chris marked all
+13 steps below PASS on 10 September and confirmed in conversation: “Fund testing all green”.
+This is owner-reported local evidence; the earlier `51618485` source/automated results and
+initial failures remain historical evidence, not proof of a combined security/FUND candidate.
 
 ## Review Result
 
@@ -153,16 +158,17 @@ are insufficient.
 These findings are captured in the [B1-R2 CR-Fix](../01-cr-inputs/CR-Fix-2026-09-10-fund-event-catalogue-workflow-scope-and-lifecycle-integrity.md),
 [triage](../02-triage/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-triage.md)
 and [bounded plan](../03-slice-planning/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-planning.md).
-B1-R1 human acceptance remains open; testing is correctly paused rather than treating the new
-requirements as passes against the old contract.
+Testing initially paused against the old contract. Chris subsequently recorded the corrected
+B1-R2 retest and resumed B1-R1 schedule as PASS on 2026-09-10; the findings above are retained
+as the reason for the correction.
 
 ## Remaining Connected Proof
 
 Prove the fresh migration separately, then prove that Event rows, `NOT_SURE` Projects and
 immutable offer/Order evidence stop the contraction without partial application. Verify
 deferred Event/Project mismatch rejection, cross-tenant refusal, advisory-lock ordering and
-retry/idempotency behaviour. Run the relevant connected service suites. These gates and the
-human schedule below remain open; the DevData upgrade alone does not complete High control.
+retry/idempotency behaviour. Run the relevant connected service suites. These connected gates remain open unless separately evidenced; the human
+schedule below is now owner-reported PASS. Neither the DevData upgrade nor human PASS completes High control.
 
 ## Human Smoke Schedule
 
@@ -170,17 +176,19 @@ human schedule below remain open; the DevData upgrade alone does not complete Hi
 2. Create one Ceramic Mug without a Product workflow field and add it to two Catalogues. **Chris 10/09/26: PASS.**
 3. From C2, create an Event-linked Project: select Event first, confirm its workflow is inherited and read-only, then confirm creation opens Project detail on Products and displays the current C2 access level. **Chris 10/09/26: PASS.**
 4. From C2, create a standalone Project and choose one of the four workflows; confirm creation opens the same Products surface. **Chris 10/09/26: PASS.**
-5. Create Events for each of the four workflows, assign Catalogues, and confirm linked Projects inherit the Event workflow with no editable conflict. **Chris 10/09/26: BLOCKED by newly clarified Catalogue workflow-scope requirement; captured as B1-R2.**
-6. Create four standalone Projects and confirm all active standalone-capable Catalogues form the offered range without a default Catalogue flag. **Chris 10/09/26: superseded by B1-R2 requirement that workflow-compatible standalone Catalogues form the range.**
-7. On the Products tab, confirm an active Catalogue containing only draft Products gives a C1 Product-activation message; activate the Product as C1, then let C2 select the now-eligible subset. **Chris 10/09/26: FAIL on Catalogue-editor state clarity; B1-R2 must distinguish Product status from membership status and explain draft preparation.**
-8. Use the top-level Project action to activate the Project and confirm the server reports any remaining readiness gate clearly. **PAUSED pending B1-R2 correction and clarification of the separate B1/Store readiness gates.**
-9. Add a Product to a source Catalogue and confirm it appears available but remains unselected after initial selection.
-10. Remove one of two sources and confirm continued eligibility. Remove the last source and confirm the selection remains visible as unavailable while finalisation/trading refuses.
-11. Restore availability and confirm eligibility returns without reactivating a prior C2 exclusion.
-12. Confirm Event workflow changes refuse after a linked Project; confirm a draft standalone workflow change succeeds only before publication, finalised offer and Orders.
-13. Finalise the existing Individual offer and confirm its document, Product, price and workflow evidence remain unchanged across later Catalogue withdrawal.
+5. Create Events for each of the four workflows, assign Catalogues, and confirm linked Projects inherit the Event workflow with no editable conflict. Initially BLOCKED by Catalogue workflow scope; captured as B1-R2. **Chris 10/09/26: retest PASS.**
+6. Create four standalone Projects and confirm active, workflow-compatible, standalone-capable Catalogues form the offered range without a default Catalogue flag. The original all-workflows rule is superseded by B1-R2. **Chris 10/09/26: PASS.**
+7. On the Products tab, confirm an active Catalogue containing only draft Products gives a C1 Product-activation message; activate the Product as C1, then let C2 select the now-eligible subset. Initially FAIL on Catalogue-editor state clarity; B1-R2 separates Product status from membership and explains draft preparation. **Chris 10/09/26: retest PASS.**
+8. Use the top-level Project action to activate the Project and confirm the server reports any remaining readiness gate clearly. Initially PAUSED for B1-R2 and clarification of B1/Store readiness gates. **Chris 10/09/26: retest PASS.**
+9. Add a Product to a source Catalogue and confirm it appears available but remains unselected after initial selection. **Chris 10/09/26: PASS.**
+10. Remove one of two sources and confirm continued eligibility. Remove the last source and confirm the selection remains visible as unavailable while finalisation/trading refuses. **Chris 10/09/26: PASS.**
+11. Restore availability and confirm eligibility returns without reactivating a prior C2 exclusion. **Chris 10/09/26: PASS.**
+12. Confirm Event workflow changes refuse after a linked Project; confirm a draft standalone workflow change succeeds only before publication, finalised offer and Orders. **Chris 10/09/26: PASS.**
+13. Finalise the existing Individual offer and confirm its document, Product, price and workflow evidence remain unchanged across later Catalogue withdrawal. **Chris 10/09/26: PASS.**
 
-After B1-R2 implementation/review, run its Event Products, workflow-scope and lifecycle-negative
-schedule first, then resume this schedule at step 5 against the corrected contract.
+Chris has now reported the resumed local schedule green. The [B1-R2 record](2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-review-and-test.md)
+records the aggregate human result and its evidence limits. Independent review remains open.
 
-Record role/tenant identity, exact candidate, database fingerprint, time and PASS/FAIL for each result. Human acceptance, staging migration, controlled promotion and live proof remain separate gates.
+The report supplies the date and checklist results; no additional per-step timestamps or
+role/tenant evidence are invented. Staging migration, controlled promotion and live proof
+remain separate gates.

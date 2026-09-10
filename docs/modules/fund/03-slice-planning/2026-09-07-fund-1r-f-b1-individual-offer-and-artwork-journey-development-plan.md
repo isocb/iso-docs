@@ -2,7 +2,7 @@
 
 Date: 2026-09-07
 
-Status: **B1-R2 implemented and proved locally; independent review and resumed human acceptance pending**
+Status: **B1-R2 implemented and proved locally; Chris reports local human smoke PASS; independent review and remaining proof/promotion gates open**
 
 Control depth: **High** — this journey introduces persistent offer evidence, exact C2
 finaliser authority, tenant-bound document access and failure/retry behaviour.
@@ -17,16 +17,17 @@ Product-selection/capacity CRs; this is their bounded development child, not a n
 The enduring [1R-F-B framework](../00-roadmap-control/2026-09-07-fund-user-framework-and-individual-artwork-delivery-principles.md)
 augments the [FUND roadmap](../00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md).
 [Root control](../../../00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md)
-selects this planning outcome as Now; Next is unselected pending its review.
+currently selects the Platform security correction as Now and FUND B1/B1-R2 resumption as Next.
+This FUND checkpoint is retained for safe resumption; the Platform plan owns the active interrupt.
 
 ## Restart Checkpoint
 
 ```text
-Current state: B1-R2 application 29104b55, migration 156, full build, 30 FUND unit tests and disposable DevData eligibility/lifecycle concurrency proof PASS; Chris's B1-R1 steps 1–4 PASS are retained; independent review and revised human smoke remain open
-Last proven commit: application B1-R2 29104b55 on B1-R1 51618485; local DevData target fingerprint 257f63f2e2c2, migration 156 ledger/schema/constraint readback PASS and connected proof cleanup restored two Catalogues, four active Events, three active Projects, zero offers and zero Order contexts
-Current environment: primary local checkout on work/fund-b1-r1-catalogue-workflow at 29104b55; migrations through 156 applied only to local Neon DevData; user-operated localhost test process requires restart for the new generated client/source; app dev/staging/main and staging/live databases unchanged
-Next human decision/test: restart local npm run dev, run the B1-R2 05 Catalogue/Event/lifecycle schedule, then resume B1-R1 at revised step 5
-Safe resumption point: read B1-R2 04/05 and B1-R1 05; preserve migrations 155/156 and prior human PASS evidence; obtain independent review and human acceptance before any promotion
+Current state: local B1/B1-R1/B1-R2 human smoke PASS reported by Chris on 2026-09-10 at 29104b55; automated/migration/B1-R2 connected proof PASS; independent review and outstanding B1-R1 connected proof remain open
+Last proven commit: application B1-R2 29104b55 on B1-R1 51618485; local DevData target fingerprint 257f63f2e2c2, migration 156; prior connected-proof cleanup PASS is historical, not a fresh readback of the user's populated smoke data
+Current environment: primary local checkout work/fund-b1-r1-catalogue-workflow at 29104b55; local Neon DevData through migration 156; separate security correction at dev/staging 0397bba9; main 14077382; no FUND promotion or security integration
+Next human decision/test: no repeat of the unchanged local smoke requested; remaining independent/connected proof and security integration must establish the combined candidate, followed by environment-specific acceptance; main/live requires Chris's specific approval
+Safe resumption point: read B1-R2 04/05 and B1-R1 05; preserve local test data and reported PASS; root Next remains FUND resumption after the security interrupt is closed or safely re-disposed; no new slice or promotion inferred
 ```
 
 ## 1. One Visible Outcome

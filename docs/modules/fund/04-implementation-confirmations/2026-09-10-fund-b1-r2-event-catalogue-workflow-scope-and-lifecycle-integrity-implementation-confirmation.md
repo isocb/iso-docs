@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 
-Status: **Implemented locally at application `29104b55`; DevData migration and connected proof PASS; human acceptance pending.**
+Status: **Implemented locally at application `29104b55`; DevData migration and connected proof PASS; local human smoke PASS reported by Chris on 2026-09-10; independent review and promotion pending.**
 Control depth: **High**.
 
 Authority: [CR-Fix](../01-cr-inputs/CR-Fix-2026-09-10-fund-event-catalogue-workflow-scope-and-lifecycle-integrity.md)
@@ -80,6 +80,7 @@ removed them and their audit records. It proved:
 
 ## Stopping Point
 
-Application `29104b55` is the local B1-R2 candidate. Human smoke is the next gate using the
+Application `29104b55` is the local B1-R2 candidate. Chris reported local human smoke PASS on
+2026-09-10; the report and its limits are recorded against the
 [review/test schedule](../05-review-and-test/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-review-and-test.md).
 Do not promote or apply migration 156 outside the verified local DevData target on this evidence.

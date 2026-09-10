@@ -8,8 +8,9 @@ Status: Active authoritative control for the FUND lane
 
 2026-09-10 portfolio interrupt: root Now is the accepted Platform PLAT-ASSURE-05 security
 correction, published separately through dev/staging at `0397bba9`; FUND B1/B1-R2 resumption is Next. Chris
-continues local human smoke at `29104b55` with the existing DevData and dependencies.
-No FUND acceptance or security-fix integration is inferred; the Platform plan owns the
+reports local FUND human smoke PASS on 2026-09-10 at `29104b55`; B1-R1 steps 1–13 are marked
+PASS. Independent review, remaining B1-R1 connected proof and security-fix integration/combined-
+candidate validation remain open. No FUND closure or promotion is inferred; the Platform plan owns the
 active security checkpoint and main/live review/acceptance hold.
 
 Parent roadmap:
@@ -75,15 +76,15 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> FUND 1R-F-B1 Individual Offer And Artwork Journey technical review and implementation
-ROOT NEXT -> unselected pending B1 local human acceptance; no promotion inferred
+ROOT NOW  -> Platform PLAT-ASSURE-05 security correction; main/live hold remains
+ROOT NEXT -> Resume FUND B1/B1-R2 after the interrupt; local human smoke PASS, remaining review/proof/integration pending
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
 FUND      -> 1R-F-A COMPLETE AND CLOSED AT PASS; prior Stage C FAIL retained as contained history; Stage C-R1 provider/object/Render/local residue zero
-             1R-F-B is the enduring subordinate framework; B1 owns the active development-plan draft and checkpoint; technical review and implementation now authorised
+             1R-F-B is the enduring subordinate framework; B1 retains its resumption checkpoint; local implementation and human smoke PASS, remaining review/proof/promotion open
 ```
 
 [CR-Fix — Catalogue-Led Product Availability and Event/Project Workflow Authority](../01-cr-inputs/CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md)
-— **implemented; guarded DevData migration PASS; remaining High-control proof and acceptance pending**, High depth.
+— **implemented; guarded DevData migration and local human smoke PASS; remaining High-control proof and promotion pending**, High depth.
 [Triage](../02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md); [implementation plan](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md); [implementation confirmation](../04-implementation-confirmations/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-implementation-confirmation.md); [review/test record](../05-review-and-test/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-review-and-test.md). Confirmed requirement:
 one Product reused through Catalogues; retire Product Workflow Class authority and the
 separate Product Suitability veto; C2 selects the available subset. Manufacturing changes
@@ -99,10 +100,10 @@ C2 workflow display, the dedicated C2 Project Products selection surface, truthf
 guidance and prominent Project lifecycle controls. Its guarded Neon DevData
 154-to-155 migration passed after the authorised FUND-only test-data recreation, with all
 non-FUND application-table counts unchanged. No promotion has occurred. Negative database/concurrency
-proof, independent review and human acceptance remain required.
+proof and independent review remain required; Chris reports the corrected local human smoke PASS.
 
 [CR-Fix — Event Catalogue workflow scope and lifecycle integrity](../01-cr-inputs/CR-Fix-2026-09-10-fund-event-catalogue-workflow-scope-and-lifecycle-integrity.md)
-— **implemented locally at `29104b55`; automated/connected proof PASS; human acceptance pending**, High depth.
+— **implemented locally at `29104b55`; automated/connected proof and owner-reported local human smoke PASS; independent review and promotion pending**, High depth.
 [Triage](../02-triage/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-triage.md);
 [implementation plan](../03-slice-planning/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-planning.md).
 Human steps 1–4 passed on 10 September before testing exposed the need for Catalogue-level
@@ -111,7 +112,12 @@ Product-versus-membership status. B1-R2 stays inside B1 `Now`; it pulls `2R-EVEN
 visibility into the active correction without selecting 1R-G. No Product suitability control or
 standalone per-Project Catalogue gate returns. Chris authorised implementation; local DevData
 migration 156 and disposable eligibility/Event-lifecycle concurrency proof pass with cleanup.
-Staging/live remain unchanged and independent review/human acceptance are still required.
+No FUND staging/live promotion has occurred. Chris reports the revised local smoke PASS on
+2026-09-10; [B1-R2 05](../05-review-and-test/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-review-and-test.md)
+records the report and limits. Independent review and remaining proof/integration are still required.
+
+The following entries retain the earlier implementation/test chronology; current acceptance
+and portfolio state are recorded above.
 
 Local smoke blocker [CR-Fix — Workflow Class reference data](../01-cr-inputs/CR-Fix-2026-09-08-fund-local-workflow-class-reference-data.md)
 has its bounded DevData-only repair/readback PASS within B1 preparation; human Product creation retry remains pending. No new portfolio

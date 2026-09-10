@@ -16,9 +16,16 @@ implementation authority or another restart checkpoint.
 **10 September security maintenance:** the shared application needs a dependency security
 update. You authorised its publication and promotion through dev and staging, now at
 `0397bba9`. Main/live remains unchanged pending your specific approval and the remaining
-review/staging checks. Your FUND smoke application and test data are unchanged, so continue
-with trusted test assets. The security fix will be integrated into FUND separately. This temporarily takes
-agent delivery priority; FUND acceptance remains open and is the resumption outcome.
+review/staging checks. The security fix will be integrated into FUND separately. This temporarily
+takes agent delivery priority; FUND review and release preparation remain the resumption outcome.
+
+**10 September FUND test result: local smoke PASS.** You confirmed “Fund testing all green”
+and marked all 13 B1-R1 checklist steps passed after the B1-R2 corrections, on the current
+local candidate `29104b55`. The [review/test record](../05-review-and-test/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-review-and-test.md)
+records your result. No repeat of the unchanged walkthrough is requested. Independent review,
+remaining technical proof and checks after combining FUND with the security update still precede
+FUND promotion. Main/live remains on hold for your specific approval. The complete purchase,
+production and commission journey still needs its later Phase 1 slices.
 
 FUND has substantial foundations for administration, Project setup, Product selection,
 Store control and payment/Order handling. It cannot yet demonstrate the connected journey
@@ -26,6 +33,11 @@ from setting up a fundraiser through a purchase, artwork matching, dispatch and 
 The Individual Artwork rendering and private-storage assumption test is **complete and
 passed**; its temporary resources were removed. It is not a pending test or an operational
 production service.
+
+### Delivery and test history
+
+The sequence below explains how the local candidate reached today’s PASS. Earlier pending
+walkthroughs and pauses describe their state at the time; the result above supersedes them.
 
 The owner has reconfirmed **FUND as the primary focus**, with LMSPro remedial work
 concluded. The repository alignment preflight found no uncommitted code or documentation:
@@ -145,8 +157,10 @@ sale-eligible.
 B1-R2 is implemented locally at `29104b55` inside B1 `Now`, and the earlier Phase 2 Event
 visibility wishlist has been pulled into this correction. Migration 156 and a disposable
 eligibility/Event-lifecycle concurrency proof pass on local DevData, with test cleanup confirmed.
-Existing B1-R1 human PASS results remain intact; dev, staging and live are unchanged. Restart the
-local server and use the B1-R2 05 schedule before resuming B1-R1 at step 5.
+Chris has now reported the corrected local smoke green and recorded the resumed B1-R1 steps
+PASS. This closes the local human walkthrough gate; independent review and remaining technical
+proof/integration stay open. FUND has not been promoted; the separate security branch state is
+reported at the top of this document.
 
 ## Your Phase 1 Decisions
 
@@ -172,7 +186,7 @@ other workflows and later settlement remains a broader future outcome.
 | --- | --- | --- |
 | Administration and Project setup | Client, user, Product, Event, Project, Intake and organiser foundations exist | Choose the test users and Project setup route; prove the selected route and relevant permissions |
 | Project and Store control | Draft Store creation, eligible Products, C2 control and C1 oversight are implemented | Complete the existing connected C1/C2 checks and show clear selection/readiness blockers |
-| Individual offer and artwork sheet | The renderer/layout/private-storage assumption test passed; Store configuration foundations exist | B1 now connects assignment, finalisation, matching development PDF and Store preview; complete the human walkthrough |
+| Individual offer and artwork sheet | The renderer/layout/private-storage assumption test passed; Store configuration foundations exist | B1 connects assignment, finalisation, matching development PDF and Store preview; local human smoke PASS reported 10 September, with independent review and promotion still open |
 | Public buying and payment | Shared Order/payment/refund machinery exists; the public FUND buying journey is incomplete | Add released Product display, buyer choices, checkout and purchase/status evidence; simulated payment outcomes are acceptable in development |
 | Order and artwork operations | Generic Order evidence and asset foundations exist | Add Order Code, C1 reconciliation, physical artwork/Order matching and limited C2 progress/sales visibility |
 | Production and dispatch | Delivery and asset foundations exist | Connect explicit production approval, fulfilment and dispatch for the chosen delivery mode |

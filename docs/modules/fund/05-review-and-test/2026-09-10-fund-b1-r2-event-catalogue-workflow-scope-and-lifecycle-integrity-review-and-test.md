@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 
-Status: **Exact-candidate automated, migration and connected proof PASS; independent review and human acceptance pending.**
+Status: **Exact-candidate automated, migration and connected proof PASS; local human smoke PASS reported by Chris; independent review and promotion pending.**
 
 Candidate: application `29104b55` on `work/fund-b1-r1-catalogue-workflow`; DevData migration 156,
 target fingerprint `257f63f2e2c2`.
@@ -31,8 +31,8 @@ same serializable transaction. Project activation rechecks linked Event status u
 The connected race test proves that either close wins and activation refuses, or activation wins
 and close refuses; the invalid closed-Event/active-Project pair did not commit.
 
-No blocking automated or connected defect is known. Independent source review and the human
-screen/wording judgement below remain open.
+No blocking automated or connected defect is known. Chris reports the local human smoke green;
+independent source review remains open.
 
 ## Automated And Connected Evidence
 
@@ -49,7 +49,22 @@ screen/wording judgement below remain open.
 | Critical-file verification | PASS | Intentional schema modification reviewed |
 | Whitespace/credential scan | PASS | No environment file, credential assignment, database URL, token or private key staged |
 | Independent review | PENDING | Must assess exact candidate before promotion |
-| Human C1/C2 smoke | PENDING | Schedule below |
+| Human C1/C2 smoke | PASS — owner reported, 2026-09-10 | Aggregate report below; not agent-observed or staging evidence |
+
+## Human Result — 2026-09-10
+
+Chris confirmed: “Fund testing all green”. This records acceptance of the local smoke
+against the current B1-R2 candidate `29104b55` and existing local Neon DevData test bed
+(migration 156, recorded target fingerprint `257f63f2e2c2`). His edits to the
+[B1-R1 schedule](2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-review-and-test.md)
+record PASS for all 13 steps, including retests of the earlier blocked/failed steps.
+
+The B1-R2 result is an aggregate owner report for the schedule below. No separate per-step
+times, role/tenant readback or new agent-observed browser/database evidence was supplied in
+this report. Existing automated/connected evidence retains its original scope. Independent
+review, outstanding B1-R1 connected proof, security-fix integration and combined-candidate
+checks remain open. This does not accept the separate Platform staging security checks or
+complete the full FUND Phase 1 purchase/production journey.
 
 ## Human Smoke Requirements
 
@@ -121,7 +136,7 @@ tenant, time and PASS/FAIL. A failed step stops acceptance but does not erase ea
 
 ## Promotion Gate
 
-Human PASS does not itself promote the candidate. After independent review and recorded human
-acceptance, reconcile B1/B1-R1/B1-R2 evidence and prepare controlled dev -> staging -> main
-promotion. Staging must apply the versioned migration through `prisma migrate deploy` with target,
-ledger and smoke readback. Live remains a later separately controlled gate.
+Human PASS does not itself promote the candidate. Reconcile the remaining independent and
+connected proof, then integrate the separate security correction and validate the combined
+candidate before controlled dev -> staging -> main promotion. Staging must apply the versioned migration through `prisma migrate deploy` with target,
+ledger and smoke readback. Main/live remains on hold for Chris’s specific approval; no FUND promotion occurs in this update.

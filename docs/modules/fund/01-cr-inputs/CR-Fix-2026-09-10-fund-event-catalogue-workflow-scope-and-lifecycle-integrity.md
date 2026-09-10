@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 
-Status: **Implemented locally as B1-R2 at `29104b55`; automated/connected proof PASS; human acceptance pending.**
+Status: **Implemented locally as B1-R2 at `29104b55`; automated/connected proof PASS; local human smoke PASS reported by Chris on 2026-09-10; independent review and promotion pending.**
 
 Owning lane: FUND. Source: B1-R1 local human smoke and owner clarification.
 Control depth: **High** — workflow eligibility, tenant-scoped availability, Event lifecycle
