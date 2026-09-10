@@ -49,7 +49,7 @@ localhost checkout's generated Prisma Client.
 | Repository lint | Baseline FAIL | Existing errors outside FUND; does not supply a repository lint PASS |
 | Whitespace and credential scan | PASS | No staged environment/credential/private-key/token match |
 | Connected DevData migration | PASS | Guarded 154-to-155 upgrade after authorised FUND-only test-data recreation; ledger and contracted schema read back |
-| Connected integration/concurrency | PENDING | Failure cases, advisory-lock races and existing database suites have not been exercised |
+| Connected integration/concurrency | PARTIAL PASS | Combined B1 service/recovery/authority suite and B1-R2 Event race pass; remaining R1 contraction guards and availability races are identified below |
 | Local runtime | PASS | `/api/health` HTTP 200; C2 Projects route expected HTTP 307 authentication redirect on localhost:3000 |
 
 ## DevData Migration Evidence
@@ -162,13 +162,24 @@ Testing initially paused against the old contract. Chris subsequently recorded t
 B1-R2 retest and resumed B1-R1 schedule as PASS on 2026-09-10; the findings above are retained
 as the reason for the correction.
 
-## Remaining Connected Proof
+## Connected Proof Update — 2026-09-10
 
-Prove the fresh migration separately, then prove that Event rows, `NOT_SURE` Projects and
-immutable offer/Order evidence stop the contraction without partial application. Verify
-deferred Event/Project mismatch rejection, cross-tenant refusal, advisory-lock ordering and
-retry/idempotency behaviour. Run the relevant connected service suites. These connected gates remain open unless separately evidenced; the human
-schedule below is now owner-reported PASS. Neither the DevData upgrade nor human PASS completes High control.
+The combined security/FUND candidate has now passed a fresh 154-migration baseline replay,
+the guarded 154-to-156 upgrade and unrelated-organisation sentinel preservation on dedicated
+temporary test databases. A separate fresh 156-migration replay also passed; both created
+databases were dropped and their absence verified. An existing Event refused migration 155 and left its schema
+unchanged. The B1 service suite passed at migration 156 after its stale test-only ledger
+expectation was corrected from 154. It proves Event hierarchy, tenant/scope constraints,
+exact-organiser finalisation, concurrent replay, immutable legacy paths, private document
+access, failed-cleanup and timeout/retry/lost-file recovery, and production emulation refusal.
+
+This does not claim the remaining `NOT_SURE` Project and immutable offer/Order contraction
+guards, or every Catalogue availability advisory-lock race, were exercised. Those remain
+open unless separately evidenced; B1-R2 already records its narrower Event close/activation
+race PASS. See [B1-R2 promotion evidence](2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-review-and-test.md)
+for cleanup, final exact commit and staging results. Chris authorised dev/staging promotion;
+separate review and later FUND live approval remain distinct. Human schedule PASS below is
+retained and does not silently complete all High-control proof.
 
 ## Human Smoke Schedule
 

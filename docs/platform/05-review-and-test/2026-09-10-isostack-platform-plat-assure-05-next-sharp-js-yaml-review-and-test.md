@@ -4,6 +4,11 @@ Date: 2026-09-10
 
 Status: **Exact `0397bba9` promoted through main; three local/remote branches aligned; main Security Scan, reported staging UI and public production probes PASS; exact Render/runtime and separate review remain unproven.**
 
+Latest disposition: Chris subsequently requested FUND dev/staging promotion. Those branches
+now advance with FUND plus this security correction; main remains security-only `0397bba9`.
+The three-branch alignment below is historical security-promotion evidence. Root Now returns
+to FUND B1; exact security Render/native-runtime identity and separate review remain unproven.
+
 Candidate: `0397bba9` on `work/platform-security-2026-09-10`, parent `14077382`.
 Control depth: **High**. Environment proven: isolated macOS arm64, Node 22.23.2/npm 10.9.8.
 

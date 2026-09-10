@@ -13,21 +13,27 @@ implementation authority or another restart checkpoint.
 
 ## Where We Are
 
-**10 September security maintenance:** the shared application needs a dependency security
-update. You authorised its publication and promotion through dev and staging, now at
-`0397bba9`. You have now passed the IsoStack/LMSPro staging UI checks and explicitly
-authorised security promotion to main/live. The patch has now been pushed to main:
-dev, staging and main all match `0397bba9`. Public production health/access/image checks
-pass; the main security scan PASS. Exact Render deployment and separate review
-limits remain documented. The security fix will be integrated into FUND separately. This temporarily takes agent delivery priority; FUND review and release preparation remain the resumption outcome.
+**10 September: FUND is the primary delivery focus again.** You asked for the tested local
+work to be aligned with online dev and promoted to staging. The combined code retains the
+security update already pushed to main. Main/live stays on the security-only release; this
+FUND promotion is for staging testing and does not open public FUND trading.
 
-**10 September FUND test result: local smoke PASS.** You confirmed “Fund testing all green”
-and marked all 13 B1-R1 checklist steps passed after the B1-R2 corrections, on the current
-local candidate `29104b55`. The [review/test record](../05-review-and-test/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-review-and-test.md)
-records your result. No repeat of the unchanged walkthrough is requested. Independent review,
-remaining technical proof and checks after combining FUND with the security update still precede
-FUND promotion. Your security main/live approval is recorded; it does not promote the FUND branch.
-The complete purchase, production and commission journey still needs its later Phase 1 slices.
+Your local “Fund testing all green” result at `29104b55` and all 13 B1-R1 checklist passes
+remain recorded. No repeat of the unchanged local walkthrough is requested. Local code,
+online dev and staging now match `133a4638`, and both final security scans pass. The combined
+build, unit suite and
+connected B1 checks pass. The approved, backed-up reset of staging FUND test data and all
+three migrations have completed; checks confirm every non-FUND table retained its row
+count. Your existing local FUND test bed is untouched. You confirmed that the
+staging-only artwork preview settings are configured and deployment has started.
+
+The [B1-R2 review/test record](../05-review-and-test/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-review-and-test.md)
+owns the exact promotion result and focused staging checklist. Once Render confirms the
+final staging deployment, staging
+needs a new small FUND setup created through the normal C1/C2 screens; local data is not
+copied online. Separate review and staging business acceptance remain distinct from Git
+alignment. The complete purchase, production and commission journey still needs its later
+Phase 1 slices.
 
 FUND has substantial foundations for administration, Project setup, Product selection,
 Store control and payment/Order handling. It cannot yet demonstrate the connected journey

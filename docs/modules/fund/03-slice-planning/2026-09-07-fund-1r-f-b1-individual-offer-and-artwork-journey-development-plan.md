@@ -2,7 +2,7 @@
 
 Date: 2026-09-07
 
-Status: **B1-R2 implemented and proved locally; Chris reports local human smoke PASS; independent review and remaining proof/promotion gates open**
+Status: **Combined FUND/security candidate promoted to dev/staging; staging migration 156 PASS; local human smoke PASS retained; staging deployment/human acceptance and remaining review proof open**
 
 Control depth: **High** — this journey introduces persistent offer evidence, exact C2
 finaliser authority, tenant-bound document access and failure/retry behaviour.
@@ -17,17 +17,17 @@ Product-selection/capacity CRs; this is their bounded development child, not a n
 The enduring [1R-F-B framework](../00-roadmap-control/2026-09-07-fund-user-framework-and-individual-artwork-delivery-principles.md)
 augments the [FUND roadmap](../00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md).
 [Root control](../../../00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md)
-currently selects the Platform security correction as Now and FUND B1/B1-R2 resumption as Next.
-This FUND checkpoint is retained for safe resumption; the Platform plan owns the active interrupt.
+now selects FUND B1/B1-R2 dev/staging promotion and acceptance as Now, with the existing
+1R-G planning proposal Next. This plan owns the sole active restart checkpoint.
 
 ## Restart Checkpoint
 
 ```text
-Current state: local B1/B1-R1/B1-R2 human smoke PASS reported by Chris on 2026-09-10 at 29104b55; automated/migration/B1-R2 connected proof PASS; independent review and outstanding B1-R1 connected proof remain open
-Last proven commit: application B1-R2 29104b55 on B1-R1 51618485; local DevData target fingerprint 257f63f2e2c2, migration 156; prior connected-proof cleanup PASS is historical, not a fresh readback of the user's populated smoke data
-Current environment: primary local checkout work/fund-b1-r1-catalogue-workflow at 29104b55; local Neon DevData through migration 156; separate security correction at dev/staging/main 0397bba9 with all origins aligned and main Security Scan PASS; no FUND promotion or security integration
-Next human decision/test: no repeat of the unchanged local smoke requested; remaining independent/connected proof and security integration must establish the combined candidate, followed by environment-specific acceptance; main/live requires Chris's specific approval
-Safe resumption point: read B1-R2 04/05 and B1-R1 05; preserve local test data and reported PASS; root Next remains FUND resumption after the security interrupt is closed or safely re-disposed; no new slice or promotion inferred
+Current state: combined FUND/security code committed and pushed to dev/staging at 133a4638; approved staging FUND-only reset and migrations through 156 PASS; combined build/527 unit tests and connected B1 service proof PASS; fresh 156 replay and disposable database cleanup PASS; exact final dev/staging Security Scans PASS
+Last proven commit: 133a4638e2590a8405d3ce52d6d8c8a7c0336b5a adds only the tested 154-to-156 test prerequisite to combined b3059b30; local human PASS remains at feature-equivalent 29104b55; exact dev/staging scans 34484492277/34484545160 PASS
+Current environment: local work branch, dev and staging align at 133a4638; Node 22 clean dependency install/generated client/backport PASS, DevData untouched; staging migration 156 independently verified, all 125 non-FUND counts preserved; main/live held at security-only 0397bba9
+Next human decision/test: confirm staging Render Live/green at 133a4638 and perform focused B1-R2 staging checklist; owner confirmed staging-only emulation settings; separate source review and remaining R1 negatives remain open; no FUND main/live approval
+Safe resumption point: record Render identity and focused staging acceptance using published B1-R2 04/05 and business report before B1 closure or later live decision; retain private staging FUND backup through acceptance
 ```
 
 ## 1. One Visible Outcome

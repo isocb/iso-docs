@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 
-Status: **Implemented locally at application `29104b55`; DevData migration and connected proof PASS; local human smoke PASS reported by Chris on 2026-09-10; independent review and promotion pending.**
+Status: **Implemented and pushed through dev/staging at combined `133a4638`; staging migration 156 PASS; local human smoke PASS retained; staging acceptance and remaining review proof open.**
 Control depth: **High**.
 
 Authority: [CR-Fix](../01-cr-inputs/CR-Fix-2026-09-10-fund-event-catalogue-workflow-scope-and-lifecycle-integrity.md)
@@ -44,7 +44,8 @@ Migration 156 applied successfully. Readback proved the ledger row, enum array/d
 non-empty constraint and both Catalogue rows. A post-proof count returned the same two Catalogues,
 four active Events, three active Projects, zero offers and zero Order contexts.
 
-No staging/live database migration, application deployment or branch promotion occurred.
+At the original local implementation boundary, no staging/live database migration or branch
+promotion occurred. The subsequently authorised staging operation is recorded below.
 
 ## Validation Evidence
 
@@ -78,9 +79,21 @@ removed them and their audit records. It proved:
 - concurrent Event close and Project activation cannot commit a closed Event with an active
   linked Project.
 
-## Stopping Point
+## Dev/Staging Promotion — 2026-09-10
 
-Application `29104b55` is the local B1-R2 candidate. Chris reported local human smoke PASS on
-2026-09-10; the report and its limits are recorded against the
-[review/test schedule](../05-review-and-test/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-review-and-test.md).
-Do not promote or apply migration 156 outside the verified local DevData target on this evidence.
+Chris explicitly requested online dev alignment and staging promotion. Combined merge
+`b3059b30` integrates feature `29104b55` and security `0397bba9`. Final `133a4638` corrects
+only the connected B1 test prerequisite from migration 154 to 156. Local work branch,
+dev and staging now share this final commit; main/live stays security-only at `0397bba9`.
+
+Combined production build (131 pages), full unit suite (527 PASS/12 database skips), B1
+connected authority/offer/document recovery suite and pre-commit checks pass. Staging's
+approved, privately backed-up FUND-only reset removed 28 test rows across 38 FUND tables,
+with no FUND Orders. Prisma migrations 154–156 applied; independent ledger/checksum/schema
+readback passes and all 125 non-FUND table counts are preserved. Local DevData is untouched.
+
+The [review/test record](../05-review-and-test/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-review-and-test.md)
+owns backup/recovery boundaries, exact CI/deployment evidence and the focused staging human
+schedule. Chris confirmed staging-only emulation settings and deployment starting. That is
+not a verified final Render commit or a staging business PASS. Separate source review,
+remaining R1 negative proof and FUND main/live approval remain open; B1 is not marked closed.

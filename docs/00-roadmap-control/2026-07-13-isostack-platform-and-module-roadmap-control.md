@@ -80,20 +80,19 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Platform `PLAT-ASSURE-05` Next.js/Sharp/js-yaml security correction | Isolated candidate `0397bba9` passes local audit/regression/runtime proof. Exact `0397bba9` is aligned through dev/staging; all three Security Scans and Linux parity PASS. Chris reaffirmed execution after the evidence limits were disclosed: dev/staging/main and origins now align at `0397bba9`. Main scan 34481778012 PASS; staging UI and public production probes PASS. Exact Render/runtime and separate review remain unproven; no approval hold remains. |
-| **NEXT** | Resume FUND `1R-F-B1` / B1-R2 acceptance | Preserve candidate `29104b55`, DevData and human evidence. Chris reports local smoke PASS on 10 September; independent/remaining connected proof and security integration/combined-candidate checks remain. Agent delivery returns here after the security correction is closed or safely re-disposed. |
+| **NOW** | FUND `1R-F-B1` / B1-R2 dev/staging promotion and acceptance | Chris explicitly requested online dev alignment and staging promotion after local human smoke PASS. Combined security/FUND `133a4638` is committed and pushed to dev/staging; build, 527 unit tests, connected B1 service proof and staging migration 156 pass under the approved FUND-only reset. Main/live stays security-only at `0397bba9`; staging acceptance and remaining review evidence must remain explicit. |
+| **NEXT** | FUND `1R-G` Store presentation planning | Continue the existing planning proposal after B1 reconciliation. Its authenticated development-preview boundary is ready for owner review; no 1R-G implementation or live FUND release is authorised. |
 
-On 2026-09-10 Chris accepted implementation of the reviewed Platform security correction.
-The [bounded PLAT-ASSURE-05 plan](../platform/03-slice-planning/2026-09-10-isostack-platform-plat-assure-05-next-sharp-js-yaml-remediation-planning.md)
-owns its checkpoint and stopping conditions. This is an explicit security interrupt; FUND
-acceptance remains open and its local test environment is preserved. Chris subsequently supplied staging UI PASS and explicit main/live promotion authority.
-Chris subsequently reaffirmed safe promotion: the main fast-forward/push is now complete.
-Exact deployment/runtime and separate-review evidence limits remain explicit in 05; main
-scan monitoring and provider readback remain before complete release verification.
-He also requested continuation of the existing
-[1R-G planning draft](../modules/fund/03-slice-planning/2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md),
-which is now refined against `29104b55`; B1 closure and 1R-G implementation remain unproved
-and unselected respectively. This does not replace the current Now/Next pair.
+On 2026-09-10 Chris requested FUND dev/staging alignment after the security correction was
+pushed through main at `0397bba9`. Main Security Scan 34481778012 and public production
+health/access/image probes PASS. Exact Render/native-runtime identity and separate review
+remain unproven in the Platform 05 record; the security interrupt is re-disposed with those
+limits retained. The [B1 plan](../modules/fund/03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md)
+now owns the sole active checkpoint. Chris approved backup/reset of staging FUND test data,
+preserving shared data and local DevData, and confirmed staging-only emulation settings.
+The [B1-R2 review](../modules/fund/05-review-and-test/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-review-and-test.md)
+records exact promotion evidence and pending staging human proof. The earlier chronology
+below is superseded by this current disposition.
 
 On 2026-09-08 Chris authorised triage and detailed planning of the Catalogue/workflow CR-Fix.
 [B1-R1 triage](../modules/fund/02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md)

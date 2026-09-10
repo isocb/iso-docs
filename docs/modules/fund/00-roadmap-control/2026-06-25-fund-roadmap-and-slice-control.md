@@ -6,18 +6,18 @@ Last consolidated: 2026-09-07
 
 Status: Active authoritative control for the FUND lane
 
-2026-09-10 portfolio interrupt: root Now is the accepted Platform PLAT-ASSURE-05 security
-correction, published separately through dev/staging at `0397bba9`; FUND B1/B1-R2 resumption is Next. Chris
-reports local FUND human smoke PASS on 2026-09-10 at `29104b55`; B1-R1 steps 1–13 are marked
-PASS. Independent review, remaining B1-R1 connected proof and security-fix integration/combined-
-candidate validation remain open. No FUND closure or promotion is inferred; the Platform plan owns the
-active security checkpoint. The security patch is now promoted through main at `0397bba9`, with dev/staging/main
-aligned and LMSPro staging UI/public production probes PASS. The Platform record retains
-exact deployment verification and explicit review/runtime evidence limits. Chris also requested continuation of
-[1R-G planning](../03-slice-planning/2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md),
-now refined against the corrected Catalogue/workflow model and locked Individual offer.
-Its recommended first deliverable is an authenticated development purchaser-view preview;
-implementation selection remains subject to scope acceptance and B1 review/proof closure.
+2026-09-10 portfolio resumption: Chris requested FUND alignment into online dev and promotion
+to staging. Root Now returns to B1/B1-R2 promotion and acceptance; Next is the existing
+[1R-G planning proposal](../03-slice-planning/2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md),
+without implementation authority. The B1 plan owns the sole active checkpoint. Local human
+smoke PASS at `29104b55` is retained; the combined candidate includes the security correction.
+Combined `133a4638` is pushed to dev/staging; staging migration 156 and all 125 non-FUND
+count-preservation checks pass. Chris explicitly approved backing up and resetting staging FUND test data before migration,
+preserving shared users, organisations, other modules and local DevData. He confirmed the
+staging-only artwork emulation settings and reported deployment starting. Exact promotion,
+migration and remaining evidence are recorded in B1-R2 04/05. Main/live remains security-only
+at `0397bba9`; no FUND live promotion or B1 closure is inferred. Separate review and focused
+staging acceptance remain open.
 
 Parent roadmap:
 
@@ -82,11 +82,11 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> Platform PLAT-ASSURE-05 security correction; all three branches aligned, final verification/evidence limits retained
-ROOT NEXT -> Resume FUND B1/B1-R2 after the interrupt; local human smoke PASS, remaining review/proof/integration pending
+ROOT NOW  -> FUND B1/B1-R2 combined-candidate dev/staging promotion and acceptance
+ROOT NEXT -> Existing FUND 1R-G Store presentation planning; implementation not selected
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
 FUND      -> 1R-F-A COMPLETE AND CLOSED AT PASS; prior Stage C FAIL retained as contained history; Stage C-R1 provider/object/Render/local residue zero
-             1R-F-B is the enduring subordinate framework; B1 retains its resumption checkpoint; local implementation and human smoke PASS, remaining review/proof/promotion open
+             1R-F-B is the enduring subordinate framework; B1 owns the active checkpoint; local human smoke PASS, dev/staging promotion authorised, remaining review/environment acceptance open
 ```
 
 [CR-Fix — Catalogue-Led Product Availability and Event/Project Workflow Authority](../01-cr-inputs/CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md)

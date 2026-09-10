@@ -12,9 +12,8 @@ presentation; they do not create public release authority or operational provide
 
 Chris requested the next planning slice after reporting local FUND smoke PASS and
 IsoStack/LMSPro staging smoke PASS, and explicitly authorising security main/live promotion
-on 2026-09-10. This resumes the existing reserved `1R-G` plan. The security release retains
-root Now until its remaining evidence is resolved; FUND B1 reconciliation remains the
-resumption prerequisite. Planning can advance while those gates are open, but neither B1
+on 2026-09-10. This resumes the existing reserved `1R-G` plan. The security-only correction is pushed through main; root Now has returned to FUND B1
+dev/staging promotion and acceptance. This existing planning proposal is Next. Planning can advance while those gates are open, but neither B1
 closure nor 1R-G implementation is inferred. This document creates no second checkpoint.
 No application code, configuration, database or running local-test environment is changed.
 

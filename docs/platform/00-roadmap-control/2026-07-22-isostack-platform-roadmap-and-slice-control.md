@@ -50,6 +50,13 @@ default.
 
 Current Platform portfolio disposition:
 
+**Latest disposition — 2026-09-10:** the security-only correction is pushed through main at
+`0397bba9`, with main Security Scan and public production probes PASS. Chris has requested
+FUND dev/staging promotion, so delivery Now returns to FUND B1; its plan owns the active
+checkpoint. Exact security Render/native-runtime and separate-review evidence remain
+unproven in 05. Subsequent FUND dev/staging movement does not promote FUND to main/live.
+The following security sequence records earlier states, not the current branch alignment.
+
 On 2026-09-10 Chris requested review of the failed daily security scan while continuing FUND
 smoke. The new advisory CR above proposes a targeted Next.js/Sharp/js-yaml correction with
 the existing request-body backport preserved. Chris subsequently authorised implementation: PLAT-ASSURE-05 is Now and FUND B1/B1-R2

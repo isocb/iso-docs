@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 
-Status: **Exact `0397bba9` promoted through main; local/remote dev, staging and main aligned; main Security Scan and public production probes PASS; exact Render/runtime and separate-review evidence remain unproven.**
+Status: **Exact `0397bba9` promoted through main; security-only branch alignment proved before FUND resumption; main Security Scan and public production probes PASS; exact Render/runtime and separate-review evidence remain unproven.**
 
 Control depth: **High** — production image decoding and the shared request-body correction.
 Work type: **Production build**. Durable dependency/backport changes; temporary isolated
@@ -12,18 +12,18 @@ Authority: [CR](../01-cr-inputs/CR-Fix-2026-09-10-isostack-platform-next-sharp-j
 -> [triage](../02-triage/2026-09-10-isostack-platform-next-sharp-js-yaml-security-advisories-triage.md)
 -> [Platform roadmap](../00-roadmap-control/2026-07-22-isostack-platform-roadmap-and-slice-control.md).
 Chris accepted the proposed correction with “please implement and document accordingly”.
-Root Now is this correction; Next is resumption of FUND B1/B1-R2. Chris can continue human
-smoke on the unchanged FUND candidate while this isolated correction is prepared.
+This correction was the accepted security interrupt. Chris subsequently requested FUND
+resumption and dev/staging promotion; see the disposition below.
 
-## Restart Checkpoint
+## Promotion Disposition — 2026-09-10
 
-```text
-Current state: security 0397bba9 promoted by local main fast-forward and ordinary push under Chris's reaffirmed instruction; all three local/remote branches align; accepted staging UI PASS; main scan 34481778012 PASS; public production probes PASS
-Last proven commit: 0397bba958862f1f61c16d405fdfe60ae7c13f50; work/dev/staging scans and Linux parity PASS; fresh local backport/image proofs and five backport tests PASS; remote three-branch readback matches; production app.seasonpro.co.uk health/access/image probes PASS at 13:18 UTC
-Current environment: isolated security checkout now on main at 0397bba9; dev/staging/main and origins match; original FUND checkout remains 29104b55 with unchanged dependencies/DevData; no manual database/configuration operation
-Next human decision/test: no further promotion approval or repeat staging UI test needed; confirm production Render Live/green at 0397bba9 through provider access unavailable to this session; separate source review and native-runtime identity remain unproven observations, not claimed PASS
-Safe resumption point: finish main scan monitoring and minimal production verification, retain exact deployment evidence limits and owner-authorised promotion disposition; resume FUND B1 reconciliation and existing 1R-G planning without treating Git alignment as FUND promotion
-```
+The security-only correction is pushed through main at `0397bba9`; main Security Scan
+34481778012 and public production health/access/image probes pass. Exact Render deployment,
+native-runtime identity and separate source review remain unproven, as previously disclosed.
+Chris has now explicitly requested FUND alignment into dev and promotion to staging. This
+ends the delivery interrupt without upgrading those evidence limits to PASS. The single
+active checkpoint returns to the [B1 plan](../../modules/fund/03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md).
+Main/live remains on this security-only commit during FUND staging preparation.
 
 ## Implementation Boundary
 

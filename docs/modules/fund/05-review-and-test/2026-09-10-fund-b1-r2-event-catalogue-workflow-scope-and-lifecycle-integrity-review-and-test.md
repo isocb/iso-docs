@@ -2,10 +2,11 @@
 
 Date: 2026-09-10
 
-Status: **Exact-candidate automated, migration and connected proof PASS; local human smoke PASS reported by Chris; independent review and promotion pending.**
+Status: **Combined candidate pushed to dev/staging at `133a4638`; staging migration 156 PASS; local human smoke PASS retained; staging deployment/business acceptance and remaining review proof open.**
 
-Candidate: application `29104b55` on `work/fund-b1-r1-catalogue-workflow`; DevData migration 156,
-target fingerprint `257f63f2e2c2`.
+Current candidate: application `133a4638` on local work branch, dev and staging. Original
+local behavioural candidate `29104b55` and DevData migration 156 evidence below remain valid;
+see the promotion section for the security integration, test-only follow-up and staging proof.
 
 ## Review Result
 
@@ -48,7 +49,7 @@ independent source review remains open.
 | Connected cleanup | PASS | Original bounded row counts restored; no synthetic proof rows retained |
 | Critical-file verification | PASS | Intentional schema modification reviewed |
 | Whitespace/credential scan | PASS | No environment file, credential assignment, database URL, token or private key staged |
-| Independent review | PENDING | Must assess exact candidate before promotion |
+| Independent review | PENDING | Separate review not obtained; owner-authorised dev/staging promotion does not claim this evidence |
 | Human C1/C2 smoke | PASS — owner reported, 2026-09-10 | Aggregate report below; not agent-observed or staging evidence |
 
 ## Human Result — 2026-09-10
@@ -63,7 +64,8 @@ The B1-R2 result is an aggregate owner report for the schedule below. No separat
 times, role/tenant readback or new agent-observed browser/database evidence was supplied in
 this report. Existing automated/connected evidence retains its original scope. Independent
 review, outstanding B1-R1 connected proof, security-fix integration and combined-candidate
-checks remain open. This does not accept the separate Platform staging security checks or
+checks were open at the time of that report; the promotion update below records subsequent
+proof. This does not accept the separate Platform staging security checks or
 complete the full FUND Phase 1 purchase/production journey.
 
 ## Human Smoke Requirements
@@ -134,9 +136,100 @@ tenant, time and PASS/FAIL. A failed step stops acceptance but does not erase ea
 18. Treat full Store activation/payment/media/tax readiness separately from the bounded B1
     Individual offer/artwork acceptance, while recording every concrete server blocker.
 
-## Promotion Gate
+## Authorised Dev/Staging Promotion — 2026-09-10
 
-Human PASS does not itself promote the candidate. Reconcile the remaining independent and
-connected proof, then integrate the separate security correction and validate the combined
-candidate before controlled dev -> staging -> main promotion. Staging must apply the versioned migration through `prisma migrate deploy` with target,
-ledger and smoke readback. Main/live remains on hold for Chris’s specific approval; no FUND promotion occurs in this update.
+Chris explicitly requested alignment of online dev with the tested local code and promotion
+to staging. The combined merge is `b3059b307a29d539ca09b2ea6d1fc2d8a7297c9d`:
+FUND `29104b55` plus the isolated security correction `0397bba9`. Main/live stays at
+`0397bba9`; separate FUND live approval has not been given. The combined application build
+passes (131 pages), as does the full unit suite (527 PASS, 12 opt-in database tests skipped).
+The exact [dev Security Scan](https://github.com/isocb/isostack-bedrock/actions/runs/34483281209)
+passes. No actual environment file or credential is included in the application change.
+
+The connected rehearsal found a stale test-only ledger expectation (154 rather than 156).
+It is corrected in `133a4638` without changing application behaviour or migration SQL. The
+connected B1 rerun passes and pre-commit TypeScript/critical-file checks pass. Separate source review remains
+unproven; publication is owner-authorised and does not convert this evidence gap into PASS.
+
+### Migration boundary and recovery
+
+Staging target fingerprint `3c30b31a7cb5` is distinct from local DevData and production.
+Preflight found 153 applied migrations and three pending FUND migrations, 38 FUND tables
+with 28 rows, one Event, three Projects and no FUND Order contexts. Migration 155 deliberately
+refuses existing unclassified Events. Chris explicitly approved backing up and clearing
+only staging FUND test data before applying migrations 154–156. No shared-user, organisation,
+LMSPro or other-module reset is authorised. No local test data is copied to staging.
+
+The private FUND archive was decoded successfully: 305,050 bytes, SHA-256
+`9337c44020157eae8ca8dcc9532c8b88d716e0f17a9918e0c23164e5b7f5a121`.
+Archive contents and connection details are excluded from Git. Retain the private archive
+through staging acceptance. The reset uses all FUND tables together without CASCADE, with
+locked count checks; preservation proof compares all 125 non-FUND table counts.
+
+Twenty-three older applied checksums differ from current migration files, but every checksum
+matches a historical committed migration blob. None is changed by this release. Do not
+rewrite migration history or resolve these as newly applied migrations. September migration
+checksums and schema must independently match after deploy.
+
+On reset precondition failure, stop before deletion. On migration failure, keep FUND testing
+paused, inspect the migration ledger and use a reviewed forward correction; do not blindly
+rerun a partial reset or rewrite ledger checksums. A return to old application code alone is
+unsafe after the schema contraction. Recovery of the removed test setup requires a compatible
+pre-change FUND schema and the private archive, while preserving shared schemas; any such
+recovery needs a separately reviewed operation. Main/live and local DevData stay untouched.
+
+### Disposable connected proof and cleanup
+
+PASS on a dedicated test endpoint, independently distinguished from local DevData, staging
+and production: fresh 154 baseline replay; existing Event migration refusal with no partial
+schema application; 154-to-156 upgrade preserving an unrelated organisation sentinel; B1
+service authority/offer/document suite; separate fresh replay of all 156 migrations. Both
+uniquely created proof databases were dropped and their absence independently read back.
+Temporary migration workspaces were removed; redacted logs remain private. No synthetic
+rows entered application databases.
+This is temporary test evidence, not a new production database/recovery arrangement.
+
+### Staging execution result
+
+Final application commit `133a4638e2590a8405d3ce52d6d8c8a7c0336b5a` is pushed to both dev
+and staging by ordinary fast-forward. Main remains `0397bba9`. The local FUND work branch is
+fast-forwarded to the same final commit; environment files and local DevData were not edited. A clean Node 22 dependency install,
+request-body backport and Prisma client generation pass locally. Installed Next 15.5.25,
+Sharp 0.35.4 and js-yaml 4.3.2 retain the security correction; npm reports zero High/Critical
+findings (30 Moderate/5 Low remain under the separate assurance follow-up).
+The approved staging reset and Prisma deploy completed: all 156 migrations applied, zero
+failed ledger entries, new migration checksums and Event/Catalogue columns verified.
+All 125 non-FUND table counts match the pre-reset snapshot. No FUND Orders were removed.
+
+Exact final scans: [dev 34484492277](https://github.com/isocb/isostack-bedrock/actions/runs/34484492277)
+and [staging 34484545160](https://github.com/isocb/isostack-bedrock/actions/runs/34484545160)
+both PASS (secret, dependency, schema, TypeScript and summary jobs). Public staging probes at 13:45 UTC pass on both staging.isostack.app and staging.seasonpro.co.uk:
+health HTTP 200/database connected/RLS 11/11, expected unauthenticated login redirects,
+local PNG-to-WebP response and disallowed remote-image refusal. These do not identify the
+deployed source commit. Render confirmation and the
+representative authenticated workflow below remain pending.
+
+### Focused staging human acceptance — PENDING
+
+Chris confirmed the two requested staging-only artwork emulation settings and reported a
+Render deployment starting. This is owner-reported configuration, not independent provider
+readback. No authenticated Render access is available to this session.
+
+Record exact deployed commit, C1/C2 roles, tenant and PASS/FAIL for:
+
+1. Confirm Render is Live/green at the final staging commit. Log in and out of the existing
+   IsoStack/LMSPro account; confirm the correct client/dashboard and an existing image.
+2. Create a small new FUND setup through normal C1/public Intake/C2 flows. Confirm Product
+   creation has no workflow field, Catalogue channel and workflow multiselect save, Event
+   Products assigns only compatible Catalogues, and C2 sees active eligible Products.
+3. Check one Event-linked Project inherits workflow and one standalone Project chooses it.
+   Exercise C2 subset Save/refresh and one incompatible Catalogue exclusion. Confirm active
+   linked Projects prevent Event closure and active Events cannot archive.
+4. As C1 assign the Individual template; as the exact organiser refresh, review and finalise
+   an offer. Generate/download its labelled development PDF, confirm refresh/re-download and
+   the finalised selection lock. Confirm this does not publish the Store or enable purchases.
+
+This proves the new staging configuration and migrated environment. Preserve the broader
+local PASS rather than repeat the entire local matrix. A failure pauses staging acceptance;
+report the screen, role and error without credentials. B1 closure, separate review, remaining
+R1 negative proof and FUND main/live promotion are not inferred from deployment.
