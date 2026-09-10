@@ -15,17 +15,18 @@ implementation authority or another restart checkpoint.
 
 **10 September security maintenance:** the shared application needs a dependency security
 update. You authorised its publication and promotion through dev and staging, now at
-`0397bba9`. Main/live remains unchanged pending your specific approval and the remaining
-review/staging checks. The security fix will be integrated into FUND separately. This temporarily
-takes agent delivery priority; FUND review and release preparation remain the resumption outcome.
+`0397bba9`. You have now passed the IsoStack/LMSPro staging UI checks and explicitly
+authorised security promotion to main/live. Main remains unchanged while the remaining
+independent review and deployment/runtime evidence is completed. The security fix will be
+integrated into FUND separately. This temporarily takes agent delivery priority; FUND review and release preparation remain the resumption outcome.
 
 **10 September FUND test result: local smoke PASS.** You confirmed “Fund testing all green”
 and marked all 13 B1-R1 checklist steps passed after the B1-R2 corrections, on the current
 local candidate `29104b55`. The [review/test record](../05-review-and-test/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-review-and-test.md)
 records your result. No repeat of the unchanged walkthrough is requested. Independent review,
 remaining technical proof and checks after combining FUND with the security update still precede
-FUND promotion. Main/live remains on hold for your specific approval. The complete purchase,
-production and commission journey still needs its later Phase 1 slices.
+FUND promotion. Your security main/live approval is recorded; it does not promote the FUND branch.
+The complete purchase, production and commission journey still needs its later Phase 1 slices.
 
 FUND has substantial foundations for administration, Project setup, Product selection,
 Store control and payment/Order handling. It cannot yet demonstrate the connected journey
@@ -33,6 +34,14 @@ from setting up a fundraiser through a purchase, artwork matching, dispatch and 
 The Individual Artwork rendering and private-storage assumption test is **complete and
 passed**; its temporary resources were removed. It is not a pending test or an operational
 production service.
+
+**Next planning work:** your request to continue is reflected in the updated
+[1R-G Store presentation plan](../03-slice-planning/2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md).
+The recommended first step lets the organiser preview the locked Individual offer using
+the existing local test bed: the same Products, order and prices, shown in a purchaser
+layout. It remains authenticated and visibly in development, with no purchase action.
+An anonymous shareable Store needs the later release prerequisites. This is a concrete
+planning proposal, not implementation or a change to the finalised artwork destination.
 
 ### Delivery and test history
 

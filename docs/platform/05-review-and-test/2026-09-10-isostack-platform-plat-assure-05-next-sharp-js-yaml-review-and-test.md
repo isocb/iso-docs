@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 
-Status: **Exact `0397bba9` aligned through dev/staging; all three Security Scans and Linux parity PASS; main/live explicitly on hold.**
+Status: **Exact `0397bba9` through dev/staging; reported IsoStack/LMSPro staging UI PASS; main/live explicitly authorised, execution awaits remaining deployment/runtime and independent review evidence.**
 
 Candidate: `0397bba9` on `work/platform-security-2026-09-10`, parent `14077382`.
 Control depth: **High**. Environment proven: isolated macOS arm64, Node 22.23.2/npm 10.9.8.
@@ -53,7 +53,7 @@ not recorded as an independent source review or human staging PASS.
 | Protected dev/staging scans | PASS | Exact `0397bba9`; dev run 34463792299 and staging run 34464073290 |
 | Linux/native image/runtime proof | PARTIAL | Exact Linux renderer parity run 34463792371 PASS; this does not prove the Next image decoder. Deployed Linux Sharp/libheif identity and image/runtime proof remain open |
 | Staging human smoke | PASS — reported UI scope | Chris confirms IsoStack/LMSPro entry, login/logout, correct Client dashboard, images and reversible saves on 2026-09-10; prior public unauthenticated-denial probe PASS. Deployment identity and native image proof remain separate technical gates |
-| Main promotion/live verification | NOT AUTHORISED OR RUN | Separate authority after staging acceptance, exact scan/deploy identity and minimum safe live checks |
+| Main promotion/live verification | AUTHORISED; NOT RUN | Chris explicitly requested security promotion on 2026-09-10; remaining independent/deployment/runtime evidence precedes execution and minimum safe live checks |
 | FUND integration | NOT RUN | Preserve current smoke at `29104b55`; integrate at its safe stopping point and prove combined candidate |
 
 ## Owner Staging Report — 2026-09-10
@@ -108,8 +108,8 @@ There is no schema/data rollback. No exploit payload is authorised against share
 
 ## Next Action
 
-Publication and dev/staging promotion are authorised and carried out. Complete independent review and remaining deployment/runtime checks; the reported staging UI checks pass. Pause for Chris’s
-specific approval before any main/live promotion. The Platform plan holds the only active
+Publication and dev/staging promotion are authorised and carried out. Complete independent review and remaining deployment/runtime checks; the reported staging UI checks pass. Execute Chris’s
+already-received main/live authority after those technical gates pass. The Platform plan holds the only active
 restart checkpoint. FUND remains Next with local human smoke already reported PASS at `29104b55`.
 
 ## Dev And Staging Promotion Evidence — 2026-09-10
@@ -142,3 +142,25 @@ Neither the public pages nor GitHub deployment metadata exposed the current Rend
 identity; authenticated Render access is unavailable in this session. The control owner
 must verify staging is Live/green at `0397bba9` before completing H1. No production probe,
 main push or live deploy was performed. No agent-operated authenticated staging mutation is claimed; Chris’s reversible UI save is recorded above.
+
+## Approved Main Promotion Preflight — 2026-09-10
+
+Chris explicitly authorises main/live promotion of the security patch and ordinary document
+commits. The human UI report above applies to IsoStack/LMSPro staging; FUND remains local
+development at `29104b55`. No additional promotion approval is requested.
+
+Fresh branch/CI readback confirms dev/staging and origins at exact `0397bba9`, main and
+origin/main at `14077382`, and all four recorded scan/parity runs successful. The full
+main-to-staging bundle is five reviewed security files; schema, migrations and deployment
+configuration have no change. No unrelated FUND commit is included.
+
+Public staging probes at 11:00 UTC again pass on both staging domains: health 200, database
+connected, RLS 11/11, expected sign-in routing, protected `/app` redirected to sign-in,
+known PNG optimised to WebP, unlisted image origin refused with 400. These requests do not
+mutate data or establish the deployed Git identity/native decoder version.
+
+No GitHub PR review/deployment record exists for the candidate; no Render CLI, configured
+Render credentials or provider tool is available. Exact staging identity/native-runtime
+proof and independent source review remain pending. The owner has been asked for the
+provider readback and permission for a separate review agent; no promotion has been run
+while those existing gates are unresolved. The original smoke evidence remains accepted.

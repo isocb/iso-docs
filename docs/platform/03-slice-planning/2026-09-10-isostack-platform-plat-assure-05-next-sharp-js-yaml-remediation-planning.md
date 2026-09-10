@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 
-Status: **Exact `0397bba9` aligned through dev/staging; all three scans and Linux parity PASS; paused before main/live.**
+Status: **Exact `0397bba9` through dev/staging; human staging UI PASS and explicit main/live authority received; deployment/runtime and independent-review evidence pending before execution.**
 
 Control depth: **High** — production image decoding and the shared request-body correction.
 Work type: **Production build**. Durable dependency/backport changes; temporary isolated
@@ -18,11 +18,11 @@ smoke on the unchanged FUND candidate while this isolated correction is prepared
 ## Restart Checkpoint
 
 ```text
-Current state: 0397bba9 aligned through dev/staging; work/dev/staging Security Scans and Linux renderer parity PASS; main/live explicitly paused; Chris reports IsoStack/LMSPro staging entry, login/logout, correct Client dashboard, images and reversible saves PASS on 2026-09-10; independent review and deployment/runtime proof open
+Current state: 0397bba9 aligned through dev/staging; work/dev/staging Security Scans and Linux renderer parity PASS; main/live explicitly authorised on 2026-09-10, not yet executed; Chris reports IsoStack/LMSPro staging entry, login/logout, correct Client dashboard, images and reversible saves PASS on 2026-09-10; independent review and deployment/runtime proof open
 Last proven commit: 0397bba958862f1f61c16d405fdfe60ae7c13f50; scans 34463542270/34463792299/34464073290 and Linux parity 34463792371 PASS; public staging health/access/image probes PASS, exact Render identity not proven
 Current environment: isolated security checkout retained; local/remote dev and staging at 0397bba9, main at 14077382; original FUND checkout remains 29104b55 with unchanged dependencies/DevData; no manual database operation
-Next human decision/test: reported IsoStack/LMSPro staging UI checks PASS; no unchanged-candidate human repeat requested; verify Render Live at 0397bba9 and remaining native-runtime/independent review evidence before specific main/live approval; FUND remains local development
-Safe resumption point: continue remaining staging/review gates only; do not push application main or integrate into the active FUND smoke checkout without the relevant next instruction
+Next human decision/test: reported IsoStack/LMSPro staging UI checks PASS and main/live approval received; awaiting Render staging exact-commit/native-runtime readback and permission to use a separate independent review agent; no repeat UI test or promotion approval needed; FUND remains local development
+Safe resumption point: finish pending deployment/runtime and independent review proof, then use the approved local main fast-forward from staging, push main, monitor scan/deploy and minimum live checks; do not include FUND in the security promotion; continue existing 1R-G planning while external evidence is pending
 ```
 
 ## Implementation Boundary
@@ -71,6 +71,21 @@ sign-out and unauthenticated denial. Linux proof verifies packaged native librar
 image handling. Main requires separate human staging acceptance and promotion authority.
 Integrate the accepted security fix into FUND separately after its current smoke stopping
 point; retain original findings and perform representative combined-candidate regression.
+
+## Main/Live Authority — 2026-09-10
+
+After reporting IsoStack/LMSPro staging UI PASS, Chris instructed: “please promote the
+security patch and commit the files in the normal way”, then requested smoke documentation
+and the next planning slice. This is the required explicit main/live authority. It replaces
+the approval hold; it does not fabricate independent review or deployment/runtime evidence.
+The intended main bundle remains exact `0397bba9`, five security files, with no schema,
+migration, configuration or FUND change. Main is still `14077382` at this preflight.
+
+GitHub readback confirms all four existing work/dev/staging scan/parity jobs pass and no
+additional branch divergence. No PR review or GitHub deployment identity is available.
+Render CLI, authenticated provider tools and Render environment credentials are unavailable;
+the outstanding provider readback was requested, along with permission for a separate
+review agent. Perform all accessible work without requesting main approval again.
 
 ## Failure, Recovery And Cleanup
 

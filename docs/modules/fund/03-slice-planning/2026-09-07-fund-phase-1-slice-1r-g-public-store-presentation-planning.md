@@ -2,7 +2,7 @@
 
 Date: 2026-09-07
 
-Status: **Planning draft for the reserved next outcome; exact Next selection pending owner response. No implementation authority.**
+Status: **Detailed planning resumed by Chris on 2026-09-10; recommended development-preview contract ready for review. B1 closure and implementation selection remain separate gates.**
 
 Control depth: **High** — unauthenticated Store reads introduce tenant, personal-data,
 media-release and commercial-authority boundaries.
@@ -10,11 +10,13 @@ media-release and commercial-authority boundaries.
 Work type: proposed production-model feature. Synthetic development fixtures may prove
 presentation; they do not create public release authority or operational provider evidence.
 
-Chris requested planning for the next approved slice while testing B1. Source/control review
-found `1R-G` reserved as Public Store Presentation but root Next explicitly unselected.
-This draft progresses that request without inventing prior slice acceptance. B1 remains
-portfolio Now and retains the sole active restart checkpoint. No code, configuration,
-database or running local-test environment is changed by this planning pass.
+Chris requested the next planning slice after reporting local FUND smoke PASS and
+IsoStack/LMSPro staging smoke PASS, and explicitly authorising security main/live promotion
+on 2026-09-10. This resumes the existing reserved `1R-G` plan. The security release retains
+root Now until its remaining evidence is resolved; FUND B1 reconciliation remains the
+resumption prerequisite. Planning can advance while those gates are open, but neither B1
+closure nor 1R-G implementation is inferred. This document creates no second checkpoint.
+No application code, configuration, database or running local-test environment is changed.
 
 Authority and inputs:
 
@@ -45,7 +47,9 @@ template, finalising an offer or generating a PDF must never publish a Store.
 
 ## 2. Current Source Evidence
 
-Application inspected: `57e1454b530ae19dc586768fd996ff230d84421c`, B1 work branch.
+Application re-inspected on 2026-09-10: `29104b55`, containing B1/B1-R1/B1-R2 on
+`work/fund-b1-r1-catalogue-workflow`. Security candidate `0397bba9` remains separate.
+The original `57e1454b` inventory is refreshed below against the corrected local source.
 
 | Existing source in isostack-bedrock | Consequence for this plan |
 | --- | --- |
@@ -54,13 +58,15 @@ Application inspected: `57e1454b530ae19dc586768fd996ff230d84421c`, B1 work branc
 | `src/modules/fund/services/store-authority.service.ts`: `evaluateFundProjectStoreAuthority` returns effective state, blockers and `isTrading` | One authority source must govern availability; the public endpoint must not return the service's entire internal object |
 | `src/modules/fund/services/individual-offer-readiness.ts` always adds `INDIVIDUAL_ARTWORK_DEVELOPMENT_ONLY` for Individual Projects | B1 cannot open a real public Individual Store, even with an AVAILABLE document |
 | `src/modules/fund/services/store-checkout.service.ts`: `submitFundStoreOrder` already owns FUND validation and delegates generic Orders/payments to Commerce | Presentation must not build another Order aggregate or turn this service into an unauthenticated endpoint in this slice |
-| `src/modules/fund/lib/individual-offer/contract.ts` pins a deliberately invalid development destination | Do not rewrite confirmed B1 snapshots or claim that their printed destination is a real Store URL |
+| `src/modules/fund/services/individual-offer.service.ts` creates, and `lib/individual-offer/contract.ts` validates, a deliberately invalid development destination | Do not rewrite confirmed B1 snapshots or claim that their printed destination is a real Store URL |
 | `src/middleware.ts` explicitly allowlists public routes; existing FUND Store pages are under authenticated `/app/fund` | Public routing needs a narrowly scoped addition and a public layout; do not expose the administrative route tree |
-| `FundProductMedia` links to media files; configured versions contain media snapshots | Existing media presence does not alone prove consent/release for anonymous disclosure |
+| `FundProductMedia` links to media files; configured versions snapshot media IDs/roles/alt text but do not establish immutable public delivery/release authority | Resolve exact referenced media under tenant/release checks; a current mutable media URL is not an immutable approved snapshot |
+| `availability.service.ts` and `event-catalogue-scope.ts` enforce Catalogue channel plus workflow compatibility, then existing C2 selection | Use canonical eligibility; no Product workflow gate, default-only suppression or new standalone Catalogue assignment |
+| `FundIndividualOfferProduct.configurationVersionId` links each finalised row to its exact Store configuration version | Read these versions, not `currentConfigurationVersionId`, for finalised Individual content |
 
-This is read-only technical planning, not a new test PASS. B1's outstanding independent
-review and human smoke are still outstanding; Chris's current testing is not recorded as
-acceptance before his result arrives.
+This is read-only technical planning, not a new automated test PASS. Chris's local smoke
+PASS at `29104b55` is recorded in B1-R1/B1-R2 05. Independent review, remaining B1-R1
+connected proof and security integration/combined-candidate checks remain open.
 
 ## 3. Proposed Technical Boundary
 
@@ -160,18 +166,102 @@ or withdrawing the new public route without deleting Store/offer/Order evidence 
 C1/C2 authority. A route/DTO disclosure failure must stop release, not degrade to returning
 raw records. Exact implementation rollback and environment gates belong in technical review.
 
-## 7. Decisions Still Needed
+## 7. Planning Decisions And Implementation Gate
 
-1. Confirm the reserved 1R-G presentation slice as Next; the roadmap did not already approve it.
-2. Select the first demonstration contract: synthetic read-only presentation, or a separately
-   bounded connected development journey after resolving the 1R-F release dependency.
-3. Name representative Products, essential buyer choices and approved image expectations.
-   The business report's suggestions remain proposals; do not reduce real Product needs to
-   make the implementation appear smaller.
+1. **Planning continuation confirmed:** Chris has requested the next planning slice; this
+   existing 1R-G document is being refined. Its implementation remains unselected while
+   B1 review/proof and security integration are unresolved.
+2. **Recommended first deliverable:** a connected, authenticated purchaser-view preview for
+   the Individual Artwork development journey, using the bounded contract below. This is
+   a proposed scope decision for implementation acceptance, not a production-release bypass.
+3. **Representative content:** reuse the owner's existing local Mug/Individual Project test
+   bed for human comparison; use synthetic fixtures for choice combinations and disclosure
+   negatives. Exact Product/Project IDs and media permissions are verified at implementation
+   preflight, not guessed or copied into public documentation. No need to rebuild the test bed.
 
-Delivery-address and purchaser-message choices belong to later checkout/operations planning
-and do not block this read-only draft. Stop at a reviewable plan until scope and selection
-are resolved. B1 remains Now and its local test continues unchanged.
+Delivery-address and purchaser-message choices remain later checkout/operations work.
+The only material business choice before implementation is whether the first deliverable
+should be the connected organiser preview below or whether an actual anonymous, shareable
+Individual Store must come first. The latter requires completion of the real-release
+prerequisites and would change the implementation sequence.
 
+## 8. Recommended Bounded Development Preview
 
-Current prerequisite: [B1-R1 Catalogue/workflow correction](2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md) is triaged for planning within B1 and must be corrected/reviewed before B1 business closure. Rebase this public-presentation plan on that authority/source contract; do not preserve Product-level workflow/suitability gates merely because they appear in the original source inventory above. No 1R-G implementation selected.
+The first user outcome is: the organiser opens **Preview purchaser view** from the Project
+Store area and sees the selected, finalised Individual offer as a purchaser would read it.
+The page clearly says that it is a development preview and that ordering is unavailable.
+It adds no checkout, payment or inert purchase control.
+
+This uses the owner's accepted Phase 1 development-emulation direction. It does not change
+the meaning of Store publication or imply that a purchaser without an account can open
+the preview. The reusable presentation component and public response shape prepare the
+later anonymous Store, whose production authority contract remains Section 3.
+
+### Access and environment contract
+
+- Proposed authenticated route: `/app/fund/projects/[projectId]/store/preview`, subject to
+  verifying the existing C1 and C2 route layout before implementation. Reuse the existing
+  Project access resolver for both surfaces; C2 must belong to that exact Client.
+- The server must require both authorised Project access and the existing explicit
+  local/test/staging emulation target. Production/main and missing/invalid targets refuse
+  before returning preview data. `NODE_ENV` alone is insufficient.
+- The preview reads an existing finalised Individual offer and its AVAILABLE development
+  document. An absent offer/document shows a setup message to the authorised organiser.
+  Do not create/finalise an offer or regenerate artwork from a read request.
+- Existing Store authority continues to report real trading unavailable. Never pass a
+  fabricated `paymentReady: true`, remove `INDIVIDUAL_ARTWORK_DEVELOPMENT_ONLY` or write a
+  PUBLISHED/ACTIVE state just to make the preview render.
+- Do not expose an anonymous route to emulated records, add a share token or change the
+  deliberately invalid destination already locked into the B1 PDF.
+
+### Projection and integrity contract
+
+| Displayed information | Authoritative source and failure behaviour |
+| --- | --- |
+| Store title, Client label, introduction, objective, closing date | Validated finalised offer snapshot; do not overwrite with current Project edits |
+| Product order/title and GBP gross price | Finalised offer rows, preserving positions and integer minor units; never recalculate a historical price from current Product tax/price |
+| Description and choice labels | Exact configuration versions referenced by the offer; runtime-validate their JSON shape, bound fields and render text safely |
+| Product visibility | Current canonical Catalogue channel/workflow eligibility and C2 selection may withhold the preview; a missing source never substitutes a new Product or price |
+| Images and branding | Resolve exact referenced media with tenant/access checks. Missing or mutable/unverifiable media uses a neutral placeholder; never fall back to another tenant's/current Product image |
+| Internal IDs, role details, commission/payment settings, artwork locators | Never included in the purchaser presentation response; route/access logic retains internal identifiers server-side |
+
+If current eligibility no longer supports the locked selection, withhold the rendered offer
+and show an organiser-facing resolution message outside the purchaser projection. Preserve
+the immutable offer and PDF. Do not silently shrink the accepted range into a different offer.
+Shared authenticated layouts can retain normal organiser navigation; the presentation
+component itself must consume only the explicit public-shaped projection.
+
+### Implementation order within the proposed slice
+
+1. Review the exact combined security/FUND candidate and reconcile B1 proof gaps. Confirm
+   access helpers, versioned media semantics and the recommended preview scope.
+2. Implement a strict projection parser and pure presentation component with synthetic
+   fixtures for missing media, long text, multiple Products and supported choice labels.
+3. Add the authorised development preview resolver using existing Project/Client access,
+   immutable offer joins and canonical eligibility. Avoid read-side writes and shared caches.
+4. Add the Project Store entry point and responsive/keyboard-accessible page.
+5. Prove the negative boundaries below, run required checks, then create the slice's 04
+   confirmation and 05 review/test records with exact candidate and human evidence.
+
+No schema change is currently justified. If media immutability or public-release facts need
+new persistence, stop that dependent implementation and return the bounded finding to this
+plan. Do not add an approval schema or silently relabel mutable media as immutable.
+
+### Focused acceptance schedule
+
+| Check | Required result |
+| --- | --- |
+| C1 / correct C2 Client | Preview loads the intended finalised offer with matching rows, order and prices |
+| Wrong Client, tenant, signed-out user | No offer, Product or media disclosure; reuse normal access-denial semantics |
+| Main/production or disabled emulation | Server refuses preview data, regardless of a visible/stale link or request parameter |
+| Missing finalisation/document | Clear organiser setup state; no generation, publication or database mutation |
+| Upstream Product price/text changes | Finalised preview remains on its referenced configuration version |
+| Catalogue channel/workflow withdrawal | Preview is withheld; locked offer/document remain unchanged; restoration does not undo C2 exclusions |
+| Malformed snapshot or foreign/missing media | Fail closed or use the defined safe media placeholder; no raw record/URL fallback |
+| Phone, keyboard and long content | Readable Product descriptions, GBP prices and closing date; no misleading purchase action |
+| Existing B1/Catalogue/Event paths | Focused regression confirms finalisation, Product selection and Event assignment still behave as accepted |
+
+These are planned checks, not completed smoke results. Local testing proves the detailed
+boundary. Any later staging deployment must verify its actual preview configuration, media
+access and representative organiser path; live must continue to refuse the development
+preview. Actual anonymous trading remains a later accepted release outcome.
