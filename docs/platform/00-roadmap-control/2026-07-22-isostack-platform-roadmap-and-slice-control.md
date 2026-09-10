@@ -34,7 +34,7 @@ default.
 
 | Source CR | Current disposition | Roadmap treatment |
 | --- | --- | --- |
-| [`CR-Fix-2026-09-10-isostack-platform-next-sharp-js-yaml-security-advisories.md`](../01-cr-inputs/CR-Fix-2026-09-10-isostack-platform-next-sharp-js-yaml-security-advisories.md) | Read-only review confirms 1 Critical and 3 High package entries on all protected branches; Next/Sharp image-processing exposure and js-yaml require bounded correction | Urgent High-control correction proposed in [triage](../02-triage/2026-09-10-isostack-platform-next-sharp-js-yaml-security-advisories-triage.md); not selected or implemented; FUND local human smoke continues |
+| [`CR-Fix-2026-09-10-isostack-platform-next-sharp-js-yaml-security-advisories.md`](../01-cr-inputs/CR-Fix-2026-09-10-isostack-platform-next-sharp-js-yaml-security-advisories.md) | Read-only review confirms 1 Critical and 3 High package entries on all protected branches; Next/Sharp image-processing exposure and js-yaml require bounded correction | Urgent High-control correction proposed in [triage](../02-triage/2026-09-10-isostack-platform-next-sharp-js-yaml-security-advisories-triage.md); PLAT-ASSURE-05 implemented locally at `0397bba9`; 0 High/Critical audit and local regression/runtime proof PASS; publication approval, independent review and promotion pending |
 | [`2026-07-22-isostack-platform-node-middleware-request-body-finalisation-defect-cr.md`](../01-cr-inputs/2026-07-22-isostack-platform-node-middleware-request-body-finalisation-defect-cr.md) | Completed through `PLAT-RUNTIME-01`; subsequently included in the completed LMSPro R8-A production release | Closed historical corrective input; do not reopen without a new finding |
 | [`2026-07-27-isostack-platform-auth-dependency-and-audit-gate-security-remediation-cr-input.md`](../01-cr-inputs/2026-07-27-isostack-platform-auth-dependency-and-audit-gate-security-remediation-cr-input.md) | Completed through the documented `PLAT-ASSURE-03` dev/staging lifecycle and human gate; no separate production claim is added by this reconciliation | Closed at its recorded evidence boundary; `PLAT-REFINE-03` and `PLAT-REFINE-04` retain separate follow-up concerns |
 | [`2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md`](../01-cr-inputs/2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md) | Complete and closed; exact `60ac76c1` passes local/staging/production gates, including same-Club C2 sibling creation and magic-link authentication | Closed project; historical conditional plans do not remain active |
@@ -52,17 +52,18 @@ Current Platform portfolio disposition:
 
 On 2026-09-10 Chris requested review of the failed daily security scan while continuing FUND
 smoke. The new advisory CR above proposes a targeted Next.js/Sharp/js-yaml correction with
-the existing request-body backport preserved. Root selection has not changed: FUND B1/B1-R2
-remains Now. Exact protected refs are still `14077382`; historical PASS evidence below does
+the existing request-body backport preserved. Chris subsequently authorised implementation: PLAT-ASSURE-05 is Now and FUND B1/B1-R2
+resumption is Next. The bounded plan owns execution and its independent-review gate. Local `0397bba9` passes
+its audit, 512 tests, build and runtime proof; automatic approval review blocked publishing
+the work branch, so remote scans and all promotion remain pending. Exact protected refs are still `14077382`; historical PASS evidence below does
 not override the current failing advisory gate. PLAT-ASSURE-04 remains closed, while its
 separate Moderate/Low assessment PLAT-ASSURE-04-R1 also needs to include the new Vitest finding.
 
 The current root decision supersedes the chronological delivery narrative below. Role
 Authority, Support Ticketing, `PLAT-ROLE-04` and `PLAT-ROLE-04A` are delivered at their
 recorded evidence boundaries. `PLAT-ROLE-R1` remains trigger-based assurance only. Platform
-has no selected Platform `Now` or `Next`. `CR-Fix-PLAT-ASSURE-04` is complete and root
-control has returned to the preserved FUND `1R-F-B` strategic planning review; the
-interrupt did not accept or implement its schema draft.
+now owns the selected PLAT-ASSURE-05 correction. `CR-Fix-PLAT-ASSURE-04` remains complete;
+the current security interrupt preserves FUND B1/B1-R2 as the resumption outcome.
 
 - `CR-Fix-PLAT-ASSURE-04` exact `14077382` changes only the fast-uri override/lock record.
   Work/dev/staging/main Security Scans `33732994236`/`33733261291`/`33733518510`/

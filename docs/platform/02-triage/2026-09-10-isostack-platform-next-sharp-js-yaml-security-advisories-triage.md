@@ -2,21 +2,23 @@
 
 Date: 2026-09-10
 
-Status: **Assessment complete; urgent correction proposed; bounded implementation planning and selection pending.**
+Status: **PLAT-ASSURE-05 implemented locally at `0397bba9`; publication approval and independent review pending.**
 
 Control depth: **High** — production image processing, security advisories and the shared
 request-body runtime correction are affected. Work type: proposed production build.
 
 Source: [CR-Fix](../01-cr-inputs/CR-Fix-2026-09-10-isostack-platform-next-sharp-js-yaml-security-advisories.md).
-Owning lane: Platform assurance. The user requested review and advice, not a runtime change.
+Owning lane: Platform assurance. Chris subsequently authorised implementation.
+The [bounded plan](../03-slice-planning/2026-09-10-isostack-platform-plat-assure-05-next-sharp-js-yaml-remediation-planning.md) now owns execution and its stopping point.
+The assessment below is retained as the rationale; root Now is PLAT-ASSURE-05 and Next is FUND resumption.
 
 ## Recommendation
 
 Select a short Platform security correction promptly, ahead of further application
 promotion. The unchanged protected baseline now fails a mandatory gate and the image
 advisory has plausible production exposure. The evidence warrants priority without claiming
-confirmed exploitation. Acceptance of an expedite must update root control explicitly;
-this assessment leaves FUND B1/B1-R2 as Now and leaves Next unchanged.
+confirmed exploitation. Chris accepted the expedite after this review; root control now selects PLAT-ASSURE-05
+and preserves FUND B1/B1-R2 resumption as Next.
 
 Chris can continue private local smoke with trusted assets on the unchanged FUND candidate.
 Implementation should use a separate checkout and separate dependency directory based on
@@ -63,9 +65,10 @@ the proposed durable fix. The current review has made none of those changes.
 
 ## Human And Promotion Boundary
 
-The next decision is whether to select the proposed security correction for bounded
-implementation planning. No application edit, install, server restart, database operation,
-commit to application branches, promotion or deployment was performed by this review.
+The accepted correction is now committed locally at `0397bba9`; the 03/04/05 records own
+its delivery evidence. Automatic approval review blocked branch publication for lack of
+explicit payload/destination approval. That approval and independent review precede remote
+scan/protected promotion. No database operation or restart of the FUND server occurred.
 
 After acceptance and local proof, use the existing dev -> staging -> main corridor with
 human staging acceptance and explicit main promotion authority. Integrate the accepted fix
@@ -76,6 +79,7 @@ proof on the combined candidate. Do not silently mark B1 complete.
 
 Read-only GitHub run/job metadata, three downloaded npm reports, current protected refs,
 local source/lock comparison and upstream advisory/source review were completed. The
-existing validator reproduced the failure. No corrected install or runtime test was run.
+existing validator reproduced the failure. These are the initial review limits; the subsequent
+04/05 records add the corrected install, audit and runtime proof at `0397bba9`.
 Protected Git refs were freshly verified at `14077382`; current Render runtime identity,
 native binary conditions and active exploitation remain unverified.

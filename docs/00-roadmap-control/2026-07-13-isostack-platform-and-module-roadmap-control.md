@@ -2,11 +2,11 @@
 
 Date: 2026-07-27
 
-Last portfolio reconciliation: 2026-09-07
+Last portfolio reconciliation: 2026-09-10
 
 Status: Active parent roadmap
 
-## 0. Current Portfolio Control — 2026-09-07
+## 0. Current Portfolio Control — 2026-09-10
 
 This section is the current cross-lane control and supersedes older global `single next`
 wording later in this document. Older statements remain evidence of the sequence at the
@@ -80,8 +80,14 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | FUND `1R-F-B1` Individual Offer And Artwork Journey, including blocking B1-R2 correction | Preserve the B1/B1-R1 candidate and human PASS evidence; correct Catalogue workflow scope, Event-context Catalogue assignment, Event lifecycle integrity and Product/membership state clarity before resuming acceptance. |
-| **NEXT** | Not selected pending B1 local human acceptance | B1-R2 is implemented locally at `29104b55`; complete independent review and its revised human gate before promotion. No later child or real service deployment is inferred. |
+| **NOW** | Platform `PLAT-ASSURE-05` Next.js/Sharp/js-yaml security correction | Isolated candidate `0397bba9` passes local audit/regression/runtime proof. Publishing is blocked pending explicit approval; independent review precedes protected promotion. |
+| **NEXT** | Resume FUND `1R-F-B1` / B1-R2 acceptance | Preserve candidate `29104b55`, DevData and human evidence. Chris continues local smoke; agent delivery returns here after the security correction is closed or safely re-disposed. |
+
+On 2026-09-10 Chris accepted implementation of the reviewed Platform security correction.
+The [bounded PLAT-ASSURE-05 plan](../platform/03-slice-planning/2026-09-10-isostack-platform-plat-assure-05-next-sharp-js-yaml-remediation-planning.md)
+owns its checkpoint and stopping conditions. This is an explicit security interrupt; FUND
+acceptance remains open and its local test environment is preserved. Main promotion is not
+included without the recorded staging human gate and separate authority.
 
 On 2026-09-08 Chris authorised triage and detailed planning of the Catalogue/workflow CR-Fix.
 [B1-R1 triage](../modules/fund/02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md)

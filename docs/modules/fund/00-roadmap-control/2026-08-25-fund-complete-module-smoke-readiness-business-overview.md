@@ -13,6 +13,13 @@ implementation authority or another restart checkpoint.
 
 ## Where We Are
 
+**10 September security maintenance:** the shared application needs a dependency security
+update. It is implemented and locally tested in a separate checkout; publishing it requires
+the explicit approval requested by automatic review. Your FUND smoke application and test
+data are unchanged, so continue with trusted test assets. The security fix must pass its
+remaining review and release gates and later be integrated into FUND. This temporarily takes
+agent delivery priority; FUND acceptance remains open and is the resumption outcome.
+
 FUND has substantial foundations for administration, Project setup, Product selection,
 Store control and payment/Order handling. It cannot yet demonstrate the connected journey
 from setting up a fundraiser through a purchase, artwork matching, dispatch and commission.

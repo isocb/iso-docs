@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 
-Status: **Reviewed; urgent bounded remediation proposed; selection and implementation pending.**
+Status: **PLAT-ASSURE-05 implemented locally at `0397bba9`; blocking audit findings cleared locally; publication/review/promotion pending.**
 
 Source: Chris requested a planning review of the failed security audit while continuing
 local FUND smoke. Owner: Platform assurance. This is a new advisory finding after the
@@ -64,7 +64,7 @@ Review and preserve the correction as part of the bounded dependency fix.
 
 ## Proposed Treatment And Boundary
 
-Expedite proposed, not accepted. Restore the mandatory High/Critical gate with a targeted
+Chris accepted the proposed security correction for implementation. Restore the mandatory High/Critical gate with a targeted
 dependency/backport correction, isolated from unaccepted FUND code. No broad audit-fix,
 auth downgrade, TipTap major migration, schema change or live-data operation is proposed.
 Existing Moderate/Low findings remain in PLAT-ASSURE-04-R1; add the newly observed Vitest
@@ -82,4 +82,4 @@ isolated correction. Following integration, repeat relevant request-body/image a
 checks against the combined candidate before promotion.
 
 [Triage and proposed delivery boundary](../02-triage/2026-09-10-isostack-platform-next-sharp-js-yaml-security-advisories-triage.md)
-owns the recommendation. Root Now/Next remain unchanged pending owner selection.
+owns the recommendation. The bounded PLAT-ASSURE-05 plan now owns implementation; root Now is the security correction and Next is FUND resumption.

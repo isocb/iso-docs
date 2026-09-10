@@ -6,6 +6,12 @@ Last consolidated: 2026-09-07
 
 Status: Active authoritative control for the FUND lane
 
+2026-09-10 portfolio interrupt: root Now is the accepted Platform PLAT-ASSURE-05 security
+correction, implemented separately at `0397bba9`; FUND B1/B1-R2 resumption is Next. Chris
+continues local human smoke at `29104b55` with the existing DevData and dependencies.
+No FUND acceptance or security-fix integration is inferred; the Platform plan owns the
+active security checkpoint and publication/review gates.
+
 Parent roadmap:
 
 `docs/00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md`
