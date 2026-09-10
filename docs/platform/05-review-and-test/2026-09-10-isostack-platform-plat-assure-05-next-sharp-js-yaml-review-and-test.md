@@ -52,22 +52,30 @@ not recorded as an independent source review or human staging PASS.
 | Independent source/security review | PENDING | Review dependency diff, guarded backport, image proof, residual risk and recovery; implementer review above is not independent acceptance |
 | Protected dev/staging scans | PASS | Exact `0397bba9`; dev run 34463792299 and staging run 34464073290 |
 | Linux/native image/runtime proof | PARTIAL | Exact Linux renderer parity run 34463792371 PASS; this does not prove the Next image decoder. Deployed Linux Sharp/libheif identity and image/runtime proof remain open |
-| Staging human smoke | PARTIAL | Chris reports staging opens and login/logout PASS on 2026-09-10; remaining save, image, context/denial and deployment identity requirements below remain open |
+| Staging human smoke | PASS — reported UI scope | Chris confirms IsoStack/LMSPro entry, login/logout, correct Client dashboard, images and reversible saves on 2026-09-10; prior public unauthenticated-denial probe PASS. Deployment identity and native image proof remain separate technical gates |
 | Main promotion/live verification | NOT AUTHORISED OR RUN | Separate authority after staging acceptance, exact scan/deploy identity and minimum safe live checks |
 | FUND integration | NOT RUN | Preserve current smoke at `29104b55`; integrate at its safe stopping point and prove combined candidate |
 
 ## Owner Staging Report — 2026-09-10
 
-Chris reports that staging opens and login/logout work correctly. Record those interactions
-as owner-reported PASS. This report does not specify dashboard tenant/module context,
-a protected-page retry after logout, an ordinary save/readback, representative image display
-or the Render deployment commit; those requirements are not silently marked complete.
-Earlier public unauthenticated-denial and PNG probes retain their recorded evidence.
+Chris reports that staging opens and login/logout work correctly. He subsequently confirms
+that images display correctly, edits save and are reversible, and the dashboard shows the
+correct Client. The tested application is **IsoStack with the LMSPro module on staging**.
+Record these human UI checks as PASS. FUND remains in local development and is not part of
+this staging security release.
+
+Earlier public unauthenticated-denial and image-source-refusal probes retain their PASS;
+a separate human protected-page retry after logout is not claimed or requested as a duplicate
+of the existing denial proof. No exact image formats, per-step timestamps or browser session
+identity are invented. The reported image display does not establish deployed native decoder
+versions or all JPEG/PNG/AVIF paths. Exact Render deployment identity, remaining native-runtime
+proof and independent source/security review remain open technical gates. No repeat of these
+passed human UI checks is requested for the unchanged candidate.
 
 Chris separately reported local FUND testing all green, now recorded in the FUND 05 records
 at `29104b55`. This supports H6 local preservation; combined-candidate integration proof is
 still not run. His question about whether login/logout suffices is not specific main/live
-promotion approval. The remaining technical and human gates stay open.
+promotion approval. The remaining technical gates and specific main/live approval stay open.
 
 ## Human Staging Requirements
 
@@ -100,9 +108,9 @@ There is no schema/data rollback. No exploit payload is authorised against share
 
 ## Next Action
 
-Publication and dev/staging promotion are authorised and carried out. Complete independent review and remaining deployment/human checks; pause for Chris’s
+Publication and dev/staging promotion are authorised and carried out. Complete independent review and remaining deployment/runtime checks; the reported staging UI checks pass. Pause for Chris’s
 specific approval before any main/live promotion. The Platform plan holds the only active
-restart checkpoint. FUND remains Next and user-operated smoke continues unchanged.
+restart checkpoint. FUND remains Next with local human smoke already reported PASS at `29104b55`.
 
 ## Dev And Staging Promotion Evidence — 2026-09-10
 
@@ -133,4 +141,4 @@ These probes do not establish that Render has finished deploying this exact comm
 Neither the public pages nor GitHub deployment metadata exposed the current Render Git
 identity; authenticated Render access is unavailable in this session. The control owner
 must verify staging is Live/green at `0397bba9` before completing H1. No production probe,
-main push or live deploy was performed. No authenticated staging mutation is claimed.
+main push or live deploy was performed. No agent-operated authenticated staging mutation is claimed; Chris’s reversible UI save is recorded above.
