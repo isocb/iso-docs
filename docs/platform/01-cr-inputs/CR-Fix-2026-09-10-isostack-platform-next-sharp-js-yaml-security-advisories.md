@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 
-Status: **PLAT-ASSURE-05 implemented locally at `0397bba9`; blocking audit findings cleared locally; publication/review/promotion pending.**
+Status: **PLAT-ASSURE-05 published and fast-forwarded through dev/staging at `0397bba9`; main/live explicitly on hold.**
 
 Source: Chris requested a planning review of the failed security audit while continuing
 local FUND smoke. Owner: Platform assurance. This is a new advisory finding after the

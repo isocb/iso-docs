@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 
-Status: **Implemented locally at `0397bba9`; technical proof PASS; publication approval and independent review pending.**
+Status: **Exact `0397bba9` aligned through dev/staging; all three scans and Linux parity PASS; paused before main/live.**
 
 Control depth: **High** — production image decoding and the shared request-body correction.
 Work type: **Production build**. Durable dependency/backport changes; temporary isolated
@@ -18,11 +18,11 @@ smoke on the unchanged FUND candidate while this isolated correction is prepared
 ## Restart Checkpoint
 
 ```text
-Current state: 0397bba9 implemented; 0 Critical/High audit, 512 tests, type/build and request-body/image proof PASS; automatic review blocked push; independent review pending
-Last proven commit: local candidate 0397bba9 on protected 14077382; failing scan 34448484097 retained; no remote candidate scan yet
-Current environment: /private/tmp/isostack-security-2026-09-10 on work/platform-security-2026-09-10, isolated dependencies and synthetic proof config; protected refs unchanged at last verified 14077382; FUND stays at 29104b55
-Next human decision/test: explicit approval to publish 0397bba9 on work/platform-security-2026-09-10 to private isocb/isostack-bedrock, then independent review and staging H1-H6
-Safe resumption point: after publication approval push exact candidate and run existing Security Scan; do not change FUND test checkout or promote protected branches before the remaining gates
+Current state: 0397bba9 aligned through dev/staging; work/dev/staging Security Scans and Linux renderer parity PASS; main/live explicitly paused; independent review and staging acceptance open
+Last proven commit: 0397bba958862f1f61c16d405fdfe60ae7c13f50; scans 34463542270/34463792299/34464073290 and Linux parity 34463792371 PASS; public staging health/access/image probes PASS, exact Render identity not proven
+Current environment: isolated security checkout retained; local/remote dev and staging at 0397bba9, main at 14077382; original FUND checkout remains 29104b55 with unchanged dependencies/DevData; no manual database operation
+Next human decision/test: verify Render staging Live at 0397bba9, complete remaining H1-H6 and independent review, then give specific main/live approval
+Safe resumption point: continue remaining staging/review gates only; do not push application main or integrate into the active FUND smoke checkout without the relevant next instruction
 ```
 
 ## Implementation Boundary
@@ -61,8 +61,11 @@ generated Prisma files or .next output with the FUND checkout. No restart of its
 
 ## Staging And Release
 
-Independent review precedes protected promotion. After that gate, use the established
-dev -> staging corridor with exact scans and deployment/health readback. Staging human
+Chris subsequently instructed: “please commit and push to dev and staging - and pause for
+specific approval before promoting to main/live”. This explicit staging authority supersedes
+the earlier publication hold and pre-staging stopping point. Complete the technical scans
+and controlled dev -> staging merges now; record independent review as pending at the main
+hold point rather than claiming it has occurred. Obtain deployment/health readback. Staging human
 checks: sign-in, authorised dashboard, one bounded save, representative image display,
 sign-out and unauthenticated denial. Linux proof verifies packaged native libraries and
 image handling. Main requires separate human staging acceptance and promotion authority.

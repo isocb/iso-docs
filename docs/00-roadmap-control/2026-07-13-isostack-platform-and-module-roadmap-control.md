@@ -80,7 +80,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Platform `PLAT-ASSURE-05` Next.js/Sharp/js-yaml security correction | Isolated candidate `0397bba9` passes local audit/regression/runtime proof. Publishing is blocked pending explicit approval; independent review precedes protected promotion. |
+| **NOW** | Platform `PLAT-ASSURE-05` Next.js/Sharp/js-yaml security correction | Isolated candidate `0397bba9` passes local audit/regression/runtime proof. Exact `0397bba9` is aligned through dev/staging; all three Security Scans and Linux parity PASS. Hold main/live at `14077382` for specific approval, independent review and staging acceptance. |
 | **NEXT** | Resume FUND `1R-F-B1` / B1-R2 acceptance | Preserve candidate `29104b55`, DevData and human evidence. Chris continues local smoke; agent delivery returns here after the security correction is closed or safely re-disposed. |
 
 On 2026-09-10 Chris accepted implementation of the reviewed Platform security correction.

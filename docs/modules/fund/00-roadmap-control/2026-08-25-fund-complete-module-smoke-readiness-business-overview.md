@@ -14,10 +14,10 @@ implementation authority or another restart checkpoint.
 ## Where We Are
 
 **10 September security maintenance:** the shared application needs a dependency security
-update. It is implemented and locally tested in a separate checkout; publishing it requires
-the explicit approval requested by automatic review. Your FUND smoke application and test
-data are unchanged, so continue with trusted test assets. The security fix must pass its
-remaining review and release gates and later be integrated into FUND. This temporarily takes
+update. You authorised its publication and promotion through dev and staging, now at
+`0397bba9`. Main/live remains unchanged pending your specific approval and the remaining
+review/staging checks. Your FUND smoke application and test data are unchanged, so continue
+with trusted test assets. The security fix will be integrated into FUND separately. This temporarily takes
 agent delivery priority; FUND acceptance remains open and is the resumption outcome.
 
 FUND has substantial foundations for administration, Project setup, Product selection,

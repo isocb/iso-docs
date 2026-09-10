@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 
-Status: **Local technical proof PASS; publication, independent review and staging/live gates pending.**
+Status: **Exact `0397bba9` aligned through dev/staging; all three Security Scans and Linux parity PASS; main/live explicitly on hold.**
 
 Candidate: `0397bba9` on `work/platform-security-2026-09-10`, parent `14077382`.
 Control depth: **High**. Environment proven: isolated macOS arm64, Node 22.23.2/npm 10.9.8.
@@ -37,16 +37,22 @@ does not substitute for Linux/native packaging or deployed configuration proof. 
 predates the commit object and embeds its parent build ID; use a fresh exact candidate
 build for deployment identity checks. The 04 record retains the detailed validation limits.
 
-## Remaining Gates
+## Promotion Authority And Remaining Gates
+
+Chris explicitly instructed publication and promotion to dev/staging, with a specific
+approval required before main/live. This resolves the prior automatic-review publication
+block and authorises the controlled technical promotion through staging. Independent
+review remains unproven and is retained as an open main/live gate; this instruction is
+not recorded as an independent source review or human staging PASS.
 
 | Gate | Current result | Required evidence |
 | --- | --- | --- |
-| Publish isolated candidate | BLOCKED by automatic approval review | Explicit approval to push `0397bba9` on `work/platform-security-2026-09-10` to private `isocb/isostack-bedrock` |
-| Exact work-branch Security Scan | NOT RUN | Publish, dispatch existing workflow with dev as bounded secret-scan base, obtain exact candidate PASS |
+| Publish isolated candidate | PASS | Chris explicitly authorised publication and dev/staging promotion; remote work branch is exact `0397bba9` |
+| Exact work-branch Security Scan | PASS | [Run 34463542270](https://github.com/isocb/isostack-bedrock/actions/runs/34463542270), exact `0397bba9`; dependency, secret, schema, TypeScript and summary jobs pass |
 | Independent source/security review | PENDING | Review dependency diff, guarded backport, image proof, residual risk and recovery; implementer review above is not independent acceptance |
-| Protected dev/staging scans | NOT RUN | Pass required review, consolidate exact ancestry, obtain both protected scans |
-| Linux/native image/runtime proof | NOT RUN | Verify actual Sharp/libheif versions, benign image proof and request-body behaviour in the relevant Linux build |
-| Staging human smoke | NOT RUN | H1–H6 below with exact deployed commit |
+| Protected dev/staging scans | PASS | Exact `0397bba9`; dev run 34463792299 and staging run 34464073290 |
+| Linux/native image/runtime proof | PARTIAL | Exact Linux renderer parity run 34463792371 PASS; this does not prove the Next image decoder. Deployed Linux Sharp/libheif identity and image/runtime proof remain open |
+| Staging human smoke | PENDING | Public health, sign-in redirects, benign PNG optimisation and remote-source refusal PASS; H1–H6 human/identity requirements below remain open |
 | Main promotion/live verification | NOT AUTHORISED OR RUN | Separate authority after staging acceptance, exact scan/deploy identity and minimum safe live checks |
 | FUND integration | NOT RUN | Preserve current smoke at `29104b55`; integrate at its safe stopping point and prove combined candidate |
 
@@ -81,7 +87,37 @@ There is no schema/data rollback. No exploit payload is authorised against share
 
 ## Next Action
 
-Obtain the explicit publication approval required by automatic review, publish the exact
-candidate and run its Security Scan. Arrange independent review before protected promotion.
-The Platform plan holds the only active restart checkpoint. FUND remains the recorded Next
-outcome and its user-operated smoke continues on the unchanged checkout.
+Publication and dev/staging promotion are authorised and carried out. Complete independent review and remaining deployment/human checks; pause for Chris’s
+specific approval before any main/live promotion. The Platform plan holds the only active
+restart checkpoint. FUND remains Next and user-operated smoke continues unchanged.
+
+## Dev And Staging Promotion Evidence — 2026-09-10
+
+The complete release bundle is one commit, `0397bba9`, changing five files. The schema,
+migration directory and Render build script have zero diff against `14077382`. Source
+preflight re-read the canonical Git workflow, deployment checklist and database rules.
+The existing Render build contract may run its idempotent migration/reference-data steps;
+no new migration or manual database operation accompanies this security correction.
+
+The isolated checkout performed local `dev` and `staging` fast-forward merges before each
+push. No direct remote-ref replacement, force-push or FUND cherry-pick was used. GitHub API
+readback confirms work branch, dev and staging at full
+`0397bba958862f1f61c16d405fdfe60ae7c13f50`; main remains
+`14077382b7d397528e96fb6f7bdea978236a4713`.
+
+- [Work-branch Security Scan 34463542270](https://github.com/isocb/isostack-bedrock/actions/runs/34463542270): PASS.
+- [Dev Security Scan 34463792299](https://github.com/isocb/isostack-bedrock/actions/runs/34463792299): PASS.
+- [Dev Linux renderer parity 34463792371](https://github.com/isocb/isostack-bedrock/actions/runs/34463792371): PASS.
+- [Staging Security Scan 34464073290](https://github.com/isocb/isostack-bedrock/actions/runs/34464073290): PASS.
+
+Public probes at 10:05 UTC, after the staging push, pass on both staging.isostack.app and
+staging.seasonpro.co.uk: health HTTP 200/database connected/RLS 11/11; root/sign-in pages
+HTTP 200; an unauthenticated /app request redirects to the respective sign-in surface;
+a known public PNG optimises to WebP (HTTP 200); an unlisted image origin is refused (400).
+Only public assets and read-only endpoints were used.
+
+These probes do not establish that Render has finished deploying this exact commit.
+Neither the public pages nor GitHub deployment metadata exposed the current Render Git
+identity; authenticated Render access is unavailable in this session. The control owner
+must verify staging is Live/green at `0397bba9` before completing H1. No production probe,
+main push or live deploy was performed. No authenticated staging mutation is claimed.

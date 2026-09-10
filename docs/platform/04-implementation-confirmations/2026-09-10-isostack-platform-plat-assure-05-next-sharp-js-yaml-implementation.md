@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 
-Status: **Implemented and proved locally; remote publication blocked by automatic approval review.**
+Status: **Implemented at `0397bba9` and pushed through dev/staging; main/live on hold for specific approval and remaining acceptance.**
 
 Candidate: application `0397bba9`, branch `work/platform-security-2026-09-10`, parent
 `14077382`. Control depth: **High**. Work type: production build.
@@ -65,10 +65,17 @@ and the request-body proof stops its child server. The checkout is retained for 
 
 FUND remains clean at `29104b55` with its original installed Next 15.5.21. Its server,
 dependencies, Prisma output, DevData and ongoing human smoke were not changed. The security
-fix is not yet integrated there. Protected refs remain at the last verified `14077382`.
+fix is not yet integrated there. Dev/staging and their origins are now `0397bba9`; main and origin/main remain `14077382`.
 
-Automatic approval review rejected `git push -u origin work/platform-security-2026-09-10`
+Historical publication block: automatic approval review rejected `git push -u origin work/platform-security-2026-09-10`
 to the verified private `isocb/isostack-bedrock` repository because explicit approval for
 that payload/destination was required. No push, remote scan, protected promotion or deploy
-occurred. Complete the [05 review/test gates](../05-review-and-test/2026-09-10-isostack-platform-plat-assure-05-next-sharp-js-yaml-review-and-test.md)
-after publication approval; independent review and human staging acceptance remain open.
+occurred during that implementation turn. Chris subsequently explicitly authorised pushing
+the correction through dev and staging, then stopping before main/live. Publication and
+work-branch Security Scan 34463542270 now pass. Complete the [05 review/test gates](../05-review-and-test/2026-09-10-isostack-platform-plat-assure-05-next-sharp-js-yaml-review-and-test.md)
+under that authority; independent review and human staging acceptance remain open before main/live.
+
+The subsequent authorised promotion is recorded in 05: exact work/dev/staging security
+scans and Linux renderer parity pass; remaining deployment/acceptance checks are tracked
+there. Public staging health/access/image probes pass without a claim of exact
+Render deployment identity. Main/live was not promoted.

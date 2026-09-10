@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 
-Status: **PLAT-ASSURE-05 implemented locally at `0397bba9`; publication approval and independent review pending.**
+Status: **Exact `0397bba9` promoted through dev/staging under explicit owner authority; main/live hold for remaining review and acceptance.**
 
 Control depth: **High** — production image processing, security advisories and the shared
 request-body runtime correction are affected. Work type: proposed production build.
@@ -65,10 +65,12 @@ the proposed durable fix. The current review has made none of those changes.
 
 ## Human And Promotion Boundary
 
-The accepted correction is now committed locally at `0397bba9`; the 03/04/05 records own
-its delivery evidence. Automatic approval review blocked branch publication for lack of
-explicit payload/destination approval. That approval and independent review precede remote
-scan/protected promotion. No database operation or restart of the FUND server occurred.
+The accepted correction is committed at `0397bba9`; the 03/04/05 records own its evidence.
+Chris resolved the automatic publication block by explicitly directing push/promotion to
+dev and staging, with a specific main/live approval required later. Both branches and
+origins now match the candidate. Independent review is not claimed; it remains an open
+main/live gate alongside staging acceptance. No manual database operation or restart of
+the FUND server occurred.
 
 After acceptance and local proof, use the existing dev -> staging -> main corridor with
 human staging acceptance and explicit main promotion authority. Integrate the accepted fix
