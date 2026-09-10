@@ -25,7 +25,7 @@ This FUND checkpoint is retained for safe resumption; the Platform plan owns the
 ```text
 Current state: local B1/B1-R1/B1-R2 human smoke PASS reported by Chris on 2026-09-10 at 29104b55; automated/migration/B1-R2 connected proof PASS; independent review and outstanding B1-R1 connected proof remain open
 Last proven commit: application B1-R2 29104b55 on B1-R1 51618485; local DevData target fingerprint 257f63f2e2c2, migration 156; prior connected-proof cleanup PASS is historical, not a fresh readback of the user's populated smoke data
-Current environment: primary local checkout work/fund-b1-r1-catalogue-workflow at 29104b55; local Neon DevData through migration 156; separate security correction at dev/staging 0397bba9; main 14077382; no FUND promotion or security integration
+Current environment: primary local checkout work/fund-b1-r1-catalogue-workflow at 29104b55; local Neon DevData through migration 156; separate security correction at dev/staging/main 0397bba9 with all origins aligned and main Security Scan PASS; no FUND promotion or security integration
 Next human decision/test: no repeat of the unchanged local smoke requested; remaining independent/connected proof and security integration must establish the combined candidate, followed by environment-specific acceptance; main/live requires Chris's specific approval
 Safe resumption point: read B1-R2 04/05 and B1-R1 05; preserve local test data and reported PASS; root Next remains FUND resumption after the security interrupt is closed or safely re-disposed; no new slice or promotion inferred
 ```

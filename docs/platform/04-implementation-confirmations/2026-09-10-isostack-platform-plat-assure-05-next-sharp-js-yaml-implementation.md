@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 
-Status: **Implemented at `0397bba9` and pushed through dev/staging; main/live on hold for specific approval and remaining acceptance.**
+Status: **Implemented and promoted through main at `0397bba9`; dev/staging/main aligned. Staging UI and public production probes PASS; exact live verification limits recorded in 05.**
 
 Candidate: application `0397bba9`, branch `work/platform-security-2026-09-10`, parent
 `14077382`. Control depth: **High**. Work type: production build.
@@ -79,3 +79,12 @@ The subsequent authorised promotion is recorded in 05: exact work/dev/staging se
 scans and Linux renderer parity pass; remaining deployment/acceptance checks are tracked
 there. Public staging health/access/image probes pass without a claim of exact
 Render deployment identity. Main/live was not promoted.
+
+## Current Promotion Disposition — 2026-09-10
+
+Chris reaffirmed safe main promotion after the outstanding evidence limits were disclosed.
+The local main fast-forward and ordinary push are complete: dev/staging/main and their
+origins all match exact `0397bba9`. The [05 record](../05-review-and-test/2026-09-10-isostack-platform-plat-assure-05-next-sharp-js-yaml-review-and-test.md)
+owns main scan 34481778012, accepted IsoStack/LMSPro human smoke, fresh production probes
+and the remaining exact Render/runtime and separate-review limits. Earlier hold statements
+above describe chronology. FUND remains on its separate local development candidate.

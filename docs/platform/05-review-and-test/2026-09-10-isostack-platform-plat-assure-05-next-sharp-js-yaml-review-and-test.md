@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 
-Status: **Exact `0397bba9` through dev/staging; reported IsoStack/LMSPro staging UI PASS; main/live explicitly authorised, execution awaits remaining deployment/runtime and independent review evidence.**
+Status: **Exact `0397bba9` promoted through main; three local/remote branches aligned; main Security Scan, reported staging UI and public production probes PASS; exact Render/runtime and separate review remain unproven.**
 
 Candidate: `0397bba9` on `work/platform-security-2026-09-10`, parent `14077382`.
 Control depth: **High**. Environment proven: isolated macOS arm64, Node 22.23.2/npm 10.9.8.
@@ -49,11 +49,11 @@ not recorded as an independent source review or human staging PASS.
 | --- | --- | --- |
 | Publish isolated candidate | PASS | Chris explicitly authorised publication and dev/staging promotion; remote work branch is exact `0397bba9` |
 | Exact work-branch Security Scan | PASS | [Run 34463542270](https://github.com/isocb/isostack-bedrock/actions/runs/34463542270), exact `0397bba9`; dependency, secret, schema, TypeScript and summary jobs pass |
-| Independent source/security review | PENDING | Review dependency diff, guarded backport, image proof, residual risk and recovery; implementer review above is not independent acceptance |
+| Independent source/security review | NOT OBTAINED | Implementer re-review and exact automated evidence retained; Chris reaffirmed execution after this limit was disclosed. No separate review PASS is claimed |
 | Protected dev/staging scans | PASS | Exact `0397bba9`; dev run 34463792299 and staging run 34464073290 |
 | Linux/native image/runtime proof | PARTIAL | Exact Linux renderer parity run 34463792371 PASS; this does not prove the Next image decoder. Deployed Linux Sharp/libheif identity and image/runtime proof remain open |
 | Staging human smoke | PASS — reported UI scope | Chris confirms IsoStack/LMSPro entry, login/logout, correct Client dashboard, images and reversible saves on 2026-09-10; prior public unauthenticated-denial probe PASS. Deployment identity and native image proof remain separate technical gates |
-| Main promotion/live verification | AUTHORISED; NOT RUN | Chris explicitly requested security promotion on 2026-09-10; remaining independent/deployment/runtime evidence precedes execution and minimum safe live checks |
+| Main promotion/live verification | MAIN PUSH PASS; LIVE IDENTITY PENDING | Three local/remote branches at 0397bba9; main scan 34481778012 PASS; public production health/access/image probes PASS, exact Render deployment not yet verified |
 | FUND integration | NOT RUN | Preserve current smoke at `29104b55`; integrate at its safe stopping point and prove combined candidate |
 
 ## Owner Staging Report — 2026-09-10
@@ -108,9 +108,10 @@ There is no schema/data rollback. No exploit payload is authorised against share
 
 ## Next Action
 
-Publication and dev/staging promotion are authorised and carried out. Complete independent review and remaining deployment/runtime checks; the reported staging UI checks pass. Execute Chris’s
-already-received main/live authority after those technical gates pass. The Platform plan holds the only active
-restart checkpoint. FUND remains Next with local human smoke already reported PASS at `29104b55`.
+Main promotion is now executed under Chris’s reaffirmed instruction. Finish main scan and
+production deployment readback; retain the explicit review/runtime evidence limits below.
+No promotion approval is pending. FUND remains Next with local human smoke PASS at `29104b55`
+and its existing 1R-G planning refinement prepared; FUND has not been included in this release.
 
 ## Dev And Staging Promotion Evidence — 2026-09-10
 
@@ -164,3 +165,46 @@ Render credentials or provider tool is available. Exact staging identity/native-
 proof and independent source review remain pending. The owner has been asked for the
 provider readback and permission for a separate review agent; no promotion has been run
 while those existing gates are unresolved. The original smoke evidence remains accepted.
+
+## Main Promotion And Minimum Production Proof — 2026-09-10
+
+Chris again directed safe promotion and alignment after receiving the explicit status that
+main was still `14077382` and the independent/Render evidence was unproven. The controlling
+plan records this instruction as superseding the earlier pre-push hold. High control depth
+and truthful evidence limits remain; no separate source review or provider readback is invented.
+
+Immediately before promotion, refreshed GitHub readback showed all work/dev/staging
+security scans and Linux parity PASS. The complete main-to-staging bundle remained the
+five reviewed security files. Forty lockfile records change only within the accepted
+dependency families; credential-pattern review and whitespace checks pass. The guarded
+request-body correction, installed/standalone benign image proof and all five backport
+unit tests pass again in the isolated Node 22 environment. No source/dependency/Prisma
+output in the user's FUND checkout was touched. This is implementer verification.
+
+The isolated checkout switched to local main, fast-forwarded from local staging and
+pushed main normally. No force push, selective reimplementation or remote-ref substitution
+was used. Independent remote readback confirms all three branches at:
+
+```text
+dev     0397bba958862f1f61c16d405fdfe60ae7c13f50
+staging 0397bba958862f1f61c16d405fdfe60ae7c13f50
+main    0397bba958862f1f61c16d405fdfe60ae7c13f50
+```
+
+The new exact [main Security Scan 34481778012](https://github.com/isocb/isostack-bedrock/actions/runs/34481778012)
+passes every applicable job: dependency vulnerability, secret detection, schema security,
+TypeScript and the summary. Main previously failing at `14077382` is retained as historical evidence.
+
+At 13:18 UTC after the push and again at 13:20 UTC after main CI PASS, the documented production endpoint `app.seasonpro.co.uk`
+returns healthy HTTP 200, database connected, RLS 11/11; root and protected `/app` lead
+to the expected LMSPro sign-in surface; a known public PNG optimises to WebP; an unlisted
+image source is refused with 400. These are benign non-destructive reads only. An inferred
+`app.isostack.app` hostname returned 403 and is not treated as the established production
+endpoint or a regression; no deployment claim is based on that hostname.
+
+Git alignment and public health do not prove which Render commit is serving. Authenticated
+Render access is unavailable, GitHub exposes no deployment identity, and public responses
+contain no exact build marker. Production Live/green at `0397bba9` has been requested from
+the owner. Deployed Linux decoder identity and separate independent source review also
+remain unproven. Promotion is completed at the Git boundary; full exact-live verification
+is not claimed. No new migration, runtime configuration or manual database action occurred.

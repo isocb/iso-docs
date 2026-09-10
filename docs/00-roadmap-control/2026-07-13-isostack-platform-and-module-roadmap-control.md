@@ -80,14 +80,16 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | Platform `PLAT-ASSURE-05` Next.js/Sharp/js-yaml security correction | Isolated candidate `0397bba9` passes local audit/regression/runtime proof. Exact `0397bba9` is aligned through dev/staging; all three Security Scans and Linux parity PASS. Chris reports IsoStack/LMSPro staging UI PASS and now explicitly authorises main/live. Main remains `14077382` until remaining independent review and deployment/runtime proof are completed; approval is no longer pending. |
+| **NOW** | Platform `PLAT-ASSURE-05` Next.js/Sharp/js-yaml security correction | Isolated candidate `0397bba9` passes local audit/regression/runtime proof. Exact `0397bba9` is aligned through dev/staging; all three Security Scans and Linux parity PASS. Chris reaffirmed execution after the evidence limits were disclosed: dev/staging/main and origins now align at `0397bba9`. Main scan 34481778012 PASS; staging UI and public production probes PASS. Exact Render/runtime and separate review remain unproven; no approval hold remains. |
 | **NEXT** | Resume FUND `1R-F-B1` / B1-R2 acceptance | Preserve candidate `29104b55`, DevData and human evidence. Chris reports local smoke PASS on 10 September; independent/remaining connected proof and security integration/combined-candidate checks remain. Agent delivery returns here after the security correction is closed or safely re-disposed. |
 
 On 2026-09-10 Chris accepted implementation of the reviewed Platform security correction.
 The [bounded PLAT-ASSURE-05 plan](../platform/03-slice-planning/2026-09-10-isostack-platform-plat-assure-05-next-sharp-js-yaml-remediation-planning.md)
 owns its checkpoint and stopping conditions. This is an explicit security interrupt; FUND
 acceptance remains open and its local test environment is preserved. Chris subsequently supplied staging UI PASS and explicit main/live promotion authority.
-Remaining technical evidence, not missing approval, currently holds execution.
+Chris subsequently reaffirmed safe promotion: the main fast-forward/push is now complete.
+Exact deployment/runtime and separate-review evidence limits remain explicit in 05; main
+scan monitoring and provider readback remain before complete release verification.
 He also requested continuation of the existing
 [1R-G planning draft](../modules/fund/03-slice-planning/2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md),
 which is now refined against `29104b55`; B1 closure and 1R-G implementation remain unproved

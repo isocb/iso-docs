@@ -34,7 +34,7 @@ default.
 
 | Source CR | Current disposition | Roadmap treatment |
 | --- | --- | --- |
-| [`CR-Fix-2026-09-10-isostack-platform-next-sharp-js-yaml-security-advisories.md`](../01-cr-inputs/CR-Fix-2026-09-10-isostack-platform-next-sharp-js-yaml-security-advisories.md) | Read-only review confirms 1 Critical and 3 High package entries on all protected branches; Next/Sharp image-processing exposure and js-yaml require bounded correction | Urgent High-control correction proposed in [triage](../02-triage/2026-09-10-isostack-platform-next-sharp-js-yaml-security-advisories-triage.md); PLAT-ASSURE-05 exact `0397bba9` published and fast-forwarded through dev/staging under explicit owner authority; main remains `14077382`; staging UI PASS and explicit main/live authority now received, with remaining independent review and deployment/runtime proof before execution |
+| [`CR-Fix-2026-09-10-isostack-platform-next-sharp-js-yaml-security-advisories.md`](../01-cr-inputs/CR-Fix-2026-09-10-isostack-platform-next-sharp-js-yaml-security-advisories.md) | Read-only review confirms 1 Critical and 3 High package entries on all protected branches; Next/Sharp image-processing exposure and js-yaml require bounded correction | Urgent High-control correction proposed in [triage](../02-triage/2026-09-10-isostack-platform-next-sharp-js-yaml-security-advisories-triage.md); PLAT-ASSURE-05 exact `0397bba9` published and fast-forwarded through dev/staging under explicit owner authority; dev/staging/main and origins now align at `0397bba9` under reaffirmed owner authority; main scan PASS and exact deployment/runtime/separate-review evidence limits remain in 05 |
 | [`2026-07-22-isostack-platform-node-middleware-request-body-finalisation-defect-cr.md`](../01-cr-inputs/2026-07-22-isostack-platform-node-middleware-request-body-finalisation-defect-cr.md) | Completed through `PLAT-RUNTIME-01`; subsequently included in the completed LMSPro R8-A production release | Closed historical corrective input; do not reopen without a new finding |
 | [`2026-07-27-isostack-platform-auth-dependency-and-audit-gate-security-remediation-cr-input.md`](../01-cr-inputs/2026-07-27-isostack-platform-auth-dependency-and-audit-gate-security-remediation-cr-input.md) | Completed through the documented `PLAT-ASSURE-03` dev/staging lifecycle and human gate; no separate production claim is added by this reconciliation | Closed at its recorded evidence boundary; `PLAT-REFINE-03` and `PLAT-REFINE-04` retain separate follow-up concerns |
 | [`2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md`](../01-cr-inputs/2026-08-04-isostack-core-platform-and-seasonpro-role-authority-clarification-and-remediation-cr.md) | Complete and closed; exact `60ac76c1` passes local/staging/production gates, including same-Club C2 sibling creation and magic-link authentication | Closed project; historical conditional plans do not remain active |
@@ -58,9 +58,11 @@ its audit, 512 tests, build and runtime proof. Chris then explicitly authorised 
 and dev/staging promotion; both branches and origins are `0397bba9`, while main remains
 `14077382`. Work/dev/staging Security Scans 34463542270/34463792299/34464073290 and
 Linux renderer parity 34463792371 pass; public staging health/access/image probes pass.
-Chris has reported IsoStack/LMSPro staging UI PASS and explicitly authorised main/live
-promotion. Exact Render deployment identity/native-runtime proof and independent source
-review remain open before execution; no repeat promotion approval is required. Historical PASS evidence below does
+Chris reported IsoStack/LMSPro staging UI PASS and reaffirmed safe promotion after the
+remaining evidence limits were disclosed. Main is now fast-forwarded and pushed to
+`0397bba9`, matching dev/staging locally and online. Main scan 34481778012 PASS;
+public production health/access/image probes PASS. Exact Render/native-runtime identity
+and separate source review remain unproven, not reasons to request promotion approval again. Historical PASS evidence below does
 not override the current failing advisory gate. PLAT-ASSURE-04 remains closed, while its
 separate Moderate/Low assessment PLAT-ASSURE-04-R1 also needs to include the new Vitest finding.
 

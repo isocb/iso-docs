@@ -11,8 +11,9 @@ correction, published separately through dev/staging at `0397bba9`; FUND B1/B1-R
 reports local FUND human smoke PASS on 2026-09-10 at `29104b55`; B1-R1 steps 1–13 are marked
 PASS. Independent review, remaining B1-R1 connected proof and security-fix integration/combined-
 candidate validation remain open. No FUND closure or promotion is inferred; the Platform plan owns the
-active security checkpoint. Security main/live approval and LMSPro staging UI PASS are now
-received; remaining technical proof precedes execution. Chris also requested continuation of
+active security checkpoint. The security patch is now promoted through main at `0397bba9`, with dev/staging/main
+aligned and LMSPro staging UI/public production probes PASS. The Platform record retains
+exact deployment verification and explicit review/runtime evidence limits. Chris also requested continuation of
 [1R-G planning](../03-slice-planning/2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md),
 now refined against the corrected Catalogue/workflow model and locked Individual offer.
 Its recommended first deliverable is an authenticated development purchaser-view preview;
@@ -81,7 +82,7 @@ same row.
 Current FUND portfolio disposition:
 
 ```text
-ROOT NOW  -> Platform PLAT-ASSURE-05 security correction; main/live authorised, technical evidence pending
+ROOT NOW  -> Platform PLAT-ASSURE-05 security correction; all three branches aligned, final verification/evidence limits retained
 ROOT NEXT -> Resume FUND B1/B1-R2 after the interrupt; local human smoke PASS, remaining review/proof/integration pending
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; Role Authority is closed
 FUND      -> 1R-F-A COMPLETE AND CLOSED AT PASS; prior Stage C FAIL retained as contained history; Stage C-R1 provider/object/Render/local residue zero

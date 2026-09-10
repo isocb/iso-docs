@@ -16,9 +16,10 @@ implementation authority or another restart checkpoint.
 **10 September security maintenance:** the shared application needs a dependency security
 update. You authorised its publication and promotion through dev and staging, now at
 `0397bba9`. You have now passed the IsoStack/LMSPro staging UI checks and explicitly
-authorised security promotion to main/live. Main remains unchanged while the remaining
-independent review and deployment/runtime evidence is completed. The security fix will be
-integrated into FUND separately. This temporarily takes agent delivery priority; FUND review and release preparation remain the resumption outcome.
+authorised security promotion to main/live. The patch has now been pushed to main:
+dev, staging and main all match `0397bba9`. Public production health/access/image checks
+pass; the main security scan PASS. Exact Render deployment and separate review
+limits remain documented. The security fix will be integrated into FUND separately. This temporarily takes agent delivery priority; FUND review and release preparation remain the resumption outcome.
 
 **10 September FUND test result: local smoke PASS.** You confirmed “Fund testing all green”
 and marked all 13 B1-R1 checklist steps passed after the B1-R2 corrections, on the current

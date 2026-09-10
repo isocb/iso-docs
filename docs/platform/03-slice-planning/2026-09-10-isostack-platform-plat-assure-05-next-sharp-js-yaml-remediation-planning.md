@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 
-Status: **Exact `0397bba9` through dev/staging; human staging UI PASS and explicit main/live authority received; deployment/runtime and independent-review evidence pending before execution.**
+Status: **Exact `0397bba9` promoted through main; local/remote dev, staging and main aligned; main Security Scan and public production probes PASS; exact Render/runtime and separate-review evidence remain unproven.**
 
 Control depth: **High** — production image decoding and the shared request-body correction.
 Work type: **Production build**. Durable dependency/backport changes; temporary isolated
@@ -18,11 +18,11 @@ smoke on the unchanged FUND candidate while this isolated correction is prepared
 ## Restart Checkpoint
 
 ```text
-Current state: 0397bba9 aligned through dev/staging; work/dev/staging Security Scans and Linux renderer parity PASS; main/live explicitly authorised on 2026-09-10, not yet executed; Chris reports IsoStack/LMSPro staging entry, login/logout, correct Client dashboard, images and reversible saves PASS on 2026-09-10; independent review and deployment/runtime proof open
-Last proven commit: 0397bba958862f1f61c16d405fdfe60ae7c13f50; scans 34463542270/34463792299/34464073290 and Linux parity 34463792371 PASS; public staging health/access/image probes PASS, exact Render identity not proven
-Current environment: isolated security checkout retained; local/remote dev and staging at 0397bba9, main at 14077382; original FUND checkout remains 29104b55 with unchanged dependencies/DevData; no manual database operation
-Next human decision/test: reported IsoStack/LMSPro staging UI checks PASS and main/live approval received; awaiting Render staging exact-commit/native-runtime readback and permission to use a separate independent review agent; no repeat UI test or promotion approval needed; FUND remains local development
-Safe resumption point: finish pending deployment/runtime and independent review proof, then use the approved local main fast-forward from staging, push main, monitor scan/deploy and minimum live checks; do not include FUND in the security promotion; continue existing 1R-G planning while external evidence is pending
+Current state: security 0397bba9 promoted by local main fast-forward and ordinary push under Chris's reaffirmed instruction; all three local/remote branches align; accepted staging UI PASS; main scan 34481778012 PASS; public production probes PASS
+Last proven commit: 0397bba958862f1f61c16d405fdfe60ae7c13f50; work/dev/staging scans and Linux parity PASS; fresh local backport/image proofs and five backport tests PASS; remote three-branch readback matches; production app.seasonpro.co.uk health/access/image probes PASS at 13:18 UTC
+Current environment: isolated security checkout now on main at 0397bba9; dev/staging/main and origins match; original FUND checkout remains 29104b55 with unchanged dependencies/DevData; no manual database/configuration operation
+Next human decision/test: no further promotion approval or repeat staging UI test needed; confirm production Render Live/green at 0397bba9 through provider access unavailable to this session; separate source review and native-runtime identity remain unproven observations, not claimed PASS
+Safe resumption point: finish main scan monitoring and minimal production verification, retain exact deployment evidence limits and owner-authorised promotion disposition; resume FUND B1 reconciliation and existing 1R-G planning without treating Git alignment as FUND promotion
 ```
 
 ## Implementation Boundary
@@ -86,6 +86,25 @@ additional branch divergence. No PR review or GitHub deployment identity is avai
 Render CLI, authenticated provider tools and Render environment credentials are unavailable;
 the outstanding provider readback was requested, along with permission for a separate
 review agent. Perform all accessible work without requesting main approval again.
+
+## Reaffirmed Controlled Promotion — 2026-09-10
+
+After the assistant explicitly reported that main was still `14077382` and explained the
+unproven independent review and Render evidence, Chris directed: “please promote in a safe
+way so main/live, staging and dev are aligned”. This is a renewed instruction to execute
+the exact tested security promotion, superseding this plan's earlier pre-push hold.
+
+Proceed with the controlled local main fast-forward and ordinary push of `0397bba9` after
+fresh ancestry, scope, credential and runtime checks. Retain the accepted LMSPro staging
+human PASS and exact work/dev/staging automated evidence. Monitor the new main scan and
+minimum non-destructive live probes. No force push, new source, migration, configuration
+change or FUND integration is included.
+
+Control depth remains High. The release record must still state that source review is by
+the implementing assistant, not a separate reviewer, and that exact Render deployment and
+native-runtime readback are unavailable until supplied or independently obtained. The
+owner's instruction authorises promotion; it does not turn those missing observations into
+PASS. Do not claim complete live verification from Git alignment or health alone.
 
 ## Failure, Recovery And Cleanup
 
