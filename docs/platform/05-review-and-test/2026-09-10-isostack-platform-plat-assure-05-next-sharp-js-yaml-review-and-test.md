@@ -52,9 +52,22 @@ not recorded as an independent source review or human staging PASS.
 | Independent source/security review | PENDING | Review dependency diff, guarded backport, image proof, residual risk and recovery; implementer review above is not independent acceptance |
 | Protected dev/staging scans | PASS | Exact `0397bba9`; dev run 34463792299 and staging run 34464073290 |
 | Linux/native image/runtime proof | PARTIAL | Exact Linux renderer parity run 34463792371 PASS; this does not prove the Next image decoder. Deployed Linux Sharp/libheif identity and image/runtime proof remain open |
-| Staging human smoke | PENDING | Public health, sign-in redirects, benign PNG optimisation and remote-source refusal PASS; H1–H6 human/identity requirements below remain open |
+| Staging human smoke | PARTIAL | Chris reports staging opens and login/logout PASS on 2026-09-10; remaining save, image, context/denial and deployment identity requirements below remain open |
 | Main promotion/live verification | NOT AUTHORISED OR RUN | Separate authority after staging acceptance, exact scan/deploy identity and minimum safe live checks |
 | FUND integration | NOT RUN | Preserve current smoke at `29104b55`; integrate at its safe stopping point and prove combined candidate |
+
+## Owner Staging Report — 2026-09-10
+
+Chris reports that staging opens and login/logout work correctly. Record those interactions
+as owner-reported PASS. This report does not specify dashboard tenant/module context,
+a protected-page retry after logout, an ordinary save/readback, representative image display
+or the Render deployment commit; those requirements are not silently marked complete.
+Earlier public unauthenticated-denial and PNG probes retain their recorded evidence.
+
+Chris separately reported local FUND testing all green, now recorded in the FUND 05 records
+at `29104b55`. This supports H6 local preservation; combined-candidate integration proof is
+still not run. His question about whether login/logout suffices is not specific main/live
+promotion approval. The remaining technical and human gates stay open.
 
 ## Human Staging Requirements
 

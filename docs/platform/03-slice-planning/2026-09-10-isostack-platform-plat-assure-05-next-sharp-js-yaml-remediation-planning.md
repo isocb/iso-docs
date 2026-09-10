@@ -18,10 +18,10 @@ smoke on the unchanged FUND candidate while this isolated correction is prepared
 ## Restart Checkpoint
 
 ```text
-Current state: 0397bba9 aligned through dev/staging; work/dev/staging Security Scans and Linux renderer parity PASS; main/live explicitly paused; independent review and staging acceptance open
+Current state: 0397bba9 aligned through dev/staging; work/dev/staging Security Scans and Linux renderer parity PASS; main/live explicitly paused; Chris reports staging entry/login/logout PASS on 2026-09-10; independent review and remaining staging acceptance open
 Last proven commit: 0397bba958862f1f61c16d405fdfe60ae7c13f50; scans 34463542270/34463792299/34464073290 and Linux parity 34463792371 PASS; public staging health/access/image probes PASS, exact Render identity not proven
 Current environment: isolated security checkout retained; local/remote dev and staging at 0397bba9, main at 14077382; original FUND checkout remains 29104b55 with unchanged dependencies/DevData; no manual database operation
-Next human decision/test: verify Render staging Live at 0397bba9, complete remaining H1-H6 and independent review, then give specific main/live approval
+Next human decision/test: staging entry/login/logout reported PASS; complete ordinary save/readback, representative image display and dashboard-context/protected-page checks; verify Render Live at 0397bba9 and remaining native-runtime/independent review evidence before specific main/live approval
 Safe resumption point: continue remaining staging/review gates only; do not push application main or integrate into the active FUND smoke checkout without the relevant next instruction
 ```
 
