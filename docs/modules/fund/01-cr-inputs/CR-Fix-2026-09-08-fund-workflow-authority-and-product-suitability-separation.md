@@ -2,7 +2,7 @@
 
 Date: 2026-09-08
 
-Status: **Triaged; B1-R1 detailed planning complete; implementation acceptance pending.**
+Status: **Implemented locally at `51618485`; human smoke steps 1–4 PASS; remaining B1 acceptance continues through B1-R2.**
 
 [Triage](../02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md) and [detailed plan](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md) now own disposition and proposed implementation boundary.
 

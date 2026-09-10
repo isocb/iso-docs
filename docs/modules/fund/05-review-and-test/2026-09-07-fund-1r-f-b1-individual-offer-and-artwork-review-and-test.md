@@ -182,9 +182,7 @@ remedial conversion; staging schema migration is still required when implementat
 ### B1-R1 Triage Disposition — 2026-09-08
 
 [Triage](../02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md) and [detailed planning](../03-slice-planning/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md)
-are complete as documentation, with implementation acceptance pending. Correction is required
-before B1 business closure. Existing automated results remain historical evidence for their
-exact candidate; no corrected-code PASS is claimed. The owner confirmed four workflows,
-Standard as unmodified Product, and Catalogue availability for standalone Projects. Proposed
-selection/edit transition rules remain reviewable in the plan. No new 04/05 correction
-completion records are created before implementation and testing occur.
+led to B1-R1 implementation `51618485`. Its automated and connected proof PASS, and Chris
+recorded human smoke steps 1–4 as PASS on 2026-09-10. Steps 5–7 exposed the B1-R2 Catalogue
+scope, Event management and state-clarity findings, so remaining B1 business acceptance now
+continues through the [B1-R2 review and test record](2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-review-and-test.md).

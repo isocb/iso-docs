@@ -173,7 +173,7 @@ Wishlist entries:
 | `2R-EVENT-02` | `1P-G-F-A-R2B` | Event Media, Branding And Public Context Planning | Decide whether Events need hero image, thumbnail, public form image, brand colour override or document/media attachments. | Wishlist |
 | `2R-EVENT-03` | none | Event Date Constraint Review | Review how Event opens, closes and deadline anchors constrain Projects, Stores, production windows and public ordering windows. | Wishlist |
 | `2R-EVENT-04` | none | Event Domain Window And Key Date Precedent Planning | Frame FUND Events against the LMSPro Key Date precedent: reminders, windows with open/close date-times and trigger date-times, with named anchors that can drive email sequences, commission periods and later operational rules. | Wishlist / Architecture planning |
-| `2R-EVENT-05` | none | Event Catalogue And Product Visibility Management Planning | Add Event-side visibility for linked Catalogues and contributed Products, with a future Event detail tab that can show and potentially manage Event-to-Catalogue availability links. This should complement Product-side Catalogue memberships and Catalogue-side Product membership management without duplicating Product selection or Store behaviour. | Wishlist |
+| `2R-EVENT-05` | `B1-R2` | Event Catalogue And Product Visibility Management Planning | Add Event-side visibility for linked Catalogues and contributed Products, with an Event detail Products tab that manages Event-to-Catalogue availability links. This complements Product-side Catalogue memberships and Catalogue-side Product membership management without duplicating Product selection or Store behaviour. | Incorporated locally at B1-R2 `29104b55`; human acceptance pending |
 
 Research notes:
 

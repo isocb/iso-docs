@@ -2,7 +2,7 @@
 
 Created: 2026-08-25
 
-Last updated: 2026-09-08
+Last updated: 2026-09-10
 
 Status: **Plain-English situation report; subordinate to the delivery lifecycle**
 
@@ -110,6 +110,36 @@ finalised offer/Order evidence never changes. Event workflow changes after Proje
 are refused. The local FUND test bed was recreated empty under the recorded development-data
 authority so the migration could apply without guessing workflows for old Event rows. The
 application and database are ready for the human walkthrough; staging and live are unchanged.
+
+On 10 September you passed the first four B1-R1 human checks: Intake and Catalogue saving,
+workflow-neutral Product creation, Event-linked Project creation and standalone Project
+creation. You then correctly paused. The test showed that the current Catalogue field answers
+only **where** a Catalogue can be used (Events, standalone Projects, both or internal); it does
+not answer **which workflow** the range supports. The field is active in the code, but its name
+and UI do not make that limited purpose clear. Under the current implementation, all
+standalone-capable Catalogues are therefore offered to all standalone workflows.
+
+The selected [B1-R2 correction](../03-slice-planning/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-planning.md)
+adds the missing Catalogue workflow scope. A Catalogue can support several or all four workflows,
+and existing/general Catalogues start with all four. C1 narrows the range only when necessary.
+Events will offer Event-capable Catalogues matching their workflow; standalone Projects will use
+standalone-capable Catalogues matching their own workflow. Products remain workflow-neutral and
+there is still no extra Catalogue assignment step for a standalone Project.
+
+The same correction brings Catalogue assignment into an Event `Products` tab while retaining
+the current Product/Catalogue Availability screen. Both views manage the same assignment. The
+Event view will not become a Catalogue editor: it selects compatible Catalogues and shows their
+contributed Products. The walkthrough also found that Event lifecycle actions are too permissive.
+An Event must close before archive, and an active Event cannot close while it has active linked
+Projects. Finally, Catalogue Product rows will show Product status separately from Catalogue
+membership, so a draft Product prepared in an active Catalogue is not presented as active or
+sale-eligible.
+
+B1-R2 is implemented locally at `29104b55` inside B1 `Now`, and the earlier Phase 2 Event
+visibility wishlist has been pulled into this correction. Migration 156 and a disposable
+eligibility/Event-lifecycle concurrency proof pass on local DevData, with test cleanup confirmed.
+Existing B1-R1 human PASS results remain intact; dev, staging and live are unchanged. Restart the
+local server and use the B1-R2 05 schedule before resuming B1-R1 at step 5.
 
 ## Your Phase 1 Decisions
 

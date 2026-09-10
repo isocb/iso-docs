@@ -95,6 +95,18 @@ guidance and prominent Project lifecycle controls. Its guarded Neon DevData
 non-FUND application-table counts unchanged. No promotion has occurred. Negative database/concurrency
 proof, independent review and human acceptance remain required.
 
+[CR-Fix — Event Catalogue workflow scope and lifecycle integrity](../01-cr-inputs/CR-Fix-2026-09-10-fund-event-catalogue-workflow-scope-and-lifecycle-integrity.md)
+— **implemented locally at `29104b55`; automated/connected proof PASS; human acceptance pending**, High depth.
+[Triage](../02-triage/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-triage.md);
+[implementation plan](../03-slice-planning/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-planning.md).
+Human steps 1–4 passed on 10 September before testing exposed the need for Catalogue-level
+multi-workflow scope, Event-context assignment, strict Event close/archive order and clear
+Product-versus-membership status. B1-R2 stays inside B1 `Now`; it pulls `2R-EVENT-05`'s Event-side
+visibility into the active correction without selecting 1R-G. No Product suitability control or
+standalone per-Project Catalogue gate returns. Chris authorised implementation; local DevData
+migration 156 and disposable eligibility/Event-lifecycle concurrency proof pass with cleanup.
+Staging/live remain unchanged and independent review/human acceptance are still required.
+
 Local smoke blocker [CR-Fix — Workflow Class reference data](../01-cr-inputs/CR-Fix-2026-09-08-fund-local-workflow-class-reference-data.md)
 has its bounded DevData-only repair/readback PASS within B1 preparation; human Product creation retry remains pending. No new portfolio
 selection or application implementation is inferred; B1 remains Now.
@@ -824,10 +836,10 @@ payment model.
 
 | Item | Status | Control |
 | --- | --- | --- |
-| Application repository | Primary local checkout runs corrected B1-R1 candidate `51618485` on `work/fund-b1-r1-catalogue-workflow`; dev/staging/main unchanged | Select now-active MugTest as C2 Project Manager, use the top-level Activate Project action, then continue Event-linked and standalone smoke; remaining High-control proof and human acceptance precede promotion |
-| Documentation repository | Consolidated and published through `20e1159`; this B/B1 planning update follows on main | Keep documentation committed and aligned online; recheck exact refs on resumption |
+| Application repository | Primary local checkout is B1-R2 candidate `29104b55` on `work/fund-b1-r1-catalogue-workflow`; local DevData migration 156 and connected proof PASS; dev/staging/main unchanged | Restart local server, complete independent review and revised B1-R2/B1-R1 human smoke; no promotion before High-control acceptance |
+| Documentation repository | B1-R2 CR/triage/plan/04/05 and revised smoke schedule prepared on main | Commit/publish the lifecycle evidence after validation; recheck exact refs on resumption |
 | FUND `1R-F-A` | Complete and closed at PASS on exact `0c7e4848`; zero external residue | Do not rerun or reinterpret the former contained Stage C failure as current state |
-| FUND `1R-F-B` / `1R-F-B1` | Enduring framework / B1-R1 source and guarded DevData migration PASS | Complete negative database/integration/concurrency proof, independent review and local human acceptance before promotion |
+| FUND `1R-F-B` / `1R-F-B1` | Enduring framework / B1-R2 source, migration and connected proof PASS after B1-R1 human steps 1–4 PASS | Complete independent review and resumed local human acceptance before promotion |
 | Ten-record schema proposal | Unaccepted technical option | Retain in the enduring framework appendix; do not treat it as selected direction |
 | E-B/E-C/E-D consolidated human acceptance | Still relevant evidence gate | Complete only through its governed schedule when separately selected; do not infer a new implementation slice |
 | Public purchaser and operational journey | Incomplete | Later work must cover Store, checkout, Order operations, artwork matching, production, dispatch and commission in bounded outcomes |

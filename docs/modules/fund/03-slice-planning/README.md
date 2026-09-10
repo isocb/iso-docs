@@ -118,4 +118,6 @@ Accepted parent:
 
 - [1R-G — Public Store Presentation](2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md) — source-grounded planning draft; exact Next selection and release/demo contract pending. B1 local human testing remains Now.
 
-- [B1-R1 detailed remediation plan](2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md) — inside B1 acceptance correction; implementation acceptance pending.
+- [B1-R1 detailed remediation plan](2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md) — implemented locally at `51618485`; remaining B1 acceptance continues through B1-R2.
+
+- [B1-R2 Event Catalogue workflow scope and lifecycle integrity](2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-planning.md) — implemented locally at `29104b55`; automated/connected proof PASS and human acceptance pending.

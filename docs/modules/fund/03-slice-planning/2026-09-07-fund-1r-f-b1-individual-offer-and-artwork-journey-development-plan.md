@@ -2,7 +2,7 @@
 
 Date: 2026-09-07
 
-Status: **Implemented and automated validation PASS; independent review and local human acceptance pending**
+Status: **B1-R2 implemented and proved locally; independent review and resumed human acceptance pending**
 
 Control depth: **High** — this journey introduces persistent offer evidence, exact C2
 finaliser authority, tenant-bound document access and failure/retry behaviour.
@@ -22,11 +22,11 @@ selects this planning outcome as Now; Next is unselected pending its review.
 ## Restart Checkpoint
 
 ```text
-Current state: B1-R1 application source/automated checks and guarded Neon DevData 154-to-155 migration PASS; four local human findings corrected, including truthful draft-Product guidance and prominent C2 Project activation; retry, database/concurrency proof, independent review and acceptance remain open
-Last proven commit: application B1-R1 51618485, comprising implementation cd72dd780c6fec5b784a00c03a5ebb38133b71ce and bounded human-smoke corrections e00db199, 8bda74f4, 2cfc89fa and 51618485, based on B1 57e1454b530ae19dc586768fd996ff230d84421c; DevData migration target fingerprint 5a235762acc4
-Current environment: primary local checkout on work/fund-b1-r1-catalogue-workflow at 51618485; migration 155 applied only to local Neon DevData; candidate is running on localhost:3000; app dev/staging/main and staging/live databases unchanged
-Next human decision/test: refresh C2 Products, select now-active MugTest from Cat1, then use the top-level Activate Project action; confirm C2 Project Manager authority and continue Event-linked/standalone B1-R1 smoke
-Safe resumption point: read B1-R1 04/05 records, retain the DevData migration evidence, run the scheduled human smoke and remaining negative database/integration/concurrency proof; do not promote on local evidence alone
+Current state: B1-R2 application 29104b55, migration 156, full build, 30 FUND unit tests and disposable DevData eligibility/lifecycle concurrency proof PASS; Chris's B1-R1 steps 1–4 PASS are retained; independent review and revised human smoke remain open
+Last proven commit: application B1-R2 29104b55 on B1-R1 51618485; local DevData target fingerprint 257f63f2e2c2, migration 156 ledger/schema/constraint readback PASS and connected proof cleanup restored two Catalogues, four active Events, three active Projects, zero offers and zero Order contexts
+Current environment: primary local checkout on work/fund-b1-r1-catalogue-workflow at 29104b55; migrations through 156 applied only to local Neon DevData; user-operated localhost test process requires restart for the new generated client/source; app dev/staging/main and staging/live databases unchanged
+Next human decision/test: restart local npm run dev, run the B1-R2 05 Catalogue/Event/lifecycle schedule, then resume B1-R1 at revised step 5
+Safe resumption point: read B1-R2 04/05 and B1-R1 05; preserve migrations 155/156 and prior human PASS evidence; obtain independent review and human acceptance before any promotion
 ```
 
 ## 1. One Visible Outcome

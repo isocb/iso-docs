@@ -34,4 +34,5 @@ Plain-English addition and delivery guide:
 
 Current B1 business-model finding:
 
-- [Catalogue-led Product availability and Event/Project workflow authority](CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md) — triaged as B1-R1 with detailed planning; implementation acceptance pending. Supersedes the earlier Product suitability flags proposal.
+- [Catalogue-led Product availability and Event/Project workflow authority](CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md) — implemented locally as B1-R1 at `51618485`; human smoke steps 1–4 PASS and remaining acceptance continues through B1-R2. Supersedes the earlier Product suitability flags proposal.
+- [Event Catalogue workflow scope and lifecycle integrity](CR-Fix-2026-09-10-fund-event-catalogue-workflow-scope-and-lifecycle-integrity.md) — implemented locally as B1-R2 at `29104b55`; automated/connected proof PASS and human acceptance pending.

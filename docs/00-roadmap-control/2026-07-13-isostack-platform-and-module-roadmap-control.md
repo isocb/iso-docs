@@ -80,8 +80,8 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | FUND `1R-F-B1` Individual Offer And Artwork Journey technical review and implementation | Implement the first bounded C1 assignment → C2 preview/finalisation → matching development document download and Store preview outcome against the current code. The enduring B framework constrains the plan; its ten-model appendix remains unaccepted. |
-| **NEXT** | Not selected pending B1 local human acceptance | B1 implementation is authorised. Complete its local human gate before promotion; no later child or real service deployment is inferred. |
+| **NOW** | FUND `1R-F-B1` Individual Offer And Artwork Journey, including blocking B1-R2 correction | Preserve the B1/B1-R1 candidate and human PASS evidence; correct Catalogue workflow scope, Event-context Catalogue assignment, Event lifecycle integrity and Product/membership state clarity before resuming acceptance. |
+| **NEXT** | Not selected pending B1 local human acceptance | B1-R2 is implemented locally at `29104b55`; complete independent review and its revised human gate before promotion. No later child or real service deployment is inferred. |
 
 On 2026-09-08 Chris authorised triage and detailed planning of the Catalogue/workflow CR-Fix.
 [B1-R1 triage](../modules/fund/02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md)
@@ -98,6 +98,16 @@ Event/Project workflows (Standard = unmodified Product) and standalone Catalogue
 are owner-confirmed. Product suitability is not reinstated as a compatibility gate. The plan
 removes the database Workflow Class reference gate. Remaining negative database/concurrency
 proof, independent review and local human acceptance precede any promotion.
+
+On 2026-09-10 Chris passed B1-R1 human steps 1–4 and then paused testing. The walkthrough
+clarified that Catalogue channel availability and workflow scope are separate controls, that
+Event Catalogue assignment must also be available from Event detail, and that Event archive/
+close transitions must protect active linked Projects. [B1-R2 triage](../modules/fund/02-triage/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-triage.md)
+selects the [bounded correction](../modules/fund/03-slice-planning/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-planning.md)
+inside B1 `Now`; it does not create another portfolio outcome or select 1R-G. Chris then
+authorised implementation. Application `29104b55`, local DevData migration 156 and disposable
+eligibility/Event-lifecycle concurrency proof pass; staging/live remain unchanged. Independent
+review and the revised human smoke precede promotion.
 
 While performing B1 local smoke, Chris requested next-slice planning. A
 [reserved 1R-G Public Store Presentation draft](../modules/fund/03-slice-planning/2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md)

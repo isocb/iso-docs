@@ -2,7 +2,7 @@
 
 Date: 2026-09-08
 
-Status: **Source review, automated checks and guarded DevData migration PASS; four human findings corrected at `51618485`, retest and remaining gates pending.**
+Status: **Human smoke paused after steps 5–7 exposed blocking B1-R2 Catalogue scope, Event management and state-clarity findings; prior exact-candidate evidence retained.**
 
 Candidate: application `51618485` on branch `work/fund-b1-r1-catalogue-workflow`; parent implementation `cd72dd780c6fec5b784a00c03a5ebb38133b71ce`, based on B1 `57e1454b530ae19dc586768fd996ff230d84421c`.
 
@@ -123,6 +123,39 @@ source passes the full build, TypeScript, focused zero-warning ESLint, 7 FUND fi
 critical-file verification, whitespace and credential-pattern checks. Human button selection
 and activation remain pending.
 
+On 10 September Chris passed Intake creation, Catalogue assignment/Save, Product creation,
+Event-linked C2 Project creation and standalone C2 Project creation. The four-workflow exercise
+then exposed that Catalogue `availabilityScope` distinguishes Event/standalone channels but does
+not distinguish the four workflows. Current standalone eligibility therefore offers every
+active standalone-capable Catalogue to every standalone workflow. This is consistent with the
+B1-R1 plan, but does not meet the clarified requirement that C1 should curate workflow-compatible
+Catalogues. The Event workflow should filter the assignable Catalogue candidates; a standalone
+Project workflow should filter its automatic Catalogue source union.
+
+The same walkthrough showed that Event-to-Catalogue assignment is available only through the
+Product/Catalogue Availability screen. Chris requires the same assignment to be manageable from
+an Event Products tab, while retaining the current Product/Catalogue surface. The Event tab is a
+selector and read-only contributed-Product view; it does not manage Catalogue scope or Product
+membership. This pulls the already-recorded `2R-EVENT-05` intent into the blocking correction.
+
+Catalogue Product management also obscures two separate states. Draft Products are intentionally
+eligible for Catalogue preparation and remain correctly excluded from Project eligibility, but
+the table labels active membership as `Status` and does not show Product status. This made a draft
+Product appear active. The correction must show `Product status` and `Membership` separately,
+include draft state in the add selector and explain that C1 Product activation is still required.
+
+Finally, Event smoke proved that the current service permits DRAFT or ACTIVE Events to archive,
+and permits an ACTIVE Event to close while linked Projects remain ACTIVE. Chris rejects all three
+paths: Event archive is only valid after close, and close must refuse until active linked Projects
+are resolved. Because these are server authority and concurrency rules, UI button changes alone
+are insufficient.
+
+These findings are captured in the [B1-R2 CR-Fix](../01-cr-inputs/CR-Fix-2026-09-10-fund-event-catalogue-workflow-scope-and-lifecycle-integrity.md),
+[triage](../02-triage/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-triage.md)
+and [bounded plan](../03-slice-planning/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-planning.md).
+B1-R1 human acceptance remains open; testing is correctly paused rather than treating the new
+requirements as passes against the old contract.
+
 ## Remaining Connected Proof
 
 Prove the fresh migration separately, then prove that Event rows, `NOT_SURE` Projects and
@@ -133,18 +166,21 @@ human schedule below remain open; the DevData upgrade alone does not complete Hi
 
 ## Human Smoke Schedule
 
-1. Retry Intake creation and Catalogue assignment/Save, confirming the two earlier interaction corrections.
-2. Create one Ceramic Mug without a Product workflow field and add it to two Catalogues.
-3. From C2, create an Event-linked Project: select Event first, confirm its workflow is inherited and read-only, then confirm creation opens Project detail on Products and displays the current C2 access level.
-4. From C2, create a standalone Project and choose one of the four workflows; confirm creation opens the same Products surface.
-5. Create Events for each of the four workflows, assign Catalogues, and confirm linked Projects inherit the Event workflow with no editable conflict.
-6. Create four standalone Projects and confirm all active standalone-capable Catalogues form the offered range without a default Catalogue flag.
-7. On the Products tab, confirm an active Catalogue containing only draft Products gives a C1 Product-activation message; activate the Product as C1, then let C2 select the now-eligible subset.
-8. Use the top-level Project action to activate the Project and confirm the server reports any remaining readiness gate clearly.
+1. Retry Intake creation and Catalogue assignment/Save, confirming the two earlier interaction corrections. **Chris 10/09/26: PASS.**
+2. Create one Ceramic Mug without a Product workflow field and add it to two Catalogues. **Chris 10/09/26: PASS.**
+3. From C2, create an Event-linked Project: select Event first, confirm its workflow is inherited and read-only, then confirm creation opens Project detail on Products and displays the current C2 access level. **Chris 10/09/26: PASS.**
+4. From C2, create a standalone Project and choose one of the four workflows; confirm creation opens the same Products surface. **Chris 10/09/26: PASS.**
+5. Create Events for each of the four workflows, assign Catalogues, and confirm linked Projects inherit the Event workflow with no editable conflict. **Chris 10/09/26: BLOCKED by newly clarified Catalogue workflow-scope requirement; captured as B1-R2.**
+6. Create four standalone Projects and confirm all active standalone-capable Catalogues form the offered range without a default Catalogue flag. **Chris 10/09/26: superseded by B1-R2 requirement that workflow-compatible standalone Catalogues form the range.**
+7. On the Products tab, confirm an active Catalogue containing only draft Products gives a C1 Product-activation message; activate the Product as C1, then let C2 select the now-eligible subset. **Chris 10/09/26: FAIL on Catalogue-editor state clarity; B1-R2 must distinguish Product status from membership status and explain draft preparation.**
+8. Use the top-level Project action to activate the Project and confirm the server reports any remaining readiness gate clearly. **PAUSED pending B1-R2 correction and clarification of the separate B1/Store readiness gates.**
 9. Add a Product to a source Catalogue and confirm it appears available but remains unselected after initial selection.
 10. Remove one of two sources and confirm continued eligibility. Remove the last source and confirm the selection remains visible as unavailable while finalisation/trading refuses.
 11. Restore availability and confirm eligibility returns without reactivating a prior C2 exclusion.
 12. Confirm Event workflow changes refuse after a linked Project; confirm a draft standalone workflow change succeeds only before publication, finalised offer and Orders.
 13. Finalise the existing Individual offer and confirm its document, Product, price and workflow evidence remain unchanged across later Catalogue withdrawal.
+
+After B1-R2 implementation/review, run its Event Products, workflow-scope and lifecycle-negative
+schedule first, then resume this schedule at step 5 against the corrected contract.
 
 Record role/tenant identity, exact candidate, database fingerprint, time and PASS/FAIL for each result. Human acceptance, staging migration, controlled promotion and live proof remain separate gates.

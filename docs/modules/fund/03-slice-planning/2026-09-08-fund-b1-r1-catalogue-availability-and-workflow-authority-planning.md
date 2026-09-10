@@ -2,7 +2,7 @@
 
 Date: 2026-09-08
 
-Status: **Implemented; guarded DevData migration PASS; four local human findings corrected and retest pending.**
+Status: **Implemented locally at `51618485`; guarded DevData migration PASS; human smoke steps 1–4 PASS; remaining acceptance continues through B1-R2.**
 Control depth: **High**. Work type: production-model correction, not an assumption test.
 
 Authority: [CR-Fix](../01-cr-inputs/CR-Fix-2026-09-08-fund-workflow-authority-and-product-suitability-separation.md)
@@ -117,8 +117,9 @@ assignment step. The old isDefaultStandalone preference and sole-Catalogue fallb
 suppress other standalone-available ranges; remove that additional source-selection gate and
 its misleading UI/API field. Retire the obsolete schema field in the same reviewed correction.
 A Catalogue's standalone availability is sufficient; zero available Catalogues returns a
-clear empty range. Product workflow does not filter that range: C1's Catalogue curation is
-the compatibility decision, and the standalone Project determines operational processing.
+clear empty range. This B1-R1 rule removed Product-level workflow filtering. B1-R2 later added
+workflow scope to the Catalogue itself, so the current range is filtered by both standalone
+channel availability and the standalone Project workflow without restoring Product suitability.
 
 ## 4. Catalogue Delta And C2 Selection Contract
 
