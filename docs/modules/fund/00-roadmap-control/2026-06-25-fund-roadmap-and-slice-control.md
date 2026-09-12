@@ -6,6 +6,13 @@ Last consolidated: 2026-09-12
 
 Status: Active authoritative control for the FUND lane
 
+Latest B1 smoke correction: `e7e8837c` replaces the Product modal library selector with the
+assigned image and temporary-logo label. Build, seven focused tests, source lint/type/verify,
+read-only staging media/authority proof and exact dev/staging security scans PASS. Dev/staging
+are aligned; exact Render deployment and three-domain health/anonymous-access checks PASS.
+No data change or main/live promotion. The
+updated B1-R2 smoke requires direct C1 modal confirmation before continuing C2 finalisation.
+
 2026-09-10 portfolio resumption: Chris requested FUND alignment into online dev and promotion
 to staging. Root Now returns to B1/B1-R2 promotion and acceptance; Next is the existing
 [1R-G planning proposal](../03-slice-planning/2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md),

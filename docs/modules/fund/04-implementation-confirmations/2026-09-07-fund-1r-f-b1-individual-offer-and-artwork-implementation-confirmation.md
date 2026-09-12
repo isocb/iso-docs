@@ -2,16 +2,14 @@
 
 Date: 2026-09-07
 
-Current disposition — 2026-09-12: correction commit
-`3379c4e994a225c78238b5aed1d114e94c7dbaf0` is published and aligned on local/online dev and staging. It
-includes the completed technical corrections and Product/offer setup UI fixes. Build,
-538 unit tests, source lint, verification, connected proof/cleanup and exact work/dev/staging
-security scans PASS. Render staging is verified Live at the correction, with health PASS. The approved staging DRAFT synthetic
-Seller fixture is independently verified. Corrected C1/C2 human smoke remains pending.
-Subsequent owner-authorised staging preparation assigned a labelled tenant-logo placeholder
-and refreshed the draft Store; independent readback passes with no offer-readiness reasons.
-Product media/gallery/options UX remains a captured refinement, not completed implementation.
-The original September 7 evidence is retained as history; current evidence follows below.
+Current disposition — 2026-09-12: Product modal correction
+`e7e8837c5e18bc1b94457edecc6f52b75678f0e9` is committed and aligned on dev/staging. It shows
+assigned primary media and removes the generic library selector from the interim panel.
+Build, seven focused tests, lint/type/verify, read-only staging media/authority proof and
+exact dev/staging security scans PASS. Exact Render deployment and three-domain health/
+anonymous-access checks PASS. Human modal and
+C2 finalisation/download smoke remain pending; earlier implementation evidence is retained.
+No database/schema/runtime change or main/live promotion is part of this correction.
 
 ### Original September 7 implementation evidence
 
@@ -180,3 +178,29 @@ render Product images; this fixture resolves image data readiness, not gallery p
 The generic library
 journey is not accepted as final Product-media UX. The [refinement input](../01-cr-inputs/2026-09-12-fund-product-media-gallery-options-and-option-image-refinement-input.md)
 is registered for triage without changing Now/Next or accepting a completed gallery.
+
+### Product Modal Placeholder Visibility — 2026-09-12
+
+The next human report confirmed that the fixture alone left the old library prompt and an
+empty selector in the Product modal. The bounded correction changes three application files:
+`ProductPrimaryImagePanel.tsx`, `product-image.service.ts` and its tests. The modal now shows
+the assigned primary image with a temporary-tenant-logo label when applicable. The generic
+library link, dropdown and separate image Save controls are removed from this interim panel.
+Loading, error and genuinely unassigned states remain explicit. The C1 query returns only
+the Product's active same-tenant primary media and no longer enumerates the generic library.
+The existing SVG branding fixture is displayed as an image, without inline SVG injection or
+expansion of the raster-only assignment API. No database, schema, runtime or offer changes.
+
+Focused tests: 7 PASS; source lint and repository/type verification PASS. Read-only execution
+of the corrected service against staging confirms the exact assigned tenant logo and label,
+HTTP 200/image SVG from the asset endpoint, C2 FORBIDDEN and foreign-tenant NOT_FOUND.
+Build PASS (131 pages). Exact commit/promotion follows below; human modal display remains pending.
+
+Promotion outcome: `e7e8837c5e18bc1b94457edecc6f52b75678f0e9` is aligned on local/online dev
+and staging through the existing work branch and local fast-forward promotion corridor.
+Render `dep-daiivvojo6nc73bl6u8g` is Live at that commit, completed
+`2026-09-12T11:03:03.30739Z`. The user's `staging.seasonpro.co.uk`, `staging.isostack.app`
+and `sating-isostack.onrender.com` each return healthy HTTP 200, connected database, RLS
+11/11 and HTTP 401 for a signed-out image-settings query. Dev/staging Security Scans
+`34689761185` / `34689769969` PASS. B1 05 holds proof qualifications. No environment variables
+or credentials are in the three-file application commit; main/live remains `0397bba9`.

@@ -364,11 +364,10 @@ reasons, a valid snapshot/hash and exact-organiser permission. Follow this revis
    For the approved synthetic Seller fixture the standard/reduced rates are 20%/5%; this is
    test data, not a recommendation about the real Product's tax classification.
 2. The existing tenant logo is already assigned as a labelled temporary primary image.
-   Do not use the generic Media library to complete this test. The present C2 Store panel
-   does not render a Product image gallery; the logo association resolves the data-readiness
-   requirement, not that future presentation. The current raster-only selector
-   does not list this existing SVG branding asset; do not interpret that list as proof the
-   placeholder is unassigned. Product-owned uploads/gallery/options are captured in the
+   The Product modal visibility correction `e7e8837c` is now deployed. Reopen **C1 → Product
+   → Edit** and confirm the logo preview and **Temporary tenant logo** label. The old library
+   link, dropdown and separate image Save controls must be absent. The present C2 Store panel
+   still does not render a Product image gallery. Product-owned uploads/gallery/options are captured in the
    [media refinement input](../01-cr-inputs/2026-09-12-fund-product-media-gallery-options-and-option-image-refinement-input.md).
    This workaround does not accept that unfinished Product-media UI.
 3. **C2 → Project → Store**: reload; use **Refresh Store configuration and offer** if source
@@ -400,3 +399,9 @@ revision 3, exact same-tenant logo, zero offer reasons and a valid snapshot/inpu
 Store remains DRAFT/unpublished with no finalised offer or FUND Order. This is service/data
 proof, not a human visual or PDF result. The B1 04/05 records hold the bounded preparation
 evidence. Existing emulated PDF output does not render Product images or the final print layout.
+
+Product modal correction deployment: `e7e8837c`, Render `dep-daiivvojo6nc73bl6u8g`, Live
+`2026-09-12T11:03:03.30739Z`. Your `staging.seasonpro.co.uk` domain and both service aliases
+pass health/database/RLS 11/11 and signed-out image-query refusal (401). Refresh the page
+before reopening Product Edit for revised step 2. Logo preview/label and removal of the
+library controls are **pending human confirmation**; C2 finalisation/PDF testing continues.

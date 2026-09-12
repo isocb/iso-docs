@@ -2,15 +2,14 @@
 
 Date: 2026-09-07
 
-Current review update — 2026-09-12: the disabled C2 finalisation report was diagnosed as
-missing Product image/tax setup and absent Seller profile. Corrected code is committed at
-`3379c4e994a225c78238b5aed1d114e94c7dbaf0`; its current evidence and authorised staging
-promotion are recorded at the end. The approved synthetic staging Seller is prepared;
-corrected C1/C2 human smoke remains pending. Earlier aggregate PASS is retained as history,
-not proof of the reported finalisation/download path.
-Subsequently the owner authorised a temporary tenant-logo Product image: staging association
-and draft refresh/readback PASS, with zero offer reasons. The generic Media-library UX is
-not accepted as the final design; media/gallery/options refinement is captured for triage.
+Current review update — 2026-09-12: the Product modal still showed a generic library link
+and empty selector after the earlier data-only fixture. Correction
+`e7e8837c5e18bc1b94457edecc6f52b75678f0e9` displays the assigned logo directly and removes
+those controls. Build, seven focused tests, lint/type/verify, read-only staging media and
+negative-authority proof, and exact dev/staging security scans PASS. Exact Render deployment
+and three-domain health/anonymous-access checks PASS;
+human modal/finalisation smoke remains pending. Prior B1 evidence and green reports remain
+history, not proof of this corrected UI. No data/schema/runtime or main/live change.
 
 ### Original September 7 implementation evidence
 
@@ -453,3 +452,37 @@ pending in B1-R2 05. The current C2 Store panel does not render a Product galler
 presentation belongs to the captured refinement. The emulator does not render image artwork or prove
 print layout. Keep the placeholder for this smoke; safe replacement must retain frozen
 evidence and the underlying tenant logo.
+
+### Product Modal Correction Verification — 2026-09-12
+
+Chris reported that the prior data-only placeholder did not remove the generic library link
+or empty selector. The B1 plan now authorises the bounded display correction; this finding
+does not launch the captured gallery/upload refinement.
+
+Seven focused service tests PASS, including C2 refusal, Product/media tenant filters,
+assigned SVG placeholder output and a truthful unassigned response. Existing assignment
+permission/revision/audit tests remain passing; that mutation is unchanged. Source lint,
+application TypeScript and repository verification PASS. The normal verification wrapper
+initially hit sandbox IPC restrictions; executing the same verification script through
+Node's tsx loader passed. A read-only staging service check independently confirms the exact
+same-tenant logo/label, image URL HTTP 200 with SVG MIME, C2 FORBIDDEN and foreign-tenant
+NOT_FOUND. No staging data was mutated by this check. Human modal rendering remains pending.
+
+Build PASS (131 pages). Existing migration/finalisation/concurrency evidence
+is retained; those unchanged paths do not require a fresh destructive fixture exercise.
+
+Exact deployment: `e7e8837c5e18bc1b94457edecc6f52b75678f0e9`, Render
+`dep-daiivvojo6nc73bl6u8g`, Live `2026-09-12T11:03:03.30739Z`. After Live, curl checks on
+`staging.seasonpro.co.uk`, `staging.isostack.app` and `sating-isostack.onrender.com` each
+PASS: health HTTP 200, database connected, RLS 11/11, signed-out image-settings GET 401.
+Dev/staging Security Scans `34689761185` / `34689769969` completed success at the exact SHA.
+Online readback confirms dev/staging at this commit and main unchanged at `0397bba9`.
+
+Evidence limits: initial Python HTTP requests to the custom domains returned 403; curl with
+a browser User-Agent passed. A probe using the local build's hashed Product bundle path
+returned 404 online, and the sign-in HTML did not expose a build marker. Neither is counted
+as UI proof. Exact deployment is verified through Render; authenticated modal rendering
+remains Chris's smoke, not an invented browser PASS. Read-only staging source/asset proof
+is separate from that visual check. Temporary local probe scripts/logs were removed after
+verification; existing staging fixtures remain intentionally retained. Rollback is `3379c4e9`,
+with no schema or fixture reversal required for this display correction.

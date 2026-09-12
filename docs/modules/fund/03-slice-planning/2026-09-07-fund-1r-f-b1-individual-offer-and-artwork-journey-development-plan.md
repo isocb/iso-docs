@@ -2,7 +2,7 @@
 
 Date: 2026-09-07
 
-Status: **Correction `3379c4e9` committed and aligned on local/online dev and staging; exact Render staging deployment and health PASS. Build, 538 unit tests, connected migration/concurrency/image-assignment proof, verified cleanup and work/dev/staging security scans PASS. Approved staging test Seller prepared. Corrected C1/C2 smoke pending; FUND main/live held.**
+Status: **Product modal correction `e7e8837c` committed and aligned on dev/staging; build, seven focused tests, source lint, type/repository checks and read-only staging media/authority proof PASS. Exact dev/staging security scans PASS. Exact Render deployment and three-domain health/anonymous-access proof PASS; human modal/finalisation smoke pending; main/live held.**
 
 Control depth: **High** — this journey introduces persistent offer evidence, exact C2
 finaliser authority, tenant-bound document access and failure/retry behaviour.
@@ -23,11 +23,11 @@ now selects FUND B1/B1-R2 dev/staging promotion and acceptance as Now, with the 
 ## Restart Checkpoint
 
 ```text
-Current state: B1 technical and setup-UI corrections committed/promoted at 3379c4e9. Final build, 538 unit tests, source lint, application/supplemental TypeScript, repository verification, connected image/offer/concurrency proof and fresh 156 replay/cleanup PASS. Work/dev/staging Security Scans 34687362802/34687637710/34687647620 PASS. Corrected staging human smoke remains pending.
-Last proven commit: 3379c4e994a225c78238b5aed1d114e94c7dbaf0; exact Render staging deployment dep-daii93ss728c73aj7tng Live at 2026-09-12T10:16:21.50129Z, post-deployment health and unauthenticated boundary probes PASS at approximately 10:16:38 UTC
-Current environment: local dev, local staging, origin/dev and origin/staging match 3379c4e9. Staging mode/target verified; both staging URLs healthy, database connected and RLS 11/11. Approved DRAFT test Seller retained; user-set STANDARD tax preserved and authorised labelled tenant-logo placeholder assigned to the selected staging Product at revision 3. Draft refresh/readback PASS: one Product, zero offer reasons, valid snapshot/hash, exact organiser permitted; no finalised offer or Order. Isolated proof databases removed/absence verified. Main/live unchanged at security-only 0397bba9
-Next human decision/test: C2 reloads Store, reviews, finalises and downloads the development PDF using the temporary logo fixture. Follow the corrected B1-R2 05 schedule. Product media/gallery/options refinement captured for triage; generic library UX is not accepted final design. No FUND main/live approval; separate independent reviewer attestation unclaimed
-Safe resumption point: use deployed 3379c4e9 and published B1/B1-R2 evidence for Chris's focused smoke; investigate any exact failed step before full B1 closure or downstream implementation. Do not recreate the retained test Seller or repeat passed database proof without a relevant change. Staging backup cleanup remains outside this action
+Current state: Product modal correction e7e8837c displays the assigned image and temporary-logo label without the library selector. Build, seven focused tests, source lint, type/repository checks and read-only staging image/authority proof PASS. Exact dev/staging Security Scans 34689761185/34689769969 PASS. Human modal and C2 finalisation smoke pending; prior B1 technical evidence retained.
+Last proven commit: e7e8837c5e18bc1b94457edecc6f52b75678f0e9; Render dep-daiivvojo6nc73bl6u8g Live at 2026-09-12T11:03:03.30739Z; staging.seasonpro.co.uk, staging.isostack.app and Render alias health/DB/RLS 11/11 and signed-out image query 401 PASS
+Current environment: local/online dev and staging match e7e8837c; Render staging is Live at that candidate; all three staging domains pass health and anonymous image-query refusal. Existing authorised DRAFT Seller and temporary logo fixture retained; no database or runtime changes in this correction. Main/live unchanged at security-only 0397bba9
+Next human decision/test: reopen C1 Product Edit on deployed e7e8837c and confirm the logo preview/Temporary tenant logo label with no library link, dropdown or separate image Save. Then continue C2 offer review/finalisation/PDF smoke. Media/gallery and guided intake refinements remain planning inputs; main/live held
+Safe resumption point: exact e7e8837c staging deployment/health is verified; Chris performs the updated B1-R2 smoke. Preserve current fixture and frozen evidence; do not reset data or start the captured refinements. Rollback code is 3379c4e9 with no data reversal required
 ```
 
 ## 1. One Visible Outcome
@@ -457,3 +457,27 @@ permission passes, zero offer reasons and valid snapshot/input hash are returned
 remains DRAFT with no publication timestamp; no finalised offer or FUND Order was created.
 The [media refinement input](../01-cr-inputs/2026-09-12-fund-product-media-gallery-options-and-option-image-refinement-input.md)
 is registered in the owning roadmap. Human visual/finalisation/download proof remains pending.
+
+### Product Modal Placeholder Visibility Correction — 2026-09-12
+
+Chris's next staging smoke reports the unchanged library link and empty image dropdown.
+The fixture resolved readiness but did not deliver the expected temporary Product-editor
+experience. Correct this within the existing B1 smoke outcome and staging promotion authority:
+show the assigned primary image and its temporary-logo label directly in the Product modal;
+remove the generic library prompt, selector and separate-save controls from this interim panel.
+Return only the Product's active same-tenant primary media, including the existing managed
+SVG logo, from the C1 read endpoint. Show honest loading/error/unassigned states. Retain
+existing write permissions and raster validation; do not change data, frozen offers, schema,
+runtime settings or implement the captured gallery/upload refinement.
+
+Control remains High because this extends a tenant-scoped media read. Verify C2 refusal,
+Product/media tenant filters, assigned SVG and missing-image responses; run focused tests,
+type/lint/build and normal repository checks. Commit through the existing work/dev/staging
+corridor and verify exact staging deployment. Chris then confirms the image/label in the
+modal and resumes the C2 walkthrough. Main/live remains held. Rollback is the preceding
+application commit `3379c4e9`; the existing staging placeholder requires no reversal.
+
+Outcome: `e7e8837c` committed via the existing work/dev/staging corridor; exact Render
+deployment and three-domain health/anonymous-access proof PASS. Seven focused tests, build,
+lint/type/verify, read-only staging media/authority checks and exact dev/staging security
+scans PASS. Human modal display and C2 finalisation/download remain pending. No data changes.

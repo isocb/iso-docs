@@ -29,9 +29,9 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application and R13 release evidence:
 
 ```text
-FUND dev/staging and origins = 3379c4e9; main/live remains security-only 0397bba9
-FUND correction = build/538 tests/connected migration-image-concurrency proof and cleanup PASS; work/dev/staging Security Scans 34687362802/34687637710/34687647620 PASS
-FUND staging Render dep-daii93ss728c73aj7tng = exact 3379c4e9 Live; both staging URLs health/DB/RLS 11/11 PASS; corrected C1/C2 smoke pending
+FUND dev/staging and origins = e7e8837c; main/live remains security-only 0397bba9
+FUND Product modal correction = build/seven focused tests/lint/type/verify/read-only staging image and authority proof PASS; dev/staging Security Scans 34689761185/34689769969 PASS; earlier B1 connected proof retained
+FUND staging Render dep-daiivvojo6nc73bl6u8g = exact e7e8837c Live 2026-09-12T11:03:03.30739Z; three staging domains health/DB/RLS 11/11 and signed-out image-query 401 PASS; corrected C1/C2 human smoke pending
 R14-A exact d78935d4 local R1-R9, staging S1-S4 and production L1-L2 PASS; aligned through main; all four Security Scans and staging/production public health PASS; COMPLETE AND CLOSED
 R13-B work branch/dev/staging/main and origins = exact 06811784
 R13-B staging exact Render identity and control-owner S1-S4 = PASS

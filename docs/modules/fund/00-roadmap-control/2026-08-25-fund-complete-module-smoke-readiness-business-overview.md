@@ -13,13 +13,18 @@ implementation authority or another restart checkpoint.
 
 ## Where We Are
 
-**12 September: the B1 correction is committed, deployed and ready for your staging smoke
-test.** Dev and staging match `3379c4e9` locally and online.
+**12 September: the Product modal correction is deployed to staging and ready for your check.**
+Dev and staging match `e7e8837c` locally and online. It displays the assigned tenant logo
+directly and removes the misleading Media-library link, empty dropdown and separate image
+Save action. The earlier data-only placeholder fixed readiness but left that UI unchanged. Refresh the
+page and reopen Product Edit: you should now see the logo and “Temporary tenant logo”.
+Render confirms the exact deployment, and your staging.seasonpro.co.uk address passes
+health and signed-out access checks. The visual result remains for your confirmation.
 Main/live remains at the security-only release, with FUND purchasing disabled.
 
 The disabled finalisation button had real setup blockers: no primary Product image, no tax
 classification and no Seller profile. The UI was also missing the image/tax controls and
-explained the failure poorly. C1 can now set the tax treatment and assign an image in the
+explained the failure poorly. C1 can set the tax treatment and see the assigned primary image in the
 Product editor. C2 gets a named list of requirements beside finalisation and one action to
 refresh both Store configuration and the offer. Template text is assignment confirmation;
 the labelled development PDF becomes downloadable after finalisation and generation.
@@ -36,7 +41,8 @@ The Product image experience still needs refinement. Your requirement is capture
 [dedicated roadmap section](2026-06-25-fund-roadmap-and-slice-control.md#product-media-galleries-and-option-images):
 add images inside Product create/edit, show a Product gallery, organise underlying storage
 with folders or equivalent groups, and link images to options such as Colour. The generic
-Media-library link is an interim route, not the accepted finished design. This work awaits
+Media-library route has been removed from the temporary Product panel; it is not the accepted
+finished design. This work awaits
 triage; Product options essential for the pilot are not automatically deferred to Phase 2.
 The immediate focus remains B1 readiness and Store publishing gates. The current development
 PDF does not render Product images or prove the eventual print layout.
