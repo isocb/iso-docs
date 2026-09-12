@@ -25,8 +25,8 @@ now selects FUND B1/B1-R2 dev/staging promotion and acceptance as Now, with the 
 ```text
 Current state: B1 technical and setup-UI corrections committed/promoted at 3379c4e9. Final build, 538 unit tests, source lint, application/supplemental TypeScript, repository verification, connected image/offer/concurrency proof and fresh 156 replay/cleanup PASS. Work/dev/staging Security Scans 34687362802/34687637710/34687647620 PASS. Corrected staging human smoke remains pending.
 Last proven commit: 3379c4e994a225c78238b5aed1d114e94c7dbaf0; exact Render staging deployment dep-daii93ss728c73aj7tng Live at 2026-09-12T10:16:21.50129Z, post-deployment health and unauthenticated boundary probes PASS at approximately 10:16:38 UTC
-Current environment: local dev, local staging, origin/dev and origin/staging match 3379c4e9. Staging mode/target verified; both staging URLs healthy, database connected and RLS 11/11. Approved labelled DRAFT synthetic Seller retained for staging smoke; Product image/tax choices remain for C1. Isolated proof databases removed/absence verified. Main/live unchanged at security-only 0397bba9
-Next human decision/test: C1 chooses Product tax treatment and primary image; C2 refreshes Store/offer, reviews, finalises and downloads the development PDF. Follow the corrected B1-R2 05 schedule. No FUND main/live approval; separate independent reviewer attestation unclaimed
+Current environment: local dev, local staging, origin/dev and origin/staging match 3379c4e9. Staging mode/target verified; both staging URLs healthy, database connected and RLS 11/11. Approved DRAFT test Seller retained; user-set STANDARD tax preserved and authorised labelled tenant-logo placeholder assigned to the selected staging Product at revision 3. Draft refresh/readback PASS: one Product, zero offer reasons, valid snapshot/hash, exact organiser permitted; no finalised offer or Order. Isolated proof databases removed/absence verified. Main/live unchanged at security-only 0397bba9
+Next human decision/test: C2 reloads Store, reviews, finalises and downloads the development PDF using the temporary logo fixture. Follow the corrected B1-R2 05 schedule. Product media/gallery/options refinement captured for triage; generic library UX is not accepted final design. No FUND main/live approval; separate independent reviewer attestation unclaimed
 Safe resumption point: use deployed 3379c4e9 and published B1/B1-R2 evidence for Chris's focused smoke; investigate any exact failed step before full B1 closure or downstream implementation. Do not recreate the retained test Seller or repeat passed database proof without a relevant change. Staging backup cleanup remains outside this action
 ```
 
@@ -424,3 +424,36 @@ the exact candidate into staging and verify deployment/health/scans. Publish lif
 Chris completes Product setup and the C1/C2 finalisation/download smoke on staging; that
 human outcome remains pending. Main/live remains held. This extends the existing correction
 record and does not create a new roadmap selection or checkpoint.
+
+### Temporary Product Image And Media Refinement — 2026-09-12
+
+Chris subsequently rejected the generic Media-library route as the final Product setup UX
+and authorised the tenant logo as a temporary primary image to continue smoke testing.
+This supersedes the earlier instruction to leave image choice entirely to C1 for this
+specific staging fixture. The selected test Product now has user-configured STANDARD tax
+treatment. Assign only the existing same-tenant light-logo MediaFile to the selected Product
+on staging Project fingerprint `a15cde9b`; refuse an existing primary image or finalised offer.
+Preserve selection, media references, tax settings and immutable evidence. Increment the
+Product configuration revision and record a labelled staging-placeholder audit entry.
+
+The existing managed branding logo is SVG. This bounded fixture may reference that exact
+asset; it does not widen the application image selector's raster-only MIME policy or allow
+arbitrary SVG uploads. Verify the staging database differs from local/live before writing,
+use transaction locks and independently read back the association. Refresh only the draft
+Store configuration through its existing service, preserving selection; never finalise,
+publish or purchase. If checks fail, stop without a partial assignment. Retain the placeholder
+for human smoke; replacement later must preserve any frozen evidence and media references.
+Rollback, if required, removes only this still-current placeholder association, increments
+the revision and refreshes an unfinalised draft; do not delete the underlying tenant logo.
+
+Capture Product-owned uploads/gallery, storage organisation, options and option-image links
+as a roadmap-linked refinement input awaiting triage. The generic library route remains an
+interim implementation, not accepted final UX. No gallery implementation, schema change,
+Now/Next reselection or main/live promotion is authorised by this workaround.
+
+Outcome: controlled staging assignment and draft refresh committed atomically; independent
+read-only verification PASS. Product revision is 3, selection remains one, exact-organiser
+permission passes, zero offer reasons and valid snapshot/input hash are returned. Store
+remains DRAFT with no publication timestamp; no finalised offer or FUND Order was created.
+The [media refinement input](../01-cr-inputs/2026-09-12-fund-product-media-gallery-options-and-option-image-refinement-input.md)
+is registered in the owning roadmap. Human visual/finalisation/download proof remains pending.

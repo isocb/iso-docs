@@ -2,7 +2,9 @@
 
 Date: 2026-07-21
 
-Status: Governed business clarification; implementation not yet authorised
+Status: Original default-Store correction implemented as `1R-E-D`; the 2026-09-12 Phase 2
+mission clarification below is **captured; awaiting triage and bounded planning**.
+The original request and its implementation boundary are retained as history.
 
 ## 1. Reason For This Input
 
@@ -125,3 +127,75 @@ Create and review one bounded corrective slice:
 
 Until E-D is implemented and promoted, E-B/E-C automated evidence remains passed but their
 human UI acceptance is blocked by the missing real workflow. E-D precedes `1R-F-A`.
+
+## 9. Phase 2 Mission Clarification — 2026-09-12
+
+While smoke testing B1, Chris identified the primary refinement objective: make C1 Event
+configuration straightforward for people without technical expertise, and make Store
+creation virtually automatic for C2 when using designated intake forms. Existing default
+Store creation and eligible Product selection are foundations, not proof of this complete
+intake-to-live outcome.
+
+Chris clarified that this is a guided sequence akin to an intake form asking C2 the necessary
+questions in order and then finalising Store setup. “No decisions between intake and live”
+means no separate setup/approval checklist after completing that guided sequence; it does
+not mean omitting the questions or confirmation within intake. **Orders can only be placed
+after the Store is published and its trading gates pass.** No pre-publication Order path is
+requested or permitted.
+
+For supported, correctly configured intake routes, the target is:
+
+```text
+C1 configures a reusable Event/intake setup with valid defaults
+-> C2 answers the guided intake questions, reviews and completes the sequence
+-> Project and Store are created with the intended eligible Product selection
+-> readiness is evaluated automatically from the supplied information and defaults
+-> completion finalises Store setup and it becomes live, or opens at its configured time
+-> no further C1 or C2 decision is required on the normal successful path
+```
+
+This is a **primary Phase 2 mission outcome**, not a promise that every intake type or
+exception is immediately automatable. Planning must name the supported form types and
+prerequisites. Configure reusable defaults once at the appropriate C1 scope rather than
+asking the organiser to repeat setup for each Project. Consider workflow, Catalogues,
+Products, commercial terms, branding/media, copy, dates, fulfilment and artwork configuration
+together; adding more independent routine approval steps would defeat the objective.
+
+C2 should be able to edit the Store after it is live and before the template has been
+circulated. Completing Store setup in the guided sequence must be distinguished from the
+later artwork/template content-lock contract. This requested editing window is not delivered
+by B1: B1 finalisation locks
+selection/content and has no unlock action. Phase 2 planning must explicitly resolve that
+difference, define what “template circulated” means and how it is recorded, identify editable
+fields, and decide when revisions require regenerated artwork or another review. Orders
+start only after publication; if any are placed during the subsequent pre-circulation editing
+window, preserve their evidence and all existing finalised offer versions. Do not infer that
+editing a live Store permits historical evidence changes.
+
+For each current gate, planning must distinguish an automatic validation, a reusable C1
+configuration/default, information or consent collected at intake, and an actual exception
+requiring intervention. Retain the necessary authority and commercial evidence without
+requiring avoidable follow-up decisions. Consent cannot be inferred from silence. Unready
+exceptions must remain unpublished with one clear explanation, a responsible person and a
+route back to the normal flow; the default successful path should require none of those
+interventions. Catalogue/workflow, tenant, payment and finalised-evidence controls remain
+authoritative until an explicitly approved successor contract replaces them.
+
+Required human acceptance examples for the later plan:
+
+- A C1 user without technical expertise can configure an Event and its supported intake
+  route from understandable defaults, without hunting through unrelated management screens.
+- C2 completes one guided question/review sequence on a supported route and obtains the
+  correctly branded and stocked live Store without a separate post-intake decision; a future-dated
+  Store opens at the configured time when its prerequisites remain valid.
+- Orders are unavailable before publication and become possible only when the published
+  Store's applicable trading gates pass.
+- C2 can make the permitted edits after publication and before recorded template circulation;
+  the appropriate revised view/artwork follows, while earlier offer/Order evidence survives.
+- An invalid or incomplete setup explains the actual exception without exposing a Store
+  prematurely, and recovery/retry does not duplicate Projects, Stores or publication actions.
+
+This owner clarification is registered in the authoritative FUND roadmap. It does not change
+current B1 smoke behaviour, reselect Now/Next, remove gates now, authorise implementation or
+claim that public purchasing is already available. Triage must map the remaining gaps and
+resolve the publication/finalisation/circulation contracts before bounded Phase 2 planning.

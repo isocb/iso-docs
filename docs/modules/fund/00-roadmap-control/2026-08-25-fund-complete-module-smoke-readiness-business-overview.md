@@ -25,8 +25,21 @@ refresh both Store configuration and the offer. Template text is assignment conf
 the labelled development PDF becomes downloadable after finalisation and generation.
 
 You approved a clearly labelled synthetic Seller profile on staging. It is prepared and
-verified as DRAFT with GBP test tax rates. You still choose the Product image and tax treatment
-in the UI. This is test preparation, not a real seller approval or permission to take payments.
+verified as DRAFT with GBP test tax rates. Your selected Product now has STANDARD tax
+treatment. At your request its primary image is temporarily the tenant logo, clearly labelled
+as a placeholder. The draft Store configuration has been refreshed: the organiser's offer
+has no remaining readiness reasons and a valid Product/price snapshot. Reload C2 → Store,
+review the offer, acknowledge it, then test finalisation and development-PDF download.
+This is test preparation, not a real seller approval or permission to take payments.
+
+The Product image experience still needs refinement. Your requirement is captured in a
+[dedicated roadmap section](2026-06-25-fund-roadmap-and-slice-control.md#product-media-galleries-and-option-images):
+add images inside Product create/edit, show a Product gallery, organise underlying storage
+with folders or equivalent groups, and link images to options such as Colour. The generic
+Media-library link is an interim route, not the accepted finished design. This work awaits
+triage; Product options essential for the pilot are not automatically deferred to Phase 2.
+The immediate focus remains B1 readiness and Store publishing gates. The current development
+PDF does not render Product images or prove the eventual print layout.
 
 The technical review also corrected organiser responsibility labels, protected Project context
 saves against competing edits, and repaired the database proof runner. The final build,
@@ -55,6 +68,32 @@ the existing local test bed: the same Products, order and prices, shown in a pur
 layout. It remains authenticated and visibly in development, with no purchase action.
 An anonymous shareable Store needs the later release prerequisites. This is a concrete
 planning proposal, not implementation or a change to the finalised artwork destination.
+
+### Primary Phase 2 Objective: Make The Normal Journey Automatic
+
+Your 12 September clarification makes the mission explicit: **C1 Event setup should be easy
+for people without technical expertise, and supported C2 intake forms should lead to a live
+Store with no further decisions by anyone between intake and launch.** As you clarified,
+intake itself is the guided sequence: C2 answers the necessary questions, reviews and
+completes Store setup. There should be no separate checklist afterward. Orders can only
+be placed after publication and when the trading requirements are met. C1 supplies reusable
+defaults in advance. The normal path should inherit the right Products, branding, dates and
+other setup, check readiness automatically and open at the configured time. Only actual
+exceptions should need someone to intervene. Creating a draft Store automatically is already
+a foundation; it does not yet achieve that full outcome.
+
+C2 should then be able to edit the live Store before the template is circulated. We have
+recorded that requirement alongside the need to define the circulation milestone and retain
+earlier offers and any Orders placed after publication. Completing Store setup and locking
+the template for circulation need distinct definitions. Today B1 still locks content at
+finalisation; that remains the
+rule for your current smoke test. The later refinement must deliberately resolve that gap.
+
+This is now a primary Phase 2 objective in the [authoritative roadmap](2026-06-25-fund-roadmap-and-slice-control.md#primary-phase-2-objective-simple-event-setup-and-intake-to-live-store)
+and the [existing default-Store requirement](../01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md).
+Planning will identify which form types support the automatic route and how existing gates
+are satisfied through configuration and intake, rather than repeated decisions afterward.
+Current smoke rules have not changed, and this does not authorise immediate implementation.
 
 ### Delivery and test history
 

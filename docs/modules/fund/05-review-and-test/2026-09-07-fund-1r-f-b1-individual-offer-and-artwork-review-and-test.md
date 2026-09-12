@@ -8,6 +8,9 @@ missing Product image/tax setup and absent Seller profile. Corrected code is com
 promotion are recorded at the end. The approved synthetic staging Seller is prepared;
 corrected C1/C2 human smoke remains pending. Earlier aggregate PASS is retained as history,
 not proof of the reported finalisation/download path.
+Subsequently the owner authorised a temporary tenant-logo Product image: staging association
+and draft refresh/readback PASS, with zero offer reasons. The generic Media-library UX is
+not accepted as the final design; media/gallery/options refinement is captured for triage.
 
 ### Original September 7 implementation evidence
 
@@ -412,7 +415,7 @@ Files/change boundary: 16 FUND source/test files; Product tax/image controls, ac
 Automated checks: final build; 538 tests PASS/12 skipped; application and supplemental TypeScript; source lint; repository verification; connected migration/image/offer/race proof; fresh 156 replay/checksums and verified cleanup; work/dev/staging Security Scans 34687362802/34687637710/34687647620 all PASS
 Human evidence: corrected C1/C2 Product-setup/finalisation/download smoke pending; prior aggregate PASS retained with the later specific finding
 Environment proven: exact Render staging deployment dep-daii93ss728c73aj7tng Live 2026-09-12T10:16:21.50129Z; both staging URLs HTTP 200 healthy, DB connected, RLS 11/11 at approximately 10:16:38 UTC; Product page redirects to sign-in and new image mutation refuses unauthenticated requests with 401
-Known residual risk: human image upload/selection, tax choice and PDF walkthrough pending; emulated PDF/private storage do not prove production artwork; no separate independent reviewer attestation; main/live remains security-only 0397bba9
+Known residual risk: corrected PDF walkthrough pending; subsequent authorised tenant-logo fixture resolves current image setup but does not complete the Product media UX; emulated PDF/private storage do not prove production artwork; no separate independent reviewer attestation; main/live remains security-only 0397bba9
 Next authorised action: Chris performs the corrected staging smoke schedule in B1-R2 05; resolve findings before full B1 closure or any separate live decision
 ```
 
@@ -427,3 +430,26 @@ public Store activation, main/live promotion, schema reset or Product selection 
 If staging rollback is required, the known prior serving code is `133a4638`; no reverse
 migration is needed for this correction. Retain the separately approved DRAFT test Seller
 unless its safe removal is explicitly selected and its unused status rechecked.
+
+### Tenant-Logo Placeholder Verification — 2026-09-12
+
+Exact application remains `3379c4e9`; no source, schema, deployment or live change.
+The B1 04 confirmation records the explicitly authorised staging-only association and
+atomic draft refresh.
+
+Independent read-only verification: PASS — exact existing same-tenant light-logo MediaFile,
+active PRIMARY role and temporary label; Product revision 3; existing STANDARD tax preserved;
+one selected Product; C2 exact organiser can finalise; zero offer reasons; snapshot and input
+hash present; no finalised offer or FUND Order. Transaction checks also preserved draft Store
+status and null publication timestamp. This service readback used test emulation in the
+temporary local process against staging data; it is not an authenticated browser result or
+a change to deployed environment variables.
+
+Refusal guards were inspected and passed their positive preconditions; no deliberately
+invalid writes or rollback fault were injected into staging. Existing code-suite negative
+proof is retained, not represented as new coverage for the one-off fixture. No full build
+rerun was needed because application code is unchanged. Human finalisation/PDF smoke remains
+pending in B1-R2 05. The current C2 Store panel does not render a Product gallery; image
+presentation belongs to the captured refinement. The emulator does not render image artwork or prove
+print layout. Keep the placeholder for this smoke; safe replacement must retain frozen
+evidence and the underlying tenant logo.

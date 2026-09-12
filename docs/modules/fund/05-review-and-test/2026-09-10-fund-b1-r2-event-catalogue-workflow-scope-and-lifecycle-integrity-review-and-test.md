@@ -353,16 +353,26 @@ Chris requested these corrections be committed and promoted to staging for his t
 read-only diagnosis found missing primary image and tax treatment, plus no Seller profile.
 The editor controls and offer feedback have been corrected; the explicitly approved synthetic
 DRAFT Seller profile is prepared on staging. This fixture does not enable Stripe or trading.
-Run the following after the corrected deployment is confirmed Live:
+The corrected deployment is Live. Chris subsequently rejected the generic Media-library
+route as final UX and authorised a temporary tenant-logo primary image. That staging fixture
+is assigned and the draft Store refreshed; independent service readback has zero offer
+reasons, a valid snapshot/hash and exact-organiser permission. Follow this revised schedule:
 
 1. **C1 → FUND → Products → Edit the selected Product** (the current staging selection is
-   `Mug 2 Small`). Choose the intended test tax treatment and matching VAT rate, and Save.
+   `Mug 2 Small`). STANDARD tax treatment is now present from the user's setup. Confirm the
+   intended test tax treatment and matching VAT rate; Save only if correcting the test data.
    For the approved synthetic Seller fixture the standard/reduced rates are 20%/5%; this is
    test data, not a recommendation about the real Product's tax classification.
-2. Reopen the Product. Under **Primary Product image**, choose an image and **Save primary
-   image**. If the list is empty, open the linked Media library, upload a JPEG/PNG/WebP/GIF,
-   return and **Refresh image list**. Image assignment has its own explicit Save action.
-3. **C2 → Project → Store → Refresh Store configuration and offer**. Confirm the offer's
+2. The existing tenant logo is already assigned as a labelled temporary primary image.
+   Do not use the generic Media library to complete this test. The present C2 Store panel
+   does not render a Product image gallery; the logo association resolves the data-readiness
+   requirement, not that future presentation. The current raster-only selector
+   does not list this existing SVG branding asset; do not interpret that list as proof the
+   placeholder is unassigned. Product-owned uploads/gallery/options are captured in the
+   [media refinement input](../01-cr-inputs/2026-09-12-fund-product-media-gallery-options-and-option-image-refinement-input.md).
+   This workaround does not accept that unfinished Product-media UI.
+3. **C2 → Project → Store**: reload; use **Refresh Store configuration and offer** if source
+   data has changed since the prepared fixture. Confirm the offer's
    named requirements disappear once resolved and its Product/price summary is shown.
    C2 should see the assigned template but no template or Product-image administration.
 4. Review the summary, tick acknowledgement, then **Finalise offer and generate artwork**.
@@ -384,3 +394,9 @@ DB connected and RLS 11/11 at approximately `10:16:38 UTC`. New image mutation r
 signed-out request with 401; Product page redirects to sign-in. Work/dev/staging Security
 Scans `34687362802` / `34687637710` / `34687647620` PASS. The five corrected smoke steps
 above are now ready for Chris; **their human results remain pending**.
+
+Subsequent placeholder preparation: independent readback PASS for one selected Product,
+revision 3, exact same-tenant logo, zero offer reasons and a valid snapshot/input hash.
+Store remains DRAFT/unpublished with no finalised offer or FUND Order. This is service/data
+proof, not a human visual or PDF result. The B1 04/05 records hold the bounded preparation
+evidence. Existing emulated PDF output does not render Product images or the final print layout.

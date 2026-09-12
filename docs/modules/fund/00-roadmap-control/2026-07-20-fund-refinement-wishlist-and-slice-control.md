@@ -3,7 +3,11 @@
 Original document: 2026-06-30
 Reconciled: 2026-07-20
 
-Current dependency note: 2026-08-26 - corrective `1R-E-D` remains in current ancestry.
+Current note — 2026-09-12: B1/B1-R2 staging acceptance remains the active outcome in the
+authoritative roadmap. The owner has made simple C1 Event setup and supported intake-to-live
+Store automation a primary Phase 2 objective; Section 1.1 records it without selecting a slice.
+
+Historical dependency note: 2026-08-26 - corrective `1R-E-D` remains in current ancestry.
 `1R-F-A-R1B` source/folding composition, PDF/physical review and Stage B Linux parity are
 green. Stage C is complete at FAIL after a deterministic proof-runner defect prevented
 behavioural proof; zero-residue/revocation passes. This subordinate register selects no
@@ -29,6 +33,25 @@ completion roadmap remains the capability-level critical path.
 It is planning/documentation only. An entry does not authorise implementation. Promotion
 still requires a bounded planning slice, implementation confirmation, review/test and the
 normal roadmap reconciliation.
+
+### 1.1 Primary Phase 2 Outcome — 2026-09-12
+
+The owner requires straightforward Event configuration for C1 users without technical
+expertise and, for designated intake forms, a virtually automatic C2 Store journey. With
+valid reusable setup, C2 follows one guided question/review sequence that completes Store
+setup and leads to publication (or its configured future opening), with no separate
+post-intake decision checklist. Orders are possible only after publication and when trading
+gates pass. Existing default draft Stores are only a foundation.
+C2 should be able to edit after publication and before template circulation, subject to a
+planned revision/circulation contract that preserves finalised offer and Order evidence.
+
+The [existing default-Store input, Section 9](../01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md#9-phase-2-mission-clarification--2026-09-12)
+holds the clarified requirement and acceptance examples; the authoritative FUND roadmap
+registers it as **captured; awaiting triage and bounded planning**. Classify gates into
+automatic checks, reusable C1 defaults, information/consent at intake and genuine exceptions.
+Do not remove them ad hoc or silently replace B1's current finalisation lock. This cross-cutting
+refinement objective is additional to the historical 34-item reconciliation below; it does
+not alter those historical counts, current Now/Next, or authorise implementation.
 
 ## 2. Reconciliation Summary
 

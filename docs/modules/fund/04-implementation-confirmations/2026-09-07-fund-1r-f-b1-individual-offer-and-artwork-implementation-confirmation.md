@@ -8,6 +8,9 @@ includes the completed technical corrections and Product/offer setup UI fixes. B
 538 unit tests, source lint, verification, connected proof/cleanup and exact work/dev/staging
 security scans PASS. Render staging is verified Live at the correction, with health PASS. The approved staging DRAFT synthetic
 Seller fixture is independently verified. Corrected C1/C2 human smoke remains pending.
+Subsequent owner-authorised staging preparation assigned a labelled tenant-logo placeholder
+and refreshed the draft Store; independent readback passes with no offer-readiness reasons.
+Product media/gallery/options UX remains a captured refinement, not completed implementation.
 The original September 7 evidence is retained as history; current evidence follows below.
 
 ### Original September 7 implementation evidence
@@ -148,3 +151,32 @@ Promotion complete: `3379c4e9` is on local/online dev and staging; Render deploy
 (DB connected, RLS 11/11) and unauthenticated route/mutation boundary checks. The approved
 DRAFT synthetic Seller is retained; C1 Product choices and corrected C2 walkthrough await
 Chris. No FUND main/live promotion occurred. B1 05 carries exact time and security evidence.
+
+### Temporary Tenant-Logo Product Image — 2026-09-12
+
+Application remains `3379c4e994a225c78238b5aed1d114e94c7dbaf0`; this is a staging fixture and
+documentation change, with no application deployment, schema or runtime-setting change.
+Chris authorised using the existing tenant logo while Product-media refinement is planned.
+
+The staging target was verified distinct from configured local and production databases.
+A Serializable transaction held availability, Project/Store and Product locks and guarded against
+unexpected selection, existing primary media, finalised offer, non-draft/published Store,
+FUND Orders or ambiguous/foreign-tenant media. It associated only the exact existing managed
+tenant light-logo SVG with Product fingerprint `c532f932` on Project `a15cde9b`, labelled
+“Temporary tenant-logo placeholder — replace with Product image”. It incremented Product
+configuration revision to 3 and recorded `FUND_STAGING_TENANT_LOGO_PLACEHOLDER_ASSIGNED`.
+This exact branding-asset fixture does not expand the application's raster upload policy.
+
+The existing Store refresh service ran within the same transaction, with automatic default
+selection disabled. Independent read-only verification through a separate connection proved
+the same-tenant logo reference, label/revision, preserved STANDARD tax, one selected Product,
+exact-organiser permission, zero offer reasons and valid snapshot/input hash. Store status
+remains DRAFT and unpublished; no finalised offer or FUND Order was created. No existing media
+reference was removed. Temporary local orchestration is removed after verification; the
+authorised placeholder remains for human smoke. The B1 plan records rollback boundaries.
+
+Human finalisation and PDF download remain pending. The present C2 Store panel does not
+render Product images; this fixture resolves image data readiness, not gallery presentation.
+The generic library
+journey is not accepted as final Product-media UX. The [refinement input](../01-cr-inputs/2026-09-12-fund-product-media-gallery-options-and-option-image-refinement-input.md)
+is registered for triage without changing Now/Next or accepting a completed gallery.

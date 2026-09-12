@@ -89,7 +89,7 @@ same row.
 | [`2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md`](../01-cr-inputs/2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md) | Consumed as the boundary preventing the Individual proof from absorbing collective/Standard paths; those paths remain readiness branches around the common journey | Detailed collective work remains parked; no former `1R-F-F` through `I` candidate is automatically selected |
 | [`2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`](../01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md) | `1R-F-A` proved ceilings of ten STANDARD portrait and twelve COMPACT landscape rows for its exact variants; `1R-F-B` now treats their product effect before persistence | Capacity evidence informs the minimum vertical journey; no template-version schema or policy implementation is authorised |
 | [`2026-07-15-fund-template-manager-brief.md`](../01-cr-inputs/2026-07-15-fund-template-manager-brief.md) | Retained source brief for the Application/Artwork Template input | Provenance only; not a fourth CR and its provisional `T` labels carry no slice authority |
-| [`2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md`](../01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md) | Implemented/reviewed as `1R-E-D`; application commit is included by ancestry in current `14077382` | Completed technical correction; E-B/E-C real-workflow human acceptance remains a separate recorded gate and is not invented here |
+| [`2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md`](../01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md) | Original default-Store correction implemented/reviewed as `1R-E-D`; retained in current ancestry. Added 2026-09-12 intake-to-live mission clarification is captured, awaiting triage | Primary Phase 2 objective: simple C1 Event setup and supported intake-to-live routes with no intervening human decisions; later C2 editing/circulation contract requires planning. Original human acceptance is not inferred |
 | [`change-request-cmqt61xmf000612xt5ifl1mdn-2026-06-25.md`](../01-cr-inputs/change-request-cmqt61xmf000612xt5ifl1mdn-2026-06-25.md) | Original issue bundle was triaged and distributed across the historical `1P`/`1Q` lifecycle and later refinement controls | Superseded as a single active queue; retained as source evidence, with any genuinely absent outcome governed by its named current refinement/workstream |
 
 Current FUND portfolio disposition:
@@ -188,6 +188,51 @@ deployment still requires proof of the service contracts it enables. The report 
 separate options for unresolved delivery, Products/options, media, setup and messages.
 These accepted planning inputs are retained in the B framework Section 1.1. They do not
 accept its separate finalisation proposals or authorise B1 implementation.
+
+### Primary Phase 2 Objective: Simple Event Setup And Intake To Live Store
+
+Chris confirmed on 2026-09-12 that refinement must make Event setup easy for C1 users without
+technical expertise and Store creation virtually automatic for C2. The
+[expanded default-Store input, Section 9](../01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md#9-phase-2-mission-clarification--2026-09-12)
+is **captured; awaiting triage and bounded planning**, with this priority recorded as an owner
+mission objective rather than a new portfolio selection.
+
+For designated intake forms with valid reusable defaults, use one guided sequence of C2
+questions and review that finalises Store setup and leads to publication, with no separate
+post-intake setup checklist or C1/C2 decision. Project/Store provisioning and readiness follow
+from those answers and defaults. Orders are possible only after publication and when trading
+gates pass. Respect configured future opening times. Consolidate setup and capture required
+information/consent at the appropriate point; use human intervention for genuine exceptions,
+not routine repetition of known configuration. Existing automatic draft Store creation is
+a foundation, not completion of this objective.
+
+C2 should be able to edit a live Store before template circulation. Planning must reconcile
+that requested window with B1's current finalisation lock, define and record circulation,
+and retain immutable offer/Order evidence for purchases made after publication. Completion
+of Store setup and the later template/artwork lock are distinct planning milestones. This is a
+Phase 2 contract to design, not an immediate unlock or gate removal. Current B1/B1-R2 smoke
+and 1R-G planning retain Now/Next. The subordinate refinement register and business report
+carry the same objective without creating another roadmap.
+
+### Product Media, Galleries And Option Images
+
+The [2026-09-12 Product media and options refinement input](../01-cr-inputs/2026-09-12-fund-product-media-gallery-options-and-option-image-refinement-input.md)
+is **captured; awaiting triage and bounded planning**, not selected for implementation.
+Products need their own visible primary image/gallery and image upload inside the Product
+CRUD modal. Shared Media storage may remain underneath; navigating the generic repository
+is not the intended Product setup journey. Include folders/segmentation, Product options and
+image associations with option values such as Colour, with corresponding Store behaviour.
+
+Assess existing media/input/choice foundations, tenant ownership, reference retention and
+finalised offer/Order evidence before deciding slices or schema changes. Options required
+by the actual pilot remain Store MVP scope; richer galleries/library organisation require
+triage and are not automatically Phase 2 or automatically a B1 blocker. Coordinate with
+1R-G presentation planning without reselecting the portfolio Now/Next.
+
+For current B1 smoke only, Chris authorised a labelled tenant-logo placeholder on the
+selected staging Product. The B1 04/05 records confirm assignment and draft refresh, with
+zero offer-readiness reasons in the service readback. Human finalisation/download remains
+pending. This temporary bridge does not accept the generic Media-library UX as complete.
 
 ### Retained 1R-F-A And Interrupt History
 
