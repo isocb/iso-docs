@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 
-Status: **Implemented and pushed through dev/staging at combined `133a4638`; staging migration 156 PASS; local human smoke PASS retained; staging acceptance and remaining review proof open.**
+Status: **Implemented and pushed through dev/staging at combined `133a4638`; staging migration 156 PASS; local human smoke PASS retained; focused staging human acceptance PASS reported on 2026-09-12; remaining technical review/proof open.**
 Control depth: **High**.
 
 Authority: [CR-Fix](../01-cr-inputs/CR-Fix-2026-09-10-fund-event-catalogue-workflow-scope-and-lifecycle-integrity.md)
@@ -97,3 +97,25 @@ owns backup/recovery boundaries, exact CI/deployment evidence and the focused st
 schedule. Chris confirmed staging-only emulation settings and deployment starting. That is
 not a verified final Render commit or a staging business PASS. Separate source review,
 remaining R1 negative proof and FUND main/live approval remain open; B1 is not marked closed.
+
+
+## Staging Acceptance Update — 2026-09-12
+
+Authenticated Render readback confirms `Staging-IsoStack` deployment
+`dep-daihc30ae00c73eh9b50` Live at `133a4638`, with accepted staging-only artwork settings
+and healthy database/RLS probes. Chris then reported “PASS - all green” for the focused
+four-step staging checklist, resolving the initial disabled-artwork visibility failure.
+The [review/test record](../05-review-and-test/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-review-and-test.md)
+retains the failure, configuration correction, exact deployment and human retry evidence.
+Separate review and remaining technical proof are open. No FUND main/live promotion or
+complete B1 closure is claimed.
+
+
+### Subsequent B1 setup correction and staging deployment — 2026-09-12
+
+B1 technical/setup correction `3379c4e9` is now aligned on local/online dev and staging.
+The missing Product tax/image controls and generic disabled-offer feedback are corrected;
+R2 Catalogue/lifecycle semantics are unchanged. An explicitly approved synthetic DRAFT Seller
+fixture was prepared only for staging smoke. Exact Render deployment, health, security and
+connected proof PASS; corrected human finalisation/download acceptance remains pending.
+See B1 04/05 and the corrected smoke schedule in this slice's 05 record. Main/live is held.

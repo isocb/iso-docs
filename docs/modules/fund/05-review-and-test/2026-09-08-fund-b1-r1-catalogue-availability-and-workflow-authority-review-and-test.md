@@ -203,3 +203,38 @@ records the aggregate human result and its evidence limits. Independent review r
 The report supplies the date and checklist results; no additional per-step timestamps or
 role/tenant evidence are invented. Staging migration, controlled promotion and live proof
 remain separate gates.
+
+
+## Remaining Technical Proof — 2026-09-12
+
+Chris authorised the outstanding technical review and corrections. On local base `133a4638`
+plus uncommitted changes, the repaired disposable runner now passes the Event, `NOT_SURE`,
+finalised-offer and Order migration-refusal cases. Each fixture satisfied database constraints
+before full migration execution; refusal preserved the schema, exact ledger and unrelated
+sentinel. The 154→156 upgrade and separate fresh 156 replay/checksums pass. Both temporary
+databases were removed and their absence independently verified; runner exit 0.
+
+The ten-case finalisation race matrix covers Catalogue workflow, channel and archive,
+Product archive, membership inactivation/removal, Event assignment inactivation/removal and
+future/expired availability windows. It proves lock waiting, refusal of new selection after
+withdrawal, and preservation of confirmed evidence through withdrawal/restoration. Membership
+writers may time out safely (`P2028`); fresh retry succeeds. Selection, Store refresh,
+development checkout and Project context saves also participate in the lock. Explicit
+selection timeout/retry and stale-save refusal pass. No Order/provider side effects occurred.
+This closes the previously unproved listed contraction guards and records this exact race
+matrix; it does not claim every possible interleaving or independent reviewer sign-off.
+
+Review found Project workflow/Event saves needed an availability lock and in-transaction
+revalidation. That correction, the C2 finalisation responsibility label and the repaired proof
+runner remain local and uncommitted. Build, 533 unit tests, application/supplemental TypeScript
+and changed application-source lint pass. See the [B1 technical review](2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-review-and-test.md)
+for exact manifest, failed-attempt history, cleanup and focused follow-up checks.
+
+Staging/DevData are unchanged. Chris's subsequent C2 report confirms assigned template text
+but a disabled finalisation button despite acknowledgement; its readiness diagnosis remains
+open. This qualification is recorded in B1/B1-R2 and does not erase the earlier human results.
+
+
+The subsequent corrected candidate `3379c4e9` re-passes this connected matrix with the C1
+image-assignment boundary included and verified cleanup. It is promoted and verified on
+staging; the new setup-control smoke is in B1-R2 05. Original R1 human results remain history.

@@ -2,6 +2,15 @@
 
 Date: 2026-09-07
 
+Current review update — 2026-09-12: the disabled C2 finalisation report was diagnosed as
+missing Product image/tax setup and absent Seller profile. Corrected code is committed at
+`3379c4e994a225c78238b5aed1d114e94c7dbaf0`; its current evidence and authorised staging
+promotion are recorded at the end. The approved synthetic staging Seller is prepared;
+corrected C1/C2 human smoke remains pending. Earlier aggregate PASS is retained as history,
+not proof of the reported finalisation/download path.
+
+### Original September 7 implementation evidence
+
 ```text
 Exact commit: 57e1454b530ae19dc586768fd996ff230d84421c
 Files/change boundary: B1 four-model additive migration, offer/template/document services, C1/C2 routers and UI, existing-write guards, readiness blockers and tests; example/legacy credential sanitation only outside that runtime boundary
@@ -186,3 +195,235 @@ led to B1-R1 implementation `51618485`. Its automated and connected proof PASS, 
 recorded human smoke steps 1–4 as PASS on 2026-09-10. Steps 5–7 exposed the B1-R2 Catalogue
 scope, Event management and state-clarity findings, so remaining B1 business acceptance now
 continues through the [B1-R2 review and test record](2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-review-and-test.md).
+
+
+## Technical Review And Corrections — 2026-09-12
+
+```text
+Exact commit: base 133a4638e2590a8405d3ce52d6d8c8a7c0336b5a plus uncommitted local corrections; no new candidate commit or promotion
+Files/change boundary: Individual readiness responsibility, Project update transaction protection, disposable migration/service/race proof and focused readiness tests; no schema or applied migration edit
+Automated checks: build PASS; full Vitest 533 PASS/12 skipped; application TypeScript and separate proof-script/test TypeScript PASS; changed application-source lint PASS; connected migration/service/concurrency proof, fresh 156 replay and verified cleanup PASS
+Human evidence: staging focused steps 1–4 PASS reported at 133a4638; local corrections not yet human-tested; C2 confirms template assignment text but reports finalisation disabled; readiness diagnosis open
+Environment proven: local Node 22 build/tests and isolated TEST_DATABASE_URL migration proof; staging and DevData not modified
+Known residual risk: C2 disabled-finalisation smoke finding unresolved; no independent second-reviewer attestation; corrected candidate not promoted or accepted
+Next authorised action: diagnose the C2 readiness finding, obtain focused human evidence and complete review before controlled promotion; main/live remains held
+```
+
+Control depth remains **High**. This is the requested dedicated source review and correction
+pass by the current Codex agent, not an independent-agent or independent-human sign-off.
+The review covered the accepted B1 plan, R1 contraction/availability contract, route/session
+checks, C1/C2 assignment/finaliser authority, immutable evidence and recovery, authoritative
+availability consumers and their transaction boundaries, and the repeatable proof runner.
+
+### Findings and correction
+
+1. **Incorrect action owner in readiness.** `INDIVIDUAL_OFFER_REQUIRED` was labelled C1
+   although only the exact C2 organiser can finalise. It now identifies C2. Template setup
+   and runtime preparation remain C1; no finalisation permission or trading gate changes.
+2. **Stale disposable runner.** It excluded only migration 154 while including later
+   migrations in the supposed 153 baseline, and still expected a fresh count of 154. It now
+   builds the chronological pre-R1 baseline through B1 (154), verifies migration names and
+   SHA-256 checksums, tests the four refusal cases, upgrades through the current source set,
+   and tests a separate fresh replay. Original unchanged B1 153→154 additive evidence is
+   retained above; today's migration focus is the R1/R2 contraction and upgrade.
+3. **Project context save outside the availability boundary.** Workflow/Event edits could
+   use preflight decisions without the planned shared availability lock. The update now
+   acquires availability, ordered Event and Project locks; re-reads the Project, refuses a
+   stale save, and repeats finalised-offer/publication/Order and changed-Event checks before
+   updating. It preserves a concurrent edit instead of overwriting it using stale context.
+
+The runner compares its test target with all configured application environments, uses only
+randomly named newly created databases, forces fixture constraints before each migration
+refusal, reads back unchanged schema/ledger/sentinel state, and drops only those databases
+with independent absence checks. Error output excludes connection strings. Synthetic data
+and private temporary execution files are test infrastructure, not application seed/reset.
+
+### Proof scope and evidence limits
+
+- Fresh 154 baseline/checksums, Event, `NOT_SURE`, finalised-offer and Order refusal cases,
+  and sentinel-preserving 154→156 upgrade: PASS.
+- Original B1 service/authority/recovery journey plus added catalogue race matrix and fresh
+  156 replay/cleanup: PASS; runner exited 0.
+- The race matrix exercises catalogue workflow/channel/archive, Product archive, membership
+  inactive/removal, Event assignment inactive/removal and availability windows against
+  finalisation; selection, Store refresh, checkout and context lock participation; and
+  explicit timeout/retry and stale-save refusal. Contention may refuse with a serialization
+  or transaction-timeout error, followed by a fresh retry; unexpected errors fail the test.
+- No provider checkout is authorised: the proof uses fail-on-access provider doubles and
+  requires development checkout refusal without Order/provider side effects.
+- Initial proof attempts were not PASS: one synthetic Order fixture used invalid source
+  identifiers; a later run stopped at membership contention with insufficient diagnostics.
+  Both disposable databases were removed and their absence checked. The fixture and
+  diagnostics/retry assertions were corrected before the successful final rerun.
+- Full build passes with existing local Upstash-configuration warnings; this is not a new
+  security-runtime readiness claim. The repository lint configuration excludes scripts and
+  test files, so application-source lint and a separate TypeScript check of the proof/test
+  files are reported accurately rather than calling ignored files linted.
+
+### Focused human checks for the corrected candidate
+
+After controlled promotion, check an unfinalised Individual Project identifies organiser
+finalisation as **C2**. Save an allowed draft Project workflow/Event change and confirm the
+saved context and eligible Products are correct; confirm a finalised Project remains locked.
+No repeat of the complete unchanged staging matrix is requested. Chris confirms the assigned template name/capacity is visible in C2 Project → Store. That
+text is assignment confirmation, not a visual artwork preview. B1 provides a Product/price
+and content review summary when its readiness checks pass, then finalisation, generation
+and download of the labelled development PDF. There is no pre-finalisation visual artwork
+preview; the template editor and production-ready artwork remain outside this B1 emulator.
+
+Chris subsequently confirmed the review checkbox is visible and ticked, but finalisation is
+disabled. Source inspection establishes that the checkbox is shown only to the authorised
+exact organiser; after acknowledgement, unresolved readiness reasons or a missing input
+snapshot disable the button. The yellow readiness messages have been requested. This is an
+open current-journey finding, not deferred preview work or a confirmed fix. Retain the earlier
+aggregate staging PASS as reported evidence while qualifying finalisation/download acceptance
+until this specific report is resolved.
+
+
+### Final connected outcome and local candidate identity
+
+The final runner exited **0**. All ten finalisation/withdrawal cases passed. Membership
+inactivation and removal each returned `P2028` under contention; the transaction refused
+safely, a fresh retry succeeded, and the locked offer remained unchanged. Selection,
+Store refresh, checkout and context updates participated in the availability lock; explicit
+selection lock timeout preserved state and allowed retry; a stale context save refused
+without overwriting the competing edit. Development checkout created no Order and made no
+provider calls. These are the tested cases, not a claim to every possible race permutation.
+
+Fresh replay of all 156 migrations and exact ledger checksums passed. The runner removed
+`fund_b1_disposable_c6aae1cd7df93c6f` and `fund_b1_disposable_8c790d14f6008ce7`, independently
+read back zero matching databases, and removed its private execution workspace. No application
+database, staging test bed, stored offer or real provider resource was changed.
+
+The seven changed source/test files on base `133a4638` have manifest SHA-256
+`361dded57cee2ee8b62da8e3d3e45abbff9c6bb2bf1cdfff0fbb11cd43b7b36f`
+(sorted repository-relative paths, each followed by NUL, file bytes and NUL). This identifies
+an uncommitted local candidate, not a deployable commit. Source/docs whitespace checks pass.
+Credential-pattern review found only the deliberate `unused` database placeholder on
+`invalid.invalid`; no environment file or credential value is included in the changes.
+The runner references existing environment-variable names and supplies synthetic test-only
+values; it does not embed application configuration. No commit or push was performed.
+
+
+## C2 Disabled Finalisation — Diagnosis And Correction, 2026-09-12
+
+Chris authorised resolving the blocker, committing and promoting to staging for his test.
+Read-only transactions against configured staging and local databases identified real setup
+gates. Staging Individual Project fingerprint `a15cde9b` has exact-organiser permission,
+one selected Product and portrait template assignment. Its selected Product has no active
+primary image and remains `UNCLASSIFIED` for tax; the organisation also has no Seller profile.
+No application data was changed during diagnosis. Earlier aggregate PASS does not establish
+successful finalisation/download for this current Project.
+
+The Product editor was missing the image-assignment and existing tax-treatment controls.
+Offer feedback collapsed actual Product reason codes into a generic refresh message, and
+Store mutations did not invalidate the separate Individual journey query. These are genuine
+UI/setup gaps; the server gates are retained.
+
+Corrections add:
+
+- C1 tax-treatment selection through the existing Product update contract; no assumed tax
+  classification or new Product workflow gate.
+- C1 primary-image assignment from the organisation's existing Media library. The existing
+  Media page remains the upload surface. Assignment rejects C2 roles, foreign/unavailable
+  Products, foreign files and unsupported MIME types. An availability lock, Product row lock,
+  revision increment and audit share one transaction. Previous media rows remain referenced;
+  changing the default does not delete evidence or rewrite finalised offers.
+- A named **Before you can finalise this offer** panel with specific Product/Seller actions,
+  a Store-and-offer refresh button, and an acknowledgement checkbox unavailable until there
+  is a valid review snapshot. Store edits also invalidate the Individual journey query.
+
+The new Seller requirement message is shown even while Product setup remains incomplete,
+so resolving image/tax does not merely reveal another previously hidden prerequisite.
+The existing payments UI only manages Stripe. A staging-only DRAFT synthetic Seller profile
+with GBP and explicit test rates was approved by Chris and created as recorded below. No commercial
+profile is fabricated or copied from live. A full Seller administration UI is not included.
+
+Five focused image-boundary tests and the full suite pass: **538 passed, 12 skipped**.
+Changed application-source lint passes. The first full-suite attempt could not launch Chromium
+inside the sandbox; its permitted rerun passed. An initial proof-script inference error was
+corrected with an explicit assertion-snapshot type. Build passed; repository verification is
+rerun serially because overlapping it with Next generation caused transient missing generated
+files. Connected proof now includes real C1 image assignment, revision increment, C2/tenant
+refusals and unchanged media after an invalid request; its final outcome follows below.
+
+The previously recorded seven-file manifest describes the earlier correction only. This
+expanded candidate needs its own exact commit and deployment evidence before acceptance.
+
+
+### Approved staging test Seller preparation
+
+Chris explicitly approved one staging-only synthetic Seller profile. Target fingerprint
+`2bb31924958a` was checked distinct from local and production targets. Under a transaction,
+the operator matched the diagnosed Project, verified no Seller profile and no Commerce
+Orders for its organisation, and created one profile plus an audit event. The profile is
+labelled `FUND STAGING TEST SELLER - NOT FOR LIVE USE`, remains **DRAFT**, uses GBP and
+approved test rates of 2000/500 basis points, and contains visibly synthetic address data.
+A separate client/read-only transaction verified the profile and zero Orders. PASS.
+
+No Product image, Product tax choice, Project, payment configuration, schema or live data was
+changed. The fixture is intentionally retained for Chris's staging smoke; it is not business
+configuration, a real seller verification, or permission to trade. Rollback, if requested,
+removes only this labelled fixture after rechecking its identity, DRAFT status and absence of
+Orders; never delete a subsequently used or edited profile without renewed review.
+
+
+### Exact correction candidate checks
+
+Application commit: `3379c4e994a225c78238b5aed1d114e94c7dbaf0` (16 source/test files).
+Final production build, 538/12-skipped regression tests, changed-source lint, repository
+verification and pre-commit TypeScript pass. Exact work-branch Security Scan `34687362802`
+passes, including dependency, schema, TypeScript and secret jobs. No environment file or
+credential is included; the only credential-pattern match reviewed locally is the deliberate
+`unused` URL placeholder on `invalid.invalid` in the isolated runner.
+
+The updated connected service suite passes with real C1 primary-image assignment, revision
+increment, C2/foreign-tenant refusal and unchanged media after an invalid file request. The
+existing B1 finalisation/document/recovery and ten-case availability matrix also pass. A
+separate fresh 156 replay/checksums and cleanup also PASS; runner exited 0 and verified
+absence of `fund_b1_disposable_0b10cf03c9f96d2a` and
+`fund_b1_disposable_cb9de3537c8bd618`. Protected-branch/deployment evidence follows.
+The dedicated source review here does not claim a separate human or second-agent attestation.
+
+
+### Controlled promotion — 2026-09-12
+
+The exact reviewed correction `3379c4e994a225c78238b5aed1d114e94c7dbaf0` was fast-forwarded
+from the existing work branch into local dev, then pushed to origin/dev. The existing clean
+local staging worktree pulled origin/staging, fast-forwarded dev and pushed origin/staging.
+No direct remote-ref substitute, cherry-pick or main/live update was used. There are no new
+schema/migration files relative to `133a4638`; the existing 156-migration bundle is unchanged.
+
+Render staging deployment `dep-daii93ss728c73aj7tng` completed Live at that exact commit. Exact
+protected-branch Security Scans dev `34687637710` and staging `34687647620` both PASS.
+Service identity `Staging-IsoStack` / `srv-d4miroogjchc73balrvg`, type `web_service`, branch
+`staging`, and expected artwork mode/target were read back before promotion. No provider
+settings or shared environment group was changed. Deployment completion/health follows.
+
+Supplemental TypeScript validation of the proof scripts and both new service test files also
+passes against the committed candidate.
+
+
+### Final staging evidence and handoff
+
+```text
+Exact commit: 3379c4e994a225c78238b5aed1d114e94c7dbaf0; local/online dev and staging aligned, work branch published
+Files/change boundary: 16 FUND source/test files; Product tax/image controls, actionable offer feedback/refresh, readiness ownership, context-save protection and repeatable proof; no schema or runtime-setting change
+Automated checks: final build; 538 tests PASS/12 skipped; application and supplemental TypeScript; source lint; repository verification; connected migration/image/offer/race proof; fresh 156 replay/checksums and verified cleanup; work/dev/staging Security Scans 34687362802/34687637710/34687647620 all PASS
+Human evidence: corrected C1/C2 Product-setup/finalisation/download smoke pending; prior aggregate PASS retained with the later specific finding
+Environment proven: exact Render staging deployment dep-daii93ss728c73aj7tng Live 2026-09-12T10:16:21.50129Z; both staging URLs HTTP 200 healthy, DB connected, RLS 11/11 at approximately 10:16:38 UTC; Product page redirects to sign-in and new image mutation refuses unauthenticated requests with 401
+Known residual risk: human image upload/selection, tax choice and PDF walkthrough pending; emulated PDF/private storage do not prove production artwork; no separate independent reviewer attestation; main/live remains security-only 0397bba9
+Next authorised action: Chris performs the corrected staging smoke schedule in B1-R2 05; resolve findings before full B1 closure or any separate live decision
+```
+
+The pre-completion probes observed the old serving instance, including 404 for the then-absent
+image endpoint; they were not counted as corrected-candidate proof. After Render reported
+Live, both `staging.isostack.app` and `sating-isostack.onrender.com` passed health checks,
+`/app/fund/products` redirected to `/auth/signin` (307), and the new image-assignment endpoint
+returned 401 without a session. No authenticated browser or human visual result is invented.
+
+Online ref readback confirms dev/staging at `3379c4e9` and main at `0397bba9`. No real payment,
+public Store activation, main/live promotion, schema reset or Product selection was performed.
+If staging rollback is required, the known prior serving code is `133a4638`; no reverse
+migration is needed for this correction. Retain the separately approved DRAFT test Seller
+unless its safe removal is explicitly selected and its unused status rechecked.

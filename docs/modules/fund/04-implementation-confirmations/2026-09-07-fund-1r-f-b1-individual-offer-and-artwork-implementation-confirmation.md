@@ -2,6 +2,16 @@
 
 Date: 2026-09-07
 
+Current disposition — 2026-09-12: correction commit
+`3379c4e994a225c78238b5aed1d114e94c7dbaf0` is published and aligned on local/online dev and staging. It
+includes the completed technical corrections and Product/offer setup UI fixes. Build,
+538 unit tests, source lint, verification, connected proof/cleanup and exact work/dev/staging
+security scans PASS. Render staging is verified Live at the correction, with health PASS. The approved staging DRAFT synthetic
+Seller fixture is independently verified. Corrected C1/C2 human smoke remains pending.
+The original September 7 evidence is retained as history; current evidence follows below.
+
+### Original September 7 implementation evidence
+
 ```text
 Exact commit: 57e1454b530ae19dc586768fd996ff230d84421c
 Files/change boundary: B1 four-model additive migration, offer/template/document services, C1/C2 routers and UI, existing-write guards, readiness blockers and tests; example/legacy credential sanitation only outside that runtime boundary
@@ -94,3 +104,47 @@ independent readback confirms the original migration marker remains complete. Ca
 of prior removal remains unknown. The modal's active-class query can now return these rows.
 Authenticated UI Product creation: pending Chris's retry after refresh/reopening the modal.
 For B1 Individual Artwork Products choose A1; Product Suitability remains separately required.
+
+
+## Authorised Technical Corrections — 2026-09-12
+
+Application base: `133a4638`, existing work branch; corrections remain local/uncommitted.
+No applied migration, DevData/staging database, provider setting or deployment changed.
+
+- `individual-offer-readiness.ts` now assigns organiser finalisation to C2. Focused tests
+  retain C1 setup responsibility and prove development documents never remove the trading gate.
+- `projects.service.ts` now protects context saves with the planned availability/Event/Project
+  lock order, rejects concurrent stale edits and rechecks protected evidence before updating.
+- The B1 disposable runner and connected suite now include chronological migration selection,
+  exact ledger checksums, four constraint-valid migration refusal fixtures, catalogue races,
+  lock timeout/retry, stale-save and private development-checkout checks with bounded cleanup.
+
+Build, 533 unit tests, application and proof-script TypeScript, and changed application lint
+pass. The connected migration/service/concurrency proof, separate fresh 156-migration replay
+and verified removal of both disposable databases also pass (runner exit 0). Exact scope, failures, evidence limits and
+focused human follow-up are in the [technical review](../05-review-and-test/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-review-and-test.md).
+This records a dedicated technical review/correction pass, not independent second-reviewer
+sign-off or full B1/live acceptance.
+
+
+## C2 Finalisation Setup Controls — 2026-09-12
+
+The authorised follow-up resolves missing Product tax/image controls and unhelpful offer
+feedback. `ProductModal` exposes the existing tax-treatment field. The new
+`ProductPrimaryImagePanel`, Product router endpoints and `product-image.service` allow C1 to
+assign a same-tenant image with transactional revision/audit and retained media references.
+No schema change, upload-provider change or new tax default is introduced.
+
+`IndividualOfferPanel` names the requirements beside finalisation, refreshes Store and offer
+together and enables acknowledgement only for a valid review. `ClientProjectStorePanel`
+invalidates the offer after Store changes and shows readable Product reasons. The offer
+service reports individual setup actions and missing Seller configuration without relaxing
+any readiness, finaliser or trading guard. See B1 05 for tests, read-only staging diagnosis,
+conditional test-profile preparation and the user-authorised dev/staging promotion.
+
+
+Promotion complete: `3379c4e9` is on local/online dev and staging; Render deployment
+`dep-daii93ss728c73aj7tng` is Live at the exact commit. Both staging URLs pass health
+(DB connected, RLS 11/11) and unauthenticated route/mutation boundary checks. The approved
+DRAFT synthetic Seller is retained; C1 Product choices and corrected C2 walkthrough await
+Chris. No FUND main/live promotion occurred. B1 05 carries exact time and security evidence.

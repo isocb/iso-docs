@@ -2,7 +2,7 @@
 
 Created: 2026-08-25
 
-Last updated: 2026-09-10
+Last updated: 2026-09-12
 
 Status: **Plain-English situation report; subordinate to the delivery lifecycle**
 
@@ -13,27 +13,33 @@ implementation authority or another restart checkpoint.
 
 ## Where We Are
 
-**10 September: FUND is the primary delivery focus again.** You asked for the tested local
-work to be aligned with online dev and promoted to staging. The combined code retains the
-security update already pushed to main. Main/live stays on the security-only release; this
-FUND promotion is for staging testing and does not open public FUND trading.
+**12 September: the B1 correction is committed, deployed and ready for your staging smoke
+test.** Dev and staging match `3379c4e9` locally and online.
+Main/live remains at the security-only release, with FUND purchasing disabled.
 
-Your local “Fund testing all green” result at `29104b55` and all 13 B1-R1 checklist passes
-remain recorded. No repeat of the unchanged local walkthrough is requested. Local code,
-online dev and staging now match `133a4638`, and both final security scans pass. The combined
-build, unit suite and
-connected B1 checks pass. The approved, backed-up reset of staging FUND test data and all
-three migrations have completed; checks confirm every non-FUND table retained its row
-count. Your existing local FUND test bed is untouched. You confirmed that the
-staging-only artwork preview settings are configured and deployment has started.
+The disabled finalisation button had real setup blockers: no primary Product image, no tax
+classification and no Seller profile. The UI was also missing the image/tax controls and
+explained the failure poorly. C1 can now set the tax treatment and assign an image in the
+Product editor. C2 gets a named list of requirements beside finalisation and one action to
+refresh both Store configuration and the offer. Template text is assignment confirmation;
+the labelled development PDF becomes downloadable after finalisation and generation.
 
-The [B1-R2 review/test record](../05-review-and-test/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-review-and-test.md)
-owns the exact promotion result and focused staging checklist. Once Render confirms the
-final staging deployment, staging
-needs a new small FUND setup created through the normal C1/C2 screens; local data is not
-copied online. Separate review and staging business acceptance remain distinct from Git
-alignment. The complete purchase, production and commission journey still needs its later
-Phase 1 slices.
+You approved a clearly labelled synthetic Seller profile on staging. It is prepared and
+verified as DRAFT with GBP test tax rates. You still choose the Product image and tax treatment
+in the UI. This is test preparation, not a real seller approval or permission to take payments.
+
+The technical review also corrected organiser responsibility labels, protected Project context
+saves against competing edits, and repaired the database proof runner. The final build,
+538 regression tests and isolated migration/concurrency proof pass; temporary databases were
+removed and their absence verified. The work/dev/staging security scans pass. Render confirms
+the exact deployment; both staging URLs are healthy with database connectivity and RLS 11/11. A separate reviewer attestation
+is not claimed; your corrected staging walkthrough remains pending.
+
+Use the [corrected staging smoke steps](../05-review-and-test/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-review-and-test.md)
+starting at **Corrected staging smoke — Product setup to development PDF**. The
+[B1 technical review](../05-review-and-test/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-review-and-test.md)
+contains the exact candidate, setup and deployment evidence. Earlier green reports are
+retained as history; they do not replace this specific finalisation/download retry.
 
 FUND has substantial foundations for administration, Project setup, Product selection,
 Store control and payment/Order handling. It cannot yet demonstrate the connected journey

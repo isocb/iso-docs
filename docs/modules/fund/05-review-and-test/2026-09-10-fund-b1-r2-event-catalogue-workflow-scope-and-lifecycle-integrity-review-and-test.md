@@ -2,9 +2,10 @@
 
 Date: 2026-09-10
 
-Status: **Combined candidate pushed to dev/staging at `133a4638`; staging migration 156 PASS; local human smoke PASS retained; staging deployment/business acceptance and remaining review proof open.**
+Status: **Correction `3379c4e9` committed/promoted to dev and staging; exact Render staging deployment, health, protected-branch security and connected proof PASS. Corrected Product-setup/finalisation/download human smoke pending; approved DRAFT staging test Seller prepared. Earlier aggregate PASS retained as history; FUND main/live not promoted.**
 
-Current candidate: application `133a4638` on local work branch, dev and staging. Original
+Current candidate: application `3379c4e9` on local/online dev and staging; see the corrected
+smoke schedule and deployment evidence below. Earlier `133a4638` proof remains historical. Original
 local behavioural candidate `29104b55` and DevData migration 156 evidence below remain valid;
 see the promotion section for the security integration, test-only follow-up and staging proof.
 
@@ -32,8 +33,10 @@ same serializable transaction. Project activation rechecks linked Event status u
 The connected race test proves that either close wins and activation refuses, or activation wins
 and close refuses; the invalid closed-Event/active-Project pair did not commit.
 
-No blocking automated or connected defect is known. Chris reports the local human smoke green;
-independent source review remains open.
+The historical automated/connected results and local human PASS below remain recorded.
+On 2026-09-12 Chris reported staging step 4 FAIL because C1 template review/assignment UI
+could not be found. That failure was resolved after the staging configuration/redeployment correction: Chris
+subsequently reported “PASS - all green” for the retry. Independent source review remains open.
 
 ## Automated And Connected Evidence
 
@@ -209,27 +212,175 @@ local PNG-to-WebP response and disallowed remote-image refusal. These do not ide
 deployed source commit. Render confirmation and the
 representative authenticated workflow below remain pending.
 
-### Focused staging human acceptance — PENDING
+### Focused staging human acceptance — PASS (2026-09-12)
 
-Chris confirmed the two requested staging-only artwork emulation settings and reported a
-Render deployment starting. This is owner-reported configuration, not independent provider
-readback. No authenticated Render access is available to this session.
+Chris initially reported setting the two staging-only artwork variables. On 2026-09-12,
+after the disabled-mode failure, he authenticated the local Render CLI and redeployed the
+same candidate. The provider settings and completed redeployment are now independently
+verified below. Chris then reported “PASS - all green”, accepting the focused staging
+checklist including the step 4 retry. This is owner-reported human evidence, not an
+agent-observed browser session.
 
 Record exact deployed commit, C1/C2 roles, tenant and PASS/FAIL for:
 
 1. Confirm Render is Live/green at the final staging commit. Log in and out of the existing
    IsoStack/LMSPro account; confirm the correct client/dashboard and an existing image.
+   **Chris: Pass - live for 133a463: test(fund): align B1 connected proof with migration 156 **
 2. Create a small new FUND setup through normal C1/public Intake/C2 flows. Confirm Product
    creation has no workflow field, Catalogue channel and workflow multiselect save, Event
    Products assigns only compatible Catalogues, and C2 sees active eligible Products.
+**Chris: PASS **
+
 3. Check one Event-linked Project inherits workflow and one standalone Project chooses it.
    Exercise C2 subset Save/refresh and one incompatible Catalogue exclusion. Confirm active
    linked Projects prevent Event closure and active Events cannot archive.
+
+**Chris: PASS **
+
 4. As C1 assign the Individual template; as the exact organiser refresh, review and finalise
    an offer. Generate/download its labelled development PDF, confirm refresh/re-download and
    the finalised selection lock. Confirm this does not publish the Store or enable purchases.
+   **PASS - Template  selection enabled **
 
 This proves the new staging configuration and migrated environment. Preserve the broader
 local PASS rather than repeat the entire local matrix. A failure pauses staging acceptance;
 report the screen, role and error without credentials. B1 closure, separate review, remaining
 R1 negative proof and FUND main/live promotion are not inferred from deployment.
+
+
+### C1 template assignment investigation — 2026-09-12
+
+Chris's initial report was steps 1–3 PASS, including Render Live at `133a463`, and step 4
+FAIL: no UI found for C1 to review or allocate templates. At that point the remaining
+actions in step 4 were blocked. The investigation below preserves that history; the later
+retry PASS supersedes the failure.
+
+Read-only source inspection at local candidate `133a4638` finds `IndividualOfferPanel`
+mounted with `administration` on `/app/fund/projects/[id]`, above Overview/Products.
+For an unfinalised Individual Artwork Project with emulation enabled, it contains a
+Template selector and Save assignment action; for an Event-linked Project that action
+assigns the Event template. No equivalent assignment control is mounted on Event detail.
+Non-Individual Projects hide the panel; disabled emulation shows an explanatory alert,
+and query errors show an error alert.
+
+Chris subsequently confirmed the visible message: “Individual artwork is not enabled in
+this environment.” The application reaches the panel but its server-side feature gate
+returns disabled, hiding assignment controls. This establishes the immediate runtime gate,
+not a missing Project-page component. The specific configuration cause remains unverified:
+the same message covers disabled/missing mode and refused target/production signals because
+`getIndividualJourney` deliberately catches configuration errors.
+
+The accepted staging settings are `FUND_INDIVIDUAL_ARTWORK_MODE=emulated` and
+`FUND_INDIVIDUAL_ARTWORK_TARGET=staging` on the staging web service only. Mode/target must
+match exactly. A `main` branch signal or a production Vercel signal also refuses emulation;
+those signals must not be falsified to bypass the guard. Chris previously reported setting
+these variables, so verify the active service/deployment configuration rather than assume
+that action was omitted. No authenticated Render connector, CLI or API credential was
+available at that point. Chris subsequently enabled authenticated Render CLI access and
+redeployed staging; direct provider readback and the successful retry are recorded below. Main/live and shared environment groups are outside this correction.
+
+Disposition: the C1 visibility failure is resolved by the staging runtime correction and
+owner-reported retry PASS. Retain B1 as Now for outstanding technical review/proof; this
+human result does not authorise 1R-G implementation or FUND live promotion. No application
+code or database change was needed to resolve this staging visibility failure.
+
+
+### Authenticated staging configuration and redeployment readback — 2026-09-12
+
+Chris authorised local Render authentication and completed browser-based CLI login. The
+agent selected the sole workspace locally and performed read-only provider inspection.
+Authentication remains outside the repositories; no token or credential content is recorded.
+
+- Service: `Staging-IsoStack`, `srv-d4miroogjchc73balrvg`, branch `staging`.
+- Provider readback confirms the exact service-level artwork mode/target values accepted
+  above. Neither `RENDER_GIT_BRANCH` nor `VERCEL_ENV` has a service-level override; this
+  does not claim a full inspection of inherited or process environment values.
+- Chris's manual redeployment `dep-daihc30ae00c73eh9b50` is **Live**, at exact commit
+  `133a4638e2590a8405d3ce52d6d8c8a7c0336b5a`, completed `2026-09-12T09:12:40.409088Z`.
+  Startup log markers confirm Next ready and Render service live; raw logs were withheld.
+- At approximately `09:13:03 UTC`, `/api/health` returns HTTP 200/healthy on both
+  `sating-isostack.onrender.com` and `staging.isostack.app`: database connected and RLS 11/11.
+
+The previous instance remained live while the replacement started. The saved settings and
+completed replacement are now proved; authenticated C1 panel visibility and the complete
+offer/PDF journey have not been observed by the agent. Chris subsequently reported the
+step 4 retry PASS and “all green”; the focused staging human gate is now satisfied.
+No application code, database, provider setting or deployment was changed by the agent;
+Chris performed the redeployment. No FUND main/live promotion occurred.
+
+
+### Final focused staging human result — 2026-09-12
+
+Chris confirmed “PASS - all green” after the verified redeployment and invitation to repeat
+step 4. His document edit also records “PASS - Template selection enabled”. Record the
+focused steps 1–4 as PASS, including the Individual assignment/finalisation/development PDF,
+refresh/re-download, locked selection and no-public-purchasing checks specified in step 4.
+This is an aggregate owner report; no separate screenshots or agent-observed substep evidence
+are claimed. It supersedes the initial disabled-mode failure, not the original failure history.
+
+The aggregate staging acceptance was recorded at `133a4638`. The subsequent C2 finding below
+qualifies finalisation/download acceptance. The requested technical review has since corrected
+readiness responsibility, Project context transaction protection and the stale proof runner.
+The listed R1 contraction guards, ten-case availability race matrix, fresh replay and cleanup
+now pass locally; the B1 technical review records precise scope and candidate identity.
+Corrections remain uncommitted/unpromoted, with independent reviewer attestation unclaimed.
+B1 full closure and FUND main/live promotion remain open.
+
+
+### Subsequent C2 finalisation finding — 2026-09-12
+
+After the aggregate green report, Chris clarified that C2 sees the assigned template as
+text, not a visual preview or download. He then confirmed that the review checkbox is
+visible and ticked but “Finalise offer and generate artwork” remains disabled. This
+qualifies the earlier aggregate acceptance: C1 template visibility is resolved, while the
+reported C2 finalisation/download path requires diagnosis and a specific retry result.
+No earlier owner result is erased or replaced with invented substep evidence.
+
+B1 shows an offer-content/Product/price summary when readiness passes and provides its
+labelled development PDF after finalisation and successful generation. Assignment text is
+not a pre-finalisation visual artwork preview. Source inspection shows that the visible
+checkbox establishes exact-organiser permission; the disabled action after acknowledgement
+means unresolved reasons or a missing valid snapshot. The yellow readiness messages are
+awaited. This is current B1 smoke work, not deferred template-editor scope.
+
+The [B1 technical review](2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-review-and-test.md)
+records the local corrections and connected proof separately from this staging finding.
+
+
+### Corrected staging smoke — Product setup to development PDF
+
+Chris requested these corrections be committed and promoted to staging for his test. Direct
+read-only diagnosis found missing primary image and tax treatment, plus no Seller profile.
+The editor controls and offer feedback have been corrected; the explicitly approved synthetic
+DRAFT Seller profile is prepared on staging. This fixture does not enable Stripe or trading.
+Run the following after the corrected deployment is confirmed Live:
+
+1. **C1 → FUND → Products → Edit the selected Product** (the current staging selection is
+   `Mug 2 Small`). Choose the intended test tax treatment and matching VAT rate, and Save.
+   For the approved synthetic Seller fixture the standard/reduced rates are 20%/5%; this is
+   test data, not a recommendation about the real Product's tax classification.
+2. Reopen the Product. Under **Primary Product image**, choose an image and **Save primary
+   image**. If the list is empty, open the linked Media library, upload a JPEG/PNG/WebP/GIF,
+   return and **Refresh image list**. Image assignment has its own explicit Save action.
+3. **C2 → Project → Store → Refresh Store configuration and offer**. Confirm the offer's
+   named requirements disappear once resolved and its Product/price summary is shown.
+   C2 should see the assigned template but no template or Product-image administration.
+4. Review the summary, tick acknowledgement, then **Finalise offer and generate artwork**.
+   Download the labelled development PDF; reload/re-download or retry generation if needed.
+   Confirm the selection/content lock and that this does not publish the Store or enable
+   purchasing. Unresolved payment/live-service gates remain expected in this development slice.
+5. On a separate **unfinalised draft Project**, confirm the readiness owner for organiser
+   finalisation is C2 and an allowed workflow/Event edit saves the correct context. Confirm
+   the finalised Project from step 4 still refuses protected content/selection edits.
+
+Results: **pending Chris's corrected staging test**. Earlier aggregate green reports remain
+history; these specific checks are not inferred from them. Record any displayed requirement
+by its text, not its colour. Exact candidate/deployment evidence follows when promotion finishes.
+
+
+Corrected deployment confirmed: `3379c4e994a225c78238b5aed1d114e94c7dbaf0`, Render
+`dep-daii93ss728c73aj7tng`, Live `2026-09-12T10:16:21.50129Z`. Both staging URLs healthy,
+DB connected and RLS 11/11 at approximately `10:16:38 UTC`. New image mutation rejects a
+signed-out request with 401; Product page redirects to sign-in. Work/dev/staging Security
+Scans `34687362802` / `34687637710` / `34687647620` PASS. The five corrected smoke steps
+above are now ready for Chris; **their human results remain pending**.

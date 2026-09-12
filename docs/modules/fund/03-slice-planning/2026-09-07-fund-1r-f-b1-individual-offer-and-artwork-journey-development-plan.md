@@ -2,7 +2,7 @@
 
 Date: 2026-09-07
 
-Status: **Combined FUND/security candidate promoted to dev/staging; staging migration 156 PASS; local human smoke PASS retained; staging deployment/human acceptance and remaining review proof open**
+Status: **Correction `3379c4e9` committed and aligned on local/online dev and staging; exact Render staging deployment and health PASS. Build, 538 unit tests, connected migration/concurrency/image-assignment proof, verified cleanup and work/dev/staging security scans PASS. Approved staging test Seller prepared. Corrected C1/C2 smoke pending; FUND main/live held.**
 
 Control depth: **High** — this journey introduces persistent offer evidence, exact C2
 finaliser authority, tenant-bound document access and failure/retry behaviour.
@@ -23,11 +23,11 @@ now selects FUND B1/B1-R2 dev/staging promotion and acceptance as Now, with the 
 ## Restart Checkpoint
 
 ```text
-Current state: combined FUND/security code committed and pushed to dev/staging at 133a4638; approved staging FUND-only reset and migrations through 156 PASS; combined build/527 unit tests and connected B1 service proof PASS; fresh 156 replay and disposable database cleanup PASS; exact final dev/staging Security Scans PASS
-Last proven commit: 133a4638e2590a8405d3ce52d6d8c8a7c0336b5a adds only the tested 154-to-156 test prerequisite to combined b3059b30; local human PASS remains at feature-equivalent 29104b55; exact dev/staging scans 34484492277/34484545160 PASS
-Current environment: local work branch, dev and staging align at 133a4638; Node 22 clean dependency install/generated client/backport PASS, DevData untouched; staging migration 156 independently verified, all 125 non-FUND counts preserved; main/live held at security-only 0397bba9
-Next human decision/test: confirm staging Render Live/green at 133a4638 and perform focused B1-R2 staging checklist; owner confirmed staging-only emulation settings; separate source review and remaining R1 negatives remain open; no FUND main/live approval
-Safe resumption point: record Render identity and focused staging acceptance using published B1-R2 04/05 and business report before B1 closure or later live decision; retain private staging FUND backup through acceptance
+Current state: B1 technical and setup-UI corrections committed/promoted at 3379c4e9. Final build, 538 unit tests, source lint, application/supplemental TypeScript, repository verification, connected image/offer/concurrency proof and fresh 156 replay/cleanup PASS. Work/dev/staging Security Scans 34687362802/34687637710/34687647620 PASS. Corrected staging human smoke remains pending.
+Last proven commit: 3379c4e994a225c78238b5aed1d114e94c7dbaf0; exact Render staging deployment dep-daii93ss728c73aj7tng Live at 2026-09-12T10:16:21.50129Z, post-deployment health and unauthenticated boundary probes PASS at approximately 10:16:38 UTC
+Current environment: local dev, local staging, origin/dev and origin/staging match 3379c4e9. Staging mode/target verified; both staging URLs healthy, database connected and RLS 11/11. Approved labelled DRAFT synthetic Seller retained for staging smoke; Product image/tax choices remain for C1. Isolated proof databases removed/absence verified. Main/live unchanged at security-only 0397bba9
+Next human decision/test: C1 chooses Product tax treatment and primary image; C2 refreshes Store/offer, reviews, finalises and downloads the development PDF. Follow the corrected B1-R2 05 schedule. No FUND main/live approval; separate independent reviewer attestation unclaimed
+Safe resumption point: use deployed 3379c4e9 and published B1/B1-R2 evidence for Chris's focused smoke; investigate any exact failed step before full B1 closure or downstream implementation. Do not recreate the retained test Seller or repeat passed database proof without a relevant change. Staging backup cleanup remains outside this action
 ```
 
 ## 1. One Visible Outcome
@@ -398,3 +398,29 @@ to this corrected business model. Acceptance remains pending; triage must explic
 correction sequencing before B1 closure. No new implementation or second checkpoint is created.
 
 B1-R1 is now [triaged](../02-triage/2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md) with a [detailed remedial plan](2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md). Triage requires its correction before B1 business acceptance. Corrected candidate `8bda74f4` implements the plan and its guarded DevData migration now passes; this record retains the only restart checkpoint while human and remaining High-control proof stays open.
+
+
+## C2 Finalisation Correction And Staging Authority — 2026-09-12
+
+Chris requested resolution, commit and promotion to staging for testing. Read-only diagnosis
+of staging Project fingerprint `a15cde9b` confirms exact-organiser permission and template
+assignment, but selected Product source data has no active primary image and tax treatment
+`UNCLASSIFIED`. These are real existing gates. The Product editor omits both setup controls;
+the offer returns only a generic Product-readiness reason. Refreshing the Store also fails
+to invalidate the separate offer query. This is a bounded B1 smoke-path correction, High control.
+
+Implement explicit existing tax-treatment selection, C1 primary-image assignment from the
+tenant media library (uploads remain in the existing Media UI), actionable offer blockers
+beside finalisation and offer-query invalidation after Store edits/refresh. Image assignment
+must enforce C1 role, tenant ownership, supported image MIME, transactional revision/audit
+and preservation of existing media references and finalised evidence. Do not choose a tax
+classification or image on the user's behalf, weaken any gate, add schema/runtime settings,
+build a template editor or enable public purchasing. Validate negative permissions/tenancy,
+assignment revision/rollback boundaries and query-state/UI behavior. Existing connected
+proof remains applicable to unchanged code; add focused tests for the new boundary.
+
+Authorised corridor: commit tested work, consolidate local dev, push origin/dev, locally merge
+the exact candidate into staging and verify deployment/health/scans. Publish lifecycle docs.
+Chris completes Product setup and the C1/C2 finalisation/download smoke on staging; that
+human outcome remains pending. Main/live remains held. This extends the existing correction
+record and does not create a new roadmap selection or checkpoint.

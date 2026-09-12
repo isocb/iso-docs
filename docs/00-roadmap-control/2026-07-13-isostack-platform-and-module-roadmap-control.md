@@ -2,11 +2,11 @@
 
 Date: 2026-07-27
 
-Last portfolio reconciliation: 2026-09-10
+Last portfolio reconciliation: 2026-09-12
 
 Status: Active parent roadmap
 
-## 0. Current Portfolio Control — 2026-09-10
+## 0. Current Portfolio Control — 2026-09-12
 
 This section is the current cross-lane control and supersedes older global `single next`
 wording later in this document. Older statements remain evidence of the sequence at the
@@ -29,6 +29,9 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application and R13 release evidence:
 
 ```text
+FUND dev/staging and origins = 3379c4e9; main/live remains security-only 0397bba9
+FUND correction = build/538 tests/connected migration-image-concurrency proof and cleanup PASS; work/dev/staging Security Scans 34687362802/34687637710/34687647620 PASS
+FUND staging Render dep-daii93ss728c73aj7tng = exact 3379c4e9 Live; both staging URLs health/DB/RLS 11/11 PASS; corrected C1/C2 smoke pending
 R14-A exact d78935d4 local R1-R9, staging S1-S4 and production L1-L2 PASS; aligned through main; all four Security Scans and staging/production public health PASS; COMPLETE AND CLOSED
 R13-B work branch/dev/staging/main and origins = exact 06811784
 R13-B staging exact Render identity and control-owner S1-S4 = PASS
@@ -80,7 +83,7 @@ Current serial portfolio decision:
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | FUND `1R-F-B1` / B1-R2 dev/staging promotion and acceptance | Chris explicitly requested online dev alignment and staging promotion after local human smoke PASS. Combined security/FUND `133a4638` is committed and pushed to dev/staging; build, 527 unit tests, connected B1 service proof and staging migration 156 pass under the approved FUND-only reset. Main/live stays security-only at `0397bba9`; staging acceptance and remaining review evidence must remain explicit. |
+| **NOW** | FUND `1R-F-B1` / B1-R2 staging acceptance | Correction `3379c4e9` is committed and aligned on local/online dev and staging. Build, 538 unit tests, connected migration/concurrency/image proof and verified cleanup, exact work/dev/staging security scans, Render deployment and staging health PASS. Missing Product image/tax controls and offer feedback are corrected; the approved DRAFT staging test Seller is prepared. Chris must now run the corrected Product-setup/finalisation/download smoke. Main/live stays security-only at `0397bba9`; full B1 closure remains open. |
 | **NEXT** | FUND `1R-G` Store presentation planning | Continue the existing planning proposal after B1 reconciliation. Its authenticated development-preview boundary is ready for owner review; no 1R-G implementation or live FUND release is authorised. |
 
 On 2026-09-10 Chris requested FUND dev/staging alignment after the security correction was

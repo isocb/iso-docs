@@ -2,7 +2,7 @@
 
 Created: 2026-06-25
 
-Last consolidated: 2026-09-07
+Last consolidated: 2026-09-12
 
 Status: Active authoritative control for the FUND lane
 
@@ -17,7 +17,20 @@ preserving shared users, organisations, other modules and local DevData. He conf
 staging-only artwork emulation settings and reported deployment starting. Exact promotion,
 migration and remaining evidence are recorded in B1-R2 04/05. Main/live remains security-only
 at `0397bba9`; no FUND live promotion or B1 closure is inferred. Separate review and focused
-staging acceptance remain open.
+staging acceptance remained open at that point. On 2026-09-12 Chris reported staging steps 1–3 PASS,
+but step 4 FAIL; Chris subsequently confirmed “Individual artwork is not enabled in this
+environment”, identifying a runtime gate hiding the existing C1 assignment controls.
+Authenticated provider readback now confirms the accepted staging settings and Chris’s
+redeployment Live at `133a4638` on 2026-09-12, with public health PASS. Chris subsequently reported “PASS - all green”: focused staging steps 1–4 are accepted,
+and the initial visibility failure is resolved. Chris's later disabled C2 finalisation report
+was diagnosed as missing Product image/tax setup and absent Seller profile. Correction
+`3379c4e9` adds the controls and explicit feedback alongside the completed technical safeguards.
+It is committed/aligned on local and online dev/staging; final build, 538 unit tests, isolated
+migration/concurrency/image proof and cleanup, exact work/dev/staging security, Render deployment
+and health PASS. Chris explicitly approved the retained DRAFT staging test Seller. Corrected
+Product-setup/finalisation/download human smoke remains pending in B1-R2 05. No full B1 closure,
+independent second-reviewer attestation or FUND main/live promotion is inferred.
+Root Now/Next are unchanged.
 
 Parent roadmap:
 
