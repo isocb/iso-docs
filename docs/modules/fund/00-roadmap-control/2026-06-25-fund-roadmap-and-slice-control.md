@@ -2,9 +2,19 @@
 
 Created: 2026-06-25
 
-Last consolidated: 2026-09-12
+Last consolidated: 2026-09-16
 
 Status: Active authoritative control for the FUND lane
+
+Current disposition — 2026-09-16: Chris confirms the image correction, but the revised B1
+walkthrough fails on VAT authority. His accepted rule is a single Product VAT percentage,
+default 20%, editable by C1 and authoritative downstream. [B1-R3 triage](../02-triage/2026-09-16-fund-b1-r3-product-vat-rate-authority-triage.md)
+selects this for [bounded remedial planning](../03-slice-planning/2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md) before B1 acceptance.
+The [revised smoke](../05-review-and-test/2026-09-16-fund-b1-r3-product-vat-rate-authority-review-and-test.md) is prepared, not run or ready on current
+staging. Application remains `e7e8837c`; no implementation or data/environment change here.
+The narrow neutral rate-evidence enum dependency is registered with Commerce. B1 remains
+Now, 1R-G planning Next; B1 owns the sole checkpoint. Template visual-preview concerns remain
+open separately. Earlier rollout/PASS chronology below does not accept this VAT correction.
 
 Latest B1 smoke correction: `e7e8837c` replaces the Product modal library selector with the
 assigned image and temporary-logo label. Build, seven focused tests, source lint/type/verify,
@@ -88,6 +98,7 @@ same row.
 
 | Source CR or governed input | Current disposition | Roadmap treatment |
 | --- | --- | --- |
+| [CR-Fix-2026-09-16-fund-product-vat-rate-authority.md](../01-cr-inputs/CR-Fix-2026-09-16-fund-product-vat-rate-authority.md) | Triaged; B1-R3 bounded plan prepared, implementation not started | Current B1 acceptance blocker; one Product VAT rate default 20%; narrow Commerce evidence dependency; revised smoke pending |
 | [`2026-06-25-c2-organisation-scope-clarification.md`](../01-cr-inputs/2026-06-25-c2-organisation-scope-clarification.md) | Consumed by the `1P-D-R1` C2 dashboard review/scope note | Historical architecture clarification; no active implementation candidate |
 | [`2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md) | Planned through `1Q-G-B` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md) | Planned through `1Q-G-A` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |

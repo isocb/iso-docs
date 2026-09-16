@@ -2,7 +2,7 @@
 
 Created: 2026-08-25
 
-Last updated: 2026-09-12
+Last updated: 2026-09-16
 
 Status: **Plain-English situation report; subordinate to the delivery lifecycle**
 
@@ -12,6 +12,25 @@ question changes. It summarises the same work; it does not create a second roadm
 implementation authority or another restart checkpoint.
 
 ## Where We Are
+
+**16 September: the image correction is confirmed, but VAT is blocking the offer.** You
+have decided that C1 should enter one Product VAT percentage, defaulted to 20% on creation,
+and vary it when needed. No separate tax-treatment question or Seller-rate mismatch should
+stand between that valid choice and a refreshed draft Store's price.
+
+This is captured as [B1-R3](../03-slice-planning/2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md), with CR, triage and a bounded
+implementation plan. It must be resolved before B1 acceptance. The smallest proposed schema
+compatibility amendment records a neutral rate-only value internally; it introduces no extra
+user choice or P1 settings page. Existing finalised prices and Orders remain protected.
+
+The [new smoke schedule](../05-review-and-test/2026-09-16-fund-b1-r3-product-vat-rate-authority-review-and-test.md) will verify Product creation at 20%,
+C1 edits, saved zero/custom rates and matching Store prices after refresh, then resume the
+blocked offer/PDF test. **It is not ready to run yet: application code has not changed.** Your
+separate concern about seeing the template visually remains open; this VAT correction does
+not pretend to supply a visual artwork preview. No code, database or environment change has
+been made by this documentation work.
+
+### Earlier September 12 deployment position
 
 **12 September: the Product modal correction is deployed to staging and ready for your check.**
 Dev and staging match `e7e8837c` locally and online. It displays the assigned tenant logo

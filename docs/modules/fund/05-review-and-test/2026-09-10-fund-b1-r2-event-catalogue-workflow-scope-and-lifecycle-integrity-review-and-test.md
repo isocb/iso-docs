@@ -2,12 +2,29 @@
 
 Date: 2026-09-10
 
-Status: **Correction `3379c4e9` committed/promoted to dev and staging; exact Render staging deployment, health, protected-branch security and connected proof PASS. Corrected Product-setup/finalisation/download human smoke pending; approved DRAFT staging test Seller prepared. Earlier aggregate PASS retained as history; FUND main/live not promoted.**
+Status: **16 September: Product image correction confirmed by Chris at the current e7e8837c candidate. Product VAT/Seller-rate mismatch blocks offer finalisation; B1-R3 CR/triage/planning prepared, not implemented. Earlier Catalogue/lifecycle passes retained; full B1 acceptance and main/live remain open.**
 
-Current candidate: application `3379c4e9` on local/online dev and staging; see the corrected
-smoke schedule and deployment evidence below. Earlier `133a4638` proof remains historical. Original
+Current candidate: application `e7e8837c`; B1-R3 implementation is pending. Earlier
+`3379c4e9` and `133a4638` evidence below remains historical. Original
 local behavioural candidate `29104b55` and DevData migration 156 evidence below remain valid;
 see the promotion section for the security integration, test-only follow-up and staging proof.
+
+## Current Human Findings And Replacement Schedule — 2026-09-16
+
+Chris's comments below are retained verbatim. Image-modal step 2 is owner-confirmed PASS.
+Step 3 is blocked: current Product and Store snapshot contain GBP 5 net, VAT 20%, legacy
+REDUCED category; the Seller reduced rate is 5%. Store Product reports READY while the offer
+rejects that mismatch. No finalised offer exists for the inspected smoke Project. Refresh
+cannot repair conflicting source authority. Step 4 finalisation/download is therefore not
+accepted on the current scenario. Template name visibility is confirmed; a visual template
+preview/download before finalisation is not delivered and remains a separate concern.
+
+Chris has now selected Product-rate authority and a 20% creation default. The
+[B1-R3 smoke schedule](2026-09-16-fund-b1-r3-product-vat-rate-authority-review-and-test.md) replaces the category-matching instructions for the next
+corrected test. It is NOT RUN and must not be attempted as if deployed on `e7e8837c`.
+The [CR](../01-cr-inputs/CR-Fix-2026-09-16-fund-product-vat-rate-authority.md), [triage](../02-triage/2026-09-16-fund-b1-r3-product-vat-rate-authority-triage.md) and
+[plan](../03-slice-planning/2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md) hold the correction. Earlier schedules and deployment
+records below are history, not evidence that the new VAT model is implemented or passed.
 
 ## Review Result
 
@@ -347,7 +364,7 @@ The [B1 technical review](2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-r
 records the local corrections and connected proof separately from this staging finding.
 
 
-### Corrected staging smoke — Product setup to development PDF
+### September 12 staging smoke — retained with owner comments; superseded by B1-R3
 
 Chris requested these corrections be committed and promoted to staging for his test. Direct
 read-only diagnosis found missing primary image and tax treatment, plus no Seller profile.
@@ -369,11 +386,13 @@ reasons, a valid snapshot/hash and exact-organiser permission. Follow this revis
    link, dropdown and separate image Save controls must be absent. The present C2 Store panel
    still does not render a Product image gallery. Product-owned uploads/gallery/options are captured in the
    [media refinement input](../01-cr-inputs/2026-09-12-fund-product-media-gallery-options-and-option-image-refinement-input.md).
-   This workaround does not accept that unfinished Product-media UI.
+   This workaround does not accept that unfinished Product-media UI. **Chris 16-09-2026 - Confirmed**
 3. **C2 → Project → Store**: reload; use **Refresh Store configuration and offer** if source
    data has changed since the prepared fixture. Confirm the offer's
    named requirements disappear once resolved and its Product/price summary is shown.
-   C2 should see the assigned template but no template or Product-image administration.
+   C2 should see the assigned template but no template or Product-image administration. **Chris - template name is confirmed as C2 but it's not prominant or clickable to either download or view it on screen - the template is not confirmed in the store view of C2. also the test is "Before you can finalise this offer"
+Resolve GBP price and Seller tax evidence for Mug 2 Small one." this despite refresh Store. I cant see any remediation.  **
+Complete the listed actions, then refresh the Store configuration below to check the offer again.
 4. Review the summary, tick acknowledgement, then **Finalise offer and generate artwork**.
    Download the labelled development PDF; reload/re-download or retry generation if needed.
    Confirm the selection/content lock and that this does not publish the Store or enable

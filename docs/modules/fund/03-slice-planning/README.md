@@ -23,11 +23,12 @@ Most recently completed implementation lifecycle:
 
 Current integrated critical-path action:
 
-- [B1 — Individual Offer And Artwork Journey development plan](2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md) now governs authorised technical review and implementation; automated validation has passed and local human smoke remains pending.
+- [B1 — Individual Offer And Artwork Journey development plan](2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md) retains overall control. The September 16 VAT finding requires B1-R3 remediation before acceptance; its bounded plan is prepared, not implemented.
 - [B — business framework](../00-roadmap-control/2026-09-07-fund-user-framework-and-individual-artwork-delivery-principles.md) is a subordinate roadmap augmentation. The former schema-planning path is only a redirect.
-- B1 holds the one active restart checkpoint. Root Next is unselected pending its review.
+- B1 holds the one active restart checkpoint. Root Next remains 1R-G Store presentation planning.
 
-Application local/remote dev, staging and main align at `14077382`. Commerce/A7, Project
+Last proven application dev/staging candidate is `e7e8837c`; main/live remains `0397bba9`.
+No application change accompanies the B1-R3 planning update. Commerce/A7, Project
 and Store foundations are retained in ancestry. The corrected 1R-F-A proof at `0c7e4848`
 passed local, Linux, security and its isolated external run with zero residue; it is closed.
 The earlier Stage C failure is history, not a pending rerun. E-B/E-C/E-D consolidated
@@ -121,3 +122,5 @@ Accepted parent:
 - [B1-R1 detailed remediation plan](2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-planning.md) — implemented locally at `51618485`; remaining B1 acceptance continues through B1-R2.
 
 - [B1-R2 Event Catalogue workflow scope and lifecycle integrity](2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-planning.md) — implemented locally at `29104b55`; automated/connected proof PASS and human acceptance pending.
+
+- [B1-R3 Product VAT rate authority plan](2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md) — 2026-09-16: triaged/planned inside B1; implementation not started; revised smoke is pending the corrected candidate.

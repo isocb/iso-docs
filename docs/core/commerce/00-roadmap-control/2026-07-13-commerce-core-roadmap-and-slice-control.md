@@ -125,6 +125,23 @@ The FUND roadmap is a sibling control, not the parent Commerce roadmap:
 
 `docs/modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md`
 
+## 7.0 FUND B1-R3 Rate-Only Evidence Dependency — 2026-09-16
+
+Disposition: **Cross-lane planning dependency recorded; no implementation authorised here.**
+FUND's owner selects one Product VAT percentage, default 20%, without a separate category
+or Seller-rate override. The [FUND B1-R3 plan](../../../modules/fund/03-slice-planning/2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md)
+proposes an additive RATE_SPECIFIED value in the existing Commerce/FUND treatment enums so
+new explicit-rate evidence does not fabricate a statutory category. Commerce already receives
+appliedTaxRateBps and monetary totals through its submission service. Review enum consumers,
+constraints, other-module compatibility and rollback before implementing this amendment.
+
+Commerce retains ownership of the shared evidence contract; FUND owns percentage resolution,
+UI, Store snapshots and its adapter. Existing categories, Seller identity/payment readiness
+and historical Orders stay intact. This is one bounded dependency of the active FUND B1
+correction, not a second selected workstream, new tax engine or permission to alter another
+module's tax behaviour. Evidence can be recorded in the coordinated B1-R3 04/05 lifecycle
+with explicit Commerce review; no duplicate roadmap or standalone schema cleanup is needed.
+
 ## 7.1 `COMMERCE-A2` Status
 
 Planning:

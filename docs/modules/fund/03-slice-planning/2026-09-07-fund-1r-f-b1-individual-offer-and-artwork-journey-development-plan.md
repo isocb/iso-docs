@@ -2,7 +2,7 @@
 
 Date: 2026-09-07
 
-Status: **Product modal correction `e7e8837c` committed and aligned on dev/staging; build, seven focused tests, source lint, type/repository checks and read-only staging media/authority proof PASS. Exact dev/staging security scans PASS. Exact Render deployment and three-domain health/anonymous-access proof PASS; human modal/finalisation smoke pending; main/live held.**
+Status: **B1-R3 VAT correction triaged and planned on 2026-09-16; implementation not started. Owner confirms the Product image correction but current VAT mismatch blocks finalisation. Application remains e7e8837c; main/live held.**
 
 Control depth: **High** — this journey introduces persistent offer evidence, exact C2
 finaliser authority, tenant-bound document access and failure/retry behaviour.
@@ -23,11 +23,11 @@ now selects FUND B1/B1-R2 dev/staging promotion and acceptance as Now, with the 
 ## Restart Checkpoint
 
 ```text
-Current state: Product modal correction e7e8837c displays the assigned image and temporary-logo label without the library selector. Build, seven focused tests, source lint, type/repository checks and read-only staging image/authority proof PASS. Exact dev/staging Security Scans 34689761185/34689769969 PASS. Human modal and C2 finalisation smoke pending; prior B1 technical evidence retained.
+Current state: B1-R3 CR/triage/bounded plan and revised future smoke prepared from owner direction: Product VAT defaults to 20%, C1 may vary it, no category/Seller-rate veto. Image human check PASS; Product/Store rate authority and finalisation remain blocked on current code. No new implementation or test PASS
 Last proven commit: e7e8837c5e18bc1b94457edecc6f52b75678f0e9; Render dep-daiivvojo6nc73bl6u8g Live at 2026-09-12T11:03:03.30739Z; staging.seasonpro.co.uk, staging.isostack.app and Render alias health/DB/RLS 11/11 and signed-out image query 401 PASS
 Current environment: local/online dev and staging match e7e8837c; Render staging is Live at that candidate; all three staging domains pass health and anonymous image-query refusal. Existing authorised DRAFT Seller and temporary logo fixture retained; no database or runtime changes in this correction. Main/live unchanged at security-only 0397bba9
-Next human decision/test: reopen C1 Product Edit on deployed e7e8837c and confirm the logo preview/Temporary tenant logo label with no library link, dropdown or separate image Save. Then continue C2 offer review/finalisation/PDF smoke. Media/gallery and guided intake refinements remain planning inputs; main/live held
-Safe resumption point: exact e7e8837c staging deployment/health is verified; Chris performs the updated B1-R2 smoke. Preserve current fixture and frozen evidence; do not reset data or start the captured refinements. Rollback code is 3379c4e9 with no data reversal required
+Next human decision/test: review the bounded B1-R3 implementation plan; implementation not started. Revised Product-creation/Store-update/finalisation smoke becomes executable only after reviewed implementation and exact environment preparation. Template visual-preview concern remains separate
+Safe resumption point: follow B1-R3 technical review and implementation when authorised, including narrow Commerce enum dependency and safe migration/rollback proof. Preserve existing data, finalised evidence and user comments; do not repeat the obsolete category-matching smoke. Keep main/live held
 ```
 
 ## 1. One Visible Outcome
@@ -481,3 +481,13 @@ Outcome: `e7e8837c` committed via the existing work/dev/staging corridor; exact 
 deployment and three-domain health/anonymous-access proof PASS. Seven focused tests, build,
 lint/type/verify, read-only staging media/authority checks and exact dev/staging security
 scans PASS. Human modal display and C2 finalisation/download remain pending. No data changes.
+
+## B1-R3 VAT Authority Amendment — 2026-09-16
+
+Chris directs the single Product-percentage model and requests CR, triage, planning and
+revised smoke. The [B1-R3 plan](2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md) is the bounded remedial child. It supersedes earlier
+B1 instructions to make Product category/percentage agree with Seller rates for new rate-only
+configuration; current deployed code still has those rules until corrected. Preserve prior
+PASS scope and immutable evidence. The root/child/Commerce roadmaps register the dependency;
+this record retains the only restart checkpoint. No code, migration, database or deployment
+change has occurred through this planning action.

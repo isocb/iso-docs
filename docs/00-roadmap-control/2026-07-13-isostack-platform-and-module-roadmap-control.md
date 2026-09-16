@@ -2,7 +2,7 @@
 
 Date: 2026-07-27
 
-Last portfolio reconciliation: 2026-09-12
+Last portfolio reconciliation: 2026-09-16
 
 Status: Active parent roadmap
 
@@ -81,9 +81,14 @@ Role Authority project = COMPLETE AND CLOSED
 
 Current serial portfolio decision:
 
+16 September owner-directed B1-R3 planning supersedes the earlier assumption that only
+a human retry remains. The Commerce dependency concerns neutral numeric-rate evidence,
+not another portfolio outcome or a general tax-engine change. No implementation authority
+or live promotion is inferred from the accepted business decision.
+
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | FUND `1R-F-B1` / B1-R2 staging acceptance | Correction `3379c4e9` is committed and aligned on local/online dev and staging. Build, 538 unit tests, connected migration/concurrency/image proof and verified cleanup, exact work/dev/staging security scans, Render deployment and staging health PASS. Missing Product image/tax controls and offer feedback are corrected; the approved DRAFT staging test Seller is prepared. Chris must now run the corrected Product-setup/finalisation/download smoke. Main/live stays security-only at `0397bba9`; full B1 closure remains open. |
+| **NOW** | FUND `1R-F-B1` / B1-R3 VAT remediation planning and resumed acceptance | Owner accepts one C1-editable Product VAT percentage, default 20%. [B1-R3](../modules/fund/03-slice-planning/2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md) is triaged/planned to remove the conflicting Seller/category authority, including a narrowly scoped Commerce neutral-evidence dependency. Image smoke confirmed; current finalisation blocked. Application remains `e7e8837c`; implementation/migration/new smoke not run. Main/live remains `0397bba9`. |
 | **NEXT** | FUND `1R-G` Store presentation planning | Continue the existing planning proposal after B1 reconciliation. Its authenticated development-preview boundary is ready for owner review; no 1R-G implementation or live FUND release is authorised. |
 
 On 2026-09-10 Chris requested FUND dev/staging alignment after the security correction was

@@ -14,3 +14,5 @@ Triage documents should identify blocker status, suggested branch/slice and whet
 
 - [B1-R1 Catalogue availability/workflow authority triage](2026-09-08-fund-b1-r1-catalogue-availability-and-workflow-authority-triage.md) — implemented locally at `51618485`; remaining B1 acceptance continues through B1-R2.
 - [B1-R2 Event Catalogue workflow scope and lifecycle integrity triage](2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-triage.md) — implemented locally at `29104b55`; independent review and human acceptance pending.
+
+- [B1-R3 Product VAT rate authority triage](2026-09-16-fund-b1-r3-product-vat-rate-authority-triage.md) — 2026-09-16: triaged/planned inside B1; implementation not started; revised smoke is pending the corrected candidate.
