@@ -2,7 +2,7 @@
 
 Date: 2026-09-07
 
-Status: **B1-R3 VAT correction triaged and planned on 2026-09-16; implementation not started. Owner confirms the Product image correction but current VAT mismatch blocks finalisation. Application remains e7e8837c; main/live held.**
+Status: **B1-R3 implemented locally at 5ffb6cc8; C2 price-display correction at 6ebaac46. Chris records local A0/A PASS; revised B/C and separate review remain open. Online dev/staging remain e7e8837c; main/live held.**
 
 Control depth: **High** — this journey introduces persistent offer evidence, exact C2
 finaliser authority, tenant-bound document access and failure/retry behaviour.
@@ -23,10 +23,10 @@ now selects FUND B1/B1-R2 dev/staging promotion and acceptance as Now, with the 
 ## Restart Checkpoint
 
 ```text
-Current state: amended B1-R3 implemented and locally committed at 5ffb6cc8; 583 tests, build/type/changed-source lint, migration/history/RLS/B1/B1-R3/A7 proofs and cleanup PASS. Whole-repository lint retains pre-existing unrelated errors. Separate review and human acceptance pending; B1 is not closed.
-Last proven commit: 5ffb6cc8ec4594891a5e80356021bca3d75a7a28 locally; 583 tests/12 skips and connected proof PASS. Last staging candidate remains e7e8837c with its previously recorded Render evidence.
-Current environment: local work/fund-b1-r3-platform-vat at 5ffb6cc8, not pushed or consolidated into dev; verified DevData 257f63f2e2c2 migrated to 157 with protected-row fingerprints unchanged. Online dev/staging remain e7e8837c; main/live remains 0397bba9. Zero task test databases/roles remain.
-Next human decision/test: separate technical review and B1-R3 A0/A/B/C human smoke. Local testing requires a server restart for regenerated Prisma; staging testing waits for controlled promotion and exact deployment evidence. No live FUND approval inferred.
+Current state: amended B1-R3 implemented and locally committed at 5ffb6cc8; 583 tests, build/type/changed-source lint, migration/history/RLS/B1/B1-R3/A7 proofs and cleanup PASS. Follow-up 6ebaac46 adds C2 inclusive-price display; 31 focused tests, final build/type/lint, C2 readback/B1/B1-R3/A7 and disposable cleanup PASS. Whole-repository lint retains pre-existing unrelated errors. Separate review and human acceptance pending; B1 is not closed.
+Last proven commit: 6ebaac46654dc75fe1b44b552194b4aa0ada30c0 locally; 31 focused tests, final build/type/lint and connected C2/B1/B1-R3/A7 proof PASS. Earlier 5ffb6cc8 full suite: 583 tests/12 skips PASS. Last staging candidate remains e7e8837c with its previously recorded Render evidence.
+Current environment: local work/fund-b1-r3-platform-vat at 6ebaac46 (C2 inclusive-price display; build/type/lint and 31 focused tests PASS), not pushed or consolidated into dev; verified DevData 257f63f2e2c2 migrated to 157 with protected-row fingerprints unchanged. Online dev/staging remain e7e8837c; main/live remains 0397bba9. Zero task test databases/roles remain.
+Next human decision/test: separate technical review; Chris records B1-R3 A0/A PASS locally on 16 September. Reported Project C2-20260908-27FF7A1C is blocked by wf1 archived before the lifecycle correction; Chris explicitly directs that it remain archived. C2 price omission is corrected locally at 6ebaac46; repeat revised B on a suitable active-Event Project. Missing local Product images remain a separate prerequisite for C (the tenant-logo fixture exists on staging only). Staging testing waits for controlled promotion and exact deployment evidence. No live FUND approval inferred.
 Safe resumption point: use B1-R3 04/05 evidence at 5ffb6cc8; preserve saved rates, frozen evidence and user comments. Complete remaining review/promotion/human gates; do not repeat obsolete category-matching tests or reset the test bed.
 ```
 

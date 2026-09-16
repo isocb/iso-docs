@@ -5,10 +5,10 @@ Date: 2026-09-16
 Status: **Implemented and locally committed; automated/connected proof PASS. Separate review, human acceptance and promotion pending.**
 Control depth: **High**.
 
-Exact commit: `5ffb6cc8ec4594891a5e80356021bca3d75a7a28` on local `work/fund-b1-r3-platform-vat`, based on `e7e8837c`; not pushed or promoted.
+Exact candidate: `6ebaac46` on local `work/fund-b1-r3-platform-vat` adds the C2 price-display correction to `5ffb6cc8ec4594891a5e80356021bca3d75a7a28`; neither is pushed or promoted. The original VAT implementation was based on `e7e8837c`.
 Files/change boundary: P1 settings/default lookup, FUND Product/Store/offer/checkout rate authority, Pulse quote defaults, additive evidence migration and bounded tests.
 Automated checks: 583 unit/regression tests PASS, 12 skipped; production build/type/critical-file verification PASS. Changed application-source lint: 21 files, zero errors, 44 warnings. Full repository lint fails on unrelated existing pages; no clean full-lint claim.
-Human evidence: not run for B1-R3; previous image PASS is retained only for its original scope.
+Human evidence: Chris records A0/A PASS locally; B exposed a C2 price-display omission corrected below, with rerun pending. Previous image PASS is staging-only evidence.
 Environment proven: local source/build plus isolated 156-to-157 migration, legacy preservation and restricted-role scalar read PASS; fresh 157-migration replay and local DevData migration/readback PASS; candidate B1/B1-R3/A7 service proof and cleanup PASS.
 Known residual risk: old application binaries cannot safely read newly written RATE_SPECIFIED values; use a compatible rollback/forward correction. Separate review and environment/human gates remain pending.
 Next authorised action: separate technical review and revised human smoke; controlled promotion follows the recorded gates. No main/live promotion.
@@ -17,6 +17,33 @@ Next authorised action: separate technical review and revised human smoke; contr
 · [Review and human smoke](../05-review-and-test/2026-09-16-fund-b1-r3-product-vat-rate-authority-review-and-test.md)
 
 ## What Changed
+
+### C2 price-display correction — 16 September
+
+Follow-up source is locally committed at `6ebaac46`, not pushed or promoted.
+The C2 Product range omitted prices and the Store response omitted saved pricing fields.
+Add a read-only server summary using the existing decimal-to-minor, percentage-to-basis-point
+and half-up tax functions. Following Chris's clarification, both C2 surfaces show only the GBP price per item including
+VAT, without a net/VAT breakdown. The Product range uses current source values and the
+Store uses its saved configuration. Invoice/commission-statement tax analysis is outside
+this display correction.
+An explicit Product-price refresh button rereads the range. Store refresh remains the existing
+operation; it does not rewrite finalised offer/PDF evidence. C1/organiser Project price columns
+explicitly say net/excluding VAT. Missing/invalid or non-GBP prices display unavailable.
+
+These reads use existing tenant/Client authorisation and require no additional media or Seller
+readiness. They grant no price-editing, publication, payment or finalisation authority. No
+schema/migration or local/staging/live fixture edits were made. Rollback is the preceding
+compatible `5ffb6cc8` binary; retain migration 157.
+
+Verification: focused price/VAT tests **31 PASS**; changed-source ESLint **zero errors or
+warnings**; TypeScript, critical-file verification and production build **PASS**. Isolated
+connected C2 Product/Store readback at all four VAT rates, B1/B1-R3 frozen-evidence and
+Catalogue/authority/concurrency regressions, and A7 Commerce proof **PASS**. Fresh migration
+157 replay/checksums PASS; the dedicated database was dropped and absence independently
+verified by the runner. No local test-bed changes. Human B rerun remains pending.
+The earlier 583-test full suite and migration/history proof below apply to `5ffb6cc8`, not a
+claim of a new full-suite run for this follow-up.
 
 P1 has **Default VAT rate (%)** under **Platform Settings → Currency and Numbers**. It uses
 existing app-owner Organisation settings JSON, preserves other keys, and writes through the

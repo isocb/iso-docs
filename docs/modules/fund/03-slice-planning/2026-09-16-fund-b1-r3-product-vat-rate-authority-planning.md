@@ -14,6 +14,17 @@ continues to hold the sole five-field checkpoint. This is not a second portfolio
 
 ## 1. Visible Outcome And Fixed Rules
 
+Smoke finding amendment — 16 September: C2 Products omit prices and the C2 Store read
+response omits configuration prices; C1 Project tables label net prices ambiguously. Correct
+these within B1-R3's price-verification outcome. Following Chris's subsequent clarification, show C2 one read-only GBP price per item,
+including VAT, without net/VAT analysis. Use existing server minor-unit/half-up arithmetic. Products show current
+source prices; Store shows its saved configuration prices after refresh. Label C1 columns
+explicitly as net/excluding VAT. Price display must not require media/Seller readiness or
+imply publication/finalisation. Missing or invalid prices remain unavailable, not zero.
+Retain all permissions, readiness gates and immutable offer/Order evidence. No schema/data
+change or promotion is needed for this correction. Verify rounding/zero/invalid cases,
+type/build and relevant UI checks; Chris repeats B steps 5–6 locally before acceptance.
+
 P1 sets Default VAT rate (%) in Platform Settings → Currency and Numbers, initially 20%.
 C1 creates a Product with VAT prefilled from that platform default, or enters another percentage, and saves.
 There is no second tax-treatment input. A draft Store refreshed from that Product uses the
@@ -148,9 +159,12 @@ inspect the ledger and preserve data; no blind rerun/reset.
 
 Development and staging retain existing emulation and test fixtures. No Seller-rate edits
 are needed to make the new percentage work. New Product-creation smoke and existing Product
-Store-update smoke can be separate: the latter uses the already assigned tenant-logo image
-so the deferred image-upload UI does not obstruct VAT proof. Human-visible tests remain on
-staging after local proof and exact deployment verification. Main/live requires separate approval.
+Store-update smoke can be separate. The already assigned tenant-logo image is a staging
+fixture, not a local fixture. Chris confirmed on 16 September that local Products have no
+assigned images. Local default/Product VAT smoke remains valid; full Store/offer human
+proof requires a suitable local fixture or the existing staging fixture after controlled
+promotion and exact deployment verification. Missing images block those dependent checks;
+do not bypass readiness or classify this as a VAT failure. Main/live requires separate approval.
 
 ## 4. Required Evidence And Smoke
 
