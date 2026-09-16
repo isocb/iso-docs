@@ -4,6 +4,12 @@ Date: 2026-07-13
 
 Status: Planning input
 
+16 September continuation: Chris accepts preparation of the bounded
+[launch-preparation plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md),
+now drafted. It covers C1 configuration/proposal and exact C2 acceptance, retaining C5's
+accepted flat/stepped and override semantics. Calculation/statements/settlement remain
+separate, and no new implementation slice is selected.
+
 16 September review clarification: `1R-C5` delivered policy/version/assignment schema and
 reserved a C1 management contract; `1R-E-C` delivered C2 acceptance. The C1 runtime policy/
 proposal creation and UI remain absent. The local Store walkthrough has no policy or offered

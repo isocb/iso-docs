@@ -13,6 +13,15 @@ implementation authority or another restart checkpoint.
 
 ## Where We Are
 
+**Accepted next work — planning, not further smoke:** Chris accepts retaining A0/A/B PASS
+and pausing C until deliberate setup is available. The
+[launch-preparation plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md) is prepared for review:
+first accurate readiness, then a DRAFT Seller/temporary Product-image setup path, then
+C1 commission proposals and exact C2 acceptance. Commission calculation/statements/settlement
+remain separate. No new implementation slice is selected; B1 Now / 1R-G planning Next stays
+unchanged. The plan's first implementation boundary must be selected before code or fixtures
+change. It will not itself remove the Individual development-only publication restriction.
+
 ### 16 September evening — Store publication is not yet a complete user journey
 
 Chris's local smoke has passed the platform VAT default, Product editing, C2 inclusive-price

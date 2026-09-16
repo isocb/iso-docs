@@ -173,6 +173,12 @@ preview or production print layout; Chris's separate concern remains unresolved.
 
 ### Whole Store-publication review — 16 September, after the 19:49 screenshots
 
+**Owner disposition accepted:** Chris accepts the recommended continuation below: preserve
+A0/A/B PASS, keep C blocked until deliberate development setup, and prepare the
+[bounded launch-preparation plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md). The proposal is now
+prepared. No repeat publication smoke, new implementation selection, fixture writes or
+promotion is authorised; root B1 Now / 1R-G planning Next remain unchanged.
+
 **Conclusion: the connected C1 setup → C2 publication → purchaser journey is not complete.**
 The VAT correction passes its bounded human checks. That does not establish Store-publication
 readiness or complete B1. This review is by the implementing agent, not a separate reviewer.

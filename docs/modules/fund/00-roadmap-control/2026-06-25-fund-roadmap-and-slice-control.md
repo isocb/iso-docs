@@ -6,7 +6,14 @@ Last consolidated: 2026-09-16
 
 Status: Active authoritative control for the FUND lane
 
-Current disposition — 16 September: local `5ffb6cc8` implements the owner amendment and passes automated/connected proof; DevData migration 157 preserves existing rows. Separate review, human acceptance and controlled promotion remain pending. This supersedes the earlier planning-only disposition below: platform-wide P1 VAT creation default, initially 20%, and B1-R3 implementation are authorised. Existing Product/quote/frozen evidence rates are preserved. Platform/Pulse and Commerce dependencies remain part of this one bounded correction; main/live held.
+Current disposition — 16 September evening: Chris accepts A0/A/B VAT smoke PASS at local
+`6ebaac46` and leaving C blocked until deliberate Seller/image setup exists. He accepts
+reconciling missing C1 commission/Seller setup, staged readiness and supported media into a
+[bounded launch-preparation proposal](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md), now prepared.
+Planning only: no new implementation slice selected, no local fixtures changed, no publication
+smoke requested, and root B1 Now / 1R-G planning Next unchanged. B1 remains open. DevData is
+157; online dev/staging remain `e7e8837c`, main/live `0397bba9`. Separate review/promotion remain
+pending; saved Product/quote/frozen evidence rates are preserved.
 
 Earlier planning disposition — 2026-09-16: Chris confirms the image correction, but the revised B1
 walkthrough fails on VAT authority. His accepted rule is a single Product VAT percentage,
@@ -100,11 +107,11 @@ same row.
 
 | Source CR or governed input | Current disposition | Roadmap treatment |
 | --- | --- | --- |
-| [CR-Fix-2026-09-16-fund-product-vat-rate-authority.md](../01-cr-inputs/CR-Fix-2026-09-16-fund-product-vat-rate-authority.md) | Triaged; B1-R3 bounded plan prepared, implementation not started | Current B1 acceptance blocker; one Product VAT rate default 20%; narrow Commerce evidence dependency; revised smoke pending |
+| [CR-Fix-2026-09-16-fund-product-vat-rate-authority.md](../01-cr-inputs/CR-Fix-2026-09-16-fund-product-vat-rate-authority.md) | Implemented locally at 5ffb6cc8/6ebaac46; A0/A/B accepted PASS | VAT smoke complete within its scope; B1 C remains blocked by Seller/image setup. Publication/commission gaps are separate dependencies |
 | [`2026-06-25-c2-organisation-scope-clarification.md`](../01-cr-inputs/2026-06-25-c2-organisation-scope-clarification.md) | Consumed by the `1P-D-R1` C2 dashboard review/scope note | Historical architecture clarification; no active implementation candidate |
 | [`2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md) | Planned through `1Q-G-B` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md) | Planned through `1Q-G-A` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
-| [`2026-07-13-fund-cr-commission-ladder-planner-input.md`](../01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md) | `1R-C5` schema and E-C C2 acceptance exist; 16 September review confirms C1 policy/proposal services/UI are absent and block publication | Required Phase 1 pre-publication management dependency, awaiting bounded follow-on planning/selection. Distinguish it from aggregate calculation/statements/settlement and subordinate `2R-PROD-05`; no implementation selected by this review |
+| [`2026-07-13-fund-cr-commission-ladder-planner-input.md`](../01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md) | `1R-C5` schema and E-C C2 acceptance exist; 16 September review confirms C1 policy/proposal services/UI are absent and block publication | Required Phase 1 pre-publication management dependency; [launch-preparation plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md) prepared under accepted planning continuation, awaiting implementation selection. Distinguish it from aggregate calculation/statements/settlement and subordinate `2R-PROD-05`; no implementation selected by this review |
 | [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; `1R-F-A` completes at PASS with exact `0c7e4848` and zero residue; `1R-F-B` now reconciles the visible user/workflow framework and smallest vertical outcome | Former ten-record schema proposal retained as unaccepted technical evidence; no production implementation is authorised |
 | [`2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md`](../01-cr-inputs/2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md) | Consumed as the boundary preventing the Individual proof from absorbing collective/Standard paths; those paths remain readiness branches around the common journey | Detailed collective work remains parked; no former `1R-F-F` through `I` candidate is automatically selected |
 | [`2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`](../01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md) | `1R-F-A` proved ceilings of ten STANDARD portrait and twelve COMPACT landscape rows for its exact variants; `1R-F-B` now treats their product effect before persistence | Capacity evidence informs the minimum vertical journey; no template-version schema or policy implementation is authorised |
