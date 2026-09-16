@@ -2,11 +2,11 @@
 
 Date: 2026-09-16
 
-Status: **Chris records A0/A PASS locally. C2 price-display omission corrected locally; automated/connected proof PASS and human B rerun pending. Owner retains the old archived Event and is creating a new test setup. Missing local Product media remains a prerequisite for C. Not deployed to staging.**
+Status: **Chris records A0/A/B PASS locally, including C2 inclusive prices at all four VAT rates and C2 VAT-edit refusal. C remains blocked by missing local Seller profile and Product images; reported readiness instructions point to unavailable C1 controls. B1 acceptance remains open. Not deployed to staging.**
 Candidate: `5ffb6cc8ec4594891a5e80356021bca3d75a7a28` on local `work/fund-b1-r3-platform-vat`. DevData is migrated to 157. Online dev/staging remain `e7e8837c`, which still has the reported VAT defect.
 Follow-up C2 price-display candidate: local commit `6ebaac46` on the same branch; build/type,
 critical-file verification, focused lint and 31 price/VAT tests PASS. Connected C2 price
-readback, B1/B1-R3/A7 regressions and disposable database cleanup PASS; human rerun pending.
+readback, B1/B1-R3/A7 regressions and disposable database cleanup PASS; Chris records B rerun PASS.
 Control depth: High. [Plan](../03-slice-planning/2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md).
 Actual evidence is recorded in the [04 confirmation](../04-implementation-confirmations/2026-09-16-fund-b1-r3-platform-vat-default-and-product-rate-authority-implementation-confirmation.md); separate review and human acceptance remain pending.
 
@@ -125,17 +125,43 @@ or financial write is added. Finalised offer/PDF evidence remains separate and u
    configuration and compare both displays. Expect **£10.50 including VAT**. **Chris 16/9/2026 - PASS**
    Repeat with **0%** (price **£10**) and **7.5%** (price **£10.75**). C2 sees the inclusive
    price only; C1 net remains **£10** throughout. No category choice or Seller-rate edit. **Chris 16/9/2026 - PASS**
-7. Confirm C2 cannot change the Product's VAT. If there is another real missing prerequisite,
-   record its exact message and responsible role; do not bypass it to complete this schedule. **Chris 16/9/2026 - PASS**
+7. Confirm C2 cannot change the Product's VAT. **Chris 16/9/2026 - PASS** If there is another real missing prerequisite,
+   record its exact message and responsible role; do not bypass it to complete this schedule. ** Chris 16/9/2026 - offer prerequitie message:
+Before you can finalise this offer
+C1: configure the organisation’s Seller profile and GBP currency before reviewing prices. (CHRIS: note there is no UI for setting currency for seller)
+A.TestCreateProduct: C1: assign a primary image in Products → Edit Product.
+Coaster: C1: assign a primary image in Products → Edit Product.
+Teatowel: C1: assign a primary image in Products → Edit Product.
+Ceramic Mug 2: C1: assign a primary image in Products → Edit Product.
+Complete the listed actions, then refresh the Store configuration below to check the offer again.**
 8. Restore the intended test price/rate, Save and refresh. Verify the expected gross amount
-   before finalisation. Do this before the next section because B1 locks confirmed content.
+   before finalisation. Do this before the next section because B1 locks confirmed content. **Chris 16/9/2026 - PASS**
 
 ## C. Resume The Blocked B1 Offer Test
+
+### Local offer prerequisites confirmed by Chris — 16 September
+
+The step 7 finding above does not overturn the VAT/C2-price passes. The exact Seller
+message is emitted when the organisation has no Commerce Seller profile; it does not
+establish that the P1 currency setting is wrong. The offer still requires Seller identity
+and GBP, independently of Product-rate VAT authority. No C1 Seller/currency setup UI is
+currently exposed. The Product editor only displays assigned media; its upload/assignment
+controls remain deferred. Therefore the reported instructions to configure these through
+C1 are not executable in the current UI and must not be treated as user error.
+
+Section C is **BLOCKED — local development fixture setup**, covering a GBP Seller profile
+and primary images for the four named Products. The existing synthetic DRAFT Seller and
+logo fixtures were approved/provisioned on staging only. No local fixture writes are made
+by this review and no staging approval is extended silently. Resume C only after local
+setup is explicitly established or the verified candidate is promoted to the prepared
+staging environment. Do not alter P1 currency, Seller tax rates or bypass readiness to
+force finalisation. Inaccurate application readiness wording remains an identified issue.
+
 
 9. As the exact organiser, review the now-available offer summary, acknowledge and finalise.
    Generate/download the labelled development PDF. Its Product prices must match the reviewed
    summary. Reload and re-download; confirm selection/content remains locked and no purchase
-   or Store-publication authority was enabled by this step.
+   or Store-publication authority was enabled by this step. **BLOCKED**
 10. For a separate already-finalised test offer, verify a later C1 source-rate edit plus allowed
     refresh does not rewrite its confirmed price or PDF. The agent should prove this first with
     disposable fixtures; avoid changing a shared human fixture without identifying its scope.
@@ -145,9 +171,62 @@ preview or production print layout; Chris's separate concern remains unresolved.
 
 ## Evidence To Complete After Implementation
 
+### Whole Store-publication review — 16 September, after the 19:49 screenshots
+
+**Conclusion: the connected C1 setup → C2 publication → purchaser journey is not complete.**
+The VAT correction passes its bounded human checks. That does not establish Store-publication
+readiness or complete B1. This review is by the implementing agent, not a separate reviewer.
+
+Evidence: Chris's two supplied screenshots, application `6ebaac46`, roadmap/lifecycle source,
+and a read-only transaction against verified local DevData. Project
+`C2-20260916-C3A4CA87` (`5ea07c83-efdc-47fa-9db8-bb22eb7c0474`) is ACTIVE; Event `1wf.2`
+is ACTIVE. The Project window is 2–30 September, with close at **00:00 on 30 September**
+Europe/London. Its Store is DRAFT. There is one active Project selection and one matching
+visible, eligible Store Product: Teatowel, GBP 45 net, VAT 20%, GBP 54 including VAT.
+Its only Product readiness reason is `PRIMARY_MEDIA_MISSING`. No missing-selection defect
+is reproduced for this Project. The Store Product appears in the second screenshot.
+
+The tenant has no Seller profile, no Stripe connection and no commission policies. This
+Project has no commission assignment and no finalised Individual offer. No data, provider
+configuration, application code or deployment was changed during this review.
+
+| Stage | Observed implementation and current blocker | Disposition / responsible work |
+| --- | --- | --- |
+| Event/Project and Product selection | Active Event and Project; selected Teatowel is present and correctly priced | Working on this fixture; no need to recreate it again |
+| Product presentation | Product editor displays assigned images but cannot upload/assign them; readiness nevertheless says to assign one there | Missing local fixture plus misleading action text; existing media-refinement input owns the finished UI. Development placeholders do not deliver that UI |
+| Seller identity/currency | Offer generation requires a GBP Seller profile. No C1 Seller-profile provisioning UI/write path was found | Missing setup capability, distinct from P1 currency/VAT defaults and Stripe onboarding. Explicit local fixture preparation can support B1 only |
+| Commission proposal | Policy/version/assignment schema exists (`1R-C5`); no C1 create/propose runtime path or UI found in application source | Required Phase 1 pre-publication dependency, not delivered by the schema slice; use the existing commission input and its reserved C1 UI contract for bounded follow-on planning |
+| Commission acceptance | C2 review/accept UI and guarded mutation exist (`1R-E-C`), but only appear for a PROPOSED assignment | Correctly awaiting an offer. Top-level “Accept the current commission offer / C2” is wrong when none exists: readiness collapses absent and unaccepted offers into one reason. A missing offer needs C1/setup ownership; only an existing offer needs C2 acceptance |
+| Individual offer/document | C1 template assignment exists and the screenshot confirms it. C2 finalisation/download exists but requires the missing Seller/image setup | B1 section C remains blocked. Commission and live Stripe setup are publication gates, not prerequisites to the bounded development PDF test |
+| Individual real release | `INDIVIDUAL_ARTWORK_DEVELOPMENT_ONLY` is added unconditionally for Individual Projects, including those with an available PDF | Intentional B1 boundary; this cannot be cleared by ordinary C1 setup. Displaying it as another C1 task is misleading. Later Phase 1 production readiness/release is required |
+| Payment setup | Shared `/settings/payments` has Stripe Connect status/onboarding and checkout controls; changes require the organisation OWNER, not impersonation. Publication also requires an ACTIVE Seller profile | Existing Commerce A6 capability, unconfigured here; connecting Stripe alone cannot supply the missing Seller record or remove the B1 release restriction. No real-provider setup requested by this review |
+| Publication and purchaser access | C2 Publish/Resume actions and server guards exist but are withheld while blockers remain; no public FUND Store presentation route is implemented | `1R-G` is the next planning proposal, initially read-only/development preview. Public release, purchaser checkout and Order operations remain later Phase 1 outcomes; passing these local VAT tests does not deliver them |
+
+Source trace: `services/store-management.service.ts` readiness and Store transitions;
+`services/store-authority.service.ts` publication/payment authority;
+`services/individual-offer-readiness.ts` unconditional development restriction;
+`services/individual-offer.service.ts` actual finalisation prerequisites;
+`services/client-dashboard.service.ts` commission acceptance;
+`components/client-dashboard/ClientProjectStorePanel.tsx` conditional acceptance/Publish UI;
+`components/products/ProductPrimaryImagePanel.tsx` display-only media;
+`src/app/(app)/settings/payments/page.tsx` and Commerce Stripe router/service. FUND paths are
+under `src/modules/fund` in isostack-bedrock.
+
+Focused review checks: **16 tests PASS** across Individual readiness, Client Store controls,
+Store configuration and Store oversight. They confirm bounded rules, including refusal of
+live Individual trading; they are not an end-to-end publication PASS or browser observation.
+
+**Recommended continuation:** retain A0/A/B PASS; keep C blocked until deliberate development
+setup is available. Reconcile the missing C1 commission and Seller setup into a bounded
+Phase 1 launch-preparation plan, with truthful staged readiness and supported media setup.
+Keep commission policy/proposal/acceptance separate from later calculation/statements/settlement.
+Then follow the existing real-release, public Store and purchaser/Order dependencies. Do not
+ask Chris to repeatedly smoke-test publication while those paths are absent. No new slice is
+selected and root B1 Now / 1R-G planning Next remain unchanged by this review.
+
 | Check | Current result |
 | --- | --- |
-| Follow-up C2 price-display correction | Local `6ebaac46`: 31 focused tests, build/type/critical-file verification and lint PASS; connected C2 price readback/B1/B1-R3/A7 and verified disposable cleanup PASS; human rerun pending |
+| Follow-up C2 price-display correction | Local `6ebaac46`: 31 focused tests, build/type/critical-file verification and lint PASS; connected C2 price readback/B1/B1-R3/A7 and verified disposable cleanup PASS; Chris records B rerun PASS |
 | Implementation source/financial-contract review | Completed by implementing agent; **separate independent review pending** |
 | Shared P1 default, FUND/Pulse creation, validation and tenant/role tests | PASS: full suite 583 passed/12 skipped; connected B1-R3 and Pulse unit adoption checks |
 | Store/offer/checkout consistency and frozen-evidence tests | PASS: B1-R3/B1/A7, including frozen PDF bytes and custom-rate Commerce evidence |
@@ -160,7 +239,7 @@ preview or production print layout; Chris's separate concern remains unresolved.
 | Disposable cleanup | PASS: zero task databases and VAT proof roles in independent readback |
 | Staging deployment, schema and health | Not run for this candidate |
 | Human platform defaults and Product creation/editing, A0/A | Chris records PASS locally on 16 September; inline results preserved |
-| Human Store update, B | C2 price omission confirmed and corrected locally; rerun revised B on new active-Event setup. Price display no longer depends on a ready offer or Product image. Human PASS pending |
-| Human resumed B1 finalisation/download, C | Blocked on reported fixture by archived Event and missing local Product image; no VAT failure or finalisation PASS inferred |
+| Human Store update, B | Chris records PASS: price-display correction, 5%/0%/7.5% changes, C2 VAT-edit refusal and restored intended rate/price. Original findings and inline results preserved |
+| Human resumed B1 finalisation/download, C | BLOCKED: local Seller profile and four Product images missing; no C1 setup controls for the reported instructions. No finalisation PASS inferred |
 
 Existing B1/B1-R2 passes remain historical evidence for their scope, not proof of this correction.

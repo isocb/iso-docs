@@ -8,10 +8,10 @@ Control depth: **High**.
 Exact candidate: `6ebaac46` on local `work/fund-b1-r3-platform-vat` adds the C2 price-display correction to `5ffb6cc8ec4594891a5e80356021bca3d75a7a28`; neither is pushed or promoted. The original VAT implementation was based on `e7e8837c`.
 Files/change boundary: P1 settings/default lookup, FUND Product/Store/offer/checkout rate authority, Pulse quote defaults, additive evidence migration and bounded tests.
 Automated checks: 583 unit/regression tests PASS, 12 skipped; production build/type/critical-file verification PASS. Changed application-source lint: 21 files, zero errors, 44 warnings. Full repository lint fails on unrelated existing pages; no clean full-lint claim.
-Human evidence: Chris records A0/A PASS locally; B exposed a C2 price-display omission corrected below, with rerun pending. Previous image PASS is staging-only evidence.
+Human evidence: Chris records A0/A/B PASS locally after the C2 price-display correction, including VAT changes and C2 edit refusal. C remains blocked by missing local Seller profile and Product images; the readiness messages name unavailable C1 controls. Previous image PASS is staging-only evidence.
 Environment proven: local source/build plus isolated 156-to-157 migration, legacy preservation and restricted-role scalar read PASS; fresh 157-migration replay and local DevData migration/readback PASS; candidate B1/B1-R3/A7 service proof and cleanup PASS.
 Known residual risk: old application binaries cannot safely read newly written RATE_SPECIFIED values; use a compatible rollback/forward correction. Separate review and environment/human gates remain pending.
-Next authorised action: separate technical review and revised human smoke; controlled promotion follows the recorded gates. No main/live promotion.
+Next authorised action: complete remaining B1 development-PDF prerequisites and separate review; retain A0/A/B human passes. The 16 September whole-publication review in 05 identifies missing C1 commission/Seller setup and later Individual release/public presentation work. No end-to-end publication PASS or new implementation is inferred. Controlled promotion follows the recorded gates; no main/live promotion.
 
 [Amended plan](../03-slice-planning/2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md)
 · [Review and human smoke](../05-review-and-test/2026-09-16-fund-b1-r3-product-vat-rate-authority-review-and-test.md)
@@ -41,7 +41,7 @@ warnings**; TypeScript, critical-file verification and production build **PASS**
 connected C2 Product/Store readback at all four VAT rates, B1/B1-R3 frozen-evidence and
 Catalogue/authority/concurrency regressions, and A7 Commerce proof **PASS**. Fresh migration
 157 replay/checksums PASS; the dedicated database was dropped and absence independently
-verified by the runner. No local test-bed changes. Human B rerun remains pending.
+verified by the runner. No local test-bed changes. Chris records human B rerun PASS; C remains blocked as detailed in 05.
 The earlier 583-test full suite and migration/history proof below apply to `5ffb6cc8`, not a
 claim of a new full-suite run for this follow-up.
 

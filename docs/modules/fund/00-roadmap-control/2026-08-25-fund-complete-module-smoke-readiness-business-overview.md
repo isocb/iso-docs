@@ -13,6 +13,46 @@ implementation authority or another restart checkpoint.
 
 ## Where We Are
 
+### 16 September evening — Store publication is not yet a complete user journey
+
+Chris's local smoke has passed the platform VAT default, Product editing, C2 inclusive-price
+display and rate-change checks at `6ebaac46`. The subsequent Store walkthrough exposes real
+completion gaps. Earlier foundation/service passes must not be read as an end-to-end Store
+publication PASS. The [whole-process review](../05-review-and-test/2026-09-16-fund-b1-r3-product-vat-rate-authority-review-and-test.md#whole-store-publication-review--16-september-after-the-1949-screenshots)
+records source evidence and the read-only local Project check.
+
+The selected Product has not disappeared: the new active Project has one visible, eligible
+Teatowel at £54 including VAT. Its missing image makes it incomplete. The current editor
+cannot assign an image, despite the readiness instruction telling C1 to do so. Temporary
+staging images were test preparation, not delivery of the Product media workflow.
+
+**The C1 commission-offer creation journey is missing.** C2 acceptance exists, but there is
+no offer to accept and no C1 policy/proposal screen to create one. The commission schema was
+delivered in `1R-C5`; its accepted follow-on C1 management requirement remains outstanding.
+This is a Phase 1 prerequisite to Store publication, distinct from later commission
+calculation/statements/settlement. It must not be treated solely as a parked refinement.
+The current C2 “Accept the current commission offer” blocker assigns responsibility too
+early and obscures that missing supplier-side step.
+
+The local organisation also lacks a Seller profile. Its setup UI is not delivered. Shared
+Stripe onboarding **does** exist in **Settings → Payments**, with changes restricted to the
+organisation owner; that screen does not provision the separate Seller identity record.
+Neither live payments nor commission acceptance is needed merely to finish B1's development
+PDF check. B1 still needs an explicit local Seller/image fixture, or a correctly promoted
+candidate using the prepared staging fixture.
+
+Even after a development PDF is generated, **Individual Store publication is deliberately
+disabled by B1**. This is a release boundary, not another task an ordinary C1 user can
+complete. Public Store presentation is still the `1R-G` planning proposal; its first proposed
+preview does not enable purchasing. Real release, purchaser checkout and Order operations
+remain Phase 1 work.
+
+The immediate recommendation is to preserve the successful VAT tests, stop treating this
+screen as a completable publication checklist, and plan the missing C1 launch setup and
+accurate readiness journey explicitly. B1 development-PDF acceptance remains a separate
+bounded step. Root Now/Next are unchanged; this review neither starts those implementations
+nor changes data, enables payments or promotes anything.
+
 **16 September: the agreed VAT correction is implemented locally as B1-R3 (`5ffb6cc8`).** P1 will set a
 platform-wide default in **Platform Settings → Currency and Numbers**, initially 20%. New
 FUND Products and Pulse quotes inherit it. C1 can change a Product's percentage; that saved

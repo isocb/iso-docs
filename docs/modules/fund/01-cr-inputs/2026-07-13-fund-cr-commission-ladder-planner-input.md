@@ -4,6 +4,15 @@ Date: 2026-07-13
 
 Status: Planning input
 
+16 September review clarification: `1R-C5` delivered policy/version/assignment schema and
+reserved a C1 management contract; `1R-E-C` delivered C2 acceptance. The C1 runtime policy/
+proposal creation and UI remain absent. The local Store walkthrough has no policy or offered
+assignment, so C2 cannot accept anything. Treat C1 setup/proposal as a required Phase 1
+publication dependency, separately from calculation/statements/settlement. The
+[whole-process review](../05-review-and-test/2026-09-16-fund-b1-r3-product-vat-rate-authority-review-and-test.md#whole-store-publication-review--16-september-after-the-1949-screenshots)
+and owning roadmap record this gap; it is not a new implementation authorisation or a
+selection of the entire commission backlog.
+
 ## 1. Purpose
 
 Capture the C1 Commission Ladder Planner requirement so it is considered during FUND
