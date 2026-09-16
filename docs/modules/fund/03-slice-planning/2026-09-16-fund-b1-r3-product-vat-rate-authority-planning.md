@@ -1,10 +1,10 @@
-# FUND B1-R3 — Product VAT Rate Authority Planning
+# FUND B1-R3 — Platform VAT Default And Product Rate Authority Planning
 
 Date: 2026-09-16
 
-Status: **Bounded plan prepared from accepted business direction; implementation not started.**
+Status: **Amended and implemented locally at `5ffb6cc8`; automated/connected proof PASS. Separate review, human acceptance and promotion pending.**
 Control depth: **High**. Work type: production-model correction, first proved in development.
-Baseline: application `e7e8837c`; no new deployed candidate.
+Baseline: application `e7e8837c`; local candidate `5ffb6cc8`, DevData migration 157; no new deployed candidate.
 
 [CR](../01-cr-inputs/CR-Fix-2026-09-16-fund-product-vat-rate-authority.md)
 → [triage](../02-triage/2026-09-16-fund-b1-r3-product-vat-rate-authority-triage.md)
@@ -14,7 +14,8 @@ continues to hold the sole five-field checkpoint. This is not a second portfolio
 
 ## 1. Visible Outcome And Fixed Rules
 
-C1 creates a Product with VAT prefilled at 20%, or enters another percentage, and saves.
+P1 sets Default VAT rate (%) in Platform Settings → Currency and Numbers, initially 20%.
+C1 creates a Product with VAT prefilled from that platform default, or enters another percentage, and saves.
 There is no second tax-treatment input. A draft Store refreshed from that Product uses the
 saved percentage for the displayed gross price and offer, without a Seller-rate mismatch.
 C2 never has to repair tax configuration. Checkout uses the same rate and existing money
@@ -22,10 +23,10 @@ rounding once its separately controlled trading prerequisites are met.
 
 | Operation | Rule |
 | --- | --- |
-| New Product | VAT defaults to 20 in UI/API/database; no P1 settings work |
+| New Product | VAT inherits the shared platform default in UI/API; initially 20 |
 | C1 edit | Preserve the saved rate, including 0; never replace it with 20 on load/save |
 | Valid rate | Finite 0–100 inclusive, at most two decimal places, consistent with existing storage/helpers |
-| Missing input | Omitted create value defaults to 20; blank/invalid explicit input is rejected; an omitted update preserves its prior value |
+| Missing input | Omitted create value resolves the platform default server-side; blank/invalid explicit input is rejected; an omitted update preserves its prior value |
 | Duplicate Product | Copy the source rate, not the create default |
 | New/draft Store | Snapshot the Product rate through the normal refresh/version mechanism |
 | Seller rate settings | Neither select, override nor veto FUND's Product VAT rate |
@@ -36,6 +37,37 @@ rounding once its separately controlled trading prerequisites are met.
 lookup or an assertion that every Product should use it.
 
 ## 2. Ordered Implementation Packages
+
+### A0. Shared platform creation default — owner amendment, 16 September
+
+Store `defaultVatRate` in the app-owner Organisation settings JSON beside currency/locale.
+Only P1 can write it through the existing audited settings mutation. Expose only the numeric
+default to authenticated module consumers; do not grant access to the full P1 settings object.
+Use one server resolver and shared 0–100/two-decimal validation. A fixed-search-path, read-only
+SECURITY DEFINER function returns only the single VAT JSON value across Organisation RLS,
+without caller arguments or a broad table policy. Include it in the additive migration and
+prove a restricted database role cannot read the platform row but can read this scalar. Missing setting means 20;
+explicit zero is valid; invalid stored configuration fails clearly rather than guessing.
+Database/network errors must not silently become 20. Preserve unrelated settings keys.
+
+FUND Product creation and Pulse quote creation are the current application VAT-default writers.
+Both forms and omitted-input server writes must use this shared source. Once a human edits
+a form rate, a background default refresh must not overwrite it. Preserve saved rates on edit
+and duplication. Pulse displays the platform default read-only; its legacy per-module stored
+VAT setting is no longer an alternate default authority, without bulk rewriting old records.
+Commerce receives explicit applied rates from module adapters: it must never substitute the
+current default while processing an Order/payment. Existing Seller category settings and
+other-module historical classifications remain stored, but cannot override FUND rates.
+Future modules use this shared resolver when creating rate-bearing records; no general tax
+engine or speculative Seller provisioning flow is added. No existing VAT-bearing LMSPro
+creation path was found in the source inventory.
+
+A platform default change affects subsequent new records only. Existing Products, quotes,
+Store snapshots, finalised offers and Orders retain their saved values. SQL defaults of 20
+remain compatibility fallbacks for legacy/direct fixtures; application creation paths write
+the resolved rate explicitly. A future tenant override can extend the resolver, but is not
+built now. Verify P1-only write, signed-out refusal, C1/C2 safe read, zero, invalid/missing
+configuration, changed defaults, existing/duplicate preservation and Pulse/Commerce regression.
 
 ### A. One rate resolver and truthful persisted evidence
 
@@ -48,7 +80,7 @@ per-line quantity rounding contracts; test them explicitly rather than changing 
 Proposed schema amendment: add `RATE_SPECIFIED` to `FundProductTaxTreatment` and
 `CommerceTaxTreatment` using one reviewed additive Prisma migration. The neutral value means
 “use the recorded percentage”; it makes no standard/reduced/exemption classification claim.
-There is no new user control, table, percentage column or configurable-default infrastructure.
+There is no new tax-category control, table or percentage column. The platform default uses existing settings JSON.
 Retain existing enums/columns and immutable rows. Do not update all Products or historical
 snapshots merely to replace their old labels. Keep the existing database VAT default of 20.
 
@@ -69,7 +101,7 @@ dependency registered in its own roadmap, not permission to change shared tax po
 ### B. Integrate Product, Store, offer and FUND checkout
 
 - `ProductModal.tsx`, Product schemas/services: remove category selection from the FUND user
-  contract; retain default 20, explicit validation, permissions, revisions and audit. Remove
+  contract; resolve the platform default for creation, retain explicit validation, permissions, revisions and audit. Remove
   obsolete client instructions about classification. Do not accept a hidden client category
   as an alternate authority; define stale-client handling explicitly in technical review.
 - `store-management.service.ts`: remove classification-only blocking from rate-only drafts;
@@ -137,16 +169,32 @@ staging after local proof and exact deployment verification. Main/live requires 
   secret review and exact candidate/deployment checks as applicable to this High-control change.
 
 The [B1-R3 05 schedule](../05-review-and-test/2026-09-16-fund-b1-r3-product-vat-rate-authority-review-and-test.md)
-is prepared but NOT RUN. After implementation, create the matching 04 confirmation with exact
-candidate, files, migration and test evidence; update 05 with actual results and human acceptance.
+has automated results and revised human steps; human smoke is NOT RUN. The matching
+[04 confirmation](../04-implementation-confirmations/2026-09-16-fund-b1-r3-platform-vat-default-and-product-rate-authority-implementation-confirmation.md) records the actual candidate, migration and proof.
 Do not mark the existing B1 finalisation journey passed before its retest succeeds.
+
+## Implementation Review Decisions — 16 September
+
+The additive RATE_SPECIFIED model is retained after reviewing Core enum/SQL consumers.
+New effective snapshots and hashes use that neutral value; stale client taxTreatment keys
+are stripped by input validation and never become authority. Legacy frozen configurations
+keep their category/rate contract or refuse explicitly; no missing historical rate is
+substituted. Product rate changes join the existing availability lock and revision/audit
+transaction, preserving the asynchronous update-service contract.
+
+P1 writes use one audited transaction. The narrow scalar SQL function supplies defaults
+through RLS without elevating the tenant request or disclosing other settings. The plan now
+includes this function in the migration, in addition to enum compatibility. Current consumers
+are FUND Product create, Pulse quote forms/API/Quick Add, and Pulse's read-only default display.
+Commerce receives recorded explicit rates and does not acquire a moving-default dependency.
 
 ## 5. Do Not Build And Completion Boundary
 
-No P1 default setting, tax-category selector, tax engine, jurisdiction lookup, template preview/
+No tenant VAT override, tax-category selector, tax engine, jurisdiction lookup, template preview/
 editor, Product gallery, automatic Store publication, payment enablement or general price-basis
 redesign. The user's separate template-preview concern remains open; this VAT correction does
 not claim to deliver a visual artwork preview. No unrelated LMSPro changes or production reset.
 
-This turn stops at CR → triage → roadmap selection for planning → bounded plan and future
-smoke. Business direction is accepted; implementation and promotion have not occurred.
+Chris explicitly authorised this amended plan and implementation on 2026-09-16. Complete local
+implementation, migration rehearsal and automated proof plus 04/05 records. Human acceptance
+and controlled promotion remain separate; this instruction does not authorise main/live.

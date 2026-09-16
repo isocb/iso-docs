@@ -13,22 +13,25 @@ implementation authority or another restart checkpoint.
 
 ## Where We Are
 
-**16 September: the image correction is confirmed, but VAT is blocking the offer.** You
-have decided that C1 should enter one Product VAT percentage, defaulted to 20% on creation,
-and vary it when needed. No separate tax-treatment question or Seller-rate mismatch should
-stand between that valid choice and a refreshed draft Store's price.
+**16 September: the agreed VAT correction is implemented locally as B1-R3 (`5ffb6cc8`).** P1 will set a
+platform-wide default in **Platform Settings → Currency and Numbers**, initially 20%. New
+FUND Products and Pulse quotes inherit it. C1 can change a Product's percentage; that saved
+rate controls its draft Store and offer prices. Changing the platform default leaves existing
+Products, quotes, finalised offers and Orders unchanged.
 
-This is captured as [B1-R3](../03-slice-planning/2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md), with CR, triage and a bounded
-implementation plan. It must be resolved before B1 acceptance. The smallest proposed schema
-compatibility amendment records a neutral rate-only value internally; it introduces no extra
-user choice or P1 settings page. Existing finalised prices and Orders remain protected.
+The separate FUND tax-treatment question and Seller-rate mismatch gate are removed in this
+correction. Commerce preserves the explicit transaction rate received from the module. Future
+tenant-specific defaults remain outside this slice. This is the amended
+[B1-R3 plan](../03-slice-planning/2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md),
+which Chris authorised for implementation. The [smoke schedule](../05-review-and-test/2026-09-16-fund-b1-r3-product-vat-rate-authority-review-and-test.md)
+now starts with P1 default changes, inheritance and preservation checks, followed by the
+Product → Store → finalised development PDF journey.
 
-The [new smoke schedule](../05-review-and-test/2026-09-16-fund-b1-r3-product-vat-rate-authority-review-and-test.md) will verify Product creation at 20%,
-C1 edits, saved zero/custom rates and matching Store prices after refresh, then resume the
-blocked offer/PDF test. **It is not ready to run yet: application code has not changed.** Your
-separate concern about seeing the template visually remains open; this VAT correction does
-not pretend to supply a visual artwork preview. No code, database or environment change has
-been made by this documentation work.
+Local implementation, 583 tests, production build, isolated financial/migration checks and
+DevData migration 157 pass. Existing local data is preserved. Separate review and human
+acceptance remain pending; staging still has `e7e8837c`.
+The revised smoke is **not yet ready on staging**. Template visual preview remains separate;
+this work does not add a production artwork layout or enable purchases. Main/live stays held.
 
 ### Earlier September 12 deployment position
 

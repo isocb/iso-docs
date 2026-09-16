@@ -6,7 +6,9 @@ Last consolidated: 2026-09-16
 
 Status: Active authoritative control for the FUND lane
 
-Current disposition — 2026-09-16: Chris confirms the image correction, but the revised B1
+Current disposition — 16 September: local `5ffb6cc8` implements the owner amendment and passes automated/connected proof; DevData migration 157 preserves existing rows. Separate review, human acceptance and controlled promotion remain pending. This supersedes the earlier planning-only disposition below: platform-wide P1 VAT creation default, initially 20%, and B1-R3 implementation are authorised. Existing Product/quote/frozen evidence rates are preserved. Platform/Pulse and Commerce dependencies remain part of this one bounded correction; main/live held.
+
+Earlier planning disposition — 2026-09-16: Chris confirms the image correction, but the revised B1
 walkthrough fails on VAT authority. His accepted rule is a single Product VAT percentage,
 default 20%, editable by C1 and authoritative downstream. [B1-R3 triage](../02-triage/2026-09-16-fund-b1-r3-product-vat-rate-authority-triage.md)
 selects this for [bounded remedial planning](../03-slice-planning/2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md) before B1 acceptance.

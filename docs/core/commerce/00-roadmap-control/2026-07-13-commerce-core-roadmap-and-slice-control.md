@@ -125,12 +125,14 @@ The FUND roadmap is a sibling control, not the parent Commerce roadmap:
 
 `docs/modules/fund/00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md`
 
+16 September amendment: Chris authorises B1-R3 implementation including the shared platform creation default. Commerce continues receiving explicit applied transaction rates; the default never reprices Orders. RATE_SPECIFIED compatibility remains in scope. Existing Seller category fields are preserved; no new Seller provisioning flow.
+
 ## 7.0 FUND B1-R3 Rate-Only Evidence Dependency — 2026-09-16
 
-Disposition: **Cross-lane planning dependency recorded; no implementation authorised here.**
+Disposition: **Implemented locally at `5ffb6cc8`; shared evidence, legacy Order preservation and A7 regression PASS. Separate review, human acceptance and promotion pending.**
 FUND's owner selects one Product VAT percentage, default 20%, without a separate category
 or Seller-rate override. The [FUND B1-R3 plan](../../../modules/fund/03-slice-planning/2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md)
-proposes an additive RATE_SPECIFIED value in the existing Commerce/FUND treatment enums so
+implements an additive RATE_SPECIFIED value in the existing Commerce/FUND treatment enums so
 new explicit-rate evidence does not fabricate a statutory category. Commerce already receives
 appliedTaxRateBps and monetary totals through its submission service. Review enum consumers,
 constraints, other-module compatibility and rollback before implementing this amendment.

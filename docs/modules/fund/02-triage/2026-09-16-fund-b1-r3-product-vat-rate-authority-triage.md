@@ -2,11 +2,20 @@
 
 Date: 2026-09-16
 
-Disposition: **Accept for bounded B1-R3 planning; required before B1 acceptance.**
+Disposition: **Accepted and implemented locally at `5ffb6cc8`; separate review/human acceptance pending, required before B1 acceptance.**
 Control depth: **High** — financial calculations, immutable evidence, schema compatibility
-and a narrow shared Commerce contract are involved. No implementation or deployment here.
+and shared Platform/Commerce contracts are involved. Implementation authority is recorded below; no deployment is claimed.
 
 Source: [CR-Fix](../01-cr-inputs/CR-Fix-2026-09-16-fund-product-vat-rate-authority.md).
+
+## Owner amendment — 16 September 2026
+
+Chris replaces the fixed creation default with P1 Platform Settings → Currency and Numbers
+Default VAT rate (%), initially 20, shared by modules and Commerce consumers at record creation.
+Existing saved rates remain authoritative. He explicitly authorises the amended plan and
+implementation. Platform settings and Pulse creation consumers join the bounded dependency;
+no tenant override or live promotion. Earlier fixed-default/planning-only wording below
+records the original triage and is superseded by this amendment and the current plan.
 
 ## Decision And Proportionate Boundary
 

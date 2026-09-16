@@ -61,3 +61,9 @@ No emergency expedite or live hotfix is proposed. This is remediation within FUN
 
 Source: [B1-R2 human comments](../05-review-and-test/2026-09-10-fund-b1-r2-event-catalogue-workflow-scope-and-lifecycle-integrity-review-and-test.md).
 Template visual-preview findings remain separately open and must not expand this VAT slice.
+
+## Owner amendment — 16 September
+
+P1 controls the initial VAT percentage in Platform Settings → Currency and Numbers. All module creation defaults share this source (initially 20); saved Product/quote/transaction rates remain editable or immutable according to their existing lifecycle. Chris authorised amended B1-R3 planning and implementation. Tenant overrides are future work.
+
+Implementation disposition: local application `5ffb6cc8` and DevData migration 157 pass automated/connected proof. See the [04 confirmation](../04-implementation-confirmations/2026-09-16-fund-b1-r3-platform-vat-default-and-product-rate-authority-implementation-confirmation.md). Separate review, human acceptance and promotion remain pending.

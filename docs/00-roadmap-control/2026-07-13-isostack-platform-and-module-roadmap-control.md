@@ -79,16 +79,17 @@ production Render identity, C1 route and same-Club C2 sibling creation/authentic
 Role Authority project = COMPLETE AND CLOSED
 ```
 
+16 September subsequent owner amendment: B1-R3 implementation is authorised, adding a P1 platform VAT default and adoption by existing FUND/Pulse creation paths. Platform and Commerce share this bounded dependency under FUND Now; 1R-G planning remains Next. No live promotion is inferred.
+
 Current serial portfolio decision:
 
-16 September owner-directed B1-R3 planning supersedes the earlier assumption that only
+16 September owner-directed B1-R3 implementation supersedes the earlier assumption that only
 a human retry remains. The Commerce dependency concerns neutral numeric-rate evidence,
-not another portfolio outcome or a general tax-engine change. No implementation authority
-or live promotion is inferred from the accepted business decision.
+not another portfolio outcome or a general tax-engine change. Implementation was explicitly authorised by Chris; no live promotion is inferred.
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | FUND `1R-F-B1` / B1-R3 VAT remediation planning and resumed acceptance | Owner accepts one C1-editable Product VAT percentage, default 20%. [B1-R3](../modules/fund/03-slice-planning/2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md) is triaged/planned to remove the conflicting Seller/category authority, including a narrowly scoped Commerce neutral-evidence dependency. Image smoke confirmed; current finalisation blocked. Application remains `e7e8837c`; implementation/migration/new smoke not run. Main/live remains `0397bba9`. |
+| **NOW** | FUND `1R-F-B1` / B1-R3 implementation and resumed acceptance | Owner authorises a P1 platform VAT creation default (initially 20%) and one C1-editable saved Product percentage. [B1-R3](../modules/fund/03-slice-planning/2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md) is amended and authorised to remove conflicting Seller/category authority, including Platform/Pulse default consumers and the bounded Commerce evidence dependency. Image smoke confirmed; current finalisation blocked. Local work branch `5ffb6cc8` passes automated/connected proof; DevData is at 157 with preserved rows. Online dev/staging remain `e7e8837c`; separate review, human smoke and promotion pending. Main/live remains `0397bba9`. |
 | **NEXT** | FUND `1R-G` Store presentation planning | Continue the existing planning proposal after B1 reconciliation. Its authenticated development-preview boundary is ready for owner review; no 1R-G implementation or live FUND release is authorised. |
 
 On 2026-09-10 Chris requested FUND dev/staging alignment after the security correction was

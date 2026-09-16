@@ -19,6 +19,8 @@ Application routing reference:
 
 `isostack-bedrock/src/app/README.md`
 
+16 September B1-R3 dependency: Chris authorises a P1-editable platform VAT creation default in Currency and Numbers, shared lookup and adoption by existing FUND/Pulse creation paths. The [FUND plan](../../modules/fund/03-slice-planning/2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md) owns coordinated implementation and 04/05 evidence. Local `5ffb6cc8` implements this dependency and passes its role/default/migration proof; separate review and human gates remain. No tenant override or live promotion; FUND remains Now.
+
 ## 0. Authoritative CR Inventory And Current Platform Disposition — 2026-09-10
 
 This file is confirmed as the one authoritative Platform child roadmap. The Platform

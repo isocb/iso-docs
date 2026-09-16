@@ -23,11 +23,11 @@ now selects FUND B1/B1-R2 dev/staging promotion and acceptance as Now, with the 
 ## Restart Checkpoint
 
 ```text
-Current state: B1-R3 CR/triage/bounded plan and revised future smoke prepared from owner direction: Product VAT defaults to 20%, C1 may vary it, no category/Seller-rate veto. Image human check PASS; Product/Store rate authority and finalisation remain blocked on current code. No new implementation or test PASS
-Last proven commit: e7e8837c5e18bc1b94457edecc6f52b75678f0e9; Render dep-daiivvojo6nc73bl6u8g Live at 2026-09-12T11:03:03.30739Z; staging.seasonpro.co.uk, staging.isostack.app and Render alias health/DB/RLS 11/11 and signed-out image query 401 PASS
-Current environment: local/online dev and staging match e7e8837c; Render staging is Live at that candidate; all three staging domains pass health and anonymous image-query refusal. Existing authorised DRAFT Seller and temporary logo fixture retained; no database or runtime changes in this correction. Main/live unchanged at security-only 0397bba9
-Next human decision/test: review the bounded B1-R3 implementation plan; implementation not started. Revised Product-creation/Store-update/finalisation smoke becomes executable only after reviewed implementation and exact environment preparation. Template visual-preview concern remains separate
-Safe resumption point: follow B1-R3 technical review and implementation when authorised, including narrow Commerce enum dependency and safe migration/rollback proof. Preserve existing data, finalised evidence and user comments; do not repeat the obsolete category-matching smoke. Keep main/live held
+Current state: amended B1-R3 implemented and locally committed at 5ffb6cc8; 583 tests, build/type/changed-source lint, migration/history/RLS/B1/B1-R3/A7 proofs and cleanup PASS. Whole-repository lint retains pre-existing unrelated errors. Separate review and human acceptance pending; B1 is not closed.
+Last proven commit: 5ffb6cc8ec4594891a5e80356021bca3d75a7a28 locally; 583 tests/12 skips and connected proof PASS. Last staging candidate remains e7e8837c with its previously recorded Render evidence.
+Current environment: local work/fund-b1-r3-platform-vat at 5ffb6cc8, not pushed or consolidated into dev; verified DevData 257f63f2e2c2 migrated to 157 with protected-row fingerprints unchanged. Online dev/staging remain e7e8837c; main/live remains 0397bba9. Zero task test databases/roles remain.
+Next human decision/test: separate technical review and B1-R3 A0/A/B/C human smoke. Local testing requires a server restart for regenerated Prisma; staging testing waits for controlled promotion and exact deployment evidence. No live FUND approval inferred.
+Safe resumption point: use B1-R3 04/05 evidence at 5ffb6cc8; preserve saved rates, frozen evidence and user comments. Complete remaining review/promotion/human gates; do not repeat obsolete category-matching tests or reset the test bed.
 ```
 
 ## 1. One Visible Outcome
