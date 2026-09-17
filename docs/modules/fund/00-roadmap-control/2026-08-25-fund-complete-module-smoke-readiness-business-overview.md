@@ -28,8 +28,12 @@ existing development artwork download, without hidden database repairs. Actual p
 launch and a test purchase follow the still-unfinished release/payment dependencies; they
 are not delivered by this documentation revision. Basic simplicity is required in Phase 1.
 Material additional complexity must be explained to Chris with its value and simpler option.
-A0/A/B VAT PASS remains; C/publication smoke stays paused. No new code slice is selected and
-B1 Now / 1R-G planning Next is unchanged.
+A0/A/B VAT PASS remains; C/publication smoke stays paused. Chris now authorises the
+preparation increment within B1 Now; 1R-G planning remains Next. Initial code review has
+paused as requested: should an unpublished Project whose start date is already past be
+allowed its first commission setup when it has no prior accepted terms or Orders? The
+recommendation is one-time setup now, then an immediate lock. No application/data changes
+have been made while that business decision is pending.
 
 ### 16 September evening — Store publication is not yet a complete user journey
 

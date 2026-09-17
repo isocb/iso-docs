@@ -15,8 +15,9 @@ Chris's subsequent annotations accept commission terms fixed at Project start/St
 finalisation and no unlock. Separate proposal/negotiation and manual image assignment are
 removed from initial scope.
 Additional material complexity must be shown to Chris with its client value and simpler option.
-Planning only: no implementation selection or fixture change; B1 Now / 1R-G planning Next
-unchanged. A0/A/B VAT PASS remains at local `6ebaac46`; C/publication smoke remains paused.
+Subsequent owner instruction authorises the preparation increment within B1 Now, with a stop
+for unresolved implications. Focused review pauses for first commission setup after a past
+Project start (launch plan section 6); no code/data changes yet. 1R-G planning remains Next. A0/A/B VAT PASS remains at local `6ebaac46`; C/publication smoke remains paused.
 B1 stays open. DevData is 157; online dev/staging `e7e8837c`, main/live `0397bba9` remain as
 recorded. Separate review/promotion and actual public selling capabilities remain outstanding.
 

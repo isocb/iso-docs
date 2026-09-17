@@ -90,7 +90,11 @@ optional Event ladders, automatic inheritance/images and one C2 launch confirmat
 setup is a reusable producer dependency, not per-Project administration. Material added
 complexity must be presented to Chris with its value and simpler alternative. A0/A/B VAT PASS
 stands; C/publication smoke stays paused until supported. **B1 Now / 1R-G planning Next is
-unchanged; no new implementation is selected.** Application remains local `6ebaac46`; separate
+unchanged in portfolio order.** Chris subsequently authorises the preparation increment
+within FUND Now, with a stop for unresolved implications. Focused review is paused on first
+commission setup for Projects whose start date is already past; the launch plan records the
+recommended one-time unpublished/no-evidence exception for his decision. No code/data changes
+have been made. Application remains local `6ebaac46`; separate
 review, real-release/public Store and purchasing work remain. No fixture or promotion change.
 
 16 September owner-directed B1-R3 implementation supersedes the earlier assumption that only
@@ -99,7 +103,7 @@ not another portfolio outcome or a general tax-engine change. Implementation was
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | FUND `1R-F-B1` / B1-R3 implementation and resumed acceptance | Owner authorises a P1 platform VAT creation default (initially 20%) and one C1-editable saved Product percentage. [B1-R3](../modules/fund/03-slice-planning/2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md) is amended and authorised to remove conflicting Seller/category authority, including Platform/Pulse default consumers and the bounded Commerce evidence dependency. Image smoke confirmed; current finalisation blocked. Local work branch `6ebaac46` passes automated/connected proof and A0/A/B human VAT smoke; C is blocked by Seller/image setup; DevData is at 157 with preserved rows. Online dev/staging remain `e7e8837c`; separate review, remaining C smoke and promotion pending. Main/live remains `0397bba9`. |
+| **NOW** | FUND `1R-F-B1` / B1-R3 acceptance and authorised simple launch preparation | 17 September: preparation implementation authorised, paused during review for first commission setup after a past Project start; see the launch plan section 6. Owner authorises a P1 platform VAT creation default (initially 20%) and one C1-editable saved Product percentage. [B1-R3](../modules/fund/03-slice-planning/2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md) is amended and authorised to remove conflicting Seller/category authority, including Platform/Pulse default consumers and the bounded Commerce evidence dependency. Image smoke confirmed; current finalisation blocked. Local work branch `6ebaac46` passes automated/connected proof and A0/A/B human VAT smoke; C is blocked by Seller/image setup; DevData is at 157 with preserved rows. Online dev/staging remain `e7e8837c`; separate review, remaining C smoke and promotion pending. Main/live remains `0397bba9`. |
 | **NEXT** | FUND `1R-G` Store presentation planning | Continue the existing planning proposal after B1 reconciliation. Its authenticated development-preview boundary is ready for owner review; no 1R-G implementation or live FUND release is authorised. |
 
 On 2026-09-10 Chris requested FUND dev/staging alignment after the security correction was

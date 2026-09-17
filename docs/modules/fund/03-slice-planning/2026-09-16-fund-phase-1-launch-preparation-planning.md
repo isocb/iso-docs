@@ -2,7 +2,7 @@
 
 Date: 2026-09-16; replaced in place on 2026-09-17 at Chris's request.
 
-Status: **Owner-directed planning revision; implementation not yet selected.**
+Status: **Implementation authorised by Chris on 17 September; paused during focused code review for the first-setup decision in section 6.**
 Control depth: **High** because commission configuration, publication authority and preserved
 financial evidence change. This requires strong automated proof, not extra user approvals.
 Work type: proposed production behaviour, demonstrated locally before controlled promotion.
@@ -16,7 +16,9 @@ history, not a reason to retain unnecessary steps. Simplicity is a first-release
 and [FUND control](../00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md) retain
 **B1 Now / 1R-G planning Next**. The [B1 plan](2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md)
 keeps the sole checkpoint. A0/A/B VAT smoke remains PASS; C/publication smoke stays paused.
-No application, fixture, environment or promotion change is authorised by this revision.
+Chris authorises implementation of the preparation increment, with a stop for unresolved
+business implications. This does not select the later public-release/purchaser work or
+authorise deployment. No application or database change has been made at this review pause.
 
 ## 1. Client Outcome And Next Demonstration
 
@@ -181,5 +183,41 @@ Request the launch/public Store/test-Order smoke only when those capabilities ex
 launch review must then have one combined Store/commission confirmation. Preserve A0/A/B PASS
 unless a relevant pricing change warrants regression checks. Record actual changes in 04 and
 proof in 05; no premature PASS. Use normal human acceptance and controlled promotion, with
-specific main/live approval. This revision stops at the updated plan; implementation selection
-remains the next delivery decision, without a new CR or another planning layer.
+specific main/live approval. The preparation increment is now authorised; the review pause
+below must be resolved before proceeding. No new CR or planning layer is needed.
+
+
+## 6. Focused Code Review — 17 September Implementation Start
+
+Chris authorised implementation and explicitly requested a stop for unresolved implications.
+Source baseline: local application `6ebaac46`. This is a focused review, not an implementation
+or independent acceptance result. No runtime, data or environment changes have been made.
+
+**Business decision pending — first commission setup after a past start date.**
+`src/modules/fund/services/projects.service.ts:196` checks date order and Event boundaries,
+but permits a Project start date in the past. The existing review fixture also has a past
+start and no commission configuration. Strictly forbidding any first assignment after that
+start leaves an unpublished Project unable to use the new setup, even without any Orders or
+prior accepted terms. The plan identified missing setup as an exception but did not define
+how C1 could resolve it. This needs a business decision, not another technical approval layer.
+
+Recommendation sent to Chris: permit one-time initial inheritance of today's configured terms
+only when there has been no publication, commission acceptance or Order; record setup now
+and immediately lock those terms. Never backdate acceptance or replace protected evidence.
+Alternative: require a new Project with a future start. Implementation is paused for the
+answer under Chris's express stop instruction; the exception is not assumed approved.
+
+Reuse confirmed during review:
+
+- `store-management.service.ts:275` and `lib/project-product-selection.ts` already initialise
+  eligible Products once and preserve exclusions. C1 creation and intake call this path.
+  Reuse it and simplify the C2 controls; do not build another selection mechanism.
+- `individual-offer.service.ts:388` finalises and locks the offer; intake itself is not that
+  lock. The existing template-capacity check can support C1 setup feedback.
+- `store-management.service.ts:566` currently requires a primary media row; the automatic
+  image bridge must update readiness and snapshots as well as presentation.
+- Commission models have Event/Project ownership but no producer-default mode. Adaptation is
+  already within the approved assessment; it is not by itself a further business question.
+
+No automated or human tests were run: application code is unchanged. A0/A/B PASS remains;
+C/publication smoke stays paused. The B1 checkpoint remains the only restart checkpoint.
