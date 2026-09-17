@@ -1,22 +1,22 @@
-# SeasonPro Import/Export Authority And Free Day Email Dates — Review And Local Smoke
+# SeasonPro Import/Export Authority And Free Day Email Dates — Review And Release Verification
 
-Date: 2026-09-17 · Control depth: **High** · Status: **Local automated and human smoke PASS; staging deployed; staging human acceptance PASS; live promotion authorised but execution blocked**
+Date: 2026-09-17 · Control depth: **High** · Status: **Production deployment, exact-main security and technical verification PASS; minimum live human smoke pending**
 
-- Exact commit: `c3998084` on local `dev` (parent `d13ecb39`); aligned across local/remote dev and staging; main/live remains `d13ecb39`.
+- Exact commit: `c3998084` on local `dev` (parent `d13ecb39`); aligned across local/remote dev, staging and main; exact production web/cron deployment verified.
 - Files/change boundary: explicit Import/Export component authority, corresponding UI and Free Day date presentation.
 - Automated checks: 79 tests, TypeScript, critical-file verification and changed-file lint PASS (zero errors; existing warnings retained); isolated production build PASS.
 - Human evidence: **L1–L5 PASS**, recorded by Chris in the table below and confirmed in conversation on 17 September: “Smoke testing and actually send an email all GREEN.” Actual email-send success is user-reported; no provider-log inspection is claimed.
-- Environment proven: local automated boundary; read-only connected helper checks across 12 development actors PASS; local authenticated smoke PASS as reported by Chris; staging S1–S3 PASS as reported by Chris; automated staging health/RLS checks PASS.
+- Environment proven: local automated boundary; read-only connected helper checks across 12 development actors PASS; local authenticated smoke PASS as reported by Chris; staging S1–S3 PASS as reported by Chris; automated staging health/RLS checks PASS; exact production deployment and public health/access checks PASS; live human smoke pending.
 - Known residual risk: role configuration must actually contain the grants; old sent emails retain old formatting; rollback is mapping-only.
-- Next authorised action: publish IsoDocs main and promote accepted `c3998084` to application main/live after the execution approval block is resolved. Chris has already explicitly authorised both; neither remote mutation has run.
+- Next authorised action: Chris performs the two minimum read-only live checks below. Technical promotion is complete; retain SeasonPro Now / FUND resumption Next until human acceptance is recorded.
 
 ## Active restart checkpoint
 
-Current state: local implementation and L1–L5 human smoke accepted; staging deployment/security/health PASS; staging human acceptance PASS; live promotion authorised but execution blocked.
-Last proven commit: `c3998084` passes local automation; local human acceptance PASS (released baseline `d13ecb39`).
-Current environment: dev/origin-dev and staging/origin-staging at `c3998084`; exact staging web/cron live; main/live held at `d13ecb39`.
-Next human decision/test: resolve automatic execution-approval rejection for both main pushes; then minimum non-destructive live smoke after deployment. Staging smoke is accepted.
-Safe resumption point: use this record and the [single plan](../03-slice-planning/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-planning.md); preserve FUND’s accepted release/resumption evidence. Do not rerun unrelated FUND smoke or include the OOM investigation.
+Current state: local and staging acceptance retained; approved documentation published; production promotion/security/deployment/technical verification PASS; live human smoke pending.
+Last proven commit: `c3998084a8f9d089ea16916133fdffc130b14025`; exact-main Security Scan `35225966878` PASS; previous live baseline `d13ecb39` retained for code recovery.
+Current environment: dev/origin-dev, staging/origin-staging and main/origin-main aligned at `c3998084`; production app and cron live at that exact commit; workspace clean on dev.
+Next human decision/test: the two minimum non-destructive live checks below; do not repeat accepted local/staging smoke.
+Safe resumption point: record live human results here, then reconcile the existing SeasonPro/FUND disposition. Preserve unrelated FUND edits and accepted release evidence; OOM investigation stays separate.
 
 ## Local smoke — small synthetic data only
 
@@ -41,8 +41,9 @@ as test data; deletion/cleanup is separate and must not be confused with mapping
 
 Self-review and focused negative tests PASS; independent review not claimed. Full relevant
 authority matrix and date cases are described in the [04 confirmation](../04-implementation-confirmations/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-implementation-confirmation.md).
-There are no schema/live-data/config changes. Connected RLS/session behaviour is not established
-by mocked procedure tests and remains an environment check before promotion. The existing
+There are no schema/live-data/config changes. Mocked procedure tests do not establish connected
+RLS/session behaviour; the subsequent staging acceptance and technical evidence below record
+the environment proof. The existing
 shared RLS mechanism is unchanged; explicit effective-tenant predicates remain required.
 
 Any later staging promotion must identify the exact accepted candidate, run its normal security
@@ -110,7 +111,7 @@ migration or configuration is included. Production preflight, local fast-forward
 main Security Scan, exact service deployment and minimum live health/access checks will be
 recorded below. Live human smoke is not inferred from staging acceptance.
 
-## Execution approval blocker — 17 September 2026
+## Earlier execution approval blocker — resolved on resumption
 
 Preflight PASS: clean application dev; fresh remote staging at accepted `c3998084`; exact
 staging Security Scan `35222416841` PASS. Production app `srv-d4t6l16uk2gs73ejugg0` and cron
@@ -130,3 +131,69 @@ IsoDocs evidence is committed locally; remote documentation remains unpublished.
 local/remote main remains `d13ecb39`; local/remote dev and staging remain `c3998084`. Do not claim
 production deployment or a main scan. Resume the already-authorised normal flow only after the
 execution approval block is resolved. Unrelated FUND working-tree edits remain preserved.
+
+## Resumed production promotion — 17 September 2026
+
+Chris explicitly renewed authority to publish the locally committed IsoDocs documentation and
+promote the accepted staging commit to main/live. The active session used automatic approval
+review. Normal escalated terminal requests succeeded; no approval policy was changed and no
+alternate push route was used. The earlier execution blocker is resolved.
+
+- IsoDocs normal main push published the five pre-existing commits, `b4975d0` → `67920b7`.
+  The unrelated uncommitted FUND review edit was excluded and preserved byte-for-byte.
+- Fresh Git/provider preflight confirmed the single application commit above `d13ecb39`,
+  accepted exact dev/staging scans and staging web/cron, and the expected production web/cron
+  repository, main branch and database identities. There are no new migrations or runtime
+  configuration changes. Production has 166 historical ledger rows / 157 distinct migration
+  names, zero unresolved entries and no pending migrations. No ledger repair was performed.
+- Local application main was fast-forward merged from accepted staging, then pushed with
+  `git push origin main`; no direct source-to-remote ref substitution or force push was used.
+  Workspace returned to dev. Local and remote dev/staging/main all equal the accepted SHA.
+- Exact-main Security Scan [35225966878](https://github.com/isocb/isostack-bedrock/actions/runs/35225966878)
+  **PASS**, including dependency, TypeScript, schema, secrets and report summary. The
+  schedule-only job is correctly skipped for this push.
+- Production web `app` (`srv-d4t6l16uk2gs73ejugg0`), deployment `dep-dalufvrbc2fs738f9980`,
+  **live** at exact `c3998084`; provider finish `2026-09-17T13:22:39.536226Z`.
+- Production cron `isostack-bedrock` (`crn-d610l04r85hc739h10e0`), deployment `dep-dalug03bc2fs738f99s0`,
+  **live** at exact `c3998084`; provider finish `2026-09-17T13:21:05.934967Z`.
+- Independent readback confirmed both exact deployments are still the latest. Verification
+  timestamp: `2026-09-17T13:23:20.454210+00:00`.
+- `https://app.seasonpro.co.uk` and `https://isostack-bedrock.onrender.com`: entry page and
+  `/api/health` HTTP 200, database connected, core RLS 11/11. Signed-out
+  `/api/trpc/import.access` returns 401 on both hosts. Requests used a browser user agent.
+- Post-deployment read-only migration inventory remains 166 rows / 157 distinct / zero
+  unresolved. No new migration, configuration, import, export or email send was performed.
+
+### Bounded provider log evidence
+
+Build logs were queried from the promotion trigger; application logs were queried from each
+deployment's finish through verification. Pagination was exhausted. Only counts/indicators
+are retained, with no personal data, message content or credentials.
+
+| Service | Log type | Rows | No pending migrations | Build successful | Failure indicators |
+| --- | --- | ---: | ---: | ---: | --- |
+| Web | build | 341 | 1 | 1 | None matched |
+| Web | app | 7 | 0 | 0 | None matched |
+| Cron | build | 379 | 0 | 1 | None matched |
+| Cron | app | 0 | 0 | 0 | None matched |
+
+Failure indicators checked: TypeScript errors, missing-column/relation wording, `Error:`,
+out-of-memory and fatal errors. This is a bounded technical readback, not sustained-load
+assurance or proof of a newly executed cron business job. The earlier OOM incident remains
+outside this release and is not claimed resolved.
+
+### Minimum remaining live human smoke
+
+Use https://app.seasonpro.co.uk with existing users and data. No imports, exports of live
+personal data, role edits, rollback/delete or email sends are needed.
+
+| Check | Expected result | Result |
+| --- | --- | --- |
+| LIVE1 — login and authorised pages | Log in as an existing delegated League Admin with the relevant grants; confirm the correct league, open Import, Export and job history, and see no delegated rollback/delete controls. Log out normally. | Pending |
+| LIVE2 — Free Day preview | Open a non-sending Free Day notification preview with a resolved date and confirm DD/MM/YYYY in the applicable subject/body. An intentional `{{requestedDate}}` placeholder in the template editor remains valid. | Pending |
+
+Accepted local L1–L5 (including actual email send) and staging S1–S3 are retained without
+repetition. Recovery remains a compatible code revert to the former Owner-only normal
+operation checks; preserve imported records, mappings and sent-email history. Technical
+promotion is complete; human production acceptance and lifecycle closure are not claimed.
+Root Now remains SeasonPro, Next remains the accepted FUND B1 resumption boundary.

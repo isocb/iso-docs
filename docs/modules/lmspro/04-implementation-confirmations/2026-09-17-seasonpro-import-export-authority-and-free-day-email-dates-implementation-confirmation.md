@@ -6,9 +6,9 @@ Date: 2026-09-17 · Control depth: **High**
 - Files/change boundary: Core Import router and narrow access helper; Import, Export and job pages; two dashboard component filters; Free Day template presentation and focused tests.
 - Automated checks: 79 focused/related tests PASS; TypeScript, critical-file verification and changed-file ESLint PASS (zero errors, 36 existing warnings; test files linted with `project: null` because the application tsconfig excludes tests). Isolated production build PASS (workspace removed; running dev server untouched).
 - Human evidence: Chris reports L1–L5 PASS and an actual email send PASS on 17 September; see the 05 acceptance record.
-- Environment proven: local automated checks and user-reported authenticated smoke. Read-only connected access-helper checks PASS for 12 local development actors (endpoint fingerprint `8708763642d9`), including invalid effective-tenant refusal. Those local checks made no database changes. Subsequent authorised staging deployment/security/health proof is PASS; main/live is unchanged.
-- Known residual risk: automated staging health/RLS checks PASS; staging authenticated human acceptance remains pending; no new role grants are assigned automatically. Existing rollback removes mappings, not imported entities.
-- Next action: staging S1–S3 acceptance in the [05 review](../05-review-and-test/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-review-and-test.md); automated staging proof is complete; main/live remains held.
+- Environment proven: local automated checks and user-reported authenticated smoke. Read-only connected access-helper checks PASS for 12 local development actors (endpoint fingerprint `8708763642d9`), including invalid effective-tenant refusal. Those local checks made no database changes. Subsequent authorised staging and production deployment/security/health proof is PASS; see the 05 review.
+- Known residual risk: staging human acceptance and production technical verification PASS; live human acceptance remains pending; no new role grants are assigned automatically. Existing rollback removes mappings, not imported entities.
+- Next action: the two minimum live human checks in the [05 review](../05-review-and-test/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-review-and-test.md); exact production technical proof is complete.
 
 [Plan](../03-slice-planning/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-planning.md)
 
@@ -53,4 +53,4 @@ script with `node --import tsx scripts/verify-critical-files.ts` passed, includi
 
 Recovery is a compatible code revert, restoring the former Owner-only normal-operation checks.
 Never use rollback/delete as recovery for this code change: legitimate imports, mappings and sent
-evidence must remain. Staging deployment/security/health proof is PASS (see 05); staging human acceptance and main/live promotion remain pending.
+evidence must remain. Staging human acceptance and production deployment/security/health proof are PASS (see 05); minimum live human acceptance remains pending.

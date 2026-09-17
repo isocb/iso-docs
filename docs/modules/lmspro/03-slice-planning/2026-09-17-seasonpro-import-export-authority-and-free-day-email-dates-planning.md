@@ -1,7 +1,7 @@
 # SeasonPro — Import/Export Authority And Free Day Email Dates: Single Slice Plan
 
 Date: 2026-09-17
-Status: **Implementation authorised by Chris on 17 September, local dev first; implemented locally at `c3998084`, with Chris’s local smoke and actual email-send PASS on 17 September. Chris subsequently authorised staging promotion on 17 September; `c3998084` is deployed to staging with security/health PASS, awaiting staging human acceptance. Main/live remains held.**
+Status: **Implemented and accepted locally/staging at `c3998084`; authorised production promotion/security/health PASS; minimum live human smoke pending in the 05 review.**
 Control depth: **High** for import/export authority; date-format proof remains focused.
 Work type: bounded production correction, not an infrastructure experiment.
 Baseline reviewed: application `d13ecb39`; recheck current branch/ancestry before implementation.
@@ -147,4 +147,4 @@ No new dashboards, permission framework, provider calls, OOM fix or bulk cleanup
 
 ## Implementation handoff
 
-[04 confirmation](../04-implementation-confirmations/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-implementation-confirmation.md) and [05 local smoke/review](../05-review-and-test/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-review-and-test.md) record delivered behaviour and outstanding evidence. Chris’s latest instruction limits execution to local dev. Rollback wording is corrected to describe mapping removal truthfully; the destructive engine is unchanged.
+[04 confirmation](../04-implementation-confirmations/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-implementation-confirmation.md) and [05 local smoke/review](../05-review-and-test/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-review-and-test.md) record delivered behaviour and outstanding evidence. Subsequent staging acceptance and live authority supersede the original local-only boundary; the 05 review records exact production proof and pending live human acceptance. Rollback wording is corrected to describe mapping removal truthfully; the destructive engine is unchanged.
