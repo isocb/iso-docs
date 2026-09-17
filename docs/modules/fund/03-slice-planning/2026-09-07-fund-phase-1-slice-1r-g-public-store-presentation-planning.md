@@ -27,6 +27,31 @@ Authority and inputs:
 - [B1 plan](2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md)
 - [English business report](../00-roadmap-control/2026-08-25-fund-complete-module-smoke-readiness-business-overview.md)
 
+### 17 September — Preparation Handoff And Classroom Dependency
+
+Chris has passed the five-step local preparation smoke, including standalone template defaults,
+commission inheritance and finalisation/download of the labelled development data preview.
+The [preparation review](../05-review-and-test/2026-09-17-fund-simple-store-preparation-review-and-test.md)
+records the current technical evidence. That preview is not the operational classroom template.
+B1 remains Now and this existing 1R-G planning record remains Next; no public implementation,
+B1 closure or promotion is selected by this handoff.
+
+The next usable outcome must follow **Project exists → C2 prints a real template → classroom
+artwork → artwork goes home → parents use the Store**. Printable output must be available
+before Store opening, without commission acceptance or payment onboarding becoming print gates.
+Coordinate the existing real-artwork release work with this public Store route: a printed
+Store destination must be stable before publication, while an unpublished/pre-opening Store
+still withholds selling and protected offer content. Preserve existing development snapshots;
+do not relabel their invalid development destinations as production evidence.
+
+Carry forward one reusable C1 default/Event commission ladder, all eligible Products included
+with optional removal, automatic temporary images and one Store/commission launch confirmation.
+Show preparation readiness separately from launch readiness and place the launch confirmation
+with Store controls. Do not add another acceptance workflow or ask Chris for public launch
+smoke before a real printable template, public Store and supported purchaser/Order path exist.
+Any material additional complexity must be presented with its concrete client value and a
+simpler alternative in this existing plan.
+
 ## 1. Proposed User Outcome
 
 A purchaser opens a Project Store link and sees only the offer that the organiser has

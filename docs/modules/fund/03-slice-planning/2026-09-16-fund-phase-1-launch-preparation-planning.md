@@ -2,7 +2,7 @@
 
 Date: 2026-09-16; replaced in place on 2026-09-17 at Chris's request.
 
-Status: **Authorised preparation increment locally committed at `9c09cbe1` (application `3820e304`); bounded checks and local human preparation smoke 1–5 PASS; broader regression/separate review pending.**
+Status: **Authorised preparation increment locally committed; candidate `d13ecb39` (application `3820e304`). Local human smoke 1–5, focused technical review and remaining regression PASS; staging/promotion pending.**
 Control depth: **High** because commission configuration, publication authority and preserved
 financial evidence change. This requires strong automated proof, not extra user approvals.
 Work type: proposed production behaviour, demonstrated locally before controlled promotion.

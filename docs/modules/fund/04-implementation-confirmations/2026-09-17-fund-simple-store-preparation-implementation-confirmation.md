@@ -2,10 +2,10 @@
 
 Date: 2026-09-17
 
-Status: **Implemented locally; bounded automated proof PASS. Local human preparation smoke 1–5 PASS on 17 September. Broader regression, separate review and promotion remain open.**
+Status: **Implemented locally; bounded automated proof PASS. Local human preparation smoke 1–5 PASS on 17 September. Focused technical review and remaining regression PASS; staging/promotion remain open.**
 Control depth: **High** — financial evidence and publication authority.
-Exact candidate: `9c09cbe1a9f822ccadde122e1680ab8e513ef9e1` on local `work/fund-b1-r3-platform-vat`, based on `6ebaac46`; not pushed or promoted.
-Application behaviour is `3820e304`; `9c09cbe1` only moves the legacy test fixture before finalisation. Its commit hook type check passes.
+Exact candidate: `d13ecb39fdf592e3a555f96ae64c9763ff73ae16` on local `work/fund-b1-r3-platform-vat`, based on `6ebaac46`; not pushed or promoted.
+Application behaviour is `3820e304`; `9c09cbe1` only moves the legacy test fixture before finalisation. Its commit hook type check passes. `d13ecb39` adds only focused regression tooling; application behaviour is unchanged.
 
 [Accepted plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md)
 · [Review and short smoke](../05-review-and-test/2026-09-17-fund-simple-store-preparation-review-and-test.md)
@@ -67,14 +67,16 @@ Connected results at `9c09cbe1`: fresh 157-migration replay/checksums, B1-R3 rat
 all new simple-preparation checks, frozen offer/PDF preservation and eight existing Catalogue
 concurrency cases PASS. The agent stopped the oversized remaining matrix after Chris challenged
 the delay. The runner therefore exits non-zero by deliberate interruption: **no whole-run or
-fresh A7 PASS is claimed**. Remaining legacy coverage and A7 are open for the promotion review,
-not a reason to block this local preparation demonstration. The parent removed the dedicated
+fresh A7 PASS is claimed**. The subsequent focused continuation at `d13ecb39` completes the remaining legacy coverage
+and A7 with exit 0; the interrupted whole run is not retrospectively labelled PASS. The parent removed the dedicated
 database and verified its absence. See 05 for the exact boundary and earlier fixture failures.
 
 No new schema, migration, application database, environment or provider changes. Chris's
 local test bed and archived wf1 are preserved. Nothing is pushed, promoted or deployed.
 VAT A0/A/B human PASS stands; Chris records this preparation smoke 1–5 PASS, including finalisation and re-download.
-Separate technical review remains pending. Individual publication/purchase smoke remains paused.
+The separate technical review pass and remaining regression now pass, as detailed in 05;
+no independent second-reviewer attestation is claimed. Staging/promotion remain pending.
+Individual publication/purchase smoke remains paused.
 
 Recovery: retain the additive migration 157 already required by B1-R3 and all accepted/
 finalised/Order evidence. Correct forward or use a reviewed compatible binary; reverting to

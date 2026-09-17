@@ -2,12 +2,12 @@
 
 Date: 2026-09-17
 
-Status: **Local implementation; bounded automation PASS. Local human preparation smoke 1–5 PASS (Chris, 17 September). Broader regression, separate review and promotion remain open.**
+Status: **Local implementation; bounded automation PASS. Local human preparation smoke 1–5 PASS (Chris, 17 September). Focused technical review and remaining regression PASS; staging/promotion remain open.**
 Control depth: **High**.
-Exact candidate: `9c09cbe1a9f822ccadde122e1680ab8e513ef9e1`, locally committed on `work/fund-b1-r3-platform-vat`; not pushed or promoted.
+Exact candidate: `d13ecb39fdf592e3a555f96ae64c9763ff73ae16`, locally committed on `work/fund-b1-r3-platform-vat`; not pushed or promoted.
 [Plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md)
 · [Implementation](../04-implementation-confirmations/2026-09-17-fund-simple-store-preparation-implementation-confirmation.md)
-Application behaviour is `3820e304`; `9c09cbe1` only moves the legacy test fixture before finalisation. Its commit hook type check passes.
+Application behaviour is `3820e304`; `9c09cbe1` only moves the legacy test fixture before finalisation. Its commit hook type check passes. `d13ecb39` adds only the focused regression runner; application behaviour is unchanged.
 
 ## Automated Evidence
 
@@ -16,7 +16,7 @@ Application behaviour is `3820e304`; `9c09cbe1` only moves the legacy test fixtu
 - Connected candidate `9c09cbe1`: fresh 157-migration replay and exact checksums PASS. New simple-preparation checks PASS: zero/default/Event inheritance, reuse of legacy policy owners, stale terms, failed-launch rollback, concurrent/repeat launch, first-publication lock through pause, optional Product exclusions, effective image snapshots, pre-opening preparation and Seller authority.
 - B1-R3 connected rate/default/override/C2/foreign/concurrency checks PASS. Later source VAT edit and Store refresh preserve the finalised offer and downloaded PDF bytes, including the legacy Project initialisation fixture: PASS.
 - Eight existing availability/finalisation concurrency cases PASS: Catalogue workflow, channel, Catalogue archive, Product archive, inactive membership, membership removal, inactive Event assignment and removed Event assignment.
-- **The full runner did not complete.** After Chris challenged the disproportionate delay, the agent deliberately stopped its B1 child during the remaining legacy matrix. It exited non-zero due to interruption. Future/expired Event availability cases, later selection/context/timeout coverage and the subsequent A7 run are **not claimed for this candidate**; existing older evidence is historical only. Complete or explicitly assess this remaining coverage during separate promotion review. No further broad rerun was started.
+- **The full runner did not complete.** After Chris challenged the disproportionate delay, the agent deliberately stopped its B1 child during the remaining legacy matrix. It exited non-zero due to interruption. Future/expired Event availability cases, later selection/context/timeout coverage and the subsequent A7 run are **not claimed for this candidate**; existing older evidence is historical only. That gap is subsequently closed by the focused continuation recorded below; the interrupted run itself remains incomplete. No further broad rerun was started.
 - The parent completed cleanup and independently verified absence of `fund_b1_disposable_afea8de2c139f044`. No application database was used or reset.
 - Prior run passed the new preparation/commission/Seller checks, then correctly refused the test fixture’s attempt to change a finalised Project. The fixture now establishes that legacy state before finalisation; no application integrity check was relaxed. Failed runs removed their dedicated databases and verified absence.
 - Self-review corrected inactive Product memberships incorrectly contributing to readiness and protected legacy finalised selection during default initialisation. No separate reviewer attestation is claimed.
@@ -76,8 +76,9 @@ boundary as automated-only.
 ## Next Action And Limits
 
 Chris has completed the local preparation demonstration, including finalisation and download
-of the labelled development data preview. Separate review must address the
-explicitly unfinished regression coverage before promotion. Then follow the existing real-artwork
+of the labelled development data preview. The focused technical review and previously
+unfinished regression cases now pass. Next is controlled staging/environment validation of
+this preparation candidate, retaining migration 157 and the recorded human passes. Follow the existing real-artwork
 release/public Store/purchaser dependencies. The actual classroom printable template is still
 required before operational circulation. No new planning layer or public launch smoke is
 needed until those outputs exist. B1 stays open; root B1 Now / 1R-G planning Next is unchanged.
@@ -100,3 +101,40 @@ development data preview, then marked steps 1–5 PASS. This resolves the prepar
 The repeated confusion about the disabled launch control remains usability feedback for
 release work; this PASS does not demonstrate publication or a classroom-ready print layout.
 No application-code, agent database or permission change was needed for this resolution.
+
+## Focused Technical Review — 17 September, After Local Human PASS
+
+Chris authorises completion of the outstanding review and regression coverage. Application
+behaviour remains `3820e304` / candidate `9c09cbe1`; this pass changes test tooling only.
+Review is a separate source-review pass by the implementing assistant, not an independent
+second-reviewer attestation. B1 remains open and main/live is held.
+
+| Boundary reviewed | Finding |
+| --- | --- |
+| Tenant and role authority | C1 settings remain tenant-scoped; C2 Project access resolves Client membership before Store operations. Seller writes require the actual Owner and refuse impersonation. No new authority bypass found. |
+| Commission and launch | Unpublished terms inherit current defaults; accepted historical terms and first-publication terms are preserved. Launch rechecks reviewed terms/content and authority inside the transaction; failed publication rolls back acceptance and Draft activation. |
+| Frozen offer and Order evidence | Refresh retains finalised Product/configuration references; changing defaults does not reprice accepted evidence. Seller setup refuses active or Order-referenced identity changes. No schema or historical-data rewrite is introduced. |
+| Preparation and release | Template finalisation does not require launch acceptance/payment setup or an elapsed opening date. The Individual development-release refusal remains intentional. The human difficulty finding C1 defaults and interpreting disabled launch is retained as usability feedback, not a false publication PASS. |
+
+No new blocking application defect was identified in this bounded source review. The
+remaining connected evidence was collected with
+`node scripts/run-fund-b1-r3-disposable-tests.mjs --remaining-launch-review`. This mode reuses
+the original assertions but selects only future/expired Event availability plus the unfinished
+selection, refresh, checkout refusal, timeout/retry and Project-context cases, followed by A7.
+It uses a minimal isolated fixture, prints safe progress and limits the focused child to six
+minutes and A7 to two minutes. Existing application-database refusal and verified cleanup
+remain mandatory. **PASS at `d13ecb39fdf592e3a555f96ae64c9763ff73ae16`**, exit code 0. Both remaining
+Event-date cases, selection/refresh locking, checkout refusal without provider/Order side effects,
+timeout rollback/retry, context locking and stale-context refusal pass. Commerce A7 confirms
+atomic Order aggregate creation, FUND-owned idempotency/replay, unchanged 157-migration
+inventory and zero fixture residue. The parent removed `fund_b1_disposable_d32f9435ab3f7514`
+and independently verified absence. TypeScript and runner syntax/whitespace checks pass.
+
+This completes the explicitly interrupted regression coverage using the earlier eight-case
+PASS plus this focused continuation on unchanged application source. The earlier 601-test,
+build and human evidence is retained rather than redundantly repeated for test-only changes.
+No new blocking finding was identified by the separate technical review pass. No application
+code, database schema, runtime configuration, application fixtures or provider state changed.
+
+Earlier completed tests and Chris's local smoke remain valid; there is no repeat of the
+whole VAT/preparation/Catalogue matrix, no new planning document and no promotion in this pass.

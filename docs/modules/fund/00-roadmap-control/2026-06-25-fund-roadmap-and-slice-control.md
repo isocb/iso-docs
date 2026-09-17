@@ -18,9 +18,9 @@ Subsequent owner instruction authorises the preparation increment within B1 Now,
 for unresolved implications. Chris resolves the initial review question: Project dates govern
 opening eligibility, not commission locking. Preparation is locally committed at `3820e304`;
 [implementation and review evidence](../04-implementation-confirmations/2026-09-17-fund-simple-store-preparation-implementation-confirmation.md)
-records automated proof and Chris’s local preparation smoke 1–5 PASS on 17 September. Remaining regression and separate review are open. 1R-G planning remains Next. A0/A/B VAT PASS remains at local `6ebaac46`; C/publication smoke remains paused.
+records automated proof and Chris’s local preparation smoke 1–5 PASS on 17 September. Focused technical review and remaining regression now PASS at test-only follow-up `d13ecb39`; staging/promotion are pending. 1R-G planning remains Next. A0/A/B VAT PASS remains at local `6ebaac46`; C/publication smoke remains paused.
 B1 stays open. DevData is 157; online dev/staging `e7e8837c`, main/live `0397bba9` remain as
-recorded. Separate review/promotion and actual public selling capabilities remain outstanding.
+recorded. Promotion and actual public selling capabilities remain outstanding.
 
 Earlier planning disposition — 2026-09-16: Chris confirms the image correction, but the revised B1
 walkthrough fails on VAT authority. His accepted rule is a single Product VAT percentage,

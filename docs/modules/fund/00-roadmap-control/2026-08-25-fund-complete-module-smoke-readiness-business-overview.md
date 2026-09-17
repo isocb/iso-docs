@@ -35,8 +35,9 @@ start date is in the past. That preparation increment is now implemented locally
 `3820e304`: C1 has FUND setup and Event commission controls, while C2 receives default
 Products/images and inherited terms. The [five-step preparation smoke](../05-review-and-test/2026-09-17-fund-simple-store-preparation-review-and-test.md)
 is now **PASS for all five steps**, recorded by Chris on 17 September, including finalisation
-and download of the development data preview. Technical review and remaining regression are
-still open. No staging/live update has been made.
+and download of the development data preview. The focused technical review and previously
+unfinished tests now pass at `d13ecb39`, including the relevant Commerce checks. No application
+fix was needed. Controlled staging validation is still pending; no staging/live update has been made.
 
 **Classroom preparation comes first:** Project creation enables C2 to print the template,
 children complete artwork in class and take it home, then parents use the Store. Template
