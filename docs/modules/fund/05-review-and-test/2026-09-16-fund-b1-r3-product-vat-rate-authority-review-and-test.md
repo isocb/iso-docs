@@ -255,3 +255,12 @@ selected and root B1 Now / 1R-G planning Next remain unchanged by this review.
 | Human resumed B1 finalisation/download, C | BLOCKED: local Seller profile and four Product images missing; no C1 setup controls for the reported instructions. No finalisation PASS inferred |
 
 Existing B1/B1-R2 passes remain historical evidence for their scope, not proof of this correction.
+
+## 17 September — Supported Preparation Follow-up
+
+Chris authorised the simpler preparation increment after this review. The new
+[preparation implementation and smoke record](2026-09-17-fund-simple-store-preparation-review-and-test.md)
+covers C1 defaults/Seller setup, automatic Product images and the C2 development-template
+journey. Retain the human A0/A/B VAT passes and all comments above. Do not interpret the
+new code as a C/publication PASS: its human preparation smoke and separate review are still
+pending, and Individual live publication/public purchasing remain unavailable.

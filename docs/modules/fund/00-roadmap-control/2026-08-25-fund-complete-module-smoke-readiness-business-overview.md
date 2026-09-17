@@ -19,7 +19,7 @@ plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.m
 Product images and inherited Project setup. C2 reviews the Store and commission together;
 one launch confirmation will cover both. Separate per-Project offers and acceptance screens
 are not part of the required normal journey. Chris has now agreed: commission terms stop
-changing at Project start or Store launch, whichever comes first; all eligible Catalogue
+changing at first Store publication (the latest clarification); all eligible Catalogue
 Products are included automatically, with optional removal before finalisation. No unlock
 workflow is required.
 
@@ -29,11 +29,18 @@ launch and a test purchase follow the still-unfinished release/payment dependenc
 are not delivered by this documentation revision. Basic simplicity is required in Phase 1.
 Material additional complexity must be explained to Chris with its value and simpler option.
 A0/A/B VAT PASS remains; C/publication smoke stays paused. Chris now authorises the
-preparation increment within B1 Now; 1R-G planning remains Next. Initial code review has
-paused as requested: should an unpublished Project whose start date is already past be
-allowed its first commission setup when it has no prior accepted terms or Orders? The
-recommendation is one-time setup now, then an immediate lock. No application/data changes
-have been made while that business decision is pending.
+preparation increment within B1 Now; 1R-G planning remains Next. The review question is resolved: Project dates decide when a Store may open;
+commission locks only when it first publishes. No special rule is needed for a Project whose
+start date is in the past. That preparation increment is now implemented locally at
+`3820e304`: C1 has FUND setup and Event commission controls, while C2 receives default
+Products/images and inherited terms. The [five-step preparation smoke](../05-review-and-test/2026-09-17-fund-simple-store-preparation-review-and-test.md)
+is the next human demonstration after automated validation. No staging/live update has been made.
+
+**Classroom preparation comes first:** Project creation enables C2 to print the template,
+children complete artwork in class and take it home, then parents use the Store. Template
+preparation must work before Store opening and without live payments or commission acceptance.
+The current labelled development PDF tests that preparation path; the usable classroom print
+layout remains an explicit artwork-delivery requirement, not a completed output.
 
 ### 16 September evening — Store publication is not yet a complete user journey
 

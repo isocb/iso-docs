@@ -2,7 +2,7 @@
 
 Date: 2026-07-27
 
-Last portfolio reconciliation: 2026-09-16
+Last portfolio reconciliation: 2026-09-17
 
 Status: Active parent roadmap
 
@@ -91,11 +91,12 @@ setup is a reusable producer dependency, not per-Project administration. Materia
 complexity must be presented to Chris with its value and simpler alternative. A0/A/B VAT PASS
 stands; C/publication smoke stays paused until supported. **B1 Now / 1R-G planning Next is
 unchanged in portfolio order.** Chris subsequently authorises the preparation increment
-within FUND Now, with a stop for unresolved implications. Focused review is paused on first
-commission setup for Projects whose start date is already past; the launch plan records the
-recommended one-time unpublished/no-evidence exception for his decision. No code/data changes
-have been made. Application remains local `6ebaac46`; separate
-review, real-release/public Store and purchasing work remain. No fixture or promotion change.
+within FUND Now, with a stop for unresolved implications. Chris resolves the initial question:
+commission locks at first Store publication, independent of Project start dates. Future opening
+dates prevent launch; past dates permit the normal readiness check. The preparation increment
+is implemented locally at `3820e304`; [04/05 evidence](../modules/fund/04-implementation-confirmations/2026-09-17-fund-simple-store-preparation-implementation-confirmation.md)
+records bounded checks and pending remaining regression/human/separate review. Public release/purchasing and
+promotion remain separate; online branches are unchanged.
 
 16 September owner-directed B1-R3 implementation supersedes the earlier assumption that only
 a human retry remains. The Commerce dependency concerns neutral numeric-rate evidence,
@@ -103,7 +104,7 @@ not another portfolio outcome or a general tax-engine change. Implementation was
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | FUND `1R-F-B1` / B1-R3 acceptance and authorised simple launch preparation | 17 September: preparation implementation authorised, paused during review for first commission setup after a past Project start; see the launch plan section 6. Owner authorises a P1 platform VAT creation default (initially 20%) and one C1-editable saved Product percentage. [B1-R3](../modules/fund/03-slice-planning/2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md) is amended and authorised to remove conflicting Seller/category authority, including Platform/Pulse default consumers and the bounded Commerce evidence dependency. Image smoke confirmed; current finalisation blocked. Local work branch `6ebaac46` passes automated/connected proof and A0/A/B human VAT smoke; C is blocked by Seller/image setup; DevData is at 157 with preserved rows. Online dev/staging remain `e7e8837c`; separate review, remaining C smoke and promotion pending. Main/live remains `0397bba9`. |
+| **NOW** | FUND `1R-F-B1` / B1-R3 acceptance and authorised simple launch preparation | 17 September: preparation implementation authorised, resumed with first-publication commission lock; see the launch plan section 6. Owner authorises a P1 platform VAT creation default (initially 20%) and one C1-editable saved Product percentage. [B1-R3](../modules/fund/03-slice-planning/2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md) is amended and authorised to remove conflicting Seller/category authority, including Platform/Pulse default consumers and the bounded Commerce evidence dependency. Image smoke confirmed; current finalisation blocked. Local work branch `6ebaac46` passes automated/connected proof and A0/A/B human VAT smoke; C is blocked by Seller/image setup; DevData is at 157 with preserved rows. Online dev/staging remain `e7e8837c`; separate review, remaining C smoke and promotion pending. Main/live remains `0397bba9`. |
 | **NEXT** | FUND `1R-G` Store presentation planning | Continue the existing planning proposal after B1 reconciliation. Its authenticated development-preview boundary is ready for owner review; no 1R-G implementation or live FUND release is authorised. |
 
 On 2026-09-10 Chris requested FUND dev/staging alignment after the security correction was

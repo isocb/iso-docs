@@ -10,14 +10,15 @@ Current disposition — 17 September: Chris requires simplicity and demonstrable
 first-release requirements. The [simple Store launch plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md) replaces yesterday's
 proposal in place: producer default commission, optional Event date/rate ladder, inherited
 terms, automatic Product images and one combined C2 Store/commission launch confirmation.
-Chris's subsequent annotations accept commission terms fixed at Project start/Store launch
-(earlier point), all eligible Catalogue Products included by default, optional C2 removal before
+Chris's subsequent annotations accept commission terms fixed at first Store publication (his latest clarification), all eligible Catalogue Products included by default, optional C2 removal before
 finalisation and no unlock. Separate proposal/negotiation and manual image assignment are
 removed from initial scope.
 Additional material complexity must be shown to Chris with its client value and simpler option.
 Subsequent owner instruction authorises the preparation increment within B1 Now, with a stop
-for unresolved implications. Focused review pauses for first commission setup after a past
-Project start (launch plan section 6); no code/data changes yet. 1R-G planning remains Next. A0/A/B VAT PASS remains at local `6ebaac46`; C/publication smoke remains paused.
+for unresolved implications. Chris resolves the initial review question: Project dates govern
+opening eligibility, not commission locking. Preparation is locally committed at `3820e304`;
+[implementation and review evidence](../04-implementation-confirmations/2026-09-17-fund-simple-store-preparation-implementation-confirmation.md)
+records automated proof and pending human/separate review. 1R-G planning remains Next. A0/A/B VAT PASS remains at local `6ebaac46`; C/publication smoke remains paused.
 B1 stays open. DevData is 157; online dev/staging `e7e8837c`, main/live `0397bba9` remain as
 recorded. Separate review/promotion and actual public selling capabilities remain outstanding.
 
