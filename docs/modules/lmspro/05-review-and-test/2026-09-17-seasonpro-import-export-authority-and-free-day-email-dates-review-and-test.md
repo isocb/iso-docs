@@ -1,22 +1,21 @@
 # SeasonPro Import/Export Authority And Free Day Email Dates — Review And Release Verification
 
-Date: 2026-09-17 · Control depth: **High** · Status: **Production deployment, exact-main security and technical verification PASS; minimum live human smoke pending**
+Date: 2026-09-17 · Control depth: **High** · Status: **COMPLETE AND CLOSED — production technical verification and Chris’s live acceptance PASS**
 
 - Exact commit: `c3998084` on local `dev` (parent `d13ecb39`); aligned across local/remote dev, staging and main; exact production web/cron deployment verified.
 - Files/change boundary: explicit Import/Export component authority, corresponding UI and Free Day date presentation.
 - Automated checks: 79 tests, TypeScript, critical-file verification and changed-file lint PASS (zero errors; existing warnings retained); isolated production build PASS.
-- Human evidence: **L1–L5 PASS**, recorded by Chris in the table below and confirmed in conversation on 17 September: “Smoke testing and actually send an email all GREEN.” Actual email-send success is user-reported; no provider-log inspection is claimed.
-- Environment proven: local automated boundary; read-only connected helper checks across 12 development actors PASS; local authenticated smoke PASS as reported by Chris; staging S1–S3 PASS as reported by Chris; automated staging health/RLS checks PASS; exact production deployment and public health/access checks PASS; live human smoke pending.
+- Human evidence: **L1–L5 PASS**, recorded by Chris in the table below and confirmed in conversation on 17 September: “Smoke testing and actually send an email all GREEN.” Actual email-send success is user-reported; no provider-log inspection is claimed. Chris subsequently reports LIVE1 GREEN/PASS and accepts LIVE2 PASS based on live evidence; no notification-preview test is claimed.
+- Environment proven: local automated boundary; read-only connected helper checks across 12 development actors PASS; local authenticated smoke PASS as reported by Chris; staging S1–S3 PASS as reported by Chris; automated staging health/RLS checks PASS; exact production deployment and public health/access checks PASS; Chris’s live acceptance PASS.
 - Known residual risk: role configuration must actually contain the grants; old sent emails retain old formatting; rollback is mapping-only.
-- Next authorised action: Chris performs the two minimum read-only live checks below. Technical promotion is complete; retain SeasonPro Now / FUND resumption Next until human acceptance is recorded.
+- Next authorised action: none for this release. Restore the previously selected FUND B1 resumption / 1R-G planning sequence; no new implementation authority is created.
 
-## Active restart checkpoint
+## Closure and portfolio handoff
 
-Current state: local and staging acceptance retained; approved documentation published; production promotion/security/deployment/technical verification PASS; live human smoke pending.
-Last proven commit: `c3998084a8f9d089ea16916133fdffc130b14025`; exact-main Security Scan `35225966878` PASS; previous live baseline `d13ecb39` retained for code recovery.
-Current environment: dev/origin-dev, staging/origin-staging and main/origin-main aligned at `c3998084`; production app and cron live at that exact commit; workspace clean on dev.
-Next human decision/test: the two minimum non-destructive live checks below; do not repeat accepted local/staging smoke.
-Safe resumption point: record live human results here, then reconcile the existing SeasonPro/FUND disposition. Preserve unrelated FUND edits and accepted release evidence; OOM investigation stays separate.
+Chris accepted the released boundary on 17 September after exact production verification.
+This SeasonPro lifecycle is closed. The existing FUND B1 plan resumes ownership of the sole
+active restart checkpoint; FUND’s accepted preparation evidence is preserved. The separate
+OOM investigation is not resolved or included by this closure.
 
 ## Local smoke — small synthetic data only
 
@@ -182,18 +181,29 @@ out-of-memory and fatal errors. This is a bounded technical readback, not sustai
 assurance or proof of a newly executed cron business job. The earlier OOM incident remains
 outside this release and is not claimed resolved.
 
-### Minimum remaining live human smoke
+### Live human acceptance — PASS, 17 September 2026
 
 Use https://app.seasonpro.co.uk with existing users and data. No imports, exports of live
 personal data, role edits, rollback/delete or email sends are needed.
 
 | Check | Expected result | Result |
 | --- | --- | --- |
-| LIVE1 — login and authorised pages | Log in as an existing delegated League Admin with the relevant grants; confirm the correct league, open Import, Export and job history, and see no delegated rollback/delete controls. Log out normally. | Pending |
-| LIVE2 — Free Day preview | Open a non-sending Free Day notification preview with a resolved date and confirm DD/MM/YYYY in the applicable subject/body. An intentional `{{requestedDate}}` placeholder in the template editor remains valid. | Pending |
+| LIVE1 — login and authorised pages | Existing delegated League Admin login, correct league, Import/Export/job history loading, absent delegated rollback/delete controls and normal logout. | **GREEN / PASS — Chris** |
+| LIVE2 — Free Day date presentation | Chris accepts the released date presentation based on live evidence. Notification emails have no user-facing preview; the earlier requested preview check was incorrect and was not performed. | **PASS — Chris’s acceptance based on live evidence** |
 
 Accepted local L1–L5 (including actual email send) and staging S1–S3 are retained without
 repetition. Recovery remains a compatible code revert to the former Owner-only normal
 operation checks; preserve imported records, mappings and sent-email history. Technical
-promotion is complete; human production acceptance and lifecycle closure are not claimed.
-Root Now remains SeasonPro, Next remains the accepted FUND B1 resumption boundary.
+promotion and human acceptance are complete; this lifecycle is closed. Root Now returns to
+the already-selected FUND B1 resumption boundary, with 1R-G planning restored as Next.
+
+Chris’s correction supersedes the earlier live-preview instruction, including the plan’s
+proposed live smoke. No new preview UI, fresh email send, provider-log inspection or detailed
+live message contents are claimed. His reported live evidence is accepted without requesting
+another send or repeating the accepted local/staging checks.
+
+Final alignment readback on 17 September at 13:30 UTC: all local/remote dev, staging and
+main refs remain `c3998084`; all four staging/production web/cron latest deployments are live
+at that SHA. Staging and production health return HTTP 200, database connected and RLS
+11/11. Chris requests publication of all remaining local documentation, including the
+previously preserved FUND review annotations, before any FUND implementation resumes.

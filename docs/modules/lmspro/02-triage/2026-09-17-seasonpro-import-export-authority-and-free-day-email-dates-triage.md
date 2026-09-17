@@ -1,7 +1,7 @@
 # SeasonPro — Import/Export Authority And Free Day Email Dates: Triage
 
 Date: 2026-09-17
-Status: **Implemented and accepted locally/staging at `c3998084`; authorised production promotion/security/health PASS; minimum live human smoke pending in the 05 review.**
+Status: **COMPLETE AND CLOSED — exact `c3998084` production technical proof and Chris’s live acceptance PASS; see the 05 review.**
 Control depth: **High** because delegated bulk import/export changes authority and data access.
 Owner: SeasonPro, with bounded Core Import/Export and Communications changes.
 [CR-Fix](../01-cr-inputs/CR-Fix-2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates.md) · [Single plan](../03-slice-planning/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-planning.md)
@@ -52,4 +52,4 @@ Workarounds remain an already authorised Owner and manual date interpretation. N
 containment, data repair or schema work is needed for this plan. This is ordinary remediation,
 not an accepted emergency expedite; the OOM investigation stays separate.
 
-CR disposition: **triaged, implementation authorised and delivered locally at `c3998084`; local/staging human smoke and production technical promotion PASS; live human smoke pending**. Chris’s subsequent local implementation instruction selects this SeasonPro correction as root Now and preserves FUND B1 as Next at its accepted release boundary. The 04 confirmation and 05 review record actual evidence; Chris subsequently authorised staging promotion; deployment/security/health PASS. Staging acceptance and live approval were subsequently obtained; exact production deployment/security/health PASS. The 05 review owns remaining live human acceptance.
+CR disposition: **triaged, implementation authorised and delivered locally at `c3998084`; local/staging human smoke and production technical promotion PASS; live human acceptance PASS; complete and closed**. Chris’s subsequent local implementation instruction selects this SeasonPro correction as root Now and preserves FUND B1 as Next at its accepted release boundary. The 04 confirmation and 05 review record actual evidence; Chris subsequently authorised staging promotion; deployment/security/health PASS. Staging acceptance and live approval were subsequently obtained; exact production deployment/security/health PASS. The 05 review records Chris’s live acceptance and closure; the previously selected FUND B1 / 1R-G planning sequence is restored.

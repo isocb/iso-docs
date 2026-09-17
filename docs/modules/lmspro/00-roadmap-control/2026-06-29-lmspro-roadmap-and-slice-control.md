@@ -21,7 +21,7 @@ authority. Later disposition changes must update the existing row.
 
 | Source CR | Current disposition | Roadmap treatment |
 | --- | --- | --- |
-| [`CR-Fix-2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates.md`](../01-cr-inputs/CR-Fix-2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates.md) | [Triaged](../02-triage/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-triage.md); [one bounded High-control plan](../03-slice-planning/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-planning.md) prepared. Owner-only destructive/internal actions retained; local `c3998084` implementation and L1–L5 human smoke PASS, including actual email send; staging deployed at `c3998084`, exact security/health PASS; staging human acceptance PASS; exact `c3998084` production web/cron, main Security Scan `35225966878` and health/access PASS; minimum live human smoke pending | Selected root Now at Chris’s instruction; staging promotion authorised on 17 September. See linked plan and 04/05 evidence; technical live promotion complete, human closure pending |
+| [`CR-Fix-2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates.md`](../01-cr-inputs/CR-Fix-2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates.md) | [Triaged](../02-triage/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-triage.md); [one bounded High-control plan](../03-slice-planning/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-planning.md) prepared. Owner-only destructive/internal actions retained; local `c3998084` implementation and L1–L5 human smoke PASS, including actual email send; staging deployed at `c3998084`, exact security/health PASS; staging human acceptance PASS; exact `c3998084` production web/cron, main Security Scan `35225966878` and health/access PASS; Chris’s LIVE1 GREEN/PASS and LIVE2 acceptance based on live evidence PASS; no notification-preview test claimed | Complete and closed on 17 September; root resumes the previously selected FUND B1 Now / 1R-G planning Next |
 | [`2026-07-02-lmspro-cr-club-official-removal-access-lifecycle-input.md`](../01-cr-inputs/2026-07-02-lmspro-cr-club-official-removal-access-lifecycle-input.md) | R3 planning completed; no implementation confirmation or review record was located for an executable R3 delivery | Historical planned policy; parked unless a fresh fault or accepted implementation need reopens it |
 | [`2026-07-06-lmspro-cr-communications-email-announcements-remediation-input.md`](../01-cr-inputs/2026-07-06-lmspro-cr-communications-email-announcements-remediation-input.md) | R4-A/R4-B implemented with local browser-smoke evidence | Completed at the recorded local evidence boundary; later communications CRs own subsequent changes |
 | [`2026-07-06-lmspro-cr-dynamic-age-group-division-role-permissions-routing-input.md`](../01-cr-inputs/2026-07-06-lmspro-cr-dynamic-age-group-division-role-permissions-routing-input.md) | R5-A/R5-B implemented and reviewed; authenticated browser smoke passed, with R5-A routing confidence closed by R5-B | Completed historical remediation |
@@ -44,8 +44,9 @@ authority. Later disposition changes must update the existing row.
 Current LMSPro portfolio disposition:
 
 ```text
-ROOT NOW -> SeasonPro Import/Export authority and Free Day email dates; local acceptance PASS; staging deployment/security/health PASS; staging human acceptance PASS; exact `c3998084` production web/cron, main Security Scan `35225966878` and health/access PASS; minimum live human smoke pending
-ROOT NEXT -> FUND 1R-F-B1 resumption at accepted d13ecb39 preparation release; 1R-G remains downstream
+ROOT NOW -> FUND 1R-F-B1 resumption at its accepted preparation release boundary
+ROOT NEXT -> FUND 1R-G public Store presentation planning; no implementation authority
+SEASONPRO IMPORT/EXPORT AND DATES -> complete and closed at c3998084; exact live/security/health proof and Chris’s live acceptance PASS; notification-preview instruction corrected
 LMS R13 -> delivery/live proof complete at exact 06811784; production migration/schema, Render identity, L1-L2 and exact-main scan PASS
 PARKED ASSURANCE -> PLAT-ROLE-R1 only on an explicit trigger; historical PLAT-ROLE-03/LMS-ROLE-01/02 are not next slices
 PARKED -> 500-recipient operating envelope, R5-C evidence reconciliation and other registered candidates
@@ -53,7 +54,8 @@ PARKED -> 500-recipient operating envelope, R5-C evidence reconciliation and oth
 
 This current disposition supersedes the chronological resumption wording retained below.
 On 17 September Chris authorised the single Import/Export/date slice locally; its 05 record
-holds the active checkpoint. Other LMSPro candidates remain parked.
+records release closure and the corrected live-evidence basis. The existing FUND B1 plan
+resumes the sole active checkpoint. Other LMSPro candidates remain parked.
 On 2026-09-07 the owner confirmed LMSPro remedial work is concluded and FUND is the primary
 focus. R13 and R14-A remain closed at their recorded live boundaries. FUND Stage C-R1
 subsequently passed at exact `0c7e4848` with zero residue; it is not awaiting execution.

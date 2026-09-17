@@ -2,7 +2,7 @@
 
 Date: 2026-09-07
 
-Status: **Local/staging human and technical PASS. Approved d13ecb39 deployed through main; production migration/preservation/configuration/health PASS. Minimum live human smoke pending; B1 remains open.**
+Status: **Local/staging human and technical PASS. Approved d13ecb39 deployed through main; production migration/preservation/configuration/health PASS. Chris’s minimum live human smoke PASS; B1 remains open. SeasonPro closure restores this existing resumption checkpoint.**
 
 Control depth: **High** — this journey introduces persistent offer evidence, exact C2
 finaliser authority, tenant-bound document access and failure/retry behaviour.
@@ -17,17 +17,17 @@ Product-selection/capacity CRs; this is their bounded development child, not a n
 The enduring [1R-F-B framework](../00-roadmap-control/2026-09-07-fund-user-framework-and-individual-artwork-delivery-principles.md)
 augments the [FUND roadmap](../00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md).
 [Root control](../../../00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md)
-now selects FUND B1/B1-R2 dev/staging promotion and acceptance as Now, with the existing
+restores FUND B1 resumption at the accepted preparation release boundary as Now, with the existing
 1R-G planning proposal Next. This plan owns the sole active restart checkpoint.
 
 ## Restart Checkpoint
 
 ```text
-Current state: approved main promotion complete at d13ecb39. Local/staging human checks PASS; production technical checks PASS. Minimum read-only live human smoke pending. B1 stays open; public selling and classroom-ready artwork are not released.
-Last proven commit: d13ecb39fdf592e3a555f96ae64c9763ff73ae16; dev/staging/main Security Scans 35201013522/35201206533/35203702246 PASS. Production web/cron exact deployment, four migration checksums, 47 retained financial table fingerprints, health/DB/RLS/asset/auth-refusal PASS. Accepted local/staging evidence retained.
-Current environment: local dev/staging/main and origins aligned at d13ecb39. Production web dep-dalqt61srm7s73d76d20 and cron dep-dalqt69srm7s73d76dlg Live. Production schema 157; artwork disabled/production verified before and after deploy; staging emulation unchanged. Application worktree clean on dev; local test bed untouched.
-Next human decision/test: short read-only live smoke in the 17 September review: normal role login/dashboard, existing SeasonPro screens/images, P1 VAT and C1 FUND setup load. No new FUND test data, template download or public selling test required.
-Safe resumption point: record live human result; address a concrete failure if reported. Preserve Orders/finalised evidence; recover by compatible forward fix. No local database dump was made, only counts/hashes. B1 Now / 1R-G planning Next unchanged; upcoming SeasonPro work must be selected explicitly rather than inferred from this alignment.
+Current state: FUND preparation release d13ecb39 is accepted locally, on staging and in Chris’s three live checks. Intervening SeasonPro correction c3998084 is verified live and closed. B1 resumes as root Now; 1R-G planning is Next. B1 remains open; public selling and classroom-ready artwork are not released.
+Last proven commit: FUND d13ecb39fdf592e3a555f96ae64c9763ff73ae16 retains its technical and human acceptance. Current corridor c3998084a8f9d089ea16916133fdffc130b14025 adds only the accepted SeasonPro correction; exact-main Security Scan 35225966878 and production health/DB/RLS/access PASS. No FUND smoke repetition is required for that correction.
+Current environment: local/remote dev, staging and main aligned at c3998084; production web dep-dalufvrbc2fs738f9980 and cron dep-dalug03bc2fs738f99s0 verified live. Production has 157 distinct applied migrations and zero unresolved entries; SeasonPro introduced no migration or runtime configuration. Application workspace remains clean on dev.
+Next human decision/test: resume the remaining B1 artwork/public Store/purchaser dependencies within the existing accepted preparation boundary; select any new implementation explicitly. Retain Chris’s accepted local/staging/live smoke rather than repeating it.
+Safe resumption point: use the 17 September FUND preparation review and revised launch plan, preserving the unrelated human review annotations, Orders and finalised evidence. The recorded OOM incident remains separate and is not claimed resolved. This handoff restores the existing FUND B1 Now / 1R-G planning Next sequence without starting implementation.
 
 ```
 

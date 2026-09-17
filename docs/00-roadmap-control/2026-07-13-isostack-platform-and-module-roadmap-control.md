@@ -29,9 +29,10 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application and R13 release evidence:
 
 ```text
-FUND dev/staging/main and origins = d13ecb39; approved production web/cron deployment complete
+Current dev/staging/main and origins = c3998084; staging/production web and cron verified live; SeasonPro release complete and closed
+FUND preparation baseline = d13ecb39, retained by ancestry; approved production release and Chris-reported live smoke PASS
 FUND 17 September = local VAT/preparation human PASS; remaining technical review PASS; dev/staging Security Scans 35201013522/35201206533 PASS; staging migration 157 and 51-table data preservation PASS; exact Render web/cron deployment/health PASS; Chris staging human acceptance PASS
-FUND main release = all four B1/R1/R2/R3 migrations PASS (157 total); 47 retained financial table fingerprints unchanged; exact-main Security Scan 35203702246 PASS; production disabled/production settings and health/DB/RLS PASS; minimum live human smoke pending
+FUND main release = all four B1/R1/R2/R3 migrations PASS (157 total); 47 retained financial table fingerprints unchanged; exact-main Security Scan 35203702246 PASS; production disabled/production settings and health/DB/RLS PASS; Chris-reported minimum live human smoke PASS; subsequent OOM incident remains separate
 FUND Product modal correction = build/seven focused tests/lint/type/verify/read-only staging image and authority proof PASS; dev/staging Security Scans 34689761185/34689769969 PASS; earlier B1 connected proof retained
 FUND staging Render dep-daiivvojo6nc73bl6u8g = exact e7e8837c Live 2026-09-12T11:03:03.30739Z; three staging domains health/DB/RLS 11/11 and signed-out image-query 401 PASS; corrected C1/C2 human smoke pending
 R14-A exact d78935d4 local R1-R9, staging S1-S4 and production L1-L2 PASS; aligned through main; all four Security Scans and staging/production public health PASS; COMPLETE AND CLOSED
@@ -109,8 +110,8 @@ not another portfolio outcome or a general tax-engine change. Implementation was
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | SeasonPro Import/Export authority and Free Day email dates | Chris authorised the [single remedial slice](../modules/lmspro/03-slice-planning/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-planning.md) for local dev implementation and smoke on 17 September. Local `c3998084` L1–L5 and actual email send are Chris-reported PASS. Chris subsequently authorises staging promotion; exact `c3998084` staging web/cron deployment, security scans and health PASS; staging human acceptance PASS. Authorised IsoDocs publication and normal main promotion succeeded. Exact `c3998084` production web/cron, main Security Scan `35225966878` and health/access checks PASS; minimum live human smoke pending in the 05 record. OOM investigation excluded. |
-| **NEXT** | Resume FUND `1R-F-B1` at its accepted preparation release boundary | Preserve the [17 September review](../modules/fund/05-review-and-test/2026-09-17-fund-simple-store-preparation-review-and-test.md), application `d13ecb39`, and Chris’s reported live PASS. B1 stays open; real artwork/public Store/purchaser dependencies remain. `1R-G` planning remains registered downstream, temporarily displaced from formal Next. |
+| **NOW** | Resume FUND `1R-F-B1` at its accepted preparation release boundary | SeasonPro `c3998084` is complete and closed: exact production web/cron, main Security Scan `35225966878`, health/access and Chris’s live acceptance PASS. Resume the previously selected FUND outcome from its [existing B1 checkpoint](../modules/fund/03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md), preserving the accepted `d13ecb39` preparation release and reported live PASS. B1 stays open; real artwork/public Store/purchaser dependencies remain. OOM investigation remains separate. |
+| **NEXT** | FUND `1R-G` public Store presentation planning | Restore the [previously selected planning proposal](../modules/fund/03-slice-planning/2026-09-07-fund-phase-1-slice-1r-g-public-store-presentation-planning.md) after SeasonPro closure. Planning only; no 1R-G implementation or public-selling authority is created. |
 
 On 2026-09-10 Chris requested FUND dev/staging alignment after the security correction was
 pushed through main at `0397bba9`. Main Security Scan 34481778012 and public production

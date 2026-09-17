@@ -1,7 +1,7 @@
 # SeasonPro — Import/Export Authority And Free Day Email Dates: Single Slice Plan
 
 Date: 2026-09-17
-Status: **Implemented and accepted locally/staging at `c3998084`; authorised production promotion/security/health PASS; minimum live human smoke pending in the 05 review.**
+Status: **COMPLETE AND CLOSED — exact `c3998084` production technical proof and Chris’s live acceptance PASS; see the 05 review.**
 Control depth: **High** for import/export authority; date-format proof remains focused.
 Work type: bounded production correction, not an infrastructure experiment.
 Baseline reviewed: application `d13ecb39`; recheck current branch/ancestry before implementation.
@@ -122,12 +122,14 @@ Short staging human smoke after automated proof:
    subject/body outputs. Confirm original requested day and stored value are unchanged.
 
 Do not repeat the entire role/platform smoke matrix. Live proof is limited to normal
-login, authorised page loading and a non-sending email preview; no bulk live mutation.
+login and authorised page loading, with Chris’s acceptance of date presentation based on live
+evidence; no bulk live mutation. Closure correction: notification emails have no user-facing
+preview. The earlier proposed preview smoke was incorrect and is not claimed as performed.
 
 ## 4. Delivery And Recovery
 
 Implementation approval also requires reconciling the single root Now/Next selection with
-this SeasonPro resumption and preserving FUND's existing checkpoint. The 05 review now holds the active restart checkpoint; FUND’s previous release record is the preserved resumption point. The production OOM investigation is not included
+this SeasonPro resumption and preserving FUND's existing checkpoint. The 05 review records closure; FUND’s existing B1 plan resumes the active restart checkpoint and preserves the previous release evidence. The production OOM investigation is not included
 or claimed resolved by this work.
 
 After implementation, complete one 04 confirmation and one 05 review/test record, retaining
@@ -147,4 +149,4 @@ No new dashboards, permission framework, provider calls, OOM fix or bulk cleanup
 
 ## Implementation handoff
 
-[04 confirmation](../04-implementation-confirmations/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-implementation-confirmation.md) and [05 local smoke/review](../05-review-and-test/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-review-and-test.md) record delivered behaviour and outstanding evidence. Subsequent staging acceptance and live authority supersede the original local-only boundary; the 05 review records exact production proof and pending live human acceptance. Rollback wording is corrected to describe mapping removal truthfully; the destructive engine is unchanged.
+[04 confirmation](../04-implementation-confirmations/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-implementation-confirmation.md) and [05 local smoke/review](../05-review-and-test/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-review-and-test.md) record delivered behaviour and outstanding evidence. Subsequent staging acceptance and live authority supersede the original local-only boundary; the 05 review records exact production proof and Chris’s live acceptance and closure. Rollback wording is corrected to describe mapping removal truthfully; the destructive engine is unchanged.

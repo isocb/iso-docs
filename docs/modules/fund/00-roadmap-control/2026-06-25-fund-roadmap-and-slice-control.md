@@ -22,7 +22,15 @@ records automated proof and Chris’s local preparation smoke 1–5 PASS on 17 S
 B1 stays open. Chris approved main promotion: local/online dev, staging and main now align
 at `d13ecb39`, with production web/cron deployed. Production migrations 157, financial
 preservation, exact-main security, disabled/production artwork settings and live health PASS.
-The minimum read-only live human smoke is pending. Actual public selling remains future work.
+Chris’s three minimum read-only live checks are recorded PASS in the existing 17 September
+review. The subsequent OOM incident remains a separate unresolved runtime concern. Actual
+public selling remains future work.
+
+17 September resumption after SeasonPro closure: `c3998084` is verified live with exact-main
+security/health and Chris’s acceptance PASS. Root Now returns to the previously selected FUND
+B1 outcome, with 1R-G planning restored as Next. The existing B1 plan owns the sole active
+checkpoint. Preserve the accepted `d13ecb39` preparation release and the existing
+FUND review annotations; this reconciliation does not authorise new implementation.
 
 Earlier planning disposition — 2026-09-16: Chris confirms the image correction, but the revised B1
 walkthrough fails on VAT authority. His accepted rule is a single Product VAT percentage,
