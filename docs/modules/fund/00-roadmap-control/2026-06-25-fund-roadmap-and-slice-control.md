@@ -19,9 +19,10 @@ for unresolved implications. Chris resolves the initial review question: Project
 opening eligibility, not commission locking. Preparation is locally committed at `3820e304`;
 [implementation and review evidence](../04-implementation-confirmations/2026-09-17-fund-simple-store-preparation-implementation-confirmation.md)
 records automated proof and Chris’s local preparation smoke 1–5 PASS on 17 September. Focused technical review and remaining regression now PASS at test-only follow-up `d13ecb39`; dev/staging promotion is now authorised and pushed; both Security Scans and staging migration/data preservation PASS, with exact Render deployment and health now PASS; Chris records staging human acceptance PASS. 1R-G planning remains Next. A0/A/B VAT PASS remains at local `6ebaac46`; C/publication smoke remains paused.
-B1 stays open. DevData is 157; local/online dev/staging align at `d13ecb39`; main/live remains `0397bba9`.
-Staging release acceptance is PASS. Live artwork configuration is saved and verified as
-disabled/production, effective on the next deployment; explicit main approval remains outstanding. Actual public selling remains future work.
+B1 stays open. Chris approved main promotion: local/online dev, staging and main now align
+at `d13ecb39`, with production web/cron deployed. Production migrations 157, financial
+preservation, exact-main security, disabled/production artwork settings and live health PASS.
+The minimum read-only live human smoke is pending. Actual public selling remains future work.
 
 Earlier planning disposition — 2026-09-16: Chris confirms the image correction, but the revised B1
 walkthrough fails on VAT authority. His accepted rule is a single Product VAT percentage,

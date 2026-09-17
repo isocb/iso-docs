@@ -2,7 +2,7 @@
 
 Date: 2026-09-17
 
-Status: **Local human and technical checks PASS. Exact candidate d13ecb39 promoted to dev/staging; both security scans and staging migration/data preservation PASS. Render web/cron deployment and health PASS; staging human acceptance PASS; live configuration prepared; main promotion held.**
+Status: **Approved candidate d13ecb39 deployed through main; local/staging human PASS and production technical PASS. Minimum live human smoke pending; B1 remains open.**
 Control depth: **High** — financial evidence and publication authority.
 Exact candidate: `d13ecb39fdf592e3a555f96ae64c9763ff73ae16` on dev/staging and both origins, based on `6ebaac46`.
 Application behaviour is `3820e304`; `9c09cbe1` only moves the legacy test fixture before finalisation. Its commit hook type check passes. `d13ecb39` adds only focused regression tooling; application behaviour is unchanged.
@@ -102,3 +102,14 @@ verified, with all other settings, staging and production cron unchanged. No red
 migration was triggered; values take effect on the next deployment. Current live health
 passes. The review record contains exact readback and authority boundaries. Main approval
 remains the next human decision; this is not a live promotion or B1 closure.
+
+## Approved Main Release — 17 September
+
+Chris explicitly approved main promotion. All local/remote dev, staging and main refs align
+at `d13ecb39`; exact production web/cron deployments are Live. Main Security Scan 35203702246,
+all four new migration checksums (157 total), financial row preservation, production-only
+disabled artwork settings and live health/RLS/asset/auth-refusal checks PASS. No source change,
+reset, seed or data export was made. The existing review record contains exact deployment
+IDs, limited runtime evidence, rejected optional backup boundary and the three read-only
+human live checks. Their result remains pending; no FUND operational release or B1 closure
+is claimed. Documentation is published with this technical release confirmation.

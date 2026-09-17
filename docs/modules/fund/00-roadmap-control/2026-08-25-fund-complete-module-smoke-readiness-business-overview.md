@@ -39,10 +39,10 @@ and download of the development data preview. The focused technical review and p
 unfinished tests now pass at `d13ecb39`, including the relevant Commerce checks. No application
 fix was needed. Chris has now requested promotion. Dev and staging branches align at `d13ecb39`; both
 security checks and the staging VAT migration pass, with existing financial data preserved.
-Exact staging web/cron deployment and health now pass. Chris has now passed all three staging checks. The production artwork settings have been
-corrected non-destructively to disabled/production and verified; they take effect on the next
-deployment. Live remains healthy on its existing version. Main promotion is ready for
-explicit approval. This does not require redoing the accepted local smoke or another plan.
+Exact staging web/cron deployment and health now pass. Chris passed all three staging checks and approved main promotion. Dev, staging and live
+now run `d13ecb39`; production migrations, financial-data preservation and health checks pass.
+The live artwork configuration is disabled/production, with staging emulation kept separate.
+Only the short read-only live human check remains before the release smoke can be closed. This does not require redoing the accepted local smoke or another plan.
 
 **Classroom preparation comes first:** Project creation enables C2 to print the template,
 children complete artwork in class and take it home, then parents use the Store. Template

@@ -2,7 +2,7 @@
 
 Date: 2026-09-17
 
-Status: **Local human and technical checks PASS. Exact candidate d13ecb39 promoted to dev/staging; both security scans and staging migration/data preservation PASS. Render web/cron deployment and health PASS; staging human acceptance PASS; live configuration prepared; main promotion held.**
+Status: **Local/staging human and technical PASS. Approved main promotion deployed at d13ecb39; production migration, preservation, configuration and health PASS. Minimum live human smoke pending; B1 remains open.**
 Control depth: **High**.
 Exact candidate: `d13ecb39fdf592e3a555f96ae64c9763ff73ae16`, consolidated through local dev and staging and pushed to both origins on 17 September; deployment verification follows below.
 [Plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md)
@@ -263,3 +263,68 @@ Ready for explicit main-promotion approval under `docs/guides/git-workflow.md`. 
 must deploy the accepted candidate with all four committed migrations, verify effective
 live configuration/deployment and preserve existing Commerce evidence. No main push,
 redeploy, migration or data reset was performed by this configuration request.
+
+### Approved Main Promotion — 17 September
+
+Chris explicitly approved main promotion after the three staging smoke checks passed and
+production configuration was prepared. Local main was fast-forwarded from accepted staging
+and pushed at exact `d13ecb39`; dev/staging/main and all origins now match. The application
+worktree returns to dev for subsequent work. No source change or new migration was created.
+
+Fresh preflight verified the exact staging web/cron deployments, production database
+identity for web/cron, disabled/production artwork settings and all production FUND tables
+empty. Exactly four reviewed migrations were pending from 153. Read-only counts/content
+hashes were saved for 50 FUND/Commerce tables without exporting row contents. An additional
+full production database dump to local temporary storage was rejected by automatic approval
+review because of the sensitive-data payload/destination. That optional export was omitted;
+no dump or backup/restore proof is claimed. The approved migration path does not delete any
+existing financial rows; recovery remains a compatible forward fix, not old-binary rollback.
+
+Production web deployment `dep-dalqt61srm7s73d76d20`, cron deployment
+`dep-dalqt69srm7s73d76dlg` and exact-main Security Scan `35203702246` are in progress.
+Migration/deployment completion and live human acceptance are not inferred from the push.
+
+#### Minimum Live Human Smoke — Pending After Verified Deployment
+
+Use https://app.seasonpro.co.uk. Keep this read-only; do not create FUND test data or repeat
+staging's full functional tests.
+
+1. Confirm login/logout and expected Client/dashboard/access for P1, C1 and a standard
+   tenant user using the usual accounts. A normal user must retain their usual restricted
+   access.
+2. As the normal SeasonPro user, open an existing season, Club/team and fixtures view;
+   confirm existing details and images display correctly, without editing live data.
+3. As P1, open Platform Settings and confirm the VAT default appears without saving a
+   change. As C1, open FUND Products and FUND setup; empty lists are valid on this unused
+   module. Development artwork must not be available on live. No template download,
+   public Store launch, purchase or commission acceptance is requested.
+
+Report PASS or the exact failed screen. FUND remains in development; main alignment is not
+acceptance of operational artwork or public selling. Root B1 Now / 1R-G planning Next
+remains unchanged until SeasonPro remedial work is separately selected.
+
+#### Final Production Technical Result — PASS
+
+- `dev`, `staging`, `main` and all three origin refs align at exact
+  `d13ecb39fdf592e3a555f96ae64c9763ff73ae16`; application worktree is clean on dev.
+- Production web `dep-dalqt61srm7s73d76d20` is Live at that SHA (first readback
+  2026-09-17T09:18:00Z; provider updated 09:18:36Z). Production cron
+  `dep-dalqt69srm7s73d76dlg` is Live at the same SHA, updated 09:16:09Z.
+- Exact-main Security Scan `35203702246` PASS. Both accepted dev/staging scans remain PASS.
+- All four new migration checksums match source; 157 unique migrations applied, no unresolved
+  failure. Both RATE_SPECIFIED enums, platform VAT scalar 20, Catalogue workflow array and
+  all three immutable evidence guards verified read-only.
+- All 47 retained FUND/Commerce table counts/content hashes match the fresh baseline.
+  Three removed legacy tables were empty; four new evidence tables are empty. No existing
+  financial rows were changed. No reset, seed or database export occurred.
+- Production web/cron database identities remain correct. Web artwork mode/target are
+  disabled/production, set before this deployment and reverified afterward. Cron has no
+  emulation enablement. Staging configuration remains untouched.
+- `app.seasonpro.co.uk` and `isostack-bedrock.onrender.com`: HTTP 200 healthy, database
+  connected, RLS 11/11; exact committed placeholder bytes; signed-out commission API 401.
+- Bounded post-switch web logs contain no Prisma validation, missing-schema,
+  emulation-refusal or `Error:` matches. No post-deploy cron runtime entries were returned;
+  cron deployment/configuration is proven, not a new completed business job.
+
+The three read-only live human checks above remain pending. This is a completed technical
+promotion, not a claimed human production PASS, B1 closure or FUND public-selling release.

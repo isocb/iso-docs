@@ -2,7 +2,7 @@
 
 Date: 2026-09-07
 
-Status: **Local VAT and preparation human PASS; technical review PASS. Candidate d13ecb39 pushed through dev/staging; staging migration 157 and exact deployment/health PASS; staging human acceptance PASS; live settings prepared. Main/live held at 0397bba9. B1 remains open.**
+Status: **Local/staging human and technical PASS. Approved d13ecb39 deployed through main; production migration/preservation/configuration/health PASS. Minimum live human smoke pending; B1 remains open.**
 
 Control depth: **High** — this journey introduces persistent offer evidence, exact C2
 finaliser authority, tenant-bound document access and failure/retry behaviour.
@@ -23,11 +23,11 @@ now selects FUND B1/B1-R2 dev/staging promotion and acceptance as Now, with the 
 ## Restart Checkpoint
 
 ```text
-Current state: local preparation smoke 1–5 and VAT A0/A/B PASS; focused technical review and remaining regression/A7 PASS. Chris reports all three staging human checks PASS and authorises live configuration preparation. Both live artwork settings are saved and independently verified. B1 stays open.
-Last proven commit: d13ecb39fdf592e3a555f96ae64c9763ff73ae16; application behaviour 3820e304. Dev/staging Security Scans 35201013522/35201206533 PASS. Local 601 tests/build/human evidence retained, with exact focused continuation; no whole interrupted-run PASS or independent reviewer claim.
-Current environment: local dev/staging and both origins match d13ecb39; staging migration 157 exact checksum and 51-table FUND/Commerce preservation PASS. Exact staging web/cron deployment and three-domain health/DB/RLS/asset/auth-refusal PASS; staging human acceptance PASS. Main/live 0397bba9 and production schema 153 unchanged. Local DevData/archived wf1 untouched. Live service-only artwork settings saved as disabled/production; take effect on next deploy. No live redeploy or database write in this step.
-Next human decision/test: explicit main-promotion approval for accepted d13ecb39 with all four B1/R1/R2/R3 migrations. No repeat staging smoke requested. No classroom/public purchase acceptance inferred.
-Safe resumption point: refresh production baseline/configuration identity, fast-forward local main from accepted staging and push after explicit approval; monitor web/cron and migrations, verify effective disabled/production artwork configuration and minimum live critical path. Saved configuration did not trigger deployment; live health remains 200/DB connected/RLS 11/11. Preserve Orders/finalised evidence; compatible forward recovery. B1 Now / 1R-G planning Next unchanged.
+Current state: approved main promotion complete at d13ecb39. Local/staging human checks PASS; production technical checks PASS. Minimum read-only live human smoke pending. B1 stays open; public selling and classroom-ready artwork are not released.
+Last proven commit: d13ecb39fdf592e3a555f96ae64c9763ff73ae16; dev/staging/main Security Scans 35201013522/35201206533/35203702246 PASS. Production web/cron exact deployment, four migration checksums, 47 retained financial table fingerprints, health/DB/RLS/asset/auth-refusal PASS. Accepted local/staging evidence retained.
+Current environment: local dev/staging/main and origins aligned at d13ecb39. Production web dep-dalqt61srm7s73d76d20 and cron dep-dalqt69srm7s73d76dlg Live. Production schema 157; artwork disabled/production verified before and after deploy; staging emulation unchanged. Application worktree clean on dev; local test bed untouched.
+Next human decision/test: short read-only live smoke in the 17 September review: normal role login/dashboard, existing SeasonPro screens/images, P1 VAT and C1 FUND setup load. No new FUND test data, template download or public selling test required.
+Safe resumption point: record live human result; address a concrete failure if reported. Preserve Orders/finalised evidence; recover by compatible forward fix. No local database dump was made, only counts/hashes. B1 Now / 1R-G planning Next unchanged; upcoming SeasonPro work must be selected explicitly rather than inferred from this alignment.
 
 ```
 
