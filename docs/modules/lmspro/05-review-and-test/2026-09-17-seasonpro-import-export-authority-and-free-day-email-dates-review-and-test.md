@@ -1,6 +1,6 @@
 # SeasonPro Import/Export Authority And Free Day Email Dates — Review And Local Smoke
 
-Date: 2026-09-17 · Control depth: **High** · Status: **Local automated and human smoke PASS; staging deployed; staging human acceptance PASS; live promotion authorised**
+Date: 2026-09-17 · Control depth: **High** · Status: **Local automated and human smoke PASS; staging deployed; staging human acceptance PASS; live promotion authorised but execution blocked**
 
 - Exact commit: `c3998084` on local `dev` (parent `d13ecb39`); aligned across local/remote dev and staging; main/live remains `d13ecb39`.
 - Files/change boundary: explicit Import/Export component authority, corresponding UI and Free Day date presentation.
@@ -8,14 +8,14 @@ Date: 2026-09-17 · Control depth: **High** · Status: **Local automated and hum
 - Human evidence: **L1–L5 PASS**, recorded by Chris in the table below and confirmed in conversation on 17 September: “Smoke testing and actually send an email all GREEN.” Actual email-send success is user-reported; no provider-log inspection is claimed.
 - Environment proven: local automated boundary; read-only connected helper checks across 12 development actors PASS; local authenticated smoke PASS as reported by Chris; staging S1–S3 PASS as reported by Chris; automated staging health/RLS checks PASS.
 - Known residual risk: role configuration must actually contain the grants; old sent emails retain old formatting; rollback is mapping-only.
-- Next authorised action: publish IsoDocs main and promote the accepted `c3998084` to application main/live under the normal checks, as explicitly authorised by Chris.
+- Next authorised action: publish IsoDocs main and promote accepted `c3998084` to application main/live after the execution approval block is resolved. Chris has already explicitly authorised both; neither remote mutation has run.
 
 ## Active restart checkpoint
 
-Current state: local implementation and L1–L5 human smoke accepted; staging deployment/security/health PASS; staging human acceptance PASS; live promotion authorised.
+Current state: local implementation and L1–L5 human smoke accepted; staging deployment/security/health PASS; staging human acceptance PASS; live promotion authorised but execution blocked.
 Last proven commit: `c3998084` passes local automation; local human acceptance PASS (released baseline `d13ecb39`).
 Current environment: dev/origin-dev and staging/origin-staging at `c3998084`; exact staging web/cron live; main/live held at `d13ecb39`.
-Next human decision/test: minimum non-destructive live smoke after deployment; staging smoke is accepted.
+Next human decision/test: resolve automatic execution-approval rejection for both main pushes; then minimum non-destructive live smoke after deployment. Staging smoke is accepted.
 Safe resumption point: use this record and the [single plan](../03-slice-planning/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-planning.md); preserve FUND’s accepted release/resumption evidence. Do not rerun unrelated FUND smoke or include the OOM investigation.
 
 ## Local smoke — small synthetic data only
@@ -86,7 +86,7 @@ Deployment/security/health results: **PASS**, verified 17 September at 12:48:58 
 - Post-deployment ledger still has 157 distinct migrations and zero unresolved entries. Build logs confirm no pending migrations and successful build. No new migration/configuration bundle was introduced.
 - The bounded post-deployment app-log query returned no rows; it is not evidence of an error-free authenticated workflow. S1–S3 subsequently PASS, recorded by Chris below.
 
-Documentation is recorded locally in IsoDocs. Automatic approval review rejected publication to the separate IsoDocs `main` branch because that exact default-branch push was not explicitly authorised. Chris has now explicitly authorised publication to IsoDocs `main` and application main/live promotion based on green staging smoke; the earlier publication block is resolved. Unrelated human FUND working-tree edits are preserved and excluded from this record.
+Documentation is recorded locally in IsoDocs. Automatic approval review rejected publication to the separate IsoDocs `main` branch because that exact default-branch push was not explicitly authorised. Chris has now explicitly authorised publication to IsoDocs `main` and application main/live promotion based on green staging smoke; the user-authority question is resolved, but automatic execution review still blocks the push (see latest entry below). Unrelated human FUND working-tree edits are preserved and excluded from this record.
 
 ### Short staging acceptance
 
@@ -109,3 +109,24 @@ steps”. This supersedes the earlier main hold. Exact candidate remains `c39980
 migration or configuration is included. Production preflight, local fast-forward merge,
 main Security Scan, exact service deployment and minimum live health/access checks will be
 recorded below. Live human smoke is not inferred from staging acceptance.
+
+## Execution approval blocker — 17 September 2026
+
+Preflight PASS: clean application dev; fresh remote staging at accepted `c3998084`; exact
+staging Security Scan `35222416841` PASS. Production app `srv-d4t6l16uk2gs73ejugg0` and cron
+`crn-d610l04r85hc739h10e0` both track this repository’s main at `d13ecb39` and use the verified
+production database; 157 distinct migrations, zero unresolved entries, no new migrations or
+configuration. Other inspected web services belong to separate LMSPro/Floot repositories and
+are not targets of this promotion.
+
+Chris explicitly approved IsoDocs main publication and application main/live promotion in the
+current conversation. Automatic approval review nevertheless rejected the documentation push,
+including a retry after checking that only seven Markdown lifecycle/roadmap files were outgoing.
+It separately rejected the application’s normal local-main merge/push command. The stated reason
+for both was consequential default-branch mutation with purported approval treated as untrusted
+transcript content. No rejected command executed and no alternate push route was attempted.
+
+IsoDocs evidence is committed locally; remote documentation remains unpublished. Application
+local/remote main remains `d13ecb39`; local/remote dev and staging remain `c3998084`. Do not claim
+production deployment or a main scan. Resume the already-authorised normal flow only after the
+execution approval block is resolved. Unrelated FUND working-tree edits remain preserved.
