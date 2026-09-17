@@ -1,21 +1,21 @@
 # SeasonPro Import/Export Authority And Free Day Email Dates — Review And Local Smoke
 
-Date: 2026-09-17 · Control depth: **High** · Status: **Local automated and human smoke PASS; promotion pending**
+Date: 2026-09-17 · Control depth: **High** · Status: **Local automated and human smoke PASS; staging deployed; staging human acceptance pending**
 
-- Exact commit: `c3998084` on local `dev` (parent `d13ecb39`); not pushed.
+- Exact commit: `c3998084` on local `dev` (parent `d13ecb39`); aligned across local/remote dev and staging; main/live remains `d13ecb39`.
 - Files/change boundary: explicit Import/Export component authority, corresponding UI and Free Day date presentation.
 - Automated checks: 79 tests, TypeScript, critical-file verification and changed-file lint PASS (zero errors; existing warnings retained); isolated production build PASS.
 - Human evidence: **L1–L5 PASS**, recorded by Chris in the table below and confirmed in conversation on 17 September: “Smoke testing and actually send an email all GREEN.” Actual email-send success is user-reported; no provider-log inspection is claimed.
 - Environment proven: local automated boundary; read-only connected helper checks across 12 development actors PASS; local authenticated smoke PASS as reported by Chris; staging-specific authentication/RLS proof pending.
 - Known residual risk: role configuration must actually contain the grants; old sent emails retain old formatting; rollback is mapping-only.
-- Next action: await authority for controlled staging validation. No staging/main promotion authorised.
+- Next authorised action: Chris’s staging S1–S3 below. Main/live remains held.
 
 ## Active restart checkpoint
 
-Current state: local implementation and L1–L5 human smoke accepted; actual email send also reported PASS.
+Current state: local implementation and L1–L5 human smoke accepted; staging deployment/security/health PASS; staging human acceptance pending.
 Last proven commit: `c3998084` passes local automation; local human acceptance PASS (released baseline `d13ecb39`).
-Current environment: local dev only; remote branches, staging and live untouched.
-Next human decision/test: authorise staging validation when ready; do not repeat accepted local smoke.
+Current environment: dev/origin-dev and staging/origin-staging at `c3998084`; exact staging web/cron live; main/live held at `d13ecb39`.
+Next human decision/test: staging S1–S3 once deployment is verified; main requires separate approval.
 Safe resumption point: use this record and the [single plan](../03-slice-planning/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-planning.md); preserve FUND’s accepted release/resumption evidence. Do not rerun unrelated FUND smoke or include the OOM investigation.
 
 ## Local smoke — small synthetic data only
@@ -62,3 +62,41 @@ non-functional JSX quote escape; the commit hook reran TypeScript successfully a
 Chris marked all five local checks PASS and confirmed all-green smoke, including an actual
 email send. This accepts the local candidate `c3998084`. No recipient details are recorded.
 It does not constitute staging proof or authorise a push, deployment or live promotion.
+
+## Authorised staging promotion — 17 September 2026
+
+Chris explicitly requested “Please promote to Staging” after accepting all local smoke,
+including an actual email send. Authority covers dev/staging and publishing these records;
+main/live is held. The prior local-only stopping point is superseded for staging only.
+
+The complete promotion bundle is the single application commit `c3998084` above `d13ecb39`.
+There are no schema, migration, dependency or runtime configuration changes. The staging
+ledger contains 157 applied migration names and zero unresolved entries, with no missing/new
+migration names. Its 23 historical checksum differences are already recorded in the FUND
+17 September release evidence; migration source is unchanged by this candidate. No ledger
+repair, reset, seed or data cleanup is included. Web and cron both match the staging database.
+
+Deployment/security/health results: **PASS**, verified 17 September at 12:48:58 UTC.
+
+- Exact dev Security Scan [35222103967](https://github.com/isocb/isostack-bedrock/actions/runs/35222103967) PASS, including summary; exact staging scan [35222416841](https://github.com/isocb/isostack-bedrock/actions/runs/35222416841) PASS.
+- Staging was locally fast-forward merged from dev and pushed normally; workspace returned to dev. Local/remote dev and staging all match `c3998084`; local/remote main remains `d13ecb39`.
+- Render `Staging-IsoStack` (`srv-d4miroogjchc73balrvg`), deployment `dep-daltv915efls73brg4hg`, live at exact candidate (12:48:07 UTC).
+- Render staging cron `isostack-bedrock-1` (`crn-d6t7bpf5gffc738vlcn0`), deployment `dep-daltv995efls73brg52g`, live at exact candidate (12:46:06 UTC).
+- `https://staging.seasonpro.co.uk` and `/api/health` return HTTP 200; database connected; core RLS 11/11 enabled. Signed-out `/api/trpc/import.access` returns 401. The first default Python-user-agent health request received 403; browser-user-agent requests succeeded. No application/configuration change was needed.
+- Post-deployment ledger still has 157 distinct migrations and zero unresolved entries. Build logs confirm no pending migrations and successful build. No new migration/configuration bundle was introduced.
+- The bounded post-deployment app-log query returned no rows; it is not evidence of an error-free authenticated workflow. S1–S3 remain the human acceptance gate.
+
+Documentation is recorded locally in IsoDocs. Automatic approval review rejected publication to the separate IsoDocs `main` branch because that exact default-branch push was not explicitly authorised. Documentation publication awaits Chris’s approval; the application staging promotion is complete. Unrelated human FUND working-tree edits are preserved and excluded from this record.
+
+### Short staging acceptance
+
+Use `https://staging.seasonpro.co.uk`, with staging test users/data only.
+
+| Check | Expected result | Result |
+| --- | --- | --- |
+| S1 — deployment and login | P1, C1 Admin and ordinary tenant-user login/logout work; each sees the correct tenant. | PENDING |
+| S2 — delegated Import/Export | Granted delegated C1 can validate/import one small synthetic Club and export it. Import-only/export-only grants stay independent; an ungranted direct route refuses. Delegated job history offers no rollback/delete. Use the existing test fixture where possible. | PENDING |
+| S3 — date presentation | Render a staging Free Day notification using a test date: DD/MM/YYYY appears in the applicable default/custom outputs. No real-recipient send is required; the accepted local actual send remains evidence. | PENDING |
+
+The full local negative matrix need not be repeated. Staging acceptance establishes the
+representative deployed permission and notification path; public health alone does not prove it.
