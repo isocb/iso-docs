@@ -2,7 +2,7 @@
 
 Date: 2026-09-17
 
-Status: **Approved candidate d13ecb39 deployed through main; local/staging human PASS and production technical PASS. Minimum live human smoke pending; B1 remains open.**
+Status: **Approved candidate d13ecb39 deployed through main; local/staging human PASS and production technical PASS. Chris’s three bounded live human checks PASS; B1 remains open. The separate OOM concern remains unresolved.**
 Control depth: **High** — financial evidence and publication authority.
 Exact candidate: `d13ecb39fdf592e3a555f96ae64c9763ff73ae16` on dev/staging and both origins, based on `6ebaac46`.
 Application behaviour is `3820e304`; `9c09cbe1` only moves the legacy test fixture before finalisation. Its commit hook type check passes. `d13ecb39` adds only focused regression tooling; application behaviour is unchanged.
@@ -111,5 +111,5 @@ all four new migration checksums (157 total), financial row preservation, produc
 disabled artwork settings and live health/RLS/asset/auth-refusal checks PASS. No source change,
 reset, seed or data export was made. The existing review record contains exact deployment
 IDs, limited runtime evidence, rejected optional backup boundary and the three read-only
-human live checks. Their result remains pending; no FUND operational release or B1 closure
+human live checks. Chris records all three PASS; no FUND operational release or B1 closure
 is claimed. Documentation is published with this technical release confirmation.

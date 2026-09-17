@@ -2,7 +2,7 @@
 
 Date: 2026-09-07
 
-Status: **Detailed planning resumed by Chris on 2026-09-10; recommended development-preview contract ready for review. B1 closure and implementation selection remain separate gates.**
+Status: **Planning Next; 17 September review prioritises the accepted-PDF integration and stable Store destination dependency. The older connected development-preview proposal is retained as an unselected option. Implementation remains unselected.**
 
 Control depth: **High** — unauthenticated Store reads introduce tenant, personal-data,
 media-release and commercial-authority boundaries.
@@ -150,8 +150,8 @@ accept its explicit environment/fixture/release contract first; never achieve it
 `INDIVIDUAL_ARTWORK_DEVELOPMENT_ONLY`, fabricating payment readiness or changing the live
 Store status directly. No such bypass is accepted by this draft.
 
-Before implementation selection: confirm whether 1R-G is the intended Next; reconcile B1
-review/smoke findings; identify the first supported workflow and its actual release evidence;
+Before implementation selection: preserve root-confirmed 1R-G planning Next and the accepted B1
+preparation evidence; identify the first supported workflow and its actual release evidence;
 then decide whether a remaining 1R-F prerequisite must precede public presentation. Any
 ordering change belongs in root/FUND controls. Do not resurrect the historical F-C through
 F-I allocation automatically or label it the next approved implementation sequence.
@@ -192,34 +192,34 @@ raw records. Exact implementation rollback and environment gates belong in techn
 
 ## 7. Planning Decisions And Implementation Gate
 
-1. **Planning continuation confirmed:** Chris has requested the next planning slice; this
-   existing 1R-G document is being refined. Its implementation remains unselected while
-   B1 review/proof and security integration are unresolved.
-2. **Recommended first deliverable:** a connected, authenticated purchaser-view preview for
-   the Individual Artwork development journey, using the bounded contract below. This is
-   a proposed scope decision for implementation acceptance, not a production-release bypass.
-3. **Representative content:** reuse the owner's existing local Mug/Individual Project test
-   bed for human comparison; use synthetic fixtures for choice combinations and disclosure
-   negatives. Exact Product/Project IDs and media permissions are verified at implementation
-   preflight, not guessed or copied into public documentation. No need to rebuild the test bed.
+The 17 September classroom direction and subsequent source review supersede the older
+recommendation to make a connected organiser purchaser preview the automatic next deliverable.
+The detailed portrait/landscape PDFs and accepted R1B physical proof are retained. The
+[existing B1 plan](2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md#17-september--accepted-pdf-integration-review-and-proposed-next-boundary)
+now contains the concrete local integration proposal and owns the sole checkpoint.
+B1 preparation release/security/live acceptance is complete; the remaining issue is the
+operational print and purchaser dependency, not repeating the accepted preparation smoke.
 
-Delivery-address and purchaser-message choices remain later checkout/operations work.
-The only material business choice before implementation is whether the first deliverable
-should be the connected organiser preview below or whether an actual anonymous, shareable
-Individual Store must come first. The latter requires completion of the real-release
-prerequisites and would change the implementation sequence.
+Coordinate a stable canonical Store destination before any real sheet is distributed.
+Reuse the existing Store public ID. A pre-opening destination must be non-selling and reveal
+only an explicitly allowed public projection; a later released Store must work at the same
+printed URL. Agree the actual host/path and state behaviour as part of this existing plan.
+No such public route has been implemented or authorised by this review.
 
-## 8. Recommended Bounded Development Preview
+The full public presentation, purchaser/Order and payment boundaries remain separate.
+The B1 local adapter recommendation does not promote 1R-G into implementation or permit
+anonymous access to emulated records. Do not change invalid destinations in existing
+finalised development snapshots. Reuse existing controlled test Projects where suitable;
+new-contract finalisation must use a fresh/unfinalised fixture rather than unlock old offers.
 
-The first user outcome is: the organiser opens **Preview purchaser view** from the Project
-Store area and sees the selected, finalised Individual offer as a purchaser would read it.
-The page clearly says that it is a development preview and that ordering is unavailable.
-It adds no checkout, payment or inert purchase control.
+## 8. Earlier Bounded Development Preview Option — Not Selected
 
-This uses the owner's accepted Phase 1 development-emulation direction. It does not change
-the meaning of Store publication or imply that a purchaser without an account can open
-the preview. The reusable presentation component and public response shape prepare the
-later anonymous Store, whose production authority contract remains Section 3.
+Retain the following contract as an optional reusable presentation approach. It is not the
+recommended prerequisite for connecting the accepted PDF to the Project download flow.
+Any later selection must show its concrete user value and preserve the classroom sequence.
+The earlier option was an authenticated organiser preview of an existing finalised Individual
+offer, visibly development-only and without ordering. It would not make a Store public,
+prove real artwork delivery or give a parent an anonymous route.
 
 ### Access and environment contract
 

@@ -284,7 +284,7 @@ Production web deployment `dep-dalqt61srm7s73d76d20`, cron deployment
 `dep-dalqt69srm7s73d76dlg` and exact-main Security Scan `35203702246` are in progress.
 Migration/deployment completion and live human acceptance are not inferred from the push.
 
-#### Minimum Live Human Smoke — Pending After Verified Deployment
+#### Minimum Live Human Smoke — Chris Reports PASS
 
 Use https://app.seasonpro.co.uk. Keep this read-only; do not create FUND test data or repeat
 staging's full functional tests.

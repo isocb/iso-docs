@@ -26,10 +26,127 @@ restores FUND B1 resumption at the accepted preparation release boundary as Now,
 Current state: FUND preparation release d13ecb39 is accepted locally, on staging and in Chris’s three live checks. Intervening SeasonPro correction c3998084 is verified live and closed. B1 resumes as root Now; 1R-G planning is Next. B1 remains open; public selling and classroom-ready artwork are not released.
 Last proven commit: FUND d13ecb39fdf592e3a555f96ae64c9763ff73ae16 retains its technical and human acceptance. Current corridor c3998084a8f9d089ea16916133fdffc130b14025 adds only the accepted SeasonPro correction; exact-main Security Scan 35225966878 and production health/DB/RLS/access PASS. No FUND smoke repetition is required for that correction.
 Current environment: local/remote dev, staging and main aligned at c3998084; production web dep-dalufvrbc2fs738f9980 and cron dep-dalug03bc2fs738f99s0 verified live. Production has 157 distinct applied migrations and zero unresolved entries; SeasonPro introduced no migration or runtime configuration. Application workspace remains clean on dev.
-Next human decision/test: resume the remaining B1 artwork/public Store/purchaser dependencies within the existing accepted preparation boundary; select any new implementation explicitly. Retain Chris’s accepted local/staging/live smoke rather than repeating it.
-Safe resumption point: use the 17 September FUND preparation review and revised launch plan, preserving the unrelated human review annotations, Orders and finalised evidence. The recorded OOM incident remains separate and is not claimed resolved. This handoff restores the existing FUND B1 Now / 1R-G planning Next sequence without starting implementation.
+Next human decision/test: review the bounded accepted-PDF integration proposal below and explicitly select implementation if wanted. It includes a necessary compatible document-contract migration, proved first on a disposable database; no application/shared database or provider mutation is authorised by this review.
+Safe resumption point: use the 17 September accepted-PDF integration review below with the preparation evidence and revised launch plan. Preserve existing offers/PDFs and all accepted print evidence; do not recreate the completed Stage C resources. B1 Now / 1R-G planning Next remains unchanged. The OOM incident stays separate. Stop before implementation, migrations or provider changes until that exact boundary is selected.
 
 ```
+
+## 17 September — Accepted PDF Integration Review And Proposed Next Boundary
+
+Status: **Review and planning complete; proposed local integration is not yet authorised
+for implementation.** This refines the existing B1/1R-F work and coordinates its existing
+1R-G dependency; it does not create another lifecycle, checkpoint or portfolio selection.
+Control depth remains **High**: immutable offer/document evidence, tenant download access,
+a compatible SQL constraint change and the later private-runtime contract are involved.
+This is planning for a persistent product capability, not a repeat of the closed assumption test.
+
+### Preserve the work already accepted
+
+The detailed portrait and landscape PDFs have not been lost or superseded by the simple
+B1 download. Reuse `scripts/proofs/fund-1r-f-a/template.tsx`, `renderer.ts`, the versioned
+fixture contract and `accepted-local-evidence.json`. The final
+[R1B source-fidelity record](../05-review-and-test/2026-08-11-fund-phase-1-slice-1r-f-a-r1b-source-fidelity-and-folding-local-gate.md)
+records 12/12 human checks PASS, actual-size portrait/landscape printing, folding and QR
+scans. The later Linux and completed Stage C-R1 results remain evidence at their recorded
+boundaries. Temporary provider resources were removed; no production service survives that proof.
+The generated maximum-capacity portrait/landscape PDFs also remain in the ignored local
+`output/` directory. Source and accepted evidence, rather than ignored files, are the durable assets.
+
+The unchanged designs retain portrait STANDARD / ten Products and landscape COMPACT /
+twelve Products, blank child/class and Order Code fields, separate instructions, folding
+geometry and artwork area. No template editor or layout redesign is proposed.
+
+### Smallest useful demonstration
+
+From the existing Project flow, C2 finalises a **new** controlled Individual offer and
+obtains the approved detailed PDF populated from that offer. The PDF can be opened and
+printed at actual size; its content and prices match the confirmed Project. Preparation
+works before Store opening, without commission acceptance or payment-provider activation
+becoming print gates. Existing Seller identity/currency and content checks still apply.
+
+The first implementation recommendation is local integration with a bounded separate renderer
+process and private local storage. It proves the connection between the existing application
+and accepted layout. It is not permission to distribute development sheets in classrooms.
+Real classroom distribution additionally requires the operational gates below. Keep the
+existing authenticated download UI; do not add a separate purchaser-preview screen first.
+
+### Source findings and proposed contracts
+
+Reviewed application baseline: `c3998084`; no code or database change was made.
+
+| Boundary | Current source | Proposed integration |
+| --- | --- | --- |
+| PDF generation | `individual-offer.service.ts` invokes `renderDevelopmentOffer`; the emulator explicitly omits logo imagery and print layout | Adapt the accepted detailed renderer; retain the v1 emulator for existing offers and use explicit version dispatch for new finalisations |
+| Content | B1 captures selected Product titles/order/gross prices, but the proof also expects Product codes, Project number, two instruction regions and a template title | Resolve and freeze these additional inputs at finalisation; use existing Product codes and Project number, fixed template copy and reusable C1 instruction defaults. Never read mutable Product text while regenerating |
+| Branding | The proof's accepted logo is C1; B1 currently stores a C2 Client logo reference | Preserve the accepted C1 logo rule for the new contract. Freeze validated image content/hash, not merely a mutable URL; retain the deliberate no-logo layout. Do not change old snapshots |
+| Store identity | `FundProjectStore.publicId` already exists; the current snapshot requires `store.example.invalid` | Reuse that public ID with one server-controlled canonical Store address; never derive printed origins from request Host or use an expiring signed address |
+| Preservation | One immutable offer per Project and one immutable document identity/output hash per offer | Existing finalised Projects keep their v1 data/PDFs. New contracts apply only to future finalisations. No bulk conversion, ordinary unlock, replacement-offer UI or reinterpretation of old bytes |
+| Database constraint | Migration `20260907120000_fund_b1_individual_offer` restricts `b1_document_contract` to `EMULATED` and `fund-b1-emulated/v1` | A small reviewed follow-on migration must admit the explicit new local render contract while retaining v1 and all status/hash/identity guards. Do not edit the applied migration, drop immutable triggers or permit arbitrary provider/contract strings |
+| Generation/storage | Existing dependency seams, lease/attempt tracking and private local files are available; both put/get and generation impose a 256,000-byte limit | Reuse orchestration; measure detailed-PDF sizes and set bounded limits from evidence. Isolate Chromium from the web request process, bound concurrency/time/memory, recheck access, verify stored hashes and clean failed attempt files |
+
+The new snapshot needs a versioned schema. Existing JSON storage may accommodate its fields;
+the SQL constraint still requires a migration regardless. Review any further schema need
+before expanding the boundary. Prices reuse the accepted gross-price resolver and immutable
+configuration references; do not reopen VAT or commission calculations.
+
+Instruction defaults should be configured once at C1 and inherited, with two sanitised text
+regions matching the approved design. Missing required copy produces a useful preparation
+message, not fixture text silently treated as real client instructions. Keep child identity
+blank for handwriting and avoid collecting child data for generation.
+
+### Operational gates before real classroom distribution
+
+1. **Durable destination:** recommend one canonical route derived from the existing Store
+   public ID, with the actual host/path agreed before any distributable PDF is finalised.
+   Scanning before opening must reach a truthful non-selling page. Unknown, archived or
+   disallowed Stores must not expose private Project, offer, child or contact data. The same
+   printed URL must later resolve the released Store. This narrow destination dependency
+   belongs with the existing 1R-G plan; it does not authorise full checkout or publication.
+2. **Retained private document:** the completed temporary worker/R2 proof is not a production
+   operating model. Before deploying, specify the isolated renderer owner/runtime, bounded
+   jobs/retries, authenticated same-tenant download, private storage and credential boundary,
+   retention, recovery and monitoring. Prefer the proven architecture where suitable, but
+   do not reuse its revoked credentials or substitute public media/email-attachment storage.
+   No new service, bucket, credential or runtime setting is created by this plan.
+3. **Truthful release:** versioned local proof stays development-only. A later accepted real
+   renderer/provider contract must distinguish operational output from emulation without
+   changing old evidence. Printable availability must not automatically publish a Store or
+   remove the unconditional Individual development-only trading blocker. Public presentation,
+   purchasing and Order correlation remain separately bounded dependencies.
+
+### Focused proof and recovery for the proposed implementation
+
+First prove the compatibility migration and old/new contract behaviour in a disposable
+database. Applying it to retained DevData or an online database needs the specific target
+and existing safe-database workflow; no reset/seed or live-data work is included here.
+
+Reuse the accepted layout fixtures and compare integrated output for unchanged geometry,
+fonts, Product order/prices, fields and QR text. Add tests for missing instructions/logo,
+unsafe assets/HTML, over-capacity, stale finalisation, foreign tenant/member access, duplicate
+attempts, timeout/oversize and file loss. Verify old snapshots/document hashes remain unchanged
+and regeneration uses the correct renderer version. Do not repeat the entire accepted FUND
+or SeasonPro smoke. Human proof is one representative integrated Project PDF and its printed
+QR/content; broaden physical checks only if renderer/layout/runtime changes warrant it.
+
+If new generation fails, leave a truthful failed/pending document and preserve the confirmed
+offer for bounded same-version retry. Never fall back to an emulated PDF labelled as real.
+After new-contract evidence exists, recovery is a compatible forward fix or disabling new
+generation while retaining download support; do not roll back to a binary unable to read it.
+
+### Value, cost and decision
+
+This delivers the PDF Chris already approved through the existing user journey. It adds no
+C2 setup or acceptance screen; C1 supplies reusable instructions once. The extra work is the
+versioned adapter, immutable content/assets, compatibility migration and bounded generation.
+A cheaper separate purchaser preview would leave the classroom print gap unresolved; rebuilding
+the design would discard accepted value. Production worker/storage adds ongoing operating
+cost and must be made concrete before its separate deployment decision.
+
+**Recommended next authority:** accept only the bounded local implementation and disposable
+migration proof above, then stop for the integrated-PDF review and operational decisions.
+This review does not itself grant that authority. No infrastructure purchase/deployment,
+shared database migration, public Store release, payment, Order-code allocation, email send,
+OOM remediation or historical-document replacement is included.
 
 ## 1. One Visible Outcome
 
