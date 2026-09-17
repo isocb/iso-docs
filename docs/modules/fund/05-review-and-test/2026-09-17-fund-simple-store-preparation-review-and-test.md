@@ -2,9 +2,9 @@
 
 Date: 2026-09-17
 
-Status: **Local implementation; bounded automation PASS. Local human preparation smoke 1–5 PASS (Chris, 17 September). Focused technical review and remaining regression PASS; staging/promotion remain open.**
+Status: **Local human and technical checks PASS. Exact candidate d13ecb39 promoted to dev/staging; both security scans and staging migration/data preservation PASS. Render web/cron deployment and health PASS; staging human acceptance pending; main/live held.**
 Control depth: **High**.
-Exact candidate: `d13ecb39fdf592e3a555f96ae64c9763ff73ae16`, locally committed on `work/fund-b1-r3-platform-vat`; not pushed or promoted.
+Exact candidate: `d13ecb39fdf592e3a555f96ae64c9763ff73ae16`, consolidated through local dev and staging and pushed to both origins on 17 September; deployment verification follows below.
 [Plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md)
 · [Implementation](../04-implementation-confirmations/2026-09-17-fund-simple-store-preparation-implementation-confirmation.md)
 Application behaviour is `3820e304`; `9c09cbe1` only moves the legacy test fixture before finalisation. Its commit hook type check passes. `d13ecb39` adds only the focused regression runner; application behaviour is unchanged.
@@ -138,3 +138,100 @@ code, database schema, runtime configuration, application fixtures or provider s
 
 Earlier completed tests and Chris's local smoke remain valid; there is no repeat of the
 whole VAT/preparation/Catalogue matrix, no new planning document and no promotion in this pass.
+
+## 17 September — Controlled Staging Promotion
+
+Chris requested staging validation and documentation publication, with a view to aligning
+through main before SeasonPro remedial work. Candidate `d13ecb39` is fast-forwarded through
+local dev and staging and pushed to both origins. Dev Security Scan `35201013522` PASS.
+No application source change or repeat of the accepted local smoke was needed. Documentation
+through `f0eecc5` is published to IsoDocs main. Main/live remains `0397bba9` pending the
+staging human result and explicit live-promotion approval required by the Git workflow.
+
+The staging bundle contains five commits since `e7e8837c`, including platform VAT defaults
+and Pulse consumers, FUND VAT-inclusive prices and simple preparation. One additive migration,
+`20260916120000_fund_b1_r3_explicit_vat_rate`, takes staging from 156 to 157 unique migration
+names. Render's existing `npm run render-build` runs Prisma migrate deploy before replacement.
+The staging web service is `Staging-IsoStack` (`srv-d4miroogjchc73balrvg`); its cron is
+`isostack-bedrock-1` (`crn-d6t7bpf5gffc738vlcn0`). Both target the verified staging database.
+Artwork emulation remains staging-only in the intended deployment contract. The cron does
+not consume it. No new runtime variable or external provider is introduced by this bundle.
+
+Preflight: staging contains one Event, one Project and no FUND Order contexts. Production
+contains no rows in any of its FUND tables and has 153 unique applied migration
+names; its later promotion therefore includes all four B1/R1/R2/R3 migrations. No reset,
+seed, data reclassification or evidence deletion is authorised or necessary from these
+counts. Private hashes cover all 51 staging and 50 production FUND/Commerce tables.
+Historical ledgers contain repeated entries and 23 old checksum differences, all against
+SQL unchanged from the respective deployed branch; those are not new candidate drift and
+are not repaired here. Only the new migration checksum is claimed exact in deployed proof.
+Fresh disposable replay/checksum proof for the complete source remains separately recorded.
+
+**Live configuration correction required before main:** authenticated provider readback found
+`FUND_INDIVIDUAL_ARTWORK_MODE=emulated` and `FUND_INDIVIDUAL_ARTWORK_TARGET=staging` on production
+web service `app` (`srv-d4t6l16uk2gs73ejugg0`). The main-branch guard refuses emulation, but
+these settings are still invalid for live. During the authorised live promotion set that
+service only to `disabled` / `production`, verify effective readback, and leave staging and
+shared groups untouched. Production cron `isostack-bedrock` (`crn-d610l04r85hc739h10e0`) uses
+the production database and has neither artwork setting. No live setting changed in this
+staging step.
+
+Recovery after RATE_SPECIFIED writes is a compatible forward fix. Do not roll back to a
+binary that cannot read those enum values, reverse migrations, delete accepted offers or
+replace Order evidence. If migration/build fails, stop promotion and inspect exact failure;
+retain the previous serving deployment. B1 remains open; root B1 Now / 1R-G planning Next
+is unchanged. This deployment does not release public FUND selling or classroom artwork.
+
+### Short Staging Human Check — Pending
+
+After exact deployment verification, use https://staging.seasonpro.co.uk:
+
+1. **SeasonPro:** login/logout, correct Client/dashboard, existing images and one reversible
+   edit. This is the shared-app regression check before resuming SeasonPro work.
+2. **P1/C1:** confirm Platform Settings shows the VAT default; a new FUND Product starts with
+   it and permits an override. Confirm an existing Product price is retained, and its editor
+   shows its real image or automatic placeholder. Check FUND setup/commission loads. If Pulse
+   is in use, open a new quote and confirm its VAT default; otherwise record not applicable.
+3. **C2:** on one fresh unfinalised test Project, confirm included Products, gross prices,
+   images and inherited commission; optionally remove one Product and refresh. With a C1
+   template assignment, finalise/download the labelled development preview. An existing
+   finalised Project remains locked and re-downloads. Individual Store publication remains
+   unavailable. No public purchase or classroom print acceptance is requested.
+
+Record the three results here. Existing local detailed matrix PASS remains accepted; only
+staging's representative path and environment-specific behaviour need human confirmation.
+
+### Staging Database Readback
+
+Migration 157 completed through the Render build. Its recorded checksum matches the exact
+candidate SQL; both RATE_SPECIFIED enum additions are present, and the scalar platform VAT
+read returns 20. All 51 FUND/Commerce table counts and content fingerprints match the private
+pre-deployment baseline. No existing data or financial evidence was rewritten. The local
+DevData test bed is untouched. Web/cron deployment and human checks remain pending at this
+readback; migration completion alone is not deployment acceptance.
+
+### Final Staging Technical Result — PASS
+
+- Web `dep-dalqga0u01pc73fkc0gg`: Live at exact `d13ecb39`, provider updated
+  2026-09-17T08:50:10Z. Cron `dep-dalqga8u01pc73fkc110`: Live at the same commit,
+  provider updated 08:48:44Z.
+- Exact GitHub dev/staging Security Scans `35201013522` / `35201206533`: PASS,
+  including secret detection, dependency audit, TypeScript and schema checks.
+- `staging.seasonpro.co.uk`, `staging.isostack.app` and `sating-isostack.onrender.com`:
+  HTTP 200 healthy, database connected, RLS 11/11; placeholder bytes match the committed
+  SVG; signed-out `fund.launchSettings.commission` returns 401 on all three.
+- Initial default Python-user-agent probes returned 403. Retest with a browser user agent
+  passed on the same endpoints; no application change was made to obtain that result.
+- The bounded post-deployment web/cron log window contains no Prisma validation,
+  missing-schema, emulation-refusal or `Error:` matches. This is limited runtime evidence,
+  not an authenticated business smoke or a guarantee of zero errors.
+- The three human checks above remain **pending**. Main branch, production database and
+  live configuration remain unchanged. No live promotion is claimed.
+
+Before live, refresh the production baseline; correct only the live web artwork settings;
+verify production web/cron database identity; obtain the recorded staging acceptance and
+explicit main authority; fast-forward local main from the accepted staging candidate and
+push normally. Monitor exact web/cron deployment and all four migration checksums, preserve
+existing Commerce evidence and run the minimum non-destructive SeasonPro live check.
+The source/old-binary compatibility boundary prevents returning to the old binary after
+RATE_SPECIFIED writes. Stop on any unexplained migration/data difference rather than reset.

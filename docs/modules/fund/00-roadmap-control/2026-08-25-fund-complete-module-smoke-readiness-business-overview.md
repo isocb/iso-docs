@@ -37,7 +37,12 @@ Products/images and inherited terms. The [five-step preparation smoke](../05-rev
 is now **PASS for all five steps**, recorded by Chris on 17 September, including finalisation
 and download of the development data preview. The focused technical review and previously
 unfinished tests now pass at `d13ecb39`, including the relevant Commerce checks. No application
-fix was needed. Controlled staging validation is still pending; no staging/live update has been made.
+fix was needed. Chris has now requested promotion. Dev and staging branches align at `d13ecb39`; both
+security checks and the staging VAT migration pass, with existing financial data preserved.
+Exact staging web/cron deployment and health now pass. The short staging human check is pending. Main is still held. A
+production configuration error was found during preflight: its artwork settings incorrectly
+name staging emulation. These must be set to disabled/production on the live service before
+main promotion. This does not require redoing the accepted local smoke or another plan.
 
 **Classroom preparation comes first:** Project creation enables C2 to print the template,
 children complete artwork in class and take it home, then parents use the Store. Template

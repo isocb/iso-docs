@@ -2,7 +2,7 @@
 
 Date: 2026-09-07
 
-Status: **B1-R3 implemented locally at 5ffb6cc8; C2 price-display correction at 6ebaac46. Chris records local A0/A/B PASS; C is blocked by missing local Seller/image fixtures and separate review remains open. Online dev/staging remain e7e8837c; main/live held.**
+Status: **Local VAT and preparation human PASS; technical review PASS. Candidate d13ecb39 pushed through dev/staging; staging migration 157 and exact deployment/health PASS; staging human acceptance pending. Main/live held at 0397bba9. B1 remains open.**
 
 Control depth: **High** — this journey introduces persistent offer evidence, exact C2
 finaliser authority, tenant-bound document access and failure/retry behaviour.
@@ -23,11 +23,11 @@ now selects FUND B1/B1-R2 dev/staging promotion and acceptance as Now, with the 
 ## Restart Checkpoint
 
 ```text
-Current state: simple Store preparation has local human smoke 1–5 PASS, focused technical review PASS and all explicitly remaining regression/A7 checks PASS. Latest local candidate d13ecb39 contains test tooling only; application behaviour remains 3820e304. B1 is not closed; staging/environment validation and controlled promotion remain pending.
-Last proven commit: d13ecb39fdf592e3a555f96ae64c9763ff73ae16, focused remaining-case runner exit 0 with fresh 157-migration checksums, A7 and verified cleanup. Combine with the recorded 9c09cbe1 preparation/frozen-PDF/eight-case evidence; no retrospective whole-run PASS. Existing 601 unit tests, build and human smoke retained on unchanged application source; new tooling type/syntax checks PASS. No independent second-reviewer attestation claimed.
-Current environment: local work/fund-b1-r3-platform-vat at d13ecb39, not pushed or consolidated into dev. No application/schema/data/environment change in this review; DevData remains 157, old wf1 remains archived. Dedicated test database removed and absence verified. Last recorded online dev/staging e7e8837c; main/live 0397bba9 unchanged by this task.
-Next human decision/test: no repeat local preparation smoke requested. Controlled staging/environment validation must use the compatible B1-R3 VAT migration and exact candidate; main/live remains held. Real classroom printable output and public selling are not accepted by the development PDF PASS.
-Safe resumption point: prepare controlled promotion when authorised; continue the existing 1R-G planning dependency with the classroom handoff now recorded there. Preserve frozen evidence and the local test bed. B1 Now / 1R-G planning Next unchanged; no new planning layer, live release or public launch smoke is inferred.
+Current state: local preparation smoke 1–5 and VAT A0/A/B PASS; focused technical review and remaining regression/A7 PASS. Chris authorises staging validation and documentation publication, with a view to later main alignment. B1 stays open.
+Last proven commit: d13ecb39fdf592e3a555f96ae64c9763ff73ae16; application behaviour 3820e304. Dev/staging Security Scans 35201013522/35201206533 PASS. Local 601 tests/build/human evidence retained, with exact focused continuation; no whole interrupted-run PASS or independent reviewer claim.
+Current environment: local dev/staging and both origins match d13ecb39; staging migration 157 exact checksum and 51-table FUND/Commerce preservation PASS. Exact staging web/cron deployment and three-domain health/DB/RLS/asset/auth-refusal PASS; staging human acceptance pending. Main/live 0397bba9 and production schema 153 unchanged. Local DevData/archived wf1 untouched. Documentation through f0eecc5 published.
+Next human decision/test: short staging SeasonPro, VAT/Product and C2 preparation checks in the 17 September review record, after exact deployment verification. Main approval remains required; production app must first change artwork mode/target from emulated/staging to disabled/production, service-only. No classroom/public purchase smoke.
+Safe resumption point: obtain the short staging human result and explicit live authority, then correct production service-only artwork settings and promote the accepted exact candidate. Main requires all four compatible B1/R1/R2/R3 migrations; production FUND tables are empty, no reset authorised. Preserve all Orders/finalised evidence; compatible forward recovery. B1 Now / 1R-G planning Next unchanged.
 
 ```
 

@@ -29,7 +29,9 @@ portfolio queue when selected, but it is not a fourth product backlog for daily 
 Current application and R13 release evidence:
 
 ```text
-FUND dev/staging and origins = e7e8837c; main/live remains security-only 0397bba9
+FUND dev/staging and origins = d13ecb39; main/live remains security-only 0397bba9
+FUND 17 September = local VAT/preparation human PASS; remaining technical review PASS; dev/staging Security Scans 35201013522/35201206533 PASS; staging migration 157 and 51-table data preservation PASS; exact Render web/cron deployment/health PASS; staging human acceptance pending
+FUND main preparation = all four B1/R1/R2/R3 migrations pending; production FUND tables empty; correct live app artwork mode/target to disabled/production before approved main promotion
 FUND Product modal correction = build/seven focused tests/lint/type/verify/read-only staging image and authority proof PASS; dev/staging Security Scans 34689761185/34689769969 PASS; earlier B1 connected proof retained
 FUND staging Render dep-daiivvojo6nc73bl6u8g = exact e7e8837c Live 2026-09-12T11:03:03.30739Z; three staging domains health/DB/RLS 11/11 and signed-out image-query 401 PASS; corrected C1/C2 human smoke pending
 R14-A exact d78935d4 local R1-R9, staging S1-S4 and production L1-L2 PASS; aligned through main; all four Security Scans and staging/production public health PASS; COMPLETE AND CLOSED

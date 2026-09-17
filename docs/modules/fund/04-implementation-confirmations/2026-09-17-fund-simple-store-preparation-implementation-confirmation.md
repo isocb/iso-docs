@@ -2,9 +2,9 @@
 
 Date: 2026-09-17
 
-Status: **Implemented locally; bounded automated proof PASS. Local human preparation smoke 1–5 PASS on 17 September. Focused technical review and remaining regression PASS; staging/promotion remain open.**
+Status: **Local human and technical checks PASS. Exact candidate d13ecb39 promoted to dev/staging; both security scans and staging migration/data preservation PASS. Render web/cron deployment and health PASS; staging human acceptance pending; main/live held.**
 Control depth: **High** — financial evidence and publication authority.
-Exact candidate: `d13ecb39fdf592e3a555f96ae64c9763ff73ae16` on local `work/fund-b1-r3-platform-vat`, based on `6ebaac46`; not pushed or promoted.
+Exact candidate: `d13ecb39fdf592e3a555f96ae64c9763ff73ae16` on dev/staging and both origins, based on `6ebaac46`.
 Application behaviour is `3820e304`; `9c09cbe1` only moves the legacy test fixture before finalisation. Its commit hook type check passes. `d13ecb39` adds only focused regression tooling; application behaviour is unchanged.
 
 [Accepted plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md)
@@ -83,3 +83,15 @@ finalised/Order evidence. Correct forward or use a reviewed compatible binary; r
 an older separate-acceptance writer is not a safe automatic rollback after combined-launch
 writes. Never delete evidence to recover a failed launch. A transaction failure leaves no
 false acceptance/publication; refresh the review and retry after the cause is resolved.
+
+## 17 September — Promotion
+
+Chris requested staging validation, documentation publication and preparation for main
+alignment. Exact `d13ecb39` is consolidated through local dev/staging and pushed to their
+origins. Both Security Scans PASS (35201013522 / 35201206533). Staging migration 157 is applied
+with its exact checksum; both enum additions and platform scalar read pass. All 51 existing
+FUND/Commerce table fingerprints are unchanged. Exact Render web/cron deployment and three-domain health/RLS checks PASS. The short human
+staging check remains pending. The [review record](../05-review-and-test/2026-09-17-fund-simple-store-preparation-review-and-test.md#17-september--controlled-staging-promotion)
+contains service identities, production configuration correction, complete main migration
+bundle and recovery boundary. Main/live remains held; no reset, live configuration change,
+public selling acceptance or B1 closure occurred.
