@@ -2,7 +2,61 @@
 
 Date: 2026-09-07
 
-Current disposition — 2026-09-12: Product modal correction
+## 17 September — Accepted Layout Connected Locally
+
+```text
+Exact commit: e8a3c900931ae4c28cba04181c2cd00722710ad7 (based on c3998084), feature/fund-accepted-pdf-integration
+Files/change boundary: shared accepted portrait/landscape layout, v2 immutable print snapshot, local isolated renderer, C1 inherited instruction/logo defaults, existing C2 finalise/download journey, compatible document constraint migration and focused proof tooling
+Automated checks: 13 focused tests PASS; disposable 157-to-158 preservation and fresh 158 replay PASS; connected v1/v2 service proof PASS; real-component synthetic browser proof PASS; PDF text/geometry/raster-QR PASS; type/lint/verify/build results in the review record
+Human evidence: previous accepted layout/physical evidence retained; this connected-PDF smoke pending Chris
+Environment proven: local code and newly created disposable test databases only; no retained DevData, staging, main/live or provider changes
+Known residual risk: local temporary storage and an isolated local process are not an operational renderer/storage service; canonical public Store destination and the physical acceptance below remain open
+Next authorised action: Chris's two focused PDF checks in the existing review record; stop before retained database migration, dev consolidation or environment promotion
+```
+
+Chris explicitly authorised this bounded local implementation after reviewing the existing
+[B1 plan](../03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md).
+Control depth remains **High**. B1 remains Now and open; 1R-G planning remains Next.
+The previously accepted preparation release at `d13ecb39` and SeasonPro release at
+`c3998084` are preserved. Historical September evidence below remains historical.
+
+### Implemented boundary
+
+- The accepted template is now shared at
+  `src/modules/fund/lib/individual-offer/accepted-template.tsx`; the historical proof uses
+  a thin adapter. All six proof fixtures produce byte-identical HTML to `c3998084`.
+  The proof Dockerfile and path trigger include the shared source. No layout redesign,
+  capacity change, template editor or new purchaser-preview screen was introduced.
+- `fund-b1-local-pdf/v2` captures Product codes/titles/gross prices/order, Project number,
+  fixed template title, two sanitised instruction blocks and optional C1 PNG content/hash.
+  C1 saves inherited defaults once in the existing Project panel; C2 reviews instructions
+  and Product codes before finalisation. Later defaults edits do not alter confirmed offers.
+  The accepted monochrome portrait and optional-logo landscape behaviour are preserved.
+- A separate credential-free Node/Chromium process renders only local/test output. External
+  requests and browser JavaScript are blocked. One local render runs at a time; the child
+  has an 18-second deadline and bounded Node/Chromium V8 heaps. These are not an OS-level
+  total-memory guarantee. Cancellation uses normal process exit so Playwright closes its
+  separately detached browser and removes its temporary profile.
+- Existing lease/attempt, current-member/tenant checks, opaque private files and hash-locked
+  recovery are reused. Output is capped at 1,000,000 bytes; measured synthetic PDFs are
+  19,495 bytes (landscape) and 17,750 bytes (portrait). The v1 generation limit remains
+  256,000 bytes. Old snapshots dispatch to the unchanged v1 emulator.
+- Migration `20260917160000_fund_b1_local_pdf_contract` admits only the explicit
+  `LOCAL_PDF`/v2 pair alongside the existing `EMULATED`/v1 pair. It preserves all existing
+  status/hash/identity guards and edits no applied migration. There is no model/table,
+  backfill, historical replacement or financial calculation change.
+- `.env.example` documents `local-pdf` with target `local` or `test`. Deployed targets and
+  provider signals refuse it. No actual environment file/provider setting was changed.
+  Detailed output retains an explicit development-only footer, the existing invalid Store
+  destination derived from `publicId`, and the unconditional development-only trading blocker.
+
+Recovery is same-version retry with the original output hash. After v2 evidence exists,
+use a compatible forward fix; do not replace old documents or deploy a binary that cannot
+read their contract. A crash can leave the local render lock; inspect and remove it only
+once its owning process/browser has ended. Production retention/recovery/runtime ownership
+and a real durable Store URL remain the existing later operating decision.
+
+### Historical disposition — 2026-09-12: Product modal correction
 `e7e8837c5e18bc1b94457edecc6f52b75678f0e9` is committed and aligned on dev/staging. It shows
 assigned primary media and removes the generic library selector from the interim panel.
 Build, seven focused tests, lint/type/verify, read-only staging media/authority proof and

@@ -2,15 +2,16 @@
 
 Date: 2026-09-07
 
-Status: **Local/staging human and technical PASS. Approved d13ecb39 deployed through main; production migration/preservation/configuration/health PASS. Chris’s minimum live human smoke PASS; B1 remains open. SeasonPro closure restores this existing resumption checkpoint.**
+Status: **Accepted preparation and SeasonPro releases preserved. Connected accepted-PDF local implementation complete at `e8a3c900`; automated proof PASS, Chris’s focused PDF smoke pending. B1 remains open; no new promotion.**
 
 Control depth: **High** — this journey introduces persistent offer evidence, exact C2
 finaliser authority, tenant-bound document access and failure/retry behaviour.
 
 Work type: plan for a production-model build, initially proved through an emulated
 local/development journey. Simulated service responses are test infrastructure; the offer
-model and application behaviour would be persistent. No implementation, migration,
-provider setup or environment promotion is performed by this planning change.
+model and application behaviour are persistent. The authorised 17 September continuation
+connects the accepted layouts locally and proves its migration on disposable databases only.
+Retained/shared database changes, provider setup and environment promotion remain outside it.
 
 Owning inputs: the accepted `1R-F` parent and its existing Application/Artwork Template and
 Product-selection/capacity CRs; this is their bounded development child, not a new CR.
@@ -23,18 +24,17 @@ restores FUND B1 resumption at the accepted preparation release boundary as Now,
 ## Restart Checkpoint
 
 ```text
-Current state: FUND preparation release d13ecb39 is accepted locally, on staging and in Chris’s three live checks. Intervening SeasonPro correction c3998084 is verified live and closed. B1 resumes as root Now; 1R-G planning is Next. B1 remains open; public selling and classroom-ready artwork are not released.
-Last proven commit: FUND d13ecb39fdf592e3a555f96ae64c9763ff73ae16 retains its technical and human acceptance. Current corridor c3998084a8f9d089ea16916133fdffc130b14025 adds only the accepted SeasonPro correction; exact-main Security Scan 35225966878 and production health/DB/RLS/access PASS. No FUND smoke repetition is required for that correction.
-Current environment: local/remote dev, staging and main aligned at c3998084; production web dep-dalufvrbc2fs738f9980 and cron dep-dalug03bc2fs738f99s0 verified live. Production has 157 distinct applied migrations and zero unresolved entries; SeasonPro introduced no migration or runtime configuration. Application workspace remains clean on dev.
-Next human decision/test: review the bounded accepted-PDF integration proposal below and explicitly select implementation if wanted. It includes a necessary compatible document-contract migration, proved first on a disposable database; no application/shared database or provider mutation is authorised by this review.
-Safe resumption point: use the 17 September accepted-PDF integration review below with the preparation evidence and revised launch plan. Preserve existing offers/PDFs and all accepted print evidence; do not recreate the completed Stage C resources. B1 Now / 1R-G planning Next remains unchanged. The OOM incident stays separate. Stop before implementation, migrations or provider changes until that exact boundary is selected.
+Current state: Local accepted-PDF integration implemented at e8a3c900; automated migration/service/render/UI/artifact checks PASS. Chris's two connected-PDF checks remain pending in the existing B1 review. B1 Now / 1R-G planning Next is unchanged; operational classroom distribution and public selling remain unreleased.
+Last proven commit: e8a3c900931ae4c28cba04181c2cd00722710ad7, backed up on origin/feature/fund-accepted-pdf-integration. Prior FUND d13ecb39 and SeasonPro c3998084 releases retain their accepted evidence. No accepted release smoke was repeated.
+Current environment: Candidate remains on its work branch before dev consolidation. Workspace returned to clean dev; dev/staging/main and all three origins remain c3998084. The new 158th migration was proved only on disposable test databases, which were removed and independently verified absent. Retained DevData/online databases and runtime settings were not changed; production remains at its previously verified 157-migration release.
+Next human decision/test: Perform checks 1–2 in the existing B1 review: open the integrated portrait/landscape PDFs, then print landscape at actual size and check its fields/fold/QR. Human PASS is not yet recorded. No retained-database preparation or promotion is authorised by these checks.
+Safe resumption point: Resume from the candidate work branch and existing B1 04/05 evidence. Preserve old offers/PDFs and accepted physical evidence. After the focused human result, resolve the existing durable Store destination and private operating-runtime/storage decisions before operational distribution; do not recreate closed Stage C resources. The OOM incident remains separate.
 
 ```
 
 ## 17 September — Accepted PDF Integration Review And Proposed Next Boundary
 
-Status: **Review and planning complete; proposed local integration is not yet authorised
-for implementation.** This refines the existing B1/1R-F work and coordinates its existing
+Status: **Bounded local implementation authorised by Chris on 17 September; implemented at `e8a3c900`, automated proof PASS, human smoke pending.** This refines the existing B1/1R-F work and coordinates its existing
 1R-G dependency; it does not create another lifecycle, checkpoint or portfolio selection.
 Control depth remains **High**: immutable offer/document evidence, tenant download access,
 a compatible SQL constraint change and the later private-runtime contract are involved.
@@ -72,7 +72,9 @@ existing authenticated download UI; do not add a separate purchaser-preview scre
 
 ### Source findings and proposed contracts
 
-Reviewed application baseline: `c3998084`; no code or database change was made.
+Review baseline: `c3998084`. The proposals below were subsequently implemented at `e8a3c900`
+within the local/disposable boundary; the existing [implementation](../04-implementation-confirmations/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-implementation-confirmation.md)
+and [review with human smoke](../05-review-and-test/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-review-and-test.md#chriss-remaining-smoke--two-checks-only) record actual results.
 
 | Boundary | Current source | Proposed integration |
 | --- | --- | --- |
@@ -142,9 +144,10 @@ A cheaper separate purchaser preview would leave the classroom print gap unresol
 the design would discard accepted value. Production worker/storage adds ongoing operating
 cost and must be made concrete before its separate deployment decision.
 
-**Recommended next authority:** accept only the bounded local implementation and disposable
-migration proof above, then stop for the integrated-PDF review and operational decisions.
-This review does not itself grant that authority. No infrastructure purchase/deployment,
+**Accepted implementation authority (17 September):** Chris requested implementation, lifecycle
+updates and a human smoke test after reviewing this proposal. Implement only the bounded local
+integration and disposable migration proof above, then stop for the integrated-PDF review and
+operational decisions. No infrastructure purchase/deployment,
 shared database migration, public Store release, payment, Order-code allocation, email send,
 OOM remediation or historical-document replacement is included.
 

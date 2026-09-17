@@ -6,6 +6,17 @@ Last consolidated: 2026-09-17
 
 Status: Active authoritative control for the FUND lane
 
+Latest continuation — 17 September: Chris authorised the existing B1 accepted-PDF integration.
+Local implementation `e8a3c900` is committed and backed up on its temporary work branch;
+[implementation](../04-implementation-confirmations/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-implementation-confirmation.md)
+and [review / two human checks](../05-review-and-test/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-review-and-test.md)
+record automated PASS, including preserved v1 documents, detailed portrait/landscape service
+output and disposable migration 157→158. Chris's connected-PDF/print smoke is pending.
+Workspace returns to dev; dev/staging/main and origins remain at accepted `c3998084`.
+No retained/shared database, provider, runtime configuration or deployment changed.
+B1 remains Now and open; 1R-G planning remains Next. The B1 plan still owns the sole checkpoint.
+The earlier detailed PDF/physical proof is reused; it was not lost or replaced by a new design.
+
 Current disposition — 17 September: Chris requires simplicity and demonstrable results as
 first-release requirements. The [simple Store launch plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md) replaces yesterday's
 proposal in place: producer default commission, optional Event date/rate ladder, inherited

@@ -2,7 +2,91 @@
 
 Date: 2026-09-07
 
-Current review update — 2026-09-12: the Product modal still showed a generic library link
+## 17 September — Connected Accepted-PDF Review
+
+```text
+Exact commit: e8a3c900931ae4c28cba04181c2cd00722710ad7 (c3998084 ancestry), feature/fund-accepted-pdf-integration
+Files/change boundary: approved local PDF integration, compatibility constraint migration, inherited C1 defaults, preserved v1 evidence and existing authenticated download flow
+Automated checks: PASS at the boundaries below
+Human evidence: original R1B layout/print/folding/QR PASS retained; connected output checks 1–2 below pending Chris
+Environment proven: local Node 22.23.2 / Playwright 1.62.1; synthetic disposable database service proof; synthetic real-component browser proof; actual downloaded PDF artifact proof
+Known residual risk: no retained DevData/online migration, deployed renderer/storage, real public destination, new Linux parity or connected physical print acceptance
+Next authorised action: Chris reviews the generated PDFs and one actual-size print; no staging/main promotion or operational classroom distribution
+```
+
+Disposition: **Local implementation and automated review PASS; human connected-PDF smoke
+pending. B1 remains open.** This is the implementing agent's separate source/evidence review,
+not a claim of independent-agent or human acceptance. The sole restart checkpoint remains
+in the existing B1 plan. Root Now/Next is unchanged. The candidate work branch and its origin match; the workspace
+is returned to dev at `c3998084`, with dev/staging/main and their origins unchanged.
+
+### Automated evidence
+
+| Check | Result and limit |
+| --- | --- |
+| Accepted designs retained | All six proof HTML outputs byte-identical to `c3998084` after sharing the template; prior R1B physical acceptance retained |
+| Focused contract/render/readiness tests | 13 PASS on Node 22.23.2: capacities/order, safe instructions/assets, forbidden deployed targets, deterministic maximum-capacity PDFs, overflow refusal, cancellation, private files and development-only trading |
+| Compatibility migration | Chronological 157 baseline, retained v1 offer/price/document/configuration/Seller hashes unchanged through 158; fresh 158 ledger/checksums PASS |
+| Real service flow on disposable data | Both 12-Product landscape/logo and 10-Product portrait/no-logo: Project → active C2 finaliser → private generation → existing download service PASS |
+| Preservation/negative/recovery | v1 download/hash retained after upgrade; v2 stale defaults, foreign tenant, viewer/inactive member, invalid provider/contract combinations, immutable snapshots/output, duplicate attempts, generation failure, timeout, oversize and lost-file same-byte recovery PASS |
+| Preparation independence | Fixtures open in 2099: preparation succeeds before opening; no payment activation/commission acceptance added as print gates; development-only trading blocker remains |
+| Components | Actual C1 editor saves formatted instructions; C2 displays inherited content without C1 controls; confirmation checkbox and 390px layout PASS with synthetic tRPC responses; no browser errors. Not authenticated browser evidence |
+| Actual downloaded PDFs | A4 single page; required text; accepted artwork areas 171 × 180mm landscape / 200 × 192mm portrait; QR decoded from 216-dpi PDF raster and matches printed destination |
+| Type/lint/repository verification | PASS; changed application files have no lint errors/warnings |
+| Production compilation | PASS in a temporary Node 22 build workspace, removed afterward; existing local dev server preserved |
+| Protected-branch security scan | Not run for this work-branch candidate; retained SeasonPro scans do not cover new FUND code. Obtain it during later controlled dev integration |
+| New human/online evidence | Pending/not run; no accepted earlier smoke repeated |
+
+The first service-proof run exposed a test assertion that inspected JSON-enumerable error
+properties instead of Prisma's actual error message. PostgreSQL had correctly refused the
+invalid provider/contract. The assertion was corrected; the focused candidate run passed.
+Both disposable databases used across those runs were dropped and independently read back
+as absent. Private proof files and harness/build workspaces were removed; only the synthetic
+PDFs, screenshots and redacted artifact evidence remain under ignored local output.
+No existing application database was reset, seeded, migrated or altered.
+
+Reproduction tools (on the candidate branch):
+
+- `scripts/run-fund-local-pdf-disposable-tests.mjs`: complete preservation/service/fresh-replay
+  orchestration; `--candidate-only` repeats fresh replay/service checks after an already
+  recorded upgrade proof. Each run removes its own databases.
+- `scripts/fund-local-pdf-ui-proof.mjs`: actual components with synthetic responses only.
+- `scripts/fund-local-pdf-artifact-proof.ts`: actual service-downloaded PDF hashes, text,
+  dimensions and raster QR; macOS uses the checked-in PDFKit helper, Linux uses Poppler.
+
+### Chris's remaining smoke — two checks only
+
+Use the PDFs already generated through the real services on synthetic Projects. There is
+no need to alter retained DevData or repeat the accepted C1/C2/preparation/SeasonPro smoke.
+Local files are in the application repository:
+`scripts/proofs/fund-1r-f-a/output/integrated/`.
+
+1. **Connected content and design:** open `portrait.pdf` and `landscape.pdf`. Confirm these
+   are the accepted designs and that the generated content is readable: `B1 school`, the
+   corresponding `Integrated portrait/landscape fundraiser`, closing date **1 Dec 2099**,
+   Product codes **B1-0…B1-9** (portrait) / **B1-0…B1-11** (landscape), each **£12.30**,
+   and the inherited drawing/ordering instructions. The landscape's solid navy rectangle
+   is the deliberately synthetic C1 logo; portrait remains monochrome without a logo.
+   Both must show **Development preview — not for distribution**.
+2. **One representative print:** print `landscape.pdf` on A4 at **Actual size / 100%**.
+   Check the accepted fold/artwork area and blank child/class, quantity/total and six Order
+   Code boxes remain usable. Scan the printed QR and confirm its text matches the URL on
+   the sheet. The host is deliberately **store.example.invalid**: a website loading is not
+   expected and is not part of this PASS.
+
+Report **1 PASS/FAIL** and **2 PASS/FAIL**, with the visible problem if either fails.
+No new physical result is inferred from the earlier layout acceptance or machine raster check.
+
+| Artifact | SHA-256 | Size |
+| --- | --- | --- |
+| `landscape.pdf` | `5dcf98e96487e15dd2eb285ece63020b25a62b7e19348ce6391cdbaf2a61c249` | 19,495 bytes |
+| `portrait.pdf` | `2ffae0d15f0a2fd4e2efdf26619f61cdffdd1b17ddd61ef552ebbc9305988c44` | 17,750 bytes |
+
+The actual public Store host/path, pre-opening non-selling page, isolated operating runtime,
+private retained storage and their deployment remain the existing B1/1R-G dependencies.
+This increment does not create those resources, enable public ordering or close B1.
+
+### Historical review update — 2026-09-12: the Product modal still showed a generic library link
 and empty selector after the earlier data-only fixture. Correction
 `e7e8837c5e18bc1b94457edecc6f52b75678f0e9` displays the assigned logo directly and removes
 those controls. Build, seven focused tests, lint/type/verify, read-only staging media and
