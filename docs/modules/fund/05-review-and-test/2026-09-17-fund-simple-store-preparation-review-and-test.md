@@ -2,7 +2,7 @@
 
 Date: 2026-09-17
 
-Status: **Local human and technical checks PASS. Exact candidate d13ecb39 promoted to dev/staging; both security scans and staging migration/data preservation PASS. Render web/cron deployment and health PASS; staging human acceptance pending; main/live held.**
+Status: **Local human and technical checks PASS. Exact candidate d13ecb39 promoted to dev/staging; both security scans and staging migration/data preservation PASS. Render web/cron deployment and health PASS; staging human acceptance PASS; live configuration prepared; main promotion held.**
 Control depth: **High**.
 Exact candidate: `d13ecb39fdf592e3a555f96ae64c9763ff73ae16`, consolidated through local dev and staging and pushed to both origins on 17 September; deployment verification follows below.
 [Plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md)
@@ -182,21 +182,21 @@ replace Order evidence. If migration/build fails, stop promotion and inspect exa
 retain the previous serving deployment. B1 remains open; root B1 Now / 1R-G planning Next
 is unchanged. This deployment does not release public FUND selling or classroom artwork.
 
-### Short Staging Human Check — Pending
+### Short Staging Human Check — PASS, Chris 17 September
 
 After exact deployment verification, use https://staging.seasonpro.co.uk:
 
 1. **SeasonPro:** login/logout, correct Client/dashboard, existing images and one reversible
-   edit. This is the shared-app regression check before resuming SeasonPro work.
+   edit. This is the shared-app regression check before resuming SeasonPro work. **CHRIS 17-09-2026 PASS**
 2. **P1/C1:** confirm Platform Settings shows the VAT default; a new FUND Product starts with
    it and permits an override. Confirm an existing Product price is retained, and its editor
    shows its real image or automatic placeholder. Check FUND setup/commission loads. If Pulse
-   is in use, open a new quote and confirm its VAT default; otherwise record not applicable.
+   is in use, open a new quote and confirm its VAT default; otherwise record not applicable. **CHRIS 17-09-2026 PASS**
 3. **C2:** on one fresh unfinalised test Project, confirm included Products, gross prices,
    images and inherited commission; optionally remove one Product and refresh. With a C1
    template assignment, finalise/download the labelled development preview. An existing
    finalised Project remains locked and re-downloads. Individual Store publication remains
-   unavailable. No public purchase or classroom print acceptance is requested.
+   unavailable. No public purchase or classroom print acceptance is requested. **CHRIS 17-09-2026 PASS**
 
 Record the three results here. Existing local detailed matrix PASS remains accepted; only
 staging's representative path and environment-specific behaviour need human confirmation.
@@ -235,3 +235,31 @@ push normally. Monitor exact web/cron deployment and all four migration checksum
 existing Commerce evidence and run the minimum non-destructive SeasonPro live check.
 The source/old-binary compatibility boundary prevents returning to the old binary after
 RATE_SPECIFIED writes. Stop on any unexplained migration/data difference rather than reset.
+
+### Live Configuration Preparation And Staging Acceptance — 17 September
+
+Chris marked all three staging checks PASS and authorised non-destructive configuration to
+enable main promotion. His annotations above are retained. This completes staging human
+acceptance of this preparation bundle; B1/public selling/classroom artwork remain open.
+
+Updated only production web service `app` (`srv-d4t6l16uk2gs73ejugg0`) through Render's
+individual-variable API:
+
+- `FUND_INDIVIDUAL_ARTWORK_MODE=disabled`
+- `FUND_INDIVIDUAL_ARTWORK_TARGET=production`
+
+Independent API readback verifies both saved values. Full before/after service variable
+comparison proves every other production web setting unchanged, including the database;
+staging web and production cron variables are identical to their respective baselines.
+Production web/cron target the verified production database, distinct from staging. No shared
+environment group, credential, application code or database was changed.
+
+The API update did not start a deployment. These saved settings take effect on the next
+deployment; no claim is made that the currently running process reloaded them. Live remains
+`0397bba9`, deployment `dep-dahb2jpt0dsc73fb70i0`. After the update, production health is HTTP
+200, database connected, RLS 11/11. Staging remains the accepted `d13ecb39`.
+
+Ready for explicit main-promotion approval under `docs/guides/git-workflow.md`. That step
+must deploy the accepted candidate with all four committed migrations, verify effective
+live configuration/deployment and preserve existing Commerce evidence. No main push,
+redeploy, migration or data reset was performed by this configuration request.

@@ -2,7 +2,7 @@
 
 Date: 2026-09-17
 
-Status: **Local human and technical checks PASS. Exact candidate d13ecb39 promoted to dev/staging; both security scans and staging migration/data preservation PASS. Render web/cron deployment and health PASS; staging human acceptance pending; main/live held.**
+Status: **Local human and technical checks PASS. Exact candidate d13ecb39 promoted to dev/staging; both security scans and staging migration/data preservation PASS. Render web/cron deployment and health PASS; staging human acceptance PASS; live configuration prepared; main promotion held.**
 Control depth: **High** — financial evidence and publication authority.
 Exact candidate: `d13ecb39fdf592e3a555f96ae64c9763ff73ae16` on dev/staging and both origins, based on `6ebaac46`.
 Application behaviour is `3820e304`; `9c09cbe1` only moves the legacy test fixture before finalisation. Its commit hook type check passes. `d13ecb39` adds only focused regression tooling; application behaviour is unchanged.
@@ -95,3 +95,10 @@ staging check remains pending. The [review record](../05-review-and-test/2026-09
 contains service identities, production configuration correction, complete main migration
 bundle and recovery boundary. Main/live remains held; no reset, live configuration change,
 public selling acceptance or B1 closure occurred.
+
+17 September follow-up: Chris records all three staging checks PASS. The authorised
+production web-only artwork configuration is saved as disabled/production and independently
+verified, with all other settings, staging and production cron unchanged. No redeploy or
+migration was triggered; values take effect on the next deployment. Current live health
+passes. The review record contains exact readback and authority boundaries. Main approval
+remains the next human decision; this is not a live promotion or B1 closure.

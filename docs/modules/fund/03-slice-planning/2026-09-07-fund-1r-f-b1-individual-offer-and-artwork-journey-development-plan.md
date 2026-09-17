@@ -2,7 +2,7 @@
 
 Date: 2026-09-07
 
-Status: **Local VAT and preparation human PASS; technical review PASS. Candidate d13ecb39 pushed through dev/staging; staging migration 157 and exact deployment/health PASS; staging human acceptance pending. Main/live held at 0397bba9. B1 remains open.**
+Status: **Local VAT and preparation human PASS; technical review PASS. Candidate d13ecb39 pushed through dev/staging; staging migration 157 and exact deployment/health PASS; staging human acceptance PASS; live settings prepared. Main/live held at 0397bba9. B1 remains open.**
 
 Control depth: **High** — this journey introduces persistent offer evidence, exact C2
 finaliser authority, tenant-bound document access and failure/retry behaviour.
@@ -23,11 +23,11 @@ now selects FUND B1/B1-R2 dev/staging promotion and acceptance as Now, with the 
 ## Restart Checkpoint
 
 ```text
-Current state: local preparation smoke 1–5 and VAT A0/A/B PASS; focused technical review and remaining regression/A7 PASS. Chris authorises staging validation and documentation publication, with a view to later main alignment. B1 stays open.
+Current state: local preparation smoke 1–5 and VAT A0/A/B PASS; focused technical review and remaining regression/A7 PASS. Chris reports all three staging human checks PASS and authorises live configuration preparation. Both live artwork settings are saved and independently verified. B1 stays open.
 Last proven commit: d13ecb39fdf592e3a555f96ae64c9763ff73ae16; application behaviour 3820e304. Dev/staging Security Scans 35201013522/35201206533 PASS. Local 601 tests/build/human evidence retained, with exact focused continuation; no whole interrupted-run PASS or independent reviewer claim.
-Current environment: local dev/staging and both origins match d13ecb39; staging migration 157 exact checksum and 51-table FUND/Commerce preservation PASS. Exact staging web/cron deployment and three-domain health/DB/RLS/asset/auth-refusal PASS; staging human acceptance pending. Main/live 0397bba9 and production schema 153 unchanged. Local DevData/archived wf1 untouched. Documentation through f0eecc5 published.
-Next human decision/test: short staging SeasonPro, VAT/Product and C2 preparation checks in the 17 September review record, after exact deployment verification. Main approval remains required; production app must first change artwork mode/target from emulated/staging to disabled/production, service-only. No classroom/public purchase smoke.
-Safe resumption point: obtain the short staging human result and explicit live authority, then correct production service-only artwork settings and promote the accepted exact candidate. Main requires all four compatible B1/R1/R2/R3 migrations; production FUND tables are empty, no reset authorised. Preserve all Orders/finalised evidence; compatible forward recovery. B1 Now / 1R-G planning Next unchanged.
+Current environment: local dev/staging and both origins match d13ecb39; staging migration 157 exact checksum and 51-table FUND/Commerce preservation PASS. Exact staging web/cron deployment and three-domain health/DB/RLS/asset/auth-refusal PASS; staging human acceptance PASS. Main/live 0397bba9 and production schema 153 unchanged. Local DevData/archived wf1 untouched. Live service-only artwork settings saved as disabled/production; take effect on next deploy. No live redeploy or database write in this step.
+Next human decision/test: explicit main-promotion approval for accepted d13ecb39 with all four B1/R1/R2/R3 migrations. No repeat staging smoke requested. No classroom/public purchase acceptance inferred.
+Safe resumption point: refresh production baseline/configuration identity, fast-forward local main from accepted staging and push after explicit approval; monitor web/cron and migrations, verify effective disabled/production artwork configuration and minimum live critical path. Saved configuration did not trigger deployment; live health remains 200/DB connected/RLS 11/11. Preserve Orders/finalised evidence; compatible forward recovery. B1 Now / 1R-G planning Next unchanged.
 
 ```
 
