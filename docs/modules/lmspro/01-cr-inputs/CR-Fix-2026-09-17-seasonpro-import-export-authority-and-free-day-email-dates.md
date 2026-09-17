@@ -2,7 +2,7 @@
 
 Date: 2026-09-17
 Owner: LMSPro / SeasonPro; shared Core Import/Export and Communications dependencies.
-Status: **Triaged and implementation authorised; delivered on local dev, pending human smoke and later controlled promotion.**
+Status: **Triaged and implementation authorised; delivered on local dev, local human smoke and actual email-send PASS; controlled promotion pending.**
 Proposed control depth: **High** for the combined request because element A changes bulk-data
 and export authority. Element B is presentation-only; keep its proof proportionate.
 

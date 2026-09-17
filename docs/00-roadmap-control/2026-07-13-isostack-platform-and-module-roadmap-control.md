@@ -109,7 +109,7 @@ not another portfolio outcome or a general tax-engine change. Implementation was
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | SeasonPro Import/Export authority and Free Day email dates | Chris authorised the [single remedial slice](../modules/lmspro/03-slice-planning/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-planning.md) for local dev implementation and smoke on 17 September. No remote promotion authorised; OOM investigation excluded. |
+| **NOW** | SeasonPro Import/Export authority and Free Day email dates | Chris authorised the [single remedial slice](../modules/lmspro/03-slice-planning/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-planning.md) for local dev implementation and smoke on 17 September. Local `c3998084` L1–L5 and actual email send are Chris-reported PASS. Staging-authorisation decision pending; no remote promotion authorised; OOM investigation excluded. |
 | **NEXT** | Resume FUND `1R-F-B1` at its accepted preparation release boundary | Preserve the [17 September review](../modules/fund/05-review-and-test/2026-09-17-fund-simple-store-preparation-review-and-test.md), application `d13ecb39`, and Chris’s reported live PASS. B1 stays open; real artwork/public Store/purchaser dependencies remain. `1R-G` planning remains registered downstream, temporarily displaced from formal Next. |
 
 On 2026-09-10 Chris requested FUND dev/staging alignment after the security correction was

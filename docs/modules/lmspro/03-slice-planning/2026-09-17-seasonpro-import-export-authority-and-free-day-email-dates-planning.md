@@ -1,7 +1,7 @@
 # SeasonPro — Import/Export Authority And Free Day Email Dates: Single Slice Plan
 
 Date: 2026-09-17
-Status: **Implementation authorised by Chris on 17 September, local dev first; implemented locally, awaiting human smoke. No online promotion authorised.**
+Status: **Implementation authorised by Chris on 17 September, local dev first; implemented locally at `c3998084`, with Chris’s local smoke and actual email-send PASS on 17 September. No online promotion authorised.**
 Control depth: **High** for import/export authority; date-format proof remains focused.
 Work type: bounded production correction, not an infrastructure experiment.
 Baseline reviewed: application `d13ecb39`; recheck current branch/ancestry before implementation.

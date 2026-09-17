@@ -1,21 +1,21 @@
 # SeasonPro Import/Export Authority And Free Day Email Dates — Review And Local Smoke
 
-Date: 2026-09-17 · Control depth: **High** · Status: **Local automated PASS; human smoke pending**
+Date: 2026-09-17 · Control depth: **High** · Status: **Local automated and human smoke PASS; promotion pending**
 
 - Exact commit: `c3998084` on local `dev` (parent `d13ecb39`); not pushed.
 - Files/change boundary: explicit Import/Export component authority, corresponding UI and Free Day date presentation.
 - Automated checks: 79 tests, TypeScript, critical-file verification and changed-file lint PASS (zero errors; existing warnings retained); isolated production build PASS.
-- Human evidence: **NOT RUN** for this candidate.
-- Environment proven: local automated boundary; read-only connected helper checks across 12 development actors PASS; authenticated UI/RLS environment proof pending.
+- Human evidence: **L1–L5 PASS**, recorded by Chris in the table below and confirmed in conversation on 17 September: “Smoke testing and actually send an email all GREEN.” Actual email-send success is user-reported; no provider-log inspection is claimed.
+- Environment proven: local automated boundary; read-only connected helper checks across 12 development actors PASS; local authenticated smoke PASS as reported by Chris; staging-specific authentication/RLS proof pending.
 - Known residual risk: role configuration must actually contain the grants; old sent emails retain old formatting; rollback is mapping-only.
-- Next authorised action: Chris’s local smoke below. No staging/main promotion authorised.
+- Next action: await authority for controlled staging validation. No staging/main promotion authorised.
 
 ## Active restart checkpoint
 
-Current state: implemented locally; automated permission/date checks PASS; local human smoke pending.
-Last proven commit: `c3998084` passes local automation; human acceptance pending (released baseline `d13ecb39`).
+Current state: local implementation and L1–L5 human smoke accepted; actual email send also reported PASS.
+Last proven commit: `c3998084` passes local automation; local human acceptance PASS (released baseline `d13ecb39`).
 Current environment: local dev only; remote branches, staging and live untouched.
-Next human decision/test: complete local L1–L5, then decide whether to authorise staging validation.
+Next human decision/test: authorise staging validation when ready; do not repeat accepted local smoke.
 Safe resumption point: use this record and the [single plan](../03-slice-planning/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-planning.md); preserve FUND’s accepted release/resumption evidence. Do not rerun unrelated FUND smoke or include the OOM investigation.
 
 ## Local smoke — small synthetic data only
@@ -27,11 +27,11 @@ Sign in again after a role change if session revocation requests it.
 
 | Check | Action and expected result | Result |
 | --- | --- | --- |
-| L1 — delegated normal operations | Give the delegated C1 role Import and Export component grants. Both dashboard cards and direct `/app/import` and `/app/export` pages open. Download the Club CSV template, retain one clearly labelled synthetic Club row with a fresh legacy key and no real contact details, validate/import once, and confirm its completed job in `/app/import/jobs`. Export Clubs as CSV then JSON; check the synthetic Club and correct league scope. | PENDING |
-| L2 — independent/revoked grants | Remove Export only: Import remains usable; Export card disappears and direct Export URL explains missing access. Restore Export and remove Import: reverse result, including no job-list access. Repeat without either grant for Owner: Owner status must not grant normal Import/Export by itself. Restore original role configuration afterward. Automated tests cover stale/direct API refusals. | PENDING |
-| L3 — destructive controls | Delegated C1 sees job details but no rollback/delete controls. Owner with Import access sees those controls for the synthetic job. Do not execute destructive actions for this smoke; automated fixtures cover refusal, ownership and in-progress protections. Rollback confirmation must say imported records are not deleted. | PENDING |
-| L4 — league/role boundary | A second local test league cannot see the first league’s synthetic job or export its Club. A C2/Club-only role cannot open league Import/Export by a stray component grant. Direct foreign identifiers and invalid impersonation are covered by automated tests; record connected confirmation when available. | PENDING |
-| L5 — email presentation | In notification settings, inspect Free Day defaults/custom content: editing previews must retain `{{requestedDate}}`. For a rendered synthetic notification containing `2026-10-18T00:00:00.000Z`, expect `18/10/2026` in each used subject/body occurrence. Open the [non-sending synthetic preview](/tmp/seasonpro-free-day-preview.html) for local visual inspection (temporary local artifact); do not trigger real recipient mail solely for this test. Existing stored dates and sent-email history should not be rewritten. | PENDING |
+| L1 — delegated normal operations | Give the delegated C1 role Import and Export component grants. Both dashboard cards and direct `/app/import` and `/app/export` pages open. Download the Club CSV template, retain one clearly labelled synthetic Club row with a fresh legacy key and no real contact details, validate/import once, and confirm its completed job in `/app/import/jobs`. Export Clubs as CSV then JSON; check the synthetic Club and correct league scope. | **PASS** |
+| L2 — independent/revoked grants | Remove Export only: Import remains usable; Export card disappears and direct Export URL explains missing access. Restore Export and remove Import: reverse result, including no job-list access. Repeat without either grant for Owner: Owner status must not grant normal Import/Export by itself. Restore original role configuration afterward. Automated tests cover stale/direct API refusals. | **PASS** |
+| L3 — destructive controls | Delegated C1 sees job details but no rollback/delete controls. Owner with Import access sees those controls for the synthetic job. Do not execute destructive actions for this smoke; automated fixtures cover refusal, ownership and in-progress protections. Rollback confirmation must say imported records are not deleted. | **PASS** |
+| L4 — league/role boundary | A second local test league cannot see the first league’s synthetic job or export its Club. A C2/Club-only role cannot open league Import/Export by a stray component grant. Direct foreign identifiers and invalid impersonation are covered by automated tests; record connected confirmation when available. | **PASS** |
+| L5 — email presentation | In notification settings, inspect Free Day defaults/custom content: editing previews must retain `{{requestedDate}}`. For a rendered synthetic notification containing `2026-10-18T00:00:00.000Z`, expect `18/10/2026` in each used subject/body occurrence. Open the [non-sending synthetic preview](/tmp/seasonpro-free-day-preview.html) for local visual inspection (temporary local artifact); do not trigger real recipient mail solely for this test. Existing stored dates and sent-email history should not be rewritten. | **PASS** |
 
 If a local account/fixture is absent, record that limitation; do not weaken the permission
 rules or change an online role to make the smoke pass. Leave the tiny imported fixture labelled
@@ -56,3 +56,9 @@ Only endpoint fingerprint `8708763642d9` and aggregate counts are retained; no p
 are published. This checks ORM query compatibility and explicit predicates, not a substitute
 for authenticated browser or staging RLS acceptance. The isolated build passed before a final
 non-functional JSX quote escape; the commit hook reran TypeScript successfully afterward.
+
+## Human acceptance — 17 September 2026
+
+Chris marked all five local checks PASS and confirmed all-green smoke, including an actual
+email send. This accepts the local candidate `c3998084`. No recipient details are recorded.
+It does not constitute staging proof or authorise a push, deployment or live promotion.

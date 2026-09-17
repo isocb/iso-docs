@@ -1,7 +1,7 @@
 # SeasonPro — Import/Export Authority And Free Day Email Dates: Triage
 
 Date: 2026-09-17
-Status: **Accepted; Chris subsequently authorised implementation on local dev first. Local implementation awaits human smoke; no promotion authorised.**
+Status: **Accepted; Chris subsequently authorised implementation on local dev first. Local implementation and human smoke PASS; no promotion authorised.**
 Control depth: **High** because delegated bulk import/export changes authority and data access.
 Owner: SeasonPro, with bounded Core Import/Export and Communications changes.
 [CR-Fix](../01-cr-inputs/CR-Fix-2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates.md) · [Single plan](../03-slice-planning/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-planning.md)
@@ -52,4 +52,4 @@ Workarounds remain an already authorised Owner and manual date interpretation. N
 containment, data repair or schema work is needed for this plan. This is ordinary remediation,
 not an accepted emergency expedite; the OOM investigation stays separate.
 
-CR disposition: **triaged, implementation authorised and delivered locally at `c3998084`; human smoke pending**. Chris’s subsequent local implementation instruction selects this SeasonPro correction as root Now and preserves FUND B1 as Next at its accepted release boundary. The 04 confirmation and 05 review record actual evidence; online promotion remains unauthorised.
+CR disposition: **triaged, implementation authorised and delivered locally at `c3998084`; local human smoke PASS; promotion pending**. Chris’s subsequent local implementation instruction selects this SeasonPro correction as root Now and preserves FUND B1 as Next at its accepted release boundary. The 04 confirmation and 05 review record actual evidence; online promotion remains unauthorised.
