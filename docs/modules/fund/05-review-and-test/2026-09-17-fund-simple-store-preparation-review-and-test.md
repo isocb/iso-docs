@@ -2,7 +2,7 @@
 
 Date: 2026-09-17
 
-Status: **Local/staging human and technical PASS. Approved main promotion deployed at d13ecb39; production migration, preservation, configuration and health PASS. Minimum live human smoke pending; B1 remains open.**
+Status: **Local/staging human and technical PASS. Approved main promotion deployed at d13ecb39; production migration, preservation, configuration and health PASS. Chris’s three minimum live human checks PASS; B1 remains open. The separately recorded OOM incident remains unresolved.**
 Control depth: **High**.
 Exact candidate: `d13ecb39fdf592e3a555f96ae64c9763ff73ae16`, consolidated through local dev and staging and pushed to both origins on 17 September; deployment verification follows below.
 [Plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md)
@@ -291,13 +291,13 @@ staging's full functional tests.
 
 1. Confirm login/logout and expected Client/dashboard/access for P1, C1 and a standard
    tenant user using the usual accounts. A normal user must retain their usual restricted
-   access.
+   access. **CHRIS: PASS**
 2. As the normal SeasonPro user, open an existing season, Club/team and fixtures view;
-   confirm existing details and images display correctly, without editing live data.
+   confirm existing details and images display correctly, without editing live data. **CHRIS: PASS**
 3. As P1, open Platform Settings and confirm the VAT default appears without saving a
    change. As C1, open FUND Products and FUND setup; empty lists are valid on this unused
    module. Development artwork must not be available on live. No template download,
-   public Store launch, purchase or commission acceptance is requested.
+   public Store launch, purchase or commission acceptance is requested. **CHRIS: PASS**
 
 Report PASS or the exact failed screen. FUND remains in development; main alignment is not
 acceptance of operational artwork or public selling. Root B1 Now / 1R-G planning Next
@@ -326,5 +326,35 @@ remains unchanged until SeasonPro remedial work is separately selected.
   emulation-refusal or `Error:` matches. No post-deploy cron runtime entries were returned;
   cron deployment/configuration is proven, not a new completed business job.
 
-The three read-only live human checks above remain pending. This is a completed technical
-promotion, not a claimed human production PASS, B1 closure or FUND public-selling release.
+Chris records all three read-only live human checks above PASS. Technical promotion and that
+bounded human acceptance are complete; B1 closure and FUND public selling are not claimed.
+
+#### Post-Smoke Runtime Incident — 17 September, 09:44 UTC
+
+Chris records all three live checks PASS above. Preserve that functional acceptance, but do
+not infer sustained runtime reliability: Render subsequently confirms `oomKilled` against
+the production web service's 2 GiB limit at 09:44:08 UTC (10:44 BST), followed by
+`server_available` at 09:44:19 UTC. The current deployment remains d13ecb39; health readback
+at 09:51 UTC is HTTP 200, database connected, RLS 11/11.
+
+Read-only diagnosis: minute-sampled memory was about 400 MiB before the abrupt event; it
+later peaked around 956 MiB and returned to 408 MiB. The sampled graph does not capture the
+full OOM peak. Request logs show `communications.emails.duplicateToDraft` returning 502 at
+09:44:06 UTC immediately before the kill. Subsequent email create/send requests returned
+200. No recipients, message content or authentication data are recorded here.
+
+The duplicate path loads every recipient including resolvedBody and copies those resolved
+bodies into the new draft. Aggregate database checks found sent emails with 398–414
+recipients and approximately 237–246 million bytes of resolved bodies, each containing an
+embedded image. This is a strong allocation-amplification lead, not yet a reproduced root
+cause. Source HTML itself is small. The duplicate route and 1600 MiB old-space setting are
+unchanged from the pre-promotion main baseline; the heap setting predates this release.
+
+Next bounded investigation should reproduce duplication with synthetic comparable-sized
+recipient bodies off production, determine whether a draft needs historical rendered
+bodies, and avoid loading/copying unnecessary delivery content while preserving the sent
+source evidence and normal recipient/attachment behaviour. Do not replay the failing bulk
+operation on live. No code, instance sizing, runtime configuration or database data was
+changed during diagnosis; no automatic upgrade or rollback is justified by current evidence.
+The existing interrupted-query concern was checked: the aggregate finished normally; the
+follow-up cancellation matched no active query. A smaller follow-up had a 10-second timeout.
