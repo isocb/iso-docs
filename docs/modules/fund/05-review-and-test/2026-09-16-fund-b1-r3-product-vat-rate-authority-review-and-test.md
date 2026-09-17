@@ -173,7 +173,13 @@ preview or production print layout; Chris's separate concern remains unresolved.
 
 ### Whole Store-publication review — 16 September, after the 19:49 screenshots
 
-**Owner disposition accepted:** Chris accepts the recommended continuation below: preserve
+**17 September planning update:** A0/A/B PASS and the observed code findings below remain
+valid; C/publication smoke is still paused. Chris has replaced the proposed remedy with the
+[simple Store launch plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md): reusable commission defaults, automatic images and one
+combined launch confirmation. The earlier recommendation to build separate C1 proposals is
+superseded. No further implementation, smoke or promotion result is claimed here.
+
+**16 September owner disposition accepted (historical):** Chris accepts the recommended continuation below: preserve
 A0/A/B PASS, keep C blocked until deliberate development setup, and prepare the
 [bounded launch-preparation plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md). The proposal is now
 prepared. No repeat publication smoke, new implementation selection, fixture writes or

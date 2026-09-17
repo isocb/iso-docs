@@ -2,7 +2,7 @@
 
 Created: 2026-08-25
 
-Last updated: 2026-09-16
+Last updated: 2026-09-17
 
 Status: **Plain-English situation report; subordinate to the delivery lifecycle**
 
@@ -13,14 +13,20 @@ implementation authority or another restart checkpoint.
 
 ## Where We Are
 
-**Accepted next work — planning, not further smoke:** Chris accepts retaining A0/A/B PASS
-and pausing C until deliberate setup is available. The
-[launch-preparation plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md) is prepared for review:
-first accurate readiness, then a DRAFT Seller/temporary Product-image setup path, then
-C1 commission proposals and exact C2 acceptance. Commission calculation/statements/settlement
-remain separate. No new implementation slice is selected; B1 Now / 1R-G planning Next stays
-unchanged. The plan's first implementation boundary must be selected before code or fixtures
-change. It will not itself remove the Individual development-only publication restriction.
+**17 September — simplify the route to a demonstrable result.** Chris requires a usable
+client journey and fewer routine decisions, while retaining quality. The [replacement launch
+plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md) now uses one C1 default commission rate, an optional Event ladder, automatic
+Product images and inherited Project setup. C2 reviews the Store and commission together;
+one launch confirmation will cover both. Separate per-Project offers and acceptance screens
+are not part of the required normal journey.
+
+The next demonstration should show supported C1 setup through C2's prepared Store and the
+existing development artwork download, without hidden database repairs. Actual public Store
+launch and a test purchase follow the still-unfinished release/payment dependencies; they
+are not delivered by this documentation revision. Basic simplicity is required in Phase 1.
+Material additional complexity must be explained to Chris with its value and simpler option.
+A0/A/B VAT PASS remains; C/publication smoke stays paused. No new code slice is selected and
+B1 Now / 1R-G planning Next is unchanged.
 
 ### 16 September evening — Store publication is not yet a complete user journey
 
@@ -35,11 +41,12 @@ Teatowel at £54 including VAT. Its missing image makes it incomplete. The curre
 cannot assign an image, despite the readiness instruction telling C1 to do so. Temporary
 staging images were test preparation, not delivery of the Product media workflow.
 
-**The C1 commission-offer creation journey is missing.** C2 acceptance exists, but there is
+**Historical finding, superseded as a UX requirement on 17 September:** the C1 commission-offer creation journey is missing. C2 acceptance exists, but there is
 no offer to accept and no C1 policy/proposal screen to create one. The commission schema was
 delivered in `1R-C5`; its accepted follow-on C1 management requirement remains outstanding.
-This is a Phase 1 prerequisite to Store publication, distinct from later commission
-calculation/statements/settlement. It must not be treated solely as a parked refinement.
+The revised plan supplies C1 defaults and automatic inheritance instead of building that
+separate proposal journey. Commission configuration remains a Phase 1 prerequisite, distinct
+from later calculation/statements/settlement.
 The current C2 “Accept the current commission offer” blocker assigns responsibility too
 early and obscures that missing supplier-side step.
 
@@ -146,7 +153,7 @@ layout. It remains authenticated and visibly in development, with no purchase ac
 An anonymous shareable Store needs the later release prerequisites. This is a concrete
 planning proposal, not implementation or a change to the finalised artwork destination.
 
-### Primary Phase 2 Objective: Make The Normal Journey Automatic
+### Core Delivery Objective: Make The Normal Journey Automatic
 
 Your 12 September clarification makes the mission explicit: **C1 Event setup should be easy
 for people without technical expertise, and supported C2 intake forms should lead to a live
@@ -164,13 +171,13 @@ recorded that requirement alongside the need to define the circulation milestone
 earlier offers and any Orders placed after publication. Completing Store setup and locking
 the template for circulation need distinct definitions. Today B1 still locks content at
 finalisation; that remains the
-rule for your current smoke test. The later refinement must deliberately resolve that gap.
+rule for your current smoke test. The release plan must explicitly resolve that gap; it cannot silently treat the current lock
+as the requested editing behaviour.
 
-This is now a primary Phase 2 objective in the [authoritative roadmap](2026-06-25-fund-roadmap-and-slice-control.md#primary-phase-2-objective-simple-event-setup-and-intake-to-live-store)
-and the [existing default-Store requirement](../01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md).
-Planning will identify which form types support the automatic route and how existing gates
-are satisfied through configuration and intake, rather than repeated decisions afterward.
-Current smoke rules have not changed, and this does not authorise immediate implementation.
+The [authoritative roadmap](2026-06-25-fund-roadmap-and-slice-control.md#core-delivery-objective-simple-event-setup-and-intake-to-live-store)
+now places basic defaults and simplicity in Phase 1. Broader intake coverage and the
+pre-circulation editing contract need explicit scope; they must not justify delaying a usable
+supported journey. Current code/smoke limitations remain until implementation is delivered.
 
 ### Delivery and test history
 

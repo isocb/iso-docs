@@ -1,208 +1,148 @@
-# FUND — Phase 1 Launch Preparation: Bounded Planning Proposal
+# FUND — Phase 1 Simple Store Launch Plan
 
-Date: 2026-09-16
+Date: 2026-09-16; replaced in place on 2026-09-17 at Chris's request.
 
-Status: **Planning continuation accepted by Chris; proposal prepared for implementation
-selection. No new implementation slice selected or authorised.**
-Control depth: **High** — tenant financial configuration, commission terms/acceptance,
-media ownership and preservation of confirmed evidence.
-Work type: proposed production-model services/UI, with a separately labelled development
-image bridge. This is not an external-service assumption test or a permission to publish.
+Status: **Owner-directed planning revision; implementation not yet selected.**
+Control depth: **High** because commission configuration, publication authority and preserved
+financial evidence change. This requires strong automated proof, not extra user approvals.
+Work type: proposed production behaviour, demonstrated locally before controlled promotion.
 
-Chris accepts retaining B1-R3 A0/A/B PASS, leaving C blocked until deliberate development
-setup exists, and reconciling the missing C1 setup into this plan. Root **B1 Now / 1R-G
-planning Next stays unchanged**. The [B1 plan](2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md)
-retains the only restart checkpoint. No repeated publication smoke is requested meanwhile.
+This replaces the previous proposal for separate C1 commission offers, independent C2
+acceptance and manual per-Product logo assignment. It also supersedes those user-workflow
+requirements in the historical C5 plan. Existing schema and implementation evidence remain
+history, not a reason to retain unnecessary steps. Simplicity is a first-release requirement.
 
-## 1. Authority, Inputs And Disposition
+[Root control](../../../00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md)
+and [FUND control](../00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md) retain
+**B1 Now / 1R-G planning Next**. The [B1 plan](2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md)
+keeps the sole checkpoint. A0/A/B VAT smoke remains PASS; C/publication smoke stays paused.
+No application, fixture, environment or promotion change is authorised by this revision.
 
-- [Root control](../../../00-roadmap-control/2026-07-13-isostack-platform-and-module-roadmap-control.md)
-  and [FUND control](../00-roadmap-control/2026-06-25-fund-roadmap-and-slice-control.md).
-- [Whole-publication review and human VAT passes](../05-review-and-test/2026-09-16-fund-b1-r3-product-vat-rate-authority-review-and-test.md#whole-store-publication-review--16-september-after-the-1949-screenshots).
-- [Commission input](../01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md)
-  and the accepted [C5 business contract](2026-07-14-fund-phase-1-slice-1r-c5-commission-policy-assignment-schema-implementation-planning.md).
-- [Product-media input](../01-cr-inputs/2026-09-12-fund-product-media-gallery-options-and-option-image-refinement-input.md).
-- [Commerce control](../../../core/commerce/00-roadmap-control/2026-07-13-commerce-core-roadmap-and-slice-control.md)
-  and [business situation report](../00-roadmap-control/2026-08-25-fund-complete-module-smoke-readiness-business-overview.md).
+## 1. Client Outcome And Next Demonstration
 
-This reconciles existing requirements; it does not introduce a parallel roadmap or duplicate
-commission/media CR. Triage disposition: C1 policy/proposal is an undelivered Phase 1
-pre-publication dependency; Seller identity is a shared Commerce setup dependency; the
-existing temporary-logo requirement can support development without selecting the full
-media gallery. Misleading responsibility/action messages are acceptance defects in the
-existing Store journey. Their bounded correction belongs with this proposed outcome.
+The complete business journey is:
 
-## 2. Visible Outcome And Limit
+**C1 sets reusable defaults → C2 creates a Project → reviews its prepared Store and commission
+→ checks one launch confirmation → Store publishes, or opens at its configured time.**
 
-C1 can prepare the organisation and Project through supported screens. C2 can see the
-selected Products and inclusive prices, see and accept actual commission terms, and see
-which next actions are possible. For Individual development Projects, the exact organiser
-can finish the existing labelled offer/PDF test once its own prerequisites are met.
+For supported intake routes, the review and confirmation finish the intake sequence; there
+is no second setup checklist afterward. Event/Project workflow and Catalogue eligibility
+continue to select the available Products, with C2 choosing the permitted subset. Use existing
+branding, dates, prices and template defaults where valid. Only missing business information
+or actual exceptions require intervention. Do not make C1 approve every Project.
 
-The screen must clearly say that real publication remains a later release capability. A
-complete development setup is not a publishable Store, an ACTIVE Seller or payment approval.
-Development fixtures must never be represented as production onboarding.
+The first demonstration uses the existing Individual Event-linked and standalone Project
+creation routes. The four-workflow model remains unchanged. The next increment is a working
+preparation journey: C1 saves a default rate;
+C2 creates an Event-linked or standalone Project; selected Products, VAT-inclusive prices,
+automatic images and applicable commission appear together; the existing Individual
+review/PDF path is usable. No database editing or hidden fixture repair should be needed
+for the supported setup. This proves preparation, **not live publication**.
 
-## 3. Proposed Delivery Order Within This Boundary
+The subsequent release demonstration must prove the same journey through actual publication,
+a public Store and a test purchase/Order. Public Store presentation, production Individual
+artwork release and purchaser/payment integration are unfinished dependencies. They must be
+completed through the existing Phase 1 sequence; a green preparation screen is not their
+acceptance. Do not ask Chris to test an unavailable publication path again.
 
-These are ordered implementation increments for review, not additional portfolio selections.
+## 2. Minimal Business Behaviour
 
-### A. Accurate readiness and action ownership
+### Commission: configure once, inherit, confirm with launch
 
-- Present development offer preparation/finalisation separately from future Store publication.
-  Keep one server-owned blocker model; do not create a second client-side authority engine.
-- Distinguish no commission offer (C1 setup), PROPOSED current offer (C2 acceptance), a stale
-  proposal (C1 refresh), accepted effective terms, and finalised/protected terms. A proposed
-  replacement must not falsely remove the prior accepted assignment's effect.
-- Show `INDIVIDUAL_ARTWORK_DEVELOPMENT_ONLY` as a development/release limitation, not an
-  ordinary C1 task. It remains enforced server-side for every Individual Project.
-- Name the affected Product and the real action/route available to the authorised actor.
-  Do not instruct C1 to upload in a display-only editor or configure a nonexistent screen.
-- Link existing payment status to `/settings/payments` where authorised; explain OWNER-only
-  onboarding. Do not make Stripe setup a prerequisite of the development PDF test.
-- Preserve C2 inclusive-price-only display and existing Product selection. Readiness never
-  removes a selected Product merely to make the checklist green.
+- C1 sets one tenant/producer default flat percentage. An Event may instead have a simple
+  dated rate ladder. Standalone Projects inherit the producer default; Event Projects use
+  their Event ladder if configured, otherwise that default. Zero is valid; unset is not zero.
+- Project creation automatically resolves those terms. Existing unlaunched Projects resolve
+  them during Store refresh/review. There is no C1 per-Project proposal action, separate C2
+  acceptance screen, standalone policy editor or Project-specific override in this scope.
+- Show the percentage, or complete dated ladder, in ordinary language in the launch review.
+  One checkbox confirms the Store and displayed terms; the launch action records actor,
+  time and the terms together with publication. Automatic inheritance must not fabricate
+  a human acceptance record before that confirmation.
+- A scheduled date transition uses the corresponding rate without another acceptance.
+  Keep exact percentage arithmetic and explicit boundary dates/timezone. Validate overlapping
+  or uncovered dates when C1 saves a ladder, not as repeated C2 setup tasks.
+- Calculating earned commission, statements and settlement are later work. Retain existing
+  payment-date calculation semantics unless separately changed; the visible launch rate
+  must not imply one fixed rate for all future sales under a dated ladder.
 
-### B. Seller and temporary Product-image preparation
+### Images and Seller setup: remove routine preparation chores
 
-**Seller identity:** add a narrow shared Commerce profile service/router and a clearly named
-Seller details section alongside existing Payments settings; FUND links to that surface.
-Reuse `CommerceSellerProfile`, not FUND metadata or a second Seller table. Proposed access
-is tenant OWNER creation/editing and ADMIN read access, consistent with payment setup;
-confirm this boundary at implementation selection. C2 and foreign-tenant access are refused.
+- A real Product image takes precedence. Otherwise use the tenant logo automatically as a
+  temporary placeholder, visible on Product and Store. Recommended fallback when no usable
+  logo exists: a bundled neutral Product image, so missing photography does not block launch.
+  No library browsing or per-Product assignment button is needed for this bridge.
+- Readiness, presentation and generated evidence must use the same effective image rule.
+  Resolve only trusted assets; preserve the image used in finalised evidence. Full Product
+  upload/gallery/options work remains separate and is not declared complete by a placeholder.
+- Reuse the producer's shared Seller identity and existing Payments settings. Prefill genuine
+  organisation details; ask C1 once for genuinely missing required details. Do not invent
+  identity or require a general Seller administration subsystem to prepare each Project.
+  Reuse existing authorised roles; any proposed extra role or setup stage needs justification.
+- Development PDF preparation must work without live Stripe onboarding. Production publication
+  still needs valid Seller/payment readiness. Explain an unavailable release capability as
+  unfinished development, not a task assigned to an ordinary C1 or C2 user.
 
-Capture the existing required legal/trading identity and address fields, with validation and
-audited tenant-scoped writes. Prefill only genuine available organisation values; missing
-legal details require input. Never invent real Seller identity. Initial save remains DRAFT.
-No activation, provider account creation, checkout enabling or automatic publication occurs.
-Already ACTIVE or Order-referenced profiles need a separately reviewed edit contract; this
-bounded first-create/DRAFT-edit path must refuse to overwrite them.
+## 3. Delivery Sequence And Technical Boundary
 
-Proposed currency behaviour: initialise from the existing shared platform currency and
-validate the current FUND GBP-only contract. Show currency clearly without another C1
-currency selector. An unsupported platform value gives an explicit limitation, not a silent
-GBP fallback. Preserve any existing Seller currency and historical Order snapshots; later
-platform changes do not rewrite them. Do not expose Seller tax-category defaults or restore
-their former veto over the saved Product VAT percentage.
+Implement the preparation increment as a connected path: C1 defaults and minimal Seller setup,
+automatic commission/image resolution, then C2 Store review and accurate actions. Demonstrate
+it before expanding scope. Connect that same review to one launch confirmation when the
+existing real-release/public Store dependencies are delivered; do not build a second journey.
 
-**Temporary primary image:** in Product create/edit, provide an explicit “Use tenant logo
-temporarily” action for an already saved Product in the recognised development/staging
-context. Show its thumbnail and temporary status there. This is the existing requested
-bridge, not a generic Media-library selector or acceptance of permanent Product photography.
-Do not assign images to every Product or mutate Chris's fixtures automatically.
+Reuse existing commission version/assignment evidence internally where practical. C5 currently
+has Event/Project policy ownership, not a producer default: implementation must assess the
+smallest tenant-scoped default storage and adaptation of assignment/acceptance constraints.
+Do not pretend no migration can be needed or expose internal record states as extra UI steps.
+Keep one source of commission authority. Any migration follows the
+[Safe Database Workflow](../../../../SAFE_DATABASE_WORKFLOW.md); no reset, guessed bulk terms
+or rewriting accepted evidence. Existing unfinalised test Projects must have a supported route.
 
-Resolve only the current tenant's existing managed logo. Validate ownership, usable stored
-asset and supported delivery; arbitrary URLs/foreign files must not be fetched or accepted.
-The current image setter accepts JPEG/PNG/WebP/GIF, whereas earlier managed-logo fixtures can
-be SVG: explicitly review this mismatch. Do not widen general SVG upload/assignment as a
-shortcut. If the tenant has no safely reusable logo, show a precise setup blocker and stop
-that action; do not claim the bridge works for an unprepared tenant.
+Publication rechecks permissions, current terms, eligible Products, dates and payment/release
+readiness on the server. A stale launch review requires refresh, not publication on different
+terms. Confirmation and publication must be atomic and retry-safe. Preserve existing Orders,
+finalised offers and prior accepted terms; a failure must leave recoverable configuration and
+no false acceptance/publication. Rollback uses compatible code or a forward correction,
+never deletion of evidence. Preserve Chris's test bed and leave old wf1 archived.
 
-Preserve old media references, obtain the existing availability lock, advance Product
-configuration revision and audit assignment. Refresh creates a new draft Store configuration;
-finalised offers/documents and Order evidence retain their previous references and bytes.
-For new Products, save identity first and make retry safe if subsequent logo assignment fails.
-Full uploads/gallery/folders/options remain with the media input and pilot-scope assessment.
+## 4. Complexity Explicitly Presented For Chris's Judgement
 
-Completion of this increment may unblock B1 section C. Commission/Stripe gates must not be
-silently added to that development offer test. Actual local fixture creation remains a
-separate explicit action; earlier staging-only fixture approval is not extended by this plan.
+These are recommendations or unresolved delivery costs, not silently accepted extra scope.
+Apply [the simplicity requirement](../../%3Cmodule%3E/work-method.md#11-simplicity-and-demonstrable-delivery)
+to any further material complexity discovered during implementation.
 
-### C. C1 commission configuration → proposed terms → C2 acceptance
+| Issue | Client value and cost | Simpler recommendation / decision boundary |
+| --- | --- | --- |
+| Changing a ladder after a Store launches | Renegotiation, retrospective changes and replacement acceptance would add UI, evidence and substantial testing. | Keep the published schedule for that Store; normal date transitions still apply. C1 edits affect unlaunched Projects. This is a proposed first-release limitation for Chris to judge, not an accepted permanent restriction. |
+| Individual template circulation and editing | Current B1 finalisation locks content earlier than the requested pre-circulation editing window. An unlock/version workflow adds user steps and development. | Preserve current evidence while delivering preparation. Present the smallest editing/circulation rule before real release; do not claim one launch checkbox resolves this automatically or silently add another approval. |
+| Public Store, artwork release and payments | These are actual missing capabilities needed for a usable selling service; they cannot be replaced by a checkbox or environment toggle. | Reuse existing Commerce/payment services and the existing 1R-G/Phase 1 work. Prove one supported workflow end to end before extending it; estimate remaining delivery from that concrete scope, without another foundation-only detour. |
 
-Reuse C5 policy, immutable version/step and assignment models and accepted semantics:
+Out of scope: per-Project commission negotiation/overrides, general replacement-proposal
+management, retrospective recalculation, statements/payouts, gallery/folders/Colour images,
+new approval roles, speculative multi-country configuration and wholesale intake redesign.
+Do not add any of these merely because the old schema can represent them.
 
-- Event defaults and standalone Project policies support flat or stepped terms. An
-  Event-linked Project override is flat only and takes precedence over its Event default.
-  Clearing an override resolves back to the Event policy; absence remains an explicit blocker.
-- Add Commission controls to C1 Event/Project context: configure/version terms, inspect
-  inherited versus overridden terms and acceptance/history, and propose the resolved offer.
-  This is commercial preparation, not another C1 Project-publication approval gate.
-- Use C5's one-decimal percentage input (0.0–100.0 in 0.1 increments) and exact integer basis
-  points. Stepped terms have one timing method, strictly decreasing ordered rates, a final
-  step, and an immutable timezone; preserve calendar-day/DST and Project-close semantics.
-- On Project creation, a context-valid active policy may resolve automatically into a
-  PROPOSED assignment inside the existing atomic Store provisioning. Never auto-accept.
-  Existing Projects use an explicit, idempotent proposal action. Avoid adding an unbounded
-  Event-wide rewrite/bulk migration when C1 changes an Event policy.
-- C2 must see the actual flat percentage or complete ladder rates, date boundaries/timezone,
-  source, version and Project close before accepting. The current “N commission steps” text
-  is insufficient. Keep effective accepted terms and a proposed replacement distinguishable.
-- Reuse and review the C2 acceptance transaction. Recheck tenant/Client role, current Event/
-  Project context, version validity, close snapshot and replacement chain on the server.
-  Concurrent proposals/acceptance/context edits either commit one coherent result or refuse
-  with a recoverable conflict; no stale proposal or implicit acceptance is permitted.
-- A replacement does not affect the accepted assignment until explicit C2 acceptance.
-  Retain superseded history and the C5 retrospective whole-Project semantics; this increment
-  does not calculate any sales amount or commission payable. Finalised commission terms
-  remain protected; no reopening/adjustment workflow is added.
+## 5. Completion Evidence And Smoke
 
-Do not restrict the accepted C5 model to flat-only without a recorded scope decision. Source
-review of migrations/indexes/triggers and the lock order is required before implementing
-proposal replacement, particularly the single-effective/successor constraints.
+Automated checks must prove default/Event precedence (including zero/unset), ladder boundaries,
+image fallback and trusted asset handling, tenant/role refusal, stale/concurrent launch refusal,
+retry behaviour and unchanged frozen financial/artwork evidence. Test affected shared Commerce
+consumers and any migration/rollback boundary. Run relevant type/lint/build checks. Keep live
+publication disabled until actual release prerequisites are delivered and verified.
 
-## 4. Data, Ownership And Recovery Assessment
+After the preparation increment and review, give Chris one short demonstration/smoke:
 
-Baseline: application `6ebaac46`, local DevData 157; online dev/staging remain `e7e8837c`.
-Local Project `C2-20260916-C3A4CA87` is the current review fixture. Old `wf1` remains archived
-at Chris's direction. Preserve existing data, A0/A/B evidence and all confirmed artifacts.
+1. C1 sets a flat default and one Event ladder using supported screens; completes any genuine
+   one-time producer setup. Create a Product without uploading an image: its fallback appears.
+2. C2 creates a standalone and an Event Project. Each shows the right Products, gross prices,
+   images and inherited terms without commission proposal/acceptance or image-assignment chores.
+3. For the supported Individual Project, review/finalise the development offer and download
+   its labelled PDF. Check preserved content and truthful release status. This does not prove
+   purchaser layout or production print quality; those still need their own delivered output.
 
-No schema change is assumed: Seller, Product media, policy/version/steps and assignments
-already exist. Implementation preflight must inspect current constraints and audit/idempotency
-support. If a missing integrity constraint requires migration, revise this plan explicitly
-and follow [Safe Database Workflow](../../../../SAFE_DATABASE_WORKFLOW.md); never db:push,
-seed/reset, mass-backfill guessed terms, or delete history to get a test green.
-
-FUND owns policies, proposals, Product assignment and readiness. Commerce owns Seller
-identity and payment status; Core owns platform defaults/shared media storage. Keep shared
-changes narrow and register them in Commerce control. No new provider or credential is needed.
-
-Rollback must preserve every new accepted assignment/media reference and use a compatible
-binary or forward fix. A revert of UI may remove access to setup without undoing configuration.
-Do not delete accepted terms, Seller records used by Orders or media referenced by frozen
-evidence. Prove partial-save/network retry behaviour and truthful failed-action messages.
-
-## 5. Proof And Future Human Smoke
-
-Automated proof after implementation must cover tenant/role refusal; DRAFT-only Seller writes;
-missing/unsupported currency; image ownership/type/absence and failed assignment; correct
-scope precedence and flat/step validation; exact proposed terms; close-date/DST cases;
-idempotent replay and concurrency; retained accepted/finalised evidence; and refusal to
-publish/trade an Individual Store even when all development setup succeeds. Exercise Core
-changes with their relevant consumers. Run relevant type/lint/build/repository checks.
-
-Use disposable fixtures for destructive/concurrency proofs with verified cleanup. Preserve
-Chris's local test bed. Establish local behaviour first, staging environment differences
-after controlled promotion, and no real payments or live changes through this proposal.
-
-Only after automated review and usable controls exist, issue one concise replacement smoke:
-
-1. C1 sees correct action ownership; absent commission shows “Awaiting supplier offer”.
-2. Tenant OWNER saves the agreed DRAFT Seller fixture; C1 assigns the temporary tenant logo
-   through Product edit. Verify reload/retry and no unintended changes to other Products.
-3. Exact organiser completes B1 development offer/PDF, re-download and lock checks, with
-   publication still unavailable and no request to connect live payments.
-4. C1 configures Event terms and a standalone policy; C2 sees exact terms and accepts.
-   Test one Project override and proposed replacement; prior accepted evidence persists.
-5. Confirm publication remains explicitly deferred; the screen offers no impossible C1/C2
-   action. Already accepted VAT smoke is repeated only if implementation introduces a real
-   pricing regression risk; otherwise retain A0/A/B PASS.
-
-No new human run is requested now. Record implementation in 04 and technical/human evidence
-in 05 when performed; do not pre-create PASS records. Separate review, human acceptance and
-controlled promotion remain gates. Main/live requires its specific approval.
-
-## 6. Do Not Build And Stopping Point
-
-No commission calculation, earned/paid totals, statements, settlement or payout. No real
-Seller activation, Stripe onboarding execution or payment enablement. No public Store route,
-checkout/purchaser/Order UI, production artwork service, readiness bypass, unlock of confirmed
-Individual offers or implicit Store publication. No gallery/folder/option-image implementation
-or wholesale intake-to-live automation. Essential pilot media/options still require their own
-scope assessment; the temporary logo does not declare them complete.
-
-This turn stops with a reviewable plan. The next implementation decision is whether to select
-this bounded launch-preparation outcome and accept its proposed role/currency/media boundaries.
-It must be reconciled in root control before execution; no automatic reordering is inferred.
-Then follow the existing production-release, public Store, purchaser/Order and operational
-dependencies. Do not promise that this preparation plan alone makes an Individual Store live.
+Request the launch/public Store/test-Order smoke only when those capabilities exist. The
+launch review must then have one combined Store/commission confirmation. Preserve A0/A/B PASS
+unless a relevant pricing change warrants regression checks. Record actual changes in 04 and
+proof in 05; no premature PASS. Use normal human acceptance and controlled promotion, with
+specific main/live approval. This revision stops at the updated plan; implementation selection
+remains the next delivery decision, without a new CR or another planning layer.

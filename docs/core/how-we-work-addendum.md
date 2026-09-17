@@ -6,7 +6,7 @@ portfolio and promotion method.
 Scope: developers, maintainers, contractors and AI assistants working with IsoStack
 repositories.
 
-Last updated: 2026-08-26
+Last updated: 2026-09-17
 
 ## Authoritative Working Method
 
@@ -53,6 +53,12 @@ The root control changes only when cross-lane ownership/dependency, expedite sta
 single `Now`/`Next` pair changes.
 
 ## Proportionate Control In One Minute
+
+Simplicity and a demonstrable client outcome are core requirements from the first usable
+release. Default and automate routine setup; explicitly show Chris the value, user burden
+and simpler alternative for material added complexity before including it in implementation
+scope. Apply [the working method, section 1.1](../modules/%3Cmodule%3E/work-method.md#11-simplicity-and-demonstrable-delivery);
+this changes neither safety obligations nor the number of lifecycle stages.
 
 The lifecycle does not grow for small work. Record one control depth in the existing triage
 or slice plan:

@@ -127,12 +127,14 @@ The FUND roadmap is a sibling control, not the parent Commerce roadmap:
 
 16 September amendment: Chris authorises B1-R3 implementation including the shared platform creation default. Commerce continues receiving explicit applied transaction rates; the default never reprices Orders. RATE_SPECIFIED compatibility remains in scope. Existing Seller category fields are preserved; no new Seller provisioning flow.
 
-16 September evening — additional **planning-only** dependency: Chris accepts reconciling
-missing Seller setup into the FUND [launch-preparation proposal](../../../modules/fund/03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md).
-It proposes a shared Commerce first-create/DRAFT-edit Seller profile path beside existing
-Payments settings, with explicit role/currency and immutable-evidence boundaries. No Seller
-activation, Stripe execution, payment enabling, schema change or implementation selection
-is authorised. This remains subordinate to FUND B1 Now; it is not another Commerce Now.
+17 September replacement **planning-only** dependency: the revised FUND [simple Store launch
+plan](../../../modules/fund/03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md)
+requires reusable producer setup using existing Seller identity and Payments settings, genuine
+prefilled details and one-time entry of missing information. A general Seller administration
+workflow or extra role/approval stage is not assumed. Preserve real publication/payment and
+historical evidence checks; a development PDF does not require live Stripe setup. No provider
+change, activation or implementation selection is authorised. This remains a dependency of
+FUND, not another Commerce Now.
 
 ## 7.0 FUND B1-R3 Rate-Only Evidence Dependency — 2026-09-16
 

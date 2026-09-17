@@ -154,8 +154,10 @@ C1 configures a reusable Event/intake setup with valid defaults
 -> no further C1 or C2 decision is required on the normal successful path
 ```
 
-This is a **primary Phase 2 mission outcome**, not a promise that every intake type or
-exception is immediately automatable. Planning must name the supported form types and
+17 September revision: basic defaults and the simple normal journey are **Phase 1 delivery
+requirements**, applied in the [replacement launch plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md). This supersedes the former
+Phase 2 deferral; it is not a promise that every intake type or exception is immediately
+automatable. Planning must name the supported form types and
 prerequisites. Configure reusable defaults once at the appropriate C1 scope rather than
 asking the organiser to repeat setup for each Project. Consider workflow, Catalogues,
 Products, commercial terms, branding/media, copy, dates, fulfilment and artwork configuration

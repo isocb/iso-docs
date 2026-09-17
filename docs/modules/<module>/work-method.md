@@ -4,9 +4,9 @@ Purpose: define the durable human-and-AI method for turning an idea, fault or ob
 into a controlled IsoStack release without allowing the portfolio to become an unranked
 list of competing work.
 
-Version: 4.4
+Version: 4.5
 
-Last updated: 2026-08-26
+Last updated: 2026-09-17
 
 Status: Authoritative working-method protocol. Product and Platform roadmap authority is
 held by the root and child roadmap files named below, not by this method document.
@@ -31,6 +31,27 @@ The method separates four things that must never be confused:
 - lifecycle evidence proves what was planned, built, tested and released.
 
 A document existing is not evidence that its proposed work was accepted or completed.
+
+### 1.1 Simplicity And Demonstrable Delivery
+
+Simplicity is a core acceptance requirement, including the first usable release. Plan the
+smallest complete journey that meets the actual client's needs, with a concrete demonstration
+as the outcome. Reuse existing capabilities, inherit sensible defaults and automate routine
+validation. Internal integrity checks must not become extra user decisions without a real
+business need. Do not defer basic usability to refinement or design for hypothetical scale.
+
+Highlight material added complexity to Chris in the existing plan and its review summary:
+what extra steps, choices or maintenance it introduces; the value for this client; the simpler
+alternative; and the recommendation and delivery cost/dependency. Chris judges whether that
+tradeoff is worthwhile before it becomes implementation scope. Do not silently retain an
+older, more elaborate design against a newer business instruction. Routine technical choices
+within accepted scope do not require another permission request.
+
+Keep tenant/role protection, financial correctness, preserved evidence and release checks.
+Control depth strengthens proof; it does not justify a complicated user journey. State what
+the next demonstration will prove and what remains unavailable. Retain valid test passes;
+repeat them only where a change creates relevant regression risk. Use the existing lifecycle
+records: this requirement adds no document, approval state or parallel planning process.
 
 ## 2. Authority And Mandatory Reading Order
 

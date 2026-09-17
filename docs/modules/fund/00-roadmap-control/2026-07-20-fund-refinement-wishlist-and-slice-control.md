@@ -34,7 +34,12 @@ It is planning/documentation only. An entry does not authorise implementation. P
 still requires a bounded planning slice, implementation confirmation, review/test and the
 normal roadmap reconciliation.
 
-### 1.1 Primary Phase 2 Outcome — 2026-09-12
+### 1.1 Simple Normal Journey — Updated 2026-09-17
+
+Basic defaults and simplicity are now Phase 1 requirements under the [replacement launch
+plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md), not deferred Phase 2 polish. The broader intake coverage and editing/circulation
+work below remain to be scoped. This clarification changes neither historical counts nor
+implementation selection.
 
 The owner requires straightforward Event configuration for C1 users without technical
 expertise and, for designated intake forms, a virtually automatic C2 Store journey. With
@@ -47,7 +52,7 @@ planned revision/circulation contract that preserves finalised offer and Order e
 
 The [existing default-Store input, Section 9](../01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md#9-phase-2-mission-clarification--2026-09-12)
 holds the clarified requirement and acceptance examples; the authoritative FUND roadmap
-registers it as **captured; awaiting triage and bounded planning**. Classify gates into
+registers the basic defaults in the revised launch plan, with wider coverage still to scope. Classify gates into
 automatic checks, reusable C1 defaults, information/consent at intake and genuine exceptions.
 Do not remove them ad hoc or silently replace B1's current finalisation lock. This cross-cutting
 refinement objective is additional to the historical 34-item reconciliation below; it does

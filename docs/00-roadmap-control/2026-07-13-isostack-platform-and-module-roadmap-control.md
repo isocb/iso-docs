@@ -83,13 +83,15 @@ Role Authority project = COMPLETE AND CLOSED
 
 Current serial portfolio decision:
 
-16 September evening: Chris accepts B1-R3 A0/A/B human VAT PASS and suspends C/publication
-smoke until the missing setup is available. He accepts a bounded
-[launch-preparation planning continuation](../modules/fund/03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md)
-for C1 commission proposals, Commerce Seller setup, supported temporary Product media and
-truthful staged readiness. The proposal is prepared; **no new implementation selection or
-change to B1 Now / 1R-G planning Next** is inferred. Application is local `6ebaac46`; C and
-separate review remain open. No fixture change or promotion is authorised by this acceptance.
+17 September owner-directed planning replacement: simplicity and demonstrable client results
+are core first-release requirements. The [simple Store launch plan](../modules/fund/03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md)
+replaces separate commission proposals/acceptance and manual image assignment with C1 defaults,
+optional Event ladders, automatic inheritance/images and one C2 launch confirmation. Commerce
+setup is a reusable producer dependency, not per-Project administration. Material added
+complexity must be presented to Chris with its value and simpler alternative. A0/A/B VAT PASS
+stands; C/publication smoke stays paused until supported. **B1 Now / 1R-G planning Next is
+unchanged; no new implementation is selected.** Application remains local `6ebaac46`; separate
+review, real-release/public Store and purchasing work remain. No fixture or promotion change.
 
 16 September owner-directed B1-R3 implementation supersedes the earlier assumption that only
 a human retry remains. The Commerce dependency concerns neutral numeric-rate evidence,

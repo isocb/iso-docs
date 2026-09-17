@@ -2,18 +2,20 @@
 
 Created: 2026-06-25
 
-Last consolidated: 2026-09-16
+Last consolidated: 2026-09-17
 
 Status: Active authoritative control for the FUND lane
 
-Current disposition — 16 September evening: Chris accepts A0/A/B VAT smoke PASS at local
-`6ebaac46` and leaving C blocked until deliberate Seller/image setup exists. He accepts
-reconciling missing C1 commission/Seller setup, staged readiness and supported media into a
-[bounded launch-preparation proposal](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md), now prepared.
-Planning only: no new implementation slice selected, no local fixtures changed, no publication
-smoke requested, and root B1 Now / 1R-G planning Next unchanged. B1 remains open. DevData is
-157; online dev/staging remain `e7e8837c`, main/live `0397bba9`. Separate review/promotion remain
-pending; saved Product/quote/frozen evidence rates are preserved.
+Current disposition — 17 September: Chris requires simplicity and demonstrable results as
+first-release requirements. The [simple Store launch plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md) replaces yesterday's
+proposal in place: producer default commission, optional Event date/rate ladder, inherited
+terms, automatic Product images and one combined C2 Store/commission launch confirmation.
+Separate proposal/negotiation and manual image assignment are removed from initial scope.
+Additional material complexity must be shown to Chris with its client value and simpler option.
+Planning only: no implementation selection or fixture change; B1 Now / 1R-G planning Next
+unchanged. A0/A/B VAT PASS remains at local `6ebaac46`; C/publication smoke remains paused.
+B1 stays open. DevData is 157; online dev/staging `e7e8837c`, main/live `0397bba9` remain as
+recorded. Separate review/promotion and actual public selling capabilities remain outstanding.
 
 Earlier planning disposition — 2026-09-16: Chris confirms the image correction, but the revised B1
 walkthrough fails on VAT authority. His accepted rule is a single Product VAT percentage,
@@ -111,12 +113,12 @@ same row.
 | [`2026-06-25-c2-organisation-scope-clarification.md`](../01-cr-inputs/2026-06-25-c2-organisation-scope-clarification.md) | Consumed by the `1P-D-R1` C2 dashboard review/scope note | Historical architecture clarification; no active implementation candidate |
 | [`2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-availability-management-ui-pattern-remediation-input.md) | Planned through `1Q-G-B` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
 | [`2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md`](../01-cr-inputs/2026-07-08-fund-cr-project-context-and-suitability-testability-remediation-input.md) | Planned through `1Q-G-A` and reviewed through the `1Q-G-R1` readiness check | Completed historical remediation input |
-| [`2026-07-13-fund-cr-commission-ladder-planner-input.md`](../01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md) | `1R-C5` schema and E-C C2 acceptance exist; 16 September review confirms C1 policy/proposal services/UI are absent and block publication | Required Phase 1 pre-publication management dependency; [launch-preparation plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md) prepared under accepted planning continuation, awaiting implementation selection. Distinguish it from aggregate calculation/statements/settlement and subordinate `2R-PROD-05`; no implementation selected by this review |
+| [`2026-07-13-fund-cr-commission-ladder-planner-input.md`](../01-cr-inputs/2026-07-13-fund-cr-commission-ladder-planner-input.md) | C5 schema and E-C acceptance exist; 17 September owner direction supersedes their separate proposal/acceptance user journey | [Revised launch plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md): C1 producer default, optional Event ladder, automatic inheritance and combined launch confirmation. Calculation/statements/settlement remain separate; planning only, no new implementation selection |
 | [`2026-07-15-fund-application-artwork-template-refinement.md`](../01-cr-inputs/2026-07-15-fund-application-artwork-template-refinement.md) | Consumed by accepted `1R-F` parent; `1R-F-A` completes at PASS with exact `0c7e4848` and zero residue; `1R-F-B` now reconciles the visible user/workflow framework and smallest vertical outcome | Former ten-record schema proposal retained as unaccepted technical evidence; no production implementation is authorised |
 | [`2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md`](../01-cr-inputs/2026-07-15-fund-collective-project-artwork-composition-approval-and-workflow-aware-product-instructions-remedial-clarification.md) | Consumed as the boundary preventing the Individual proof from absorbing collective/Standard paths; those paths remain readiness branches around the common journey | Detailed collective work remains parked; no former `1R-F-F` through `I` candidate is automatically selected |
 | [`2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md`](../01-cr-inputs/2026-07-15-fund-project-product-selection-limits-and-template-capacity-cr.md) | `1R-F-A` proved ceilings of ten STANDARD portrait and twelve COMPACT landscape rows for its exact variants; `1R-F-B` now treats their product effect before persistence | Capacity evidence informs the minimum vertical journey; no template-version schema or policy implementation is authorised |
 | [`2026-07-15-fund-template-manager-brief.md`](../01-cr-inputs/2026-07-15-fund-template-manager-brief.md) | Retained source brief for the Application/Artwork Template input | Provenance only; not a fourth CR and its provisional `T` labels carry no slice authority |
-| [`2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md`](../01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md) | Original default-Store correction implemented/reviewed as `1R-E-D`; retained in current ancestry. Added 2026-09-12 intake-to-live mission clarification is captured, awaiting triage | Primary Phase 2 objective: simple C1 Event setup and supported intake-to-live routes with no intervening human decisions; later C2 editing/circulation contract requires planning. Original human acceptance is not inferred |
+| [`2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md`](../01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md) | Original default-Store correction retained as 1R-E-D; 17 September moves basic simplicity/defaults into first-release requirements | [Revised launch plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md) applies easy C1 setup and a guided C2 launch. Wider intake coverage and pre-circulation editing need explicit bounded scope; no immediate unlock or implementation selection |
 | [`change-request-cmqt61xmf000612xt5ifl1mdn-2026-06-25.md`](../01-cr-inputs/change-request-cmqt61xmf000612xt5ifl1mdn-2026-06-25.md) | Original issue bundle was triaged and distributed across the historical `1P`/`1Q` lifecycle and later refinement controls | Superseded as a single active queue; retained as source evidence, with any genuinely absent outcome governed by its named current refinement/workstream |
 
 Current FUND portfolio disposition:
@@ -216,13 +218,13 @@ separate options for unresolved delivery, Products/options, media, setup and mes
 These accepted planning inputs are retained in the B framework Section 1.1. They do not
 accept its separate finalisation proposals or authorise B1 implementation.
 
-### Primary Phase 2 Objective: Simple Event Setup And Intake To Live Store
+### Core Delivery Objective: Simple Event Setup And Intake To Live Store
 
-Chris confirmed on 2026-09-12 that refinement must make Event setup easy for C1 users without
-technical expertise and Store creation virtually automatic for C2. The
-[expanded default-Store input, Section 9](../01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md#9-phase-2-mission-clarification--2026-09-12)
-is **captured; awaiting triage and bounded planning**, with this priority recorded as an owner
-mission objective rather than a new portfolio selection.
+Chris confirmed on 12 September, and strengthened on 17 September, that Event setup must be
+easy for C1 and Store creation virtually automatic for C2. Basic defaults and a simple normal
+journey are **Phase 1 requirements**, not deferred polish. The [revised launch plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md)
+applies this direction now; the [default-Store input](../01-cr-inputs/2026-07-21-fund-default-project-store-and-eligible-product-presumption-input.md)
+retains the broader intake and editing objectives. Planning revision is not code selection.
 
 For designated intake forms with valid reusable defaults, use one guided sequence of C2
 questions and review that finalises Store setup and leads to publication, with no separate
@@ -237,7 +239,7 @@ C2 should be able to edit a live Store before template circulation. Planning mus
 that requested window with B1's current finalisation lock, define and record circulation,
 and retain immutable offer/Order evidence for purchases made after publication. Completion
 of Store setup and the later template/artwork lock are distinct planning milestones. This is a
-Phase 2 contract to design, not an immediate unlock or gate removal. Current B1/B1-R2 smoke
+remaining editing/circulation contract to design, not an immediate unlock or gate removal. Current B1/B1-R2 smoke
 and 1R-G planning retain Now/Next. The subordinate refinement register and business report
 carry the same objective without creating another roadmap.
 

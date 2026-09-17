@@ -4,11 +4,13 @@ Date: 2026-07-13
 
 Status: Planning input
 
-16 September continuation: Chris accepts preparation of the bounded
-[launch-preparation plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md),
-now drafted. It covers C1 configuration/proposal and exact C2 acceptance, retaining C5's
-accepted flat/stepped and override semantics. Calculation/statements/settlement remain
-separate, and no new implementation slice is selected.
+17 September owner revision: the [replacement launch plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md) supersedes the older
+separate C1 proposal/C2 acceptance journey below. C1 sets a producer default flat rate or an
+Event date/rate ladder; Projects inherit automatically. One C2 launch confirmation records
+the displayed terms. Scheduled rate changes need no repeat acceptance. Project overrides,
+negotiation/replacement UI and retrospective recalculation are not initial delivery scope.
+Calculation/statements/settlement remain separate. This is a planning revision, not code
+selection. Historical schema/review findings below describe the previous contract.
 
 16 September review clarification: `1R-C5` delivered policy/version/assignment schema and
 reserved a C1 management contract; `1R-E-C` delivered C2 acceptance. The C1 runtime policy/

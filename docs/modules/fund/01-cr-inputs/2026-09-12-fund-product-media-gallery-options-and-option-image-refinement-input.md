@@ -56,12 +56,12 @@ Coordinate with 1R-G presentation planning without silently extending that slice
 
 ## Immediate B1 Test Bridge
 
-16 September accepted planning continuation: the
-[launch-preparation proposal](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md)
-assesses an explicit Product-editor action to reuse the tenant's managed logo temporarily
-in development. This is a proposed supported bridge, not implementation selection, local
-fixture permission or approval of the full gallery/options backlog. Existing staging-only
-fixture authority and immutable-reference requirements remain unchanged.
+17 September owner-directed simplification: the [replacement launch plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md) uses the
+tenant logo automatically when a Product has no image, with a proposed bundled neutral
+fallback if the logo is unavailable. No per-Product action or generic library selection is
+required. This supersedes yesterday's manual-action proposal; implementation is not selected.
+The bridge must preserve frozen references and does not deliver the gallery/options backlog.
+Earlier staging fixture evidence below remains historical, not permission to alter local data.
 
 Chris separately authorised the existing tenant logo as a temporary primary Product image.
 The [B1 plan](../03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md)

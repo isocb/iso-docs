@@ -4,6 +4,13 @@ Date: 2026-07-14
 
 Status: Accepted, implemented and reviewed as passed on disposable PostgreSQL 2026-07-14 / uncommitted / no shared deployment
 
+**17 September 2026 business supersession:** this record preserves the implemented schema
+and its original contract. For new user-facing work, the [simple Store launch plan](2026-09-16-fund-phase-1-launch-preparation-planning.md)
+replaces separate proposals/acceptance with a producer default or Event ladder, automatic
+inheritance and one combined launch confirmation. Do not build negotiation, Project overrides
+or replacement-acceptance UI merely to expose this historical model. Preserve existing
+accepted/finalised evidence; adaptation still requires implementation review.
+
 Parent plan:
 
 `docs/modules/fund/03-slice-planning/2026-07-13-fund-phase-1-slice-1r-c-fund-store-input-schema-foundation-planning.md`
