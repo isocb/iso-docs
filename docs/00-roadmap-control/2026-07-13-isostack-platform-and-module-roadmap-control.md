@@ -85,6 +85,9 @@ Role Authority project = COMPLETE AND CLOSED
 
 Current serial portfolio decision:
 
+**17 September subsequent selection:** Chris authorises the SeasonPro remedial slice locally.
+The Now/Next table below supersedes the historical FUND-only ordering in the following narrative.
+
 17 September owner-directed planning replacement: simplicity and demonstrable client results
 are core first-release requirements. The [simple Store launch plan](../modules/fund/03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md)
 replaces separate commission proposals/acceptance and manual image assignment with C1 defaults,
@@ -106,8 +109,8 @@ not another portfolio outcome or a general tax-engine change. Implementation was
 
 | Position | Lane and outcome | Exact boundary |
 | --- | --- | --- |
-| **NOW** | FUND `1R-F-B1` / B1-R3 acceptance and authorised simple launch preparation | 17 September: preparation implementation authorised, resumed with first-publication commission lock; see the launch plan section 6. Owner authorises a P1 platform VAT creation default (initially 20%) and one C1-editable saved Product percentage. [B1-R3](../modules/fund/03-slice-planning/2026-09-16-fund-b1-r3-product-vat-rate-authority-planning.md) is amended and authorised to remove conflicting Seller/category authority, including Platform/Pulse default consumers and the bounded Commerce evidence dependency. Image smoke confirmed; current finalisation blocked. Local work branch `6ebaac46` passes automated/connected proof and A0/A/B human VAT smoke; C is blocked by Seller/image setup; DevData is at 157 with preserved rows. Online dev/staging remain `e7e8837c`; separate review, remaining C smoke and promotion pending. Main/live remains `0397bba9`. |
-| **NEXT** | FUND `1R-G` Store presentation planning | Continue the existing planning proposal after B1 reconciliation. Its authenticated development-preview boundary is ready for owner review; no 1R-G implementation or live FUND release is authorised. |
+| **NOW** | SeasonPro Import/Export authority and Free Day email dates | Chris authorised the [single remedial slice](../modules/lmspro/03-slice-planning/2026-09-17-seasonpro-import-export-authority-and-free-day-email-dates-planning.md) for local dev implementation and smoke on 17 September. No remote promotion authorised; OOM investigation excluded. |
+| **NEXT** | Resume FUND `1R-F-B1` at its accepted preparation release boundary | Preserve the [17 September review](../modules/fund/05-review-and-test/2026-09-17-fund-simple-store-preparation-review-and-test.md), application `d13ecb39`, and Chris’s reported live PASS. B1 stays open; real artwork/public Store/purchaser dependencies remain. `1R-G` planning remains registered downstream, temporarily displaced from formal Next. |
 
 On 2026-09-10 Chris requested FUND dev/staging alignment after the security correction was
 pushed through main at `0397bba9`. Main Security Scan 34481778012 and public production
