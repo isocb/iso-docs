@@ -95,7 +95,7 @@ within FUND Now, with a stop for unresolved implications. Chris resolves the ini
 commission locks at first Store publication, independent of Project start dates. Future opening
 dates prevent launch; past dates permit the normal readiness check. The preparation increment
 is implemented locally at `3820e304`; [04/05 evidence](../modules/fund/04-implementation-confirmations/2026-09-17-fund-simple-store-preparation-implementation-confirmation.md)
-records bounded checks and pending remaining regression/human/separate review. Public release/purchasing and
+records bounded checks and local human preparation smoke 1–5 PASS; remaining regression/separate review is pending. Public release/purchasing and
 promotion remain separate; online branches are unchanged.
 
 16 September owner-directed B1-R3 implementation supersedes the earlier assumption that only

@@ -2,7 +2,7 @@
 
 Date: 2026-09-17
 
-Status: **Implemented locally; bounded automated proof PASS. Broader regression, separate review, human acceptance and promotion remain open.**
+Status: **Implemented locally; bounded automated proof PASS. Local human preparation smoke 1–5 PASS on 17 September. Broader regression, separate review and promotion remain open.**
 Control depth: **High** — financial evidence and publication authority.
 Exact candidate: `9c09cbe1a9f822ccadde122e1680ab8e513ef9e1` on local `work/fund-b1-r3-platform-vat`, based on `6ebaac46`; not pushed or promoted.
 Application behaviour is `3820e304`; `9c09cbe1` only moves the legacy test fixture before finalisation. Its commit hook type check passes.
@@ -73,8 +73,8 @@ database and verified its absence. See 05 for the exact boundary and earlier fix
 
 No new schema, migration, application database, environment or provider changes. Chris's
 local test bed and archived wf1 are preserved. Nothing is pushed, promoted or deployed.
-VAT A0/A/B human PASS stands; this preparation smoke and separate technical review remain
-pending. Individual publication/purchase smoke remains paused.
+VAT A0/A/B human PASS stands; Chris records this preparation smoke 1–5 PASS, including finalisation and re-download.
+Separate technical review remains pending. Individual publication/purchase smoke remains paused.
 
 Recovery: retain the additive migration 157 already required by B1-R3 and all accepted/
 finalised/Order evidence. Correct forward or use a reviewed compatible binary; reverting to

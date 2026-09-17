@@ -34,7 +34,9 @@ commission locks only when it first publishes. No special rule is needed for a P
 start date is in the past. That preparation increment is now implemented locally at
 `3820e304`: C1 has FUND setup and Event commission controls, while C2 receives default
 Products/images and inherited terms. The [five-step preparation smoke](../05-review-and-test/2026-09-17-fund-simple-store-preparation-review-and-test.md)
-is the next human demonstration after automated validation. No staging/live update has been made.
+is now **PASS for all five steps**, recorded by Chris on 17 September, including finalisation
+and download of the development data preview. Technical review and remaining regression are
+still open. No staging/live update has been made.
 
 **Classroom preparation comes first:** Project creation enables C2 to print the template,
 children complete artwork in class and take it home, then parents use the Store. Template

@@ -18,7 +18,7 @@ Subsequent owner instruction authorises the preparation increment within B1 Now,
 for unresolved implications. Chris resolves the initial review question: Project dates govern
 opening eligibility, not commission locking. Preparation is locally committed at `3820e304`;
 [implementation and review evidence](../04-implementation-confirmations/2026-09-17-fund-simple-store-preparation-implementation-confirmation.md)
-records automated proof and pending human/separate review. 1R-G planning remains Next. A0/A/B VAT PASS remains at local `6ebaac46`; C/publication smoke remains paused.
+records automated proof and Chris’s local preparation smoke 1–5 PASS on 17 September. Remaining regression and separate review are open. 1R-G planning remains Next. A0/A/B VAT PASS remains at local `6ebaac46`; C/publication smoke remains paused.
 B1 stays open. DevData is 157; online dev/staging `e7e8837c`, main/live `0397bba9` remain as
 recorded. Separate review/promotion and actual public selling capabilities remain outstanding.
 
