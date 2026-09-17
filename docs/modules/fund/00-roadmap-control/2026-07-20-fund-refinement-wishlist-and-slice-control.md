@@ -37,8 +37,9 @@ normal roadmap reconciliation.
 ### 1.1 Simple Normal Journey — Updated 2026-09-17
 
 Basic defaults and simplicity are now Phase 1 requirements under the [replacement launch
-plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md), not deferred Phase 2 polish. The broader intake coverage and editing/circulation
-work below remain to be scoped. This clarification changes neither historical counts nor
+plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md), not deferred Phase 2 polish. Broader intake coverage remains to be scoped. Chris subsequently accepts default Product
+inclusion, optional removal before finalisation and no unlock; the earlier editing/circulation
+request below is historical and does not select that work. This clarification changes neither historical counts nor
 implementation selection.
 
 The owner requires straightforward Event configuration for C1 users without technical

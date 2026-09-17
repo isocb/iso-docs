@@ -18,7 +18,10 @@ client journey and fewer routine decisions, while retaining quality. The [replac
 plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md) now uses one C1 default commission rate, an optional Event ladder, automatic
 Product images and inherited Project setup. C2 reviews the Store and commission together;
 one launch confirmation will cover both. Separate per-Project offers and acceptance screens
-are not part of the required normal journey.
+are not part of the required normal journey. Chris has now agreed: commission terms stop
+changing at Project start or Store launch, whichever comes first; all eligible Catalogue
+Products are included automatically, with optional removal before finalisation. No unlock
+workflow is required.
 
 The next demonstration should show supported C1 setup through C2's prepared Store and the
 existing development artwork download, without hidden database repairs. Actual public Store
@@ -166,17 +169,14 @@ other setup, check readiness automatically and open at the configured time. Only
 exceptions should need someone to intervene. Creating a draft Store automatically is already
 a foundation; it does not yet achieve that full outcome.
 
-C2 should then be able to edit the live Store before the template is circulated. We have
-recorded that requirement alongside the need to define the circulation milestone and retain
-earlier offers and any Orders placed after publication. Completing Store setup and locking
-the template for circulation need distinct definitions. Today B1 still locks content at
-finalisation; that remains the
-rule for your current smoke test. The release plan must explicitly resolve that gap; it cannot silently treat the current lock
-as the requested editing behaviour.
+Chris's 17 September annotations simplify the earlier editing request: use the default
+Catalogue Product set and offer a removal switch before finalisation. Leaving it unused
+satisfies Product selection. Finalisation then locks the resulting set, with no unlock work.
+This is the agreed planning direction; current code does not yet provide this complete flow.
 
 The [authoritative roadmap](2026-06-25-fund-roadmap-and-slice-control.md#core-delivery-objective-simple-event-setup-and-intake-to-live-store)
 now places basic defaults and simplicity in Phase 1. Broader intake coverage and the
-pre-circulation editing contract need explicit scope; they must not justify delaying a usable
+other editing requests need explicit scope; they must not justify delaying a usable
 supported journey. Current code/smoke limitations remain until implementation is delivered.
 
 ### Delivery and test history

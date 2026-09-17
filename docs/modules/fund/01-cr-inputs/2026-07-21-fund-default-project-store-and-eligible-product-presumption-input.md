@@ -163,7 +163,12 @@ asking the organiser to repeat setup for each Project. Consider workflow, Catalo
 Products, commercial terms, branding/media, copy, dates, fulfilment and artwork configuration
 together; adding more independent routine approval steps would defeat the objective.
 
-C2 should be able to edit the Store after it is live and before the template has been
+**17 September follow-up supersedes the editing proposal below for this delivery:** Chris
+requires all eligible Catalogue Products selected by default, optional removal from the
+summary before finalisation, and no unlock workflow. See the revised launch plan. The earlier
+circulation/editing text is retained as history, not a requirement to build reopening now.
+
+Earlier request: C2 should be able to edit the Store after it is live and before the template has been
 circulated. Completing Store setup in the guided sequence must be distinguished from the
 later artwork/template content-lock contract. This requested editing window is not delivered
 by B1: B1 finalisation locks

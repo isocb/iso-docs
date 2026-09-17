@@ -27,7 +27,7 @@ The complete business journey is:
 
 For supported intake routes, the review and confirmation finish the intake sequence; there
 is no second setup checklist afterward. Event/Project workflow and Catalogue eligibility
-continue to select the available Products, with C2 choosing the permitted subset. Use existing
+provide the eligible Products, all included by default; C2 may optionally remove some. Use existing
 branding, dates, prices and template defaults where valid. Only missing business information
 or actual exceptions require intervention. Do not make C1 approve every Project.
 
@@ -52,19 +52,45 @@ acceptance. Do not ask Chris to test an unavailable publication path again.
 - C1 sets one tenant/producer default flat percentage. An Event may instead have a simple
   dated rate ladder. Standalone Projects inherit the producer default; Event Projects use
   their Event ladder if configured, otherwise that default. Zero is valid; unset is not zero.
-- Project creation automatically resolves those terms. Existing unlaunched Projects resolve
-  them during Store refresh/review. There is no C1 per-Project proposal action, separate C2
+- Project creation automatically resolves those terms. Existing Projects that have neither
+  started nor launched resolve them during Store refresh/review. There is no C1 per-Project proposal action, separate C2
   acceptance screen, standalone policy editor or Project-specific override in this scope.
 - Show the percentage, or complete dated ladder, in ordinary language in the launch review.
   One checkbox confirms the Store and displayed terms; the launch action records actor,
   time and the terms together with publication. Automatic inheritance must not fabricate
   a human acceptance record before that confirmation.
+- Chris accepts preventing changes to a Project's commission terms after its start date or
+  Store launch. Planning interpretation: the earlier of those two points fixes that Project's
+  flat rate or complete ladder. Later C1 default/ladder edits affect only Projects that have
+  neither started nor launched; do not reopen the boundary by moving a date or closing a Store.
+  Resolve and preserve the applicable terms at the cutoff, not whichever default exists when
+  the Project is next viewed. A missing pre-cutoff configuration is a C1 setup exception, not
+  permission to fabricate historical terms.
 - A scheduled date transition uses the corresponding rate without another acceptance.
   Keep exact percentage arithmetic and explicit boundary dates/timezone. Validate overlapping
   or uncovered dates when C1 saves a ladder, not as repeated C2 setup tasks.
 - Calculating earned commission, statements and settlement are later work. Retain existing
   payment-date calculation semantics unless separately changed; the visible launch rate
   must not imply one fixed rate for all future sales under a dated ladder.
+
+### Products and template: include by default, optional removal, no unlock
+
+- At Project creation include all eligible Products from its Event's available Catalogues,
+  or from the standalone Catalogues matching its workflow. Deduplicate Products appearing in
+  more than one Catalogue. C1 prepares the Event/template and Catalogue set once.
+- Show that included set in the Product summary. A simple **“Remove Products”** switch exposes
+  removal controls only when C2 wants them. Leaving it unused satisfies the Product-selection
+  step without another save, selector visit or acceptance checkbox. Actual eligibility and
+  readiness still apply; an empty eligible set is a C1 configuration problem.
+- Build the offer/template content from the resulting accepted Product set. Default selection
+  is not an immediate immutable lock: optional removal happens before existing finalisation.
+  After finalisation, keep the selection/content lock. **No unlock or new circulation/version
+  workflow is in this delivery.** This supersedes the earlier proposal to develop one to
+  support post-finalisation, pre-circulation Product editing.
+- Refresh/retry must preserve C2 removals, not reselect everything. Later Catalogue edits must
+  not rewrite finalised evidence. Check that the prepared C1 set fits the assigned template
+  capacity; surface an actual mismatch to C1 without silently dropping Products or asking
+  every C2 to trim an otherwise valid default set.
 
 ### Images and Seller setup: remove routine preparation chores
 
@@ -86,7 +112,7 @@ acceptance. Do not ask Chris to test an unavailable publication path again.
 ## 3. Delivery Sequence And Technical Boundary
 
 Implement the preparation increment as a connected path: C1 defaults and minimal Seller setup,
-automatic commission/image resolution, then C2 Store review and accurate actions. Demonstrate
+automatic commission/image resolution and Product inclusion, then C2 Store review and actions. Demonstrate
 it before expanding scope. Connect that same review to one launch confirmation when the
 existing real-release/public Store dependencies are delivered; do not build a second journey.
 
@@ -107,24 +133,29 @@ never deletion of evidence. Preserve Chris's test bed and leave old wf1 archived
 
 ## 4. Complexity Explicitly Presented For Chris's Judgement
 
-These are recommendations or unresolved delivery costs, not silently accepted extra scope.
+Chris has answered the first two issues below. His annotations are retained as source
+comments; the operative decisions are in section 2 and the final column. The start/launch
+cutoff and default-versus-finalisation distinction are stated explicitly above. The third
+row remains a delivery dependency, not another requested approval.
 Apply [the simplicity requirement](../../%3Cmodule%3E/work-method.md#11-simplicity-and-demonstrable-delivery)
 to any further material complexity discovered during implementation.
 
 | Issue | Client value and cost | Simpler recommendation / decision boundary |
 | --- | --- | --- |
-| Changing a ladder after a Store launches | Renegotiation, retrospective changes and replacement acceptance would add UI, evidence and substantial testing. | Keep the published schedule for that Store; normal date transitions still apply. C1 edits affect unlaunched Projects. This is a proposed first-release limitation for Chris to judge, not an accepted permanent restriction. |
-| Individual template circulation and editing | Current B1 finalisation locks content earlier than the requested pre-circulation editing window. An unlock/version workflow adds user steps and development. | Preserve current evidence while delivering preparation. Present the smallest editing/circulation rule before real release; do not claim one launch checkbox resolves this automatically or silently add another approval. |
+| Changing a ladder after a Store launches **Chris - Prevent** | Renegotiation, retrospective changes and replacement acceptance would add UI, evidence and substantial testing. **No retrospective changes after project start date/launch**| Accepted: freeze this Project's terms at start or launch, whichever occurs first. Scheduled transitions still apply. C1 edits affect only Projects neither started nor launched. No retrospective changes or replacement acceptance. **Chris: Agreed** |
+| Individual template circulation and editing | Current B1 finalisation locks content earlier than the requested pre-circulation editing window. **Chris: Agreed - the current system locks the template on project ingest - but the template is manually changed for each event to prepare available products.  We are creating the template based on accepted products.  It is likely that the C2 will default to the products in the cataglogue and actually much more likely to accept all... the product selector is a n ice to have.  Suggest a simple switch/check box on the product summary to enable product removal - if this is not used the product selection gate is satisfied**  An unlock/version workflow adds user steps and development. **no Unlock, and simply locking by making event/chosen catalogue products the default** | Accepted: include all eligible Catalogue Products automatically; optional removal before finalisation via the Product summary. No mandatory selector step and no unlock. Clarification: existing code locks at offer finalisation; default inclusion alone is not that lock. |
 | Public Store, artwork release and payments | These are actual missing capabilities needed for a usable selling service; they cannot be replaced by a checkbox or environment toggle. | Reuse existing Commerce/payment services and the existing 1R-G/Phase 1 work. Prove one supported workflow end to end before extending it; estimate remaining delivery from that concrete scope, without another foundation-only detour. |
 
 Out of scope: per-Project commission negotiation/overrides, general replacement-proposal
-management, retrospective recalculation, statements/payouts, gallery/folders/Colour images,
+management, retrospective recalculation, unlock/circulation workflows, statements/payouts, gallery/folders/Colour images,
 new approval roles, speculative multi-country configuration and wholesale intake redesign.
 Do not add any of these merely because the old schema can represent them.
 
 ## 5. Completion Evidence And Smoke
 
-Automated checks must prove default/Event precedence (including zero/unset), ladder boundaries,
+Automated checks must prove default/Event precedence (including zero/unset), ladder boundaries
+and the start/launch cutoff (including edits before first later access), default inclusion,
+deduplication, optional removal preserved on refresh and finalised-selection refusal,
 image fallback and trusted asset handling, tenant/role refusal, stale/concurrent launch refusal,
 retry behaviour and unchanged frozen financial/artwork evidence. Test affected shared Commerce
 consumers and any migration/rollback boundary. Run relevant type/lint/build checks. Keep live
@@ -135,10 +166,16 @@ After the preparation increment and review, give Chris one short demonstration/s
 1. C1 sets a flat default and one Event ladder using supported screens; completes any genuine
    one-time producer setup. Create a Product without uploading an image: its fallback appears.
 2. C2 creates a standalone and an Event Project. Each shows the right Products, gross prices,
-   images and inherited terms without commission proposal/acceptance or image-assignment chores.
+   images and inherited terms. Leave “Remove Products” off: all eligible Products are included
+   without a selector/save step. On a second draft, enable it and remove one Product; refresh
+   preserves that choice and the prepared offer uses the resulting set.
 3. For the supported Individual Project, review/finalise the development offer and download
-   its labelled PDF. Check preserved content and truthful release status. This does not prove
+   its labelled PDF. Check the selection lock, preserved content and truthful release status. This does not prove
    purchaser layout or production print quality; those still need their own delivered output.
+
+Use automated dated fixtures to prove commission edits cannot affect a Project after its
+start/launch cutoff while scheduled rate transitions still work; do not make Chris wait for
+calendar dates or reset his Projects to prove this.
 
 Request the launch/public Store/test-Order smoke only when those capabilities exist. The
 launch review must then have one combined Store/commission confirmation. Preserve A0/A/B PASS

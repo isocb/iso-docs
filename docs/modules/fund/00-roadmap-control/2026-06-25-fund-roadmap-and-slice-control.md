@@ -10,7 +10,10 @@ Current disposition — 17 September: Chris requires simplicity and demonstrable
 first-release requirements. The [simple Store launch plan](../03-slice-planning/2026-09-16-fund-phase-1-launch-preparation-planning.md) replaces yesterday's
 proposal in place: producer default commission, optional Event date/rate ladder, inherited
 terms, automatic Product images and one combined C2 Store/commission launch confirmation.
-Separate proposal/negotiation and manual image assignment are removed from initial scope.
+Chris's subsequent annotations accept commission terms fixed at Project start/Store launch
+(earlier point), all eligible Catalogue Products included by default, optional C2 removal before
+finalisation and no unlock. Separate proposal/negotiation and manual image assignment are
+removed from initial scope.
 Additional material complexity must be shown to Chris with its client value and simpler option.
 Planning only: no implementation selection or fixture change; B1 Now / 1R-G planning Next
 unchanged. A0/A/B VAT PASS remains at local `6ebaac46`; C/publication smoke remains paused.
@@ -235,13 +238,11 @@ information/consent at the appropriate point; use human intervention for genuine
 not routine repetition of known configuration. Existing automatic draft Store creation is
 a foundation, not completion of this objective.
 
-C2 should be able to edit a live Store before template circulation. Planning must reconcile
-that requested window with B1's current finalisation lock, define and record circulation,
-and retain immutable offer/Order evidence for purchases made after publication. Completion
-of Store setup and the later template/artwork lock are distinct planning milestones. This is a
-remaining editing/circulation contract to design, not an immediate unlock or gate removal. Current B1/B1-R2 smoke
-and 1R-G planning retain Now/Next. The subordinate refinement register and business report
-carry the same objective without creating another roadmap.
+17 September follow-up: Chris accepts default Product inclusion, optional removal before
+finalisation and no unlock. This supersedes developing a pre-circulation unlock/editing
+workflow in the current delivery. The revised launch plan records the distinction between
+initial defaults and the existing finalisation lock; preserved offer/Order evidence remains
+protected. Broader intake coverage remains separate. Now/Next is unchanged.
 
 ### Product Media, Galleries And Option Images
 
