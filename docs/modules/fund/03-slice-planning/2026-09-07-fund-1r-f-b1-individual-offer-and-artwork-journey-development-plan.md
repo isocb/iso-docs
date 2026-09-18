@@ -2,7 +2,7 @@
 
 Date: 2026-09-07
 
-Status: **Accepted preparation and SeasonPro releases preserved. Connected accepted-PDF local implementation complete at `e8a3c900`; automated proof PASS, Chris’s focused PDF smoke pending. B1 remains open; no new promotion.**
+Status: **Accepted preparation and SeasonPro releases preserved. Connected accepted-PDF local implementation complete at `e8a3c900`; automated proof PASS; 18 September PDF checks 1 and 2 PASS. C1 instruction input-to-PDF human check remains pending. B1 remains open; no new promotion.**
 
 Control depth: **High** — this journey introduces persistent offer evidence, exact C2
 finaliser authority, tenant-bound document access and failure/retry behaviour.
@@ -24,17 +24,17 @@ restores FUND B1 resumption at the accepted preparation release boundary as Now,
 ## Restart Checkpoint
 
 ```text
-Current state: Local accepted-PDF integration implemented at e8a3c900; automated migration/service/render/UI/artifact checks PASS. Chris's two connected-PDF checks remain pending in the existing B1 review. B1 Now / 1R-G planning Next is unchanged; operational classroom distribution and public selling remain unreleased.
+Current state: Local accepted-PDF integration implemented at e8a3c900; automated migration/service/render/UI/artifact checks PASS. Chris accepts PDF checks 1 and 2 PASS, including portrait/no-logo, and confirms all handwritten fields present/correct. His outstanding input check concerns the C1 notes above/below the QR. B1 Now / 1R-G planning Next is unchanged; operational classroom distribution and public selling remain unreleased.
 Last proven commit: e8a3c900931ae4c28cba04181c2cd00722710ad7, backed up on origin/feature/fund-accepted-pdf-integration. Prior FUND d13ecb39 and SeasonPro c3998084 releases retain their accepted evidence. No accepted release smoke was repeated.
 Current environment: Candidate remains on its work branch before dev consolidation. Workspace returned to clean dev; dev/staging/main and all three origins remain c3998084. The new 158th migration was proved only on disposable test databases, which were removed and independently verified absent. Retained DevData/online databases and runtime settings were not changed; production remains at its previously verified 157-migration release.
-Next human decision/test: Perform checks 1–2 in the existing B1 review: open the integrated portrait/landscape PDFs, then print landscape at actual size and check its fields/fold/QR. Human PASS is not yet recorded. No retained-database preparation or promotion is authorised by these checks.
-Safe resumption point: Resume from the candidate work branch and existing B1 04/05 evidence. Preserve old offers/PDFs and accepted physical evidence. After the focused human result, resolve the existing durable Store destination and private operating-runtime/storage decisions before operational distribution; do not recreate closed Stage C resources. The OOM incident remains separate.
+Next human decision/test: prepare the existing C1 Artwork defaults editor-to-PDF smoke on an isolated candidate test target with a fresh unfinalised Project. C1 saves distinct notes in Artwork instructions (above QR) and Ordering instructions (below QR); verify persistence, C2 review and the resulting PDF. This human editing check was not possible from static PDFs and remains pending. Do not repeat accepted layout/handwritten-field checks.
+Safe resumption point: Resume from candidate e8a3c900 and the existing B1 04/05 evidence. No portrait-logo change is required. Preserve old immutable offers/PDFs and the accepted 1/2 PASS. Prepare only an isolated local test target with recorded cleanup; retained/shared migration and promotion remain outside this increment. Durable Store destination and private runtime/storage decisions remain later dependencies. The OOM incident stays separate.
 
 ```
 
 ## 17 September — Accepted PDF Integration Review And Proposed Next Boundary
 
-Status: **Bounded local implementation authorised by Chris on 17 September; implemented at `e8a3c900`, automated proof PASS, human smoke pending.** This refines the existing B1/1R-F work and coordinates its existing
+Status: **Bounded local implementation authorised by Chris on 17 September; implemented at `e8a3c900`, automated proof PASS; 18 September PDF checks 1 and 2 PASS; C1 instruction-editing human check pending.** This refines the existing B1/1R-F work and coordinates its existing
 1R-G dependency; it does not create another lifecycle, checkpoint or portfolio selection.
 Control depth remains **High**: immutable offer/document evidence, tenant download access,
 a compatible SQL constraint change and the later private-runtime contract are involved.
@@ -74,7 +74,7 @@ existing authenticated download UI; do not add a separate purchaser-preview scre
 
 Review baseline: `c3998084`. The proposals below were subsequently implemented at `e8a3c900`
 within the local/disposable boundary; the existing [implementation](../04-implementation-confirmations/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-implementation-confirmation.md)
-and [review with human smoke](../05-review-and-test/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-review-and-test.md#chriss-remaining-smoke--two-checks-only) record actual results.
+and [review with human smoke](../05-review-and-test/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-review-and-test.md#18-september--human-acceptance-and-c1-instruction-input-check) record actual results.
 
 | Boundary | Current source | Proposed integration |
 | --- | --- | --- |

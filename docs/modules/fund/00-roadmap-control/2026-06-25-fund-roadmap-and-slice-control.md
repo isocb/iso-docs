@@ -2,7 +2,7 @@
 
 Created: 2026-06-25
 
-Last consolidated: 2026-09-17
+Last consolidated: 2026-09-18
 
 Status: Active authoritative control for the FUND lane
 
@@ -11,7 +11,11 @@ Local implementation `e8a3c900` is committed and backed up on its temporary work
 [implementation](../04-implementation-confirmations/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-implementation-confirmation.md)
 and [review / two human checks](../05-review-and-test/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-review-and-test.md)
 record automated PASS, including preserved v1 documents, detailed portrait/landscape service
-output and disposable migration 157→158. Chris's connected-PDF/print smoke is pending.
+output and disposable migration 157→158. On 18 September Chris accepts PDF checks **1 PASS,
+2 PASS**, including portrait/no-logo, and confirms handwritten fields present and correct.
+His outstanding input check concerns C1's two instruction/note areas above and below the QR;
+these cannot be tested through static PDFs. The existing review records the focused C1
+editor-to-PDF human check as pending. Preserve accepted layout evidence; no logo change.
 Workspace returns to dev; dev/staging/main and origins remain at accepted `c3998084`.
 No retained/shared database, provider, runtime configuration or deployment changed.
 B1 remains Now and open; 1R-G planning remains Next. The B1 plan still owns the sole checkpoint.

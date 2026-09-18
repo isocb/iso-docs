@@ -8,10 +8,10 @@ Date: 2026-09-07
 Exact commit: e8a3c900931ae4c28cba04181c2cd00722710ad7 (based on c3998084), feature/fund-accepted-pdf-integration
 Files/change boundary: shared accepted portrait/landscape layout, v2 immutable print snapshot, local isolated renderer, C1 inherited instruction/logo defaults, existing C2 finalise/download journey, compatible document constraint migration and focused proof tooling
 Automated checks: 13 focused tests PASS; disposable 157-to-158 preservation and fresh 158 replay PASS; connected v1/v2 service proof PASS; real-component synthetic browser proof PASS; PDF text/geometry/raster-QR PASS; type/lint/verify/build results in the review record
-Human evidence: previous accepted layout/physical evidence retained; this connected-PDF smoke pending Chris
+Human evidence: 18 September — Chris accepts PDF checks 1 and 2 PASS, including portrait/no-logo, and confirms handwritten fields present/correct. The two C1 instruction inputs above/below QR could not be human-tested from static PDFs; their editor-to-PDF check remains pending.
 Environment proven: local code and newly created disposable test databases only; no retained DevData, staging, main/live or provider changes
-Known residual risk: local temporary storage and an isolated local process are not an operational renderer/storage service; canonical public Store destination and the physical acceptance below remain open
-Next authorised action: Chris's two focused PDF checks in the existing review record; stop before retained database migration, dev consolidation or environment promotion
+Known residual risk: local temporary storage and an isolated local process are not an operational renderer/storage service; canonical public Store destination and C1 instruction-editing human verification remain open
+Next authorised action: prepare isolated local C1 instruction-input smoke as recorded in the review; preserve both accepted PDF checks. Stop before retained/shared database migration or promotion.
 ```
 
 Chris explicitly authorised this bounded local implementation after reviewing the existing

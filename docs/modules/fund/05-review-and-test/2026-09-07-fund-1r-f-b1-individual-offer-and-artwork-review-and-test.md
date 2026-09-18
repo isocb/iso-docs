@@ -8,17 +8,19 @@ Date: 2026-09-07
 Exact commit: e8a3c900931ae4c28cba04181c2cd00722710ad7 (c3998084 ancestry), feature/fund-accepted-pdf-integration
 Files/change boundary: approved local PDF integration, compatibility constraint migration, inherited C1 defaults, preserved v1 evidence and existing authenticated download flow
 Automated checks: PASS at the boundaries below
-Human evidence: original R1B layout/print/folding/QR PASS retained; connected output checks 1–2 below pending Chris
+Human evidence: Chris accepts 1 PASS and 2 PASS on 18 September, including portrait/no-logo. He confirms handwritten fields are present and correct. C1 editing of the two instruction areas above/below the QR was not testable from the supplied PDFs and remains a separate pending human check.
 Environment proven: local Node 22.23.2 / Playwright 1.62.1; synthetic disposable database service proof; synthetic real-component browser proof; actual downloaded PDF artifact proof
-Known residual risk: no retained DevData/online migration, deployed renderer/storage, real public destination, new Linux parity or connected physical print acceptance
-Next authorised action: Chris reviews the generated PDFs and one actual-size print; no staging/main promotion or operational classroom distribution
+Known residual risk: C1 instruction input-to-PDF human check pending; no retained DevData/online migration, deployed renderer/storage, real public destination or new Linux parity
+Next authorised action: prepare the focused C1 instruction-editing smoke using an isolated local test target and a fresh unfinalised Project; preserve both accepted PDF checks. No promotion or operational classroom distribution.
 ```
 
-Disposition: **Local implementation and automated review PASS; human connected-PDF smoke
-pending. B1 remains open.** This is the implementing agent's separate source/evidence review,
-not a claim of independent-agent or human acceptance. The sole restart checkpoint remains
-in the existing B1 plan. Root Now/Next is unchanged. The candidate work branch and its origin match; the workspace
-is returned to dev at `c3998084`, with dev/staging/main and their origins unchanged.
+Disposition: **Automated review PASS; Chris's PDF checks 1 and 2 PASS. Human C1
+instruction input-to-PDF verification remains pending. B1 stays open; no promotion.**
+The implementing agent's source/evidence review is not an independent-agent review.
+Chris's acceptance applies to the supplied PDFs and confirmed handwritten-field layout;
+it does not claim he exercised the C1 editing controls. The sole checkpoint remains in the
+B1 plan. Root Now/Next is unchanged. Candidate work branch/origin match; workspace remains
+on dev at `c3998084`, with dev/staging/main and their origins unchanged.
 
 ### Automated evidence
 
@@ -35,7 +37,7 @@ is returned to dev at `c3998084`, with dev/staging/main and their origins unchan
 | Type/lint/repository verification | PASS; changed application files have no lint errors/warnings |
 | Production compilation | PASS in a temporary Node 22 build workspace, removed afterward; existing local dev server preserved |
 | Protected-branch security scan | Not run for this work-branch candidate; retained SeasonPro scans do not cover new FUND code. Obtain it during later controlled dev integration |
-| New human/online evidence | Pending/not run; no accepted earlier smoke repeated |
+| New human/online evidence | 18 September: PDF checks 1 and 2 PASS; handwritten fields present/correct. C1 instruction editing not human-tested; online evidence not run |
 
 The first service-proof run exposed a test assertion that inspected JSON-enumerable error
 properties instead of Prisma's actual error message. PostgreSQL had correctly refused the
@@ -54,7 +56,41 @@ Reproduction tools (on the candidate branch):
 - `scripts/fund-local-pdf-artifact-proof.ts`: actual service-downloaded PDF hashes, text,
   dimensions and raster QR; macOS uses the checked-in PDFKit helper, Linux uses Poppler.
 
-### Chris's remaining smoke — two checks only
+### 18 September — Human Acceptance And C1 Instruction Input Check
+
+Chris initially questioned the portrait logo, then explicitly accepted: **“I accept this
+1:PASS 2:PASS.”** The portrait/no-logo and landscape/C1-logo designs remain accepted; no
+logo correction or repeat layout smoke is required.
+
+Chris further clarified that **all handwritten fields are present and correct**. His remark
+about inputs being untestable concerned the **two C1-authored instruction/note areas above
+and below the QR code**, not handwriting spaces. The assistant's earlier interpretation
+as a handwritten-field testing qualification was incorrect and is superseded here.
+
+The candidate already implements both rich-text inputs in C1's **Artwork defaults** panel:
+
+| C1 input | Printed position in both layouts | Purpose |
+| --- | --- | --- |
+| Artwork instructions | Above the QR code | Guidance on using the template/artwork |
+| Ordering instructions | Below the QR code | Notes/instructions for C2 and parents |
+
+C1 saves the inherited notes before finalisation; a new Project's confirmed snapshot freezes
+both texts. The generated PDF displays those saved texts. Input is through the C1 editor,
+not by editing the downloaded PDF. Existing finalised offers retain their original notes.
+Automated service/render checks and the synthetic browser test are already PASS, but neither
+those nor the supplied static PDFs establish Chris's human editing acceptance.
+
+**Remaining focused human check — not yet run or available on the current dev application:**
+prepare an isolated local target on candidate `e8a3c900`, with its compatible migration and
+a fresh unfinalised synthetic Project. Do not migrate retained DevData or modify old offers.
+C1 enters two distinguishable notes, saves, and verifies them on reload. C2 reviews and
+finalises that fresh Project. Download its PDF and verify the first note above the QR and
+the second below it, with readable formatting and no clipping. Record that result separately
+without reopening Chris's accepted PDF/layout checks. Any temporary test target needs
+explicitly recorded ownership, isolation and cleanup; no such target was prepared in this
+acceptance-reconciliation step.
+
+### Chris's original smoke instructions — results recorded above
 
 Use the PDFs already generated through the real services on synthetic Projects. There is
 no need to alter retained DevData or repeat the accepted C1/C2/preparation/SeasonPro smoke.
@@ -74,8 +110,9 @@ Local files are in the application repository:
    the sheet. The host is deliberately **store.example.invalid**: a website loading is not
    expected and is not part of this PASS.
 
-Report **1 PASS/FAIL** and **2 PASS/FAIL**, with the visible problem if either fails.
-No new physical result is inferred from the earlier layout acceptance or machine raster check.
+Chris’s response is recorded above. These instructions remain the context for that response;
+both are accepted PASS and the handwritten fields are confirmed present and correct. Only
+the separately described C1 instruction-input check remains pending.
 
 | Artifact | SHA-256 | Size |
 | --- | --- | --- |
