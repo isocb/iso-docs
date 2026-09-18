@@ -2,6 +2,80 @@
 
 Date: 2026-09-07
 
+## 18 September — Tenant Template Settings Correction
+
+```text
+Exact commit: fbe8694b03932c310844d7c019bd3394b7809182 on feature/fund-accepted-pdf-integration, after accepted C1 candidate 3e82adb1
+Files/change boundary: tenant-only FUND setup editor/API; no Project wording editor or Project ID in the save contract; H1/H2/H3/body/underline/bold, safe HTML and bounded heading rendering; matching TipTap underline dependency; focused proof helpers. Project selection, finalisation and locking retained. No new migration or runtime configuration.
+Automated checks: seven focused contract/PDF tests, real tenant API/service authority and audit rollback, inherited defaults/frozen PDF preservation, component browser, application types/lint/repository verification and compiled build PASS. Authenticated browser H1/H2/H3/body/underline/bold save/reload, Project editor absence, selection/lock, actual downloaded PDF content and zero browser errors PASS.
+Human evidence: Chris's previous C1/notes checks 1 PASS and 2 PASS recorded; separate critical placement FAIL addressed by this candidate, focused correction acceptance pending. Earlier layout/handwritten-field PASS retained.
+Environment proven: isolated local candidate at http://localhost:3100, owned synthetic TEST database only (159-migration ledger); health HTTP 200, database connected, RLS 11/11. Normal dev workspace remains on dev; no retained database or online deployment changed.
+Known residual risk: focused human acceptance pending; classroom distribution, operational Store destination/private runtime and promotion are still separate unfinished boundaries. Future Template Manager CRUD is unselected.
+Next authorised action: Chris completes the two short correction checks below. Agent records acceptance and removes only its owned temporary smoke target after acceptance. No dev consolidation, retained migration or promotion is inferred.
+```
+
+The wording was already stored under the tenant's `fundIndividualArtwork` settings. The
+correction removes the misleading Project editor and its Project-scoped endpoints, and
+places the editor on `/app/fund/settings`. It works before any Client/Project exists, including
+an empty initial configuration. One shared template configuration retains both accepted
+portrait/landscape variants. There is no per-Project wording override.
+
+The save derives its tenant/actor from the authenticated session, refuses impersonation,
+rechecks the active OWNER/ADMIN within a transaction while holding its user-row lock, and
+locks the organisation settings row. Unknown Project/tenant payload fields and unsafe HTML
+are rejected. Unrelated organisation settings survive; an injected audit write failure
+rolls back the settings write. Ordinary members/C2, inactive and foreign actors are refused.
+
+New formatting uses allowed HTML elements only, with bounded heading sizes in the fixed
+print panels. Excess content remains a generation failure rather than silently clipping.
+Existing non-heading render HTML is unchanged. Two draft Projects inherited the tenant
+content; existing confirmed offer/product/document records and actual downloaded PDF bytes
+remained unchanged. These are focused correction checks; accepted migration/C1 business
+smoke was not repeated. The local build uses the application source subsequently committed
+as the exact revision above; its build-time parent identifier predates the correction commit.
+
+Rollback boundary: preserve confirmed snapshots, downloaded files and their renderer. Older
+binaries do not accept the new heading/underline content for regeneration; once such an offer
+exists, retain the compatible reader/renderer and use a forward correction, rather than
+rewriting history or downgrading to the former sanitizer. No reverse migration is involved.
+
+Reproducible focused proof is in `scripts/fund-template-settings-proof.ts` (run through the
+owned-target harness's `settings-proof` mode) and `fund-template-settings-browser-proof.mjs`.
+The browser proof initially stopped on an ambiguous Select label, then on toggling marks
+already present during a repeat run; both test selectors/state handling were corrected.
+The final complete authenticated run passed without application changes. Raster inspection
+also confirms the new heading above the QR and underlined bold text below it. Local artifacts
+are retained under ignored `scripts/proofs/fund-1r-f-a/output/settings/`; private login/state
+remain only in the owned temporary directory and are never committed.
+
+### Minimum remaining human correction smoke
+
+Use the existing private/incognito localhost:3100 session.
+
+1. Open [FUND setup](http://localhost:3100/app/fund/settings). In **Individual artwork
+   template**, edit both instructions using short heading/body/underline/bold text. Save and
+   reload; confirm the formatting and wording remain.
+2. Open [Your tenant template smoke](http://localhost:3100/app/fund/projects/81c24fe8-1bd0-4675-ae9c-34f1495b233d).
+   Confirm the Project has template selection but no wording editor. Finalise this fresh
+   synthetic Project and download its PDF; check the saved wording/formatting above/below
+   the QR and that the template is now locked. No repeat of accepted general layout/C1 checks.
+
+The existing template brief/refinement/parent and child roadmap record the requested future
+FUND setup Template Manager tab, table, row-click CRUD modal and Add new button. Its
+implementation remains unselected; B1 Now / 1R-G planning Next is unchanged. The B1 plan
+retains the sole five-field restart checkpoint.
+
+
+## 18 September — Human Acceptance And Settings Placement Finding
+
+Chris reports **1 PASS, 2 PASS** for the prepared C1 operation and notes-to-PDF smoke.
+These are accepted at the previous candidate boundary. His separate **CRITICAL FAIL** is
+valid: the editor appeared on a Project despite storing tenant-wide template defaults.
+The B1 plan now controls moving it to FUND setup and adding the requested rich-text controls.
+Correction implementation and automated proof now PASS at the revision above; its focused
+human check remains pending and B1 stays open. Historical pending statements below are superseded for the two accepted checks only.
+The future Template Manager is planning scope, not this correction's implementation.
+
 ## 18 September — C1 Operation And Real Notes Smoke
 
 ```text

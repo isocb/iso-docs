@@ -2,6 +2,29 @@
 
 Date: 2026-09-07
 
+## 18 September — Tenant Template Settings Correction
+
+```text
+Exact commit: fbe8694b03932c310844d7c019bd3394b7809182 on feature/fund-accepted-pdf-integration, after accepted C1 candidate 3e82adb1
+Files/change boundary: tenant-only FUND setup editor/API; no Project wording editor or Project ID in the save contract; H1/H2/H3/body/underline/bold, safe HTML and bounded heading rendering; matching TipTap underline dependency; focused proof helpers. Project selection, finalisation and locking retained. No new migration or runtime configuration.
+Automated checks: seven focused contract/PDF tests, real tenant API/service authority and audit rollback, inherited defaults/frozen PDF preservation, component browser, application types/lint/repository verification and compiled build PASS. Authenticated browser H1/H2/H3/body/underline/bold save/reload, Project editor absence, selection/lock, actual downloaded PDF content and zero browser errors PASS.
+Human evidence: Chris's previous C1/notes checks 1 PASS and 2 PASS recorded; separate critical placement FAIL addressed by this candidate, focused correction acceptance pending. Earlier layout/handwritten-field PASS retained.
+Environment proven: isolated local candidate at http://localhost:3100, owned synthetic TEST database only (159-migration ledger); health HTTP 200, database connected, RLS 11/11. Normal dev workspace remains on dev; no retained database or online deployment changed.
+Known residual risk: focused human acceptance pending; classroom distribution, operational Store destination/private runtime and promotion are still separate unfinished boundaries. Future Template Manager CRUD is unselected.
+Next authorised action: Chris completes the two short correction checks below. Agent records acceptance and removes only its owned temporary smoke target after acceptance. No dev consolidation, retained migration or promotion is inferred.
+```
+
+The existing tenant `fundIndividualArtwork` storage is retained. Project-scoped editor/API
+entry points are removed; FUND setup owns the single template's settings. Fresh active C1
+and tenant checks, transactional settings/audit writes and strict HTML remain mandatory.
+Accepted portrait/landscape generation is extended with bounded heading styles; confirmed
+snapshots and downloaded PDF bytes remain unchanged. No schema migration is introduced.
+
+Proof, rollback compatibility limits and the two minimum human checks are in the
+[existing B1 review](../05-review-and-test/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-review-and-test.md#18-september--tenant-template-settings-correction).
+The fuller Template Manager is captured in existing template planning, unselected for
+implementation. B1 retains its sole checkpoint and the unchanged portfolio selection.
+
 ## 18 September — C1 Operation And Real Notes Smoke
 
 ```text

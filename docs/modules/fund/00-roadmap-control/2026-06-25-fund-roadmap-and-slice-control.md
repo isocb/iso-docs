@@ -6,6 +6,13 @@ Last consolidated: 2026-09-18
 
 Status: Active authoritative control for the FUND lane
 
+18 September follow-up: Chris accepts the C1/notes human checks **1 PASS, 2 PASS**, with a
+separate critical editor-placement failure. B1 correction `fbe8694b03932c310844d7c019bd3394b7809182` is committed/published on the existing work branch with automated proof PASS; focused human correction acceptance pending. It moves tenant-wide template editing to
+FUND setup, retaining Project template selection/locking and adding heading/body/underline/
+bold controls. The existing [template brief](../01-cr-inputs/2026-07-15-fund-template-manager-brief.md)
+records the future table/row-click CRUD/Add new Template Manager as **captured, implementation
+unselected**. No Now/Next change; prior accepted checks will not be repeated.
+
 18 September owner-directed planning reconciliation: [C1 proxy authority and Project
 Artwork & Files](../01-cr-inputs/CR-Fix-2026-09-18-fund-c1-proxy-authority-and-project-artwork-files.md) is **accepted as a business requirement; bounded Individual correction planned in the
 [existing B1 plan](../03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md#18-september--bounded-c1-finalisation-correction-proposal), implemented locally at `3e82adb1befb25aae7d4a3eaf638a1542277511b` after Chris's explicit instruction; automated evidence and prepared human smoke in B1 04/05; collective approval/files refinement retained
@@ -32,8 +39,9 @@ record automated PASS, including preserved v1 documents, detailed portrait/lands
 output and disposable migration 157→158. On 18 September Chris accepts PDF checks **1 PASS,
 2 PASS**, including portrait/no-logo, and confirms handwritten fields present and correct.
 His outstanding input check concerns C1's two instruction/note areas above and below the QR;
-these cannot be tested through static PDFs. The existing review records the focused C1
-editor-to-PDF human check as pending. Preserve accepted layout evidence; no logo change.
+these cannot be tested through static PDFs. Chris subsequently reports the focused C1
+editor-to-PDF checks 1 PASS and 2 PASS; the separate settings-placement correction above
+remains open. Preserve accepted layout evidence; no logo change.
 Workspace returns to dev; dev/staging/main and origins remain at accepted `c3998084`.
 No retained/shared database, provider, runtime configuration or deployment changed.
 B1 remains Now and open; 1R-G planning remains Next. The B1 plan still owns the sole checkpoint.

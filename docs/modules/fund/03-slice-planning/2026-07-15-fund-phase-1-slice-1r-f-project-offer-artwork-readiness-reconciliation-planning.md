@@ -38,6 +38,22 @@ Completed dependencies:
 reserved Public Store Presentation slice moves to `1R-G`; no implemented slice or
 historical evidence is renumbered. The critical path is `1R-E -> 1R-F -> 1R-G`.
 
+## 18 September — Owner Clarification: Tenant Template Ownership
+
+Individual artwork instructions above/below the QR are tenant-owned template content,
+not Project customisation. The current B1 correction places the single template's wording
+and logo on FUND setup, with H1/H2/H3, body, underline and bold editing. Projects retain
+selection and locking; confirmed snapshots and PDFs retain the exact accepted content.
+This clarification supersedes any implication that C1 edits these defaults on each Project.
+
+Future refinement, captured but implementation unselected: a **Template Manager** tab on
+FUND setup, a table of templates, row-click CRUD modal and **Add new** button. Reuse the
+existing file/template capability and preserve referenced versions/history when editing or
+retiring templates. Do not add this manager or per-Project overrides to the current bounded
+single-template correction. The existing B1 plan owns implementation and the sole checkpoint;
+B1 remains Now, 1R-G planning Next. No new planning layer or portfolio selection is created.
+
+
 ## 18 September — Owner Amendment: C1 Proxy And Direct File Access
 
 The [C1 proxy authority and Artwork & Files input](../01-cr-inputs/CR-Fix-2026-09-18-fund-c1-proxy-authority-and-project-artwork-files.md) supersedes organiser-only
