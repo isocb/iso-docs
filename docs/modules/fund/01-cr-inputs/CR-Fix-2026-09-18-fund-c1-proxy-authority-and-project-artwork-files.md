@@ -22,6 +22,15 @@ and their Projects, with all applicable preparation inputs available in C1 modal
 Projects remain owned by their Client. Use C1's own identity and authority: no HatSwap,
 impersonation, fabricated Client membership or requirement to sign in as C2.
 
+Subsequent owner clarification: C1 can create a Project, select the owning C2 Client, and
+operate all aspects of it for that Client throughout its lifecycle. This applies equally to
+Clients with online access and Clients who need C1 to conduct the entire Project. The Client
+link preserves its Project history; it does not restrict C1 to support, setup or exceptional
+approval. Separate owning Client, associated contact/organiser and actual acting user.
+C1 retains administration when C2 participates; neither handover nor reassignment to C1 is
+required. Every later Project feature must provide corresponding C1 operation while retaining
+its business/evidence safeguards. Current B1 scope is one delivery increment of that rule.
+
 Chris explicitly corrects the exact-C2-only finalisation restriction. The normal authorised
 C2 route remains; authorised C1 can also finalise the Client's Individual offer directly.
 For Collective Project Artwork, C1 can record proxy approval after the Client accepts, for

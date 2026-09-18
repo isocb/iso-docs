@@ -39,10 +39,10 @@ collective parent; do not silently add their implementation to the Individual PD
 ## Restart Checkpoint
 
 ```text
-Current state: C1 Individual finalisation correction planned below; implementation approval pending. Accepted-PDF candidate automation and human layout checks 1/2 PASS stand; C1 notes editor-to-PDF smoke remains pending. B1 stays open.
+Current state: C1 full-operation/Client-ownership principle clarified; the Individual preparation/finalisation correction is planned below, implementation approval pending. Accepted-PDF candidate automation and human layout checks 1/2 PASS stand; C1 notes editor-to-PDF smoke remains pending. B1 stays open.
 Last proven commit: e8a3c900931ae4c28cba04181c2cd00722710ad7 on origin/feature/fund-accepted-pdf-integration. Planning does not create a new application candidate or test PASS.
 Current environment: Workspace clean dev at c3998084; candidate remains before dev consolidation. No database/provider/deployment action this turn. Candidate migration 158 was previously proved only on disposable databases; accepted retained/online baseline remains 157.
-Next human decision/test: review the bounded local C1 proposal, including contact-only preparation and one authority note, for implementation approval. Then prove C1 finalisation and the pending two C1 instruction inputs in one fresh Project where practical.
+Next human decision/test: review the bounded local C1 proposal, preserving linked Client history and C1 ongoing management, including contact-only preparation and one authority note, for implementation approval. Then prove C1 finalisation and the pending two C1 instruction inputs in one fresh Project where practical.
 Safe resumption point: Implement only after approval, based on e8a3c900 and the proposal below. Preserve old offers/PDFs and accepted tests. Use isolated disposable proof first; retained/shared migration and promotion remain outside. Collective files/approval, Store destination/runtime and OOM remain separate.
 ```
 
@@ -60,7 +60,9 @@ PDF integration is preserved. Source inspection also covered released ancestor `
 C1 opens or creates a Client's Individual Artwork Project, supplies the relevant inputs,
 reviews the existing offer and finalises for the Client using their own C1 session. The
 Project shows who finalised it and for whom; the same accepted PDF is generated/downloaded.
-The Client need not log in. Normal exact-organiser C2 finalisation remains available.
+The Client need not log in, but C1 has the same operating authority when the Client does
+use the system. Client ownership/history remains linked to the selected C2 throughout.
+Normal exact-organiser C2 finalisation remains available.
 
 Disposition: required correction to the existing B1 business journey, not an urgent live
 incident. The current implementation is restrictive rather than granting unauthorised access.
@@ -68,6 +70,46 @@ Do not close B1 as satisfying white-glove operation until this correction is imp
 and accepted. Prior PDF and release PASS records remain valid at their original boundaries.
 Collective proxy approval and the Artwork & Files URL remain in their existing collective
 planning scope; they are not part of this Individual implementation proposal.
+
+### Client Ownership And Full C1 Operation — Owner Clarification
+
+**C1 may create a Project, select the C2 Client it belongs to, and manage the whole Project
+for that Client throughout its lifecycle.** This applies whether the Client actively uses
+the system, needs occasional support, or leaves the entire Project to C1. A missing login
+is one supported case, not the condition that grants C1 authority. C1 operates directly in
+its own tenant role; the Client link never turns the Project into a C2-only workspace.
+
+Keep these three facts separate:
+
+- **Owning Client:** the selected C2 organisation/account. Its Project list and history retain
+  this Project and its associated documents, activity and commercial records regardless of
+  who created or operated it. Selecting a Client is not assigning the Project to C1's account.
+- **Client contact/organiser:** the person associated with the Project, with or without login.
+  Selecting or replacing that contact within the same Client does not change Client ownership.
+- **Acting user:** the actual C1 or C2 user making each change. Record their identity and
+  capacity; ordinary C1 edits are administration, while recording a Client approval is
+  explicitly attributed proxy approval. No HatSwap or Client login is needed by C1.
+
+The enduring requirement covers setup, details/dates, Products, notes, artwork/files,
+finalisation/approvals, Store operation, subsequent Project administration and closure as
+those capabilities are delivered. C1 must be able to undertake the Project-management actions
+available to C2; future slices must carry this rule into their UI, APIs and evidence. A
+C2-labelled screen or older organiser-only rule must not itself exclude C1. Business readiness,
+version/financial safeguards and tenant scope apply to both actors; they do not imply C2-only
+operation. Full C1 administration does not silently overwrite a locked offer or erase history.
+
+**This slice delivers the Individual preparation/finalisation part of that full operating
+model, not the whole finished module.** It must also verify continued C1 access to the linked
+Project's existing lifecycle controls, documents and Client history after finalisation.
+Collective files/approval, Store/purchaser and later operational features remain with their
+existing owners and delivery slices, all inheriting the same C1 principle. Their exclusion
+from this increment is a delivery boundary, not a permanent restriction on C1 authority.
+Review existing C1 lifecycle actions and editing guards against this distinction. In particular,
+`updateProject` currently checks the offer lock before considering which fields change: plan
+to permit the already-defined non-offer administrative fields (such as internal notes)
+without opening changes to confirmed content. Correct gaps in existing B1 administration
+within this increment; separately record genuinely unbuilt downstream capabilities.
+There is no new management-mode switch, proxy assignment or per-edit approval requirement.
 
 ### Source Audit And Smallest Complete Change
 
@@ -81,6 +123,7 @@ candidate leaves Client/member/Project foundations unchanged from the inspected 
 | C1 Project creation | `projects/ProjectCreateModal.tsx` and `projects.service.ts` require an active login-capable manager/admin; modal omits description, internal notes and production deadline although the service accepts them | C1 may select an active unarchived contact belonging to the Client without dashboard access/User. Include the existing preparation fields in create as well as edit; reuse inherited defaults |
 | C1 Project editing | Detail has workflow/Event, dates, description, internal notes and contact snapshots. Update schema admits `organiserMemberId`, but the service does not apply it and the UI has no member selector | Provide the same-Client contact selector for an unfinalised draft, persist/revalidate it and refresh organiser contact snapshots atomically. Keep Client ownership immutable and post-finalisation locks intact; contact text must not pretend to change organiser identity |
 | C2 creation/editing | `client-dashboard.service.ts` passes the resolved member to shared Project creation | Keep C2 membership/dashboard/role checks; C1 contact eligibility must be an explicit server-selected branch, not a browser flag or globally relaxed shared check |
+| Linked Client history and ongoing C1 management | C1 Client/Project surfaces already exist; full lifecycle parity is not yet proved by this correction | Verify create/read/update and available lifecycle actions from C1 on the same Client-owned Project, before/after finalisation where permitted. Retain Client list/history linkage and actual actor audit; locked content remains read-only |
 | Product selection and template | C1 Project Products and template assignment already exist; candidate adds C1 Artwork defaults | Reuse selection, capacity and assignment rules; retain both notes and logo inputs and the separate pending notes smoke |
 | Finalisation UI/API | `IndividualOfferPanel.tsx` only offers C2 finalisation; `client-dashboard.router.ts` is the only finalise route | Add C1 route in `projects.router.ts`; reuse one panel/transaction, with server-derived capabilities and C1 confirmation wording |
 | Stored identity | `FundIndividualOffer.finaliserMemberId` is mandatory; service writes organiser member plus actual User | Separate finalisation capacity from represented Client and actual actor; compatible migration described below |
@@ -95,7 +138,8 @@ path for referenced Clients/Projects; CRUD does not imply deletion of financial 
 
 ### User Journey And Authority Contract
 
-1. C1 OWNER/ADMIN, in their own active tenant session, selects the Client and its real contact.
+1. C1 OWNER/ADMIN, in their own active tenant session, creates a Project and selects its C2
+   Client and real contact, or opens an existing Project for that Client.
    A contact without dashboard access can own organiser contact responsibility without login
    authority. C1 can add that contact through the existing Client member form.
 2. C1 supplies Project details/notes, uses the existing Products selection and artwork defaults,
@@ -108,6 +152,9 @@ path for referenced Clients/Projects; CRUD does not imply deletion of financial 
    C1 and C2 viewers see **Finalised by [operator] on behalf of [Client]**, timestamp and
    the recorded note. Direct C2 finalisation is labelled as direct. Notes stay in the private
    Project/audit evidence, not on the classroom PDF or public Store.
+5. C1 continues managing the same Client-linked Project through the available lifecycle
+   controls. It remains visible in that Client’s history; the Client may also work on it
+   within their normal permissions. There is no compulsory handover or ownership transfer.
 
 No extra wizard, role switch, approval request or notification is introduced. One extra short
 note is the operator burden; user identity, Client, timestamp and exact offer are automatic.
@@ -182,6 +229,12 @@ Required focused proof (not run during this planning turn):
 
 - C1 OWNER and ADMIN without Client membership create a contact with no User/dashboard access,
   create/prepare a Project, finalise and download; no login is created or message sent.
+- Prove both an established login-enabled Client and a contact-only Client: C1 creates the
+  Project linked to the selected Client, revisits it through Client history and continues
+  permitted management after finalisation. C2 activity does not remove C1 access; C1 activity
+  neither changes Client ownership nor impersonates its contact. Audit retains actual actors.
+- After finalisation, allow an internal-note-only C1 update with actual-actor audit, but
+  refuse a mixed request changing locked offer fields; prove offer/PDF hashes stay unchanged.
 - C1 create/edit input persistence, same-Client contact replacement before finalisation and
   unchanged inherited Store/Product defaults; C2 creation/selection/finalisation still works.
 - Ordinary tenant member, foreign tenant/Client, inactive actor/contact, impersonation,
@@ -200,7 +253,8 @@ Required focused proof (not run during this planning turn):
 
 Human smoke once ready: C1 uses a Client contact without login, supplies Project inputs,
 reviews and finalises with one authority note, then verifies the resulting PDF and displayed
-C1 attribution. Combine the pending two-note editor-to-PDF check in that same fresh Project
+C1 attribution. Reopen it through the linked Client’s Project history and verify C1 retains
+permitted management actions without switching identity. Combine the pending two-note editor-to-PDF check in that same fresh Project
 where practical; do not repeat the accepted layout/handwritten-field checks.
 
 Disposable test databases/servers must have recorded owner, isolation and cleanup, using

@@ -37,6 +37,23 @@ approval and immutable historical evidence. Bounded correction is pending in B1 
 Group Artwork and Logo/Bulk share an Artwork & Files tab with a stable authenticated URL;
 source uploads and supplier review remain distinct from Client approval and public imagery.
 
+### Client-Linked Projects Remain Fully Operable By C1
+
+Owner clarification, 18 September: C1 may create a Project, select its owning C2 Client and
+manage the entire Project for that Client. This is an enduring administration principle,
+including Clients who do use the system, not only an exception for missing online access.
+The Project remains in the Client’s history; C1/C2 activity records the actual operator.
+Client ownership, contact/organiser identity and acting-user authority are separate concepts.
+No HatSwap, forced Client handover or reassignment to C1 is needed. C1 and authorised C2
+work on the same Project with the applicable business/financial and immutable-history rules.
+
+All Project features inherit this principle, including artwork/files, approvals, Store
+operation and subsequent lifecycle work. Later slice exclusions mean not delivered in the
+current increment, not C2-exclusive rights. Existing B1 planning delivers preparation and
+finalisation first, with Client-history and ongoing C1-access proof; it does not claim the
+entire operational module is built. Ordinary edits need actual-actor audit, not a proxy
+approval ceremony; Client acceptance recorded by C1 is explicitly attributed as proxy.
+
 ## 1. Business Direction And Scope Authority
 
 Re-establish FUND's visible business and user journey before selecting more technical
@@ -44,10 +61,10 @@ construction:
 
 ```text
 C1 configures Events, Products, commercial rules and availability
--> C2 creates or manages a Project
+-> C2 or C1 acting for the linked Client creates or manages its Project
 -> suitable Products are selected
 -> workflow-specific preparation and review/approval take place
--> Individual Artwork: ready to finalise -> C2 finalises -> matching document generated
+-> Individual Artwork: ready to finalise -> C2 or authorised C1 finalises -> matching document generated
 -> each branch satisfies its publication-readiness requirements
 -> Store becomes publishable
 -> purchaser browses, Orders and pays

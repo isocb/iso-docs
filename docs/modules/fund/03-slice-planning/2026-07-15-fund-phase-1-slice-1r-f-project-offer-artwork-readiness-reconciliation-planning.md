@@ -47,6 +47,12 @@ actual C1 actor, represented Client, exact version, time and acceptance context 
 Do not impersonate C2 or conflate this with supplier production review/release. Existing
 immutable evidence and ordinary edit/lock restrictions remain.
 
+The owning Client retains the Project and its history while C1 can create and operate the
+whole Project for that Client. This authority applies even when C2 has online access and
+participates. Collective surfaces must support the same direct C1 management principle;
+proxy approval is the explicit evidence form for Client acceptance, not the only action C1
+may perform. The proposed B1 increment delivers only part of this enduring operating model.
+
 Group Artwork and Logo/Bulk Project surfaces must include one Artwork & Files tab for
 C1/C2, multiple supported source files and workflow-specific instructions. Its URL must be
 shareable, restore the exact Project/tab after login and refresh, and retain access checks.

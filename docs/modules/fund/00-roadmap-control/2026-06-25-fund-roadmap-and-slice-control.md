@@ -16,6 +16,12 @@ Both Group Artwork and Logo/Bulk Projects require an Artwork & Files tab with a 
 authenticated direct URL. The High-control proposal covers existing UI/API/schema/test gaps plus the discovered
 login-only Project organiser/provisioning restriction. It reuses contact-only members and
 one C1 authority note; local disposable proof precedes any separately authorised migration/promotion.
+Owner clarification: C1 can create a Project for a selected C2 Client and manage its entire
+lifecycle directly, whether or not that Client uses the system. Client ownership/history is
+retained independently of the acting C1/C2 user. The B1 proposal now makes this enduring rule
+explicit and adds linked-history/ongoing-access proof; later Project features must inherit
+it. The current increment remains Individual preparation/finalisation, not delivery of every
+future Project feature. No compulsory handover, HatSwap or ownership transfer is introduced.
 This is no expedite or additional Now/Next; B1's existing checkpoint remains sole authority.
 
 Latest continuation — 17 September: Chris authorised the existing B1 accepted-PDF integration.
