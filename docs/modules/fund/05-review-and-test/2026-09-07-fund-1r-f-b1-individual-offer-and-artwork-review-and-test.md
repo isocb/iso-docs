@@ -2,12 +2,119 @@
 
 Date: 2026-09-07
 
-18 September planning amendment: [C1 proxy authority correction](../01-cr-inputs/CR-Fix-2026-09-18-fund-c1-proxy-authority-and-project-artwork-files.md) supersedes the
-organiser-only requirement. Existing application code and `e8a3c900` still lack C1
-finalisation/proxy evidence; correction and new authority tests are **not implemented/not
-run**. Prior automation and PDF checks 1/2 PASS remain valid for their original boundaries,
-not proof of the new rule. The [bounded B1 correction proposal](../03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md#18-september--bounded-c1-finalisation-correction-proposal) is now prepared, awaiting implementation approval; C1 notes smoke
-remains separately pending. This amendment changes no application or environment state.
+## 18 September — C1 Operation And Real Notes Smoke
+
+```text
+Exact commit: 039757e57894f49b6bb372bc2c011b14b2c96992 on feature/fund-accepted-pdf-integration, descendant of e8a3c900 / c3998084
+Files/change boundary: C1 contact-only preparation, Client-linked Project inputs/contact selection, direct C1 finalisation and immutable actor evidence, compatible migration 159, post-finalisation internal notes, and connected accepted-PDF notes smoke
+Automated checks: PASS: 23 focused tests, C1/C2 service/router/SQL/concurrency proof, baseline preservation, PDF generation/recovery, authenticated browser, type/lint/repository checks and production compilation; detail in 05
+Human evidence: New two-check C1/editor-to-PDF smoke pending. Chris's accepted PDF checks 1/2 and handwritten-field confirmation remain PASS; no repeat requested.
+Environment proven: isolated local candidate, synthetic disposable TEST databases and actual authenticated browser/application; no retained DevData, staging, main/live or provider changes
+Known residual risk: human acceptance pending; no protected-branch security scan or new online/runtime evidence. Detailed PDF is integrated locally; operational Store destination/private runtime and classroom distribution remain unfinished.
+Next authorised action: Chris performs the two checks below; agent records acceptance and cleans up the owned temporary target. No dev consolidation, retained migration or promotion in this increment.
+```
+
+Chris's explicit implementation instruction supersedes the earlier planning-only amendment.
+Control depth remains **High**. The implementation uses C1's own active OWNER/ADMIN identity,
+with fresh actor/contact checks inside the finalisation transaction. Owning Client, organiser
+contact and acting User remain distinct. Contact-only creation does not create an account;
+explicit dashboard enablement retains account provisioning and existing linked Users are
+preserved when dashboard access is disabled. Normal exact-organiser C2 operation remains.
+
+Migration `20260918120000_fund_c1_finalisation_evidence` makes the finaliser member nullable
+for C1 and adds capacity plus strict versioned evidence. Existing C2 rows keep their actor,
+member, immutable offer and financial snapshots; no historic display name/authority note is
+invented. New C1 writes record the actual operator, represented Client, timestamp and bounded
+instruction note, with a matching audit event. The note is private Project evidence, not PDF
+content. Old binaries expecting every finaliser to be a Client member are unsuitable after
+C1 records exist: preserve rows and reads/downloads, stop new finalisation if needed, and use
+a compatible forward fix. No rollback by deletion, relabelling or historical rewrite.
+
+The accepted portrait/landscape design and template generation remain one connected flow.
+The saved C1 artwork/ordering instructions enter the frozen v2 snapshot and the actual PDF
+above/below its QR. The editor waits for saved defaults before accepting input. Default edits
+apply to future finalisations; confirmed offers/PDFs retain their original instructions.
+After finalisation C1 can still save Internal Notes and use permitted lifecycle actions on
+the same Client-owned Project; confirmed content remains locked.
+
+### Focused automated proof
+
+| Check | Result and limit |
+| --- | --- |
+| Authority and full linked-Client preparation | C1 OWNER/ADMIN, contact without account, online Client, create inputs, same-Client contact replacement, Client history and continued lifecycle/internal-note access: PASS |
+| Negative authority and concurrency | Ordinary member, foreign tenant/Client, inactive actor/contact, impersonation, forged payload, missing/oversize authority note, unchecked confirmation, stale input, changed-note/cross-actor retry, simultaneous C1/C2 and role/contact revocation: PASS |
+| Database and atomic evidence | Strict mode/member/evidence combinations, direct-C2 Client/member FK, immutable attribution and injected audit failure rollback: PASS |
+| Migration/preservation | Accepted 158 binary creates legacy v1 and detailed v2 fixtures; 158→159 old offer/row/document/configuration/Seller fingerprints and recovered PDF bytes unchanged; fresh 159 exact migration ledger/checksums: PASS |
+| Generation/recovery regression | v1/v2 real service generation/download, stale defaults, invalid contract/provider, generation failure/timeout/oversize, missing-file same-byte recovery: PASS |
+| Authenticated browser | Actual local sign-in, two rich-text edits, save/reload, C1 confirmation/attribution, downloaded PDF text, internal-note save and Client history: PASS; saved notes and finalisation exercised before a test-selector correction, then PDF/management/history assertions completed on the same immutable offer; zero browser errors |
+| Type/lint/repository/build | PASS: type check, repository verification and compiled build; focused application lint has zero errors. Existing unchanged lint warnings in ClientDetailPage and ProjectDetailPage are recorded; no new application lint errors. Required Next request-body backport verified. |
+| Human/online | New human smoke pending; no new staging/live smoke, protected-branch Security Scan, retained database migration or deployment |
+
+Proof tooling is in `scripts/run-fund-c1-disposable.mjs`, `fund-c1-finalisation-proof.ts`,
+`fund-c1-baseline-fixture.ts`, the focused PDF regression runner and the real browser proof.
+The original full PDF runner now delegates schema-upgrade proof to the actual accepted
+baseline binary, avoiding use of a new Prisma client against an older schema. All automated
+proof databases are removed and independently checked absent after each run. The separate
+human target remains intentionally available until Chris finishes.
+
+The initial standalone router harness needed the normal React Node export alongside the
+server-only marker; application authority/services were not mocked. Browser validation found
+a real initial-loading gap in the notes editors, corrected by waiting for loaded defaults.
+A later harness selector omitted the required marker on the Name label; the selector was
+corrected and the remaining assertions completed against the same confirmed offer. These
+intermediate failures are not human FAIL reports or new release/environment failures.
+
+Remote publication: automatic approval review initially rejected
+`git push origin feature/fund-accepted-pdf-integration`, describing the current authority
+as local implementation/testing. The agent reported the rejection; Chris then instructed
+“please continue”. The same normal supported approval flow accepted the subsequent push.
+Candidate `039757e5` and origin/feature/fund-accepted-pdf-integration now match. No workaround,
+alternative transport, protected-branch update or deployment was used. Accepted dev/staging/main
+and their origins remain `c3998084`; the main workspace is clean dev.
+
+### Only the remaining human checks
+
+Open the private launcher `/private/tmp/fund-c1-human-smoke/open-smoke.html` and choose
+**Open your classroom notes smoke**. This signs in through normal Auth.js as synthetic
+**C1 Classroom Operator** at `http://localhost:3100`, without sending email. The fresh
+**Your classroom notes smoke** Project belongs to **Classroom Smoke School** and its
+**School Contact** has no login/dashboard access. This is separate from Chris's normal
+localhost:3000 application and existing data.
+
+1. **C1 inputs and saved notes:** in the prepared Project, edit Description/Internal Notes
+   and save. In **Artwork defaults**, edit **Artwork instructions** (above QR) and
+   **Ordering instructions** (below QR), choose **Save artwork defaults**, then reload.
+   Confirm your values remain and the offer review shows both instructions.
+2. **C1 completion and PDF:** enter a short **Client instruction / authority note**, tick
+   the review confirmation and choose **Finalise on behalf of Classroom Smoke School**.
+   Download the development artwork: confirm both saved instruction texts appear in their
+   correct QR areas and the accepted detailed design is present. Confirm the screen names
+   C1 Classroom Operator acting for Classroom Smoke School and shows your authority note.
+   Reopen the Project through that Client's Project history; save a further Internal Note.
+   Confirm it remains Client-linked, C1 can still manage it and the confirmed offer is locked.
+
+Report **1 PASS/FAIL, 2 PASS/FAIL**. No repeat printing, folding, logo, handwritten-field,
+email or live smoke is requested. The PDF still marks its development destination; this
+local result does not authorise distribution to parents or imply a finished public Store.
+
+### Temporary target and cleanup
+
+Owner: implementing agent. Only newly created `fund_b1_disposable_*` databases on the
+explicit TEST endpoint, verified distinct from all retained local/staging/production targets,
+are used. Human target state/ownership and credentials stay in the private mode-0600 manifest
+under `/private/tmp/fund-c1-human-smoke`; no token or connection URL is committed here.
+The server binds loopback port 3100; the compiled candidate uses test runtime configuration,
+with no real email, Redis or provider credentials. This proves the application journey, not
+production integrations or operational security configuration. The main workspace stays dev.
+
+After Chris's result, the agent records the human evidence, runs
+`node scripts/fund-c1-smoke.mjs cleanup` from the isolated worktree with Node 22, verifies the
+owned database absent and loopback listener stopped, and removes private login/PDF/browser
+state. Retain only redacted evidence under ignored proof output. If the server is absent,
+`serve` restarts this owned target; `login` refreshes its one-use private launcher. Never reset
+or migrate a retained database to recreate this smoke. Keep the work branch for the next
+controlled integration decision. Root Now/Next is unchanged; the child roadmap/CR disposition
+now reflects local implementation with human acceptance pending, not B1 closure.
 
 ## 17 September — Connected Accepted-PDF Review
 

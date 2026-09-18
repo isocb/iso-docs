@@ -2,12 +2,42 @@
 
 Date: 2026-09-07
 
-18 September planning amendment: [C1 proxy authority correction](../01-cr-inputs/CR-Fix-2026-09-18-fund-c1-proxy-authority-and-project-artwork-files.md) supersedes the
-organiser-only requirement. Existing application code and `e8a3c900` still lack C1
-finalisation/proxy evidence; correction and new authority tests are **not implemented/not
-run**. Prior automation and PDF checks 1/2 PASS remain valid for their original boundaries,
-not proof of the new rule. The [bounded B1 correction proposal](../03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md#18-september--bounded-c1-finalisation-correction-proposal) is now prepared, awaiting implementation approval; C1 notes smoke
-remains separately pending. This amendment changes no application or environment state.
+## 18 September — C1 Operation And Real Notes Smoke
+
+```text
+Exact commit: 039757e57894f49b6bb372bc2c011b14b2c96992 on feature/fund-accepted-pdf-integration, descendant of e8a3c900 / c3998084
+Files/change boundary: C1 contact-only preparation, Client-linked Project inputs/contact selection, direct C1 finalisation and immutable actor evidence, compatible migration 159, post-finalisation internal notes, and connected accepted-PDF notes smoke
+Automated checks: PASS: 23 focused tests, C1/C2 service/router/SQL/concurrency proof, baseline preservation, PDF generation/recovery, authenticated browser, type/lint/repository checks and production compilation; detail in 05
+Human evidence: New two-check C1/editor-to-PDF smoke pending. Chris's accepted PDF checks 1/2 and handwritten-field confirmation remain PASS; no repeat requested.
+Environment proven: isolated local candidate, synthetic disposable TEST databases and actual authenticated browser/application; no retained DevData, staging, main/live or provider changes
+Known residual risk: human acceptance pending; no protected-branch security scan or new online/runtime evidence. Detailed PDF is integrated locally; operational Store destination/private runtime and classroom distribution remain unfinished.
+Next authorised action: Chris performs the two checks below; agent records acceptance and cleans up the owned temporary target. No dev consolidation, retained migration or promotion in this increment.
+```
+
+Chris's explicit implementation instruction supersedes the earlier planning-only amendment.
+Control depth remains **High**. The implementation uses C1's own active OWNER/ADMIN identity,
+with fresh actor/contact checks inside the finalisation transaction. Owning Client, organiser
+contact and acting User remain distinct. Contact-only creation does not create an account;
+explicit dashboard enablement retains account provisioning and existing linked Users are
+preserved when dashboard access is disabled. Normal exact-organiser C2 operation remains.
+
+Migration `20260918120000_fund_c1_finalisation_evidence` makes the finaliser member nullable
+for C1 and adds capacity plus strict versioned evidence. Existing C2 rows keep their actor,
+member, immutable offer and financial snapshots; no historic display name/authority note is
+invented. New C1 writes record the actual operator, represented Client, timestamp and bounded
+instruction note, with a matching audit event. The note is private Project evidence, not PDF
+content. Old binaries expecting every finaliser to be a Client member are unsuitable after
+C1 records exist: preserve rows and reads/downloads, stop new finalisation if needed, and use
+a compatible forward fix. No rollback by deletion, relabelling or historical rewrite.
+
+The accepted portrait/landscape design and template generation remain one connected flow.
+The saved C1 artwork/ordering instructions enter the frozen v2 snapshot and the actual PDF
+above/below its QR. The editor waits for saved defaults before accepting input. Default edits
+apply to future finalisations; confirmed offers/PDFs retain their original instructions.
+After finalisation C1 can still save Internal Notes and use permitted lifecycle actions on
+the same Client-owned Project; confirmed content remains locked.
+
+Detailed verification, the minimal human smoke and temporary-target ownership/cleanup are recorded in the [existing B1 review](../05-review-and-test/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-review-and-test.md#18-september--c1-operation-and-real-notes-smoke). The sole restart checkpoint remains in the B1 plan. This is implementing-agent review, not an independent-agent review. B1 Now / 1R-G planning Next is unchanged.
 
 ## 17 September — Accepted Layout Connected Locally
 

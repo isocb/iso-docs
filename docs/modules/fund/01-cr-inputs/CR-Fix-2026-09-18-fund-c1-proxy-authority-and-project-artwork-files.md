@@ -3,16 +3,15 @@
 Date: 2026-09-18
 
 Disposition: Owner-confirmed requirements. Bounded Individual authority correction is now
-planned in the [existing B1 plan](../03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md#18-september--bounded-c1-finalisation-correction-proposal),
-awaiting implementation approval. Collective Group/Logo-Bulk approval and files remain in
+implemented locally at `039757e57894f49b6bb372bc2c011b14b2c96992` under the [existing B1 plan](../03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md#18-september--bounded-c1-finalisation-correction-proposal),
+following Chris's explicit implementation instruction. Automated results and prepared human smoke are in B1 04/05; new human acceptance is pending. Collective Group/Logo-Bulk approval and files remain in
 existing parent planning; their implementation is unselected. No expedite, new portfolio
-selection, code, migration or deployment is authorised by this input.
+selection or online deployment is authorised by this input alone.
 
 The 18 September source audit additionally found that C1 Project creation requires a
 login-capable organiser and Client-member creation automatically provisions/links a User.
 The B1 proposal includes a bounded contact-only path using the existing nullable User link,
-plus missing C1 create inputs and truthful finaliser evidence. These are proposed corrections,
-not features already delivered.
+plus missing C1 create inputs and truthful finaliser evidence. These corrections now exist in the local candidate; retained/online application state is unchanged.
 
 ## Need And Owner Decisions
 
@@ -36,7 +35,7 @@ C2 route remains; authorised C1 can also finalise the Client's Individual offer 
 For Collective Project Artwork, C1 can record proxy approval after the Client accepts, for
 example verbally. Record it visibly as proxy approval, never as the Client's own online action.
 This amendment supersedes contrary organiser-only business rules in earlier plans; it does
-not claim existing application behaviour has changed.
+not claim retained/online application behaviour has changed.
 
 Chris also accepts one **Artwork & Files** tab on Group Artwork and Logo/Bulk Projects,
 available to authorised C1 and C2, reusing planned production-file capabilities with
@@ -75,7 +74,10 @@ workflow-specific instructions. The tab must have a stable, shareable Project UR
 
 Read-only source review at application dev `c3998084` shows:
 
-| Existing boundary | Correction to plan |
+The following source audit describes the pre-correction code. Its Individual authority items
+are now implemented locally as recorded above; the Artwork & Files surface remains planned.
+
+| Audited boundary | Required correction |
 | --- | --- |
 | `services/individual-offer.service.ts`: C1 finalisation refused; finalise service hardcodes C2 access | Add explicit authorised C1 path and truthful actor attribution; retain normal C2 checks |
 | `components/individual-offer/IndividualOfferPanel.tsx`: finalise mutation/button only for C2 | Make the C1 action available directly with appropriate confirmation and attribution |
@@ -102,8 +104,9 @@ and the existing managed-upload validation. Repeat only tests affected by these 
 
 There is no claim of an observed unauthorised-write incident. The present gap prevents
 legitimate C1 assistance. Keep it visible as an unresolved acceptance gap, not a live hotfix.
-No code, database/provider changes, uploads, messages, promotion or expanded Store/financial
-approvals are authorised here. No public upload portal or new document-management product.
+This CR alone does not authorise code or environment actions. Chris subsequently authorised
+the bounded B1 local implementation recorded above; collective uploads, messages, online
+promotion and expanded Store/financial approvals remain outside it. No public upload portal or new document-management product.
 
 Use the existing B1 plan/checkpoint and collective parent; no new planning layer or parallel
 workstream. B1 remains Now; 1R-G planning remains Next. Existing PDF checks 1/2 PASS stand,
