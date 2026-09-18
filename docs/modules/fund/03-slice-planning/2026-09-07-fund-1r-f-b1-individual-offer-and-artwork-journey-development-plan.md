@@ -2,9 +2,9 @@
 
 Date: 2026-09-07
 
-Status: **Accepted preparation and SeasonPro releases preserved. Connected accepted-PDF local implementation complete at `e8a3c900`; automated proof PASS; 18 September PDF checks 1 and 2 PASS. C1 instruction input-to-PDF human check remains pending. B1 remains open; no new promotion.**
+Status: **Accepted preparation and SeasonPro releases preserved. Connected accepted-PDF local implementation complete at `e8a3c900`; automated proof PASS; 18 September PDF checks 1 and 2 PASS. C1 instruction input-to-PDF human check remains pending. C1 finalisation correction is planned, awaiting implementation approval. B1 remains open; no new promotion.**
 
-Control depth: **High** — this journey introduces persistent offer evidence, exact C2
+Control depth: **High** — this journey introduces persistent offer evidence, C1/C2
 finaliser authority, tenant-bound document access and failure/retry behaviour.
 
 Work type: plan for a production-model build, initially proved through an emulated
@@ -29,9 +29,8 @@ or impersonate the organiser. Retain the normal C2 route, record actual actor an
 Client, and preserve the exact confirmed offer, readiness, lock and financial evidence.
 
 This is an accepted requirement and outstanding implementation gap in both the released
-foundation and candidate `e8a3c900`. The next B1 planning cycle must inspect C1 CRUD input
-coverage, finalisation service/API/UI, member-based persisted finaliser evidence and affected
-tests, then define the compatible correction and focused proof. Control depth remains High.
+foundation and candidate `e8a3c900`. The bounded proposal below now records the C1 CRUD input audit, finalisation service/API/UI,
+member-based evidence correction and focused proof. It awaits implementation approval. Control depth remains High.
 No application/schema change is authorised by this planning amendment. Historical PASS is
 preserved at its tested boundary and must not be described as C1-proxy acceptance.
 Collective proxy approval and the deep-linked Artwork & Files tab belong to the existing
@@ -40,13 +39,194 @@ collective parent; do not silently add their implementation to the Individual PD
 ## Restart Checkpoint
 
 ```text
-Current state: Owner accepts C1 finalisation/proxy authority correction for the next planning cycle; current application still has the superseded C2-only restriction. Local accepted-PDF integration implemented at e8a3c900; automated migration/service/render/UI/artifact checks PASS. Chris accepts PDF checks 1 and 2 PASS, including portrait/no-logo, and confirms all handwritten fields present/correct. His outstanding input check concerns the C1 notes above/below the QR. B1 Now / 1R-G planning Next is unchanged; operational classroom distribution and public selling remain unreleased.
-Last proven commit: e8a3c900931ae4c28cba04181c2cd00722710ad7, backed up on origin/feature/fund-accepted-pdf-integration. Prior FUND d13ecb39 and SeasonPro c3998084 releases retain their accepted evidence. No accepted release smoke was repeated.
-Current environment: Candidate remains on its work branch before dev consolidation. Workspace returned to clean dev; dev/staging/main and all three origins remain c3998084. The new 158th migration was proved only on disposable test databases, which were removed and independently verified absent. Retained DevData/online databases and runtime settings were not changed; production remains at its previously verified 157-migration release.
-Next human decision/test: review the bounded C1 authority correction in the next B1 planning cycle before implementing it. The separately pending input smoke remains: prepare the existing C1 Artwork defaults editor-to-PDF smoke on an isolated candidate test target with a fresh unfinalised Project. C1 saves distinct notes in Artwork instructions (above QR) and Ordering instructions (below QR); verify persistence, C2 review and the resulting PDF. This human editing check was not possible from static PDFs and remains pending. Do not repeat accepted layout/handwritten-field checks.
-Safe resumption point: Plan the 18 September C1 correction using the linked input and preserve existing evidence; no code or database authority is created by it. Resume PDF work from candidate e8a3c900 and the existing B1 04/05 evidence. No portrait-logo change is required. Preserve old immutable offers/PDFs and the accepted 1/2 PASS. Prepare only an isolated local test target with recorded cleanup; retained/shared migration and promotion remain outside this increment. Durable Store destination and private runtime/storage decisions remain later dependencies. The OOM incident stays separate.
-
+Current state: C1 Individual finalisation correction planned below; implementation approval pending. Accepted-PDF candidate automation and human layout checks 1/2 PASS stand; C1 notes editor-to-PDF smoke remains pending. B1 stays open.
+Last proven commit: e8a3c900931ae4c28cba04181c2cd00722710ad7 on origin/feature/fund-accepted-pdf-integration. Planning does not create a new application candidate or test PASS.
+Current environment: Workspace clean dev at c3998084; candidate remains before dev consolidation. No database/provider/deployment action this turn. Candidate migration 158 was previously proved only on disposable databases; accepted retained/online baseline remains 157.
+Next human decision/test: review the bounded local C1 proposal, including contact-only preparation and one authority note, for implementation approval. Then prove C1 finalisation and the pending two C1 instruction inputs in one fresh Project where practical.
+Safe resumption point: Implement only after approval, based on e8a3c900 and the proposal below. Preserve old offers/PDFs and accepted tests. Use isolated disposable proof first; retained/shared migration and promotion remain outside. Collective files/approval, Store destination/runtime and OOM remain separate.
 ```
+
+## 18 September — Bounded C1 Finalisation Correction Proposal
+
+**Planning complete; implementation not authorised.** This is the next bounded production-model
+correction inside B1, not an assumption test or a new portfolio outcome. Business direction
+is accepted in the [owner input](../01-cr-inputs/CR-Fix-2026-09-18-fund-c1-proxy-authority-and-project-artwork-files.md).
+Control depth remains **High** because actual actor authority, Client scope and immutable
+finalisation evidence change. Proposed implementation starts from `e8a3c900` so accepted
+PDF integration is preserved. Source inspection also covered released ancestor `c3998084`.
+
+### Outcome And In-Place Triage
+
+C1 opens or creates a Client's Individual Artwork Project, supplies the relevant inputs,
+reviews the existing offer and finalises for the Client using their own C1 session. The
+Project shows who finalised it and for whom; the same accepted PDF is generated/downloaded.
+The Client need not log in. Normal exact-organiser C2 finalisation remains available.
+
+Disposition: required correction to the existing B1 business journey, not an urgent live
+incident. The current implementation is restrictive rather than granting unauthorised access.
+Do not close B1 as satisfying white-glove operation until this correction is implemented
+and accepted. Prior PDF and release PASS records remain valid at their original boundaries.
+Collective proxy approval and the Artwork & Files URL remain in their existing collective
+planning scope; they are not part of this Individual implementation proposal.
+
+### Source Audit And Smallest Complete Change
+
+Paths below are relative to application `src/modules/fund/` unless stated otherwise. The
+candidate leaves Client/member/Project foundations unchanged from the inspected ancestor.
+
+| Area | Current source finding | Proposed treatment |
+| --- | --- | --- |
+| Client details | `clients/ClientCreateModal.tsx` and Client detail expose identity, address, contact and notes | Reuse existing C1 CRUD/archive; no replacement Client manager |
+| Client contact without login | `FundClientMember.userId` is nullable, but `client-members.service.ts` unconditionally creates/links a platform user on create and does so on update when unlinked | When C1 creates/edits a contact with dashboard access disabled and no explicit User link, retain `userId = null`; do not create an account. Reuse existing dashboard-access control and explain it. Preserve existing linked Users; enabling access explicitly retains the existing safe provisioning path |
+| C1 Project creation | `projects/ProjectCreateModal.tsx` and `projects.service.ts` require an active login-capable manager/admin; modal omits description, internal notes and production deadline although the service accepts them | C1 may select an active unarchived contact belonging to the Client without dashboard access/User. Include the existing preparation fields in create as well as edit; reuse inherited defaults |
+| C1 Project editing | Detail has workflow/Event, dates, description, internal notes and contact snapshots. Update schema admits `organiserMemberId`, but the service does not apply it and the UI has no member selector | Provide the same-Client contact selector for an unfinalised draft, persist/revalidate it and refresh organiser contact snapshots atomically. Keep Client ownership immutable and post-finalisation locks intact; contact text must not pretend to change organiser identity |
+| C2 creation/editing | `client-dashboard.service.ts` passes the resolved member to shared Project creation | Keep C2 membership/dashboard/role checks; C1 contact eligibility must be an explicit server-selected branch, not a browser flag or globally relaxed shared check |
+| Product selection and template | C1 Project Products and template assignment already exist; candidate adds C1 Artwork defaults | Reuse selection, capacity and assignment rules; retain both notes and logo inputs and the separate pending notes smoke |
+| Finalisation UI/API | `IndividualOfferPanel.tsx` only offers C2 finalisation; `client-dashboard.router.ts` is the only finalise route | Add C1 route in `projects.router.ts`; reuse one panel/transaction, with server-derived capabilities and C1 confirmation wording |
+| Stored identity | `FundIndividualOffer.finaliserMemberId` is mandatory; service writes organiser member plus actual User | Separate finalisation capacity from represented Client and actual actor; compatible migration described below |
+| Outcome readback | Journey returns document/offer status, without finaliser attribution | Add a minimal finalisation summary for authorised Project viewers and transactional audit evidence |
+
+This audit identifies the additional dependency needed for the real no-login journey:
+changing only the finalise button would still force account creation earlier. Reuse the
+existing nullable member link; do not add another contact entity or proxy-role system.
+Existing valid contact name/email requirements remain; no fabricated address, automatic
+invitation/email or new no-email contact model is proposed. Archive remains the safe removal
+path for referenced Clients/Projects; CRUD does not imply deletion of financial history.
+
+### User Journey And Authority Contract
+
+1. C1 OWNER/ADMIN, in their own active tenant session, selects the Client and its real contact.
+   A contact without dashboard access can own organiser contact responsibility without login
+   authority. C1 can add that contact through the existing Client member form.
+2. C1 supplies Project details/notes, uses the existing Products selection and artwork defaults,
+   then reviews the same Products, prices, content, capacity and lock warning shown to C2.
+3. The existing confirmation area shows **Finalise on behalf of [Client]**, a short required
+   **Client instruction / authority note** (trimmed, 1–1000 characters), and a confirmation
+   checkbox. Example: “Requested by Jane Smith by telephone on 18 September.” This records
+   why C1 is acting; it does not claim a digital C2 approval or require a Client login.
+4. One action finalises and starts the existing document flow. On success both authorised
+   C1 and C2 viewers see **Finalised by [operator] on behalf of [Client]**, timestamp and
+   the recorded note. Direct C2 finalisation is labelled as direct. Notes stay in the private
+   Project/audit evidence, not on the classroom PDF or public Store.
+
+No extra wizard, role switch, approval request or notification is introduced. One extra short
+note is the operator burden; user identity, Client, timestamp and exact offer are automatic.
+Do not require another person to countersign C1's permitted action. Collective artwork's
+later proxy approval will separately capture Client acceptance; finalisation does not itself
+approve supplier production, commission terms or Store publication.
+
+Use existing C1 OWNER/ADMIN authority (`assertFundAdmin`), with fresh active User/tenant
+verification; this is not a grant to every tenant member. The router derives actor and access
+kind from authenticated server context. Reject impersonated/effective-user or effective-tenant
+mismatches as the current C2 finalisation route does. A dual-role User acting through C1 is
+recorded as C1; having C1 status does not relax the normal C2 route's membership requirements.
+
+In the shared service, hold the existing Project/advisory and availability locks. Lock/read
+current actor authority and the relevant contact/member before committing, so concurrent
+role/contact revocation cannot produce a stale authorisation. C1 needs an active Client and
+active same-Client organiser contact, but not that contact's login/dashboard permissions.
+C2 retains exact active organiser, active account, enabled dashboard and management access.
+Recheck this distinction on read, mutation, retry and conflict recovery; the current recovery
+branch hardcodes C2 and must also be corrected. Never infer access from contact email/name.
+
+### Compatible Evidence And Migration Proposal
+
+Reuse `FundIndividualOffer` and the existing `FUND_INDIVIDUAL_OFFER_FINALISED` audit event;
+no general approval engine or duplicate offer table. Proposed schema contract:
+
+| Field | Meaning and compatibility |
+| --- | --- |
+| Existing `finaliserUserId` | Actual authenticated actor for both paths; server supplied |
+| Existing `finaliserMemberId`, made nullable | Required for direct C2; NULL for C1. Never store the represented contact as though they clicked finalise |
+| New `finalisationKind` | `C2_DIRECT` or `C1_ON_BEHALF`; default `C2_DIRECT` interprets existing rows without changing their recorded actor |
+| New nullable `finalisationEvidence` JSON | Strict versioned object for new writes: version 1, server-resolved operator display name and Client name; C1 additionally requires the bounded authority note. Existing C2 rows may retain NULL rather than invent historic names/notes |
+| Existing offer/Project/Client IDs, `createdAt`, `inputHash` | Exact represented context, server timestamp and frozen offer content; no duplicate identity inputs from the browser |
+
+Use SQL CHECK constraints for the mode/member/evidence combinations, explicit non-null/type
+checks for required JSON values, and the retained tenant/Client member FK for direct C2.
+Do not rely on PostgreSQL CHECK's acceptance of NULL to validate C1 evidence. New code writes
+valid evidence for both modes; legacy NULL is readable only as historical direct-C2 evidence.
+Server transaction checks bind `finaliserUserId` to the real C1 User or actual C2 member User.
+Keep the existing immutable-offer trigger protecting these new columns and transactional audit.
+
+Add one reviewed follow-on Prisma migration after the candidate's 158th migration; do not
+edit any applied migration, disable immutable triggers or update old offer rows. Make the
+Prisma member relation optional. Audit all finaliser readers for NULL assumptions before
+introducing C1 records. Existing Project organiser/contact FK remains required and unchanged.
+
+Finalisation evidence lives alongside the render snapshot. Do not inject actor/note fields
+into the strict v1/v2 PDF contracts or alter old input/output hashes. No new layout, renderer
+contract or PDF version is needed solely for this correction. Preserve offer/row/document
+uniqueness and completion triggers. The same finalisation transaction writes exact actor,
+capacity, evidence, rows, document identity and audit, or writes none of them.
+
+Both routes require explicit confirmation, current preview hash and idempotency key. A retry
+succeeds only for the same actor, access kind, offer input and normalised authority note;
+changed evidence or another actor reusing the key conflicts. Concurrent C1/C2 attempts produce
+one immutable offer; the loser refreshes to the recorded result, never overwrites attribution.
+Failed generation leaves that offer locked with existing retry/download behaviour.
+
+### Work Order, Validation And Stop Gates
+
+After implementation is expressly authorised, use candidate `e8a3c900` as the base and:
+
+1. Implement the compatible evidence migration/readback and shared authority contract.
+2. Correct C1 contact-only creation/update and Project contact eligibility/selection. Keep
+   C2 and public intake provisioning explicit and unchanged; add the missing C1 create inputs.
+3. Connect the C1 finalise action, confirmation note and recorded attribution to the existing
+   panel/service. Preserve the accepted renderer, prices, defaults and file-storage contracts.
+4. Prove migration and journeys locally on isolated disposable databases, then update existing
+   04/05 records with exact candidate and only evidence actually obtained.
+
+Required focused proof (not run during this planning turn):
+
+- C1 OWNER and ADMIN without Client membership create a contact with no User/dashboard access,
+  create/prepare a Project, finalise and download; no login is created or message sent.
+- C1 create/edit input persistence, same-Client contact replacement before finalisation and
+  unchanged inherited Store/Product defaults; C2 creation/selection/finalisation still works.
+- Ordinary tenant member, foreign tenant/Client, inactive actor/contact, impersonation,
+  forged actor/mode, invalid/blank/oversize note and unchecked confirmation are refused.
+  A contact with no login gains no C2 access merely by becoming Project organiser.
+- Role/contact revocation race, stale preview/selection/prices, cross-actor key reuse,
+  changed-note retries, simultaneous C1/C2 finalisation and interrupted generation preserve
+  one offer with truthful actor/evidence. No partial audit or offer survives rollback.
+- Upgrade full 158-migration candidate fixtures to the new migration and replay from empty;
+  assert prior offer columns, snapshots, Product/financial evidence and PDF hashes unchanged.
+  Check direct-C2 FK and invalid mode/evidence/null combinations at the database boundary.
+  Legacy direct-C2 offers remain readable and downloadable without invented attribution.
+- Run affected Project/member/B1 service and router checks, type/lint/repository checks and
+  production build. Retain accepted PDF layout evidence; repeat artifact proof only where
+  a changed code path can affect it. No broad unrelated SeasonPro smoke.
+
+Human smoke once ready: C1 uses a Client contact without login, supplies Project inputs,
+reviews and finalises with one authority note, then verifies the resulting PDF and displayed
+C1 attribution. Combine the pending two-note editor-to-PDF check in that same fresh Project
+where practical; do not repeat the accepted layout/handwritten-field checks.
+
+Disposable test databases/servers must have recorded owner, isolation and cleanup, using
+`TEST_DATABASE_URL` proven distinct from retained `DATABASE_URL`. Retained DevData migration,
+provider/runtime configuration, dev consolidation and staging/main promotion are outside this
+proposed local increment. Any later retained/online migration follows the safe-database
+workflow, exact-candidate checks and environment-specific/human acceptance.
+
+Recovery: before C1 data exists, stop the increment without changing retained state. Once
+C1 records exist, do not roll back to a binary expecting every finaliser to be a Client member.
+Disable new finalisation through compatible code if needed, preserve reads/downloads and
+immutable rows, and use a forward fix. No deletion, relabelling as C2 or historical rewrite.
+
+### Cost, Simplicity And Decision For Chris
+
+This is a bounded correction, but more than exposing a button: it includes a migration,
+contact provisioning/Project validation and immutable actor evidence. The simpler option of
+requiring every Client to log in would fail the accepted white-glove requirement. Reusing
+existing contacts, the panel, offer record and audit event avoids a new delegation system.
+
+**Recommended implementation boundary:** the local C1 Individual journey above, including
+contact-only preparation, missing create inputs, finalisation attribution and focused proof.
+Implementation approval remains pending. No collective approval/files implementation, guest
+upload URL, Project ownership transfer, unlock, financial approval, public Store release,
+provider deployment or production classroom distribution is included. B1 Now / 1R-G planning
+Next remains unchanged. The required stopping point for this turn is this reviewable proposal.
 
 ## 17 September — Accepted PDF Integration Review And Proposed Next Boundary
 

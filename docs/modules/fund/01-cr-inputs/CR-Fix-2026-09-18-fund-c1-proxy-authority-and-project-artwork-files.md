@@ -2,10 +2,17 @@
 
 Date: 2026-09-18
 
-Disposition: Owner-confirmed requirements; reconcile in the next B1 planning cycle for
-Individual authority and in the existing collective Group/Logo-Bulk planning for files and
-approval. Bounded technical planning and implementation remain outstanding. No expedite,
-new portfolio selection, code, migration or deployment is authorised by this input.
+Disposition: Owner-confirmed requirements. Bounded Individual authority correction is now
+planned in the [existing B1 plan](../03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md#18-september--bounded-c1-finalisation-correction-proposal),
+awaiting implementation approval. Collective Group/Logo-Bulk approval and files remain in
+existing parent planning; their implementation is unselected. No expedite, new portfolio
+selection, code, migration or deployment is authorised by this input.
+
+The 18 September source audit additionally found that C1 Project creation requires a
+login-capable organiser and Client-member creation automatically provisions/links a User.
+The B1 proposal includes a bounded contact-only path using the existing nullable User link,
+plus missing C1 create inputs and truthful finaliser evidence. These are proposed corrections,
+not features already delivered.
 
 ## Need And Owner Decisions
 

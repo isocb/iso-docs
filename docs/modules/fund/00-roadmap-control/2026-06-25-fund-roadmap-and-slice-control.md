@@ -7,13 +7,15 @@ Last consolidated: 2026-09-18
 Status: Active authoritative control for the FUND lane
 
 18 September owner-directed planning reconciliation: [C1 proxy authority and Project
-Artwork & Files](../01-cr-inputs/CR-Fix-2026-09-18-fund-c1-proxy-authority-and-project-artwork-files.md) is **accepted as a business requirement; next B1 planning-cycle
-correction required for Individual finalisation; collective approval/files refinement retained
+Artwork & Files](../01-cr-inputs/CR-Fix-2026-09-18-fund-c1-proxy-authority-and-project-artwork-files.md) is **accepted as a business requirement; bounded Individual correction planned in the
+[existing B1 plan](../03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md#18-september--bounded-c1-finalisation-correction-proposal), awaiting implementation approval; collective approval/files refinement retained
 in existing 1R-F planning, implementation unselected**. C1 directly administers Clients and
 Projects, may finalise for a Client and may record explicitly attributed proxy collective
 approval. The exact-C2-only restriction is superseded as a requirement but remains in code.
 Both Group Artwork and Logo/Bulk Projects require an Artwork & Files tab with a shareable,
-authenticated direct URL. High-control planning must cover existing UI/API/schema/test gaps.
+authenticated direct URL. The High-control proposal covers existing UI/API/schema/test gaps plus the discovered
+login-only Project organiser/provisioning restriction. It reuses contact-only members and
+one C1 authority note; local disposable proof precedes any separately authorised migration/promotion.
 This is no expedite or additional Now/Next; B1's existing checkpoint remains sole authority.
 
 Latest continuation — 17 September: Chris authorised the existing B1 accepted-PDF integration.
