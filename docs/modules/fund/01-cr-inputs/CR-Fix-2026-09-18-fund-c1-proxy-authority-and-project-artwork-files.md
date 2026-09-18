@@ -3,7 +3,7 @@
 Date: 2026-09-18
 
 Disposition: Owner-confirmed requirements. Bounded Individual authority correction is now
-implemented locally at `039757e57894f49b6bb372bc2c011b14b2c96992` under the [existing B1 plan](../03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md#18-september--bounded-c1-finalisation-correction-proposal),
+implemented locally at `3e82adb1befb25aae7d4a3eaf638a1542277511b` under the [existing B1 plan](../03-slice-planning/2026-09-07-fund-1r-f-b1-individual-offer-and-artwork-journey-development-plan.md#18-september--bounded-c1-finalisation-correction-proposal),
 following Chris's explicit implementation instruction. Automated results and prepared human smoke are in B1 04/05; new human acceptance is pending. Collective Group/Logo-Bulk approval and files remain in
 existing parent planning; their implementation is unselected. No expedite, new portfolio
 selection or online deployment is authorised by this input alone.

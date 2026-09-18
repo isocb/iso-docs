@@ -5,7 +5,7 @@ Date: 2026-09-07
 ## 18 September — C1 Operation And Real Notes Smoke
 
 ```text
-Exact commit: 039757e57894f49b6bb372bc2c011b14b2c96992 on feature/fund-accepted-pdf-integration, descendant of e8a3c900 / c3998084
+Exact commit: 3e82adb1befb25aae7d4a3eaf638a1542277511b on feature/fund-accepted-pdf-integration, descendant of e8a3c900 / c3998084
 Files/change boundary: C1 contact-only preparation, Client-linked Project inputs/contact selection, direct C1 finalisation and immutable actor evidence, compatible migration 159, post-finalisation internal notes, and connected accepted-PDF notes smoke
 Automated checks: PASS: 23 focused tests, C1/C2 service/router/SQL/concurrency proof, baseline preservation, PDF generation/recovery, authenticated browser, type/lint/repository checks and production compilation; detail in 05
 Human evidence: New two-check C1/editor-to-PDF smoke pending. Chris's accepted PDF checks 1/2 and handwritten-field confirmation remain PASS; no repeat requested.
@@ -13,6 +13,15 @@ Environment proven: isolated local candidate, synthetic disposable TEST database
 Known residual risk: human acceptance pending; no protected-branch security scan or new online/runtime evidence. Detailed PDF is integrated locally; operational Store destination/private runtime and classroom distribution remain unfinished.
 Next authorised action: Chris performs the two checks below; agent records acceptance and cleans up the owned temporary target. No dev consolidation, retained migration or promotion in this increment.
 ```
+
+Application implementation is `039757e5`; follow-up `3e82adb1` changes only
+`scripts/fund-c1-smoke.mjs` to apply the repository's existing `rls-policies.sql` when preparing
+an owned disposable target. The running local compiled application identifies as `039757e5`;
+its application source is identical to `3e82adb1`. No policy definition or retained database
+was changed. Final local `/api/health` readback is HTTP 200, database connected, core RLS
+11/11 enabled; authenticated PDF download, internal-note save and Client history also PASS
+after the policy setup. This is policy-enable/functional readback, not a new production
+restricted-database-role security assessment.
 
 Chris's explicit implementation instruction supersedes the earlier planning-only amendment.
 Control depth remains **High**. The implementation uses C1's own active OWNER/ADMIN identity,
