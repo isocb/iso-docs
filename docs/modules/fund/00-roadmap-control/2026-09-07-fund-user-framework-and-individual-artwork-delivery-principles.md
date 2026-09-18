@@ -25,6 +25,18 @@ is retained only as a redirect for existing links. High-control evidence remains
 where a later implementation touches authority, schema, immutable offers or service access;
 that does not prescribe the size of its data model.
 
+## 18 September — C1 Administration And Proxy Authority Amendment
+
+[Owner-confirmed correction](../01-cr-inputs/CR-Fix-2026-09-18-fund-c1-proxy-authority-and-project-artwork-files.md): authorised C1 directly manages Client/Project inputs
+and can finalise on behalf of the Client. C1 can record collective approval conveyed by the
+Client, including verbally, explicitly as proxy approval by the actual C1 operator. No
+HatSwap or C2 account is needed for the C1 operator. The Client retains Project ownership.
+This supersedes exact-organiser-only restrictions elsewhere in this framework as future
+requirements; they remain descriptions of the old implemented boundary. Preserve direct C2
+approval and immutable historical evidence. Bounded correction is pending in B1 planning.
+Group Artwork and Logo/Bulk share an Artwork & Files tab with a stable authenticated URL;
+source uploads and supplier review remain distinct from Client approval and public imagery.
+
 ## 1. Business Direction And Scope Authority
 
 Re-establish FUND's visible business and user journey before selecting more technical
@@ -337,7 +349,7 @@ the accepted parent while making the unresolved choices explicit.
 | 1. Business concepts | Retain Application Template as reusable C1 design, Project Offer as the exact confirmed commercial/content selection, and Artwork Template as the resulting Project-specific document | Preserve these meanings without prescribing separate tables for every concept |
 | 2. Assignment hierarchy | Event-linked Projects follow their Event's template assignment; standalone Projects use an explicit C1 Project assignment, otherwise the tenant standalone default | No Event-Project override in the minimum journey; missing/invalid assignment blocks finalisation rather than silently falling back |
 | 3. Lock point | C2 finalisation confirms the exact offer before generation; show the resulting document as pending until successful | Generation failure does not unlock or rewrite the confirmed offer; finalisation does not publish the Store |
-| 4. Finaliser | Initially retain the exact active Project organiser as finaliser; authorised same-Client Project members may prepare selection and view/download within existing permissions | Avoid inventing a new permission system for the first journey; broader finaliser authority remains an explicit later choice |
+| 4. Finaliser | Normal authorised C2 finalisation plus direct authorised C1 finalisation on behalf of the Client; preparation/view/download retain their scoped permissions | Owner amendment 18 September: record the actual actor and proxy capacity; exact-organiser-only implementation must be corrected in bounded planning |
 | 5. Revision / unlock | Drafts remain editable. Any supported pre-publication refinalisation requires organiser authority, a reason, audit and a new offer/document version. At publication, first Order, payment, physical distribution or production authorisation, refuse ordinary unlock pending a separately accepted reconciliation workflow | This conservatively extends the parent's paid-Order/distribution boundary to first Order and omits published-Store unlock from the minimum journey; it requires explicit acceptance. If pre-publication refinalisation is deferred, the UI must clearly refuse edits to a finalised offer |
 | 6. Immutable milestones | Finalisation preserves actor/time, template/layout, ordered Products, exact commercial/configuration/content and Store URL/QR; generation binds the successful document to that offer. Later publication, Order/payment, distribution and production actions retain their own exact relevant evidence | Reuse existing immutable FUND configuration and Commerce evidence; never substitute a mutable current Product record for a historic confirmed fact. Later milestones are not implemented by Pass 2 |
 | 7. Minimum next outcome | Propose the Section 4.2 steps 1–5: C1 configuration through C2 selection/finalisation to a matching authenticated document download and Store preview, with the essential controls in Section 6 | Public Store, trading, payment, physical distribution and downstream operations remain later. Confirm the practical usefulness of this stopping point before selecting its bounded plan |

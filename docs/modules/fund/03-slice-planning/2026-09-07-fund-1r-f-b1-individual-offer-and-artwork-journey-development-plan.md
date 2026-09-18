@@ -21,14 +21,30 @@ augments the [FUND roadmap](../00-roadmap-control/2026-06-25-fund-roadmap-and-sl
 restores FUND B1 resumption at the accepted preparation release boundary as Now, with the existing
 1R-G planning proposal Next. This plan owns the sole active restart checkpoint.
 
+## 18 September — Required C1 Authority Correction In Next Planning Cycle
+
+Chris's [owner instruction](../01-cr-inputs/CR-Fix-2026-09-18-fund-c1-proxy-authority-and-project-artwork-files.md) corrects D2: C1 must manage Client/Project inputs and
+finalise directly on behalf of the Client using C1 authority. C1 need not become a C2 member
+or impersonate the organiser. Retain the normal C2 route, record actual actor and represented
+Client, and preserve the exact confirmed offer, readiness, lock and financial evidence.
+
+This is an accepted requirement and outstanding implementation gap in both the released
+foundation and candidate `e8a3c900`. The next B1 planning cycle must inspect C1 CRUD input
+coverage, finalisation service/API/UI, member-based persisted finaliser evidence and affected
+tests, then define the compatible correction and focused proof. Control depth remains High.
+No application/schema change is authorised by this planning amendment. Historical PASS is
+preserved at its tested boundary and must not be described as C1-proxy acceptance.
+Collective proxy approval and the deep-linked Artwork & Files tab belong to the existing
+collective parent; do not silently add their implementation to the Individual PDF increment.
+
 ## Restart Checkpoint
 
 ```text
-Current state: Local accepted-PDF integration implemented at e8a3c900; automated migration/service/render/UI/artifact checks PASS. Chris accepts PDF checks 1 and 2 PASS, including portrait/no-logo, and confirms all handwritten fields present/correct. His outstanding input check concerns the C1 notes above/below the QR. B1 Now / 1R-G planning Next is unchanged; operational classroom distribution and public selling remain unreleased.
+Current state: Owner accepts C1 finalisation/proxy authority correction for the next planning cycle; current application still has the superseded C2-only restriction. Local accepted-PDF integration implemented at e8a3c900; automated migration/service/render/UI/artifact checks PASS. Chris accepts PDF checks 1 and 2 PASS, including portrait/no-logo, and confirms all handwritten fields present/correct. His outstanding input check concerns the C1 notes above/below the QR. B1 Now / 1R-G planning Next is unchanged; operational classroom distribution and public selling remain unreleased.
 Last proven commit: e8a3c900931ae4c28cba04181c2cd00722710ad7, backed up on origin/feature/fund-accepted-pdf-integration. Prior FUND d13ecb39 and SeasonPro c3998084 releases retain their accepted evidence. No accepted release smoke was repeated.
 Current environment: Candidate remains on its work branch before dev consolidation. Workspace returned to clean dev; dev/staging/main and all three origins remain c3998084. The new 158th migration was proved only on disposable test databases, which were removed and independently verified absent. Retained DevData/online databases and runtime settings were not changed; production remains at its previously verified 157-migration release.
-Next human decision/test: prepare the existing C1 Artwork defaults editor-to-PDF smoke on an isolated candidate test target with a fresh unfinalised Project. C1 saves distinct notes in Artwork instructions (above QR) and Ordering instructions (below QR); verify persistence, C2 review and the resulting PDF. This human editing check was not possible from static PDFs and remains pending. Do not repeat accepted layout/handwritten-field checks.
-Safe resumption point: Resume from candidate e8a3c900 and the existing B1 04/05 evidence. No portrait-logo change is required. Preserve old immutable offers/PDFs and the accepted 1/2 PASS. Prepare only an isolated local test target with recorded cleanup; retained/shared migration and promotion remain outside this increment. Durable Store destination and private runtime/storage decisions remain later dependencies. The OOM incident stays separate.
+Next human decision/test: review the bounded C1 authority correction in the next B1 planning cycle before implementing it. The separately pending input smoke remains: prepare the existing C1 Artwork defaults editor-to-PDF smoke on an isolated candidate test target with a fresh unfinalised Project. C1 saves distinct notes in Artwork instructions (above QR) and Ordering instructions (below QR); verify persistence, C2 review and the resulting PDF. This human editing check was not possible from static PDFs and remains pending. Do not repeat accepted layout/handwritten-field checks.
+Safe resumption point: Plan the 18 September C1 correction using the linked input and preserve existing evidence; no code or database authority is created by it. Resume PDF work from candidate e8a3c900 and the existing B1 04/05 evidence. No portrait-logo change is required. Preserve old immutable offers/PDFs and the accepted 1/2 PASS. Prepare only an isolated local test target with recorded cleanup; retained/shared migration and promotion remain outside this increment. Durable Store destination and private runtime/storage decisions remain later dependencies. The OOM incident stays separate.
 
 ```
 
@@ -184,14 +200,14 @@ asked again.
 | Decision | Accepted B1 boundary | Consequence | Owner response |
 | --- | --- | --- | --- |
 | D1 — Initial template choices | C1 selects from the two already proved variants: portrait STANDARD, maximum ten Products; landscape COMPACT, maximum twelve. Use a versioned code registry for these fixed designs, with persisted tenant-owned assignment | No visual editor, arbitrary template upload or full reusable-template administration in B1. A future changed variant needs its own capacity/layout proof | Accepted: fixed templates initially; template editor in Phase 2 |
-| D2 — Assignment and finalisation | Event-linked Projects follow the Event assignment; standalone Projects use an explicit Project assignment or the tenant standalone default. Authorised same-Client managers/admins prepare selection; the exact active organiser alone finalises | No Event-Project override or new permissions system. C1 prepares/oversees but does not impersonate the organiser to finalise | Accepted |
+| D2 — Assignment and finalisation | Event-linked Projects follow the Event assignment; standalone Projects use an explicit Project assignment or the tenant standalone default. Authorised same-Client managers/admins prepare selection; normal C2 finalisation and authorised C1 finalisation on behalf of the Client must both be supported | Record the actual C1 operator and represented Client without impersonation; retain assignment/readiness/lock controls | Corrected by Chris, 18 September; implementation pending |
 | D3 — First release revision rule | Before finalisation, allow normal edits. After finalisation, refuse changes to the confirmed Project offer/selection; allow controlled regeneration of that same offer only | No unlock or replacement-offer UI in B1. Explain the lock before confirmation; a mistaken finalisation is a visible limitation, not an excuse to alter history or delete data | Accepted |
 | D4 — First development result | Implement the complete flow above using deterministic renderer/private-file emulators, authenticated Project download and a Store preview. Use existing test Projects and synthetic representative Products | Emulated documents visibly say “Development preview — not for distribution”. Real production rendering/storage and physical distribution are not proved by B1. Public Store, payment, Order and operational slices remain required in Phase 1, after B1 | Accepted following clarification of Phase 1 versus B1 |
 
 Owner response provenance:
 
 - D1: “Accepted with caveat. Fixed template with editor to be phase 2 development.”
-- D2 and D3: “Accepted.”
+- D2 and D3: “Accepted.” D2 finaliser restriction was subsequently corrected by Chris on 18 September as recorded above.
 - D4 initially requested clarification because Public Store/payment/Order operations are
   required in this phase. The final response was: “Retain B1 with purchaser and operational
   slices in phase one but not B1 specifically. Accepted.”
@@ -452,7 +468,8 @@ Source review resolutions:
   rather than duplicating session/tenant resolution in a REST route. No public locator or
   shared cache is introduced. Reject impersonated finalisation; the organiser uses their
   own session. Current Client membership controls viewing/downloading; managers/admins
-  generate, and the exact organiser alone finalises.
+  generate, and the exact organiser alone finalises. This describes the implemented baseline;
+  the 18 September amendment requires a distinct C1-authorised path in the next correction.
 - Use deterministic PDFs/private temporary files, persisted claims and comparison before
   completion. Lost files can regenerate only to the same output hash. Retain cleanup locators
   until deletion succeeds. No real provider is needed for the accepted development result.

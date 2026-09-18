@@ -6,6 +6,12 @@ Status: Accepted governed input to the `1R-F` parent; retained as the boundary e
 collective/Standard work from accepted local `1R-F-A`; no collective/Standard implementation
 authorised
 
+18 September owner amendment: [CR-Fix-2026-09-18-fund-c1-proxy-authority-and-project-artwork-files.md](CR-Fix-2026-09-18-fund-c1-proxy-authority-and-project-artwork-files.md) supersedes this input's exact-C2-only
+approval restriction. C1 may record Client acceptance as proxy approval, attributed to the
+actual C1 operator and exact artwork version. Group/Logo-Bulk source handling must provide
+a C1/C2 Artwork & Files tab with a stable authenticated direct URL. Other historical
+composition, evidence and production-release distinctions remain; implementation is pending.
+
 Related change requests by name:
 
 - **FUND Application Template And Artwork Template Refinement** —

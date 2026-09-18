@@ -2,6 +2,13 @@
 
 Date: 2026-09-07
 
+18 September planning amendment: [C1 proxy authority correction](../01-cr-inputs/CR-Fix-2026-09-18-fund-c1-proxy-authority-and-project-artwork-files.md) supersedes the
+organiser-only requirement. Existing application code and `e8a3c900` still lack C1
+finalisation/proxy evidence; correction and new authority tests are **not implemented/not
+run**. Prior automation and PDF checks 1/2 PASS remain valid for their original boundaries,
+not proof of the new rule. The B1 checkpoint records next-cycle planning; C1 notes smoke
+remains separately pending. This amendment changes no application or environment state.
+
 ## 17 September — Connected Accepted-PDF Review
 
 ```text

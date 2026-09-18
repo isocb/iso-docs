@@ -38,6 +38,21 @@ Completed dependencies:
 reserved Public Store Presentation slice moves to `1R-G`; no implemented slice or
 historical evidence is renumbered. The critical path is `1R-E -> 1R-F -> 1R-G`.
 
+## 18 September — Owner Amendment: C1 Proxy And Direct File Access
+
+The [C1 proxy authority and Artwork & Files input](../01-cr-inputs/CR-Fix-2026-09-18-fund-c1-proxy-authority-and-project-artwork-files.md) supersedes organiser-only
+restrictions in this parent. Authorised C1 can finalise for the Client and record the Client's
+collective-artwork acceptance as explicit proxy approval, including verbal acceptance, with
+actual C1 actor, represented Client, exact version, time and acceptance context preserved.
+Do not impersonate C2 or conflate this with supplier production review/release. Existing
+immutable evidence and ordinary edit/lock restrictions remain.
+
+Group Artwork and Logo/Bulk Project surfaces must include one Artwork & Files tab for
+C1/C2, multiple supported source files and workflow-specific instructions. Its URL must be
+shareable, restore the exact Project/tab after login and refresh, and retain access checks.
+Reuse the existing production-asset foundation and plan the managed-upload boundary; a
+navigation URL grants no guest upload authority. Collective implementation remains unselected.
+
 ## 1. Goal
 
 Reconcile the three governed CRs with the implemented Store, Product, asset, Commerce and
@@ -165,11 +180,13 @@ boundaries in Section 2.
 
 - active same-Client `PROJECT_MANAGER` and `ADMIN` members may review and mutate eligible
   Project Product selection and supply Project source material;
-- the exact `FundProject.organiserMemberId` alone initially finalises/unlocks an Individual
-  Artwork offer and approves/requests changes to Collective Project Artwork;
+- the normal exact-organiser route remains, with authorised C1 also able to finalise an
+  Individual offer or record Client collective approval as an explicitly attributed proxy;
+  this does not add an unlock capability or broaden ordinary C2 member authority;
 - active authorised Project members may view readiness and download an authorised current
-  document, but only the exact organiser may issue/reissue an external organiser grant or
-  perform the business lock transitions; and
+  document. Existing external organiser-grant rules are unchanged by this amendment.
+  C1 finalisation/proxy approval is a distinct
+  authorised route under the 18 September amendment; and
 - no authority derives from organiser email/name snapshots or a browser-supplied Client,
   tenant or actor identifier.
 
